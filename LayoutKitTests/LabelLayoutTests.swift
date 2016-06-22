@@ -99,10 +99,16 @@ class LabelLayoutTests: XCTestCase {
         text.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(6, 6))
 
         let frame = LabelLayout(attributedText: text).arrangement().frame
-        AssertEqualDensity(frame, [
-            2.0: CGRect(x: 0, y: 0, width: 168, height: 31),
-            3.0: CGRect(x: 0, y: 0, width: 168, height: 31)
-            ])
+        if #available(iOS 9, *) {
+            AssertEqualDensity(frame, [
+                2.0: CGRect(x: 0, y: 0, width: 168, height: 31),
+                3.0: CGRect(x: 0, y: 0, width: 168, height: 31)
+                ])
+        } else {
+            AssertEqualDensity(frame, [
+                2.0: CGRect(x: 0, y: 0, width: 169, height: 31)
+                ])
+        }
     }
 
     func testConfig() {
