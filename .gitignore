@@ -1,0 +1,7 @@
+# Build Directory
+build/
+DerivedData/
+
+# User Data
+*.xctimeline
+xcuserdata

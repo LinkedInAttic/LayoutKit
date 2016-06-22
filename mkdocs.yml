@@ -1,0 +1,18 @@
+site_name: LayoutKit
+site_description: LayoutKit is a fast view layout library for iOS.
+site_author: LinkedIn
+site_favicon: img/logo.png
+repo_url: https://github.com/linkedin/LayoutKit
+extra_css: [layoutkit.css]
+
+pages:
+- Home: index.md
+- Guide:
+  - Building UI: building-ui.md
+  - Custom Layouts: custom-layouts.md
+  - Interfacing with UIKit: uikit.md
+- About:
+  - Benchmarks: benchmarks.md
+
+copyright: Copyright &copy; 2016 LinkedIn
+google_analytics: ['UA-79736636-1', 'http://layoutkit.org']
