@@ -5,3 +5,6 @@ DerivedData/
 # User Data
 *.xctimeline
 xcuserdata
+
+# mkdocs
+site/
