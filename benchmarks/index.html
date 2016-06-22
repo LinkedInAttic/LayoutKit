@@ -4,19 +4,19 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="LayoutKit is a fast view layout library for iOS.">
+        
         <meta name="author" content="LinkedIn">
         
-        <link rel="shortcut icon" href="./img/logo.png">
+        <link rel="shortcut icon" href="../../img/logo.png">
         
 
-	<title>LayoutKit</title>
+	<title>Benchmarks - LayoutKit</title>
 
-        <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="./css/font-awesome-4.5.0.css" rel="stylesheet">
-        <link href="./css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="./css/highlight.css">
-        <link href="./layoutkit.css" rel="stylesheet">
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+        <link href="../layoutkit.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -37,7 +37,7 @@
         
     </head>
 
-    <body class="homepage">
+    <body>
 
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -55,7 +55,7 @@
             
 
             <!-- Main title -->
-            <a class="navbar-brand" href=".">LayoutKit</a>
+            <a class="navbar-brand" href="..">LayoutKit</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -65,8 +65,8 @@
                 <ul class="nav navbar-nav">
                 
                 
-                    <li class="active">
-                        <a href=".">Home</a>
+                    <li >
+                        <a href="..">Home</a>
                     </li>
                 
                 
@@ -77,19 +77,19 @@
                         
                             
 <li >
-    <a href="building-ui/">Building UI</a>
+    <a href="../building-ui/">Building UI</a>
 </li>
 
                         
                             
 <li >
-    <a href="custom-layouts/">Custom Layouts</a>
+    <a href="../custom-layouts/">Custom Layouts</a>
 </li>
 
                         
                             
 <li >
-    <a href="uikit/">Interfacing with UIKit</a>
+    <a href="../uikit/">Interfacing with UIKit</a>
 </li>
 
                         
@@ -98,13 +98,13 @@
                 
                 
                 
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                         
                             
-<li >
-    <a href="benchmarks/">Benchmarks</a>
+<li class="active">
+    <a href="./">Benchmarks</a>
 </li>
 
                         
@@ -122,13 +122,13 @@
                     </a>
                 </li>
                 
-                    <li class="disabled">
-                        <a rel="next" >
+                    <li >
+                        <a rel="next" href="../uikit/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
-                    <li >
-                        <a rel="prev" href="building-ui/">
+                    <li class="disabled">
+                        <a rel="prev" >
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
@@ -153,79 +153,39 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#layoutkit">LayoutKit</a></li>
+        <li class="main active"><a href="#benchmarks">Benchmarks</a></li>
         
-            <li><a href="#motivation">Motivation</a></li>
+            <li><a href="#methodology">Methodology</a></li>
         
-            <li><a href="#benefits">Benefits</a></li>
+            <li><a href="#uicollectionview">UICollectionView</a></li>
         
-            <li><a href="#hello-world">Hello world</a></li>
-        
-            <li><a href="#limitations">Limitations</a></li>
-        
-            <li><a href="#installation">Installation</a></li>
+            <li><a href="#uitableview">UITableView</a></li>
         
     
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<p><img alt="LayoutKit" src="./img/layoutkit.svg" /></p>
-<h1 id="layoutkit">LayoutKit</h1>
-<p>LayoutKit is a fast view layout library for iOS.</p>
-<h2 id="motivation">Motivation</h2>
-<p>LinkedIn created LayoutKit because we have found that Auto Layout is not performant enough for complicated view hierarchies in scrollable views.
-For more background, read the <a href="https://engineering.linkedin.com/blog/2016/06/open-sourcing-layoutkit--a-fast-view-layout-library-for-ios-appl">blog post</a>.</p>
-<h2 id="benefits">Benefits</h2>
-<p>LayoutKit has many benefits over using Auto Layout:</p>
+<h1 id="benchmarks">Benchmarks</h1>
+<p>This page contains benchmark results for LayoutKit, Auto Layout, and manual layout code.</p>
+<blockquote>
+<p>LayoutKit is as fast as manual layout code and significantly faster than Auto Layout.</p>
+</blockquote>
+<h2 id="methodology">Methodology</h2>
+<p>Benchmarks were run on an iPhone 6 running iOS 9.3.2 with Swift optimization turned on.</p>
+<h2 id="uicollectionview">UICollectionView</h2>
+<p><img alt="UICollectionView benchmark" src="../img/collectionview-benchmark.png" /></p>
+<p>Notes:</p>
 <ul>
-<li><strong>Fast</strong>: LayoutKit is as fast as manual layout code and is <a href="benchmarks/">significantly faster than Auto Layout</a>.</li>
-<li><strong>Asynchronous</strong>: Layouts can be computed in a background thread so user interactions are not interrupted.</li>
-<li><strong>Declarative</strong>: Layouts are declared with immutable data structures. This makes layout code easier to develop, document, code review, test, debug, profile, and maintain.</li>
-<li><strong>Cacheable</strong>: Layout results are immutable data structures so they can be precomputed in the background and cached to increase user perceived performance.</li>
+<li><code>estimatedItemSize</code> is <a href="http://stackoverflow.com/questions/26143591/specifying-one-dimension-of-cells-in-uicollectionview-using-auto-layout/26349770#26349770">hard to use</a> so these tests use <code>sizeForItemAtIndexPath</code>.</li>
+<li>UICollectionViewFlowLayout requests the height of all cells during layout (even those that are off screen). This is why layout performance keeps getting worse as number of cells are added to the UICollectionView.</li>
 </ul>
-<p>LayoutKit also provides benefits that make it as easy to use as Auto Layout:</p>
+<h2 id="uitableview">UITableView</h2>
+<p><img alt="UITableView benchmark" src="../img/tableview-benchmark.png" /></p>
+<p>Notes:</p>
 <ul>
-<li><strong>UIKit friendly</strong>: LayoutKit produces UIViews and also provides an adapter that makes it easy to use with UITableView and UICollectionView.</li>
-<li><strong>Internationalization</strong>: LayoutKit automatically adjusts view frames for right-to-left languages.</li>
-<li><strong>Swift</strong>: LayoutKit can be used in Swift applications and playgrounds.</li>
-<li><strong>Tested and production ready</strong>: LayoutKit is covered by unit tests and is being used inside of recent versions of the <a href="https://itunes.apple.com/us/app/linkedin/id288429040?mt=8">LinkedIn</a> and <a href="https://itunes.apple.com/us/app/linkedin-job-search/id886051313?mt=8">LinkedIn Job Search</a> iOS apps.</li>
-<li><strong>Open-source</strong>: Not a black box like Auto Layout.</li>
-<li><strong>Apache License (v2)</strong>: Your lawyers will be happy that there are no patent shenanigans.</li>
-</ul>
-<h2 id="hello-world">Hello world</h2>
-<pre><code class="swift">let helloWorld = InsetLayout(
-    insets: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 8),
-    sublayout: StackLayout(
-        axis: .horizontal,
-        spacing: 4,
-        sublayouts: [
-            SizeLayout&lt;UIImageView&gt;(width: 50, height: 50, config: { imageView in
-                imageView.image = UIImage(named: &quot;earth.png&quot;)
-            }),
-            LabelLayout(text: &quot;Hello World!&quot;, alignment: .center)
-        ]
-    )
-)
-
-helloWorld.arrangement().makeViews(inView: rootView)
-</code></pre>
-
-<p><img alt="Hello world example layout" src="./img/helloworld.png" /></p>
-<h2 id="limitations">Limitations</h2>
-<p>We have found LayoutKit to be a useful tool, but you should be aware of what it is not.</p>
-<ul>
-<li>LayoutKit is not a constraint based layout system. If you wish to express a constraint between views, then those views need to be children of a single layout that implements code to enforce that constraint.</li>
-<li>LayoutKit is not <a href="https://www.w3.org/TR/css-flexbox-1/">flexbox</a>, but you may find similarities.</li>
-</ul>
-<h2 id="installation">Installation</h2>
-<p>LayoutKit is packaged as a <a href="https://cocoapods.org/">Cocoapod</a>.</p>
-<p>Add this to your Podspec:</p>
-<pre><code>pod 'LayoutKit'
-</code></pre>
-
-<p>Then run <code>pod install</code>.</p>
-<p>Now you are ready to start <a href="building-ui/">building UI</a>.</p></div>
+<li>Unlike UICollectionView, UITableView defers asking for the height of cells until it is needed. This is why performance is constant for seven or more cells.</li>
+</ul></div>
             
         </div>
 
@@ -237,12 +197,12 @@ helloWorld.arrangement().makeViews(inView: rootView)
             <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
 
-        <script src="./js/jquery-1.10.2.min.js"></script>
-        <script src="./js/bootstrap-3.0.3.min.js"></script>
-        <script src="./js/highlight.pack.js"></script>
-        <script>var base_url = '.';</script>
-        <script data-main="./mkdocs/js/search.js" src="./mkdocs/js/require.js"></script>
-        <script src="./js/base.js"></script>
+        <script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script>
+        <script>var base_url = '..';</script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../js/base.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
             <div class="modal-dialog">
@@ -271,8 +231,3 @@ helloWorld.arrangement().makeViews(inView: rootView)
 
     </body>
 </html>
-
-<!--
-MkDocs version : 0.15.3
-Build Date UTC : 2016-06-22 18:20:08.816165
--->

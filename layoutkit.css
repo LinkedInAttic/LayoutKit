@@ -1,0 +1,38 @@
+.navbar-brand {
+  background-image: url('img/logo.svg');
+  background-repeat: no-repeat;
+  padding-left: 60px;
+}
+
+img[alt='LayoutKit'] {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+a {
+  color: #4285C5;
+}
+
+/*
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+  background-color: #107ABF !important;
+}
+*/
+
+.navbar {
+  background-image: -webkit-linear-gradient(#178DCA,#4285C5);
+  background-image: linear-gradient(#178DCA,#4285C5);
+}
+
+
+
+/* Replace #178acc with #107ABF from bootstrap theme */
+.text-primary:hover{color:#107ABF}
+.navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav>li>a:focus{color:#fff;background-color:#107ABF}
+.navbar-default .navbar-nav>.active>a,.navbar-default .navbar-nav>.active>a:hover,.navbar-default .navbar-nav>.active>a:focus{color:#fff;background-color:#107ABF}
+.navbar-default .navbar-toggle{border-color:#107ABF}
+.navbar-default .navbar-toggle:hover,.navbar-default .navbar-toggle:focus{background-color:#107ABF}
+.navbar-default .navbar-nav>.open>a,.navbar-default .navbar-nav>.open>a:hover,.navbar-default .navbar-nav>.open>a:focus{color:#fff;background-color:#107ABF}
+.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus{color:#fff;background-color:#107ABF}
+.navbar-default .navbar-nav .open .dropdown-menu>.active>a,.navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover,.navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus{color:#fff;background-color:#107ABF}
+.label-primary[href]:hover,.label-primary[href]:focus{background-color:#107ABF}

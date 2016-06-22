@@ -1,0 +1,154 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "LayoutKit\n\n\nLayoutKit is a fast view layout library for iOS.\n\n\nMotivation\n\n\nLinkedIn created LayoutKit because we have found that Auto Layout is not performant enough for complicated view hierarchies in scrollable views.\nFor more background, read the \nblog post\n.\n\n\nBenefits\n\n\nLayoutKit has many benefits over using Auto Layout:\n\n\n\n\nFast\n: LayoutKit is as fast as manual layout code and is \nsignificantly faster than Auto Layout\n.\n\n\nAsynchronous\n: Layouts can be computed in a background thread so user interactions are not interrupted.\n\n\nDeclarative\n: Layouts are declared with immutable data structures. This makes layout code easier to develop, document, code review, test, debug, profile, and maintain.\n\n\nCacheable\n: Layout results are immutable data structures so they can be precomputed in the background and cached to increase user perceived performance.\n\n\n\n\nLayoutKit also provides benefits that make it as easy to use as Auto Layout:\n\n\n\n\nUIKit friendly\n: LayoutKit produces UIViews and also provides an adapter that makes it easy to use with UITableView and UICollectionView.\n\n\nInternationalization\n: LayoutKit automatically adjusts view frames for right-to-left languages.\n\n\nSwift\n: LayoutKit can be used in Swift applications and playgrounds.\n\n\nTested and production ready\n: LayoutKit is covered by unit tests and is being used inside of recent versions of the \nLinkedIn\n and \nLinkedIn Job Search\n iOS apps.\n\n\nOpen-source\n: Not a black box like Auto Layout.\n\n\nApache License (v2)\n: Your lawyers will be happy that there are no patent shenanigans.\n\n\n\n\nHello world\n\n\nlet helloWorld = InsetLayout(\n    insets: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 8),\n    sublayout: StackLayout(\n        axis: .horizontal,\n        spacing: 4,\n        sublayouts: [\n            SizeLayout\nUIImageView\n(width: 50, height: 50, config: { imageView in\n                imageView.image = UIImage(named: \nearth.png\n)\n            }),\n            LabelLayout(text: \nHello World!\n, alignment: .center)\n        ]\n    )\n)\n\nhelloWorld.arrangement().makeViews(inView: rootView)\n\n\n\n\n\n\nLimitations\n\n\nWe have found LayoutKit to be a useful tool, but you should be aware of what it is not.\n\n\n\n\nLayoutKit is not a constraint based layout system. If you wish to express a constraint between views, then those views need to be children of a single layout that implements code to enforce that constraint.\n\n\nLayoutKit is not \nflexbox\n, but you may find similarities.\n\n\n\n\nInstallation\n\n\nLayoutKit is packaged as a \nCocoapod\n.\n\n\nAdd this to your Podspec:\n\n\npod 'LayoutKit'\n\n\n\n\nThen run \npod install\n.\n\n\nNow you are ready to start \nbuilding UI\n.", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#layoutkit", 
+            "text": "LayoutKit is a fast view layout library for iOS.", 
+            "title": "LayoutKit"
+        }, 
+        {
+            "location": "/#motivation", 
+            "text": "LinkedIn created LayoutKit because we have found that Auto Layout is not performant enough for complicated view hierarchies in scrollable views.\nFor more background, read the  blog post .", 
+            "title": "Motivation"
+        }, 
+        {
+            "location": "/#benefits", 
+            "text": "LayoutKit has many benefits over using Auto Layout:   Fast : LayoutKit is as fast as manual layout code and is  significantly faster than Auto Layout .  Asynchronous : Layouts can be computed in a background thread so user interactions are not interrupted.  Declarative : Layouts are declared with immutable data structures. This makes layout code easier to develop, document, code review, test, debug, profile, and maintain.  Cacheable : Layout results are immutable data structures so they can be precomputed in the background and cached to increase user perceived performance.   LayoutKit also provides benefits that make it as easy to use as Auto Layout:   UIKit friendly : LayoutKit produces UIViews and also provides an adapter that makes it easy to use with UITableView and UICollectionView.  Internationalization : LayoutKit automatically adjusts view frames for right-to-left languages.  Swift : LayoutKit can be used in Swift applications and playgrounds.  Tested and production ready : LayoutKit is covered by unit tests and is being used inside of recent versions of the  LinkedIn  and  LinkedIn Job Search  iOS apps.  Open-source : Not a black box like Auto Layout.  Apache License (v2) : Your lawyers will be happy that there are no patent shenanigans.", 
+            "title": "Benefits"
+        }, 
+        {
+            "location": "/#hello-world", 
+            "text": "let helloWorld = InsetLayout(\n    insets: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 8),\n    sublayout: StackLayout(\n        axis: .horizontal,\n        spacing: 4,\n        sublayouts: [\n            SizeLayout UIImageView (width: 50, height: 50, config: { imageView in\n                imageView.image = UIImage(named:  earth.png )\n            }),\n            LabelLayout(text:  Hello World! , alignment: .center)\n        ]\n    )\n)\n\nhelloWorld.arrangement().makeViews(inView: rootView)", 
+            "title": "Hello world"
+        }, 
+        {
+            "location": "/#limitations", 
+            "text": "We have found LayoutKit to be a useful tool, but you should be aware of what it is not.   LayoutKit is not a constraint based layout system. If you wish to express a constraint between views, then those views need to be children of a single layout that implements code to enforce that constraint.  LayoutKit is not  flexbox , but you may find similarities.", 
+            "title": "Limitations"
+        }, 
+        {
+            "location": "/#installation", 
+            "text": "LayoutKit is packaged as a  Cocoapod .  Add this to your Podspec:  pod 'LayoutKit'  Then run  pod install .  Now you are ready to start  building UI .", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/building-ui/", 
+            "text": "Building UI\n\n\nThis page is an overview of how to build UIs using LayoutKit.\n\n\nBasic layouts\n\n\nLayoutKit provides a four basic layouts:\n\n\n\n\nLabelLayout\n: A layout for a UILabel.\n\n\nSizeLayout\n: A layout for a specific size (e.g. UIImageView).\n\n\nInsetLayout\n: A layout that insets its child layout (i.e. padding).\n\n\nStackLayout\n: A layout that stacks its child layouts horizontally or vertically.\n\n\n\n\nMost UIs are easily expressed by nesting vertical and horizontal stacks. Nesting layouts does not adversely affect performance because because LayoutKit does not create views for layouts that do not require one (e.g. StackLayout, InsetLayout).\n\n\nIf you are already using UIStackView (or any other Auto Layout based stack) and are looking for a quick performance win, check out \nStackView\n. It is similar to UIStackView except it is much faster because it uses StackLayout.\n\n\nDefining composite layouts\n\n\nIt is easy to compose layouts into reusable components.\n\n\nHere is an example of a reusable \nMiniProfileLayout\n:\n\n\nimport UIKit\nimport LayoutKit\n\n/// A small version of a LinkedIn profile.\npublic class MiniProfileLayout: InsetLayout {\n\n    public init(imageName: String, name: String, headline: String) {\n        let image = SizeLayout\nUIImageView\n(\n            width: 80,\n            height: 80,\n            alignment: .center,\n            config: { imageView in\n                imageView.image = UIImage(named: imageName)\n\n                // Not the most performant way to do a corner radius, but this is just a demo.\n                imageView.layer.cornerRadius = 40\n                imageView.layer.masksToBounds = true\n            }\n        )\n\n        let nameLayout = LabelLayout(text: name, font: UIFont.systemFontOfSize(40))\n\n        let headlineLayout = LabelLayout(\n            text: headline,\n            font: UIFont.systemFontOfSize(20),\n            config: { label in\n                label.textColor = UIColor.darkGrayColor()\n            }\n        )\n\n        super.init(\n            insets: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8),\n            sublayout: StackLayout(\n                axis: .horizontal,\n                spacing: 8,\n                sublayouts: [\n                    image,\n                    StackLayout(axis: .vertical, spacing: 2, sublayouts: [nameLayout, headlineLayout])\n                ]\n            )\n        )\n    }\n}\n\n\n\n\nThis is how you would use MiniProfileLayout:\n\n\nlet nickProfile = MiniProfileLayout(\n    imageName: \nnick.jpg\n,\n    name: \nNick Snyder\n,\n    headline: \nSoftware Engineer at LinkedIn\n\n)\nnickProfile.arrangement().makeViews()\n\n\n\n\n\n\nlet sergeiProfile = MiniProfileLayout(\n    imageName: \nsergei.jpg\n,\n    name: \nSergei Taguer\n,\n    headline: \nSoftware Engineer at LinkedIn\n\n)\nsergeiProfile.arrangement().makeViews()\n\n\n\n\n\n\nMore examples can be found in \nLayoutKitExampleLayouts\n.\n\n\nView configuration\n\n\nLayouts generally only capture information that is necessary to compute the size and position of a layout.\n\n\nAll other properties that don't affect the layout of a view can be configured in the \nconfig\n closure passed to a layout's initializer.\n\n\nFlexibility\n\n\nAll layouts declare their \nFlexibility\n along each axis. It is a hint to the layout's parent that indicates the priority at which the layout should be compressed or expanded to fit the available space.\n\n\nLayoutKit's basic layouts provide reasonable defaults for flexibility so you generally don't need to worry about configuring it unless you need to adjust the relative priority of sibling layouts.\n\n\nAlignment\n\n\nAll layouts provided by LayoutKit can be configured with an \nAlignment\n.\n\n\nAlignment determines how a layout positions itself in the rect that that its parent gives it during \narrangement\n.", 
+            "title": "Building UI"
+        }, 
+        {
+            "location": "/building-ui/#building-ui", 
+            "text": "This page is an overview of how to build UIs using LayoutKit.", 
+            "title": "Building UI"
+        }, 
+        {
+            "location": "/building-ui/#basic-layouts", 
+            "text": "LayoutKit provides a four basic layouts:   LabelLayout : A layout for a UILabel.  SizeLayout : A layout for a specific size (e.g. UIImageView).  InsetLayout : A layout that insets its child layout (i.e. padding).  StackLayout : A layout that stacks its child layouts horizontally or vertically.   Most UIs are easily expressed by nesting vertical and horizontal stacks. Nesting layouts does not adversely affect performance because because LayoutKit does not create views for layouts that do not require one (e.g. StackLayout, InsetLayout).  If you are already using UIStackView (or any other Auto Layout based stack) and are looking for a quick performance win, check out  StackView . It is similar to UIStackView except it is much faster because it uses StackLayout.", 
+            "title": "Basic layouts"
+        }, 
+        {
+            "location": "/building-ui/#defining-composite-layouts", 
+            "text": "It is easy to compose layouts into reusable components.  Here is an example of a reusable  MiniProfileLayout :  import UIKit\nimport LayoutKit\n\n/// A small version of a LinkedIn profile.\npublic class MiniProfileLayout: InsetLayout {\n\n    public init(imageName: String, name: String, headline: String) {\n        let image = SizeLayout UIImageView (\n            width: 80,\n            height: 80,\n            alignment: .center,\n            config: { imageView in\n                imageView.image = UIImage(named: imageName)\n\n                // Not the most performant way to do a corner radius, but this is just a demo.\n                imageView.layer.cornerRadius = 40\n                imageView.layer.masksToBounds = true\n            }\n        )\n\n        let nameLayout = LabelLayout(text: name, font: UIFont.systemFontOfSize(40))\n\n        let headlineLayout = LabelLayout(\n            text: headline,\n            font: UIFont.systemFontOfSize(20),\n            config: { label in\n                label.textColor = UIColor.darkGrayColor()\n            }\n        )\n\n        super.init(\n            insets: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8),\n            sublayout: StackLayout(\n                axis: .horizontal,\n                spacing: 8,\n                sublayouts: [\n                    image,\n                    StackLayout(axis: .vertical, spacing: 2, sublayouts: [nameLayout, headlineLayout])\n                ]\n            )\n        )\n    }\n}  This is how you would use MiniProfileLayout:  let nickProfile = MiniProfileLayout(\n    imageName:  nick.jpg ,\n    name:  Nick Snyder ,\n    headline:  Software Engineer at LinkedIn \n)\nnickProfile.arrangement().makeViews()   let sergeiProfile = MiniProfileLayout(\n    imageName:  sergei.jpg ,\n    name:  Sergei Taguer ,\n    headline:  Software Engineer at LinkedIn \n)\nsergeiProfile.arrangement().makeViews()   More examples can be found in  LayoutKitExampleLayouts .", 
+            "title": "Defining composite layouts"
+        }, 
+        {
+            "location": "/building-ui/#view-configuration", 
+            "text": "Layouts generally only capture information that is necessary to compute the size and position of a layout.  All other properties that don't affect the layout of a view can be configured in the  config  closure passed to a layout's initializer.", 
+            "title": "View configuration"
+        }, 
+        {
+            "location": "/building-ui/#flexibility", 
+            "text": "All layouts declare their  Flexibility  along each axis. It is a hint to the layout's parent that indicates the priority at which the layout should be compressed or expanded to fit the available space.  LayoutKit's basic layouts provide reasonable defaults for flexibility so you generally don't need to worry about configuring it unless you need to adjust the relative priority of sibling layouts.", 
+            "title": "Flexibility"
+        }, 
+        {
+            "location": "/building-ui/#alignment", 
+            "text": "All layouts provided by LayoutKit can be configured with an  Alignment .  Alignment determines how a layout positions itself in the rect that that its parent gives it during  arrangement .", 
+            "title": "Alignment"
+        }, 
+        {
+            "location": "/custom-layouts/", 
+            "text": "Custom layouts\n\n\nThis page is an overview of how to create a custom layout.\n\n\nWhen to create a custom layout\n\n\nOnly create a custom layout if your UIs can't be expressed by composing the basic layouts that LayoutKit provides.\n\n\nLayout protocol\n\n\nCreate a custom layout by implementing the \nLayout\n protocol.\n\n\nPlease read the documentation of the protocol and its methods carefully.", 
+            "title": "Custom Layouts"
+        }, 
+        {
+            "location": "/custom-layouts/#custom-layouts", 
+            "text": "This page is an overview of how to create a custom layout.", 
+            "title": "Custom layouts"
+        }, 
+        {
+            "location": "/custom-layouts/#when-to-create-a-custom-layout", 
+            "text": "Only create a custom layout if your UIs can't be expressed by composing the basic layouts that LayoutKit provides.", 
+            "title": "When to create a custom layout"
+        }, 
+        {
+            "location": "/custom-layouts/#layout-protocol", 
+            "text": "Create a custom layout by implementing the  Layout  protocol.  Please read the documentation of the protocol and its methods carefully.", 
+            "title": "Layout protocol"
+        }, 
+        {
+            "location": "/uikit/", 
+            "text": "Interfacing with UIKit\n\n\nThis page guides you through the process of interfacing with UIKit.\n\n\nThreading\n\n\nThere are three steps to the layout process.\n\n\n\n\nInstantiate a layout object.\n\n\nCompute the layout's view frames.\n\n\nInstantiate views and assign frames.\n\n\n\n\nUnlike UIKit, LayoutKit can perform steps #1 and #2 on a background thread, but doing so is completely optional.\n\n\nExamples:\n\n\n\n\nBackgroundMiniProfileViewController\n\n\nForegroundMiniProfileViewController\n\n\n\n\nLayoutKit is faster than Auto Layout by default so it is perfectly fine to not bother with background layout if performance on the main thread is acceptable.\n\n\nUICollectionView and UITableView\n\n\nIf you have a UICollectionView or UITableView and all of the cells use LayoutKit, then you can use \nReloadableViewLayoutAdapter\n to automatically handle computing cell layouts on a background thread.\n\n\nMixing Auto Layout and LayoutKit\n\n\nIf you have a UI that mixes LayoutKit and Auto Layout (e.g. some cells use LayoutKit and others use Auto Layout), then you may want to avoid the additional complexity of background layout.\n\n\nInstead, perform all layout computations on the main thread (similar to how \nStackView\n is implemented).\n\n\nStackView\n\n\nIf you don't want to think about layouts or threading, \nStackView\n is an easy way to start taking advantage of the performance of LayoutKit.\n\n\n\n\nIt is similar to UIStackView except it uses LayoutKit's StackLayout algorithm to efficiently stack subviews.\n\n\nIt is faster than UIStackView and it is also faster than manually stacking views with Auto Layout.\n\n\n\n\nYou can use StackView like any other UIView, but there are a few extra considerations that you need to be aware of\nif you want to use it with Auto Layout (please read StackView's class documentation).\n\n\nSummary\n\n\nWe recommend choosing the simplest option that works with any existing code that you have and achieves acceptable performance.", 
+            "title": "Interfacing with UIKit"
+        }, 
+        {
+            "location": "/uikit/#interfacing-with-uikit", 
+            "text": "This page guides you through the process of interfacing with UIKit.", 
+            "title": "Interfacing with UIKit"
+        }, 
+        {
+            "location": "/uikit/#threading", 
+            "text": "There are three steps to the layout process.   Instantiate a layout object.  Compute the layout's view frames.  Instantiate views and assign frames.   Unlike UIKit, LayoutKit can perform steps #1 and #2 on a background thread, but doing so is completely optional.  Examples:   BackgroundMiniProfileViewController  ForegroundMiniProfileViewController   LayoutKit is faster than Auto Layout by default so it is perfectly fine to not bother with background layout if performance on the main thread is acceptable.", 
+            "title": "Threading"
+        }, 
+        {
+            "location": "/uikit/#uicollectionview-and-uitableview", 
+            "text": "If you have a UICollectionView or UITableView and all of the cells use LayoutKit, then you can use  ReloadableViewLayoutAdapter  to automatically handle computing cell layouts on a background thread.", 
+            "title": "UICollectionView and UITableView"
+        }, 
+        {
+            "location": "/uikit/#mixing-auto-layout-and-layoutkit", 
+            "text": "If you have a UI that mixes LayoutKit and Auto Layout (e.g. some cells use LayoutKit and others use Auto Layout), then you may want to avoid the additional complexity of background layout.  Instead, perform all layout computations on the main thread (similar to how  StackView  is implemented).", 
+            "title": "Mixing Auto Layout and LayoutKit"
+        }, 
+        {
+            "location": "/uikit/#stackview", 
+            "text": "If you don't want to think about layouts or threading,  StackView  is an easy way to start taking advantage of the performance of LayoutKit.   It is similar to UIStackView except it uses LayoutKit's StackLayout algorithm to efficiently stack subviews.  It is faster than UIStackView and it is also faster than manually stacking views with Auto Layout.   You can use StackView like any other UIView, but there are a few extra considerations that you need to be aware of\nif you want to use it with Auto Layout (please read StackView's class documentation).", 
+            "title": "StackView"
+        }, 
+        {
+            "location": "/uikit/#summary", 
+            "text": "We recommend choosing the simplest option that works with any existing code that you have and achieves acceptable performance.", 
+            "title": "Summary"
+        }, 
+        {
+            "location": "/benchmarks/", 
+            "text": "Benchmarks\n\n\nThis page contains benchmark results for LayoutKit, Auto Layout, and manual layout code.\n\n\n\n\nLayoutKit is as fast as manual layout code and significantly faster than Auto Layout.\n\n\n\n\nMethodology\n\n\nBenchmarks were run on an iPhone 6 running iOS 9.3.2 with Swift optimization turned on.\n\n\nUICollectionView\n\n\n\n\nNotes:\n\n\n\n\nestimatedItemSize\n is \nhard to use\n so these tests use \nsizeForItemAtIndexPath\n.\n\n\nUICollectionViewFlowLayout requests the height of all cells during layout (even those that are off screen). This is why layout performance keeps getting worse as number of cells are added to the UICollectionView.\n\n\n\n\nUITableView\n\n\n\n\nNotes:\n\n\n\n\nUnlike UICollectionView, UITableView defers asking for the height of cells until it is needed. This is why performance is constant for seven or more cells.", 
+            "title": "Benchmarks"
+        }, 
+        {
+            "location": "/benchmarks/#benchmarks", 
+            "text": "This page contains benchmark results for LayoutKit, Auto Layout, and manual layout code.   LayoutKit is as fast as manual layout code and significantly faster than Auto Layout.", 
+            "title": "Benchmarks"
+        }, 
+        {
+            "location": "/benchmarks/#methodology", 
+            "text": "Benchmarks were run on an iPhone 6 running iOS 9.3.2 with Swift optimization turned on.", 
+            "title": "Methodology"
+        }, 
+        {
+            "location": "/benchmarks/#uicollectionview", 
+            "text": "Notes:   estimatedItemSize  is  hard to use  so these tests use  sizeForItemAtIndexPath .  UICollectionViewFlowLayout requests the height of all cells during layout (even those that are off screen). This is why layout performance keeps getting worse as number of cells are added to the UICollectionView.", 
+            "title": "UICollectionView"
+        }, 
+        {
+            "location": "/benchmarks/#uitableview", 
+            "text": "Notes:   Unlike UICollectionView, UITableView defers asking for the height of cells until it is needed. This is why performance is constant for seven or more cells.", 
+            "title": "UITableView"
+        }
+    ]
+}
