@@ -114,7 +114,7 @@ class ReloadableViewLayoutAdapterTests: XCTestCase {
                 completionExpectation.fulfill()
             })
 
-            waitForExpectationsWithTimeout(1, handler: nil)
+            waitForExpectationsWithTimeout(10, handler: nil)
 
             verifyLayoutOne(view: view)
 
@@ -133,7 +133,7 @@ class ReloadableViewLayoutAdapterTests: XCTestCase {
                 completionExpectation.fulfill()
             })
 
-            waitForExpectationsWithTimeout(1, handler: nil)
+            waitForExpectationsWithTimeout(10, handler: nil)
 
             verifyLayoutTwo(view: view)
 
@@ -198,7 +198,7 @@ class ReloadableViewLayoutAdapterTests: XCTestCase {
             completionExpectation.fulfill()
         })
 
-        waitForExpectationsWithTimeout(1, handler: nil)
+        waitForExpectationsWithTimeout(10, handler: nil)
 
         // Verify that only the last asynchronous layout happened.
         verifyLayoutTwo(view: view)
