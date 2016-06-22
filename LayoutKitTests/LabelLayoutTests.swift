@@ -105,8 +105,10 @@ class LabelLayoutTests: XCTestCase {
                 3.0: CGRect(x: 0, y: 0, width: 168, height: 31)
                 ])
         } else {
+            // for some reason iOS 8 and iOS 9 have a 1px difference.
             AssertEqualDensity(frame, [
-                2.0: CGRect(x: 0, y: 0, width: 169, height: 31)
+                2.0: CGRect(x: 0, y: 0, width: 169, height: 31),
+                3.0: CGRect(x: 0, y: 0, width: 169, height: 31)
                 ])
         }
     }
