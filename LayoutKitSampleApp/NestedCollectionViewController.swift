@@ -7,8 +7,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import UIKit
-import LayoutKit
-import LayoutKitExampleLayouts
+@testable import LayoutKit
+@testable import LayoutKitExampleLayouts
 
 /**
  A vertical collection view where each cell contains a horizontal collection view.

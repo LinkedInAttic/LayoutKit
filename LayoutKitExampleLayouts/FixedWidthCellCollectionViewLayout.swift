@@ -7,13 +7,13 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import UIKit
-import LayoutKit
+@testable import LayoutKit
 
 /**
  A layout for a collection view that has fixed width cells.
  The height of the collection view is the height of the tallest cell.
  */
-public class FixedWidthCellCollectionViewLayout<V: LayoutAdapterCollectionView, C: CollectionType where C.Generator.Element == Layout>: Layout {
+internal class FixedWidthCellCollectionViewLayout<V: LayoutAdapterCollectionView, C: CollectionType where C.Generator.Element == Layout>: Layout {
 
     private let cellWidth: CGFloat
     private let sectionLayouts: [Section<C>]
