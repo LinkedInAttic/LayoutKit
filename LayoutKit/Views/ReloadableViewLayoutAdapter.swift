@@ -34,9 +34,7 @@ internal class ReloadableViewLayoutAdapter: NSObject {
     weak var reloadableView: ReloadableView?
 
     /// Logs messages.
-    public var logger: String -> Void = { msg in
-        NSLog("%@", msg)
-    }
+    public var logger: (String -> Void)? = nil
 
     public init(reloadableView: ReloadableView) {
         self.reloadableView = reloadableView
@@ -118,7 +116,7 @@ internal class ReloadableViewLayoutAdapter: NSObject {
         }
         reloadableView?.reloadDataSync()
         let end = CFAbsoluteTimeGetCurrent()
-        logger("user: \((end-start).ms)")
+        logger?("user: \((end-start).ms)")
         completion?()
     }
 
@@ -224,7 +222,7 @@ internal class ReloadableViewLayoutAdapter: NSObject {
                 let end = CFAbsoluteTimeGetCurrent()
                 // The amount of time spent on the main thread may be high, but the user impact is small because
                 // we are dispatching small blocks and not doing any work if the user is interacting.
-                self?.logger("user: \((end-start).ms) (main: \((timeOnMainThread + end - startMain).ms))")
+                self?.logger?("user: \((end-start).ms) (main: \((timeOnMainThread + end - startMain).ms))")
                 completion?()
             })
         }
