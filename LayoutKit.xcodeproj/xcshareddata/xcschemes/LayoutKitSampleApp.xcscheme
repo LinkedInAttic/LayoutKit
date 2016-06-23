@@ -37,11 +37,6 @@
                BlueprintName = "LayoutKitTests"
                ReferencedContainer = "container:LayoutKit.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "ReloadableViewLayoutAdapterTests">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
