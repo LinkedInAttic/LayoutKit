@@ -7,7 +7,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import UIKit
-@testable import LayoutKit
+import LayoutKit
 
 /// Displays a feed using a UITableView
 class FeedTableViewController: FeedBaseViewController {

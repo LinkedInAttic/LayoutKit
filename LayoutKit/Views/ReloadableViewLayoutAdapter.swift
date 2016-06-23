@@ -13,7 +13,7 @@ import UIKit
 
  Set it as a UICollectionView or UITableView's dataSource and delegate.
  */
-internal class ReloadableViewLayoutAdapter: NSObject {
+public class ReloadableViewLayoutAdapter: NSObject {
 
     let reuseIdentifier = String(ReloadableViewLayoutAdapter)
 

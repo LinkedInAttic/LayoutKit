@@ -9,7 +9,7 @@
 import UIKit
 import XCPlayground
 import LayoutKit
-@testable import LayoutKitExampleLayouts
+import LayoutKitExampleLayouts
 
 // REMINDER: you need to manually build LayoutKitExampleLayouts on the simulator for changes to be reflected in this playground.
 
