@@ -15,4 +15,4 @@ pages:
   - Benchmarks: benchmarks.md
 
 copyright: Copyright &copy; 2016 LinkedIn
-google_analytics: ['UA-79736636-1', 'http://layoutkit.org']
+google_analytics: ['UA-79736636-1', 'layoutkit.org']
