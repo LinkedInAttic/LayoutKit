@@ -15,9 +15,9 @@ import UIKit
  The class is public so that makeView() can conform to the public Layout protocol.
  */
 public class PositioningLayout<View: UIView> {
-    public let config: (View -> Void)?
+    public let config: ((View) -> Void)?
 
-    public init(config: (View -> Void)?) {
+    public init(config: ((View) -> Void)?) {
         self.config = config
     }
 

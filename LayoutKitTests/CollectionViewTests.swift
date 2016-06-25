@@ -20,52 +20,52 @@ class CollectionViewTests: XCTestCase, UICollectionViewDataSource {
     func testCollectionView() {
         let layout = UICollectionViewFlowLayout()
         let view = UICollectionView(frame: CGRect(x: 0, y: 0, width: 320, height: 480), collectionViewLayout: layout)
-        view.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        view.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         view.dataSource = self
 
         sectionCounts = [1]
         log("reload start")
 
         view.reloadData()
-        layout.prepareLayout()
+        layout.prepare()
         log("reload end")
 
-        let e = expectationWithDescription("main")
-        dispatch_async(dispatch_get_main_queue()) {
+        let e = expectation(withDescription: "main")
+        DispatchQueue.main.async {
             log("insert start")
             self.sectionCounts = [2]
-            view.insertItemsAtIndexPaths([NSIndexPath(forItem: 1, inSection: 0)])
+            view.insertItems(at: [IndexPath(item: 1, section: 0)])
             log("insert end")
 
-            dispatch_async(dispatch_get_main_queue(), { 
+            DispatchQueue.main.async(execute: { 
                 log("insert start")
                 self.sectionCounts = [2, 1]
-                view.insertSections(NSIndexSet(index: 1))
+                view.insertSections(IndexSet(integer: 1))
                 log("insert end")
 
                 e.fulfill()
             })
         }
 
-        waitForExpectationsWithTimeout(1.0, handler: nil)
+        waitForExpectations(withTimeout: 1.0, handler: nil)
     }
 
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         log("numberOfItemsInSection \(section) = \(sectionCounts[section])")
         return sectionCounts[section]
     }
 
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         log("numberOfSections = \(sectionCounts.count)")
         return sectionCounts.count
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         log("cellForItemAtIndexPath \(indexPath)")
-        return collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
+        return collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
     }
 }
 
-private func log(msg: String) {
+private func log(_ msg: String) {
     //NSLog("%@", msg)
 }

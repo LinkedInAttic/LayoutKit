@@ -10,5 +10,5 @@ import Foundation
 
 protocol DataBinder {
     associatedtype DataType
-    func setData(data: DataType)
+    func setData(_ data: DataType)
 }

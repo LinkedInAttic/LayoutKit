@@ -35,7 +35,7 @@ public struct LayoutArrangement {
 
      - returns: The root view. If a view was provided, the same view will be returned, otherwise, a new one will be created.
      */
-    public func makeViews(inView view: UIView? = nil, direction: UIUserInterfaceLayoutDirection = .LeftToRight) -> UIView {
+    public func makeViews(inView view: UIView? = nil, direction: UIUserInterfaceLayoutDirection = .leftToRight) -> UIView {
         let views = makeSubviews()
         let rootView: UIView
 
@@ -67,14 +67,14 @@ public struct LayoutArrangement {
     }
 
     /// Horizontally flips the view frames if direction does not match the user's language direction.
-    private func handleLayoutDirection(view: UIView, direction: UIUserInterfaceLayoutDirection) {
-        if UIApplication.sharedApplication().userInterfaceLayoutDirection != direction {
+    private func handleLayoutDirection(_ view: UIView, direction: UIUserInterfaceLayoutDirection) {
+        if UIApplication.shared().userInterfaceLayoutDirection != direction {
             flipSubviewsHorizontally(view)
         }
     }
 
     /// Flips the right and left edges of the view's subviews.
-    private func flipSubviewsHorizontally(view: UIView) {
+    private func flipSubviewsHorizontally(_ view: UIView) {
         for subview in view.subviews {
             subview.frame.origin.x = view.frame.width - subview.frame.maxX
             flipSubviewsHorizontally(subview)

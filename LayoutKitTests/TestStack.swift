@@ -50,7 +50,7 @@ class TestStack {
         )
     }
 
-    func arrangement(excessWidth excessWidth: CGFloat? = nil, excessHeight: CGFloat? = nil) -> TestStack {
+    func arrangement(excessWidth: CGFloat? = nil, excessHeight: CGFloat? = nil) -> TestStack {
         // width/height default to nil to match what real callers would do.
         // defaulting to 0 would be less code but real callers are unlikely to explicitly provide both width and height.
         var width: CGFloat? = nil
@@ -61,7 +61,7 @@ class TestStack {
         if let excessHeight = excessHeight {
             height = intrinsicSize.height + excessHeight
         }
-        stackLayout.arrangement(width: width, height: height).makeViews()
+        _ = stackLayout.arrangement(width: width, height: height).makeViews()
         return self
     }
 }

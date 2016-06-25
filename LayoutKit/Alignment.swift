@@ -61,7 +61,7 @@ public struct Alignment {
         /// The layout's height is set to be equal to the available height.
         case fill
 
-        public func align(length length: CGFloat, availableLength: CGFloat, offset: CGFloat) -> (offset: CGFloat, length: CGFloat) {
+        public func align(length: CGFloat, availableLength: CGFloat, offset: CGFloat) -> (offset: CGFloat, length: CGFloat) {
             // To avoid implementing the math twice, we just convert to a horizontal alignment and call its apply method.
             let horizontal: Horizontal
             switch self {
@@ -93,7 +93,7 @@ public struct Alignment {
         /// The layout's width is set to be equal to the available width.
         case fill
 
-        public func align(length length: CGFloat, availableLength: CGFloat, offset: CGFloat) -> (offset: CGFloat, length: CGFloat) {
+        public func align(length: CGFloat, availableLength: CGFloat, offset: CGFloat) -> (offset: CGFloat, length: CGFloat) {
             let excessLength = availableLength - length
             let clampedLength = min(availableLength, length)
             let alignedLength: CGFloat
@@ -134,7 +134,7 @@ public struct Alignment {
     }
 
     /// Positions a rect of the given size inside the given rect using the alignment spec.
-    public func position(size size: CGSize, inRect rect: CGRect) -> CGRect {
+    public func position(size: CGSize, inRect rect: CGRect) -> CGRect {
         return aligner(size: size, rect: rect)
     }
 }

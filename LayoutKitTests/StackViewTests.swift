@@ -27,7 +27,7 @@ class StackViewTests: XCTestCase {
         let ics = sv.intrinsicContentSize()
         XCTAssertEqual(ics, CGSize(width: 4 + 33.5 + 16, height: 2 + 14 + 3 + 18.5 + 3 + 23 + 8))
 
-        sv.frame = CGRect(origin: CGPointZero, size: ics)
+        sv.frame = CGRect(origin: CGPoint.zero, size: ics)
         sv.layoutIfNeeded()
 
         XCTAssertEqual(view1.frame, CGRect(x: 4, y: 2, width: 33.5, height: 14))
@@ -46,7 +46,7 @@ class StackViewTests: XCTestCase {
         let ics = sv.intrinsicContentSize()
         XCTAssertEqual(ics, CGSize(width: 4 + 7 + 3 + 18 + 3 + 33.5 + 16, height: 2 + 23 + 8))
 
-        sv.frame = CGRect(origin: CGPointZero, size: ics)
+        sv.frame = CGRect(origin: CGPoint.zero, size: ics)
         sv.layoutIfNeeded()
 
         XCTAssertEqual(view1.frame, CGRect(x: 4, y: 2, width: 7, height: 23))
@@ -64,8 +64,8 @@ class StackViewTests: XCTestCase {
         let autoLayoutView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
         autoLayoutView.addSubview(stackView)
         let views = ["stackView": stackView]
-        autoLayoutView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[stackView]-0-|", options: [], metrics: nil, views: views))
-        autoLayoutView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[stackView]", options: [], metrics: nil, views: views))
+        autoLayoutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[stackView]-0-|", options: [], metrics: nil, views: views))
+        autoLayoutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[stackView]", options: [], metrics: nil, views: views))
 
         autoLayoutView.layoutIfNeeded()
         AssertEqualDensity(label.frame, [
@@ -103,8 +103,8 @@ class StackViewTests: XCTestCase {
             let autoLayoutView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
             autoLayoutView.addSubview(stackView)
             let views = ["stackView": stackView]
-            autoLayoutView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[stackView]-0-|", options: [], metrics: nil, views: views))
-            autoLayoutView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[stackView]", options: [], metrics: nil, views: views))
+            autoLayoutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[stackView]-0-|", options: [], metrics: nil, views: views))
+            autoLayoutView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[stackView]", options: [], metrics: nil, views: views))
 
             autoLayoutView.layoutIfNeeded()
             AssertEqualDensity(label.frame, [
@@ -131,18 +131,18 @@ class FixedSizeView: UIView {
     init(width: CGFloat, height: CGFloat) {
         self.width = width
         self.height = height
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func sizeThatFits(size: CGSize) -> CGSize {
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
         return CGSize(width: min(width, size.width), height: min(height, size.height))
     }
 
     override func intrinsicContentSize() -> CGSize {
-        return sizeThatFits(CGSize(width: CGFloat.max, height: CGFloat.max))
+        return sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
     }
 }

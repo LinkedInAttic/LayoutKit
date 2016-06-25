@@ -49,7 +49,7 @@ public class SizeLayout<View: UIView>: PositioningLayout<View>, Layout {
                 alignment: Alignment? = nil,
                 flexibility: Flexibility? = nil,
                 sublayout: Layout? = nil,
-                config: (View -> Void)? = nil) {
+                config: ((View) -> Void)? = nil) {
 
         self.width = width
         self.height = height
@@ -59,12 +59,12 @@ public class SizeLayout<View: UIView>: PositioningLayout<View>, Layout {
         super.init(config: config)
     }
 
-    private static func defaultAlignment(width width: CGFloat?, height: CGFloat?) -> Alignment {
+    private static func defaultAlignment(width: CGFloat?, height: CGFloat?) -> Alignment {
         return Alignment(vertical: height == nil ? .fill : .center,
                          horizontal: width == nil ? .fill : .center)
     }
 
-    private static func defaultFlexibility(width width: CGFloat?, height: CGFloat?) -> Flexibility {
+    private static func defaultFlexibility(width: CGFloat?, height: CGFloat?) -> Flexibility {
         return Flexibility(horizontal: width == nil ? Flexibility.defaultFlex : Flexibility.inflexibleFlex,
                            vertical: height == nil ? Flexibility.defaultFlex : Flexibility.inflexibleFlex)
     }
@@ -77,7 +77,7 @@ public class SizeLayout<View: UIView>: PositioningLayout<View>, Layout {
                 alignment: Alignment? = nil,
                 flexibility: Flexibility? = nil,
                 sublayout: Layout? = nil,
-                config: (View -> Void)? = nil) {
+                config: ((View) -> Void)? = nil) {
 
         self.init(width: size.width,
                   height: size.height,
@@ -88,12 +88,12 @@ public class SizeLayout<View: UIView>: PositioningLayout<View>, Layout {
     }
 
     public func measurement(within maxSize: CGSize) -> LayoutMeasurement {
-        let size = CGSize(width: width ?? .max, height: height ?? .max)
+        let size = CGSize(width: width ?? .greatestFiniteMagnitude, height: height ?? .greatestFiniteMagnitude)
         var constrainedSize = size.sizeDecreasedToSize(maxSize)
 
         // If at least one dimension is nil, then we need to measure the sublayout to inherit its value (zero if there is no sublayout).
         if width == nil || height == nil {
-            let subsize = sublayout?.measurement(within: constrainedSize).size ?? CGSizeZero
+            let subsize = sublayout?.measurement(within: constrainedSize).size ?? CGSize.zero
             if width == nil {
                 constrainedSize.width = subsize.width
             }

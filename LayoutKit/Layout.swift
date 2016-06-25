@@ -95,9 +95,9 @@ public extension Layout {
      - parameter height: The exact height that the layout should consume.
          If nil, the layout is given exactly the size that it requested during the measure pass.
      */
-    final func arrangement(origin origin: CGPoint = CGPointZero, width: CGFloat? = nil, height: CGFloat? = nil) -> LayoutArrangement {
+    final func arrangement(origin: CGPoint = CGPoint.zero, width: CGFloat? = nil, height: CGFloat? = nil) -> LayoutArrangement {
 //        let start = CFAbsoluteTimeGetCurrent()
-        let maxSize = CGSize(width: width ?? CGFloat.max, height: height ?? CGFloat.max)
+        let maxSize = CGSize(width: width ?? CGFloat.greatestFiniteMagnitude, height: height ?? CGFloat.greatestFiniteMagnitude)
         let measurement = self.measurement(within: maxSize)
 //        let measureEnd = CFAbsoluteTimeGetCurrent()
         var rect = CGRect(origin: origin, size: measurement.size)

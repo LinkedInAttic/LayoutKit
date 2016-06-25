@@ -18,7 +18,7 @@ class TableViewController<ContentViewType: UIView where ContentViewType: DataBin
 
     init(data: [CellType.DataType]) {
         self.data = data
-        super.init(style: UITableViewStyle.Grouped)
+        super.init(style: UITableViewStyle.grouped)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -28,20 +28,20 @@ class TableViewController<ContentViewType: UIView where ContentViewType: DataBin
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 100
-        tableView.registerClass(CellType.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(CellType.self, forCellReuseIdentifier: reuseIdentifier)
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: CellType = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CellType
-        cell.setData(data[indexPath.row])
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: CellType = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! CellType
+        cell.setData(data[(indexPath as NSIndexPath).row])
         return cell
     }
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         NSLog("heightFor row")
         return UITableViewAutomaticDimension
     }
@@ -55,12 +55,12 @@ class TableCell<ContentView: UIView where ContentView: DataBinder>: UITableViewC
         v.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(v)
         let views = ["v": v]
-        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[v]-0-|", options: [], metrics: nil, views: views))
-        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v]-0-|", options: [], metrics: nil, views: views))
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[v]-0-|", options: [], metrics: nil, views: views))
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[v]-0-|", options: [], metrics: nil, views: views))
         return v
     }()
 
-    func setData(data: ContentView.DataType) {
+    func setData(_ data: ContentView.DataType) {
         wrappedContentView.setData(data)
     }
 }

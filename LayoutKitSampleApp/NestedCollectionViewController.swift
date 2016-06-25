@@ -16,47 +16,47 @@ import LayoutKitExampleLayouts
  The initial layout (including cells in the horizontal collection views) is computed asynchronously as soon as the view loads.
  */
 class NestedCollectionViewController: UIViewController {
-    private var collectionView = LayoutAdapterCollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
+    private var collectionView = LayoutAdapterCollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         collectionView.frame = view.bounds
-        collectionView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        collectionView.backgroundColor = UIColor.purpleColor()
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.backgroundColor = UIColor.purple()
 
         view.addSubview(collectionView)
         layout(width: collectionView.frame.width, synchronous: false)
     }
 
-    private func layout(width width: CGFloat, synchronous: Bool) {
+    private func layout(width: CGFloat, synchronous: Bool) {
         collectionView.layoutAdapter.reload(width: width, synchronous: synchronous, layoutProvider: {
             return [Section(header: nil, items: NestedCollectionViewController.makeLayout(), footer: nil)]
         })
     }
 
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         layout(width: size.width, synchronous: true)
     }
 
     // Static to avoid capturing a reference to self
-    private static func makeLayout() -> LazyMapCollection<(Range<Int>), Layout> {
+    private static func makeLayout() -> LazyMapCollection<(CountableRange<Int>), Layout> {
         return (1..<100).lazy.map { index in
             let layout = sectionLayout(sectionIndex: index, count: index)
             return FixedWidthCellCollectionViewLayout(cellWidth: 125, sectionLayouts: layout, config: { (collectionView: HorizontalCollectionView) in
-                collectionView.backgroundColor = UIColor.whiteColor()
+                collectionView.backgroundColor = UIColor.white()
             })
         }
     }
 
     // Static to avoid capturing a reference to self
-    private static func sectionLayout(sectionIndex sectionIndex: Int, count: Int) -> [Section<LazyMapCollection<Range<Int>, Layout>>] {
+    private static func sectionLayout(sectionIndex: Int, count: Int) -> [Section<LazyMapRandomAccessCollection<CountableRange<Int>, Layout>>] {
         let items = (0..<count).lazy.map { rowIndex -> Layout in
             let text = "\(sectionIndex)-\(rowIndex) " + String(byRepeatingString: "long word ", count: rowIndex)
-            let urlText = text.stringByReplacingOccurrencesOfString(" ", withString: "+")
+            let urlText = text.replacingOccurrences(of: " ", with: "+")
             let url = "https://placeholdit.imgix.net/~text?txtsize=16&bg=ff0000&txtclr=000000&w=100&h=100&txt=\(urlText)"
-            return LabeledImageLayout(imageUrl: NSURL(string: url)!, imageSize: CGSize(width: 100, height: 100), labelText: text)
+            return LabeledImageLayout(imageUrl: URL(string: url)!, imageSize: CGSize(width: 100, height: 100), labelText: text)
         }
         return [Section(header: nil, items: items, footer: nil)]
     }
@@ -76,8 +76,8 @@ class HorizontalCollectionView: LayoutAdapterCollectionView {
 
     init() {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .Horizontal
-        super.init(frame: CGRectZero, collectionViewLayout: layout)
+        layout.scrollDirection = .horizontal
+        super.init(frame: CGRect.zero, collectionViewLayout: layout)
     }
     
     required init?(coder aDecoder: NSCoder) {

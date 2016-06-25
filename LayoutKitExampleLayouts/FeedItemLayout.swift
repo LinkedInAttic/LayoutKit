@@ -33,7 +33,7 @@ public class FeedItemLayout: InsetLayout {
         ])
 
         let buttonConfig = { (label: UILabel) in
-            label.backgroundColor = UIColor.greenColor()
+            label.backgroundColor = UIColor.green()
         }
         let socialActions = StackLayout(axis: .horizontal, distribution: .fillEqualSize, sublayouts: [
             LabelLayout(text: "Like", alignment: .centerLeading, config: buttonConfig),
@@ -61,7 +61,7 @@ public class FeedItemLayout: InsetLayout {
             ]
         )
         super.init(insets: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8), sublayout: feedItem, config: { view in
-            view.backgroundColor = UIColor.whiteColor()
+            view.backgroundColor = UIColor.white()
         })
     }
 }

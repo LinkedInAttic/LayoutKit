@@ -14,7 +14,7 @@ class FeedItemLayoutKitView: UIView, DataBinder {
 
     private var layout: FeedItemLayout? = nil
 
-    func setData(data: FeedItemData) {
+    func setData(_ data: FeedItemData) {
         let posterProfile = ProfileCardLayout(
             name: data.posterName,
             connectionDegree: "2nd",
@@ -26,12 +26,12 @@ class FeedItemLayoutKitView: UIView, DataBinder {
         layout = FeedItemLayout(actionText: data.actionText, posterProfile: posterProfile, posterComment: data.posterComment, contentLayout: content, actorComment: data.actorComment)
     }
 
-    override func sizeThatFits(size: CGSize) -> CGSize {
-        return layout?.measurement(within: size).size ?? CGSizeZero
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
+        return layout?.measurement(within: size).size ?? CGSize.zero
     }
 
     override func intrinsicContentSize() -> CGSize {
-        return sizeThatFits(CGSize(width: CGFloat.max, height: CGFloat.max))
+        return sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
     }
 
     override func layoutSubviews() {

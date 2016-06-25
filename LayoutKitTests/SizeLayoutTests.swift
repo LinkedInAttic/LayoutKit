@@ -97,7 +97,7 @@ class SizeLayoutTests: XCTestCase {
         let layout = SizeLayout<UIView>()
 
         let measurement = layout.measurement(within: CGSize(width: 10, height: 10))
-        XCTAssertEqual(measurement.size, CGSizeZero)
+        XCTAssertEqual(measurement.size, CGSize.zero)
 
         let frame = layout.arrangement().frame
         XCTAssertEqual(frame, CGRect(x: 0, y: 0, width: 0, height: 0))

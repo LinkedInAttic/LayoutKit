@@ -14,13 +14,13 @@ import LayoutKit
  */
 public class DividerStackLayout<DividerView: UIView>: StackLayout {
 
-    public init(stack: StackLayout, dividerConfig: DividerView -> Void) {
+    public init(stack: StackLayout, dividerConfig: (DividerView) -> Void) {
         let sublayouts: [Layout]
         if stack.spacing > 0 {
             var dividedSublayouts = [Layout]()
             let size = AxisSize(axis: stack.axis, axisLength: stack.spacing, crossLength: 0).size
             let divider = SizeLayout<DividerView>(size: size, alignment: .fill, flexibility: .flexible, config: dividerConfig)
-            for (index, sublayout) in stack.sublayouts.enumerate() {
+            for (index, sublayout) in stack.sublayouts.enumerated() {
                 dividedSublayouts.append(sublayout)
                 if index != stack.sublayouts.count - 1 {
                     dividedSublayouts.append(divider)

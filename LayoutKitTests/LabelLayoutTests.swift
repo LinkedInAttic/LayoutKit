@@ -21,7 +21,7 @@ class LabelLayoutTests: XCTestCase {
     }
 
     func testAttributedLabel() {
-        let attributedText = NSAttributedString(string: "Hi", attributes: [NSFontAttributeName: UIFont.helvetica(size: 42)])
+        let attributedText = AttributedString(string: "Hi", attributes: [NSFontAttributeName: UIFont.helvetica(size: 42)])
         let lableLayout = LabelLayout(attributedText: attributedText, font: UIFont.helvetica(size: 99))
         let label = lableLayout.arrangement().makeViews()
         XCTAssertEqual((label as? UILabel)?.font.pointSize, 42)
@@ -52,27 +52,27 @@ class LabelLayoutTests: XCTestCase {
     func testEmptyLabel() {
         let labelLayout = LabelLayout(text: "", font: UIFont.helvetica())
         let arrangement = labelLayout.arrangement()
-        XCTAssertEqual(arrangement.frame, CGRectZero)
+        XCTAssertEqual(arrangement.frame, CGRect.zero)
     }
 
     func testSingleLineHeight() {
         let text = "hello world"
 
-        func testFont(font: UIFont) {
+        func testFont(_ font: UIFont) {
             let label = UILabel(text: text, font: font)
             let layoutSize = LabelLayout(text: text, font: font).arrangement().frame.size
             XCTAssertEqual(label.intrinsicContentSize(), layoutSize)
-            XCTAssertEqual(label.sizeThatFits(CGSize(width: CGFloat.max, height: CGFloat.max)), layoutSize)
+            XCTAssertEqual(label.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)), layoutSize)
         }
 
         for fontSize in 1...50 {
             testFont(UIFont(name: "Helvetica", size: CGFloat(fontSize))!)
-            testFont(UIFont.systemFontOfSize(CGFloat(fontSize)))
+            testFont(UIFont.systemFont(ofSize: CGFloat(fontSize)))
         }
     }
 
     func testAttributedTextDefaultFont() {
-        let text = NSAttributedString(string: "Hello! 😄😄😄")
+        let text = AttributedString(string: "Hello! 😄😄😄")
 
         let frame = LabelLayout(attributedText: text).arrangement().frame
         AssertEqualDensity(frame, [
@@ -84,7 +84,7 @@ class LabelLayoutTests: XCTestCase {
     func testAttributedTextCustomFont() {
         let font = UIFont(name: "Papyrus", size: 20)!
         let attributes = [NSFontAttributeName: font]
-        let text = NSAttributedString(string: "Hello! 😄😄😄", attributes: attributes)
+        let text = AttributedString(string: "Hello! 😄😄😄", attributes: attributes)
 
         let frame = LabelLayout(attributedText: text).arrangement().frame
         AssertEqualDensity(frame, [

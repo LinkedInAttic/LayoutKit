@@ -14,11 +14,11 @@ class BackgroundMiniProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.whiteColor()
-        edgesForExtendedLayout = .None
+        view.backgroundColor = UIColor.white()
+        edgesForExtendedLayout = UIRectEdge()
         
         let width = view.bounds.width
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+        DispatchQueue.global(attributes: .qosUserInitiated).async {
             let nickProfile = MiniProfileLayout(
                 imageName: "nick.jpg",
                 name: "Nick Snyder",
@@ -26,8 +26,8 @@ class BackgroundMiniProfileViewController: UIViewController {
             )
 
             let arrangement = nickProfile.arrangement(width: width)
-            dispatch_async(dispatch_get_main_queue(), {
-                arrangement.makeViews(inView: self.view)
+            DispatchQueue.main.async(execute: {
+                _ = arrangement.makeViews(inView: self.view)
             })
         }
     }

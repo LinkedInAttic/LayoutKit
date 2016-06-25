@@ -17,14 +17,14 @@ public class InsetLayout: PositioningLayout<UIView>, Layout {
     public let alignment: Alignment
     public let sublayout: Layout
 
-    public init(insets: UIEdgeInsets, alignment: Alignment = Alignment.fill, sublayout: Layout, config: (UIView -> Void)? = nil) {
+    public init(insets: UIEdgeInsets, alignment: Alignment = Alignment.fill, sublayout: Layout, config: ((UIView) -> Void)? = nil) {
         self.insets = insets
         self.alignment = alignment
         self.sublayout = sublayout
         super.init(config: config)
     }
 
-    public convenience init(inset: CGFloat, alignment: Alignment = Alignment.fill, sublayout: Layout, config: (UIView -> Void)? = nil) {
+    public convenience init(inset: CGFloat, alignment: Alignment = Alignment.fill, sublayout: Layout, config: ((UIView) -> Void)? = nil) {
         let insets = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
         self.init(insets: insets, alignment: alignment, sublayout: sublayout, config: config)
     }

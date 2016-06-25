@@ -16,7 +16,7 @@ public class LabelLayout: Layout {
     /// The types of text that a UILabel can display.
     public enum TextType {
         case unattributed(String)
-        case attributed(NSAttributedString)
+        case attributed(AttributedString)
     }
 
     public let textType: TextType
@@ -24,10 +24,10 @@ public class LabelLayout: Layout {
     public let font: UIFont
     public let alignment: Alignment
     public let flexibility: Flexibility
-    public let config: (UILabel -> Void)?
+    public let config: ((UILabel) -> Void)?
 
     private static let defaultNumberOfLines = 0
-    private static let defaultFont = UIFont.systemFontOfSize(UIFont.labelFontSize())
+    private static let defaultFont = UIFont.systemFont(ofSize: UIFont.labelSize())
     private static let defaultAlignment = Alignment.topLeading
     private static let defaultFlexibility = Flexibility.flexible
 
@@ -36,7 +36,7 @@ public class LabelLayout: Layout {
                 font: UIFont = defaultFont,
                 alignment: Alignment = defaultAlignment,
                 flexibility: Flexibility = defaultFlexibility,
-                config: (UILabel -> Void)? = nil) {
+                config: ((UILabel) -> Void)? = nil) {
         
         self.textType = textType
         self.numberOfLines = numberOfLines
@@ -53,7 +53,7 @@ public class LabelLayout: Layout {
                             font: UIFont = defaultFont,
                             alignment: Alignment = defaultAlignment,
                             flexibility: Flexibility = defaultFlexibility,
-                            config: (UILabel -> Void)? = nil) {
+                            config: ((UILabel) -> Void)? = nil) {
 
         self.init(textType: .unattributed(text),
                   numberOfLines: numberOfLines,
@@ -62,12 +62,12 @@ public class LabelLayout: Layout {
                   config: config)
     }
 
-    public convenience init(attributedText: NSAttributedString,
+    public convenience init(attributedText: AttributedString,
                             numberOfLines: Int = defaultNumberOfLines,
                             font: UIFont = defaultFont,
                             alignment: Alignment = defaultAlignment,
                             flexibility: Flexibility = defaultFlexibility,
-                            config: (UILabel -> Void)? = nil) {
+                            config: ((UILabel) -> Void)? = nil) {
 
         self.init(textType: .attributed(attributedText),
                   numberOfLines: numberOfLines,
@@ -85,15 +85,15 @@ public class LabelLayout: Layout {
 
     private func textSize(within maxSize: CGSize) -> CGSize {
         let options: NSStringDrawingOptions = [
-            .UsesLineFragmentOrigin,
-            .UsesFontLeading
+            .usesLineFragmentOrigin,
+            .usesFontLeading
         ]
 
         var size: CGSize
         switch textType {
         case .attributed(let attributedText):
             if attributedText == "" {
-                return CGSizeZero
+                return CGSize.zero
             }
 
             // UILabel uses a default font if one is not specified in the attributed string.
@@ -105,17 +105,17 @@ public class LabelLayout: Layout {
             let attributedTextWithFont = NSMutableAttributedString(string: attributedText.string, attributes: fontAttribute)
             let fullRange = NSMakeRange(0, (attributedText.string as NSString).length)
             attributedTextWithFont.beginEditing()
-            attributedText.enumerateAttributesInRange(fullRange, options: .LongestEffectiveRangeNotRequired, usingBlock: { (attributes, range, _) in
+            attributedText.enumerateAttributes(in: fullRange, options: .longestEffectiveRangeNotRequired, using: { (attributes, range, _) in
                 attributedTextWithFont.addAttributes(attributes, range: range)
             })
             attributedTextWithFont.endEditing()
 
-            size = attributedTextWithFont.boundingRectWithSize(maxSize, options: options, context: nil).size
+            size = attributedTextWithFont.boundingRect(with: maxSize, options: options, context: nil).size
         case .unattributed(let text):
             if text == "" {
-                return CGSizeZero
+                return CGSize.zero
             }
-            size = text.boundingRectWithSize(maxSize, options: options, attributes: [NSFontAttributeName: font], context: nil).size
+            size = text.boundingRect(with: maxSize, options: options, attributes: [NSFontAttributeName: font], context: nil).size
         }
         // boundingRectWithSize returns size to a precision of hundredths of a point,
         // but UILabel only returns sizes with a point precision of 1/screenDensity.
@@ -130,11 +130,11 @@ public class LabelLayout: Layout {
         return size
     }
 
-    private func roundUpToFractionalPoint(point: CGFloat) -> CGFloat {
+    private func roundUpToFractionalPoint(_ point: CGFloat) -> CGFloat {
         if point <= 0 {
             return 0
         }
-        let scale: CGFloat = UIScreen.mainScreen().scale
+        let scale: CGFloat = UIScreen.main().scale
         // The smallest precision in points (aka the number of points per hardware pixel).
         let pointPrecision = 1.0 / scale
         if point <= pointPrecision {

@@ -60,7 +60,7 @@ class ReloadableViewLayoutAdapterTests: XCTestCase {
     /**
      Loads two layouts synchronously one after the other and verifies the layout are correct.
      */
-    private func verifyReloadSync(view: TestableReloadableView) {
+    private func verifyReloadSync(_ view: TestableReloadableView) {
 
         // Test loading layout one while the collection is empty.
         do {
@@ -106,15 +106,15 @@ class ReloadableViewLayoutAdapterTests: XCTestCase {
     /**
      Loads two layouts asynchronously one after the other and verifies the layouts are correct.
      */
-    private func verifyReloadAsync(view: TestableReloadableView) {
+    private func verifyReloadAsync(_ view: TestableReloadableView) {
         // Test loading layout one while the collection is empty.
         do {
-            let completionExpectation = expectationWithDescription("completion")
+            let completionExpectation = expectation(withDescription: "completion")
             view.layoutAdapter.reload(width: view.bounds.width, synchronous: false, layoutProvider: layoutProviderOne, completion: {
                 completionExpectation.fulfill()
             })
 
-            waitForExpectationsWithTimeout(10, handler: nil)
+            waitForExpectations(withTimeout: 10, handler: nil)
 
             verifyLayoutOne(view: view)
 
@@ -128,12 +128,12 @@ class ReloadableViewLayoutAdapterTests: XCTestCase {
 
         // Test loading layout two while the collection is not empty.
         do {
-            let completionExpectation = expectationWithDescription("completion")
+            let completionExpectation = expectation(withDescription: "completion")
             view.layoutAdapter.reload(width: view.bounds.width, synchronous: false, layoutProvider: layoutProviderTwo, completion: {
                 completionExpectation.fulfill()
             })
 
-            waitForExpectationsWithTimeout(10, handler: nil)
+            waitForExpectations(withTimeout: 10, handler: nil)
 
             verifyLayoutTwo(view: view)
 
@@ -147,7 +147,7 @@ class ReloadableViewLayoutAdapterTests: XCTestCase {
     /**
      Verifies that all asynchronous layouts are cancelled when a synchronous layout happens.
      */
-    private func verifyReloadSyncCancelsPreviousLayout(view: TestableReloadableView) {
+    private func verifyReloadSyncCancelsPreviousLayout(_ view: TestableReloadableView) {
         // Start some asynchronous layouts.
         for i in 0..<5 {
             view.layoutAdapter.reload(width: view.bounds.width, synchronous: false, layoutProvider: layoutProviderOne, completion: {
@@ -173,18 +173,18 @@ class ReloadableViewLayoutAdapterTests: XCTestCase {
         verify()
     }
 
-    private func waitForBackgroundOperations(adapter: ReloadableViewLayoutAdapter) {
-        let expectation = expectationWithDescription("background layout operations")
-        adapter.backgroundLayoutQueue.addOperationWithBlock {
+    private func waitForBackgroundOperations(_ adapter: ReloadableViewLayoutAdapter) {
+        let expectation = self.expectation(withDescription: "background layout operations")
+        adapter.backgroundLayoutQueue.addOperation {
             expectation.fulfill()
         }
-        waitForExpectationsWithTimeout(1.0, handler: nil)
+        waitForExpectations(withTimeout: 1.0, handler: nil)
     }
 
     /**
      Verifies that all asynchronous layouts are cancelled when a asynchronous layout happens.
      */
-    private func verifyReloadAsyncCancelsPreviousLayout(view: TestableReloadableView) {
+    private func verifyReloadAsyncCancelsPreviousLayout(_ view: TestableReloadableView) {
         // Start some asynchronous layouts.
         for i in 0..<5 {
             view.layoutAdapter.reload(width: view.bounds.width, synchronous: false, layoutProvider: layoutProviderOne, completion: {
@@ -193,12 +193,12 @@ class ReloadableViewLayoutAdapterTests: XCTestCase {
         }
 
         // Do an asynchronous layout.
-        let completionExpectation = expectationWithDescription("completion")
+        let completionExpectation = expectation(withDescription: "completion")
         view.layoutAdapter.reload(width: view.bounds.width, synchronous: false, layoutProvider: layoutProviderTwo, completion: {
             completionExpectation.fulfill()
         })
 
-        waitForExpectationsWithTimeout(10, handler: nil)
+        waitForExpectations(withTimeout: 10, handler: nil)
 
         // Verify that only the last asynchronous layout happened.
         verifyLayoutTwo(view: view)
@@ -212,7 +212,7 @@ class ReloadableViewLayoutAdapterTests: XCTestCase {
     /**
      Verifies that layout operations are cancelled if the reloadable view is deallocated.
      */
-    private func verifyReloadAsyncCancelledOnViewDeinit(@autoclosure viewProvider: Void -> TestableReloadableView) {
+    private func verifyReloadAsyncCancelledOnViewDeinit( _ viewProvider: @autoclosure(Void) -> TestableReloadableView) {
         var adapter: ReloadableViewLayoutAdapter!
         autoreleasepool {
             let view = viewProvider()
@@ -224,7 +224,7 @@ class ReloadableViewLayoutAdapterTests: XCTestCase {
         waitForBackgroundOperations(adapter)
     }
 
-    private func verifySectionZero(view: TestableReloadableView) {
+    private func verifySectionZero(_ view: TestableReloadableView) {
         view.verifyHeader(section: 0, text: "header 0", frame: CGRect(x: 0, y: 0, width: 320, height: 51), line: #line)
         view.verifyVisibleItem(text: "item 0", frame: CGRect(x: 0, y: 51, width: 320, height: 52), line: #line)
         view.verifyVisibleItem(text: "item 1", frame: CGRect(x: 0, y: 103, width: 320, height: 53), line: #line)
@@ -232,7 +232,7 @@ class ReloadableViewLayoutAdapterTests: XCTestCase {
         view.verifyFooter(section: 0, text: "footer 0", frame: CGRect(x: 0, y: 210, width: 320, height: 55), line: #line)
     }
 
-    private func verifyLayoutOne(view view: TestableReloadableView) {
+    private func verifyLayoutOne(view: TestableReloadableView) {
 
         verifySectionZero(view)
 
@@ -243,7 +243,7 @@ class ReloadableViewLayoutAdapterTests: XCTestCase {
         view.verifyFooter(section: 1, text: nil, frame: nil, line: #line)
     }
 
-    private func verifyLayoutTwo(view view: TestableReloadableView) {
+    private func verifyLayoutTwo(view: TestableReloadableView) {
 
         verifySectionZero(view)
 
@@ -341,24 +341,24 @@ protocol TestableReloadableView: ReloadableView {
     var layoutAdapter: ReloadableViewLayoutAdapter { get }
 
     var reloadDataCount: Int { get }
-    var insertedIndexPaths: [[NSIndexPath]] { get }
-    var insertedSections: [NSIndexSet] { get }
+    var insertedIndexPaths: [[IndexPath]] { get }
+    var insertedSections: [IndexSet] { get }
 
     func resetTestCounts()
 
-    func verifyHeader(section section: Int, text: String?, frame: CGRect?, line: UInt)
-    func verifyFooter(section section: Int, text: String?, frame: CGRect?, line: UInt)
-    func verifyVisibleItem(text text: String, frame: CGRect, line: UInt)
+    func verifyHeader(section: Int, text: String?, frame: CGRect?, line: UInt)
+    func verifyFooter(section: Int, text: String?, frame: CGRect?, line: UInt)
+    func verifyVisibleItem(text: String, frame: CGRect, line: UInt)
 }
 
 private class TestTableView: LayoutAdapterTableView, TestableReloadableView {
     var reloadDataCount = 0
-    var insertedIndexPaths = [[NSIndexPath]]()
-    var insertedSections = [NSIndexSet]()
+    var insertedIndexPaths = [[IndexPath]]()
+    var insertedSections = [IndexSet]()
 
     init() {
         let frame = CGRect(x: 0, y: 0, width: 320, height: 1000)
-        super.init(frame: frame, style: .Plain)
+        super.init(frame: frame, style: .plain)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -370,13 +370,13 @@ private class TestTableView: LayoutAdapterTableView, TestableReloadableView {
         reloadDataCount += 1
     }
 
-    private override func insertRowsAtIndexPaths(indexPaths: [NSIndexPath], withRowAnimation animation: UITableViewRowAnimation) {
-        super.insertRowsAtIndexPaths(indexPaths, withRowAnimation: animation)
+    private override func insertRows(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation) {
+        super.insertRows(at: indexPaths, with: animation)
         insertedIndexPaths.append(indexPaths)
     }
 
-    private override func insertSections(sections: NSIndexSet, withRowAnimation animation: UITableViewRowAnimation) {
-        super.insertSections(sections, withRowAnimation: animation)
+    private override func insertSections(_ sections: IndexSet, with animation: UITableViewRowAnimation) {
+        super.insertSections(sections, with: animation)
         insertedSections.append(sections)
     }
 
@@ -386,15 +386,15 @@ private class TestTableView: LayoutAdapterTableView, TestableReloadableView {
         insertedSections = []
     }
 
-    private func verifyHeader(section section: Int, text: String?, frame: CGRect?, line: UInt) {
-        verify(rectForHeaderInSection, section: section, text: text, frame: frame, line: line)
+    private func verifyHeader(section: Int, text: String?, frame: CGRect?, line: UInt) {
+        verify(rectForHeader(inSection:), section: section, text: text, frame: frame, line: line)
     }
 
-    private func verifyFooter(section section: Int, text: String?, frame: CGRect?, line: UInt) {
-        verify(rectForFooterInSection, section: section, text: text, frame: frame, line: line)
+    private func verifyFooter(section: Int, text: String?, frame: CGRect?, line: UInt) {
+        verify(rectForFooter(inSection:), section: section, text: text, frame: frame, line: line)
     }
 
-    private func verify(getter: Int -> CGRect, section: Int, text: String?, frame: CGRect?, line: UInt) {
+    private func verify(_ getter: (Int) -> CGRect, section: Int, text: String?, frame: CGRect?, line: UInt) {
         let headerFrame = getter(section)
         if let frame = frame {
             XCTAssertEqual(headerFrame, frame, line: line)
@@ -403,7 +403,7 @@ private class TestTableView: LayoutAdapterTableView, TestableReloadableView {
         }
     }
 
-    private func verifyVisibleItem(text text: String, frame: CGRect, line: UInt) {
+    private func verifyVisibleItem(text: String, frame: CGRect, line: UInt) {
         let items = visibleCells.filter { cell -> Bool in
             guard let label = cell.contentView.subviews.first as? UILabel else {
                 return false
@@ -417,8 +417,8 @@ private class TestTableView: LayoutAdapterTableView, TestableReloadableView {
 private class TestCollectionView: LayoutAdapterCollectionView, TestableReloadableView {
 
     var reloadDataCount = 0
-    var insertedIndexPaths = [[NSIndexPath]]()
-    var insertedSections = [NSIndexSet]()
+    var insertedIndexPaths = [[IndexPath]]()
+    var insertedSections = [IndexSet]()
 
     init() {
         let frame = CGRect(x: 0, y: 0, width: 320, height: 1000)
@@ -437,12 +437,12 @@ private class TestCollectionView: LayoutAdapterCollectionView, TestableReloadabl
         reloadDataCount += 1
     }
 
-    override func insertItemsAtIndexPaths(indexPaths: [NSIndexPath]) {
-        super.insertItemsAtIndexPaths(indexPaths)
+    override func insertItems(at indexPaths: [IndexPath]) {
+        super.insertItems(at: indexPaths)
         insertedIndexPaths.append(indexPaths)
     }
 
-    override func insertSections(sections: NSIndexSet) {
+    override func insertSections(_ sections: IndexSet) {
         super.insertSections(sections)
         insertedSections.append(sections)
     }
@@ -453,39 +453,39 @@ private class TestCollectionView: LayoutAdapterCollectionView, TestableReloadabl
         insertedSections = []
     }
 
-    private func verifyHeader(section section: Int, text: String?, frame: CGRect?, line: UInt) {
+    private func verifyHeader(section: Int, text: String?, frame: CGRect?, line: UInt) {
         verifySupplementaryView(kind: UICollectionElementKindSectionHeader, section: section, text: text, frame: frame, line: line)
     }
 
-    private func verifyFooter(section section: Int, text: String?, frame: CGRect?, line: UInt) {
+    private func verifyFooter(section: Int, text: String?, frame: CGRect?, line: UInt) {
         verifySupplementaryView(kind: UICollectionElementKindSectionFooter, section: section, text: text, frame: frame, line: line)
     }
 
-    private func verifySupplementaryView(kind kind: String, section: Int, text: String?, frame: CGRect?, line: UInt) {
-        let indexPath = NSIndexPath(forItem: 0, inSection: section)
-        let attributes = layoutAttributesForSupplementaryElementOfKind(kind, atIndexPath: indexPath)
+    private func verifySupplementaryView(kind: String, section: Int, text: String?, frame: CGRect?, line: UInt) {
+        let indexPath = IndexPath(item: 0, section: section)
+        let attributes = layoutAttributesForSupplementaryElement(ofKind: kind, at: indexPath)
         if let frame = frame {
             XCTAssertEqual(attributes?.frame, frame, line: line)
         } else {
-            XCTAssertEqual(attributes?.frame.size, CGSizeZero, line: line)
+            XCTAssertEqual(attributes?.frame.size, CGSize.zero, line: line)
         }
 
         if #available(iOS 9.0, *) {
-            func labelText(reusableView: UICollectionReusableView?) -> String? {
+            func labelText(_ reusableView: UICollectionReusableView?) -> String? {
                 guard let label = reusableView?.subviews.first as? UILabel else {
                     return nil
                 }
                 return label.text
             }
 
-            let supplementaryViewTexts = visibleSupplementaryViewsOfKind(kind).flatMap(labelText)
+            let supplementaryViewTexts = visibleSupplementaryViews(ofKind: kind).flatMap(labelText)
             if let text = text {
                 XCTAssertTrue(supplementaryViewTexts.contains(text))
             }
         }
     }
 
-    private func verifyVisibleItem(text text: String, frame: CGRect, line: UInt) {
+    private func verifyVisibleItem(text: String, frame: CGRect, line: UInt) {
         let items = visibleCells().filter { cell -> Bool in
             guard let label = cell.contentView.subviews.first as? UILabel else {
                 return false
