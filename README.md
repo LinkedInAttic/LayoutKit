@@ -66,8 +66,9 @@ We have found LayoutKit to be a useful tool, but you should be aware of what it 
 
 ## Installation
 
+LayoutKit can be installed with [Cocoapods](https://cocoapods.org/) or [Carthage](https://github.com/Carthage/Carthage).
+
 ### CocoaPods
-LayoutKit is packaged as a [Cocoapod](https://cocoapods.org/).
 
 Add this to your Podspec:
 ```
@@ -77,17 +78,13 @@ pod 'LayoutKit'
 Then run `pod install`.
 
 ### Carthage
-To install with Carthage, follow the instruction on [Carthage](https://github.com/Carthage/Carthage).
 
 Add this to your Cartfile:
 ```
 github "linkedin/LayoutKit"
 ``` 
 
-Then run:
-```
-carthage update
-```
+Then run `carthage update`
 
 ## Documentation
 
