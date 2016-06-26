@@ -244,12 +244,12 @@ public class ReloadableViewLayoutAdapter: NSObject {
             return
         }
 
-        let insertedSections = NSMutableIndexSet()
+        var insertedSections = IndexSet()
         var reducedInsertedIndexPaths = [IndexPath]()
 
         for insertedIndexPath in insertedIndexPaths {
-            if (insertedIndexPath as NSIndexPath).section > previousSectionCount - 1 {
-                insertedSections.add((insertedIndexPath as NSIndexPath).section)
+            if insertedIndexPath.section > previousSectionCount - 1 {
+                insertedSections.insert(insertedIndexPath.section)
             } else {
                 reducedInsertedIndexPaths.append(insertedIndexPath)
             }
@@ -260,7 +260,7 @@ public class ReloadableViewLayoutAdapter: NSObject {
         }
 
         if insertedSections.count > 0 {
-            reloadableView.insert(sections: insertedSections as IndexSet)
+            reloadableView.insert(sections: insertedSections)
         }
     }
 }

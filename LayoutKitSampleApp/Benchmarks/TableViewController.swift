@@ -37,7 +37,7 @@ class TableViewController<ContentViewType: UIView where ContentViewType: DataBin
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CellType = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! CellType
-        cell.setData(data[(indexPath as NSIndexPath).row])
+        cell.setData(data[indexPath.row])
         return cell
     }
 

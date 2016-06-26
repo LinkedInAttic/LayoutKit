@@ -42,12 +42,12 @@ class CollectionViewController<ContentViewType: UIView where ContentViewType: Da
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CellType = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CellType
-        cell.setData(data[(indexPath as NSIndexPath).row])
+        cell.setData(data[indexPath.row])
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        manequinCell.setData(data[(indexPath as NSIndexPath).row])
+        manequinCell.setData(data[indexPath.row])
         var size = manequinCell.sizeThatFits(CGSize(width: collectionView.bounds.width, height: CGFloat.greatestFiniteMagnitude))
         size.width = collectionView.bounds.width
         return size

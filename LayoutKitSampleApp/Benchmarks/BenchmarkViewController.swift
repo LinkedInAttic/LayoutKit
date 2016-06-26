@@ -81,12 +81,12 @@ class BenchmarkViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        cell.textLabel?.text = viewControllers[(indexPath as NSIndexPath).row].title
+        cell.textLabel?.text = viewControllers[indexPath.row].title
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewControllerData = viewControllers[(indexPath as NSIndexPath).row]
+        let viewControllerData = viewControllers[indexPath.row]
         guard let viewController = viewControllerData.factoryBlock(viewCount: 20) else {
             return
         }

@@ -23,6 +23,6 @@ class ForegroundMiniProfileViewController: UIViewController {
             headline: "Software Engineer at LinkedIn"
         )
 
-        nickProfile.arrangement(width: view.bounds.width).makeViews(inView: view)
+        _ = nickProfile.arrangement(width: view.bounds.width).makeViews(inView: view)
     }
 }

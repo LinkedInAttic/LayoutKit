@@ -40,12 +40,12 @@ class MenuViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        cell.textLabel?.text = String(viewControllers[(indexPath as NSIndexPath).row])
+        cell.textLabel?.text = String(viewControllers[indexPath.row])
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewController = viewControllers[(indexPath as NSIndexPath).row].init()
+        let viewController = viewControllers[indexPath.row].init()
         viewController.title = String(viewController)
         navigationController?.pushViewController(viewController, animated: true)
     }

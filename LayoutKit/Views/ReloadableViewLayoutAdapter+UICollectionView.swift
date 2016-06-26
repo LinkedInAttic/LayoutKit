@@ -13,15 +13,15 @@ import UIKit
 extension ReloadableViewLayoutAdapter: UICollectionViewDelegateFlowLayout {
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return currentArrangement[(indexPath as NSIndexPath).section].items[(indexPath as NSIndexPath).item].frame.size
+        return indexPath.item.map { currentArrangement[indexPath.section].items[$0].frame.size } ?? .zero
     }
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return currentArrangement[section].header?.frame.size ?? CGSize.zero
+        return currentArrangement[section].header?.frame.size ?? .zero
     }
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return currentArrangement[section].footer?.frame.size ?? CGSize.zero
+        return currentArrangement[section].footer?.frame.size ?? .zero
     }
 }
 
@@ -38,7 +38,8 @@ extension ReloadableViewLayoutAdapter: UICollectionViewDataSource {
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = currentArrangement[(indexPath as NSIndexPath).section].items[(indexPath as NSIndexPath).item]
+        guard let itemIndex = indexPath.item else { return UICollectionViewCell() }
+        let item = currentArrangement[indexPath.section].items[itemIndex]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         _ = item.makeViews(inView: cell.contentView)
         return cell
@@ -49,9 +50,9 @@ extension ReloadableViewLayoutAdapter: UICollectionViewDataSource {
         let arrangement: LayoutArrangement?
         switch kind {
         case UICollectionElementKindSectionHeader:
-            arrangement = currentArrangement[(indexPath as NSIndexPath).section].header
+            arrangement = currentArrangement[indexPath.section].header
         case UICollectionElementKindSectionFooter:
-            arrangement = currentArrangement[(indexPath as NSIndexPath).section].footer
+            arrangement = currentArrangement[indexPath.section].footer
         default:
             arrangement = nil
             assertionFailure("unknown supplementary view kind \(kind)")

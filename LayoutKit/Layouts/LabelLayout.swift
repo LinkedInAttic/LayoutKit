@@ -103,7 +103,7 @@ public class LabelLayout: Layout {
             // applying all of the attributes from the provided attributed string.
             let fontAttribute = [NSFontAttributeName: font]
             let attributedTextWithFont = NSMutableAttributedString(string: attributedText.string, attributes: fontAttribute)
-            let fullRange = NSMakeRange(0, (attributedText.string as NSString).length)
+            let fullRange = NSMakeRange(0, attributedText.length)
             attributedTextWithFont.beginEditing()
             attributedText.enumerateAttributes(in: fullRange, options: .longestEffectiveRangeNotRequired, using: { (attributes, range, _) in
                 attributedTextWithFont.addAttributes(attributes, range: range)
