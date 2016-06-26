@@ -58,7 +58,9 @@ We have found LayoutKit to be a useful tool, but you should be aware of what it 
 
 ## Installation
 
-LayoutKit is packaged as a [Cocoapod](https://cocoapods.org/).
+LayoutKit can be installed with [Cocoapods](https://cocoapods.org/) or [Carthage](https://github.com/Carthage/Carthage).
+
+### CocoaPods
 
 Add this to your Podspec:
 ```
@@ -66,5 +68,16 @@ pod 'LayoutKit'
 ```
 
 Then run `pod install`.
+
+### Carthage
+
+Add this to your Cartfile:
+```
+github "linkedin/LayoutKit"
+``` 
+
+Then run `carthage update`.
+
+## Next steps
 
 Now you are ready to start [building UI](building-ui.md).

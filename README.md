@@ -84,7 +84,7 @@ Add this to your Cartfile:
 github "linkedin/LayoutKit"
 ``` 
 
-Then run `carthage update`
+Then run `carthage update`.
 
 ## Documentation
 
