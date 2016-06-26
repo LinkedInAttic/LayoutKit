@@ -30,20 +30,19 @@ LayoutKit also provides benefits that make it as easy to use as Auto Layout:
 ## Hello world
 
 ```swift
-let helloWorld = InsetLayout(
-    insets: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 8),
-    sublayout: StackLayout(
-        axis: .horizontal,
-        spacing: 4,
-        sublayouts: [
-            SizeLayout<UIImageView>(width: 50, height: 50, config: { imageView in
-                imageView.image = UIImage(named: "earth.png")
-            }),
-            LabelLayout(text: "Hello World!", alignment: .center)
-        ]
-    )
-)
+let image = SizeLayout<UIImageView>(width: 50, height: 50, config: { imageView in
+    imageView.image = UIImage(named: "earth.jpg")
+})
 
+let label = LabelLayout(text: "Hello World!", alignment: .center)
+
+let stack = StackLayout(
+    axis: .horizontal,
+    spacing: 4,
+    sublayouts: [image, label])
+
+let insets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 8)
+let helloWorld = InsetLayout(insets: insets, layout: stack)
 helloWorld.arrangement().makeViews(inView: rootView)
 ```
 
@@ -74,7 +73,7 @@ Then run `pod install`.
 Add this to your Cartfile:
 ```
 github "linkedin/LayoutKit"
-``` 
+```
 
 Then run `carthage update`.
 
