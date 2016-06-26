@@ -9,7 +9,7 @@
 
 /// A wrapper around Flexibility that makes it easy to do math relative to an axis.
 public struct AxisFlexibility {
-    public let axis: LayoutAxis
+    public let axis: Axis
     public let flexibility: Flexibility
 
     public var axisFlex: Flexibility.Flex {
@@ -34,12 +34,12 @@ public struct AxisFlexibility {
         }
     }
 
-    public init(axis: LayoutAxis, flexibility: Flexibility) {
+    public init(axis: Axis, flexibility: Flexibility) {
         self.axis = axis
         self.flexibility = flexibility
     }
 
-    public init(axis: LayoutAxis, axisFlex: Flexibility.Flex, crossFlex: Flexibility.Flex) {
+    public init(axis: Axis, axisFlex: Flexibility.Flex, crossFlex: Flexibility.Flex) {
         self.axis = axis
         switch axis {
         case .horizontal:

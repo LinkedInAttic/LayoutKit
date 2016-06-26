@@ -10,7 +10,7 @@ import UIKit
 
 /// A wrapper around CGSize that makes it easy to do math relative to an axis.
 public struct AxisSize {
-    public let axis: LayoutAxis
+    public let axis: Axis
     public var size: CGSize
 
     public var axisLength: CGFloat {
@@ -51,12 +51,12 @@ public struct AxisSize {
         }
     }
 
-    public init(axis: LayoutAxis, size: CGSize) {
+    public init(axis: Axis, size: CGSize) {
         self.axis = axis
         self.size = size
     }
 
-    public init(axis: LayoutAxis, axisLength: CGFloat, crossLength: CGFloat) {
+    public init(axis: Axis, axisLength: CGFloat, crossLength: CGFloat) {
         self.axis = axis
         switch axis {
         case .horizontal:
