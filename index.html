@@ -196,20 +196,19 @@ For more background, read the <a href="https://engineering.linkedin.com/blog/201
 <li><strong>Apache License (v2)</strong>: Your lawyers will be happy that there are no patent shenanigans.</li>
 </ul>
 <h2 id="hello-world">Hello world</h2>
-<pre><code class="swift">let helloWorld = InsetLayout(
-    insets: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 8),
-    sublayout: StackLayout(
-        axis: .horizontal,
-        spacing: 4,
-        sublayouts: [
-            SizeLayout&lt;UIImageView&gt;(width: 50, height: 50, config: { imageView in
-                imageView.image = UIImage(named: &quot;earth.png&quot;)
-            }),
-            LabelLayout(text: &quot;Hello World!&quot;, alignment: .center)
-        ]
-    )
-)
+<pre><code class="swift">let image = SizeLayout&lt;UIImageView&gt;(width: 50, height: 50, config: { imageView in
+    imageView.image = UIImage(named: &quot;earth.jpg&quot;)
+})
 
+let label = LabelLayout(text: &quot;Hello World!&quot;, alignment: .center)
+
+let stack = StackLayout(
+    axis: .horizontal,
+    spacing: 4,
+    sublayouts: [image, label])
+
+let insets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 8)
+let helloWorld = InsetLayout(insets: insets, layout: stack)
 helloWorld.arrangement().makeViews(inView: rootView)
 </code></pre>
 
@@ -284,5 +283,5 @@ helloWorld.arrangement().makeViews(inView: rootView)
 
 <!--
 MkDocs version : 0.15.3
-Build Date UTC : 2016-06-26 20:25:17.342652
+Build Date UTC : 2016-06-26 20:41:35.446102
 -->
