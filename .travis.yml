@@ -6,14 +6,12 @@ script:
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'
     -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=9.3'
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=8.4'
-    -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=8.4'
-  | xcpretty &&
+    -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=8.4' &&
   xcodebuild test -project LayoutKit.xcodeproj -scheme LayoutKit -sdk iphonesimulator9.3
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'
     -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=9.3'
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=8.4'
     -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=8.4'
-  | xcpretty
   
 after_success:
   - bash <(curl -s https://codecov.io/bash)
