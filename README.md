@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/linkedin/LayoutKit.svg?branch=master)](https://travis-ci.org/linkedin/LayoutKit)
 [![codecov](https://codecov.io/gh/linkedin/LayoutKit/branch/master/graph/badge.svg)](https://codecov.io/gh/linkedin/LayoutKit)
 [![GitHub release](https://img.shields.io/github/release/linkedin/layoutkit.svg?maxAge=2592000)]()
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 LayoutKit is a fast view layout library for iOS.
 
@@ -65,6 +66,7 @@ We have found LayoutKit to be a useful tool, but you should be aware of what it 
 
 ## Installation
 
+### CocoaPods
 LayoutKit is packaged as a [Cocoapod](https://cocoapods.org/).
 
 Add this to your Podspec:
@@ -73,6 +75,19 @@ pod 'LayoutKit'
 ```
 
 Then run `pod install`.
+
+### Carthage
+To install with Carthage, follow the instruction on [Carthage](https://github.com/Carthage/Carthage).
+
+Add this to your Cartfile:
+```
+github "linkedin/LayoutKit"
+``` 
+
+Then run:
+```
+carthage update
+```
 
 ## Documentation
 
