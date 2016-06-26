@@ -8,9 +8,9 @@
 
 public enum Axis {
 
-	/// The y-axis.
-	case vertical
+    /// The y-axis.
+    case vertical
 
-	/// The x-axis.
-	case horizontal
+    /// The x-axis.
+    case horizontal
 }
