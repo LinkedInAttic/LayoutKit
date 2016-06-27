@@ -182,17 +182,17 @@
 <p>Unlike UIKit, LayoutKit can perform steps #1 and #2 on a background thread, but doing so is completely optional.</p>
 <p>Examples:</p>
 <ul>
-<li><a href="https://github.com/linkedin/LayoutKit/LayoutKitSampleApp/BackgroundMiniProfileViewController.swift">BackgroundMiniProfileViewController</a></li>
-<li><a href="https://github.com/linkedin/LayoutKit/LayoutKitSampleApp/ForegroundMiniProfileViewController.swift">ForegroundMiniProfileViewController</a></li>
+<li><a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKitSampleApp/BackgroundMiniProfileViewController.swift">BackgroundMiniProfileViewController</a></li>
+<li><a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKitSampleApp/ForegroundMiniProfileViewController.swift">ForegroundMiniProfileViewController</a></li>
 </ul>
 <p>LayoutKit is faster than Auto Layout by default so it is perfectly fine to not bother with background layout if performance on the main thread is acceptable.</p>
 <h2 id="uicollectionview-and-uitableview">UICollectionView and UITableView</h2>
-<p>If you have a UICollectionView or UITableView and all of the cells use LayoutKit, then you can use <a href="https://github.com/linkedin/LayoutKit/LayoutKit/Views/ReloadableLayoutViewAdapter.swift">ReloadableViewLayoutAdapter</a> to automatically handle computing cell layouts on a background thread.</p>
+<p>If you have a UICollectionView or UITableView and all of the cells use LayoutKit, then you can use <a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Views/ReloadableLayoutViewAdapter.swift">ReloadableViewLayoutAdapter</a> to automatically handle computing cell layouts on a background thread.</p>
 <h2 id="mixing-auto-layout-and-layoutkit">Mixing Auto Layout and LayoutKit</h2>
 <p>If you have a UI that mixes LayoutKit and Auto Layout (e.g. some cells use LayoutKit and others use Auto Layout), then you may want to avoid the additional complexity of background layout.</p>
-<p>Instead, perform all layout computations on the main thread (similar to how <a href="https://github.com/linkedin/LayoutKit/LayoutKit/Views/StackView.swift">StackView</a> is implemented).</p>
+<p>Instead, perform all layout computations on the main thread (similar to how <a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Views/StackView.swift">StackView</a> is implemented).</p>
 <h2 id="stackview">StackView</h2>
-<p>If you don't want to think about layouts or threading, <a href="https://github.com/linkedin/LayoutKit/LayoutKit/Views/StackView.swift">StackView</a> is an easy way to start taking advantage of the performance of LayoutKit.</p>
+<p>If you don't want to think about layouts or threading, <a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Views/StackView.swift">StackView</a> is an easy way to start taking advantage of the performance of LayoutKit.</p>
 <ul>
 <li>It is similar to UIStackView except it uses LayoutKit's StackLayout algorithm to efficiently stack subviews.</li>
 <li>It is faster than UIStackView and it is also faster than manually stacking views with Auto Layout.</li>
