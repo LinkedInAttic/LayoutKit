@@ -2,10 +2,10 @@ language: objective-c
 osx_image: xcode8
 script:
   set -o pipefail &&
-  xcodebuild build -project LayoutKit.xcodeproj -scheme LayoutKitSampleApp -sdk iphonesimulator10.0 --destination-timeout 300
+  xcodebuild build -project LayoutKit.xcodeproj -scheme LayoutKitSampleApp -sdk iphonesimulator10.0 -destination-timeout 300
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.0'
     -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=10.0' &&
-  xcodebuild test -project LayoutKit.xcodeproj -scheme LayoutKit -sdk iphonesimulator10.0 --destination-timeout 300
+  xcodebuild test -project LayoutKit.xcodeproj -scheme LayoutKit -sdk iphonesimulator10.0 -destination-timeout 300
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.0'
     -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=10.0'
     
