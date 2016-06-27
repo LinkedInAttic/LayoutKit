@@ -60,7 +60,7 @@ We have found LayoutKit to be a useful tool, but you should be aware of what it 
 
 ## Installation
 
-LayoutKit can be installed with [Cocoapods](https://cocoapods.org/) or [Carthage](https://github.com/Carthage/Carthage).
+LayoutKit can be installed with [CocoaPods](https://cocoapods.org/) or [Carthage](https://github.com/Carthage/Carthage).
 
 ### CocoaPods
 
