@@ -19,7 +19,7 @@ import UIKit
 public class StackLayout: PositioningLayout<UIView> {
 
     /// The axis along which sublayouts are stacked.
-    public let axis: LayoutAxis
+    public let axis: Axis
 
     /**
      The distance in points between adjacent edges of sublayouts along the axis.
@@ -39,7 +39,7 @@ public class StackLayout: PositioningLayout<UIView> {
     /// The stacked layouts.
     public let sublayouts: [Layout]
 
-    public init(axis: LayoutAxis,
+    public init(axis: Axis,
                 spacing: CGFloat = 0,
                 distribution: Distribution = .fillFlexing,
                 alignment: Alignment = .fill,
@@ -282,7 +282,7 @@ extension StackLayout {
     /**
      Inherit the maximum flexibility of sublayouts along the axis and minimum flexibility of sublayouts across the axis.
      */
-    private static func defaultFlexibility(axis: LayoutAxis, sublayouts: [Layout]) -> Flexibility {
+    private static func defaultFlexibility(axis: Axis, sublayouts: [Layout]) -> Flexibility {
         let initial = AxisFlexibility(axis: axis, axisFlex: nil, crossFlex: .max)
         return sublayouts.reduce(initial) { (flexibility: AxisFlexibility, sublayout: Layout) -> AxisFlexibility in
             let subflex = AxisFlexibility(axis: axis, flexibility: sublayout.flexibility)

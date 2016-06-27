@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/linkedin/LayoutKit.svg?branch=master)](https://travis-ci.org/linkedin/LayoutKit)
 [![codecov](https://codecov.io/gh/linkedin/LayoutKit/branch/master/graph/badge.svg)](https://codecov.io/gh/linkedin/LayoutKit)
 [![GitHub release](https://img.shields.io/github/release/linkedin/layoutkit.svg?maxAge=2592000)]()
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 LayoutKit is a fast view layout library for iOS.
 
@@ -32,26 +33,20 @@ LayoutKit also provides benefits that make it as easy to use as Auto Layout:
 ## Hello world
 
 ```swift
-let helloWorld = InsetLayout(
-    insets: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 8),
-    layout: StackLayout(
-        axis: .horizontal,
-        spacing: 4,
-        sublayouts: [
-            SizeLayout<UIImageView>(width: 50, height: 50, config: { imageView in
-                imageView.image = UIImage(named: "earth.jpg")
-            }),
-            LabelLayout(text: "Hello World!", alignment: .center, config: { label in
-                label.textColor = UIColor.whiteColor()
-            })
-        ]
-    ),
-    config: { view in
-        view.backgroundColor = UIColor.blackColor()
-    }
-)
+let image = SizeLayout<UIImageView>(width: 50, height: 50, config: { imageView in
+    imageView.image = UIImage(named: "earth.jpg")
+})
 
-helloWorld.arrangement().makeViews()
+let label = LabelLayout(text: "Hello World!", alignment: .center)
+
+let stack = StackLayout(
+    axis: .horizontal,
+    spacing: 4,
+    sublayouts: [image, label])
+
+let insets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 8)
+let helloWorld = InsetLayout(insets: insets, layout: stack)
+helloWorld.arrangement().makeViews(inView: rootView)
 ```
 
 ![Hello world example layout](http://layoutkit.org/img/helloworld.png)
@@ -65,7 +60,9 @@ We have found LayoutKit to be a useful tool, but you should be aware of what it 
 
 ## Installation
 
-LayoutKit is packaged as a [Cocoapod](https://cocoapods.org/).
+LayoutKit can be installed with [Cocoapods](https://cocoapods.org/) or [Carthage](https://github.com/Carthage/Carthage).
+
+### CocoaPods
 
 Add this to your Podspec:
 ```
@@ -73,6 +70,15 @@ pod 'LayoutKit'
 ```
 
 Then run `pod install`.
+
+### Carthage
+
+Add this to your Cartfile:
+```
+github "linkedin/LayoutKit"
+```
+
+Then run `carthage update`.
 
 ## Documentation
 

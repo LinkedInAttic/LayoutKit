@@ -26,7 +26,7 @@ import UIKit
 public class StackView: UIView {
 
     /// The axis along which arranged views are stacked.
-    public let axis: LayoutAxis
+    public let axis: Axis
 
     /**
      The distance in points between adjacent edges of sublayouts along the axis.
@@ -48,7 +48,7 @@ public class StackView: UIView {
 
     private var arrangedSubviews: [UIView] = []
 
-    public init(axis: LayoutAxis,
+    public init(axis: Axis,
                 spacing: CGFloat = 0,
                 distribution: StackLayout.Distribution = .leading,
                 contentInsets: UIEdgeInsets = UIEdgeInsetsZero,

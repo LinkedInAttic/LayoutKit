@@ -47,7 +47,7 @@ class CollectionViewTests: XCTestCase, UICollectionViewDataSource {
             })
         }
 
-        waitForExpectations(withTimeout: 1.0, handler: nil)
+        waitForExpectations(withTimeout: 10, handler: nil)
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

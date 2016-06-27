@@ -105,7 +105,7 @@ public struct Flexibility {
     /**
      Returns the flex along an axis.
      */
-    public func flex(_ axis: LayoutAxis) -> Flex {
+    public func flex(_ axis: Axis) -> Flex {
         switch axis {
         case .vertical:
             return vertical
