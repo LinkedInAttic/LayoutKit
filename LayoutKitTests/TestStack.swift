@@ -61,7 +61,7 @@ class TestStack {
         if let excessHeight = excessHeight {
             height = intrinsicSize.height + excessHeight
         }
-        _ = stackLayout.arrangement(width: width, height: height).makeViews()
+        stackLayout.arrangement(width: width, height: height).makeViews()
         return self
     }
 }

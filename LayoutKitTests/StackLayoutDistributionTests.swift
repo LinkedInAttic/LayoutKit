@@ -89,7 +89,7 @@ class StackLayoutDistributionTests: XCTestCase {
 
     func testVerticalEqualSizeDistributionNoSpace() {
         let stack = TestStack(axis: .vertical, distribution: .fillEqualSize, alignment: .topTrailing)
-        _ = stack.stackLayout.arrangement(height: 0).makeViews()
+        stack.stackLayout.arrangement(height: 0).makeViews()
 
         XCTAssertNil(stack.oneView)
         XCTAssertNil(stack.twoView)
@@ -99,7 +99,7 @@ class StackLayoutDistributionTests: XCTestCase {
     
     func testVerticalEqualSizeDistributionOneLayoutDropped() {
         let stack = TestStack(axis: .vertical, distribution: .fillEqualSize, spacing: 10, alignment: .topTrailing)
-        _ = stack.stackLayout.arrangement(height: 19).makeViews()
+        stack.stackLayout.arrangement(height: 19).makeViews()
 
         XCTAssertEqual(stack.oneView.frame, CGRect(x: 0, y: 0, width: 18, height: 4.5))
         XCTAssertEqual(stack.twoView.frame, CGRect(x: 0, y: 14.5, width: 18, height: 4.5))
@@ -183,7 +183,7 @@ class StackLayoutDistributionTests: XCTestCase {
 
     func testHorizontalEqualSizeDistributionNoSpace() {
         let stack = TestStack(axis: .horizontal, distribution: .fillEqualSize, alignment: .topTrailing)
-        _ = stack.stackLayout.arrangement(width: 0).makeViews()
+        stack.stackLayout.arrangement(width: 0).makeViews()
 
         XCTAssertNil(stack.oneView)
         XCTAssertNil(stack.twoView)
@@ -193,7 +193,7 @@ class StackLayoutDistributionTests: XCTestCase {
 
     func testHorizontalEqualSizeDistributionOneLayoutDropped() {
         let stack = TestStack(axis: .horizontal, distribution: .fillEqualSize, spacing: 10, alignment: .topTrailing)
-        _ = stack.stackLayout.arrangement(width: 19).makeViews()
+        stack.stackLayout.arrangement(width: 19).makeViews()
 
         XCTAssertEqual(stack.oneView.frame, CGRect(x: 0, y: 0, width: 4.5, height: 18.5))
         XCTAssertEqual(stack.twoView.frame, CGRect(x: 14.5, y: 0, width: 4.5, height: 18.5))

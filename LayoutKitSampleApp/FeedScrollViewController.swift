@@ -26,13 +26,13 @@ class FeedScrollViewController: FeedBaseViewController {
     }
 
     private func layoutFeed(width: CGFloat) {
-        let _ = CFAbsoluteTimeGetCurrent()
+//        let start = CFAbsoluteTimeGetCurrent()
         DispatchQueue.global(attributes: .qosUserInitiated).async {
             let arrangement = self.getFeedLayout().arrangement(width: width)
             DispatchQueue.main.async(execute: {
                 self.scrollView.contentSize = arrangement.frame.size
-                _ = arrangement.makeViews(inView: self.scrollView)
-//                let _ = CFAbsoluteTimeGetCurrent()
+                arrangement.makeViews(inView: self.scrollView)
+//                let end = CFAbsoluteTimeGetCurrent()
 //                NSLog("user: \((end-start).ms)")
             })
         }

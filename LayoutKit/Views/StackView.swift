@@ -92,7 +92,7 @@ public class StackView: UIView {
     }
 
     public override func layoutSubviews() {
-        _ = stackLayout.measurement(within: bounds.size).arrangement(within: bounds).makeViews(inView: self)
+        stackLayout.measurement(within: bounds.size).arrangement(within: bounds).makeViews(inView: self)
     }
 
     private var stackLayout: Layout {

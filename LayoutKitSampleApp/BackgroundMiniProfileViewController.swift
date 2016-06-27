@@ -27,7 +27,7 @@ class BackgroundMiniProfileViewController: UIViewController {
 
             let arrangement = nickProfile.arrangement(width: width)
             DispatchQueue.main.async(execute: {
-                _ = arrangement.makeViews(inView: self.view)
+                arrangement.makeViews(inView: self.view)
             })
         }
     }

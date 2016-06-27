@@ -35,6 +35,7 @@ public struct LayoutArrangement {
 
      - returns: The root view. If a view was provided, the same view will be returned, otherwise, a new one will be created.
      */
+    @discardableResult
     public func makeViews(inView view: UIView? = nil, direction: UIUserInterfaceLayoutDirection = .leftToRight) -> UIView {
         let views = makeSubviews()
         let rootView: UIView

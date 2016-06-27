@@ -44,7 +44,7 @@ class StackLayoutSpacingTests: XCTestCase {
         XCTAssertEqual(measurement.size, CGSize(width: 18, height: 14+4+18.5))
 
         // Position the stack in the space it requested plus some spacing (but not enough to show the third label).
-        _ = stack.stackLayout.arrangement(within: CGRect(x: 0, y: 0, width: 18, height: 14+4+18.5+4), measurement: measurement).makeViews()
+        stack.stackLayout.arrangement(within: CGRect(x: 0, y: 0, width: 18, height: 14+4+18.5+4), measurement: measurement).makeViews()
 
         XCTAssertEqual(stack.oneView.frame, CGRect(x: 0, y: 0, width: 18, height: 14))
         XCTAssertEqual(stack.twoView.frame, CGRect(x: 0, y: 14+4, width: 18, height: 18.5))
@@ -83,7 +83,7 @@ class StackLayoutSpacingTests: XCTestCase {
         XCTAssertEqual(measurement.size, CGSize(width: 7+4+18, height: 18.5))
 
         // Position the stack in the space it requested plus some spacing (but not enough to show the third label).
-        _ = stack.stackLayout.arrangement(within: CGRect(x: 0, y: 0, width: 7+4+18+4, height: 18.5), measurement: measurement).makeViews()
+        stack.stackLayout.arrangement(within: CGRect(x: 0, y: 0, width: 7+4+18+4, height: 18.5), measurement: measurement).makeViews()
 
         XCTAssertEqual(stack.oneView.frame, CGRect(x: 0, y: 0, width: 7, height: 18.5))
         XCTAssertEqual(stack.twoView.frame, CGRect(x: 7+4, y: 0, width: 18, height: 18.5))
