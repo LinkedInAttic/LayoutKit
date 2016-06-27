@@ -178,7 +178,7 @@ class ReloadableViewLayoutAdapterTests: XCTestCase {
         adapter.backgroundLayoutQueue.addOperationWithBlock {
             expectation.fulfill()
         }
-        waitForExpectationsWithTimeout(1.0, handler: nil)
+        waitForExpectationsWithTimeout(10, handler: nil)
     }
 
     /**
