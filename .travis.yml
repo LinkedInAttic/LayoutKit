@@ -5,18 +5,10 @@ script:
   xcodebuild build -project LayoutKit.xcodeproj -scheme LayoutKitSampleApp -sdk iphonesimulator10.0
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.0'
     -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=10.0'
-    -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'
-    -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=9.3'
-    -destination 'platform=iOS Simulator,name=iPhone 6,OS=8.4'
-    -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=8.4'
   | xcpretty &&
   xcodebuild test -project LayoutKit.xcodeproj -scheme LayoutKit -sdk iphonesimulator10.0
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.0'
     -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=10.0'
-    -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'
-    -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=9.3'
-    -destination 'platform=iOS Simulator,name=iPhone 6,OS=8.4'
-    -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=8.4'
   | xcpretty
   
 after_success:
