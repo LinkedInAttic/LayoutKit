@@ -29,7 +29,7 @@ public protocol ReloadableView: class {
     /**
      The axis which is scrollable.
      */
-    func scrollAxis() -> LayoutAxis
+    func scrollAxis() -> Axis
 
     /**
      Reloads the data synchronously.
@@ -55,7 +55,7 @@ public protocol ReloadableView: class {
 /// Make UICollectionView conform to ReloadableView protocol.
 extension UICollectionView: ReloadableView {
     
-    public func scrollAxis() -> LayoutAxis {
+    public func scrollAxis() -> Axis {
         if let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout {
             switch flowLayout.scrollDirection {
             case .Vertical:
@@ -94,7 +94,7 @@ extension UICollectionView: ReloadableView {
 /// Make UITableView conform to ReloadableView protocol.
 extension UITableView: ReloadableView {
 
-    public func scrollAxis() -> LayoutAxis {
+    public func scrollAxis() -> Axis {
         return .vertical
     }
 

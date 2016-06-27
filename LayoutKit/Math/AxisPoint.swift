@@ -10,7 +10,7 @@ import UIKit
 
 /// A wrapper around CGPoint that makes it easy to do math relative to an axis.
 public struct AxisPoint {
-    public let axis: LayoutAxis
+    public let axis: Axis
     public var point: CGPoint
 
     public var axisOffset: CGFloat {
@@ -51,12 +51,12 @@ public struct AxisPoint {
         }
     }
 
-    public init(axis: LayoutAxis, point: CGPoint) {
+    public init(axis: Axis, point: CGPoint) {
         self.axis = axis
         self.point = point
     }
 
-    public init(axis: LayoutAxis, axisOffset: CGFloat, crossOffset: CGFloat) {
+    public init(axis: Axis, axisOffset: CGFloat, crossOffset: CGFloat) {
         self.axis = axis
         switch axis {
         case .horizontal:

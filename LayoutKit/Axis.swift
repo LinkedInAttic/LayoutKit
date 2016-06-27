@@ -6,9 +6,7 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-
-/// TODO: rename to "Axis"
-public enum LayoutAxis {
+public enum Axis {
 
     /// The y-axis.
     case vertical

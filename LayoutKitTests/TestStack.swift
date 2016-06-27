@@ -19,7 +19,7 @@ class TestStack {
     var twoView: UIView! = nil
     var threeView: UIView! = nil
 
-    init(axis: LayoutAxis, distribution: StackLayout.Distribution, spacing: CGFloat = 0, alignment: Alignment = .fill) {
+    init(axis: Axis, distribution: StackLayout.Distribution, spacing: CGFloat = 0, alignment: Alignment = .fill) {
 
         switch axis {
         case .vertical:

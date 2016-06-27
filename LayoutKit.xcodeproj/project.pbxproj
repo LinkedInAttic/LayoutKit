@@ -23,7 +23,7 @@
 		0B3D5AEF1CFA5BB50090AD80 /* AxisSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D5AEC1CFA5BB50090AD80 /* AxisSize.swift */; };
 		0B3D5AF01CFA5BB50090AD80 /* AxisFlexibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D5AED1CFA5BB50090AD80 /* AxisFlexibility.swift */; };
 		0B3D5AF11CFA5BB50090AD80 /* AxisPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D5AEE1CFA5BB50090AD80 /* AxisPoint.swift */; };
-		0B5ADBC11CF427510056A568 /* LayoutAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5ADBC01CF427510056A568 /* LayoutAxis.swift */; };
+		0B5ADBC11CF427510056A568 /* Axis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5ADBC01CF427510056A568 /* Axis.swift */; };
 		0B5ADBC41CF500500056A568 /* FeedItemManualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5ADBC31CF500500056A568 /* FeedItemManualView.swift */; };
 		0B5ADBC61CF500730056A568 /* FeedItemLayoutKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5ADBC51CF500730056A568 /* FeedItemLayoutKitView.swift */; };
 		0B5ADBC81CF504080056A568 /* FeedItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5ADBC71CF504080056A568 /* FeedItemData.swift */; };
@@ -144,7 +144,7 @@
 		0B3D5AEC1CFA5BB50090AD80 /* AxisSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxisSize.swift; sourceTree = "<group>"; };
 		0B3D5AED1CFA5BB50090AD80 /* AxisFlexibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxisFlexibility.swift; sourceTree = "<group>"; };
 		0B3D5AEE1CFA5BB50090AD80 /* AxisPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxisPoint.swift; sourceTree = "<group>"; };
-		0B5ADBC01CF427510056A568 /* LayoutAxis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAxis.swift; sourceTree = "<group>"; };
+		0B5ADBC01CF427510056A568 /* Axis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Axis.swift; sourceTree = "<group>"; };
 		0B5ADBC31CF500500056A568 /* FeedItemManualView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItemManualView.swift; sourceTree = "<group>"; };
 		0B5ADBC51CF500730056A568 /* FeedItemLayoutKitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItemLayoutKitView.swift; sourceTree = "<group>"; };
 		0B5ADBC71CF504080056A568 /* FeedItemData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItemData.swift; sourceTree = "<group>"; };
@@ -412,7 +412,7 @@
 				0B3B17351CC58B42002127F0 /* Flexibility.swift */,
 				0B3B17361CC58B42002127F0 /* Layout.swift */,
 				0B3B17381CC58B42002127F0 /* LayoutArrangement.swift */,
-				0B5ADBC01CF427510056A568 /* LayoutAxis.swift */,
+				0B5ADBC01CF427510056A568 /* Axis.swift */,
 				0B3B17371CC58B42002127F0 /* LayoutMeasurement.swift */,
 				0BE47EF71CC57348003820E8 /* Info.plist */,
 			);
@@ -666,7 +666,7 @@
 				0B3D5AF11CFA5BB50090AD80 /* AxisPoint.swift in Sources */,
 				0B3B173A1CC58B42002127F0 /* Flexibility.swift in Sources */,
 				0B3B17311CC58B34002127F0 /* PositioningLayout.swift in Sources */,
-				0B5ADBC11CF427510056A568 /* LayoutAxis.swift in Sources */,
+				0B5ADBC11CF427510056A568 /* Axis.swift in Sources */,
 				0BFDC3981CD803720046DCF0 /* StackView.swift in Sources */,
 				0BAAE17A1CCD930B0046DF14 /* ReloadableViewLayoutAdapter.swift in Sources */,
 				0B3B17301CC58B34002127F0 /* LabelLayout.swift in Sources */,
