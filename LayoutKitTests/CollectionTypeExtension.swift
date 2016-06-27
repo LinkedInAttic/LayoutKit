@@ -7,11 +7,11 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 
-extension Collection {
+extension Collection where Index == Indices.Iterator.Element {
     /// Returns the element at the specified index iff it is within bounds, otherwise nil.
     /// http://stackoverflow.com/questions/25329186/safe-bounds-checked-array-lookup-in-swift-through-optional-bindings
     subscript (safe index: Index) -> Iterator.Element? {
-        return distance(from: index, to: endIndex) < 1 ? self[index] : nil
+        return indices.contains(index) ? self[index] : nil
     }
 
     /// Returns the only element in the collection.
