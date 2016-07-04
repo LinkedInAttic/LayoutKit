@@ -50,7 +50,7 @@ let helloWorld = InsetLayout(insets: insets, layout: stack)
 helloWorld.arrangement().makeViews(inView: rootView)
 ```
 
-![Hello world example layout](http://layoutkit.org/img/helloworld.png)
+![Hello world example layout](docs/img/helloworld.png)
 
 ## Limitations
 
