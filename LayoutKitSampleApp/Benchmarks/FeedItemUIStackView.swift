@@ -17,28 +17,28 @@ class FeedItemUIStackView: DebugStackView, DataBinder {
     let optionsLabel: UILabel = {
         let l = UILabel()
         l.text = "..."
-        l.setContentHuggingPriority(UILayoutPriorityRequired, forAxis: .Horizontal)
-        l.setContentCompressionResistancePriority(UILayoutPriorityRequired, forAxis: .Horizontal)
+        l.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
+        l.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
         return l
     }()
 
     lazy var topBar: UIStackView = {
         let v = DebugStackView(arrangedSubviews: [self.actionLabel, self.optionsLabel])
-        v.axis = .Horizontal
-        v.distribution = .Fill
-        v.alignment = .Leading
+        v.axis = .horizontal
+        v.distribution = .fill
+        v.alignment = .leading
         v.viewId = "topBar"
-        v.backgroundColor = UIColor.blueColor()
+        v.backgroundColor = UIColor.blue()
         return v
     }()
 
     let posterImageView: UIImageView = {
         let i = UIImageView()
         i.image = UIImage(named: "50x50.png")
-        i.backgroundColor = UIColor.orangeColor()
-        i.contentMode = .Center
-        i.setContentHuggingPriority(UILayoutPriorityRequired, forAxis: .Horizontal)
-        i.setContentCompressionResistancePriority(UILayoutPriorityRequired, forAxis: .Horizontal)
+        i.backgroundColor = UIColor.orange()
+        i.contentMode = .center
+        i.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
+        i.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
         return i
     }()
 
@@ -54,18 +54,18 @@ class FeedItemUIStackView: DebugStackView, DataBinder {
 
     lazy var posterLabels: DebugStackView = {
         let v = DebugStackView(arrangedSubviews: [self.posterNameLabel, self.posterHeadlineLabel, self.posterTimeLabel])
-        v.axis = .Vertical
+        v.axis = .vertical
         v.spacing = 1
         v.layoutMargins = UIEdgeInsets(top: 1, left: 2, bottom: 3, right: 4)
-        v.layoutMarginsRelativeArrangement = true
+        v.isLayoutMarginsRelativeArrangement = true
         v.viewId = "posterLabels"
         return v
     }()
 
     lazy var posterCard: DebugStackView = {
         let v = DebugStackView(arrangedSubviews: [self.posterImageView, self.posterLabels])
-        v.axis = .Horizontal
-        v.alignment = .Center
+        v.axis = .horizontal
+        v.alignment = .center
         v.viewId = "posterCard"
         return v
     }()
@@ -75,8 +75,8 @@ class FeedItemUIStackView: DebugStackView, DataBinder {
     let contentImageView: UIImageView = {
         let i = UIImageView()
         i.image = UIImage(named: "350x200.png")
-        i.contentMode = .ScaleAspectFit
-        i.backgroundColor = UIColor.orangeColor()
+        i.contentMode = .scaleAspectFit
+        i.backgroundColor = UIColor.orange()
         return i
     }()
 
@@ -94,7 +94,7 @@ class FeedItemUIStackView: DebugStackView, DataBinder {
         let l = UILabel()
         l.text = "Comment"
         l.backgroundColor = UIColor(red: 0, green: 1.0, blue: 0, alpha: 1)
-        l.textAlignment = .Center
+        l.textAlignment = .center
         return l
     }()
 
@@ -102,14 +102,14 @@ class FeedItemUIStackView: DebugStackView, DataBinder {
         let l = UILabel()
         l.text = "Share"
         l.backgroundColor = UIColor(red: 0, green: 0.8, blue: 0, alpha: 1)
-        l.textAlignment = .Right
+        l.textAlignment = .right
         return l
     }()
 
     lazy var actions: DebugStackView = {
         let v = DebugStackView(arrangedSubviews: [self.likeLabel, self.commentLabel, self.shareLabel])
-        v.axis = .Horizontal
-        v.distribution = .EqualSpacing
+        v.axis = .horizontal
+        v.distribution = .equalSpacing
         v.viewId = "actions"
         return v
     }()
@@ -117,8 +117,8 @@ class FeedItemUIStackView: DebugStackView, DataBinder {
     let actorImageView: UIImageView = {
         let i = UIImageView()
         i.image = UIImage(named: "50x50.png")
-        i.setContentHuggingPriority(UILayoutPriorityRequired, forAxis: .Horizontal)
-        i.setContentCompressionResistancePriority(UILayoutPriorityRequired, forAxis: .Horizontal)
+        i.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
+        i.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
         return i
     }()
 
@@ -126,14 +126,14 @@ class FeedItemUIStackView: DebugStackView, DataBinder {
 
     lazy var comment: DebugStackView = {
         let v = DebugStackView(arrangedSubviews: [self.actorImageView, self.actorCommentLabel])
-        v.axis = .Horizontal
+        v.axis = .horizontal
         v.viewId = "comment"
         return v
     }()
 
     convenience init() {
         self.init(arrangedSubviews: [])
-        axis = .Vertical
+        axis = .vertical
         viewId = "ComplexStackView"
         let subviews = [
             topBar,
@@ -151,7 +151,7 @@ class FeedItemUIStackView: DebugStackView, DataBinder {
         }
     }
 
-    func setData(data: FeedItemData) {
+    func setData(_ data: FeedItemData) {
         actionLabel.text = data.actionText
         posterNameLabel.text = data.posterName
         posterHeadlineLabel.text = data.posterHeadline
@@ -162,8 +162,8 @@ class FeedItemUIStackView: DebugStackView, DataBinder {
         actorCommentLabel.text = data.actorComment
     }
 
-    override func sizeThatFits(size: CGSize) -> CGSize {
-        return systemLayoutSizeFittingSize(CGSize(width: size.width, height: 0))
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
+        return systemLayoutSizeFitting(CGSize(width: size.width, height: 0))
     }
 }
 

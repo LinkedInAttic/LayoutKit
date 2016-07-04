@@ -25,26 +25,26 @@ class MenuViewController: UITableViewController {
     ]
 
     convenience init() {
-        self.init(style: .Grouped)
+        self.init(style: .grouped)
         title = "Menu"
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewControllers.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         cell.textLabel?.text = String(viewControllers[indexPath.row])
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewController = viewControllers[indexPath.row].init()
         viewController.title = String(viewController)
         navigationController?.pushViewController(viewController, animated: true)

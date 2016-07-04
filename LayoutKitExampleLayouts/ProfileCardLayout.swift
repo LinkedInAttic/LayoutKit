@@ -13,7 +13,7 @@ public class ProfileCardLayout: StackLayout {
 
     public init(name: String, connectionDegree: String, headline: String, timestamp: String, profileImageName: String) {
         let labelConfig = { (label: UILabel) in
-            label.backgroundColor = UIColor.yellowColor()
+            label.backgroundColor = UIColor.yellow()
         }
 
         let nameAndConnectionDegree = StackLayout(
@@ -22,7 +22,7 @@ public class ProfileCardLayout: StackLayout {
             sublayouts: [
                 LabelLayout(text: name, config: labelConfig),
                 LabelLayout(text: connectionDegree, config: { label in
-                    label.backgroundColor = UIColor.grayColor()
+                    label.backgroundColor = UIColor.gray()
                 }),
             ]
         )

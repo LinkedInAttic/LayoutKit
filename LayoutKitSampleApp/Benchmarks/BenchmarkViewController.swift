@@ -66,26 +66,26 @@ class BenchmarkViewController: UITableViewController {
     ]
 
     convenience init() {
-        self.init(style: .Grouped)
+        self.init(style: .grouped)
         title = "Benchmarks"
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewControllers.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         cell.textLabel?.text = viewControllers[indexPath.row].title
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewControllerData = viewControllers[indexPath.row]
         guard let viewController = viewControllerData.factoryBlock(viewCount: 20) else {
             return
@@ -97,7 +97,7 @@ class BenchmarkViewController: UITableViewController {
         navigationController?.pushViewController(viewController, animated: true)
     }
 
-    private func benchmark(viewControllerData: ViewControllerData) {
+    private func benchmark(_ viewControllerData: ViewControllerData) {
         let iterations = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 100]
         for i in iterations {
             let description = "\(i)\tsubviews\t\(viewControllerData.title)"

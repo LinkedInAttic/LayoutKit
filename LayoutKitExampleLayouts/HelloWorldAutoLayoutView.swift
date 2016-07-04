@@ -17,10 +17,10 @@ public class HelloWorldAutoLayoutView: UIView {
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.setContentHuggingPriority(UILayoutPriorityRequired, forAxis: .Vertical)
-        imageView.setContentHuggingPriority(UILayoutPriorityRequired, forAxis: .Horizontal)
-        imageView.setContentCompressionResistancePriority(UILayoutPriorityRequired, forAxis: .Vertical)
-        imageView.setContentCompressionResistancePriority(UILayoutPriorityRequired, forAxis: .Horizontal)
+        imageView.setContentHuggingPriority(UILayoutPriorityRequired, for: .vertical)
+        imageView.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
+        imageView.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .vertical)
+        imageView.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
         imageView.image = UIImage(named: "earth.png")
         return imageView
     }()
@@ -39,10 +39,10 @@ public class HelloWorldAutoLayoutView: UIView {
 
         let views = ["imageView": imageView, "label": label]
         var constraints = [NSLayoutConstraint]()
-        constraints.appendContentsOf(NSLayoutConstraint.constraintsWithVisualFormat("V:|-4-[imageView(==50)]-4-|", options: [], metrics: nil, views: views))
-        constraints.appendContentsOf(NSLayoutConstraint.constraintsWithVisualFormat("H:|-4-[imageView(==50)]-4-[label]-8-|", options: [], metrics: nil, views: views))
-        constraints.append(NSLayoutConstraint(item: label, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1, constant: 0))
-        NSLayoutConstraint.activateConstraints(constraints)
+        constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-4-[imageView(==50)]-4-|", options: [], metrics: nil, views: views))
+        constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-4-[imageView(==50)]-4-[label]-8-|", options: [], metrics: nil, views: views))
+        constraints.append(NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
+        NSLayoutConstraint.activate(constraints)
     }
     
     public required init?(coder aDecoder: NSCoder) {

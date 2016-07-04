@@ -38,7 +38,7 @@ class FeedBaseViewController: UIViewController {
             actorComment: "Awesome!"
         )
 
-        let feedItems = [Layout](count: 1000, repeatedValue: feedItem)
+        let feedItems = [Layout](repeating: feedItem, count: 1000)
         cachedFeedItems = feedItems
         return feedItems
     }

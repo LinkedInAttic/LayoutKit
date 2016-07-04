@@ -19,8 +19,8 @@ class TableViewTests: XCTestCase, UITableViewDataSource, UITableViewDelegate {
     let reuseIdentifier = "reuseIdentifier"
 
     func testTableView() {
-        let view = UITableView(frame: CGRect(x: 0, y: 0, width: 320, height: 480), style: .Grouped)
-        view.registerClass(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        let view = UITableView(frame: CGRect(x: 0, y: 0, width: 320, height: 480), style: .grouped)
+        view.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.dataSource = self
         view.delegate = self
 
@@ -31,26 +31,26 @@ class TableViewTests: XCTestCase, UITableViewDataSource, UITableViewDelegate {
 
         log("insert start")
         dataCount += 1
-        let indexPaths = [NSIndexPath(forItem: 1, inSection: 0)]
-        view.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .None)
+        let indexPaths = [IndexPath(item: 1, section: 0)]
+        view.insertRows(at: indexPaths, with: .none)
         log("insert end")
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         log("numberOfSections = \(sectionCount)")
         return sectionCount
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         log("numberOfRowsInSection \(section) = \(dataCount)")
         return dataCount
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
     }
 }
 
-private func log(msg: String) {
+private func log(_ msg: String) {
     //NSLog("%@", msg)
 }

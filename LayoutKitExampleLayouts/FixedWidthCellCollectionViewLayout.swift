@@ -13,18 +13,18 @@ import LayoutKit
  A layout for a collection view that has fixed width cells.
  The height of the collection view is the height of the tallest cell.
  */
-public class FixedWidthCellCollectionViewLayout<V: LayoutAdapterCollectionView, C: CollectionType where C.Generator.Element == Layout>: Layout {
+public class FixedWidthCellCollectionViewLayout<V: LayoutAdapterCollectionView, C: Collection where C.Iterator.Element == Layout>: Layout {
 
     private let cellWidth: CGFloat
     private let sectionLayouts: [Section<C>]
-    private let config: (V -> Void)?
+    private let config: ((V) -> Void)?
 
     public var flexibility: Flexibility {
         // Horizontally flexible because that is our scroll direction. It is ok if our viewport is smaller/larger than our content.
         return Flexibility(horizontal: Flexibility.defaultFlex, vertical: nil)
     }
 
-    public init(cellWidth: CGFloat, sectionLayouts: [Section<C>], config: (V -> Void)? = nil) {
+    public init(cellWidth: CGFloat, sectionLayouts: [Section<C>], config: ((V) -> Void)? = nil) {
         self.cellWidth = cellWidth
         self.sectionLayouts = sectionLayouts
         self.config = config
@@ -34,7 +34,7 @@ public class FixedWidthCellCollectionViewLayout<V: LayoutAdapterCollectionView, 
     private lazy var sectionMeasurements: [Section<[LayoutMeasurement]>] = {
         return self.sectionLayouts.map { sectionLayout in
             return sectionLayout.map({ (layout: Layout) -> LayoutMeasurement in
-                return layout.measurement(within: CGSize(width: self.cellWidth, height: CGFloat.max))
+                return layout.measurement(within: CGSize(width: self.cellWidth, height: CGFloat.greatestFiniteMagnitude))
             })
         }
     }()

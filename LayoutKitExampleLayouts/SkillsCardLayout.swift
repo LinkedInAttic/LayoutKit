@@ -17,7 +17,7 @@ public class SkillsCardLayout: InsetLayout {
             alignment: Alignment.center,
             flexibility: Flexibility.high, // Higher than default flexibility
             config: { label in
-                label.backgroundColor = UIColor.yellowColor()
+                label.backgroundColor = UIColor.yellow()
             }
         )
         let countLabel = LabelLayout(
@@ -25,7 +25,7 @@ public class SkillsCardLayout: InsetLayout {
             alignment: Alignment.center,
             flexibility: Flexibility.low,
             config: { label in
-                label.backgroundColor = UIColor.yellowColor()
+                label.backgroundColor = UIColor.yellow()
             }
         )
         let endorserImage = SizeLayout<UIImageView>(

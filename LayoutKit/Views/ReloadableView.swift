@@ -41,13 +41,13 @@ public protocol ReloadableView: class {
     /**
      Registers views for the reuse identifier.
      */
-    func registerViews(reuseIdentifier reuseIdentifier: String)
+    func registerViews(reuseIdentifier: String)
 
     /// Inserts sections into the reloadable view.
-    func insert(sections sections: NSIndexSet)
+    func insert(sections: IndexSet)
 
     /// Inserts index paths into the reloadable view.
-    func insert(indexPaths indexPaths: [NSIndexPath])
+    func insert(indexPaths: [IndexPath])
 }
 
 // MARK: - UICollectionView
@@ -58,9 +58,9 @@ extension UICollectionView: ReloadableView {
     public func scrollAxis() -> Axis {
         if let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout {
             switch flowLayout.scrollDirection {
-            case .Vertical:
+            case .vertical:
                 return .vertical
-            case .Horizontal:
+            case .horizontal:
                 return .horizontal
             }
         }
@@ -74,17 +74,17 @@ extension UICollectionView: ReloadableView {
         layoutIfNeeded()
     }
 
-    public func registerViews(reuseIdentifier reuseIdentifier: String) {
-        registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: reuseIdentifier)
-        registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: reuseIdentifier)
+    public func registerViews(reuseIdentifier: String) {
+        register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: reuseIdentifier)
+        register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: reuseIdentifier)
     }
 
-    public func insert(indexPaths indexPaths: [NSIndexPath]) {
-        insertItemsAtIndexPaths(indexPaths)
+    public func insert(indexPaths: [IndexPath]) {
+        insertItems(at: indexPaths)
     }
 
-    public func insert(sections sections: NSIndexSet) {
+    public func insert(sections: IndexSet) {
         insertSections(sections)
     }
 }
@@ -102,16 +102,16 @@ extension UITableView: ReloadableView {
         reloadData()
     }
 
-    public func registerViews(reuseIdentifier reuseIdentifier: String) {
-        registerClass(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
-        registerClass(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: reuseIdentifier)
+    public func registerViews(reuseIdentifier: String) {
+        register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: reuseIdentifier)
     }
 
-    public func insert(sections sections: NSIndexSet) {
-        insertSections(sections, withRowAnimation: .None)
+    public func insert(sections: IndexSet) {
+        insertSections(sections, with: .none)
     }
 
-    public func insert(indexPaths indexPaths: [NSIndexPath]) {
-        insertRowsAtIndexPaths(indexPaths, withRowAnimation: .None)
+    public func insert(indexPaths: [IndexPath]) {
+        insertRows(at: indexPaths, with: .none)
     }
 }

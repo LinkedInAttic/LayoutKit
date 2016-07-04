@@ -19,7 +19,7 @@ class StackViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        edgesForExtendedLayout = .None
+        edgesForExtendedLayout = UIRectEdge()
 
         stackView = StackView(axis: .vertical, spacing: 4)
         stackView.addArrangedSubviews([
@@ -27,8 +27,8 @@ class StackViewController: UIViewController {
             UILabel(text: "Software Engineer")
         ])
         stackView.frame = view.bounds
-        stackView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        stackView.backgroundColor = UIColor.purpleColor()
+        stackView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        stackView.backgroundColor = UIColor.purple()
 
         view.addSubview(stackView)
     }

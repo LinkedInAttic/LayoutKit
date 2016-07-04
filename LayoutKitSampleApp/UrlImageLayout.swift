@@ -15,16 +15,16 @@ import LayoutKit
  */
 class UrlImageLayout: SizeLayout<UrlImageView> {
 
-    init(url: NSURL, size: CGSize) {
+    init(url: URL, size: CGSize) {
         super.init(width: size.width, height: size.height, alignment: .center, flexibility: .inflexible, config: { imageView in
-            imageView.backgroundColor = UIColor.orangeColor()
+            imageView.backgroundColor = UIColor.orange()
             imageView.url = url
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                guard let data = NSData(contentsOfURL: url) else {
+            DispatchQueue.global(attributes: DispatchQueue.GlobalAttributes.qosDefault).async(execute: {
+                guard let data = try? Data(contentsOf: url) else {
                     NSLog("failed to load image data \(url)")
                     return
                 }
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     if imageView.url == url {
                         imageView.image = UIImage(data: data)
                     }
@@ -36,5 +36,5 @@ class UrlImageLayout: SizeLayout<UrlImageView> {
 
 /// An UIImageView that has an associated url.
 class UrlImageView: UIImageView {
-    var url: NSURL? = nil
+    var url: URL? = nil
 }

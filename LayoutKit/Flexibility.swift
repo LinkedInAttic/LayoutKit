@@ -105,7 +105,7 @@ public struct Flexibility {
     /**
      Returns the flex along an axis.
      */
-    public func flex(axis: Axis) -> Flex {
+    public func flex(_ axis: Axis) -> Flex {
         switch axis {
         case .vertical:
             return vertical
@@ -114,7 +114,7 @@ public struct Flexibility {
         }
     }
 
-    public static func max(left: Flex, _ right: Flex) -> Flex {
+    public static func max(_ left: Flex, _ right: Flex) -> Flex {
         guard let left = left else {
             return right
         }
@@ -124,7 +124,7 @@ public struct Flexibility {
         return Swift.max(left, right)
     }
 
-    public static func min(left: Flex, _ right: Flex) -> Flex {
+    public static func min(_ left: Flex, _ right: Flex) -> Flex {
         guard let left = left, right = right else {
             // One of them is inflexible so return nil flex (inflexible)
             return nil
