@@ -1,4 +1,4 @@
-# [![LayoutKit](http://layoutkit.org/img/layoutkit.svg)](http://layoutkit.org/)
+# [![LayoutKit](https://cdn.rawgit.com/linkedin/LayoutKit/master/docs/img/layoutkit.svg)](http://layoutkit.org/)
 
 [![Build Status](https://travis-ci.org/linkedin/LayoutKit.svg?branch=master)](https://travis-ci.org/linkedin/LayoutKit)
 [![codecov](https://codecov.io/gh/linkedin/LayoutKit/branch/master/graph/badge.svg)](https://codecov.io/gh/linkedin/LayoutKit)
