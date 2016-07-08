@@ -18,7 +18,8 @@ public class ReloadableViewLayoutAdapter: NSObject {
     let reuseIdentifier = String(ReloadableViewLayoutAdapter)
 
     /// The current layout arrangement.
-    private(set) var currentArrangement = [Section<[LayoutArrangement]>]()
+    /// Must be accessed from the main thread only.
+    public private(set) var currentArrangement = [Section<[LayoutArrangement]>]()
 
     /// The queue that layouts are computed on.
     let backgroundLayoutQueue: NSOperationQueue = {
