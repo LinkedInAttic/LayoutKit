@@ -6,8 +6,9 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-import UIKit
+import CoreGraphics
 import XCTest
+import LayoutKit
 
 let oneThird = 1.0 / 3.0
 let twoThirds = 2.0 / 3.0
@@ -41,7 +42,12 @@ func AssertEqualDensity(actual: CGFloat, _ expected: [CGFloat: CGFloat], file: S
 
 /// Returns the expectation for the current density.
 private func expectationForCurrentDensity<T>(expected: [CGFloat: T], file: StaticString, line: UInt) -> T? {
-    let scale = UIScreen.mainScreen().scale
+    #if os(iOS)
+        let scale = UIScreen.mainScreen().scale
+    #else
+        let scale: CGFloat = 2.0
+    #endif
+
     guard let expected = expected[scale] else {
         XCTFail("test does not have an expectation for screen scale \(scale)", file: file, line: line)
         return nil

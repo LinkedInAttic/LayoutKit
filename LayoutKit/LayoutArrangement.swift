@@ -6,7 +6,7 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-import UIKit
+import CoreGraphics
 
 /**
  The frame of a layout and the frames of its sublayouts.
@@ -35,9 +35,9 @@ public struct LayoutArrangement {
 
      - returns: The root view. If a view was provided, the same view will be returned, otherwise, a new one will be created.
      */
-    public func makeViews(inView view: UIView? = nil, direction: UIUserInterfaceLayoutDirection = .LeftToRight) -> UIView {
+    public func makeViews(inView view: View? = nil, direction: UserInterfaceLayoutDirection = .LeftToRight) -> View {
         let views = makeSubviews()
-        let rootView: UIView
+        let rootView: View
 
         if let view = view {
             // We have a parent view so replace all of its subviews.
@@ -54,7 +54,7 @@ public struct LayoutArrangement {
             rootView = view
         } else {
             // We have multiple views so create a root view.
-            rootView = UIView(frame: frame)
+            rootView = View(frame: frame)
             for subview in views {
                 // Unapply the offset that was applied in makeSubviews()
                 subview.frame.offsetInPlace(dx: -frame.origin.x, dy: -frame.origin.y)
@@ -67,14 +67,14 @@ public struct LayoutArrangement {
     }
 
     /// Horizontally flips the view frames if direction does not match the user's language direction.
-    private func handleLayoutDirection(view: UIView, direction: UIUserInterfaceLayoutDirection) {
-        if UIApplication.sharedApplication().userInterfaceLayoutDirection != direction {
+    private func handleLayoutDirection(view: View, direction: UserInterfaceLayoutDirection) {
+        if Application.sharedApplication().userInterfaceLayoutDirection != direction {
             flipSubviewsHorizontally(view)
         }
     }
 
     /// Flips the right and left edges of the view's subviews.
-    private func flipSubviewsHorizontally(view: UIView) {
+    private func flipSubviewsHorizontally(view: View) {
         for subview in view.subviews {
             subview.frame.origin.x = view.frame.width - subview.frame.maxX
             flipSubviewsHorizontally(subview)
@@ -82,8 +82,8 @@ public struct LayoutArrangement {
     }
 
     /// Returns the views for the layout and all of its sublayouts.
-    private func makeSubviews() -> [UIView] {
-        let subviews = sublayouts.flatMap({ (sublayout: LayoutArrangement) -> [UIView] in
+    private func makeSubviews() -> [View] {
+        let subviews = sublayouts.flatMap({ (sublayout: LayoutArrangement) -> [View] in
             return sublayout.makeSubviews()
         })
         if let view = layout.makeView() {

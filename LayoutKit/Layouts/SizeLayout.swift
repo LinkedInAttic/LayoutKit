@@ -6,7 +6,7 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-import UIKit
+import CoreGraphics
 
 /**
  A layout that measures to a predetermined size.
@@ -24,7 +24,7 @@ import UIKit
  SizeLayout<UIView>(height: 50, sublayout: LabelLayout(text: "Hello"))
  ```
 */
-public class SizeLayout<View: UIView>: PositioningLayout<View>, Layout {
+public class SizeLayout<V: View>: PositioningLayout<V>, Layout {
 
     public let width: CGFloat?
     public let height: CGFloat?
@@ -49,7 +49,7 @@ public class SizeLayout<View: UIView>: PositioningLayout<View>, Layout {
                 alignment: Alignment? = nil,
                 flexibility: Flexibility? = nil,
                 sublayout: Layout? = nil,
-                config: (View -> Void)? = nil) {
+                config: (V -> Void)? = nil) {
 
         self.width = width
         self.height = height
@@ -77,7 +77,7 @@ public class SizeLayout<View: UIView>: PositioningLayout<View>, Layout {
                 alignment: Alignment? = nil,
                 flexibility: Flexibility? = nil,
                 sublayout: Layout? = nil,
-                config: (View -> Void)? = nil) {
+                config: (V -> Void)? = nil) {
 
         self.init(width: size.width,
                   height: size.height,

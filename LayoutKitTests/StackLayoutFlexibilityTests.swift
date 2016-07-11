@@ -15,9 +15,9 @@ class StackLayoutFlexibilityTests: XCTestCase {
         let stack = StackLayout(
             axis: .vertical,
             sublayouts: [
-                LabelLayout(text: "Low", flexibility: .low),
-                LabelLayout(text: "Default", flexibility: .flexible),
-                LabelLayout(text: "High", flexibility: .high),
+                SizeLayout<View>(width: 1, height: 1, flexibility: .low),
+                SizeLayout<View>(width: 1, height: 1, flexibility: .flexible),
+                SizeLayout<View>(width: 1, height: 1, flexibility: .high),
             ]
         )
         XCTAssertEqual(stack.flexibility.horizontal, Flexibility.lowFlex)
@@ -28,9 +28,9 @@ class StackLayoutFlexibilityTests: XCTestCase {
         let stack = StackLayout(
             axis: .vertical,
             sublayouts: [
-                LabelLayout(text: "Low", flexibility: .low),
-                LabelLayout(text: "Default", flexibility: .inflexible),
-                LabelLayout(text: "High", flexibility: .high),
+                SizeLayout<View>(width: 1, height: 1, flexibility: .low),
+                SizeLayout<View>(width: 1, height: 1, flexibility: .inflexible),
+                SizeLayout<View>(width: 1, height: 1, flexibility: .high),
             ]
         )
         XCTAssertEqual(stack.flexibility.horizontal, nil)
@@ -41,9 +41,9 @@ class StackLayoutFlexibilityTests: XCTestCase {
         let stack = StackLayout(
             axis: .horizontal,
             sublayouts: [
-                LabelLayout(text: "Low", flexibility: .low),
-                LabelLayout(text: "Default", flexibility: .flexible),
-                LabelLayout(text: "High", flexibility: .high),
+                SizeLayout<View>(width: 1, height: 1, flexibility: .low),
+                SizeLayout<View>(width: 1, height: 1, flexibility: .flexible),
+                SizeLayout<View>(width: 1, height: 1, flexibility: .high),
             ]
         )
         XCTAssertEqual(stack.flexibility.horizontal, Flexibility.highFlex)
@@ -54,9 +54,9 @@ class StackLayoutFlexibilityTests: XCTestCase {
         let stack = StackLayout(
             axis: .horizontal,
             sublayouts: [
-                LabelLayout(text: "Low", flexibility: .low),
-                LabelLayout(text: "Default", flexibility: .inflexible),
-                LabelLayout(text: "High", flexibility: .high),
+                SizeLayout<View>(width: 1, height: 1, flexibility: .low),
+                SizeLayout<View>(width: 1, height: 1, flexibility: .inflexible),
+                SizeLayout<View>(width: 1, height: 1, flexibility: .high),
             ]
         )
         XCTAssertEqual(stack.flexibility.horizontal, Flexibility.highFlex)

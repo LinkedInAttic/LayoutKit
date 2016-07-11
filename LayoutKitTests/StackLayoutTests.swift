@@ -10,7 +10,8 @@ import XCTest
 import LayoutKit
 
 class StackLayoutTests: XCTestCase {
-    
+
+    #if os(iOS)
     func testTwoLabelVerticalStack() {
         let stack = StackLayout(
             axis: .vertical,
@@ -28,12 +29,19 @@ class StackLayoutTests: XCTestCase {
             3.0: CGRect(x: 0, y: 0, width: 91 + twoThirds, height: 43 + oneThird)
         ])
     }
+    #endif
 
     func testConfig() {
         var configCount = 0
-        let stack = StackLayout(axis: .vertical, sublayouts: [LabelLayout(text: "Hi")], config: { view in
-            configCount += 1
-        })
+        let stack = StackLayout(
+            axis: .vertical,
+            sublayouts: [
+                SizeLayout<View>(width: 1, height: 1)
+            ],
+            config: { view in
+                configCount += 1
+            }
+        )
         let stackView = stack.arrangement().makeViews()
         XCTAssertNotNil(stackView)
         XCTAssertEqual(configCount, 1)

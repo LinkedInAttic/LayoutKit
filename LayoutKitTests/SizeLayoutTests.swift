@@ -12,26 +12,26 @@ import LayoutKit
 class SizeLayoutTests: XCTestCase {
 
     func testExtraSpace() {
-        let layout = SizeLayout<UIView>(width: 50, height: 50)
+        let layout = SizeLayout<View>(width: 50, height: 50)
         let frame = layout.arrangement(width: 60, height: 60).frame
         XCTAssertEqual(frame, CGRect(x: 5, y: 5, width: 50, height: 50))
     }
 
     func testInsufficientSpace() {
-        let layout = SizeLayout<UIView>(width: 50, height: 50)
+        let layout = SizeLayout<View>(width: 50, height: 50)
         let frame = layout.arrangement(width: 40, height: 40).frame
         XCTAssertEqual(frame, CGRect(x: 0, y: 0, width: 40, height: 40))
     }
 
     func testCenterAlignment() {
-        let layout = SizeLayout<UIView>(width: 50, height: 50, alignment: .center)
+        let layout = SizeLayout<View>(width: 50, height: 50, alignment: .center)
         let frame = layout.arrangement(width: 60, height: 60).frame
         XCTAssertEqual(frame, CGRect(x: 5, y: 5, width: 50, height: 50))
     }
 
     func testLargerSublayout() {
-        let child = SizeLayout<UIView>(width: 100, height: 100, alignment: .center)
-        let parent = SizeLayout<UIView>(width: 50, height: 50, alignment: .center, sublayout: child)
+        let child = SizeLayout<View>(width: 100, height: 100, alignment: .center)
+        let parent = SizeLayout<View>(width: 50, height: 50, alignment: .center, sublayout: child)
         let arrangement = parent.arrangement()
         let parentFrame = arrangement.frame
         let childFrame = arrangement.sublayouts.first?.frame
@@ -40,8 +40,8 @@ class SizeLayoutTests: XCTestCase {
     }
 
     func testSmallerSublayout() {
-        let child = SizeLayout<UIView>(width: 50, height: 50, alignment: .center)
-        let parent = SizeLayout<UIView>(width: 100, height: 100, alignment: .center, sublayout: child)
+        let child = SizeLayout<View>(width: 50, height: 50, alignment: .center)
+        let parent = SizeLayout<View>(width: 100, height: 100, alignment: .center, sublayout: child)
         let arrangement = parent.arrangement()
         let parentFrame = arrangement.frame
         let childFrame = arrangement.sublayouts.first?.frame
@@ -50,7 +50,7 @@ class SizeLayoutTests: XCTestCase {
     }
 
     func testOnlyHeight() {
-        let layout = SizeLayout<UIView>(height: 1)
+        let layout = SizeLayout<View>(height: 1)
 
         let measurement = layout.measurement(within: CGSize(width: 10, height: 10))
         XCTAssertEqual(measurement.size, CGSize(width: 0, height: 1))
@@ -60,7 +60,7 @@ class SizeLayoutTests: XCTestCase {
     }
 
     func testOnlyWidth() {
-        let layout = SizeLayout<UIView>(width: 1)
+        let layout = SizeLayout<View>(width: 1)
 
         let measurement = layout.measurement(within: CGSize(width: 10, height: 10))
         XCTAssertEqual(measurement.size, CGSize(width: 1, height: 0))
@@ -70,8 +70,8 @@ class SizeLayoutTests: XCTestCase {
     }
 
     func testWidthConstrainedSublayout() {
-        let sublayout = SizeLayout<UIView>(width: 5, height: 5)
-        let layout = SizeLayout<UIView>(width: 1, sublayout: sublayout)
+        let sublayout = SizeLayout<View>(width: 5, height: 5)
+        let layout = SizeLayout<View>(width: 1, sublayout: sublayout)
 
         let measurement = layout.measurement(within: CGSize(width: 10, height: 10))
         XCTAssertEqual(measurement.size, CGSize(width: 1, height: 5))
@@ -81,8 +81,8 @@ class SizeLayoutTests: XCTestCase {
     }
 
     func testHeightConstrainedSublayout() {
-        let sublayout = SizeLayout<UIView>(width: 5, height: 5)
-        let layout = SizeLayout<UIView>(height: 1, sublayout: sublayout)
+        let sublayout = SizeLayout<View>(width: 5, height: 5)
+        let layout = SizeLayout<View>(height: 1, sublayout: sublayout)
 
         let measurement = layout.measurement(within: CGSize(width: 10, height: 10))
         XCTAssertEqual(measurement.size, CGSize(width: 5, height: 1))
@@ -94,7 +94,7 @@ class SizeLayoutTests: XCTestCase {
     func testNoWidthNoHeightNoSublayout() {
         // Initializing SizeLayout with no width/height isn't really useful,
         // but we still want to make sure it behaves as expected (zero size).
-        let layout = SizeLayout<UIView>()
+        let layout = SizeLayout<View>()
 
         let measurement = layout.measurement(within: CGSize(width: 10, height: 10))
         XCTAssertEqual(measurement.size, CGSizeZero)
@@ -106,8 +106,8 @@ class SizeLayoutTests: XCTestCase {
     func testNoWidthNoHeightWithSublayout() {
         // Initializing SizeLayout with no width/height isn't really useful,
         // but we still want to make sure it behaves as expected (inherits size of sublayout).
-        let sublayout = SizeLayout<UIView>(width: 5, height: 5)
-        let layout = SizeLayout<UIView>(sublayout: sublayout)
+        let sublayout = SizeLayout<View>(width: 5, height: 5)
+        let layout = SizeLayout<View>(sublayout: sublayout)
 
         let measurement = layout.measurement(within: CGSize(width: 10, height: 10))
         XCTAssertEqual(measurement.size, CGSize(width: 5, height: 5))

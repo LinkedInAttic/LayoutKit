@@ -6,7 +6,6 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-import UIKit
 
 /**
  A base class for layouts that merely position other layouts.
@@ -14,19 +13,19 @@ import UIKit
 
  The class is public so that makeView() can conform to the public Layout protocol.
  */
-public class PositioningLayout<View: UIView> {
-    public let config: (View -> Void)?
+public class PositioningLayout<V: View> {
+    public let config: (V -> Void)?
 
-    public init(config: (View -> Void)?) {
+    public init(config: (V -> Void)?) {
         self.config = config
     }
 
-    public func makeView() -> UIView? {
+    public func makeView() -> View? {
         guard let config = config else {
             // Nothing needs to be configured, so this layout doesn't require a UIView.
             return nil
         }
-        let view = View()
+        let view = V()
         config(view)
         return view
     }

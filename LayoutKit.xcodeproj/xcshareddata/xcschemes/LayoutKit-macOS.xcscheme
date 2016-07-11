@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0BE47F2B1CC57492003820E8"
-               BuildableName = "LayoutKitSampleApp.app"
-               BlueprintName = "LayoutKitSampleApp"
+               BlueprintIdentifier = "0B5191421D2922C800769358"
+               BuildableName = "LayoutKit.framework"
+               BlueprintName = "LayoutKit-macOS"
                ReferencedContainer = "container:LayoutKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0BE47EFB1CC57348003820E8"
-               BuildableName = "LayoutKitTests.xctest"
-               BlueprintName = "LayoutKitTests"
+               BlueprintIdentifier = "0B5191651D29241200769358"
+               BuildableName = "LayoutKitTests-macOS.xctest"
+               BlueprintName = "LayoutKitTests-macOS"
                ReferencedContainer = "container:LayoutKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0BE47F2B1CC57492003820E8"
-            BuildableName = "LayoutKitSampleApp.app"
-            BlueprintName = "LayoutKitSampleApp"
+            BlueprintIdentifier = "0B5191421D2922C800769358"
+            BuildableName = "LayoutKit.framework"
+            BlueprintName = "LayoutKit-macOS"
             ReferencedContainer = "container:LayoutKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -61,16 +61,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0BE47F2B1CC57492003820E8"
-            BuildableName = "LayoutKitSampleApp.app"
-            BlueprintName = "LayoutKitSampleApp"
+            BlueprintIdentifier = "0B5191421D2922C800769358"
+            BuildableName = "LayoutKit.framework"
+            BlueprintName = "LayoutKit-macOS"
             ReferencedContainer = "container:LayoutKit.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -80,16 +79,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0BE47F2B1CC57492003820E8"
-            BuildableName = "LayoutKitSampleApp.app"
-            BlueprintName = "LayoutKitSampleApp"
+            BlueprintIdentifier = "0B5191421D2922C800769358"
+            BuildableName = "LayoutKit.framework"
+            BlueprintName = "LayoutKit-macOS"
             ReferencedContainer = "container:LayoutKit.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
