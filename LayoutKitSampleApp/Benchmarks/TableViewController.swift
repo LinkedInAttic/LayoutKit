@@ -42,7 +42,6 @@ class TableViewController<ContentViewType: UIView where ContentViewType: DataBin
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        NSLog("heightFor row")
         return UITableViewAutomaticDimension
     }
 }
