@@ -38,7 +38,6 @@
 		0B51915F1D29239F00769358 /* LayoutArrangement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B17381CC58B42002127F0 /* LayoutArrangement.swift */; };
 		0B5191601D29239F00769358 /* Axis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5ADBC01CF427510056A568 /* Axis.swift */; };
 		0B5191611D29239F00769358 /* LayoutMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B17371CC58B42002127F0 /* LayoutMeasurement.swift */; };
-		0B51916B1D29241200769358 /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B5191431D2922C800769358 /* LayoutKit.framework */; };
 		0B5191711D29246400769358 /* DensityAssertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAAE1811CD07C130046DF14 /* DensityAssertions.swift */; };
 		0B5191731D29246400769358 /* CollectionTypeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAD242A1CD280FC00BBD2AF /* CollectionTypeExtension.swift */; };
 		0B5191741D29246400769358 /* StackLayoutDistributionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7188511CC72F28009E6521 /* StackLayoutDistributionTests.swift */; };
@@ -90,6 +89,9 @@
 		0BAAE17E1CCD94240046DF14 /* ReloadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAAE17D1CCD94240046DF14 /* ReloadableView.swift */; };
 		0BAAE1801CCD9A480046DF14 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAAE17F1CCD9A480046DF14 /* FeedTableViewController.swift */; };
 		0BAAE1821CD07C130046DF14 /* DensityAssertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAAE1811CD07C130046DF14 /* DensityAssertions.swift */; };
+		0BAB9E4D1D37054B004B9E44 /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BE47EF31CC57348003820E8 /* LayoutKit.framework */; };
+		0BAB9E501D370555004B9E44 /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B5191431D2922C800769358 /* LayoutKit.framework */; };
+		0BAB9E541D37057B004B9E44 /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BE47EF31CC57348003820E8 /* LayoutKit.framework */; };
 		0BAD24291CD2764000BBD2AF /* ReloadableViewLayoutAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAD24281CD2764000BBD2AF /* ReloadableViewLayoutAdapterTests.swift */; };
 		0BAD242B1CD280FC00BBD2AF /* CollectionTypeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAD242A1CD280FC00BBD2AF /* CollectionTypeExtension.swift */; };
 		0BAD242D1CD2DE6F00BBD2AF /* CollectionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAD242C1CD2DE6F00BBD2AF /* CollectionViewTests.swift */; };
@@ -99,13 +101,11 @@
 		0BD9EB381CEBD90900F09173 /* LayoutKitExampleLayouts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD9EB311CEBD90800F09173 /* LayoutKitExampleLayouts.framework */; };
 		0BD9EB391CEBD90900F09173 /* LayoutKitExampleLayouts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD9EB311CEBD90800F09173 /* LayoutKitExampleLayouts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0BD9EB3D1CEBD93E00F09173 /* DividerStackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B638B5D1CDBCAB1004270F6 /* DividerStackLayout.swift */; };
-		0BD9EB431CEBD9E900F09173 /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BE47EF31CC57348003820E8 /* LayoutKit.framework */; };
 		0BD9EB491CEBDA9800F09173 /* FixedWidthCellCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD9EB441CEBDA9800F09173 /* FixedWidthCellCollectionViewLayout.swift */; };
 		0BD9EB4B1CEBDA9800F09173 /* SkillsCardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD9EB461CEBDA9800F09173 /* SkillsCardLayout.swift */; };
 		0BD9EB4C1CEBDA9800F09173 /* ProfileCardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD9EB471CEBDA9800F09173 /* ProfileCardLayout.swift */; };
 		0BD9EB4D1CEBDA9800F09173 /* FeedItemLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD9EB481CEBDA9800F09173 /* FeedItemLayout.swift */; };
 		0BDD98F31CE1373000F3048C /* StackViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDD98F21CE1373000F3048C /* StackViewTests.swift */; };
-		0BE47EFD1CC57348003820E8 /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BE47EF31CC57348003820E8 /* LayoutKit.framework */; };
 		0BE47F2F1CC57492003820E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE47F2E1CC57492003820E8 /* AppDelegate.swift */; };
 		0BE47F311CC57492003820E8 /* FeedScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE47F301CC57492003820E8 /* FeedScrollViewController.swift */; };
 		0BE47F361CC57492003820E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BE47F351CC57492003820E8 /* Assets.xcassets */; };
@@ -118,13 +118,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0B51916C1D29241200769358 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0B01C1C81CB86C3700A6BA19 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0B5191421D2922C800769358;
-			remoteInfo = LayoutKitMac;
-		};
 		0BAAE15A1CCB1F2A0046DF14 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0B01C1C81CB86C3700A6BA19 /* Project object */;
@@ -132,19 +125,33 @@
 			remoteGlobalIDString = 0BE47EF21CC57348003820E8;
 			remoteInfo = LayoutKit;
 		};
+		0BAB9E4B1D370547004B9E44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B01C1C81CB86C3700A6BA19 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0BE47EF21CC57348003820E8;
+			remoteInfo = "LayoutKit-iOS";
+		};
+		0BAB9E4E1D370550004B9E44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B01C1C81CB86C3700A6BA19 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0B5191421D2922C800769358;
+			remoteInfo = "LayoutKit-macOS";
+		};
+		0BAB9E511D370567004B9E44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B01C1C81CB86C3700A6BA19 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0BE47EF21CC57348003820E8;
+			remoteInfo = "LayoutKit-iOS";
+		};
 		0BD9EB361CEBD90900F09173 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0B01C1C81CB86C3700A6BA19 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 0BD9EB301CEBD90800F09173;
 			remoteInfo = LayoutKitExampleLayouts;
-		};
-		0BE47EFE1CC57348003820E8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0B01C1C81CB86C3700A6BA19 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0BE47EF21CC57348003820E8;
-			remoteInfo = LayoutKit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -264,7 +271,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B51916B1D29241200769358 /* LayoutKit.framework in Frameworks */,
+				0BAB9E501D370555004B9E44 /* LayoutKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,7 +279,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BD9EB431CEBD9E900F09173 /* LayoutKit.framework in Frameworks */,
+				0BAB9E541D37057B004B9E44 /* LayoutKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,7 +294,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BE47EFD1CC57348003820E8 /* LayoutKit.framework in Frameworks */,
+				0BAB9E4D1D37054B004B9E44 /* LayoutKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,7 +578,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				0B51916D1D29241200769358 /* PBXTargetDependency */,
+				0BAB9E4F1D370550004B9E44 /* PBXTargetDependency */,
 			);
 			name = "LayoutKitTests-macOS";
 			productName = LayoutKitMacTests;
@@ -590,6 +597,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0BAB9E521D370567004B9E44 /* PBXTargetDependency */,
 			);
 			name = LayoutKitExampleLayouts;
 			productName = LayoutKitExampleLayouts;
@@ -625,7 +633,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				0BE47EFF1CC57348003820E8 /* PBXTargetDependency */,
+				0BAB9E4C1D370547004B9E44 /* PBXTargetDependency */,
 			);
 			name = "LayoutKitTests-iOS";
 			productName = LayoutKitTests;
@@ -898,25 +906,30 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0B51916D1D29241200769358 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0B5191421D2922C800769358 /* LayoutKit-macOS */;
-			targetProxy = 0B51916C1D29241200769358 /* PBXContainerItemProxy */;
-		};
 		0BAAE15B1CCB1F2A0046DF14 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0BE47EF21CC57348003820E8 /* LayoutKit-iOS */;
 			targetProxy = 0BAAE15A1CCB1F2A0046DF14 /* PBXContainerItemProxy */;
 		};
+		0BAB9E4C1D370547004B9E44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0BE47EF21CC57348003820E8 /* LayoutKit-iOS */;
+			targetProxy = 0BAB9E4B1D370547004B9E44 /* PBXContainerItemProxy */;
+		};
+		0BAB9E4F1D370550004B9E44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0B5191421D2922C800769358 /* LayoutKit-macOS */;
+			targetProxy = 0BAB9E4E1D370550004B9E44 /* PBXContainerItemProxy */;
+		};
+		0BAB9E521D370567004B9E44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0BE47EF21CC57348003820E8 /* LayoutKit-iOS */;
+			targetProxy = 0BAB9E511D370567004B9E44 /* PBXContainerItemProxy */;
+		};
 		0BD9EB371CEBD90900F09173 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0BD9EB301CEBD90800F09173 /* LayoutKitExampleLayouts */;
 			targetProxy = 0BD9EB361CEBD90900F09173 /* PBXContainerItemProxy */;
-		};
-		0BE47EFF1CC57348003820E8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0BE47EF21CC57348003820E8 /* LayoutKit-iOS */;
-			targetProxy = 0BE47EFE1CC57348003820E8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
