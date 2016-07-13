@@ -60,7 +60,7 @@ public class FeedItemLayout: InsetLayout {
                 actorCommentLayout
             ]
         )
-        super.init(insets: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8), sublayout: feedItem, config: { view in
+        super.init(insets: EdgeInsets(top: 8, left: 8, bottom: 8, right: 8), sublayout: feedItem, config: { view in
             view.backgroundColor = UIColor.whiteColor()
         })
     }

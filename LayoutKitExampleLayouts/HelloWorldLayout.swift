@@ -22,7 +22,7 @@ public class HelloWorldLayout: InsetLayout {
 
     public init(text: String = "Hello World!") {
         super.init(
-            insets: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 8),
+            insets: EdgeInsets(top: 4, left: 4, bottom: 4, right: 8),
             sublayout: StackLayout(
                 axis: .horizontal,
                 spacing: 4,

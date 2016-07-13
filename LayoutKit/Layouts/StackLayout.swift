@@ -6,7 +6,7 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-import UIKit
+import CoreGraphics
 
 /**
  A layout that stacks sublayouts along an axis.
@@ -16,7 +16,7 @@ import UIKit
  If this not enough space along the axis for all sublayouts then layouts with the highest flexibility are removed
  until there is enough space to posistion the remaining layouts.
  */
-public class StackLayout: PositioningLayout<UIView> {
+public class StackLayout: PositioningLayout<View> {
 
     /// The axis along which sublayouts are stacked.
     public let axis: Axis
@@ -45,7 +45,7 @@ public class StackLayout: PositioningLayout<UIView> {
                 alignment: Alignment = .fill,
                 flexibility: Flexibility? = nil,
                 sublayouts: [Layout],
-                config: (UIView -> Void)? = nil) {
+                config: (View -> Void)? = nil) {
         
         self.axis = axis
         self.spacing = spacing

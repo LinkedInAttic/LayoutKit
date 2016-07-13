@@ -6,14 +6,14 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-import UIKit
+import CoreGraphics
 
 extension CGSize {
-    func sizeDecreasedByInsets(insets: UIEdgeInsets) -> CGSize {
+    func sizeDecreasedByInsets(insets: EdgeInsets) -> CGSize {
         return CGSize(width: width - insets.left - insets.right, height: height - insets.top - insets.bottom)
     }
 
-    func sizeIncreasedByInsets(insets: UIEdgeInsets) -> CGSize {
+    func sizeIncreasedByInsets(insets: EdgeInsets) -> CGSize {
         return CGSize(width: width + insets.left + insets.right, height: height + insets.top + insets.bottom)
     }
 

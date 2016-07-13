@@ -6,7 +6,7 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-import UIKit
+import CoreGraphics
 
 /// A wrapper around CGSize that makes it easy to do math relative to an axis.
 public struct AxisSize {
