@@ -11,7 +11,7 @@ import UIKit
 /**
  Layout for a UILabel.
  */
-public class LabelLayout: Layout {
+public class LabelLayout: BaseLayout<UILabel>, Layout {
 
     /// The types of text that a UILabel can display.
     public enum TextType {
@@ -22,9 +22,6 @@ public class LabelLayout: Layout {
     public let textType: TextType
     public let numberOfLines: Int
     public let font: UIFont
-    public let alignment: Alignment
-    public let flexibility: Flexibility
-    public let config: (UILabel -> Void)?
 
     private static let defaultNumberOfLines = 0
     private static let defaultFont = UIFont.systemFontOfSize(UIFont.labelFontSize())
@@ -36,14 +33,13 @@ public class LabelLayout: Layout {
                 font: UIFont = defaultFont,
                 alignment: Alignment = defaultAlignment,
                 flexibility: Flexibility = defaultFlexibility,
+                id: String? = nil,
                 config: (UILabel -> Void)? = nil) {
         
         self.textType = textType
         self.numberOfLines = numberOfLines
         self.font = font
-        self.alignment = alignment
-        self.flexibility = flexibility
-        self.config = config
+        super.init(alignment: alignment, flexibility: flexibility, id: id, config: config)
     }
 
     // MARK: - Convenience initializers
@@ -53,12 +49,14 @@ public class LabelLayout: Layout {
                             font: UIFont = defaultFont,
                             alignment: Alignment = defaultAlignment,
                             flexibility: Flexibility = defaultFlexibility,
+                            id: String? = nil,
                             config: (UILabel -> Void)? = nil) {
 
         self.init(textType: .unattributed(text),
                   numberOfLines: numberOfLines,
                   font: font, alignment: alignment,
                   flexibility: flexibility,
+                  id: id,
                   config: config)
     }
 
@@ -67,12 +65,14 @@ public class LabelLayout: Layout {
                             font: UIFont = defaultFont,
                             alignment: Alignment = defaultAlignment,
                             flexibility: Flexibility = defaultFlexibility,
+                            id: String? = nil,
                             config: (UILabel -> Void)? = nil) {
 
         self.init(textType: .attributed(attributedText),
                   numberOfLines: numberOfLines,
                   font: font, alignment: alignment,
                   flexibility: flexibility,
+                  id: id,
                   config: config)
     }
 
@@ -148,16 +148,18 @@ public class LabelLayout: Layout {
         return LayoutArrangement(layout: self, frame: frame, sublayouts: [])
     }
 
-    public func makeView() -> UIView? {
-        let label = UILabel()
-        config?(label)
-        label.numberOfLines = numberOfLines
-        label.font = font
-        switch textType {
-        case .unattributed(let text):
-            label.text = text
-        case .attributed(let attributedText):
-            label.attributedText = attributedText
+    public override func makeView(from recycler: ViewRecycler, configure: Bool) -> UIView? {
+        let label: UILabel = recycler.makeView(layoutId: id)
+        if configure {
+            config?(label)
+            label.numberOfLines = numberOfLines
+            label.font = font
+            switch textType {
+            case .unattributed(let text):
+                label.text = text
+            case .attributed(let attributedText):
+                label.attributedText = attributedText
+            }
         }
         return label
     }

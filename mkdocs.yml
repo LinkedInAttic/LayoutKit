@@ -11,6 +11,7 @@ pages:
   - Building UI: building-ui.md
   - Custom Layouts: custom-layouts.md
   - Interfacing with UIKit: uikit.md
+  - Animations: animations.md
   - Code documentation: code-documentation.md
 - About:
   - Benchmarks: benchmarks.md

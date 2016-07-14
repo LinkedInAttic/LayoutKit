@@ -24,12 +24,10 @@ import CoreGraphics
  SizeLayout<UIView>(height: 50, sublayout: LabelLayout(text: "Hello"))
  ```
 */
-public class SizeLayout<V: View>: PositioningLayout<V>, Layout {
+public class SizeLayout<V: View>: BaseLayout<V>, Layout {
 
     public let width: CGFloat?
     public let height: CGFloat?
-    public let alignment: Alignment
-    public let flexibility: Flexibility
     public let sublayout: Layout?
 
     /**
@@ -48,15 +46,16 @@ public class SizeLayout<V: View>: PositioningLayout<V>, Layout {
                 height: CGFloat? = nil,
                 alignment: Alignment? = nil,
                 flexibility: Flexibility? = nil,
+                id: String? = nil,
                 sublayout: Layout? = nil,
                 config: (V -> Void)? = nil) {
 
         self.width = width
         self.height = height
-        self.alignment = alignment ?? SizeLayout.defaultAlignment(width: width, height: height)
-        self.flexibility = flexibility ?? SizeLayout.defaultFlexibility(width: width, height: height)
         self.sublayout = sublayout
-        super.init(config: config)
+        let alignment = alignment ?? SizeLayout.defaultAlignment(width: width, height: height)
+        let flexibility = flexibility ?? SizeLayout.defaultFlexibility(width: width, height: height)
+        super.init(alignment: alignment, flexibility: flexibility, id: id, config: config)
     }
 
     private static func defaultAlignment(width width: CGFloat?, height: CGFloat?) -> Alignment {
@@ -76,6 +75,7 @@ public class SizeLayout<V: View>: PositioningLayout<V>, Layout {
     public convenience init(size: CGSize,
                 alignment: Alignment? = nil,
                 flexibility: Flexibility? = nil,
+                id: String? = nil,
                 sublayout: Layout? = nil,
                 config: (V -> Void)? = nil) {
 
@@ -83,6 +83,7 @@ public class SizeLayout<V: View>: PositioningLayout<V>, Layout {
                   height: size.height,
                   alignment: alignment,
                   flexibility: flexibility,
+                  id: id,
                   sublayout: sublayout,
                   config: config)
     }
