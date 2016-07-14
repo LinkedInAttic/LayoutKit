@@ -25,6 +25,7 @@ public class LabelLayout: Layout {
     public let alignment: Alignment
     public let flexibility: Flexibility
     public let config: (UILabel -> Void)?
+    public let maxWidth: CGFloat
 
     private static let defaultNumberOfLines = 0
     private static let defaultFont = UIFont.systemFontOfSize(UIFont.labelFontSize())
@@ -36,6 +37,7 @@ public class LabelLayout: Layout {
                 font: UIFont = defaultFont,
                 alignment: Alignment = defaultAlignment,
                 flexibility: Flexibility = defaultFlexibility,
+                maxWidth: CGFloat = CGFloat.max,
                 config: (UILabel -> Void)? = nil) {
         
         self.textType = textType
@@ -43,6 +45,7 @@ public class LabelLayout: Layout {
         self.font = font
         self.alignment = alignment
         self.flexibility = flexibility
+        self.maxWidth = maxWidth
         self.config = config
     }
 
@@ -53,12 +56,14 @@ public class LabelLayout: Layout {
                             font: UIFont = defaultFont,
                             alignment: Alignment = defaultAlignment,
                             flexibility: Flexibility = defaultFlexibility,
+                            maxWidth: CGFloat = CGFloat.max,
                             config: (UILabel -> Void)? = nil) {
 
         self.init(textType: .unattributed(text),
                   numberOfLines: numberOfLines,
                   font: font, alignment: alignment,
                   flexibility: flexibility,
+                  maxWidth:  maxWidth,
                   config: config)
     }
 
@@ -67,20 +72,26 @@ public class LabelLayout: Layout {
                             font: UIFont = defaultFont,
                             alignment: Alignment = defaultAlignment,
                             flexibility: Flexibility = defaultFlexibility,
+                            maxWidth: CGFloat = CGFloat.max,
                             config: (UILabel -> Void)? = nil) {
 
         self.init(textType: .attributed(attributedText),
                   numberOfLines: numberOfLines,
                   font: font, alignment: alignment,
                   flexibility: flexibility,
+                  maxWidth:  maxWidth,
                   config: config)
     }
 
     // MARK: - Layout protocol
 
     public func measurement(within maxSize: CGSize) -> LayoutMeasurement {
-        let fittedSize = textSize(within: maxSize)
-        return LayoutMeasurement(layout: self, size: fittedSize.sizeDecreasedToSize(maxSize), maxSize: maxSize, sublayouts: [])
+        var sizeConstraint = maxSize
+        if maxWidth < maxSize.width {
+            sizeConstraint.width = maxWidth
+        }
+        let fittedSize = textSize(within: sizeConstraint)
+        return LayoutMeasurement(layout: self, size: fittedSize.sizeDecreasedToSize(sizeConstraint), maxSize: sizeConstraint, sublayouts: [])
     }
 
     private func textSize(within maxSize: CGSize) -> CGSize {
