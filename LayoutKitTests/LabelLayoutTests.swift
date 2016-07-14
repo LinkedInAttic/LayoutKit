@@ -70,7 +70,19 @@ class LabelLayoutTests: XCTestCase {
             testFont(UIFont.systemFontOfSize(CGFloat(fontSize)))
         }
     }
-
+    
+    func testSizeLimitSingleLine() {
+        let font = UIFont.systemFontOfSize(16)
+        let text = "To thine own self be true, and it must follow, as the night the day, thou canst not then be false to any man."
+        
+        let maxWidth: CGFloat = 50
+        let label = UILabel(text: text, font: font)
+        let layoutSize = LabelLayout(text: text, font: font, numberOfLines: 1, maxWidth: maxWidth).arrangement().frame.size
+        let expectedSize = CGSize(width: maxWidth, height: label.intrinsicContentSize().height)
+        XCTAssertTrue(label.intrinsicContentSize().width > maxWidth)
+        XCTAssertEqual(expectedSize, layoutSize)
+    }
+    
     func testAttributedTextDefaultFont() {
         let text = NSAttributedString(string: "Hello! 😄😄😄")
 
