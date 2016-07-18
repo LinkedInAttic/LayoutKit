@@ -144,7 +144,7 @@ public class LabelLayout: BaseLayout<UILabel>, Layout {
     }
 
     public func arrangement(within rect: CGRect, measurement: LayoutMeasurement) -> LayoutArrangement {
-        let frame = alignment.position(size: measurement.size, inRect: rect)
+        let frame = alignment.position(size: measurement.size, in: rect)
         return LayoutArrangement(layout: self, frame: frame, sublayouts: [])
     }
 

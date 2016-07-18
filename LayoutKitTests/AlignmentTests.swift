@@ -12,10 +12,10 @@ import LayoutKit
 class AlignmentTests: XCTestCase {
 
     func testAspectFit() {
-        let sdtvDisplayedOnHDTV = Alignment.aspectFit.position(size: CGSize(width: 4, height: 3), inRect: CGRect(x: 100, y: 200, width: 16, height: 9))
+        let sdtvDisplayedOnHDTV = Alignment.aspectFit.position(size: CGSize(width: 4, height: 3), in: CGRect(x: 100, y: 200, width: 16, height: 9))
         XCTAssertEqual(sdtvDisplayedOnHDTV, CGRect(x: 102, y: 200, width: 12, height: 9))
 
-        let hdtvDisplayedOnSDTV = Alignment.aspectFit.position(size: CGSize(width: 16, height: 9), inRect: CGRect(x: 100, y: 200, width: 4, height: 3))
+        let hdtvDisplayedOnSDTV = Alignment.aspectFit.position(size: CGSize(width: 16, height: 9), in: CGRect(x: 100, y: 200, width: 4, height: 3))
         XCTAssertEqual(hdtvDisplayedOnSDTV, CGRect(x: 100, y: 200 + (3 - 4*9/16.0)/2.0, width: 4, height: 4*9/16.0))
     }
 }

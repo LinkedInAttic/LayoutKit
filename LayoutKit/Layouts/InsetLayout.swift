@@ -43,7 +43,7 @@ public class InsetLayout: BaseLayout<View>, Layout {
     }
 
     public func arrangement(within rect: CGRect, measurement: LayoutMeasurement) -> LayoutArrangement {
-        let frame = alignment.position(size: measurement.size, inRect: rect)
+        let frame = alignment.position(size: measurement.size, in: rect)
         let insetOrigin = CGPoint(x: insets.left, y: insets.top)
         let insetSize = frame.size.sizeDecreasedByInsets(insets)
         let sublayoutRect = CGRect(origin: insetOrigin, size: insetSize)

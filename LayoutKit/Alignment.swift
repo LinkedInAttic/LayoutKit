@@ -43,7 +43,7 @@ public struct Alignment {
         } else {
             scaledSize = CGSize(width: rect.size.width, height: rect.size.width / sizeRatio)
         }
-        return Alignment.center.position(size: scaledSize, inRect: rect)
+        return Alignment.center.position(size: scaledSize, in: rect)
     })
 
     /// Alignment behavior along the vertical dimension.
@@ -134,7 +134,7 @@ public struct Alignment {
     }
 
     /// Positions a rect of the given size inside the given rect using the alignment spec.
-    public func position(size size: CGSize, inRect rect: CGRect) -> CGRect {
+    public func position(size size: CGSize, in rect: CGRect) -> CGRect {
         return aligner(size: size, rect: rect)
     }
 }

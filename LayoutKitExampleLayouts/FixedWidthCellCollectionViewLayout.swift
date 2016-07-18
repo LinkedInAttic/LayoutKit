@@ -65,7 +65,7 @@ public class FixedWidthCellCollectionViewLayout<V: LayoutAdapterCollectionView, 
             })
         })
 
-        let frame = Alignment.fill.position(size: measurement.size, inRect: rect)
+        let frame = Alignment.fill.position(size: measurement.size, in: rect)
         return LayoutArrangement(layout: self, frame: frame, sublayouts: [])
     }
 

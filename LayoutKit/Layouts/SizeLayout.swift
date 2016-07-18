@@ -107,7 +107,7 @@ public class SizeLayout<V: View>: BaseLayout<V>, Layout {
     }
 
     public func arrangement(within rect: CGRect, measurement: LayoutMeasurement) -> LayoutArrangement {
-        let frame = alignment.position(size: measurement.size, inRect: rect)
+        let frame = alignment.position(size: measurement.size, in: rect)
         let sublayouts = sublayout.map { layout in
             return [layout.arrangement(width: frame.size.width, height: frame.size.height)]
         }
