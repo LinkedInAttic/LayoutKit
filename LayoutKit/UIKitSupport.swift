@@ -15,3 +15,14 @@ public typealias EdgeInsets = UIEdgeInsets
 public typealias UserInterfaceLayoutDirection = UIUserInterfaceLayoutDirection
 
 public typealias Application = UIApplication
+
+extension UIView {
+
+    func convertToAbsoluteCoordinates(rect: CGRect) -> CGRect {
+        return convertRect(rect, toCoordinateSpace: UIScreen.mainScreen().fixedCoordinateSpace)
+    }
+
+    func convertFromAbsoluteCoordinates(rect: CGRect) -> CGRect {
+        return convertRect(rect, fromCoordinateSpace: UIScreen.mainScreen().fixedCoordinateSpace)
+    }
+}

@@ -18,15 +18,17 @@ public class FixedWidthCellCollectionViewLayout<V: LayoutAdapterCollectionView, 
     private let cellWidth: CGFloat
     private let sectionLayouts: [Section<C>]
     private let config: (V -> Void)?
+    public let viewReuseId: String?
 
     public var flexibility: Flexibility {
         // Horizontally flexible because that is our scroll direction. It is ok if our viewport is smaller/larger than our content.
         return Flexibility(horizontal: Flexibility.defaultFlex, vertical: nil)
     }
 
-    public init(cellWidth: CGFloat, sectionLayouts: [Section<C>], config: (V -> Void)? = nil) {
+    public init(cellWidth: CGFloat, sectionLayouts: [Section<C>], viewReuseId: String? = nil, config: (V -> Void)? = nil) {
         self.cellWidth = cellWidth
         self.sectionLayouts = sectionLayouts
+        self.viewReuseId = viewReuseId
         self.config = config
     }
 
@@ -67,11 +69,13 @@ public class FixedWidthCellCollectionViewLayout<V: LayoutAdapterCollectionView, 
         return LayoutArrangement(layout: self, frame: frame, sublayouts: [])
     }
 
-    public func makeView() -> UIView? {
-        let collectionView = V()
-        config?(collectionView)
-        if let sectionArrangements = sectionArrangements {
-            collectionView.layoutAdapter.reload(arrangement: sectionArrangements)
+    public func makeView(from recycler: ViewRecycler, configure: Bool) -> UIView? {
+        let collectionView: V = recycler.makeView(viewReuseId: viewReuseId)
+        if configure {
+            config?(collectionView)
+            if let sectionArrangements = sectionArrangements {
+                collectionView.layoutAdapter.reload(arrangement: sectionArrangements)
+            }
         }
         return collectionView
     }

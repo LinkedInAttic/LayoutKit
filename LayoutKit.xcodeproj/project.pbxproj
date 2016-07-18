@@ -12,7 +12,7 @@
 		0B3B172D1CC58B34002127F0 /* SizeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B17241CC58B34002127F0 /* SizeLayout.swift */; };
 		0B3B172F1CC58B34002127F0 /* InsetLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B17261CC58B34002127F0 /* InsetLayout.swift */; };
 		0B3B17301CC58B34002127F0 /* LabelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B17271CC58B34002127F0 /* LabelLayout.swift */; };
-		0B3B17311CC58B34002127F0 /* PositioningLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B17281CC58B34002127F0 /* PositioningLayout.swift */; };
+		0B3B17311CC58B34002127F0 /* BaseLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B17281CC58B34002127F0 /* BaseLayout.swift */; };
 		0B3B17321CC58B34002127F0 /* StackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B17291CC58B34002127F0 /* StackLayout.swift */; };
 		0B3B17391CC58B42002127F0 /* Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B17341CC58B42002127F0 /* Alignment.swift */; };
 		0B3B173A1CC58B42002127F0 /* Flexibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B17351CC58B42002127F0 /* Flexibility.swift */; };
@@ -23,9 +23,10 @@
 		0B3D5AEF1CFA5BB50090AD80 /* AxisSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D5AEC1CFA5BB50090AD80 /* AxisSize.swift */; };
 		0B3D5AF01CFA5BB50090AD80 /* AxisFlexibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D5AED1CFA5BB50090AD80 /* AxisFlexibility.swift */; };
 		0B3D5AF11CFA5BB50090AD80 /* AxisPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D5AEE1CFA5BB50090AD80 /* AxisPoint.swift */; };
+		0B4C3E1B1D260D2500B00A61 /* LayoutArrangementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C3E1A1D260D2500B00A61 /* LayoutArrangementTests.swift */; };
 		0B51914B1D29239F00769358 /* SizeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B17241CC58B34002127F0 /* SizeLayout.swift */; };
 		0B51914C1D29239F00769358 /* InsetLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B17261CC58B34002127F0 /* InsetLayout.swift */; };
-		0B51914E1D29239F00769358 /* PositioningLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B17281CC58B34002127F0 /* PositioningLayout.swift */; };
+		0B51914E1D29239F00769358 /* BaseLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B17281CC58B34002127F0 /* BaseLayout.swift */; };
 		0B51914F1D29239F00769358 /* StackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B17291CC58B34002127F0 /* StackLayout.swift */; };
 		0B5191571D29239F00769358 /* AxisSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D5AEC1CFA5BB50090AD80 /* AxisSize.swift */; };
 		0B5191581D29239F00769358 /* AxisFlexibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3D5AED1CFA5BB50090AD80 /* AxisFlexibility.swift */; };
@@ -92,6 +93,8 @@
 		0BAB9E4D1D37054B004B9E44 /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BE47EF31CC57348003820E8 /* LayoutKit.framework */; };
 		0BAB9E501D370555004B9E44 /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B5191431D2922C800769358 /* LayoutKit.framework */; };
 		0BAB9E541D37057B004B9E44 /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BE47EF31CC57348003820E8 /* LayoutKit.framework */; };
+		0BAB9E551D37F237004B9E44 /* ViewRecycler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE789A1D24B02E0082A0DC /* ViewRecycler.swift */; };
+		0BAB9E561D37F424004B9E44 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE789C1D24C5CF0082A0DC /* Animation.swift */; };
 		0BAD24291CD2764000BBD2AF /* ReloadableViewLayoutAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAD24281CD2764000BBD2AF /* ReloadableViewLayoutAdapterTests.swift */; };
 		0BAD242B1CD280FC00BBD2AF /* CollectionTypeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAD242A1CD280FC00BBD2AF /* CollectionTypeExtension.swift */; };
 		0BAD242D1CD2DE6F00BBD2AF /* CollectionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAD242C1CD2DE6F00BBD2AF /* CollectionViewTests.swift */; };
@@ -114,6 +117,9 @@
 		0BF5D75E1CCAA1CD006C9D2A /* SizeLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF5D75D1CCAA1CD006C9D2A /* SizeLayoutTests.swift */; };
 		0BF5D7641CCAC341006C9D2A /* TestStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF5D7631CCAC341006C9D2A /* TestStack.swift */; };
 		0BFDC3981CD803720046DCF0 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFDC3971CD803720046DCF0 /* StackView.swift */; };
+		0BFE789B1D24B02E0082A0DC /* ViewRecycler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE789A1D24B02E0082A0DC /* ViewRecycler.swift */; };
+		0BFE789D1D24C5CF0082A0DC /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE789C1D24C5CF0082A0DC /* Animation.swift */; };
+		0BFE789F1D2608BB0082A0DC /* ViewRecyclerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE789E1D2608BB0082A0DC /* ViewRecyclerTests.swift */; };
 		7EA3A6AB1CD93C60004C529C /* PositionedLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA3A6AA1CD93C60004C529C /* PositionedLayoutTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -176,7 +182,7 @@
 		0B3B17241CC58B34002127F0 /* SizeLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeLayout.swift; sourceTree = "<group>"; };
 		0B3B17261CC58B34002127F0 /* InsetLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetLayout.swift; sourceTree = "<group>"; };
 		0B3B17271CC58B34002127F0 /* LabelLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelLayout.swift; sourceTree = "<group>"; };
-		0B3B17281CC58B34002127F0 /* PositioningLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositioningLayout.swift; sourceTree = "<group>"; };
+		0B3B17281CC58B34002127F0 /* BaseLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLayout.swift; sourceTree = "<group>"; };
 		0B3B17291CC58B34002127F0 /* StackLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackLayout.swift; sourceTree = "<group>"; };
 		0B3B17341CC58B42002127F0 /* Alignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alignment.swift; sourceTree = "<group>"; };
 		0B3B17351CC58B42002127F0 /* Flexibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flexibility.swift; sourceTree = "<group>"; };
@@ -187,6 +193,7 @@
 		0B3D5AEC1CFA5BB50090AD80 /* AxisSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxisSize.swift; sourceTree = "<group>"; };
 		0B3D5AED1CFA5BB50090AD80 /* AxisFlexibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxisFlexibility.swift; sourceTree = "<group>"; };
 		0B3D5AEE1CFA5BB50090AD80 /* AxisPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxisPoint.swift; sourceTree = "<group>"; };
+		0B4C3E1A1D260D2500B00A61 /* LayoutArrangementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutArrangementTests.swift; sourceTree = "<group>"; };
 		0B5191431D2922C800769358 /* LayoutKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LayoutKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B5191661D29241200769358 /* LayoutKitTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LayoutKitTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B5191851D292A4E00769358 /* UIKitSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitSupport.swift; sourceTree = "<group>"; };
@@ -256,6 +263,9 @@
 		0BF5D75D1CCAA1CD006C9D2A /* SizeLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeLayoutTests.swift; sourceTree = "<group>"; };
 		0BF5D7631CCAC341006C9D2A /* TestStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestStack.swift; sourceTree = "<group>"; };
 		0BFDC3971CD803720046DCF0 /* StackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
+		0BFE789A1D24B02E0082A0DC /* ViewRecycler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRecycler.swift; sourceTree = "<group>"; };
+		0BFE789C1D24C5CF0082A0DC /* Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		0BFE789E1D2608BB0082A0DC /* ViewRecyclerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRecyclerTests.swift; sourceTree = "<group>"; };
 		7EA3A6AA1CD93C60004C529C /* PositionedLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionedLayoutTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -350,10 +360,10 @@
 		0B3B17211CC58B22002127F0 /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
-				0B3B17241CC58B34002127F0 /* SizeLayout.swift */,
+				0B3B17281CC58B34002127F0 /* BaseLayout.swift */,
 				0B3B17261CC58B34002127F0 /* InsetLayout.swift */,
 				0B3B17271CC58B34002127F0 /* LabelLayout.swift */,
-				0B3B17281CC58B34002127F0 /* PositioningLayout.swift */,
+				0B3B17241CC58B34002127F0 /* SizeLayout.swift */,
 				0B3B17291CC58B34002127F0 /* StackLayout.swift */,
 			);
 			path = Layouts;
@@ -468,17 +478,19 @@
 		0BE47EF41CC57348003820E8 /* LayoutKit */ = {
 			isa = PBXGroup;
 			children = (
-				0B3B17211CC58B22002127F0 /* Layouts */,
-				0B638B4E1CDA7A9B004270F6 /* Views */,
-				0B3D5AEB1CFA5B350090AD80 /* Math */,
 				0BAAE16A1CCC99C70046DF14 /* Internal */,
+				0B3B17211CC58B22002127F0 /* Layouts */,
+				0B3D5AEB1CFA5B350090AD80 /* Math */,
+				0B638B4E1CDA7A9B004270F6 /* Views */,
 				0B3B17341CC58B42002127F0 /* Alignment.swift */,
+				0BFE789C1D24C5CF0082A0DC /* Animation.swift */,
 				0B3B17351CC58B42002127F0 /* Flexibility.swift */,
+				0BE47EF71CC57348003820E8 /* Info.plist */,
 				0B3B17361CC58B42002127F0 /* Layout.swift */,
 				0B3B17381CC58B42002127F0 /* LayoutArrangement.swift */,
 				0B5ADBC01CF427510056A568 /* Axis.swift */,
 				0B3B17371CC58B42002127F0 /* LayoutMeasurement.swift */,
-				0BE47EF71CC57348003820E8 /* Info.plist */,
+				0BFE789A1D24B02E0082A0DC /* ViewRecycler.swift */,
 				0B5191851D292A4E00769358 /* UIKitSupport.swift */,
 				0B5191871D292A7700769358 /* AppKitSupport.swift */,
 			);
@@ -500,6 +512,8 @@
 				0BAD242E1CD2E54900BBD2AF /* TableViewTests.swift */,
 				0BDD98F21CE1373000F3048C /* StackViewTests.swift */,
 				0BCF89F71CDD7201004C1B32 /* AlignmentTests.swift */,
+				0BFE789E1D2608BB0082A0DC /* ViewRecyclerTests.swift */,
+				0B4C3E1A1D260D2500B00A61 /* LayoutArrangementTests.swift */,
 			);
 			path = LayoutKitTests;
 			sourceTree = "<group>";
@@ -768,11 +782,12 @@
 			files = (
 				0B51914B1D29239F00769358 /* SizeLayout.swift in Sources */,
 				0B51914C1D29239F00769358 /* InsetLayout.swift in Sources */,
-				0B51914E1D29239F00769358 /* PositioningLayout.swift in Sources */,
+				0B51914E1D29239F00769358 /* BaseLayout.swift in Sources */,
 				0B51914F1D29239F00769358 /* StackLayout.swift in Sources */,
 				0B5191891D292A9100769358 /* AppKitSupport.swift in Sources */,
 				0B5191571D29239F00769358 /* AxisSize.swift in Sources */,
 				0B5191581D29239F00769358 /* AxisFlexibility.swift in Sources */,
+				0BAB9E551D37F237004B9E44 /* ViewRecycler.swift in Sources */,
 				0B5191591D29239F00769358 /* AxisPoint.swift in Sources */,
 				0B51915A1D29239F00769358 /* CGSizeExtension.swift in Sources */,
 				0B51915B1D29239F00769358 /* CFAbsoluteTimeExtension.swift in Sources */,
@@ -781,6 +796,7 @@
 				0B51915E1D29239F00769358 /* Layout.swift in Sources */,
 				0B51915F1D29239F00769358 /* LayoutArrangement.swift in Sources */,
 				0B5191601D29239F00769358 /* Axis.swift in Sources */,
+				0BAB9E561D37F424004B9E44 /* Animation.swift in Sources */,
 				0B5191611D29239F00769358 /* LayoutMeasurement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -833,14 +849,16 @@
 				0B3B173D1CC58B42002127F0 /* LayoutArrangement.swift in Sources */,
 				0B3D5AEF1CFA5BB50090AD80 /* AxisSize.swift in Sources */,
 				0BAAE17C1CCD934A0046DF14 /* ReloadableViewLayoutAdapter+UICollectionView.swift in Sources */,
+				0BFE789B1D24B02E0082A0DC /* ViewRecycler.swift in Sources */,
+				0BFE789D1D24C5CF0082A0DC /* Animation.swift in Sources */,
 				0BAAE17E1CCD94240046DF14 /* ReloadableView.swift in Sources */,
 				0B3B173C1CC58B42002127F0 /* LayoutMeasurement.swift in Sources */,
 				0B3B173B1CC58B42002127F0 /* Layout.swift in Sources */,
 				0B3D5AF11CFA5BB50090AD80 /* AxisPoint.swift in Sources */,
 				0B3B173A1CC58B42002127F0 /* Flexibility.swift in Sources */,
-				0B3B17311CC58B34002127F0 /* PositioningLayout.swift in Sources */,
 				0B5191861D292A4E00769358 /* UIKitSupport.swift in Sources */,
 				0B5ADBC11CF427510056A568 /* Axis.swift in Sources */,
+				0B3B17311CC58B34002127F0 /* BaseLayout.swift in Sources */,
 				0BFDC3981CD803720046DCF0 /* StackView.swift in Sources */,
 				0BAAE17A1CCD930B0046DF14 /* ReloadableViewLayoutAdapter.swift in Sources */,
 				0B3B17301CC58B34002127F0 /* LabelLayout.swift in Sources */,
@@ -855,11 +873,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BAAE12B1CCAC9CE0046DF14 /* StackLayoutSpacingTests.swift in Sources */,
+				0BFE789F1D2608BB0082A0DC /* ViewRecyclerTests.swift in Sources */,
 				0B71884A1CC5F510009E6521 /* LabelLayoutTests.swift in Sources */,
 				0BAD24291CD2764000BBD2AF /* ReloadableViewLayoutAdapterTests.swift in Sources */,
 				0BAAE12D1CCADAFD0046DF14 /* StackLayoutFlexibilityTests.swift in Sources */,
 				0BAAE1821CD07C130046DF14 /* DensityAssertions.swift in Sources */,
 				7EA3A6AB1CD93C60004C529C /* PositionedLayoutTests.swift in Sources */,
+				0B4C3E1B1D260D2500B00A61 /* LayoutArrangementTests.swift in Sources */,
 				0BF5D75E1CCAA1CD006C9D2A /* SizeLayoutTests.swift in Sources */,
 				0B7188501CC60246009E6521 /* InsetLayoutTests.swift in Sources */,
 				0BCF89F81CDD7201004C1B32 /* AlignmentTests.swift in Sources */,

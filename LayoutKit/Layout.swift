@@ -67,10 +67,14 @@ public protocol Layout {
 
     /**
      Returns a UIView for the layout or nil if the layout does not require a view (i.e. it merely positions sublayouts).
+     
+     To support animations, the implementation:
+         - SHOULD call `makeView(layoutId:)` on the provided recycler instead of instantiating the view directly.
+         - SHOULD NOT configure the returned view in any way if `configure` is false.
 
      MUST be run on the main thread.
      */
-    func makeView() -> View?
+    func makeView(from recycler: ViewRecycler, configure: Bool) -> View?
 
     /**
      The flexibility of the layout.
@@ -82,6 +86,14 @@ public protocol Layout {
      TODO: figure out how to assert if inflexible layouts are compressed.
      */
     var flexibility: Flexibility { get }
+
+    /**
+     An identifier for the view that is produced by this layout.
+     
+     If this layout is applied to an existing view hierarchy, and if there is a view with an identical viewReuseId,
+     then that view will be reused for the new layout. If there is more than one view with the same viewReuseId, then an arbitrary one will be reused.
+     */
+    var viewReuseId: String? { get }
 }
 
 public extension Layout {

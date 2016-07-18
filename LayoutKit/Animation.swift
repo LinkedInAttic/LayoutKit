@@ -6,23 +6,18 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-import AppKit
 
-public typealias View = NSView
+/// An animation for a layout.
+public struct Animation {
 
-public typealias EdgeInsets = NSEdgeInsets
+    let arrangement: LayoutArrangement
+    let rootView: View
+    let direction: UserInterfaceLayoutDirection
 
-public typealias UserInterfaceLayoutDirection = NSUserInterfaceLayoutDirection
-
-public typealias Application = NSApplication
-
-extension NSView {
-    
-    func convertToAbsoluteCoordinates(rect: CGRect) -> CGRect {
-        return convertRect(rect, fromView: nil)
-    }
-
-    func convertFromAbsoluteCoordinates(rect: CGRect) -> CGRect {
-        return convertRect(rect, fromView: nil)
+    /// Apply the final state of the animation.
+    /// Call this inside a UIKit animation block.
+    public func apply() {
+        arrangement.makeViews(inView: rootView, direction: direction)
     }
 }
+

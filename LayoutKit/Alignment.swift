@@ -9,7 +9,7 @@
 import CoreGraphics
 
 /**
- Specifies how a layout positions itself inside of the rect that it is given to it by its parent during the positioning pass.
+ Specifies how a layout positions itself inside of the rect that it is given to it by its parent during arrangement.
  */
 public struct Alignment {
 

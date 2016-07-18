@@ -116,6 +116,7 @@ public class StackView: UIView {
 private struct ViewLayout: Layout {
 
     let view: UIView
+    let viewReuseId: String? = nil
 
     func measurement(within maxSize: CGSize) -> LayoutMeasurement {
         let size = view.sizeThatFits(maxSize)
@@ -126,7 +127,8 @@ private struct ViewLayout: Layout {
         return LayoutArrangement(layout: self, frame: rect, sublayouts: [])
     }
 
-    func makeView() -> UIView? {
+    func makeView(from recycler: ViewRecycler, configure: Bool) -> UIView? {
+        recycler.markViewAsRecycled(view)
         return view
     }
 

@@ -16,7 +16,7 @@ import CoreGraphics
  If this not enough space along the axis for all sublayouts then layouts with the highest flexibility are removed
  until there is enough space to posistion the remaining layouts.
  */
-public class StackLayout: PositioningLayout<View> {
+public class StackLayout: BaseLayout<View> {
 
     /// The axis along which sublayouts are stacked.
     public let axis: Axis
@@ -29,12 +29,6 @@ public class StackLayout: PositioningLayout<View> {
 
     /// The distribution of space along the stack's axis.
     public let distribution: Distribution
-
-    /// The stack's alignment inside its parent.
-    public let alignment: Alignment
-
-    /// The stack's flexibility.
-    public let flexibility: Flexibility
     
     /// The stacked layouts.
     public let sublayouts: [Layout]
@@ -44,16 +38,16 @@ public class StackLayout: PositioningLayout<View> {
                 distribution: Distribution = .fillFlexing,
                 alignment: Alignment = .fill,
                 flexibility: Flexibility? = nil,
+                viewReuseId: String? = nil,
                 sublayouts: [Layout],
                 config: (View -> Void)? = nil) {
         
         self.axis = axis
         self.spacing = spacing
         self.distribution = distribution
-        self.alignment = alignment
-        self.flexibility = flexibility ?? StackLayout.defaultFlexibility(axis: axis, sublayouts: sublayouts)
         self.sublayouts = sublayouts
-        super.init(config: config)
+        let flexibility = flexibility ?? StackLayout.defaultFlexibility(axis: axis, sublayouts: sublayouts)
+        super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, config: config)
     }
 }
 
