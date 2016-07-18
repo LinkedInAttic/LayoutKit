@@ -18,7 +18,7 @@ class ViewRecyclerTests: XCTestCase {
 
         let recycler = ViewRecycler(rootView: root)
 
-        let v: View = recycler.makeView(layoutId: nil)
+        let v: View = recycler.makeView(viewReuseId: nil)
         XCTAssertNotEqual(v, zero)
 
         recycler.purgeViews()
@@ -27,12 +27,12 @@ class ViewRecyclerTests: XCTestCase {
 
     func testNonNilIdRecycled() {
         let root = View()
-        let one = View(layoutId: "1")
+        let one = View(viewReuseId: "1")
         root.addSubview(one)
 
         let recycler = ViewRecycler(rootView: root)
 
-        let v: View = recycler.makeView(layoutId: "1")
+        let v: View = recycler.makeView(viewReuseId: "1")
         XCTAssertEqual(v, one)
 
         recycler.purgeViews()
@@ -41,7 +41,7 @@ class ViewRecyclerTests: XCTestCase {
 
     func testMarkViewAsRecycled() {
         let root = View()
-        let one = View(layoutId: "1")
+        let one = View(viewReuseId: "1")
         root.addSubview(one)
 
         let recycler = ViewRecycler(rootView: root)
@@ -53,8 +53,8 @@ class ViewRecyclerTests: XCTestCase {
 }
 
 extension View {
-    convenience init(layoutId: String) {
+    convenience init(viewReuseId: String) {
         self.init(frame: .zero)
-        self.layoutId = layoutId
+        self.viewReuseId = viewReuseId
     }
 }

@@ -33,13 +33,13 @@ public class LabelLayout: BaseLayout<UILabel>, Layout {
                 font: UIFont = defaultFont,
                 alignment: Alignment = defaultAlignment,
                 flexibility: Flexibility = defaultFlexibility,
-                id: String? = nil,
+                viewReuseId: String? = nil,
                 config: (UILabel -> Void)? = nil) {
         
         self.textType = textType
         self.numberOfLines = numberOfLines
         self.font = font
-        super.init(alignment: alignment, flexibility: flexibility, id: id, config: config)
+        super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, config: config)
     }
 
     // MARK: - Convenience initializers
@@ -49,14 +49,14 @@ public class LabelLayout: BaseLayout<UILabel>, Layout {
                             font: UIFont = defaultFont,
                             alignment: Alignment = defaultAlignment,
                             flexibility: Flexibility = defaultFlexibility,
-                            id: String? = nil,
+                            viewReuseId: String? = nil,
                             config: (UILabel -> Void)? = nil) {
 
         self.init(textType: .unattributed(text),
                   numberOfLines: numberOfLines,
                   font: font, alignment: alignment,
                   flexibility: flexibility,
-                  id: id,
+                  viewReuseId: viewReuseId,
                   config: config)
     }
 
@@ -65,14 +65,14 @@ public class LabelLayout: BaseLayout<UILabel>, Layout {
                             font: UIFont = defaultFont,
                             alignment: Alignment = defaultAlignment,
                             flexibility: Flexibility = defaultFlexibility,
-                            id: String? = nil,
+                            viewReuseId: String? = nil,
                             config: (UILabel -> Void)? = nil) {
 
         self.init(textType: .attributed(attributedText),
                   numberOfLines: numberOfLines,
                   font: font, alignment: alignment,
                   flexibility: flexibility,
-                  id: id,
+                  viewReuseId: viewReuseId,
                   config: config)
     }
 
@@ -149,7 +149,7 @@ public class LabelLayout: BaseLayout<UILabel>, Layout {
     }
 
     public override func makeView(from recycler: ViewRecycler, configure: Bool) -> UIView? {
-        let label: UILabel = recycler.makeView(layoutId: id)
+        let label: UILabel = recycler.makeView(viewReuseId: viewReuseId)
         if configure {
             config?(label)
             label.numberOfLines = numberOfLines

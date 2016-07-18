@@ -15,7 +15,7 @@ Here is a complete example that works in a playground:
 ![Animation example](img/animation-example.gif)
 
 ```swift
-mport UIKit
+import UIKit
 import XCPlayground
 import LayoutKit
 

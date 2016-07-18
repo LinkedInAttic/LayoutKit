@@ -38,7 +38,7 @@ public class StackLayout: BaseLayout<View> {
                 distribution: Distribution = .fillFlexing,
                 alignment: Alignment = .fill,
                 flexibility: Flexibility? = nil,
-                id: String? = nil,
+                viewReuseId: String? = nil,
                 sublayouts: [Layout],
                 config: (View -> Void)? = nil) {
         
@@ -47,7 +47,7 @@ public class StackLayout: BaseLayout<View> {
         self.distribution = distribution
         self.sublayouts = sublayouts
         let flexibility = flexibility ?? StackLayout.defaultFlexibility(axis: axis, sublayouts: sublayouts)
-        super.init(alignment: alignment, flexibility: flexibility, id: id, config: config)
+        super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, config: config)
     }
 }
 

@@ -116,7 +116,7 @@ public class StackView: UIView {
 private struct ViewLayout: Layout {
 
     let view: UIView
-    let id: String? = nil
+    let viewReuseId: String? = nil
 
     func measurement(within maxSize: CGSize) -> LayoutMeasurement {
         let size = view.sizeThatFits(maxSize)

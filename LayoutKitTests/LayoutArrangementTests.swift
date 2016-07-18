@@ -25,12 +25,12 @@ class LayoutArrangementTests: XCTestCase {
                         width: 100,
                         height: 100,
                         alignment: .topLeading,
-                        id: "bigSquare",
+                        viewReuseId: "bigSquare",
                         sublayout: SizeLayout<UIView>(
                             width: 10,
                             height: 10,
                             alignment: .bottomTrailing,
-                            id: "redSquare",
+                            viewReuseId: "redSquare",
                             config: { view in
                                 view.backgroundColor = UIColor.redColor()
                                 redSquare = view
@@ -44,7 +44,7 @@ class LayoutArrangementTests: XCTestCase {
                         width: 80,
                         height: 80,
                         alignment: .bottomTrailing,
-                        id: "littleSquare",
+                        viewReuseId: "littleSquare",
                         config: { view in
                             view.backgroundColor = UIColor.lightGrayColor()
                         }
@@ -67,7 +67,7 @@ class LayoutArrangementTests: XCTestCase {
                         width: 100,
                         height: 100,
                         alignment: .topLeading,
-                        id: "bigSquare",
+                        viewReuseId: "bigSquare",
                         config: { view in
                             view.backgroundColor = UIColor.grayColor()
                         }
@@ -76,12 +76,12 @@ class LayoutArrangementTests: XCTestCase {
                         width: 50,
                         height: 50,
                         alignment: .bottomTrailing,
-                        id: "littleSquare",
+                        viewReuseId: "littleSquare",
                         sublayout: SizeLayout<UIView>(
                             width: 20,
                             height: 20,
                             alignment: .topLeading,
-                            id: "redSquare",
+                            viewReuseId: "redSquare",
                             config: { view in
                                 view.backgroundColor = UIColor.redColor()
                                 redSquare = view

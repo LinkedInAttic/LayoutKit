@@ -18,7 +18,7 @@ public class CircleImagePileLayout: StackLayout {
 
     public let mode: Mode
 
-    init(imageNames: [String], mode: Mode = .trailingOnTop, id: String? = nil) {
+    init(imageNames: [String], mode: Mode = .trailingOnTop, viewReuseId: String? = nil) {
         self.mode = mode
         let sublayouts: [Layout] = imageNames.map { imageName in
             return SizeLayout<UIImageView>(width: 50, height: 50, config: { imageView in
@@ -33,14 +33,14 @@ public class CircleImagePileLayout: StackLayout {
                    spacing: -25,
                    distribution: .leading,
                    flexibility: .inflexible,
-                   id: id,
+                   viewReuseId: viewReuseId,
                    sublayouts: sublayouts)
     }
 
     public override func makeView(from recycler: ViewRecycler, configure: Bool) -> UIView? {
         switch mode {
         case .leadingOnTop:
-            let view: CircleImagePileView = recycler.makeView(layoutId: id)
+            let view: CircleImagePileView = recycler.makeView(viewReuseId: viewReuseId)
             return view
         case .trailingOnTop:
             return nil

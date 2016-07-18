@@ -46,7 +46,7 @@ public class SizeLayout<V: View>: BaseLayout<V>, Layout {
                 height: CGFloat? = nil,
                 alignment: Alignment? = nil,
                 flexibility: Flexibility? = nil,
-                id: String? = nil,
+                viewReuseId: String? = nil,
                 sublayout: Layout? = nil,
                 config: (V -> Void)? = nil) {
 
@@ -55,7 +55,7 @@ public class SizeLayout<V: View>: BaseLayout<V>, Layout {
         self.sublayout = sublayout
         let alignment = alignment ?? SizeLayout.defaultAlignment(width: width, height: height)
         let flexibility = flexibility ?? SizeLayout.defaultFlexibility(width: width, height: height)
-        super.init(alignment: alignment, flexibility: flexibility, id: id, config: config)
+        super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, config: config)
     }
 
     private static func defaultAlignment(width width: CGFloat?, height: CGFloat?) -> Alignment {
@@ -75,7 +75,7 @@ public class SizeLayout<V: View>: BaseLayout<V>, Layout {
     public convenience init(size: CGSize,
                 alignment: Alignment? = nil,
                 flexibility: Flexibility? = nil,
-                id: String? = nil,
+                viewReuseId: String? = nil,
                 sublayout: Layout? = nil,
                 config: (V -> Void)? = nil) {
 
@@ -83,7 +83,7 @@ public class SizeLayout<V: View>: BaseLayout<V>, Layout {
                   height: size.height,
                   alignment: alignment,
                   flexibility: flexibility,
-                  id: id,
+                  viewReuseId: viewReuseId,
                   sublayout: sublayout,
                   config: config)
     }

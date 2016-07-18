@@ -23,8 +23,8 @@ public class ViewRecycler {
     /// Retains all subviews of rootView for recycling.
     public init(rootView: View?) {
         rootView?.walkSubviews { (view) in
-            if let layoutId = view.layoutId {
-                self.viewsById[layoutId] = view
+            if let viewReuseId = view.viewReuseId {
+                self.viewsById[viewReuseId] = view
             } else {
                 self.unidentifiedViews.insert(view)
             }
@@ -34,23 +34,23 @@ public class ViewRecycler {
     /// Marks a view as recycled so that `purgeViews()` doesn't remove it from the view hierarchy.
     /// It is only necessary to call this if a view is reused without calling `makeView(layoutId:)`.
     public func markViewAsRecycled(view: View) {
-        if let layoutId = view.layoutId {
-            viewsById[layoutId] = nil
+        if let viewReuseId = view.viewReuseId {
+            viewsById[viewReuseId] = nil
         } else {
             unidentifiedViews.remove(view)
         }
     }
 
     /// Creates or recycles a view of the desired type and id.
-    public func makeView<V: View>(layoutId layoutId: String?) -> V {
+    public func makeView<V: View>(viewReuseId viewReuseId: String?) -> V {
         // If we have a recyclable view that matches type and id, then reuse it.
-        if let layoutId = layoutId, view = viewsById[layoutId] as? V {
-            viewsById[layoutId] = nil
+        if let viewReuseId = viewReuseId, view = viewsById[viewReuseId] as? V {
+            viewsById[viewReuseId] = nil
             return view
         }
 
         let v = V()
-        v.layoutId = layoutId
+        v.viewReuseId = viewReuseId
         return v
     }
 
@@ -68,7 +68,7 @@ public class ViewRecycler {
     }
 }
 
-private var layoutIdKey: UInt8 = 0
+private var viewReuseIdKey: UInt8 = 0
 
 extension View {
 
@@ -81,12 +81,12 @@ extension View {
     }
 
     /// Identifies the layout that was used to create this view.
-    var layoutId: String? {
+    public internal(set) var viewReuseId: String? {
         get {
-            return objc_getAssociatedObject(self, &layoutIdKey) as? String
+            return objc_getAssociatedObject(self, &viewReuseIdKey) as? String
         }
         set {
-            objc_setAssociatedObject(self, &layoutIdKey, newValue, .OBJC_ASSOCIATION_RETAIN)
+            objc_setAssociatedObject(self, &viewReuseIdKey, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
     }
 }

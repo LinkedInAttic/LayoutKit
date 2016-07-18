@@ -18,21 +18,21 @@ public class InsetLayout: BaseLayout<View>, Layout {
 
     public init(insets: EdgeInsets,
                 alignment: Alignment = Alignment.fill,
-                id: String? = nil,
+                viewReuseId: String? = nil,
                 sublayout: Layout,
                 config: (View -> Void)? = nil) {
         self.insets = insets
         self.sublayout = sublayout
-        super.init(alignment: alignment, flexibility: sublayout.flexibility, id: id, config: config)
+        super.init(alignment: alignment, flexibility: sublayout.flexibility, viewReuseId: viewReuseId, config: config)
     }
 
     public convenience init(inset: CGFloat,
                             alignment: Alignment = Alignment.fill,
-                            id: String? = nil,
+                            viewReuseId: String? = nil,
                             sublayout: Layout,
                             config: (View -> Void)? = nil) {
         let insets = EdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
-        self.init(insets: insets, alignment: alignment, id: id, sublayout: sublayout, config: config)
+        self.init(insets: insets, alignment: alignment, viewReuseId: viewReuseId, sublayout: sublayout, config: config)
     }
 
     public func measurement(within maxSize: CGSize) -> LayoutMeasurement {

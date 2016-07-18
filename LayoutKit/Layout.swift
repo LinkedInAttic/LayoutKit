@@ -88,10 +88,12 @@ public protocol Layout {
     var flexibility: Flexibility { get }
 
     /**
-     An identifier for the layout.
-     It is used to identify which views should be reused when animating from one layout to another.
+     An identifier for the view that is produced by this layout.
+     
+     If this layout is applied to an existing view hierarchy, and if there is a view with an identical viewReuseId,
+     then that view will be reused for the new layout. If there is more than one view with the same viewReuseId, then an arbitrary one will be reused.
      */
-    var id: String? { get }
+    var viewReuseId: String? { get }
 }
 
 public extension Layout {
