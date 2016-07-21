@@ -47,7 +47,7 @@ let stack = StackLayout(
 
 let insets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 8)
 let helloWorld = InsetLayout(insets: insets, layout: stack)
-helloWorld.arrangement().makeViews(inView: rootView)
+helloWorld.arrangement().makeViews(in: rootView)
 ```
 
 ![Hello world example layout](img/helloworld.png)

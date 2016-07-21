@@ -35,6 +35,6 @@ class FeedItemLayoutKitView: UIView, DataBinder {
     }
 
     override func layoutSubviews() {
-        layout?.measurement(within: bounds.size).arrangement(within: bounds).makeViews(inView: self)
+        layout?.measurement(within: bounds.size).arrangement(within: bounds).makeViews(in: self)
     }
 }

@@ -31,7 +31,7 @@ class FeedScrollViewController: FeedBaseViewController {
             let arrangement = self.getFeedLayout().arrangement(width: width)
             dispatch_async(dispatch_get_main_queue(), {
                 self.scrollView.contentSize = arrangement.frame.size
-                arrangement.makeViews(inView: self.scrollView)
+                arrangement.makeViews(in: self.scrollView)
                 let _ = CFAbsoluteTimeGetCurrent()
 //                NSLog("user: \((end-start).ms)")
             })
