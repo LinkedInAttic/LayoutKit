@@ -21,10 +21,10 @@ time xcodebuild clean build \
     -scheme LayoutKitSampleApp-iOS \
     -sdk iphonesimulator9.3 \
     -derivedDataPath $DERIVED_DATA \
-    -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' \
-    -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=9.3' \
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=8.4' \
     -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=8.4' \
+    -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' \
+    -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=9.3' \
     OTHER_SWIFT_FLAGS='-Xfrontend -debug-time-function-bodies' \
     | tee build.log \
     | xcpretty &&
@@ -35,10 +35,10 @@ time xcodebuild clean test \
     -scheme LayoutKit-iOS \
     -sdk iphonesimulator9.3 \
     -derivedDataPath $DERIVED_DATA \
-    -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' \
-    -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=9.3' \
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=8.4' \
     -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=8.4' \
+    -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' \
+    -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=9.3' \
     OTHER_SWIFT_FLAGS='-Xfrontend -debug-time-function-bodies' \
     | tee build.log \
     | xcpretty &&
