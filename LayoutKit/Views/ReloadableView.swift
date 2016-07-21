@@ -27,45 +27,22 @@ public protocol ReloadableView: class {
     var decelerating: Bool { get }
 
     /**
-     The axis which is scrollable.
-     */
-    func scrollAxis() -> Axis
-
-    /**
      Reloads the data synchronously.
      This means that it must be safe to immediately call other operations such as `insert`.
      */
     func reloadDataSync()
 
-
-    /**
-     Registers views for the reuse identifier.
-     */
+    /// Registers views for the reuse identifier.
     func registerViews(reuseIdentifier reuseIdentifier: String)
 
-    /// Inserts sections into the reloadable view.
-    func insert(sections sections: NSIndexSet)
-
-    /// Inserts index paths into the reloadable view.
-    func insert(indexPaths indexPaths: [NSIndexPath])
+    /// Performs a set of updates in a batch.
+    func perform(batchUpdates batchUpdates: BatchUpdates)
 }
 
 // MARK: - UICollectionView
 
 /// Make UICollectionView conform to ReloadableView protocol.
 extension UICollectionView: ReloadableView {
-    
-    public func scrollAxis() -> Axis {
-        if let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout {
-            switch flowLayout.scrollDirection {
-            case .Vertical:
-                return .vertical
-            case .Horizontal:
-                return .horizontal
-            }
-        }
-        return .vertical
-    }
 
     public func reloadDataSync() {
         reloadData()
@@ -80,12 +57,28 @@ extension UICollectionView: ReloadableView {
         registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: reuseIdentifier)
     }
 
-    public func insert(indexPaths indexPaths: [NSIndexPath]) {
-        insertItemsAtIndexPaths(indexPaths)
-    }
+    public func perform(batchUpdates batchUpdates: BatchUpdates) {
+        performBatchUpdates({
+            if batchUpdates.insertItemsAtIndexPaths.count > 0 {
+                self.insertItemsAtIndexPaths(batchUpdates.insertItemsAtIndexPaths)
+            }
+            if batchUpdates.deleteItemsAtIndexPaths.count > 0 {
+                self.deleteItemsAtIndexPaths(batchUpdates.deleteItemsAtIndexPaths)
+            }
+            for move in batchUpdates.moveItemsAtIndexPaths {
+                self.moveItemAtIndexPath(move.from, toIndexPath: move.to)
+            }
 
-    public func insert(sections sections: NSIndexSet) {
-        insertSections(sections)
+            if batchUpdates.insertSections.count > 0 {
+                self.insertSections(batchUpdates.insertSections)
+            }
+            if batchUpdates.deleteSections.count > 0 {
+                self.deleteSections(batchUpdates.deleteSections)
+            }
+            for move in batchUpdates.moveSections {
+                self.moveSection(move.from, toSection: move.to)
+            }
+        }, completion: nil)
     }
 }
 
@@ -93,10 +86,6 @@ extension UICollectionView: ReloadableView {
 
 /// Make UITableView conform to ReloadableView protocol.
 extension UITableView: ReloadableView {
-
-    public func scrollAxis() -> Axis {
-        return .vertical
-    }
 
     public func reloadDataSync() {
         reloadData()
@@ -107,11 +96,31 @@ extension UITableView: ReloadableView {
         registerClass(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: reuseIdentifier)
     }
 
-    public func insert(sections sections: NSIndexSet) {
-        insertSections(sections, withRowAnimation: .None)
-    }
+    public func perform(batchUpdates batchUpdates: BatchUpdates) {
+        beginUpdates()
 
-    public func insert(indexPaths indexPaths: [NSIndexPath]) {
-        insertRowsAtIndexPaths(indexPaths, withRowAnimation: .None)
+        // Update items.
+        if batchUpdates.insertItemsAtIndexPaths.count > 0 {
+            insertRowsAtIndexPaths(batchUpdates.insertItemsAtIndexPaths, withRowAnimation: .Automatic)
+        }
+        if batchUpdates.deleteItemsAtIndexPaths.count > 0 {
+            deleteRowsAtIndexPaths(batchUpdates.deleteItemsAtIndexPaths, withRowAnimation: .Automatic)
+        }
+        for move in batchUpdates.moveItemsAtIndexPaths {
+            moveRowAtIndexPath(move.from, toIndexPath: move.to)
+        }
+
+        // Update sections.
+        if batchUpdates.insertSections.count > 0 {
+            insertSections(batchUpdates.insertSections, withRowAnimation: .Automatic)
+        }
+        if batchUpdates.deleteSections.count > 0 {
+            deleteSections(batchUpdates.deleteSections, withRowAnimation: .Automatic)
+        }
+        for move in batchUpdates.moveSections {
+            moveSection(move.from, toSection: move.to)
+        }
+
+        endUpdates()
     }
 }

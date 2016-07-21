@@ -21,7 +21,9 @@ class MenuViewController: UITableViewController {
         StackViewController.self,
         NestedCollectionViewController.self,
         ForegroundMiniProfileViewController.self,
-        BackgroundMiniProfileViewController.self
+        BackgroundMiniProfileViewController.self,
+        BatchUpdatesCollectionViewController.self,
+        BatchUpdatesTableViewController.self
     ]
 
     convenience init() {

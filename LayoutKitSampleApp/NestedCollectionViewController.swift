@@ -21,6 +21,10 @@ class NestedCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        collectionView.layoutAdapter.logger = { (msg: String) in
+            NSLog("%@", msg)
+        }
+
         collectionView.frame = view.bounds
         collectionView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         collectionView.backgroundColor = UIColor.purpleColor()
