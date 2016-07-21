@@ -1,23 +1,26 @@
 #!/bin/sh
 # Builds all targets and runs tests.
 
+DERIVED_DATA=${1:-/tmp/LayoutKit}
+echo "Derived data location: $DERIVED_DATA";
+
 set -o pipefail &&
-rm -rf /tmp/LayoutKit &&
+rm -rf $DERIVED_DATA &&
 time xcodebuild clean test \
     -project LayoutKit.xcodeproj \
     -scheme LayoutKit-macOS \
     -sdk macosx10.11 \
-    -derivedDataPath /tmp/LayoutKit \
+    -derivedDataPath $DERIVED_DATA \
     OTHER_SWIFT_FLAGS='-Xfrontend -debug-time-function-bodies' \
     | tee build.log \
-    | xcpretty
+    | xcpretty &&
 cat build.log | sh debug-time-function-bodies.sh &&
-rm -rf /tmp/LayoutKit &&
-time xcodebuild clean test \
+rm -rf $DERIVED_DATA &&
+time xcodebuild clean build \
     -project LayoutKit.xcodeproj \
-    -scheme LayoutKit-iOS \
+    -scheme LayoutKitSampleApp-iOS \
     -sdk iphonesimulator9.3 \
-    -derivedDataPath /tmp/LayoutKit \
+    -derivedDataPath $DERIVED_DATA \
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' \
     -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=9.3' \
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=8.4' \
@@ -26,12 +29,12 @@ time xcodebuild clean test \
     | tee build.log \
     | xcpretty &&
 cat build.log | sh debug-time-function-bodies.sh &&
-rm -rf /tmp/LayoutKit &&
-time xcodebuild clean build \
+rm -rf $DERIVED_DATA &&
+time xcodebuild clean test \
     -project LayoutKit.xcodeproj \
-    -scheme LayoutKitSampleApp-iOS \
+    -scheme LayoutKit-iOS \
     -sdk iphonesimulator9.3 \
-    -derivedDataPath /tmp/LayoutKit \
+    -derivedDataPath $DERIVED_DATA \
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' \
     -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=9.3' \
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=8.4' \
