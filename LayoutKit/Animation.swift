@@ -17,7 +17,7 @@ public struct Animation {
     /// Apply the final state of the animation.
     /// Call this inside a UIKit animation block.
     public func apply() {
-        arrangement.makeViews(inView: rootView, direction: direction)
+        arrangement.makeViews(in: rootView, direction: direction)
     }
 }
 

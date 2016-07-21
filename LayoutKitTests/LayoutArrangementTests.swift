@@ -99,7 +99,7 @@ class LayoutArrangementTests: XCTestCase {
         )
 
         let rootView = UIView(frame: CGRect(x: 0, y: 0, width: 250, height: 250))
-        before.arrangement(width: 250, height: 250).makeViews(inView: rootView)
+        before.arrangement(width: 250, height: 250).makeViews(in: rootView)
         XCTAssertEqual(redSquare?.frame, CGRect(x: 90, y: 90, width: 10, height: 10))
 
         let animation = after.arrangement(width: 250, height: 250).prepareAnimation(for: rootView, direction: .RightToLeft)

@@ -37,7 +37,7 @@ public struct LayoutArrangement {
 
      - returns: The root view. If a view was provided, then the same view will be returned, otherwise, a new one will be created.
      */
-    public func makeViews(inView view: View? = nil, direction: UserInterfaceLayoutDirection = .LeftToRight) -> View {
+    public func makeViews(in view: View? = nil, direction: UserInterfaceLayoutDirection = .LeftToRight) -> View {
         return makeViews(in: view, direction: direction, prepareAnimation: false)
     }
 

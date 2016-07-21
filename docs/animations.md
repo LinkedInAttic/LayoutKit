@@ -101,7 +101,7 @@ rootView.backgroundColor = UIColor.whiteColor()
 XCPlaygroundPage.currentPage.liveView = rootView
 
 // Apply the initial layout.
-before.arrangement(width: 350, height: 250).makeViews(inView: rootView)
+before.arrangement(width: 350, height: 250).makeViews(in: rootView)
 
 // Prepare the animation to the final layout.
 let animation = after.arrangement(width: 350, height: 250).prepareAnimation(for: rootView, direction: .RightToLeft)
