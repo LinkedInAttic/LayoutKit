@@ -74,7 +74,11 @@ public protocol Layout {
 
      MUST be run on the main thread.
      */
-    func makeView(from recycler: ViewRecycler, configure: Bool) -> View?
+    func makeView(from recycler: ViewRecycler) -> View?
+    
+    var needsView: Bool { get }
+    
+    func genericConfigure(view: View)
 
     /**
      The flexibility of the layout.

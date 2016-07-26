@@ -11,7 +11,7 @@ import UIKit
 /**
  Layout for a UILabel.
  */
-public class LabelLayout: BaseLayout<UILabel>, Layout {
+public class LabelLayout: BaseLayout<UILabel>, ConfigurableLayout {
 
     /// The types of text that a UILabel can display.
     public enum TextType {
@@ -147,20 +147,29 @@ public class LabelLayout: BaseLayout<UILabel>, Layout {
         let frame = alignment.position(size: measurement.size, in: rect)
         return LayoutArrangement(layout: self, frame: frame, sublayouts: [])
     }
-
-    public override func makeView(from recycler: ViewRecycler, configure: Bool) -> UIView? {
-        let label: UILabel = recycler.makeView(viewReuseId: viewReuseId)
-        if configure {
-            config?(label)
-            label.numberOfLines = numberOfLines
-            label.font = font
-            switch textType {
-            case .unattributed(let text):
-                label.text = text
-            case .attributed(let attributedText):
-                label.attributedText = attributedText
-            }
+    
+    public override func configure(label: UILabel) {
+        config?(label)
+        label.numberOfLines = numberOfLines
+        label.font = font
+        switch textType {
+        case .unattributed(let text):
+            label.text = text
+        case .attributed(let attributedText):
+            label.attributedText = attributedText
         }
-        return label
+    }
+    
+    public override var needsView: Bool {
+        if super.needsView {
+            return true
+        }
+        
+        switch textType {
+        case .attributed(let attributedString):
+            return attributedString != ""
+        case .unattributed(let plainString):
+            return plainString != ""
+        }
     }
 }

@@ -24,7 +24,7 @@ import CoreGraphics
  SizeLayout<UIView>(height: 50, sublayout: LabelLayout(text: "Hello"))
  ```
 */
-public class SizeLayout<V: View>: BaseLayout<V>, Layout {
+public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
 
     public let width: CGFloat?
     public let height: CGFloat?

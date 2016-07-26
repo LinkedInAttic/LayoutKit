@@ -53,7 +53,7 @@ public class StackLayout: BaseLayout<View> {
 
 // MARK: - Layout interface
 
-extension StackLayout: Layout {
+extension StackLayout: ConfigurableLayout {
 
     public func measurement(within maxSize: CGSize) -> LayoutMeasurement {
         var availableSize = AxisSize(axis: axis, size: maxSize)
