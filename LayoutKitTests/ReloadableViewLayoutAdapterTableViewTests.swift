@@ -60,17 +60,17 @@ private class TestTableView: LayoutAdapterTableView, TestableReloadableView {
 
     private override func insertRowsAtIndexPaths(indexPaths: [NSIndexPath], withRowAnimation animation: UITableViewRowAnimation) {
         super.insertRowsAtIndexPaths(indexPaths, withRowAnimation: animation)
-        batchUpdates.insertItemsAtIndexPaths.appendContentsOf(indexPaths)
+        batchUpdates.insertItems.appendContentsOf(indexPaths)
     }
 
     private override func deleteRowsAtIndexPaths(indexPaths: [NSIndexPath], withRowAnimation animation: UITableViewRowAnimation) {
         super.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: animation)
-        batchUpdates.deleteItemsAtIndexPaths.appendContentsOf(indexPaths)
+        batchUpdates.deleteItems.appendContentsOf(indexPaths)
     }
 
     private override func moveRowAtIndexPath(indexPath: NSIndexPath, toIndexPath newIndexPath: NSIndexPath) {
         super.moveRowAtIndexPath(indexPath, toIndexPath: newIndexPath)
-        batchUpdates.moveItemsAtIndexPaths.append(ItemMove(from: indexPath, to: newIndexPath))
+        batchUpdates.moveItems.append(ItemMove(from: indexPath, to: newIndexPath))
     }
 
     private override func insertSections(sections: NSIndexSet, withRowAnimation animation: UITableViewRowAnimation) {

@@ -29,7 +29,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 
             // Expect reload since this is synchronous.
             XCTAssertEqual(view.batchUpdates.insertSections.count, 0)
-            XCTAssertEqual(view.batchUpdates.insertItemsAtIndexPaths.count, 0)
+            XCTAssertEqual(view.batchUpdates.insertItems.count, 0)
             XCTAssertEqual(view.reloadDataCount, 1)
         }
 
@@ -50,7 +50,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 
             // Expect reload since this is synchronous.
             XCTAssertEqual(view.batchUpdates.insertSections.count, 0)
-            XCTAssertEqual(view.batchUpdates.insertItemsAtIndexPaths.count, 0)
+            XCTAssertEqual(view.batchUpdates.insertItems.count, 0)
             XCTAssertEqual(view.reloadDataCount, 1)
         }
     }
@@ -88,7 +88,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 
             // Expect batch update.
             XCTAssertEqual(view.batchUpdates.insertSections.count, 1)
-            XCTAssertEqual(view.batchUpdates.insertItemsAtIndexPaths.count, 1)
+            XCTAssertEqual(view.batchUpdates.insertItems.count, 1)
             XCTAssertEqual(view.reloadDataCount, 0)
         }
 
@@ -130,7 +130,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 
             // Expect items and sections to be inserted incrementally (except first reload).
             XCTAssertEqual(view.reloadDataCount, 1)
-            XCTAssertEqual(view.batchUpdates.insertItemsAtIndexPaths.count, 3)
+            XCTAssertEqual(view.batchUpdates.insertItems.count, 3)
             XCTAssertEqual(view.batchUpdates.insertSections.count, 1)
         }
 
@@ -148,7 +148,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 
             // Expect reload since the view already has content.
             XCTAssertEqual(view.reloadDataCount, 1)
-            XCTAssertEqual(view.batchUpdates.insertItemsAtIndexPaths.count, 0)
+            XCTAssertEqual(view.batchUpdates.insertItems.count, 0)
             XCTAssertEqual(view.batchUpdates.insertSections.count, 0)
         }
     }
@@ -176,7 +176,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 
             // Expect batch update.
             XCTAssertEqual(view.batchUpdates.insertSections.count, 1)
-            XCTAssertEqual(view.batchUpdates.insertItemsAtIndexPaths.count, 1)
+            XCTAssertEqual(view.batchUpdates.insertItems.count, 1)
             XCTAssertEqual(view.reloadDataCount, 0)
         }
 
@@ -212,7 +212,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 
             // Expect reload since this is synchronous.
             XCTAssertEqual(view.reloadDataCount, 1)
-            XCTAssertEqual(view.batchUpdates.insertItemsAtIndexPaths.count, 0)
+            XCTAssertEqual(view.batchUpdates.insertItems.count, 0)
             XCTAssertEqual(view.batchUpdates.insertSections.count, 0)
         }
 
@@ -251,7 +251,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 
         // Expect items and sections to be inserted incrementally (except first reload).
         XCTAssertEqual(view.reloadDataCount, 1)
-        XCTAssertEqual(view.batchUpdates.insertItemsAtIndexPaths.count, 6)
+        XCTAssertEqual(view.batchUpdates.insertItems.count, 6)
         XCTAssertEqual(view.batchUpdates.insertSections.count, 2)
     }
 
@@ -320,15 +320,15 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 
         if batchUpdate {
             let itemMove = ItemMove(from: NSIndexPath(forItem: 0, inSection: 1), to: NSIndexPath(forItem: 1, inSection: 1))
-            XCTAssertEqual(view.batchUpdates.moveItemsAtIndexPaths.only, itemMove)
+            XCTAssertEqual(view.batchUpdates.moveItems.only, itemMove)
             XCTAssertEqual(view.batchUpdates.moveSections.only, SectionMove(from: 2, to: 0))
-            XCTAssertEqual(view.batchUpdates.deleteItemsAtIndexPaths.only, NSIndexPath(forItem: 2, inSection: 1))
+            XCTAssertEqual(view.batchUpdates.deleteItems.only, NSIndexPath(forItem: 2, inSection: 1))
             XCTAssertEqual(view.batchUpdates.deleteSections.only, 0)
             XCTAssertEqual(view.reloadDataCount, 0)
         } else {
-            XCTAssertEqual(view.batchUpdates.moveItemsAtIndexPaths.count, 0)
+            XCTAssertEqual(view.batchUpdates.moveItems.count, 0)
             XCTAssertEqual(view.batchUpdates.moveSections.count, 0)
-            XCTAssertEqual(view.batchUpdates.deleteItemsAtIndexPaths.count, 0)
+            XCTAssertEqual(view.batchUpdates.deleteItems.count, 0)
             XCTAssertEqual(view.batchUpdates.deleteSections.count, 0)
             XCTAssertEqual(view.reloadDataCount, 1)
         }
@@ -390,7 +390,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 
     private func batchUpdatesForLayoutTwo() -> BatchUpdates {
         var batchUpdates = BatchUpdates()
-        batchUpdates.insertItemsAtIndexPaths.append(NSIndexPath(forItem: 2, inSection: 1))
+        batchUpdates.insertItems.append(NSIndexPath(forItem: 2, inSection: 1))
         batchUpdates.insertSections.addIndex(2)
         return batchUpdates
     }
@@ -421,8 +421,8 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
         var batchUpdates = BatchUpdates()
         batchUpdates.deleteSections.addIndex(0)
         batchUpdates.moveSections.append(SectionMove(from: 2, to: 0))
-        batchUpdates.moveItemsAtIndexPaths.append(ItemMove(from: NSIndexPath(forItem: 0, inSection: 1), to: NSIndexPath(forItem: 1, inSection: 1)))
-        batchUpdates.deleteItemsAtIndexPaths.append(NSIndexPath(forItem: 2, inSection: 1))
+        batchUpdates.moveItems.append(ItemMove(from: NSIndexPath(forItem: 0, inSection: 1), to: NSIndexPath(forItem: 1, inSection: 1)))
+        batchUpdates.deleteItems.append(NSIndexPath(forItem: 2, inSection: 1))
         return batchUpdates
     }
 }

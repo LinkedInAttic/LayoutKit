@@ -11,9 +11,9 @@ import Foundation
 
 /// A set of updates to apply to a `ReloadableView`.
 public struct BatchUpdates {
-    public var insertItemsAtIndexPaths = [NSIndexPath]()
-    public var deleteItemsAtIndexPaths = [NSIndexPath]()
-    public var moveItemsAtIndexPaths = [ItemMove]()
+    public var insertItems = [NSIndexPath]()
+    public var deleteItems = [NSIndexPath]()
+    public var moveItems = [ItemMove]()
 
     public var insertSections = NSMutableIndexSet()
     public var deleteSections = NSMutableIndexSet()

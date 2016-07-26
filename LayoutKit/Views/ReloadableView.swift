@@ -59,13 +59,13 @@ extension UICollectionView: ReloadableView {
 
     public func perform(batchUpdates batchUpdates: BatchUpdates) {
         performBatchUpdates({
-            if batchUpdates.insertItemsAtIndexPaths.count > 0 {
-                self.insertItemsAtIndexPaths(batchUpdates.insertItemsAtIndexPaths)
+            if batchUpdates.insertItems.count > 0 {
+                self.insertItemsAtIndexPaths(batchUpdates.insertItems)
             }
-            if batchUpdates.deleteItemsAtIndexPaths.count > 0 {
-                self.deleteItemsAtIndexPaths(batchUpdates.deleteItemsAtIndexPaths)
+            if batchUpdates.deleteItems.count > 0 {
+                self.deleteItemsAtIndexPaths(batchUpdates.deleteItems)
             }
-            for move in batchUpdates.moveItemsAtIndexPaths {
+            for move in batchUpdates.moveItems {
                 self.moveItemAtIndexPath(move.from, toIndexPath: move.to)
             }
 
@@ -100,13 +100,13 @@ extension UITableView: ReloadableView {
         beginUpdates()
 
         // Update items.
-        if batchUpdates.insertItemsAtIndexPaths.count > 0 {
-            insertRowsAtIndexPaths(batchUpdates.insertItemsAtIndexPaths, withRowAnimation: .Automatic)
+        if batchUpdates.insertItems.count > 0 {
+            insertRowsAtIndexPaths(batchUpdates.insertItems, withRowAnimation: .Automatic)
         }
-        if batchUpdates.deleteItemsAtIndexPaths.count > 0 {
-            deleteRowsAtIndexPaths(batchUpdates.deleteItemsAtIndexPaths, withRowAnimation: .Automatic)
+        if batchUpdates.deleteItems.count > 0 {
+            deleteRowsAtIndexPaths(batchUpdates.deleteItems, withRowAnimation: .Automatic)
         }
-        for move in batchUpdates.moveItemsAtIndexPaths {
+        for move in batchUpdates.moveItems {
             moveRowAtIndexPath(move.from, toIndexPath: move.to)
         }
 

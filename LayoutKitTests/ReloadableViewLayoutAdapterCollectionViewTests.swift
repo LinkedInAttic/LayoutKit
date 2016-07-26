@@ -64,17 +64,17 @@ private class TestCollectionView: LayoutAdapterCollectionView, TestableReloadabl
 
     private override func insertItemsAtIndexPaths(indexPaths: [NSIndexPath]) {
         super.insertItemsAtIndexPaths(indexPaths)
-        batchUpdates.insertItemsAtIndexPaths.appendContentsOf(indexPaths)
+        batchUpdates.insertItems.appendContentsOf(indexPaths)
     }
 
     private override func deleteItemsAtIndexPaths(indexPaths: [NSIndexPath]) {
         super.deleteItemsAtIndexPaths(indexPaths)
-        batchUpdates.deleteItemsAtIndexPaths.appendContentsOf(indexPaths)
+        batchUpdates.deleteItems.appendContentsOf(indexPaths)
     }
 
     private override func moveItemAtIndexPath(indexPath: NSIndexPath, toIndexPath newIndexPath: NSIndexPath) {
         super.moveItemAtIndexPath(indexPath, toIndexPath: newIndexPath)
-        batchUpdates.moveItemsAtIndexPaths.append(ItemMove(from: indexPath, to: newIndexPath))
+        batchUpdates.moveItems.append(ItemMove(from: indexPath, to: newIndexPath))
     }
 
     private override func insertSections(sections: NSIndexSet) {

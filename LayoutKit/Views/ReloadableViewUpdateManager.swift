@@ -102,7 +102,7 @@ private class IncrementalUpdateManager: ReloadableViewUpdateManager {
                 if pendingInsertedIndexPath.section >= oldArrangement.count {
                     batchUpdates.insertSections.addIndex(pendingInsertedIndexPath.section)
                 } else {
-                    batchUpdates.insertItemsAtIndexPaths.append(pendingInsertedIndexPath)
+                    batchUpdates.insertItems.append(pendingInsertedIndexPath)
                 }
             }
             reloadableView.perform(batchUpdates: batchUpdates)
