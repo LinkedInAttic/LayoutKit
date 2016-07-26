@@ -27,7 +27,7 @@ public class BaseLayout<V: View> {
 
     /// A configuration block that is run on the main thread after the view is created.
     public let config: (V -> Void)?
-    
+
     public var needsView: Bool {
         return viewReuseId != nil || config != nil
     }
@@ -38,21 +38,8 @@ public class BaseLayout<V: View> {
         self.viewReuseId = viewReuseId
         self.config = config
     }
-    
-    public func configure(view: V) {
-        config?(view)
-    }
-    
-    public func makeView(from recycler: ViewRecycler) -> View? {
-        return makeConfigurableView(from: recycler)
-    }
 
-    public func makeConfigurableView(from recycler: ViewRecycler) -> View? {
-        if needsView {
-            let newOrRecycledView: V = recycler.makeView(viewReuseId: viewReuseId)
-            return newOrRecycledView
-        } else {
-            return nil
-        }
+    public func configure(view view: V) {
+        config?(view)
     }
 }

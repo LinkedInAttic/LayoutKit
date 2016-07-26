@@ -147,8 +147,8 @@ public class LabelLayout: BaseLayout<UILabel>, ConfigurableLayout {
         let frame = alignment.position(size: measurement.size, in: rect)
         return LayoutArrangement(layout: self, frame: frame, sublayouts: [])
     }
-    
-    public override func configure(label: UILabel) {
+
+    public override func configure(view label: UILabel) {
         config?(label)
         label.numberOfLines = numberOfLines
         label.font = font
@@ -159,17 +159,8 @@ public class LabelLayout: BaseLayout<UILabel>, ConfigurableLayout {
             label.attributedText = attributedText
         }
     }
-    
+
     public override var needsView: Bool {
-        if super.needsView {
-            return true
-        }
-        
-        switch textType {
-        case .attributed(let attributedString):
-            return attributedString != ""
-        case .unattributed(let plainString):
-            return plainString != ""
-        }
+        return true
     }
 }

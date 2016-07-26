@@ -60,13 +60,13 @@ public class FixedWidthCellCollectionViewLayout<V: LayoutAdapterCollectionView, 
         return LayoutArrangement(layout: self, frame: frame, sublayouts: [])
     }
 
-    public override func configure(view: V) {
-        super.configure(view)
+    public override func configure(view view: V) {
+        super.configure(view: view)
         if let sectionArrangements = sectionArrangements {
             view.layoutAdapter.reload(arrangement: sectionArrangements)
         }
     }
-    
+
     public override var needsView: Bool {
         return super.needsView || sectionArrangements != nil
     }

@@ -10,7 +10,7 @@ import UIKit
 import LayoutKit
 
 /// Displays a pile of overlapping circular images.
-public class CircleImagePileLayout: StackLayout {
+public class CircleImagePileLayout: BaseLayout<CircleImagePileView>, ConfigurableLayout {
 
     public enum Mode {
         case leadingOnTop, trailingOnTop
@@ -18,7 +18,9 @@ public class CircleImagePileLayout: StackLayout {
 
     public let mode: Mode
 
-    public init(imageNames: [String], mode: Mode = .trailingOnTop, viewReuseId: String? = nil) {
+    public let stack: StackLayout
+
+    public init(imageNames: [String], mode: Mode = .trailingOnTop, alignment: Alignment = .topLeading, viewReuseId: String? = nil) {
         self.mode = mode
         let sublayouts: [Layout] = imageNames.map { imageName in
             return SizeLayout<UIImageView>(width: 50, height: 50, config: { imageView in
@@ -29,32 +31,36 @@ public class CircleImagePileLayout: StackLayout {
                 imageView.layer.borderWidth = 2
             })
         }
-        super.init(axis: .horizontal,
-                   spacing: -25,
-                   distribution: .leading,
-                   flexibility: .inflexible,
-                   viewReuseId: viewReuseId,
-                   sublayouts: sublayouts)
+        stack = StackLayout(
+            axis: .horizontal,
+            spacing: -25,
+            distribution: .leading,
+            alignment: alignment,
+            flexibility: .inflexible,
+            viewReuseId: viewReuseId,
+            sublayouts: sublayouts)
+        super.init(alignment: alignment, flexibility: .inflexible, config: nil)
     }
-    
+
+    public func measurement(within maxSize: CGSize) -> LayoutMeasurement {
+        let stackMeasurement = stack.measurement(within: maxSize)
+        return LayoutMeasurement(layout: self, size: stackMeasurement.size, maxSize: maxSize, sublayouts: [stackMeasurement])
+    }
+
+    public func arrangement(within rect: CGRect, measurement: LayoutMeasurement) -> LayoutArrangement {
+        let frame = alignment.position(size: measurement.size, in: rect)
+        let sublayouts = [stack.arrangement(width: frame.size.width, height: frame.size.height)]
+        return LayoutArrangement(layout: self, frame: frame, sublayouts: sublayouts)
+    }
+
     override public var needsView: Bool {
-        return mode == .leadingOnTop
-    }
-    
-    public override func makeView(from recycler: ViewRecycler) -> View? {
-        // Overriding makeView because this class instantiates a different view class from what the base class would instantiate.
-        if needsView {
-            let newOrRecycledView: CircleImagePileView = recycler.makeView(viewReuseId: viewReuseId)
-            return newOrRecycledView
-        } else {
-            return nil
-        }
+        return super.needsView || mode == .leadingOnTop
     }
 }
 
-private class CircleImagePileView: UIView {
+public class CircleImagePileView: UIView {
 
-    private override func addSubview(view: UIView) {
+    public override func addSubview(view: UIView) {
         // Make sure views are inserted below existing views so that the first image in the face pile is on top.
         if let lastSubview = subviews.last {
             insertSubview(view, belowSubview: lastSubview)

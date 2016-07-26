@@ -8,20 +8,55 @@
 
 import Foundation
 
+/**
+ Convenient optional protocol for layout implementations to use instead of `Layout`.
+
+ This protocol conforms to `Layout` and adds a default implementation of `Layout.makeView(from:)`
+ and an overload of `configure` that allows a specific view class for its parameter.
+ */
 public protocol ConfigurableLayout: Layout {
+
+    /**
+     The class of view that should be created for this layout, if it needs a view.
+     This is specified by the conforming class via its implementation of `configure(view:)`.
+     */
     associatedtype ConfigurableView: View
-    func configure(view: ConfigurableView)
+
+    /**
+     Indicates whether a View object needs to be created for this layout.
+     Layouts that just position their sublayouts can return false here.
+     */
+    var needsView: Bool { get }
+
+    /**
+     Configures the given view.
+
+     When implementing this method, use the specific concrete type for ConfigurableView.
+
+     Example:
+
+         class LabelLayout {
+             func configure(view label: UILabel) {
+                 label.text = "example"
+             }
+         }
+
+     MUST be run on the main thread.
+     */
+    func configure(view view: ConfigurableView)
 }
 
+// Implement `configure` and `makeView` from `Layout`.
 public extension ConfigurableLayout {
-    public func genericConfigure(view: View) {
-        guard let view = view as? ConfigurableView else {
+    public func configure(baseTypeView baseTypeView: View) {
+        guard let view = baseTypeView as? ConfigurableView else {
+            // TODO: Assert that this won't happen.
             return
         }
-        configure(view)
+        configure(view: view)
     }
 
-    public func makeConfigurableView(from recycler: ViewRecycler) -> View? {
+    public func makeView(from recycler: ViewRecycler) -> View? {
         if needsView {
             let newOrRecycledView: ConfigurableView = recycler.makeView(viewReuseId: viewReuseId)
             return newOrRecycledView

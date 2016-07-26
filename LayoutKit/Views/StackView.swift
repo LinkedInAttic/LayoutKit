@@ -131,10 +131,9 @@ private struct ViewLayout: Layout {
         recycler.markViewAsRecycled(view)
         return view
     }
-    
-    func genericConfigure(view: UIView) {
+
+    func configure(baseTypeView baseTypeView: UIView) {
     }
-    let needsView = false
 
     var flexibility: Flexibility {
         let horizontal = flexForAxis(.Horizontal)

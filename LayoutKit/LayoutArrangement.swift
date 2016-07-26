@@ -124,7 +124,7 @@ public struct LayoutArrangement {
         if let view = layout.makeView(from: recycler) {
             if !prepareAnimation {
                 view.frame = frame
-                layout.genericConfigure(view)
+                layout.configure(baseTypeView: view)
             }
             for subview in subviews {
                 // If a view gets reparented and we are preparing an animation, then

@@ -21,7 +21,8 @@ import CoreGraphics
  - `StackLayout`
  
  If your UI can not be expressed by composing these basic layouts,
- then you can create a custom layout that implements the `Layout` protocol.
+ then you can create a custom layout. Custom layouts are recommended but not required to conform
+ to the `ConfigurableLayout` protocol due to the type safety and default implementation that it adds.
 
  ### Layout algorithm
 
@@ -70,15 +71,17 @@ public protocol Layout {
      
      To support animations, the implementation:
          - SHOULD call `makeView(layoutId:)` on the provided recycler instead of instantiating the view directly.
-         - SHOULD NOT configure the returned view in any way if `configure` is false.
 
      MUST be run on the main thread.
      */
     func makeView(from recycler: ViewRecycler) -> View?
-    
-    var needsView: Bool { get }
-    
-    func genericConfigure(view: View)
+
+    /**
+     Configures the given view.
+
+     MUST be run on the main thread.
+     */
+    func configure(baseTypeView baseTypeView: View)
 
     /**
      The flexibility of the layout.
