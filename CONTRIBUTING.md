@@ -5,6 +5,7 @@ Thanks for helping make LayoutKit better! Here are some guidelines to follow whe
 ## Reporting security issues
  
 Please report security issues to [security@linkedin.com](mailto:security@linkedin.com) with a subject line of this format:
+
 `GitHub linkedin/LayoutKit - [summary of issue]`
 
 ## Bugs
