@@ -10,38 +10,33 @@ import Foundation
 
 /// Delegate for a `ReloadableViewUpdateManager`.
 protocol ReloadableViewUpdateManagerDelegate: class {
-    weak var reloadableView: ReloadableView? { get }
+    var reloadableView: ReloadableView? { get }
     var currentArrangement: [Section<[LayoutArrangement]>] { get set }
 }
 
-/// Manages updating a `ReloadableView` and its backing data.
-/// Updates may be applied incrementally, or in a batch.
-class ReloadableViewUpdateManager {
-    private weak var delegate: ReloadableViewUpdateManagerDelegate?
-    private weak var operation: NSOperation?
+/// An object that manages updates for a ReloadableView and its data source.
+protocol ReloadableViewUpdateManager {
 
-    static func make(delegate delegate: ReloadableViewUpdateManagerDelegate,
-                              operation: NSOperation,
-                              incremental: Bool) -> ReloadableViewUpdateManager {
-        return incremental ?
-            IncrementalUpdateManager(delegate: delegate, operation: operation) :
-            BatchUpdateManager(delegate: delegate, operation: operation)
-    }
+    /// The delegate that this manager performs updates on.
+    weak var delegate: ReloadableViewUpdateManagerDelegate? { get }
 
-    private init(delegate: ReloadableViewUpdateManagerDelegate, operation: NSOperation) {
-        self.delegate = delegate
-        self.operation = operation
-    }
+    /// The operation that this update manager is associated with.
+    /// The update manager will stop updating the delegate
+    /// if the operation is cancelled or dellocated.
+    weak var operation: NSOperation? { get }
 
-    func apply(partialArrangement arrangement: [Section<[LayoutArrangement]>], insertedIndexPath: NSIndexPath) {
-        // implemented by subclass
-    }
+    /// Applies a partial arrangement to the delegate's reloadable view and data source.
+    func apply(partialArrangement arrangement: [Section<[LayoutArrangement]>], insertedIndexPath: NSIndexPath)
 
-    func apply(finalArrangement arrangement: [Section<[LayoutArrangement]>], batchUpdates: BatchUpdates?, completion: (() -> Void)?) {
-        // implemented by subclass
-    }
+    /// Applies the final arrangement to the delegate's reloadable view and data source.
+    func apply(finalArrangement arrangement: [Section<[LayoutArrangement]>], batchUpdates: BatchUpdates?, completion: (() -> Void)?)
+}
 
-    final func updateReloadableView(waitUntilFinished waitUntilFinished: Bool, updates: (reloadableView: ReloadableView) -> Void) {
+extension ReloadableViewUpdateManager {
+
+    /// Applies the updates closure to the reloadable view on the main thread
+    /// if the reloadable view has not beed deallocationed and if the operation is not cancelled.
+    func updateReloadableView(waitUntilFinished waitUntilFinished: Bool, updates: (reloadableView: ReloadableView) -> Void) {
         let mainOperation = NSBlockOperation()
         mainOperation.addExecutionBlock {
             let operationCancelled = self.operation?.cancelled ?? true
@@ -54,12 +49,23 @@ class ReloadableViewUpdateManager {
     }
 }
 
+/// Base class for implementations of ReloadableViewUpdateManager.
+class BaseReloadableViewUpdateManager {
+    weak var delegate: ReloadableViewUpdateManagerDelegate?
+    weak var operation: NSOperation?
+
+    init(delegate: ReloadableViewUpdateManagerDelegate, operation: NSOperation) {
+        self.delegate = delegate
+        self.operation = operation
+    }
+}
+
 /// Updates the `ReloadableView` incrementally as items are inserted.
-private class IncrementalUpdateManager: ReloadableViewUpdateManager {
+class IncrementalUpdateManager: BaseReloadableViewUpdateManager, ReloadableViewUpdateManager {
 
     private var pendingInsertedIndexPaths = [NSIndexPath]()
 
-    override func apply(partialArrangement arrangement: [Section<[LayoutArrangement]>], insertedIndexPath: NSIndexPath) {
+    func apply(partialArrangement arrangement: [Section<[LayoutArrangement]>], insertedIndexPath: NSIndexPath) {
         updateReloadableView(waitUntilFinished: false) { (reloadableView: ReloadableView) in
             self.pendingInsertedIndexPaths.append(insertedIndexPath)
 
@@ -74,7 +80,7 @@ private class IncrementalUpdateManager: ReloadableViewUpdateManager {
         }
     }
 
-    override func apply(finalArrangement arrangement: [Section<[LayoutArrangement]>], batchUpdates: BatchUpdates?, completion: (() -> Void)?) {
+    func apply(finalArrangement arrangement: [Section<[LayoutArrangement]>], batchUpdates: BatchUpdates?, completion: (() -> Void)?) {
         updateReloadableView(waitUntilFinished: true) { (reloadableView: ReloadableView) in
             self.flushPendingInserts(arrangement: arrangement, reloadableView: reloadableView)
             completion?()
@@ -113,9 +119,13 @@ private class IncrementalUpdateManager: ReloadableViewUpdateManager {
 }
 
 /// Only updates the `ReloadableView` with the final arrangement.
-private class BatchUpdateManager: ReloadableViewUpdateManager {
+class BatchUpdateManager: BaseReloadableViewUpdateManager, ReloadableViewUpdateManager {
 
-    override func apply(finalArrangement arrangement: [Section<[LayoutArrangement]>], batchUpdates: BatchUpdates?, completion: (() -> Void)?) {
+    func apply(partialArrangement arrangement: [Section<[LayoutArrangement]>], insertedIndexPath: NSIndexPath) {
+        // Nothing to do here. This update strategy ignores partial arrangements.
+    }
+
+    func apply(finalArrangement arrangement: [Section<[LayoutArrangement]>], batchUpdates: BatchUpdates?, completion: (() -> Void)?) {
         updateReloadableView(waitUntilFinished: true) { (reloadableView: ReloadableView) in
             guard let delegate = self.delegate else {
                 return

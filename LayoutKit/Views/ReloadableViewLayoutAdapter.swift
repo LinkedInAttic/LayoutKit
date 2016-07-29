@@ -45,8 +45,10 @@ public class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerD
     /**
      Reloads the view with the new layout.
 
-     If synchronous is false and if the view doesn't already have data loaded, then reload will incrementally insert cells into the reloadable view
-     as layouts are computed to increase user perceived performance for large collections.
+     If synchronous is false and the view doesn't already have data loaded and no batch updates are provided,
+     then it will incrementally insert cells into the reloadable view as layouts are computed
+     to increase user perceived performance for large collections. Pass an empty `BatchUpdates` object
+     if you wish to disable this optimization for an asynchronous reload of an empty collection.
 
      - parameter width: The width of the layout's arrangement. Nil means no constraint. Default is nil.
      - parameter height: The height of the layout's arrangement. Nil means no constraint. Default is nil.
@@ -73,17 +75,17 @@ public class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerD
         }
 
         if synchronous {
-            reloadSynchronously(with: layoutProvider, layoutFunc: layoutFunc, batchUpdates: batchUpdates, completion: completion)
+            reloadSynchronously(layoutProvider: layoutProvider, layoutFunc: layoutFunc, batchUpdates: batchUpdates, completion: completion)
         } else {
-            reloadAsynchronously(with: layoutProvider, layoutFunc: layoutFunc, batchUpdates: batchUpdates, completion: completion)
+            reloadAsynchronously(layoutProvider: layoutProvider, layoutFunc: layoutFunc, batchUpdates: batchUpdates, completion: completion)
         }
     }
 
     private func reloadSynchronously<T: CollectionType, U: CollectionType where U.Generator.Element == Layout, T.Generator.Element == Section<U>>(
-        with layoutProvider: Void -> T,
-             layoutFunc: Layout -> LayoutArrangement,
-             batchUpdates: BatchUpdates?,
-             completion: (Void -> Void)?) {
+        layoutProvider layoutProvider: Void -> T,
+                       layoutFunc: Layout -> LayoutArrangement,
+                       batchUpdates: BatchUpdates?,
+                       completion: (Void -> Void)?) {
 
         let start = CFAbsoluteTimeGetCurrent()
         currentArrangement = layoutProvider().map { sectionLayout in
@@ -100,10 +102,10 @@ public class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerD
     }
 
     private func reloadAsynchronously<T: CollectionType, U: CollectionType where U.Generator.Element == Layout, T.Generator.Element == Section<U>>(
-        with layoutProvider: Void -> T,
-             layoutFunc: Layout -> LayoutArrangement,
-             batchUpdates: BatchUpdates?,
-             completion: (Void -> Void)?) {
+        layoutProvider layoutProvider: Void -> T,
+                       layoutFunc: Layout -> LayoutArrangement,
+                       batchUpdates: BatchUpdates?,
+                       completion: (Void -> Void)?) {
 
         let start = CFAbsoluteTimeGetCurrent()
         let operation = NSBlockOperation()
@@ -111,7 +113,9 @@ public class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerD
         // Only do incremental rendering if there is currently no data and if there are no batch updates.
         // Otherwise wait for layout to complete before updating the view.
         let incremental = currentArrangement.isEmpty && batchUpdates == nil
-        let updateManager = ReloadableViewUpdateManager.make(delegate: self, operation: operation, incremental: incremental)
+        let updateManager: ReloadableViewUpdateManager = incremental ?
+            IncrementalUpdateManager(delegate: self, operation: operation) :
+            BatchUpdateManager(delegate: self, operation: operation)
 
         operation.addExecutionBlock { [weak operation] in
             var pendingArrangement = [Section<[LayoutArrangement]>]()
