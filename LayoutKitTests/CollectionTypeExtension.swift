@@ -15,7 +15,7 @@ extension CollectionType {
     }
 
     /// Returns the only element in the collection.
-    /// It returns nil if there is more than one element, or if there are no elements in the collection.
+    /// It returns nil if there is not exactly one element in the collection.
     public var only: Self.Generator.Element? {
         if count == 1 {
             return first

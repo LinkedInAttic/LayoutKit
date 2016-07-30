@@ -52,6 +52,15 @@
 		0B5191811D29246400769358 /* AlignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCF89F71CDD7201004C1B32 /* AlignmentTests.swift */; };
 		0B5191861D292A4E00769358 /* UIKitSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5191851D292A4E00769358 /* UIKitSupport.swift */; };
 		0B5191891D292A9100769358 /* AppKitSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5191871D292A7700769358 /* AppKitSupport.swift */; };
+		0B53FADD1D413550007F83CD /* BatchUpdatesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B53FADB1D4134BE007F83CD /* BatchUpdatesTableViewController.swift */; };
+		0B5803B91D3ED52B0094AB29 /* BatchUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5803B81D3ED52B0094AB29 /* BatchUpdates.swift */; };
+		0B5803BB1D3EDB490094AB29 /* ReloadableViewUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5803BA1D3EDB490094AB29 /* ReloadableViewUpdateManager.swift */; };
+		0B5803C11D4018630094AB29 /* ReloadableViewLayoutAdapterTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5803BF1D4018540094AB29 /* ReloadableViewLayoutAdapterTestCase.swift */; };
+		0B5803C21D4018650094AB29 /* ReloadableViewLayoutAdapterTableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5803BD1D40182E0094AB29 /* ReloadableViewLayoutAdapterTableViewTests.swift */; };
+		0B5803C41D40440E0094AB29 /* NSIndexSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5803C31D40440E0094AB29 /* NSIndexSetExtension.swift */; };
+		0B5803C51D40440E0094AB29 /* NSIndexSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5803C31D40440E0094AB29 /* NSIndexSetExtension.swift */; };
+		0B5803CB1D404B700094AB29 /* BatchUpdatesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5803C61D4049380094AB29 /* BatchUpdatesCollectionViewController.swift */; };
+		0B5803CD1D404BE70094AB29 /* BatchUpdatesBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5803CC1D404BE70094AB29 /* BatchUpdatesBaseViewController.swift */; };
 		0B5ADBC11CF427510056A568 /* Axis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5ADBC01CF427510056A568 /* Axis.swift */; };
 		0B5ADBC41CF500500056A568 /* FeedItemManualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5ADBC31CF500500056A568 /* FeedItemManualView.swift */; };
 		0B5ADBC61CF500730056A568 /* FeedItemLayoutKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5ADBC51CF500730056A568 /* FeedItemLayoutKitView.swift */; };
@@ -95,7 +104,7 @@
 		0BAB9E541D37057B004B9E44 /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BE47EF31CC57348003820E8 /* LayoutKit.framework */; };
 		0BAB9E551D37F237004B9E44 /* ViewRecycler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE789A1D24B02E0082A0DC /* ViewRecycler.swift */; };
 		0BAB9E561D37F424004B9E44 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE789C1D24C5CF0082A0DC /* Animation.swift */; };
-		0BAD24291CD2764000BBD2AF /* ReloadableViewLayoutAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAD24281CD2764000BBD2AF /* ReloadableViewLayoutAdapterTests.swift */; };
+		0BAD24291CD2764000BBD2AF /* ReloadableViewLayoutAdapterCollectionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAD24281CD2764000BBD2AF /* ReloadableViewLayoutAdapterCollectionViewTests.swift */; };
 		0BAD242B1CD280FC00BBD2AF /* CollectionTypeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAD242A1CD280FC00BBD2AF /* CollectionTypeExtension.swift */; };
 		0BAD242D1CD2DE6F00BBD2AF /* CollectionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAD242C1CD2DE6F00BBD2AF /* CollectionViewTests.swift */; };
 		0BAD242F1CD2E54900BBD2AF /* TableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAD242E1CD2E54900BBD2AF /* TableViewTests.swift */; };
@@ -198,6 +207,14 @@
 		0B5191661D29241200769358 /* LayoutKitTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LayoutKitTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B5191851D292A4E00769358 /* UIKitSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitSupport.swift; sourceTree = "<group>"; };
 		0B5191871D292A7700769358 /* AppKitSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppKitSupport.swift; sourceTree = "<group>"; };
+		0B53FADB1D4134BE007F83CD /* BatchUpdatesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchUpdatesTableViewController.swift; sourceTree = "<group>"; };
+		0B5803B81D3ED52B0094AB29 /* BatchUpdates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchUpdates.swift; sourceTree = "<group>"; };
+		0B5803BA1D3EDB490094AB29 /* ReloadableViewUpdateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewUpdateManager.swift; sourceTree = "<group>"; };
+		0B5803BD1D40182E0094AB29 /* ReloadableViewLayoutAdapterTableViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewLayoutAdapterTableViewTests.swift; sourceTree = "<group>"; };
+		0B5803BF1D4018540094AB29 /* ReloadableViewLayoutAdapterTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewLayoutAdapterTestCase.swift; sourceTree = "<group>"; };
+		0B5803C31D40440E0094AB29 /* NSIndexSetExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSIndexSetExtension.swift; sourceTree = "<group>"; };
+		0B5803C61D4049380094AB29 /* BatchUpdatesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchUpdatesCollectionViewController.swift; sourceTree = "<group>"; };
+		0B5803CC1D404BE70094AB29 /* BatchUpdatesBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchUpdatesBaseViewController.swift; sourceTree = "<group>"; };
 		0B5ADBC01CF427510056A568 /* Axis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Axis.swift; sourceTree = "<group>"; };
 		0B5ADBC31CF500500056A568 /* FeedItemManualView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItemManualView.swift; sourceTree = "<group>"; };
 		0B5ADBC51CF500730056A568 /* FeedItemLayoutKitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItemLayoutKitView.swift; sourceTree = "<group>"; };
@@ -235,7 +252,7 @@
 		0BAAE17D1CCD94240046DF14 /* ReloadableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableView.swift; sourceTree = "<group>"; };
 		0BAAE17F1CCD9A480046DF14 /* FeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
 		0BAAE1811CD07C130046DF14 /* DensityAssertions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DensityAssertions.swift; sourceTree = "<group>"; };
-		0BAD24281CD2764000BBD2AF /* ReloadableViewLayoutAdapterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewLayoutAdapterTests.swift; sourceTree = "<group>"; };
+		0BAD24281CD2764000BBD2AF /* ReloadableViewLayoutAdapterCollectionViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewLayoutAdapterCollectionViewTests.swift; sourceTree = "<group>"; };
 		0BAD242A1CD280FC00BBD2AF /* CollectionTypeExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionTypeExtension.swift; sourceTree = "<group>"; };
 		0BAD242C1CD2DE6F00BBD2AF /* CollectionViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewTests.swift; sourceTree = "<group>"; };
 		0BAD242E1CD2E54900BBD2AF /* TableViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewTests.swift; sourceTree = "<group>"; };
@@ -379,6 +396,26 @@
 			path = Math;
 			sourceTree = "<group>";
 		};
+		0B5803BC1D4017F20094AB29 /* ReloadableViewLayoutAdapterTests */ = {
+			isa = PBXGroup;
+			children = (
+				0BAD24281CD2764000BBD2AF /* ReloadableViewLayoutAdapterCollectionViewTests.swift */,
+				0B5803BD1D40182E0094AB29 /* ReloadableViewLayoutAdapterTableViewTests.swift */,
+				0B5803BF1D4018540094AB29 /* ReloadableViewLayoutAdapterTestCase.swift */,
+			);
+			name = ReloadableViewLayoutAdapterTests;
+			sourceTree = "<group>";
+		};
+		0B5803CA1D4049850094AB29 /* Batch updates */ = {
+			isa = PBXGroup;
+			children = (
+				0B5803CC1D404BE70094AB29 /* BatchUpdatesBaseViewController.swift */,
+				0B5803C61D4049380094AB29 /* BatchUpdatesCollectionViewController.swift */,
+				0B53FADB1D4134BE007F83CD /* BatchUpdatesTableViewController.swift */,
+			);
+			name = "Batch updates";
+			sourceTree = "<group>";
+		};
 		0B5ADBC21CF500170056A568 /* Benchmarks */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,10 +468,12 @@
 		0BAAE1651CCC82890046DF14 /* ReloadableViewLayoutAdapter */ = {
 			isa = PBXGroup;
 			children = (
+				0B5803B81D3ED52B0094AB29 /* BatchUpdates.swift */,
+				0BAAE17D1CCD94240046DF14 /* ReloadableView.swift */,
 				0BAAE1791CCD930B0046DF14 /* ReloadableViewLayoutAdapter.swift */,
 				0BAAE17B1CCD934A0046DF14 /* ReloadableViewLayoutAdapter+UICollectionView.swift */,
 				0BAAE1771CCD92D10046DF14 /* ReloadableViewLayoutAdapter+UITableView.swift */,
-				0BAAE17D1CCD94240046DF14 /* ReloadableView.swift */,
+				0B5803BA1D3EDB490094AB29 /* ReloadableViewUpdateManager.swift */,
 			);
 			name = ReloadableViewLayoutAdapter;
 			sourceTree = "<group>";
@@ -442,8 +481,8 @@
 		0BAAE16A1CCC99C70046DF14 /* Internal */ = {
 			isa = PBXGroup;
 			children = (
-				0B3B173E1CC58B58002127F0 /* CGSizeExtension.swift */,
 				0BAAE1511CCAEF380046DF14 /* CFAbsoluteTimeExtension.swift */,
+				0B3B173E1CC58B58002127F0 /* CGSizeExtension.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -454,6 +493,7 @@
 				0BAAE1811CD07C130046DF14 /* DensityAssertions.swift */,
 				0B71884D1CC5FEE5009E6521 /* UIFontExtension.swift */,
 				0BAD242A1CD280FC00BBD2AF /* CollectionTypeExtension.swift */,
+				0B5803C31D40440E0094AB29 /* NSIndexSetExtension.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -500,6 +540,7 @@
 		0BE47F001CC57348003820E8 /* LayoutKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				0B5803BC1D4017F20094AB29 /* ReloadableViewLayoutAdapterTests */,
 				0BAD24301CD3D5E600BBD2AF /* Common */,
 				0B011B811CC9942800B1A83E /* StackLayoutTests */,
 				0BE47F031CC57348003820E8 /* Info.plist */,
@@ -507,7 +548,6 @@
 				0B71884F1CC60246009E6521 /* InsetLayoutTests.swift */,
 				0BF5D75D1CCAA1CD006C9D2A /* SizeLayoutTests.swift */,
 				7EA3A6AA1CD93C60004C529C /* PositionedLayoutTests.swift */,
-				0BAD24281CD2764000BBD2AF /* ReloadableViewLayoutAdapterTests.swift */,
 				0BAD242C1CD2DE6F00BBD2AF /* CollectionViewTests.swift */,
 				0BAD242E1CD2E54900BBD2AF /* TableViewTests.swift */,
 				0BDD98F21CE1373000F3048C /* StackViewTests.swift */,
@@ -521,6 +561,7 @@
 		0BE47F2D1CC57492003820E8 /* LayoutKitSampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				0B5803CA1D4049850094AB29 /* Batch updates */,
 				0B5ADBC21CF500170056A568 /* Benchmarks */,
 				0B638B4B1CDA7A5A004270F6 /* Nested collection views */,
 				0B638B4A1CDA7A36004270F6 /* Feed */,
@@ -811,6 +852,7 @@
 				0B5191751D29246400769358 /* StackLayoutSpacingTests.swift in Sources */,
 				0B5191761D29246400769358 /* StackLayoutTests.swift in Sources */,
 				0B5191771D29246400769358 /* TestStack.swift in Sources */,
+				0B5803C51D40440E0094AB29 /* NSIndexSetExtension.swift in Sources */,
 				0B5191781D29246400769358 /* StackLayoutFlexibilityTests.swift in Sources */,
 				0B51917A1D29246400769358 /* InsetLayoutTests.swift in Sources */,
 				0B51917B1D29246400769358 /* SizeLayoutTests.swift in Sources */,
@@ -841,6 +883,7 @@
 			files = (
 				0B3B17321CC58B34002127F0 /* StackLayout.swift in Sources */,
 				0B638B521CDA7BAA004270F6 /* LayoutAdapterTableView.swift in Sources */,
+				0B5803B91D3ED52B0094AB29 /* BatchUpdates.swift in Sources */,
 				0B638B501CDA7AAB004270F6 /* LayoutAdapterCollectionView.swift in Sources */,
 				0B3B173F1CC58B58002127F0 /* CGSizeExtension.swift in Sources */,
 				0B3B17391CC58B42002127F0 /* Alignment.swift in Sources */,
@@ -862,6 +905,7 @@
 				0BFDC3981CD803720046DCF0 /* StackView.swift in Sources */,
 				0BAAE17A1CCD930B0046DF14 /* ReloadableViewLayoutAdapter.swift in Sources */,
 				0B3B17301CC58B34002127F0 /* LabelLayout.swift in Sources */,
+				0B5803BB1D3EDB490094AB29 /* ReloadableViewUpdateManager.swift in Sources */,
 				0B3B172F1CC58B34002127F0 /* InsetLayout.swift in Sources */,
 				0BAAE1521CCAEF380046DF14 /* CFAbsoluteTimeExtension.swift in Sources */,
 				0B3D5AF01CFA5BB50090AD80 /* AxisFlexibility.swift in Sources */,
@@ -875,11 +919,14 @@
 				0BAAE12B1CCAC9CE0046DF14 /* StackLayoutSpacingTests.swift in Sources */,
 				0BFE789F1D2608BB0082A0DC /* ViewRecyclerTests.swift in Sources */,
 				0B71884A1CC5F510009E6521 /* LabelLayoutTests.swift in Sources */,
-				0BAD24291CD2764000BBD2AF /* ReloadableViewLayoutAdapterTests.swift in Sources */,
+				0BAD24291CD2764000BBD2AF /* ReloadableViewLayoutAdapterCollectionViewTests.swift in Sources */,
 				0BAAE12D1CCADAFD0046DF14 /* StackLayoutFlexibilityTests.swift in Sources */,
+				0B5803C21D4018650094AB29 /* ReloadableViewLayoutAdapterTableViewTests.swift in Sources */,
+				0B5803C41D40440E0094AB29 /* NSIndexSetExtension.swift in Sources */,
 				0BAAE1821CD07C130046DF14 /* DensityAssertions.swift in Sources */,
 				7EA3A6AB1CD93C60004C529C /* PositionedLayoutTests.swift in Sources */,
 				0B4C3E1B1D260D2500B00A61 /* LayoutArrangementTests.swift in Sources */,
+				0B5803C11D4018630094AB29 /* ReloadableViewLayoutAdapterTestCase.swift in Sources */,
 				0BF5D75E1CCAA1CD006C9D2A /* SizeLayoutTests.swift in Sources */,
 				0B7188501CC60246009E6521 /* InsetLayoutTests.swift in Sources */,
 				0BCF89F81CDD7201004C1B32 /* AlignmentTests.swift in Sources */,
@@ -907,6 +954,8 @@
 				0B5ADBCA1CF504730056A568 /* DataBinder.swift in Sources */,
 				0BAAE1641CCC75320046DF14 /* MenuViewController.swift in Sources */,
 				0B63A91A1CD952E1009F3095 /* StackViewController.swift in Sources */,
+				0B53FADD1D413550007F83CD /* BatchUpdatesTableViewController.swift in Sources */,
+				0B5803CD1D404BE70094AB29 /* BatchUpdatesBaseViewController.swift in Sources */,
 				0B638B541CDA7BD5004270F6 /* LabledImageLayout.swift in Sources */,
 				0B5ADBDB1CF5113F0056A568 /* BenchmarkViewController.swift in Sources */,
 				0BAAE1621CCBDA0F0046DF14 /* FeedBaseViewController.swift in Sources */,
@@ -919,6 +968,7 @@
 				0B5ADBCC1CF50E2B0056A568 /* FeedItemAutoLayoutView.swift in Sources */,
 				0B638B561CDA7C94004270F6 /* UrlImageLayout.swift in Sources */,
 				0BF4E8E31CF5664000789511 /* Stopwatch.swift in Sources */,
+				0B5803CB1D404B700094AB29 /* BatchUpdatesCollectionViewController.swift in Sources */,
 				0BA881BB1CF3F5C300081EBD /* ForegroundProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
