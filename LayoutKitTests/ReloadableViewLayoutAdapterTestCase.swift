@@ -441,8 +441,10 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 private class TestLabelLayout: SizeLayout<UILabel> {
     init(text: String, height: CGFloat) {
         super.init(
-            width: 101,
-            height: height,
+            minWidth: 101,
+            maxWidth: 101,
+            minHeight: height,
+            maxHeight: height,
             alignment: .fill,
             config: { label in
                 label.text = text

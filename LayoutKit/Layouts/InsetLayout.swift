@@ -36,16 +36,16 @@ public class InsetLayout: BaseLayout<View>, ConfigurableLayout {
     }
 
     public func measurement(within maxSize: CGSize) -> LayoutMeasurement {
-        let insetMaxSize = maxSize.sizeDecreasedByInsets(insets)
+        let insetMaxSize = maxSize.decreasedByInsets(insets)
         let sublayoutMeasurement = sublayout.measurement(within: insetMaxSize)
-        let size = sublayoutMeasurement.size.sizeIncreasedByInsets(insets)
+        let size = sublayoutMeasurement.size.increasedByInsets(insets)
         return LayoutMeasurement(layout: self, size: size, maxSize: maxSize, sublayouts: [sublayoutMeasurement])
     }
 
     public func arrangement(within rect: CGRect, measurement: LayoutMeasurement) -> LayoutArrangement {
         let frame = alignment.position(size: measurement.size, in: rect)
         let insetOrigin = CGPoint(x: insets.left, y: insets.top)
-        let insetSize = frame.size.sizeDecreasedByInsets(insets)
+        let insetSize = frame.size.decreasedByInsets(insets)
         let sublayoutRect = CGRect(origin: insetOrigin, size: insetSize)
         let sublayouts = measurement.sublayouts.map { (measurement: LayoutMeasurement) -> LayoutArrangement in
             return measurement.arrangement(within: sublayoutRect)

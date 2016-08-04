@@ -9,21 +9,21 @@
 import CoreGraphics
 
 extension CGSize {
-    func sizeDecreasedByInsets(insets: EdgeInsets) -> CGSize {
+    func decreasedByInsets(insets: EdgeInsets) -> CGSize {
         return CGSize(width: width - insets.left - insets.right, height: height - insets.top - insets.bottom)
     }
 
-    func sizeIncreasedByInsets(insets: EdgeInsets) -> CGSize {
+    func increasedByInsets(insets: EdgeInsets) -> CGSize {
         return CGSize(width: width + insets.left + insets.right, height: height + insets.top + insets.bottom)
     }
 
-    func sizeDecreasedToSize(maxSize: CGSize) -> CGSize {
+    func decreasedToSize(maxSize: CGSize) -> CGSize {
         let width = min(self.width, maxSize.width)
         let height = min(self.height, maxSize.height)
         return CGSize(width: width, height: height)
     }
 
-    func sizeIncreasedToSize(minSize: CGSize) -> CGSize {
+    func increasedToSize(minSize: CGSize) -> CGSize {
         let width = max(self.width, minSize.width)
         let height = max(self.height, minSize.height)
         return CGSize(width: width, height: height)

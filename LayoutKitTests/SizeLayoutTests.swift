@@ -13,18 +13,24 @@ class SizeLayoutTests: XCTestCase {
 
     func testExtraSpace() {
         let layout = SizeLayout<View>(width: 50, height: 50)
+        XCTAssertEqual(layout.flexibility.vertical, Flexibility.inflexibleFlex)
+        XCTAssertEqual(layout.flexibility.horizontal, Flexibility.inflexibleFlex)
         let frame = layout.arrangement(width: 60, height: 60).frame
         XCTAssertEqual(frame, CGRect(x: 5, y: 5, width: 50, height: 50))
     }
 
     func testInsufficientSpace() {
         let layout = SizeLayout<View>(width: 50, height: 50)
+        XCTAssertEqual(layout.flexibility.vertical, Flexibility.inflexibleFlex)
+        XCTAssertEqual(layout.flexibility.horizontal, Flexibility.inflexibleFlex)
         let frame = layout.arrangement(width: 40, height: 40).frame
         XCTAssertEqual(frame, CGRect(x: 0, y: 0, width: 40, height: 40))
     }
 
     func testCenterAlignment() {
         let layout = SizeLayout<View>(width: 50, height: 50, alignment: .center)
+        XCTAssertEqual(layout.flexibility.vertical, Flexibility.inflexibleFlex)
+        XCTAssertEqual(layout.flexibility.horizontal, Flexibility.inflexibleFlex)
         let frame = layout.arrangement(width: 60, height: 60).frame
         XCTAssertEqual(frame, CGRect(x: 5, y: 5, width: 50, height: 50))
     }
@@ -51,6 +57,8 @@ class SizeLayoutTests: XCTestCase {
 
     func testOnlyHeight() {
         let layout = SizeLayout<View>(height: 1)
+        XCTAssertEqual(layout.flexibility.vertical, Flexibility.inflexibleFlex)
+        XCTAssertEqual(layout.flexibility.horizontal, Flexibility.defaultFlex)
 
         let measurement = layout.measurement(within: CGSize(width: 10, height: 10))
         XCTAssertEqual(measurement.size, CGSize(width: 0, height: 1))
@@ -61,6 +69,8 @@ class SizeLayoutTests: XCTestCase {
 
     func testOnlyWidth() {
         let layout = SizeLayout<View>(width: 1)
+        XCTAssertEqual(layout.flexibility.vertical, Flexibility.defaultFlex)
+        XCTAssertEqual(layout.flexibility.horizontal, Flexibility.inflexibleFlex)
 
         let measurement = layout.measurement(within: CGSize(width: 10, height: 10))
         XCTAssertEqual(measurement.size, CGSize(width: 1, height: 0))
@@ -89,30 +99,5 @@ class SizeLayoutTests: XCTestCase {
 
         let frame = layout.arrangement(width: 10, height: 10).frame
         XCTAssertEqual(frame, CGRect(x: 0, y: 4.5, width: 10, height: 1))
-    }
-
-    func testNoWidthNoHeightNoSublayout() {
-        // Initializing SizeLayout with no width/height isn't really useful,
-        // but we still want to make sure it behaves as expected (zero size).
-        let layout = SizeLayout<View>()
-
-        let measurement = layout.measurement(within: CGSize(width: 10, height: 10))
-        XCTAssertEqual(measurement.size, CGSizeZero)
-
-        let frame = layout.arrangement().frame
-        XCTAssertEqual(frame, CGRect(x: 0, y: 0, width: 0, height: 0))
-    }
-
-    func testNoWidthNoHeightWithSublayout() {
-        // Initializing SizeLayout with no width/height isn't really useful,
-        // but we still want to make sure it behaves as expected (inherits size of sublayout).
-        let sublayout = SizeLayout<View>(width: 5, height: 5)
-        let layout = SizeLayout<View>(sublayout: sublayout)
-
-        let measurement = layout.measurement(within: CGSize(width: 10, height: 10))
-        XCTAssertEqual(measurement.size, CGSize(width: 5, height: 5))
-
-        let frame = layout.arrangement().frame
-        XCTAssertEqual(frame, CGRect(x: 0, y: 0, width: 5, height: 5))
     }
 }
