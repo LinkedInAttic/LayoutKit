@@ -50,7 +50,7 @@ public protocol ConfigurableLayout: Layout {
 public extension ConfigurableLayout {
     public func configure(baseTypeView baseTypeView: View) {
         guard let view = baseTypeView as? ConfigurableView else {
-            // TODO: Assert that this won't happen.
+            assertionFailure()
             return
         }
         configure(view: view)

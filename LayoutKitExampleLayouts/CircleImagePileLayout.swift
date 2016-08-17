@@ -18,6 +18,13 @@ public class CircleImagePileLayout: BaseLayout<CircleImagePileView>, Configurabl
 
     public let mode: Mode
 
+    // Note: we use composition here and not inheritance.
+    // Part of the reason is that inheritance doesn't mesh super well with the ConfigurableLayout helper protocol.
+    // If we made CircleImagePileLayout derive from StackLayout, then StackLayout would cause
+    // ConfigurableLayout.ConfigurableView to be bound to View because StackLayout derives from BaseLayout<View>.
+    // That would result in a view of type View to be created for this CircleImagePileLayout. But we actually
+    // need the view to derive from CircleImagePileView, so it's more convenient to derive from
+    // BaseLayout<CircleImagePileView> and use composition with the StackLayout.
     public let stack: StackLayout
 
     public init(imageNames: [String], mode: Mode = .trailingOnTop, alignment: Alignment = .topLeading, viewReuseId: String? = nil) {

@@ -20,5 +20,3 @@ helloWorld.arrangement().makeViews()
 helloWorld.arrangement(width: 250).makeViews()
 
 helloWorld.arrangement().makeViews(direction: .RightToLeft) // just for testing; RTL happens automatically for RTL languages.
-
-CircleImagePileLayout(imageNames: ["earth.png", "earth.png"], mode: .trailingOnTop).arrangement().makeViews()
