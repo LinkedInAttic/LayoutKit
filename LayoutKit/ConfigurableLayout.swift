@@ -50,7 +50,7 @@ public protocol ConfigurableLayout: Layout {
 public extension ConfigurableLayout {
     public func configure(baseTypeView baseTypeView: View) {
         guard let view = baseTypeView as? ConfigurableView else {
-            assertionFailure()
+            assertionFailure("Expected baseTypeView \(baseTypeView) to be of type \(ConfigurableView.self) but it was of type \(baseTypeView.dynamicType)")
             return
         }
         configure(view: view)
