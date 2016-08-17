@@ -76,6 +76,10 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
         super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, config: config)
     }
 
+    // MARK: - Convenience initializers
+    // These convenience initializers enable all permutations of exact width and exact height constraints
+    // with min/max constraints for the other dimension.
+
     public convenience init(width: CGFloat,
                             height: CGFloat,
                             alignment: Alignment? = nil,
@@ -183,6 +187,8 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
                   config: config)
     }
 
+    // MARK: - Initialization helpers
+
     private static func defaultAlignment(maxWidth maxWidth: CGFloat?, maxHeight: CGFloat?) -> Alignment {
         return Alignment(vertical: maxHeight == nil ? .fill : .center,
                          horizontal: maxWidth == nil ? .fill : .center)
@@ -212,6 +218,8 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
         }
         return abs(left - right) < 0.0001
     }
+
+    // MARK: - Layout protocol
 
     public func measurement(within maxSize: CGSize) -> LayoutMeasurement {
         // Take the smaller of our configured max size and the given max size for measurement.
