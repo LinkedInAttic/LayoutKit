@@ -10,7 +10,7 @@ import UIKit
 import LayoutKit
 
 /// Displays a pile of overlapping circular images.
-public class CircleImagePileLayout: StackLayout {
+public class CircleImagePileLayout: BaseLayout<CircleImagePileView>, ConfigurableLayout {
 
     public enum Mode {
         case leadingOnTop, trailingOnTop
@@ -18,7 +18,16 @@ public class CircleImagePileLayout: StackLayout {
 
     public let mode: Mode
 
-    init(imageNames: [String], mode: Mode = .trailingOnTop, viewReuseId: String? = nil) {
+    // Note: we use composition here and not inheritance.
+    // Part of the reason is that inheritance doesn't mesh super well with the ConfigurableLayout helper protocol.
+    // If we made CircleImagePileLayout derive from StackLayout, then StackLayout would cause
+    // ConfigurableLayout.ConfigurableView to be bound to View because StackLayout derives from BaseLayout<View>.
+    // That would result in a view of type View to be created for this CircleImagePileLayout. But we actually
+    // need the view to derive from CircleImagePileView, so it's more convenient to derive from
+    // BaseLayout<CircleImagePileView> and use composition with the StackLayout.
+    public let stack: StackLayout
+
+    public init(imageNames: [String], mode: Mode = .trailingOnTop, alignment: Alignment = .topLeading, viewReuseId: String? = nil) {
         self.mode = mode
         let sublayouts: [Layout] = imageNames.map { imageName in
             return SizeLayout<UIImageView>(width: 50, height: 50, config: { imageView in
@@ -29,28 +38,36 @@ public class CircleImagePileLayout: StackLayout {
                 imageView.layer.borderWidth = 2
             })
         }
-        super.init(axis: .horizontal,
-                   spacing: -25,
-                   distribution: .leading,
-                   flexibility: .inflexible,
-                   viewReuseId: viewReuseId,
-                   sublayouts: sublayouts)
+        stack = StackLayout(
+            axis: .horizontal,
+            spacing: -25,
+            distribution: .leading,
+            alignment: alignment,
+            flexibility: .inflexible,
+            viewReuseId: viewReuseId,
+            sublayouts: sublayouts)
+        super.init(alignment: alignment, flexibility: .inflexible, config: nil)
     }
 
-    public override func makeView(from recycler: ViewRecycler, configure: Bool) -> UIView? {
-        switch mode {
-        case .leadingOnTop:
-            let view: CircleImagePileView = recycler.makeView(viewReuseId: viewReuseId)
-            return view
-        case .trailingOnTop:
-            return nil
-        }
+    public func measurement(within maxSize: CGSize) -> LayoutMeasurement {
+        let stackMeasurement = stack.measurement(within: maxSize)
+        return LayoutMeasurement(layout: self, size: stackMeasurement.size, maxSize: maxSize, sublayouts: [stackMeasurement])
+    }
+
+    public func arrangement(within rect: CGRect, measurement: LayoutMeasurement) -> LayoutArrangement {
+        let frame = alignment.position(size: measurement.size, in: rect)
+        let sublayouts = [stack.arrangement(width: frame.size.width, height: frame.size.height)]
+        return LayoutArrangement(layout: self, frame: frame, sublayouts: sublayouts)
+    }
+
+    override public var needsView: Bool {
+        return super.needsView || mode == .leadingOnTop
     }
 }
 
-private class CircleImagePileView: UIView {
+public class CircleImagePileView: UIView {
 
-    private override func addSubview(view: UIView) {
+    public override func addSubview(view: UIView) {
         // Make sure views are inserted below existing views so that the first image in the face pile is on top.
         if let lastSubview = subviews.last {
             insertSubview(view, belowSubview: lastSubview)

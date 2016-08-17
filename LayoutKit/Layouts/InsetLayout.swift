@@ -11,7 +11,7 @@ import CoreGraphics
 /**
  A layout that insets another layout.
  */
-public class InsetLayout: BaseLayout<View>, Layout {
+public class InsetLayout: BaseLayout<View>, ConfigurableLayout {
     
     public let insets: EdgeInsets
     public let sublayout: Layout

@@ -28,6 +28,10 @@ public class BaseLayout<V: View> {
     /// A configuration block that is run on the main thread after the view is created.
     public let config: (V -> Void)?
 
+    public var needsView: Bool {
+        return viewReuseId != nil || config != nil
+    }
+
     public init(alignment: Alignment, flexibility: Flexibility, viewReuseId: String? = nil, config: (V -> Void)?) {
         self.alignment = alignment
         self.flexibility = flexibility
@@ -35,15 +39,7 @@ public class BaseLayout<V: View> {
         self.config = config
     }
 
-    public func makeView(from recycler: ViewRecycler, configure: Bool) -> View? {
-        guard let config = config else {
-            // Nothing needs to be configured, so this layout doesn't require a UIView.
-            return nil
-        }
-        let view: V = recycler.makeView(viewReuseId: viewReuseId)
-        if configure {
-            config(view)
-        }
-        return view
+    public func configure(view view: V) {
+        config?(view)
     }
 }

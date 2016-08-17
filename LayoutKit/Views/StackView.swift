@@ -127,9 +127,12 @@ private struct ViewLayout: Layout {
         return LayoutArrangement(layout: self, frame: rect, sublayouts: [])
     }
 
-    func makeView(from recycler: ViewRecycler, configure: Bool) -> UIView? {
+    func makeView(from recycler: ViewRecycler) -> UIView? {
         recycler.markViewAsRecycled(view)
         return view
+    }
+
+    func configure(baseTypeView baseTypeView: UIView) {
     }
 
     var flexibility: Flexibility {

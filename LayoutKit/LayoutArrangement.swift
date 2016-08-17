@@ -121,9 +121,10 @@ public struct LayoutArrangement {
             return sublayout.makeSubviews(from: recycler, prepareAnimation: prepareAnimation)
         })
         // If we are preparing an animation, then we don't want to update frames or configure views.
-        if let view = layout.makeView(from: recycler, configure: !prepareAnimation) {
+        if let view = layout.makeView(from: recycler) {
             if !prepareAnimation {
                 view.frame = frame
+                layout.configure(baseTypeView: view)
             }
             for subview in subviews {
                 // If a view gets reparented and we are preparing an animation, then

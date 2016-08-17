@@ -129,6 +129,8 @@
 		0BFE789B1D24B02E0082A0DC /* ViewRecycler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE789A1D24B02E0082A0DC /* ViewRecycler.swift */; };
 		0BFE789D1D24C5CF0082A0DC /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE789C1D24C5CF0082A0DC /* Animation.swift */; };
 		0BFE789F1D2608BB0082A0DC /* ViewRecyclerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE789E1D2608BB0082A0DC /* ViewRecyclerTests.swift */; };
+		7E0FBE851D3C4E2E008B0933 /* ConfigurableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FBE841D3C4E2E008B0933 /* ConfigurableLayout.swift */; };
+		7E9AE4401D59573000D5A926 /* ConfigurableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FBE841D3C4E2E008B0933 /* ConfigurableLayout.swift */; };
 		7EA3A6AB1CD93C60004C529C /* PositionedLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA3A6AA1CD93C60004C529C /* PositionedLayoutTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -283,6 +285,7 @@
 		0BFE789A1D24B02E0082A0DC /* ViewRecycler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRecycler.swift; sourceTree = "<group>"; };
 		0BFE789C1D24C5CF0082A0DC /* Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		0BFE789E1D2608BB0082A0DC /* ViewRecyclerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRecyclerTests.swift; sourceTree = "<group>"; };
+		7E0FBE841D3C4E2E008B0933 /* ConfigurableLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurableLayout.swift; sourceTree = "<group>"; };
 		7EA3A6AA1CD93C60004C529C /* PositionedLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionedLayoutTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -527,6 +530,7 @@
 				0B3B17351CC58B42002127F0 /* Flexibility.swift */,
 				0BE47EF71CC57348003820E8 /* Info.plist */,
 				0B3B17361CC58B42002127F0 /* Layout.swift */,
+				7E0FBE841D3C4E2E008B0933 /* ConfigurableLayout.swift */,
 				0B3B17381CC58B42002127F0 /* LayoutArrangement.swift */,
 				0B5ADBC01CF427510056A568 /* Axis.swift */,
 				0B3B17371CC58B42002127F0 /* LayoutMeasurement.swift */,
@@ -829,6 +833,7 @@
 				0B5191571D29239F00769358 /* AxisSize.swift in Sources */,
 				0B5191581D29239F00769358 /* AxisFlexibility.swift in Sources */,
 				0BAB9E551D37F237004B9E44 /* ViewRecycler.swift in Sources */,
+				7E9AE4401D59573000D5A926 /* ConfigurableLayout.swift in Sources */,
 				0B5191591D29239F00769358 /* AxisPoint.swift in Sources */,
 				0B51915A1D29239F00769358 /* CGSizeExtension.swift in Sources */,
 				0B51915B1D29239F00769358 /* CFAbsoluteTimeExtension.swift in Sources */,
@@ -889,6 +894,7 @@
 				0B3B17391CC58B42002127F0 /* Alignment.swift in Sources */,
 				0BAAE1781CCD92D10046DF14 /* ReloadableViewLayoutAdapter+UITableView.swift in Sources */,
 				0B3B172D1CC58B34002127F0 /* SizeLayout.swift in Sources */,
+				7E0FBE851D3C4E2E008B0933 /* ConfigurableLayout.swift in Sources */,
 				0B3B173D1CC58B42002127F0 /* LayoutArrangement.swift in Sources */,
 				0B3D5AEF1CFA5BB50090AD80 /* AxisSize.swift in Sources */,
 				0BAAE17C1CCD934A0046DF14 /* ReloadableViewLayoutAdapter+UICollectionView.swift in Sources */,
