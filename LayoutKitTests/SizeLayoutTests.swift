@@ -100,4 +100,38 @@ class SizeLayoutTests: XCTestCase {
         let frame = layout.arrangement(width: 10, height: 10).frame
         XCTAssertEqual(frame, CGRect(x: 0, y: 4.5, width: 10, height: 1))
     }
+
+    func testMinSizeLayout() {
+        let layout = SizeLayout<View>(minWidth: 10, minHeight: 10)
+        let size = layout.arrangement().frame.size
+        XCTAssertEqual(size, CGSize(width: 10, height: 10))
+        XCTAssertEqual(layout.flexibility.vertical, Flexibility.defaultFlex)
+        XCTAssertEqual(layout.flexibility.horizontal, Flexibility.defaultFlex)
+    }
+
+    func testMinSizeLayoutWithSublayout() {
+        let sublayout = SizeLayout<View>(width: 5, height: 15)
+        let layout = SizeLayout<View>(minWidth: 10, minHeight: 10, sublayout: sublayout)
+        let size = layout.arrangement().frame.size
+        XCTAssertEqual(size, CGSize(width: 10, height: 15))
+        XCTAssertEqual(layout.flexibility.vertical, Flexibility.defaultFlex)
+        XCTAssertEqual(layout.flexibility.horizontal, Flexibility.defaultFlex)
+    }
+
+    func testMaxSizeLayout() {
+        let layout = SizeLayout<View>(maxWidth: 10, maxHeight: 10)
+        let size = layout.arrangement().frame.size
+        XCTAssertEqual(size, CGSize(width: 0, height: 0))
+        XCTAssertEqual(layout.flexibility.vertical, Flexibility.defaultFlex)
+        XCTAssertEqual(layout.flexibility.horizontal, Flexibility.defaultFlex)
+    }
+
+    func testMaxSizeLayoutWithSublayout() {
+        let sublayout = SizeLayout<View>(width: 5, height: 15)
+        let layout = SizeLayout<View>(maxWidth: 10, maxHeight: 10, sublayout: sublayout)
+        let size = layout.arrangement().frame.size
+        XCTAssertEqual(size, CGSize(width: 5, height: 10))
+        XCTAssertEqual(layout.flexibility.vertical, Flexibility.defaultFlex)
+        XCTAssertEqual(layout.flexibility.horizontal, Flexibility.defaultFlex)
+    }
 }

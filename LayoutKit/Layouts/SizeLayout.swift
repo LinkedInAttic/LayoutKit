@@ -10,19 +10,37 @@ import CoreGraphics
 
 /**
  A layout that has size constraints.
+ 
+ # Default behavior
+
+ Alignment along a dimension defaults to .fill if there is no maximum constraint along that dimension and .center otherwise.
+
+ Flexibility along a dimension defaults to .inflexible if there is an exact constraint on that dimension, and .defaultFlex otherwise.
+
+ # Constraint precedence
+
+ Constraints are enforced with the following precedence:
+ 1. The maxSize paremeter of measurement.
+ 2. The SizeLayout's maxSize
+ 3. The SizeLayout's minSize
+ 
+ In other words, if it is impossible to satisfy all constraints simultaneously then
+ constraints are broken starting with minSize.
+
+ # Use cases
 
  Some common use cases:
 
  ```
  // A fixed size UIImageView.
  SizeLayout<UIImageView>(width: 50, height: 50)
- 
+
  // A 1px tall divider that fills the width of its parent.
  SizeLayout<UIView>(height: 1)
- 
+
  // A label with maximum width.
  SizeLayout<UIView>(maxWidth: 100, sublayout: LabelLayout(text: "Spills onto two lines"))
- 
+
  // A label with minimum width.
  SizeLayout<UIView>(minWidth: 100, sublayout: LabelLayout(text: "Hello", alignment: .fill))
  ```
@@ -35,18 +53,6 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
     public let maxHeight: CGFloat?
     public let sublayout: Layout?
 
-    /**
-     Creates a SizeLayout that measures to a specific width and/or height.
-     
-     If a dimension is nil, then
-     - The measurement along that dimension is inherited from the sublayout, or zero if there is no sublayout.
-     - The alignment along that dimension defaults to .fill.
-     - The flexiblity along that dimension defaults to .defaultFlex.
-
-     If a dimension is not nil, then
-     - The alignment along that dimension defaults to .center.
-     - The flexibility along that dimension defaults to .inflexible.
-     */
     public init(minWidth: CGFloat? = nil,
                 maxWidth: CGFloat? = nil,
                 minHeight: CGFloat? = nil,
@@ -70,8 +76,8 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
         super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, config: config)
     }
 
-    public convenience init(width: CGFloat? = nil,
-                            height: CGFloat? = nil,
+    public convenience init(width: CGFloat,
+                            height: CGFloat,
                             alignment: Alignment? = nil,
                             flexibility: Flexibility? = nil,
                             viewReuseId: String? = nil,
@@ -186,10 +192,19 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
                                                     maxWidth: CGFloat?,
                                                     minHeight: CGFloat?,
                                                     maxHeight: CGFloat?) -> Flexibility {
-        return Flexibility(horizontal: equals(minWidth, maxWidth) ? Flexibility.inflexibleFlex : Flexibility.defaultFlex,
-                           vertical: equals(minHeight, maxHeight) ? Flexibility.inflexibleFlex : Flexibility.defaultFlex)
+        let horizontal = dimensionFlex(min: minWidth, max: maxWidth)
+        let vertical = dimensionFlex(min: minHeight, max: maxHeight)
+        return Flexibility(horizontal: horizontal, vertical: vertical)
     }
 
+    /// If we have an exact constraint on a dimension then it is inflexible.
+    /// Otherwise, it has default flex.
+    private static func dimensionFlex(min min: CGFloat?, max: CGFloat?) -> Flexibility.Flex {
+        return equals(min, max) ? Flexibility.inflexibleFlex : Flexibility.defaultFlex
+    }
+
+    /// Returns true if left and right are equal within a small tolerance.
+    /// A nil value is not equal to anything else.
     private static func equals(left: CGFloat?, _ right: CGFloat?) -> Bool {
         guard let left = left, right = right else {
             // treat nil != nil
@@ -218,7 +233,7 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
     public func arrangement(within rect: CGRect, measurement: LayoutMeasurement) -> LayoutArrangement {
         let frame = alignment.position(size: measurement.size, in: rect)
         let sublayoutRect = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
-        let sublayouts = measurement.sublayouts.map { measurement in
+        let sublayouts = measurement.sublayouts.map { (measurement) in
             return measurement.arrangement(within: sublayoutRect)
         }
         return LayoutArrangement(layout: self, frame: frame, sublayouts: sublayouts ?? [])
