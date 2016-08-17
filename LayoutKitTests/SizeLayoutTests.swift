@@ -101,6 +101,31 @@ class SizeLayoutTests: XCTestCase {
         XCTAssertEqual(frame, CGRect(x: 0, y: 4.5, width: 10, height: 1))
     }
 
+    func testNoWidthNoHeightNoSublayout() {
+        // Initializing SizeLayout with no width/height isn't really useful,
+        // but we still want to make sure it behaves as expected (zero size).
+        let layout = SizeLayout<View>()
+
+        let measurement = layout.measurement(within: CGSize(width: 10, height: 10))
+        XCTAssertEqual(measurement.size, CGSizeZero)
+
+        let frame = layout.arrangement().frame
+        XCTAssertEqual(frame, CGRect(x: 0, y: 0, width: 0, height: 0))
+    }
+
+    func testNoWidthNoHeightWithSublayout() {
+        // Initializing SizeLayout with no width/height isn't really useful,
+        // but we still want to make sure it behaves as expected (inherits size of sublayout).
+        let sublayout = SizeLayout<View>(width: 5, height: 5)
+        let layout = SizeLayout<View>(sublayout: sublayout)
+
+        let measurement = layout.measurement(within: CGSize(width: 10, height: 10))
+        XCTAssertEqual(measurement.size, CGSize(width: 5, height: 5))
+
+        let frame = layout.arrangement().frame
+        XCTAssertEqual(frame, CGRect(x: 0, y: 0, width: 5, height: 5))
+    }
+
     func testMinSizeLayout() {
         let layout = SizeLayout<View>(minWidth: 10, minHeight: 10)
         let size = layout.arrangement().frame.size
