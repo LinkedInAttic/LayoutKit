@@ -16,28 +16,28 @@ import LayoutKit
 class UrlImageLayout: SizeLayout<UrlImageView> {
 
     init(url: NSURL, size: CGSize) {
+        let config = { (imageView: UIImageView) in
+            imageView.backgroundColor = UIColor.orangeColor()
+            imageView.url = url
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                guard let data = NSData(contentsOfURL: url) else {
+                    NSLog("failed to load image data \(url)")
+                    return
+                }
+                dispatch_async(dispatch_get_main_queue(), {
+                    if imageView.url == url {
+                        imageView.image = UIImage(data: data)
+                    }
+                })
+            }
+        }
         super.init(minWidth: size.width,
                    maxWidth: size.width,
                    minHeight: size.height,
                    maxHeight: size.height,
                    alignment: .center,
                    flexibility: .inflexible,
-                   config: { imageView in
-                    imageView.backgroundColor = UIColor.orangeColor()
-                    imageView.url = url
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                        guard let data = NSData(contentsOfURL: url) else {
-                            NSLog("failed to load image data \(url)")
-                            return
-                        }
-                        dispatch_async(dispatch_get_main_queue(), {
-                            if imageView.url == url {
-                                imageView.image = UIImage(data: data)
-                            }
-                        })
-                    })
-            }
-        )
+                   config: config)
     }
 }
 

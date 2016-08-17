@@ -209,6 +209,12 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
         return equals(min, max) ? Flexibility.inflexibleFlex : Flexibility.defaultFlex
     }
 
+    /// Floats that are different by less than this amount are considered equal.
+    /// Computed property because "Static stored properties not yet supported in generic types." (8/17/2016)
+    private static var floatTolerance: CGFloat {
+        return 0.0001
+    }
+
     /// Returns true if left and right are equal within a small tolerance.
     /// A nil value is not equal to anything else.
     private static func equals(left: CGFloat?, _ right: CGFloat?) -> Bool {
@@ -216,7 +222,7 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
             // treat nil != nil
             return false
         }
-        return abs(left - right) < 0.0001
+        return abs(left - right) < floatTolerance
     }
 
     // MARK: - Layout protocol
@@ -232,10 +238,8 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
         // Make sure that our size is in the desired range.
         let size = sublayoutSize.increasedToSize(CGSize(width: minWidth ?? 0, height: minHeight ?? 0)).decreasedToSize(availableSize)
 
-        let sublayouts = sublayoutMeasurement.map { (measurement) in
-            return [measurement]
-        }
-        return LayoutMeasurement(layout: self, size: size, maxSize: maxSize, sublayouts: sublayouts ?? [])
+        let sublayouts = [sublayoutMeasurement].flatMap { $0 }
+        return LayoutMeasurement(layout: self, size: size, maxSize: maxSize, sublayouts: sublayouts)
     }
 
     public func arrangement(within rect: CGRect, measurement: LayoutMeasurement) -> LayoutArrangement {
