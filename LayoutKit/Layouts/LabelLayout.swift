@@ -24,7 +24,7 @@ public class LabelLayout: BaseLayout<UILabel>, ConfigurableLayout {
     public let font: UIFont
 
     private static let defaultNumberOfLines = 0
-    private static let defaultFont = UIFont.systemFontOfSize(UIFont.labelFontSize())
+    private static let defaultFont = UILabel().font
     private static let defaultAlignment = Alignment.topLeading
     private static let defaultFlexibility = Flexibility.flexible
 

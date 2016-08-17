@@ -44,6 +44,16 @@ private class TestTableView: LayoutAdapterTableView, TestableReloadableView {
     var reloadDataCount = 0
     var batchUpdates = BatchUpdates()
 
+    #if os(tvOS)
+    // tvOS adds padding around UITableViewCells
+    // http://stackoverflow.com/questions/33364236/why-is-there-a-space-between-the-cells-in-my-uitableview
+    let itemSpacing: CGFloat = 14
+    let itemWidthInset: CGFloat = 16
+    #else
+    let itemSpacing: CGFloat = 0
+    let itemWidthInset: CGFloat = 0
+    #endif
+    
     init() {
         let frame = CGRect(x: 0, y: 0, width: 320, height: 1000)
         super.init(frame: frame, style: .Plain)
@@ -93,30 +103,30 @@ private class TestTableView: LayoutAdapterTableView, TestableReloadableView {
         batchUpdates = BatchUpdates()
     }
 
-    private func verifyHeader(section section: Int, text: String?, frame: CGRect?, line: UInt) {
-        verify(rectForHeaderInSection, section: section, text: text, frame: frame, line: line)
+    private func verifyHeader(section section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {
+        verify(rectForHeaderInSection, section: section, text: text, frame: frame, file: file, line: line)
     }
 
-    private func verifyFooter(section section: Int, text: String?, frame: CGRect?, line: UInt) {
-        verify(rectForFooterInSection, section: section, text: text, frame: frame, line: line)
+    private func verifyFooter(section section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {
+        verify(rectForFooterInSection, section: section, text: text, frame: frame, file: file, line: line)
     }
 
-    private func verify(getter: Int -> CGRect, section: Int, text: String?, frame: CGRect?, line: UInt) {
+    private func verify(getter: Int -> CGRect, section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {
         let headerFrame = getter(section)
         if let frame = frame {
-            XCTAssertEqual(headerFrame, frame, line: line)
+            XCTAssertEqual(headerFrame, frame, file: file, line: line)
         } else {
-            XCTAssertEqual(headerFrame.size, CGSize(width: bounds.width, height: 0), line: line)
+            XCTAssertEqual(headerFrame.size, CGSize(width: bounds.width, height: 0), file: file, line: line)
         }
     }
 
-    private func verifyVisibleItem(text text: String, frame: CGRect, line: UInt) {
+    private func verifyVisibleItem(text text: String, frame: CGRect, file: StaticString, line: UInt) {
         let items = visibleCells.filter { cell -> Bool in
             guard let label = cell.contentView.subviews.first as? UILabel else {
                 return false
             }
             return label.text == text
         }
-        XCTAssertEqual(items.only?.frame, frame, line: line)
+        XCTAssertEqual(items.only?.frame, frame, file: file, line: line)
     }
 }

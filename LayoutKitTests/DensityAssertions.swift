@@ -44,8 +44,10 @@ func AssertEqualDensity(actual: CGFloat, _ expected: [CGFloat: CGFloat], file: S
 private func expectationForCurrentDensity<T>(expected: [CGFloat: T], file: StaticString, line: UInt) -> T? {
     #if os(iOS)
         let scale = UIScreen.mainScreen().scale
-    #else
+    #elseif os(OSX)
         let scale = NSScreen.mainScreen()?.backingScaleFactor ?? 2.0
+    #elseif os(tvOS)
+        let scale: CGFloat = 1.0
     #endif
 
     guard let expected = expected[scale] else {
