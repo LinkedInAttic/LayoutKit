@@ -16,7 +16,7 @@ import LayoutKit
 class UrlImageLayout: SizeLayout<UrlImageView> {
 
     init(url: NSURL, size: CGSize) {
-        let config = { (imageView: UIImageView) in
+        let config = { (imageView: UrlImageView) in
             imageView.backgroundColor = UIColor.orangeColor()
             imageView.url = url
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
@@ -29,7 +29,7 @@ class UrlImageLayout: SizeLayout<UrlImageView> {
                         imageView.image = UIImage(data: data)
                     }
                 })
-            }
+            })
         }
         super.init(minWidth: size.width,
                    maxWidth: size.width,
