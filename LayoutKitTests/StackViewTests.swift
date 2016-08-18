@@ -69,6 +69,7 @@ class StackViewTests: XCTestCase {
 
         autoLayoutView.layoutIfNeeded()
         AssertEqualDensity(label.frame, [
+            1.0: CGRect(x: 0, y: 0, width: 34, height: 20),
             2.0: CGRect(x: 0, y: 0, width: 33.5, height: 20),
             3.0: CGRect(x: 0, y: 0, width: 33 + oneThird, height: 19 + twoThirds),
         ])
@@ -79,6 +80,7 @@ class StackViewTests: XCTestCase {
 
         // Unfortunately, the label's frame won't have been updated because the intrinsic content size of the stack view hasn't been invalidated.
         AssertEqualDensity(label.frame, [
+            1.0: CGRect(x: 0, y: 0, width: 34, height: 20),
             2.0: CGRect(x: 0, y: 0, width: 33.5, height: 20),
             3.0: CGRect(x: 0, y: 0, width: 33 + oneThird, height: 19 + twoThirds),
         ])
@@ -88,6 +90,7 @@ class StackViewTests: XCTestCase {
         autoLayoutView.setNeedsLayout()
         autoLayoutView.layoutIfNeeded()
         AssertEqualDensity(label.frame, [
+            1.0: CGRect(x: 0, y: 0, width: 54, height: 20),
             2.0: CGRect(x: 0, y: 0, width: 54, height: 20),
             3.0: CGRect(x: 0, y: 0, width: 54, height: 19 + twoThirds),
         ])
@@ -108,6 +111,7 @@ class StackViewTests: XCTestCase {
 
             autoLayoutView.layoutIfNeeded()
             AssertEqualDensity(label.frame, [
+                1.0: CGRect(x: 0, y: 0, width: 34, height: 20),
                 2.0: CGRect(x: 0, y: 0, width: 33.5, height: 20),
                 3.0: CGRect(x: 0, y: 0, width: 33.0 + oneThird, height: 20),
             ])

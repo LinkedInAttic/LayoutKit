@@ -15,6 +15,7 @@ class LabelLayoutTests: XCTestCase {
         let lableLayout = LabelLayout(text: "Hi", font: UIFont.helvetica())
         let label = lableLayout.arrangement().makeViews()
         AssertEqualDensity(label.frame, [
+            1.0: CGRect(x: 0, y: 0, width: 17, height: 20),
             2.0: CGRect(x: 0, y: 0, width: 16.5, height: 20),
             3.0: CGRect(x: 0, y: 0, width: 16 + oneThird, height: 19 + twoThirds),
             ])
@@ -26,6 +27,7 @@ class LabelLayoutTests: XCTestCase {
         let label = lableLayout.arrangement().makeViews()
         XCTAssertEqual((label as? UILabel)?.font.pointSize, 42)
         AssertEqualDensity(label.frame, [
+            1.0: CGRect(x: 0, y: 0, width: 40, height: 49),
             2.0: CGRect(x: 0, y: 0, width: 40, height: 48.5),
             3.0: CGRect(x: 0, y: 0, width: 39 + twoThirds, height: 48 + oneThird),
             ])
@@ -35,6 +37,7 @@ class LabelLayoutTests: XCTestCase {
         let labelLayout = LabelLayout(text: "Nick Snyder", numberOfLines: 2, font: UIFont.helvetica())
         let arrangement = labelLayout.arrangement(width: 90)
         AssertEqualDensity(arrangement.frame, [
+            1.0: CGRect(x: 0, y: 0, width: 54, height: 40),
             2.0: CGRect(x: 0, y: 0, width: 54, height: 39.5),
             3.0: CGRect(x: 0, y: 0, width: 54, height: 39 + oneThird)
             ])
@@ -44,6 +47,7 @@ class LabelLayoutTests: XCTestCase {
         let labelLayout = LabelLayout(text: "Nick Snyder", numberOfLines: 1, font: UIFont.helvetica())
         let label = labelLayout.arrangement(width: 90)
         AssertEqualDensity(label.frame, [
+            1.0: CGRect(x: 0, y: 0, width: 90, height: 20),
             2.0: CGRect(x: 0, y: 0, width: 90, height: 20),
             3.0: CGRect(x: 0, y: 0, width: 90, height: 19 + twoThirds)
             ])
@@ -76,12 +80,14 @@ class LabelLayoutTests: XCTestCase {
 
         let frame = LabelLayout(attributedText: text).arrangement().frame
         AssertEqualDensity(frame, [
+            1.0: CGRect(x: 0, y: 0, width: 115, height: 21),
             2.0: CGRect(x: 0, y: 0, width: 114.5, height: 20.5),
             3.0: CGRect(x: 0, y: 0, width: 114 + oneThird, height: 20 + oneThird)
             ])
     }
 
     func testAttributedTextCustomFont() {
+        #if !os(tvOS) // tvOS doesn't currently support custom fonts
         let font = UIFont(name: "Papyrus", size: 20)!
         let attributes = [NSFontAttributeName: font]
         let text = NSAttributedString(string: "Hello! 😄😄😄", attributes: attributes)
@@ -91,9 +97,11 @@ class LabelLayoutTests: XCTestCase {
             2.0: CGRect(x: 0, y: 0, width: 125.5, height: 31),
             3.0: CGRect(x: 0, y: 0, width: 125 + twoThirds, height: 31)
             ])
+        #endif
     }
 
     func testAttributedStringCustomFontPartialRange() {
+        #if !os(tvOS) // tvOS doesn't currently support custom fonts
         let font = UIFont(name: "Papyrus", size: 20)!
         let text = NSMutableAttributedString(string: "Hello world! 😄😄😄")
         text.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(6, 6))
@@ -111,6 +119,7 @@ class LabelLayoutTests: XCTestCase {
                 3.0: CGRect(x: 0, y: 0, width: 169, height: 31)
                 ])
         }
+        #endif
     }
 
     func testConfig() {

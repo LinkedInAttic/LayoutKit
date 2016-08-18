@@ -15,5 +15,10 @@ Pod::Spec.new do |spec|
   spec.osx.deployment_target = '10.9'
   spec.osx.frameworks        = 'Foundation', 'CoreGraphics', 'AppKit'
   spec.osx.exclude_files     = 'LayoutKit/UIKitSupport.swift', 'LayoutKit/Layouts/LabelLayout.Swift', 'LayoutKit/Views/**'
+
+  spec.tvos.deployment_target = '9.0'
+  spec.tvos.frameworks        = 'Foundation', 'CoreGraphics', 'UIKit'
+  spec.tvos.exclude_files     = 'LayoutKit/AppKitSupport.swift'
+
 end
 

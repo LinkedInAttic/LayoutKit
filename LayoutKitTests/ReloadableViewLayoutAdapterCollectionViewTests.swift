@@ -44,6 +44,8 @@ private class TestCollectionView: LayoutAdapterCollectionView, TestableReloadabl
 
     var reloadDataCount = 0
     var batchUpdates = BatchUpdates()
+    let itemSpacing: CGFloat = 0
+    let itemWidthInset: CGFloat = 0
 
     init() {
         let frame = CGRect(x: 0, y: 0, width: 320, height: 1000)
@@ -97,21 +99,21 @@ private class TestCollectionView: LayoutAdapterCollectionView, TestableReloadabl
         batchUpdates = BatchUpdates()
     }
 
-    private func verifyHeader(section section: Int, text: String?, frame: CGRect?, line: UInt) {
-        verifySupplementaryView(kind: UICollectionElementKindSectionHeader, section: section, text: text, frame: frame, line: line)
+    private func verifyHeader(section section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {
+        verifySupplementaryView(kind: UICollectionElementKindSectionHeader, section: section, text: text, frame: frame, file: file, line: line)
     }
 
-    private func verifyFooter(section section: Int, text: String?, frame: CGRect?, line: UInt) {
-        verifySupplementaryView(kind: UICollectionElementKindSectionFooter, section: section, text: text, frame: frame, line: line)
+    private func verifyFooter(section section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {
+        verifySupplementaryView(kind: UICollectionElementKindSectionFooter, section: section, text: text, frame: frame, file: file, line: line)
     }
 
-    private func verifySupplementaryView(kind kind: String, section: Int, text: String?, frame: CGRect?, line: UInt) {
+    private func verifySupplementaryView(kind kind: String, section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {
         let indexPath = NSIndexPath(forItem: 0, inSection: section)
         let attributes = layoutAttributesForSupplementaryElementOfKind(kind, atIndexPath: indexPath)
         if let frame = frame {
-            XCTAssertEqual(attributes?.frame, frame, line: line)
+            XCTAssertEqual(attributes?.frame, frame, file: file, line: line)
         } else {
-            XCTAssertEqual(attributes?.frame.size, CGSizeZero, line: line)
+            XCTAssertEqual(attributes?.frame.size, CGSizeZero, file: file, line: line)
         }
 
         if #available(iOS 9.0, *) {
@@ -124,18 +126,18 @@ private class TestCollectionView: LayoutAdapterCollectionView, TestableReloadabl
 
             let supplementaryViewTexts = visibleSupplementaryViewsOfKind(kind).flatMap(labelText)
             if let text = text {
-                XCTAssertTrue(supplementaryViewTexts.contains(text))
+                XCTAssertTrue(supplementaryViewTexts.contains(text), file: file, line: line)
             }
         }
     }
 
-    private func verifyVisibleItem(text text: String, frame: CGRect, line: UInt) {
+    private func verifyVisibleItem(text text: String, frame: CGRect, file: StaticString, line: UInt) {
         let items = visibleCells().filter { cell -> Bool in
             guard let label = cell.contentView.subviews.first as? UILabel else {
                 return false
             }
             return label.text == text
         }
-        XCTAssertEqual(items.only?.frame, frame, line: line)
+        XCTAssertEqual(items.only?.frame, frame, file: file, line: line)
     }
 }
