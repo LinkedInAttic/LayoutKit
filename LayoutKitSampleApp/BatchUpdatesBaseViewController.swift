@@ -105,7 +105,7 @@ class BatchUpdatesBaseViewController: UIViewController {
     }
 }
 
-private class TestLayout: LabelLayout {
+private class TestLayout: LabelLayout<UILabel> {
 
     init(text: String) {
         super.init(textType: .unattributed(text), alignment: .fill, config: { (label: UILabel) in

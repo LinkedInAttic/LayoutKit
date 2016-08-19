@@ -11,22 +11,11 @@ import UIKit
 /**
  Layout for a UILabel.
  */
-public class LabelLayout: BaseLayout<UILabel>, ConfigurableLayout {
-
-    /// The types of text that a UILabel can display.
-    public enum TextType {
-        case unattributed(String)
-        case attributed(NSAttributedString)
-    }
+public class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
 
     public let textType: TextType
     public let numberOfLines: Int
     public let font: UIFont
-
-    private static let defaultNumberOfLines = 0
-    private static let defaultFont = UILabel().font
-    private static let defaultAlignment = Alignment.topLeading
-    private static let defaultFlexibility = Flexibility.flexible
 
     public init(textType: TextType,
                 numberOfLines: Int = defaultNumberOfLines,
@@ -34,7 +23,7 @@ public class LabelLayout: BaseLayout<UILabel>, ConfigurableLayout {
                 alignment: Alignment = defaultAlignment,
                 flexibility: Flexibility = defaultFlexibility,
                 viewReuseId: String? = nil,
-                config: (UILabel -> Void)? = nil) {
+                config: (Label -> Void)? = nil) {
         
         self.textType = textType
         self.numberOfLines = numberOfLines
@@ -50,7 +39,7 @@ public class LabelLayout: BaseLayout<UILabel>, ConfigurableLayout {
                             alignment: Alignment = defaultAlignment,
                             flexibility: Flexibility = defaultFlexibility,
                             viewReuseId: String? = nil,
-                            config: (UILabel -> Void)? = nil) {
+                            config: (Label -> Void)? = nil) {
 
         self.init(textType: .unattributed(text),
                   numberOfLines: numberOfLines,
@@ -66,7 +55,7 @@ public class LabelLayout: BaseLayout<UILabel>, ConfigurableLayout {
                             alignment: Alignment = defaultAlignment,
                             flexibility: Flexibility = defaultFlexibility,
                             viewReuseId: String? = nil,
-                            config: (UILabel -> Void)? = nil) {
+                            config: (Label -> Void)? = nil) {
 
         self.init(textType: .attributed(attributedText),
                   numberOfLines: numberOfLines,
@@ -148,7 +137,7 @@ public class LabelLayout: BaseLayout<UILabel>, ConfigurableLayout {
         return LayoutArrangement(layout: self, frame: frame, sublayouts: [])
     }
 
-    public override func configure(view label: UILabel) {
+    public override func configure(view label: Label) {
         config?(label)
         label.numberOfLines = numberOfLines
         label.font = font
@@ -164,3 +153,18 @@ public class LabelLayout: BaseLayout<UILabel>, ConfigurableLayout {
         return true
     }
 }
+
+// MARK: - Things that belong in LabelLayout but aren't because LabelLayout is generic.
+// "Type 'TextType' nested in generic type 'LabelLayout' is not allowed"
+// "Static stored properties not yet supported in generic types"
+
+/// The types of text that a UILabel can display.
+public enum TextType {
+    case unattributed(String)
+    case attributed(NSAttributedString)
+}
+
+private let defaultNumberOfLines = 0
+private let defaultFont = UILabel().font
+private let defaultAlignment = Alignment.topLeading
+private let defaultFlexibility = Flexibility.flexible

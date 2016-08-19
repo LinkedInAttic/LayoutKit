@@ -12,7 +12,7 @@ import LayoutKit
 /**
  A layout that is similar to an item in the LinkedIn feed.
  */
-public class FeedItemLayout: InsetLayout {
+public class FeedItemLayout: InsetLayout<View> {
 
     public init(actionText: String,
                 posterProfile: ProfileCardLayout,
@@ -66,7 +66,7 @@ public class FeedItemLayout: InsetLayout {
     }
 }
 
-public class ContentLayout: StackLayout {
+public class ContentLayout: StackLayout<UIView> {
 
     public init(title: String, domain: String) {
         super.init(axis: .vertical, sublayouts: [
