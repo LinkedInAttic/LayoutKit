@@ -867,9 +867,11 @@
 					};
 					0BE47EF21CC57348003820E8 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					0BE47EFB1CC57348003820E8 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					0BE47F2B1CC57492003820E8 = {
 						CreatedOnToolsVersion = 7.3;
@@ -1508,6 +1510,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.linkedin.LayoutKit;
 				PRODUCT_NAME = LayoutKit;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1530,6 +1533,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.linkedin.LayoutKit;
 				PRODUCT_NAME = LayoutKit;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1545,6 +1549,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.linkedin.LayoutKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -1556,6 +1561,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.linkedin.LayoutKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
