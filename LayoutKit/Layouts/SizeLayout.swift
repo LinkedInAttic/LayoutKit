@@ -53,6 +53,8 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
     public let maxHeight: CGFloat?
     public let sublayout: Layout?
 
+    // MARK: - Designated initializers
+
     public init(minWidth: CGFloat? = nil,
                 maxWidth: CGFloat? = nil,
                 minHeight: CGFloat? = nil,
@@ -77,8 +79,8 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
     }
 
     // MARK: - Convenience initializers
-    // These convenience initializers enable all permutations of exact width and exact height constraints
-    // with min/max constraints for the other dimension.
+    // These convenience initializers enable all permutations of an exact constraint on one dimension
+    // and min/max/both/neither constraint on the other dimension.
 
     public convenience init(width: CGFloat,
                             height: CGFloat,
