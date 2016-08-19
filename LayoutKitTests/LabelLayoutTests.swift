@@ -12,45 +12,49 @@ import LayoutKit
 class LabelLayoutTests: XCTestCase {
 
     func testHiLabel() {
-        let lableLayout = LabelLayout(text: "Hi", font: UIFont.helvetica())
-        let label = lableLayout.arrangement().makeViews()
-        AssertEqualDensity(label.frame, [
-            1.0: CGRect(x: 0, y: 0, width: 17, height: 20),
-            2.0: CGRect(x: 0, y: 0, width: 16.5, height: 20),
-            3.0: CGRect(x: 0, y: 0, width: 16 + oneThird, height: 19 + twoThirds),
-            ])
+        let text = "Hi"
+        let font = UIFont.helvetica()
+
+        let arrangement = LabelLayout(text: text, font: font).arrangement()
+        let label = UILabel(text: text, font: font)
+
+        XCTAssertEqual(arrangement.makeViews().frame.size, label.intrinsicContentSize())
     }
 
     func testAttributedLabel() {
         let attributedText = NSAttributedString(string: "Hi", attributes: [NSFontAttributeName: UIFont.helvetica(size: 42)])
-        let lableLayout = LabelLayout(attributedText: attributedText, font: UIFont.helvetica(size: 99))
-        let label = lableLayout.arrangement().makeViews()
-        XCTAssertEqual((label as? UILabel)?.font.pointSize, 42)
-        AssertEqualDensity(label.frame, [
-            1.0: CGRect(x: 0, y: 0, width: 40, height: 49),
-            2.0: CGRect(x: 0, y: 0, width: 40, height: 48.5),
-            3.0: CGRect(x: 0, y: 0, width: 39 + twoThirds, height: 48 + oneThird),
-            ])
+        let font = UIFont.helvetica(size: 99)
+
+        let arrangement = LabelLayout(attributedText: attributedText, font: font).arrangement()
+        let label = UILabel(attributedText: attributedText, font: font)
+
+        XCTAssertEqual(arrangement.makeViews().frame.size, label.intrinsicContentSize())
     }
 
     func testTwoLineLabel() {
-        let labelLayout = LabelLayout(text: "Nick Snyder", numberOfLines: 2, font: UIFont.helvetica())
-        let arrangement = labelLayout.arrangement(width: 90)
-        AssertEqualDensity(arrangement.frame, [
-            1.0: CGRect(x: 0, y: 0, width: 54, height: 40),
-            2.0: CGRect(x: 0, y: 0, width: 54, height: 39.5),
-            3.0: CGRect(x: 0, y: 0, width: 54, height: 39 + oneThird)
-            ])
+        let text = "Nick Snyder"
+        let numberOfLines = 2
+        let font = UIFont.helvetica()
+        let width: CGFloat = 90
+
+        let arrangement = LabelLayout(text: text, numberOfLines: numberOfLines, font: font).arrangement(width: width)
+        let label = UILabel(text: text, font: font, numberOfLines: numberOfLines)
+
+        let labelSize = label.sizeThatFits(CGSize(width: 90, height: .max))
+        XCTAssertEqual(arrangement.frame.size, labelSize)
     }
 
     func testMaxNumberOfLinesTruncation() {
-        let labelLayout = LabelLayout(text: "Nick Snyder", numberOfLines: 1, font: UIFont.helvetica())
-        let label = labelLayout.arrangement(width: 90)
-        AssertEqualDensity(label.frame, [
-            1.0: CGRect(x: 0, y: 0, width: 90, height: 20),
-            2.0: CGRect(x: 0, y: 0, width: 90, height: 20),
-            3.0: CGRect(x: 0, y: 0, width: 90, height: 19 + twoThirds)
-            ])
+        let text = "Nick Snyder"
+        let numberOfLines = 1
+        let font = UIFont.helvetica()
+        let width: CGFloat = 90
+
+        let arrangement = LabelLayout(text: text, numberOfLines: numberOfLines, font: font).arrangement(width: width)
+        let label = UILabel(text: text, font: font, numberOfLines: numberOfLines)
+
+        let height = label.sizeThatFits(CGSize(width: 90, height: .max)).height
+        XCTAssertEqual(arrangement.frame.size, CGSize(width: width, height: height))
     }
 
     func testEmptyLabel() {
@@ -78,12 +82,10 @@ class LabelLayoutTests: XCTestCase {
     func testAttributedTextDefaultFont() {
         let text = NSAttributedString(string: "Hello! 😄😄😄")
 
-        let frame = LabelLayout(attributedText: text).arrangement().frame
-        AssertEqualDensity(frame, [
-            1.0: CGRect(x: 0, y: 0, width: 115, height: 21),
-            2.0: CGRect(x: 0, y: 0, width: 114.5, height: 20.5),
-            3.0: CGRect(x: 0, y: 0, width: 114 + oneThird, height: 20 + oneThird)
-            ])
+        let arrangement = LabelLayout(attributedText: text).arrangement()
+        let label = UILabel(attributedText: text)
+
+        XCTAssertEqual(arrangement.frame.size, label.intrinsicContentSize())
     }
 
     func testAttributedTextCustomFont() {
@@ -92,11 +94,10 @@ class LabelLayoutTests: XCTestCase {
         let attributes = [NSFontAttributeName: font]
         let text = NSAttributedString(string: "Hello! 😄😄😄", attributes: attributes)
 
-        let frame = LabelLayout(attributedText: text).arrangement().frame
-        AssertEqualDensity(frame, [
-            2.0: CGRect(x: 0, y: 0, width: 125.5, height: 31),
-            3.0: CGRect(x: 0, y: 0, width: 125 + twoThirds, height: 31)
-            ])
+        let arrangement = LabelLayout(attributedText: text).arrangement()
+        let label = UILabel(attributedText: text)
+
+        XCTAssertEqual(arrangement.frame.size, label.intrinsicContentSize())
         #endif
     }
 
@@ -106,19 +107,10 @@ class LabelLayoutTests: XCTestCase {
         let text = NSMutableAttributedString(string: "Hello world! 😄😄😄")
         text.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(6, 6))
 
-        let frame = LabelLayout(attributedText: text).arrangement().frame
-        if #available(iOS 9, *) {
-            AssertEqualDensity(frame, [
-                2.0: CGRect(x: 0, y: 0, width: 168, height: 31),
-                3.0: CGRect(x: 0, y: 0, width: 168, height: 31)
-                ])
-        } else {
-            // for some reason iOS 8 and iOS 9 have a 1px difference.
-            AssertEqualDensity(frame, [
-                2.0: CGRect(x: 0, y: 0, width: 169, height: 31),
-                3.0: CGRect(x: 0, y: 0, width: 169, height: 31)
-                ])
-        }
+        let arrangement = LabelLayout(attributedText: text).arrangement()
+        let label = UILabel(attributedText: text)
+
+        XCTAssertEqual(arrangement.frame.size, label.intrinsicContentSize())
         #endif
     }
 
@@ -134,9 +126,26 @@ class LabelLayoutTests: XCTestCase {
 }
 
 extension UILabel {
-    convenience init(text: String, font: UIFont) {
+    convenience init(text: String, font: UIFont? = nil, numberOfLines: Int? = nil) {
         self.init()
         self.text = text
-        self.font = font
+        if let font = font {
+            self.font = font
+        }
+        if let numberOfLines = numberOfLines {
+            self.numberOfLines = numberOfLines
+        }
+    }
+
+    convenience init(attributedText: NSAttributedString, font: UIFont? = nil, numberOfLines: Int? = nil) {
+        self.init()
+        if let font = font {
+            self.font = font
+        }
+        if let numberOfLines = numberOfLines {
+            self.numberOfLines = numberOfLines
+        }
+        // Want to set attributed text AFTER font it set, otherwise the font seems to take precedence.
+        self.attributedText = attributedText
     }
 }
