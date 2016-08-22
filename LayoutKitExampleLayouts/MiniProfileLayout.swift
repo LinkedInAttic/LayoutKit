@@ -12,7 +12,7 @@ import UIKit
 import LayoutKit
 
 /// A small version of a LinkedIn profile.
-public class MiniProfileLayout: InsetLayout {
+public class MiniProfileLayout: InsetLayout<View> {
 
     public init(imageName: String, name: String, headline: String) {
         let image = SizeLayout<UIImageView>(

@@ -9,7 +9,7 @@
 import UIKit
 import LayoutKit
 
-public class SkillsCardLayout: InsetLayout {
+public class SkillsCardLayout: InsetLayout<View> {
 
     public init(skill: String, endorsementCount: String, endorserProfileImageName: String) {
         let skillLabel = LabelLayout(

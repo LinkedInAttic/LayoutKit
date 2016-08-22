@@ -35,7 +35,7 @@ public class StackView: UIView {
     public let spacing: CGFloat
 
     /// The distribution of space along the stack's axis.
-    public let distribution: StackLayout.Distribution
+    public let distribution: StackLayoutDistribution
 
     /// The distance that the arranged views are inset from the stack view. Defaults to 0.
     public let contentInsets: UIEdgeInsets
@@ -50,7 +50,7 @@ public class StackView: UIView {
 
     public init(axis: Axis,
                 spacing: CGFloat = 0,
-                distribution: StackLayout.Distribution = .leading,
+                distribution: StackLayoutDistribution = .leading,
                 contentInsets: UIEdgeInsets = UIEdgeInsetsZero,
                 alignment: Alignment = .fill,
                 flexibility: Flexibility? = nil) {

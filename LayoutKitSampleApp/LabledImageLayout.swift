@@ -12,7 +12,7 @@ import LayoutKit
 /**
  An image stacked on top of a label.
  */
-class LabeledImageLayout: StackLayout {
+class LabeledImageLayout: StackLayout<UIView> {
 
     init(imageUrl: NSURL, imageSize: CGSize, labelText: String) {
         let image = UrlImageLayout(url: imageUrl, size: imageSize)

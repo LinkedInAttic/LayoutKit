@@ -16,7 +16,7 @@ import CoreGraphics
  If this not enough space along the axis for all sublayouts then layouts with the highest flexibility are removed
  until there is enough space to posistion the remaining layouts.
  */
-public class StackLayout: BaseLayout<View> {
+public class StackLayout<V: View>: BaseLayout<V> {
 
     /// The axis along which sublayouts are stacked.
     public let axis: Axis
@@ -28,19 +28,19 @@ public class StackLayout: BaseLayout<View> {
     public let spacing: CGFloat
 
     /// The distribution of space along the stack's axis.
-    public let distribution: Distribution
+    public let distribution: StackLayoutDistribution
     
     /// The stacked layouts.
     public let sublayouts: [Layout]
 
     public init(axis: Axis,
                 spacing: CGFloat = 0,
-                distribution: Distribution = .fillFlexing,
+                distribution: StackLayoutDistribution = .fillFlexing,
                 alignment: Alignment = .fill,
                 flexibility: Flexibility? = nil,
                 viewReuseId: String? = nil,
                 sublayouts: [Layout],
-                config: (View -> Void)? = nil) {
+                config: (V -> Void)? = nil) {
         
         self.axis = axis
         self.spacing = spacing
@@ -156,50 +156,51 @@ extension StackLayout: ConfigurableLayout {
 
 // MARK: - Distribution
 
-extension StackLayout {
+/**
+ Specifies how excess space along the axis is allocated.
+ */
+public enum StackLayoutDistribution {
+
     /**
-     Specifies how excess space along the axis is allocated.
+     Sublayouts are positioned starting at the top edge of vertical stacks or at the leading edge of horizontal stacks.
      */
-    public enum Distribution {
+    case leading
 
-        /**
-         Sublayouts are positioned starting at the top edge of vertical stacks or at the leading edge of horizontal stacks.
-         */
-        case leading
+    /**
+     Sublayouts are positioned starting at the bottom edge of vertical stacks or at the the trailing edge of horizontal stacks.
+     */
+    case trailing
 
-        /**
-         Sublayouts are positioned starting at the bottom edge of vertical stacks or at the the trailing edge of horizontal stacks.
-         */
-        case trailing
+    /**
+     Sublayouts are positioned so that they are centered along the stack's axis.
+     */
+    case center
 
-        /**
-         Sublayouts are positioned so that they are centered along the stack's axis.
-         */
-        case center
+    /**
+     Distributes excess axis space by increasing the spacing between each sublayout by an equal amount.
+     The sublayouts and the adjusted spacing consume all of the available axis space.
+     */
+    case fillEqualSpacing
 
-        /**
-         Distributes excess axis space by increasing the spacing between each sublayout by an equal amount.
-         The sublayouts and the adjusted spacing consume all of the available axis space.
-         */
-        case fillEqualSpacing
+    /**
+     Distributes axis space equally among the sublayouts.
+     The spacing between the sublayouts remains equal to the spacing parameter.
+     */
+    case fillEqualSize
 
-        /**
-         Distributes axis space equally among the sublayouts.
-         The spacing between the sublayouts remains equal to the spacing parameter.
-         */
-        case fillEqualSize
+    /**
+     Distributes excess axis space by growing the most flexible sublayout along the axis.
+     */
+    case fillFlexing
+}
 
-        /**
-         Distributes excess axis space by growing the most flexible sublayout along the axis.
-         */
-        case fillFlexing
-    }
+private struct DistributionConfig {
+    let initialAxisOffset: CGFloat
+    let axisSpacing: CGFloat
+    let stretchIndex: Int?
+}
 
-    private struct DistributionConfig {
-        let initialAxisOffset: CGFloat
-        let axisSpacing: CGFloat
-        let stretchIndex: Int?
-    }
+extension StackLayout {
 
     private func distributionConfig(excessAxisLength excessAxisLength: CGFloat) -> DistributionConfig {
         let initialAxisOffset: CGFloat
