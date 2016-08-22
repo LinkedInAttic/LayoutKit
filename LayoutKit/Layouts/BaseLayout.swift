@@ -10,8 +10,6 @@
 /**
  A base class for layouts.
  This layout does not require a view at runtime unless a configuration block has been provided.
-
- The class is public so that makeView() can conform to the public Layout protocol.
  */
 public class BaseLayout<V: View> {
 

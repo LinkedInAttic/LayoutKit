@@ -6,7 +6,7 @@
 [![GitHub release](https://img.shields.io/github/release/linkedin/layoutkit.svg?maxAge=86400)]()
 [![CocoaPods](https://img.shields.io/cocoapods/p/LayoutKit.svg?maxAge=86400)]()
 
-LayoutKit is a fast view layout library for iOS.
+LayoutKit is a fast view layout library for iOS, macOS, and tvOS.
 
 ## Motivation
 

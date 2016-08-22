@@ -1,5 +1,5 @@
 site_name: LayoutKit
-site_description: LayoutKit is a fast view layout library for iOS.
+site_description: LayoutKit is a fast view layout library for iOS, macOS, and tvOS.
 site_author: LinkedIn
 site_favicon: img/logo.png
 repo_url: https://github.com/linkedin/LayoutKit
