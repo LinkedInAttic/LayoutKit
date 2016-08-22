@@ -40,7 +40,7 @@ public class CircleImagePileLayout: StackLayout<CircleImagePileView> {
     }
 
     public override var needsView: Bool {
-        return mode == .leadingOnTop
+        return super.needsView || mode == .leadingOnTop
     }
 }
 
