@@ -13,11 +13,11 @@ import UIKit
  */
 public class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
 
-    public let textType: TextType
+    public let textType: LabelLayoutTextType
     public let numberOfLines: Int
     public let font: UIFont
 
-    public init(textType: TextType,
+    public init(textType: LabelLayoutTextType,
                 numberOfLines: Int = defaultNumberOfLines,
                 font: UIFont = defaultFont,
                 alignment: Alignment = defaultAlignment,
@@ -159,7 +159,7 @@ public class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout 
 // "Static stored properties not yet supported in generic types"
 
 /// The types of text that a UILabel can display.
-public enum TextType {
+public enum LabelLayoutTextType {
     case unattributed(String)
     case attributed(NSAttributedString)
 }
