@@ -13,18 +13,24 @@ class SizeLayoutTests: XCTestCase {
 
     func testExtraSpace() {
         let layout = SizeLayout<View>(width: 50, height: 50)
+        XCTAssertEqual(layout.flexibility.vertical, Flexibility.inflexibleFlex)
+        XCTAssertEqual(layout.flexibility.horizontal, Flexibility.inflexibleFlex)
         let frame = layout.arrangement(width: 60, height: 60).frame
         XCTAssertEqual(frame, CGRect(x: 5, y: 5, width: 50, height: 50))
     }
 
     func testInsufficientSpace() {
         let layout = SizeLayout<View>(width: 50, height: 50)
+        XCTAssertEqual(layout.flexibility.vertical, Flexibility.inflexibleFlex)
+        XCTAssertEqual(layout.flexibility.horizontal, Flexibility.inflexibleFlex)
         let frame = layout.arrangement(width: 40, height: 40).frame
         XCTAssertEqual(frame, CGRect(x: 0, y: 0, width: 40, height: 40))
     }
 
     func testCenterAlignment() {
         let layout = SizeLayout<View>(width: 50, height: 50, alignment: .center)
+        XCTAssertEqual(layout.flexibility.vertical, Flexibility.inflexibleFlex)
+        XCTAssertEqual(layout.flexibility.horizontal, Flexibility.inflexibleFlex)
         let frame = layout.arrangement(width: 60, height: 60).frame
         XCTAssertEqual(frame, CGRect(x: 5, y: 5, width: 50, height: 50))
     }
@@ -51,6 +57,8 @@ class SizeLayoutTests: XCTestCase {
 
     func testOnlyHeight() {
         let layout = SizeLayout<View>(height: 1)
+        XCTAssertEqual(layout.flexibility.vertical, Flexibility.inflexibleFlex)
+        XCTAssertEqual(layout.flexibility.horizontal, Flexibility.defaultFlex)
 
         let measurement = layout.measurement(within: CGSize(width: 10, height: 10))
         XCTAssertEqual(measurement.size, CGSize(width: 0, height: 1))
@@ -61,6 +69,8 @@ class SizeLayoutTests: XCTestCase {
 
     func testOnlyWidth() {
         let layout = SizeLayout<View>(width: 1)
+        XCTAssertEqual(layout.flexibility.vertical, Flexibility.defaultFlex)
+        XCTAssertEqual(layout.flexibility.horizontal, Flexibility.inflexibleFlex)
 
         let measurement = layout.measurement(within: CGSize(width: 10, height: 10))
         XCTAssertEqual(measurement.size, CGSize(width: 1, height: 0))
@@ -114,5 +124,39 @@ class SizeLayoutTests: XCTestCase {
 
         let frame = layout.arrangement().frame
         XCTAssertEqual(frame, CGRect(x: 0, y: 0, width: 5, height: 5))
+    }
+
+    func testMinSizeLayout() {
+        let layout = SizeLayout<View>(minWidth: 10, minHeight: 10)
+        let size = layout.arrangement().frame.size
+        XCTAssertEqual(size, CGSize(width: 10, height: 10))
+        XCTAssertEqual(layout.flexibility.vertical, Flexibility.defaultFlex)
+        XCTAssertEqual(layout.flexibility.horizontal, Flexibility.defaultFlex)
+    }
+
+    func testMinSizeLayoutWithSublayout() {
+        let sublayout = SizeLayout<View>(width: 5, height: 15)
+        let layout = SizeLayout<View>(minWidth: 10, minHeight: 10, sublayout: sublayout)
+        let size = layout.arrangement().frame.size
+        XCTAssertEqual(size, CGSize(width: 10, height: 15))
+        XCTAssertEqual(layout.flexibility.vertical, Flexibility.defaultFlex)
+        XCTAssertEqual(layout.flexibility.horizontal, Flexibility.defaultFlex)
+    }
+
+    func testMaxSizeLayout() {
+        let layout = SizeLayout<View>(maxWidth: 10, maxHeight: 10)
+        let size = layout.arrangement().frame.size
+        XCTAssertEqual(size, CGSize(width: 0, height: 0))
+        XCTAssertEqual(layout.flexibility.vertical, Flexibility.defaultFlex)
+        XCTAssertEqual(layout.flexibility.horizontal, Flexibility.defaultFlex)
+    }
+
+    func testMaxSizeLayoutWithSublayout() {
+        let sublayout = SizeLayout<View>(width: 5, height: 15)
+        let layout = SizeLayout<View>(maxWidth: 10, maxHeight: 10, sublayout: sublayout)
+        let size = layout.arrangement().frame.size
+        XCTAssertEqual(size, CGSize(width: 5, height: 10))
+        XCTAssertEqual(layout.flexibility.vertical, Flexibility.defaultFlex)
+        XCTAssertEqual(layout.flexibility.horizontal, Flexibility.defaultFlex)
     }
 }

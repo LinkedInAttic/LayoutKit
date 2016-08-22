@@ -80,7 +80,7 @@ public class LabelLayout: BaseLayout<UILabel>, ConfigurableLayout {
 
     public func measurement(within maxSize: CGSize) -> LayoutMeasurement {
         let fittedSize = textSize(within: maxSize)
-        return LayoutMeasurement(layout: self, size: fittedSize.sizeDecreasedToSize(maxSize), maxSize: maxSize, sublayouts: [])
+        return LayoutMeasurement(layout: self, size: fittedSize.decreasedToSize(maxSize), maxSize: maxSize, sublayouts: [])
     }
 
     private func textSize(within maxSize: CGSize) -> CGSize {
