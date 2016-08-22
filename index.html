@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="LayoutKit is a fast view layout library for iOS.">
+        <meta name="description" content="LayoutKit is a fast view layout library for iOS, macOS, and tvOS.">
         <meta name="author" content="LinkedIn">
         
         <link rel="shortcut icon" href="./img/logo.png">
@@ -90,6 +90,18 @@
                             
 <li >
     <a href="uikit/">Interfacing with UIKit</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="animations/">Animations</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="code-documentation/">Code documentation</a>
 </li>
 
                         
@@ -185,7 +197,7 @@
 <a href="http://cocoadocs.org/docsets/LayoutKit"><img alt="CocoaPods" src="https://img.shields.io/cocoapods/metrics/doc-percent/LayoutKit.svg?maxAge=86400" /></a>
 <a href=""><img alt="GitHub release" src="https://img.shields.io/github/release/linkedin/layoutkit.svg?maxAge=86400" /></a>
 <a href=""><img alt="CocoaPods" src="https://img.shields.io/cocoapods/p/LayoutKit.svg?maxAge=86400" /></a></p>
-<p>LayoutKit is a fast view layout library for iOS.</p>
+<p>LayoutKit is a fast view layout library for iOS, macOS, and tvOS.</p>
 <h2 id="motivation">Motivation</h2>
 <p>LinkedIn created LayoutKit because we have found that Auto Layout is not performant enough for complicated view hierarchies in scrollable views.
 For more background, read the <a href="https://engineering.linkedin.com/blog/2016/06/open-sourcing-layoutkit--a-fast-view-layout-library-for-ios-appl">blog post</a>.</p>
@@ -220,7 +232,7 @@ let stack = StackLayout(
 
 let insets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 8)
 let helloWorld = InsetLayout(insets: insets, layout: stack)
-helloWorld.arrangement().makeViews(inView: rootView)
+helloWorld.arrangement().makeViews(in: rootView)
 </code></pre>
 
 <p><img alt="Hello world example layout" src="./img/helloworld.png" /></p>
@@ -294,5 +306,5 @@ helloWorld.arrangement().makeViews(inView: rootView)
 
 <!--
 MkDocs version : 0.15.3
-Build Date UTC : 2016-07-04 15:34:55.095107
+Build Date UTC : 2016-08-22 21:39:48.406530
 -->
