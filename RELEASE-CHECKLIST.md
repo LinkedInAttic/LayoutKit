@@ -24,6 +24,16 @@ LayoutKit passed validation.
 
     [![Build Status](https://travis-ci.org/linkedin/LayoutKit.svg?branch=master)](https://travis-ci.org/linkedin/LayoutKit)
 - [ ] [Draft a release](https://github.com/linkedin/LayoutKit/releases) in Github and write release notes.
+- [ ] Deploy the documentation
+
+    ```bash
+$ mkdocs gh-deploy --clean
+INFO    -  Cleaning site directory 
+INFO    -  Building documentation to directory: /Users/nsnyder/code/linkedin/layoutkit-opensource/site 
+INFO    -  Copying '/Users/nsnyder/code/linkedin/layoutkit-opensource/site' to 'gh-pages' branch and pushing to GitHub. 
+INFO    -  Based on your CNAME file, your documentation should be available shortly at: http://layoutkit.org 
+INFO    -  NOTE: Your DNS records must be configured appropriately for your CNAME URL to work. 
+    ```
 - [ ] Push the podspec to Cocoapods master repo.
     
     `pod trunk push`
