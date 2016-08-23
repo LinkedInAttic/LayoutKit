@@ -11,13 +11,13 @@ import CoreGraphics
 /**
  A layout that has size constraints.
  
- # Default behavior
+ ## Default behavior
 
  Alignment along a dimension defaults to .fill if there is no maximum constraint along that dimension and .center otherwise.
 
  Flexibility along a dimension defaults to .inflexible if there is an exact constraint on that dimension, and .defaultFlex otherwise.
 
- # Constraint precedence
+ ## Constraint precedence
 
  Constraints are enforced with the following precedence:
  1. The maxSize paremeter of measurement.
@@ -27,7 +27,7 @@ import CoreGraphics
  In other words, if it is impossible to satisfy all constraints simultaneously then
  constraints are broken starting with minSize.
 
- # Use cases
+ ## Use cases
 
  Some common use cases:
 
