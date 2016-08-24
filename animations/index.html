@@ -180,7 +180,7 @@
 <p>LayoutKit supports animating between two layouts.</p>
 <h2 id="requirements">Requirements</h2>
 <ol>
-<li>Use the <code>id</code> parameter to identify layouts involved in the animation.</li>
+<li>Use the <code>viewReuseId</code> parameter to identify layouts involved in the animation.</li>
 <li>Call <code>prepareAnimation()</code> on a <code>LayoutArrangement</code> to setup the existing view hierarchy for the animation.</li>
 <li>Call <code>apply()</code> on the animation object returned by <code>prepareAnimation()</code> inside of the UIKit animation block.</li>
 </ol>
@@ -202,12 +202,12 @@ let before = InsetLayout(
                 width: 100,
                 height: 100,
                 alignment: .topLeading,
-                id: &quot;bigSquare&quot;,
+                viewReuseId: &quot;bigSquare&quot;,
                 sublayout: SizeLayout&lt;UIView&gt;(
                     width: 10,
                     height: 10,
                     alignment: .bottomTrailing,
-                    id: &quot;redSquare&quot;,
+                    viewReuseId: &quot;redSquare&quot;,
                     config: { view in
                         view.backgroundColor = UIColor.redColor()
                     }
@@ -220,7 +220,7 @@ let before = InsetLayout(
                 width: 80,
                 height: 80,
                 alignment: .bottomTrailing,
-                id: &quot;littleSquare&quot;,
+                viewReuseId: &quot;littleSquare&quot;,
                 config: { view in
                     view.backgroundColor = UIColor.lightGrayColor()
                 }
@@ -240,7 +240,7 @@ let after = InsetLayout(
                 width: 100,
                 height: 100,
                 alignment: .topLeading,
-                id: &quot;bigSquare&quot;,
+                viewReuseId: &quot;bigSquare&quot;,
                 config: { view in
                     view.backgroundColor = UIColor.grayColor()
                 }
@@ -249,12 +249,12 @@ let after = InsetLayout(
                 width: 50,
                 height: 50,
                 alignment: .bottomTrailing,
-                id: &quot;littleSquare&quot;,
+                viewReuseId: &quot;littleSquare&quot;,
                 sublayout: SizeLayout&lt;UIView&gt;(
                     width: 20,
                     height: 20,
                     alignment: .topLeading,
-                    id: &quot;redSquare&quot;,
+                    viewReuseId: &quot;redSquare&quot;,
                     config: { view in
                         view.backgroundColor = UIColor.redColor()
                     }
