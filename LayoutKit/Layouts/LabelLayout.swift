@@ -74,8 +74,7 @@ public class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout 
 
     private func textSize(within maxSize: CGSize) -> CGSize {
         let options: NSStringDrawingOptions = [
-            .UsesLineFragmentOrigin,
-            .UsesFontLeading
+            .UsesLineFragmentOrigin
         ]
 
         var size: CGSize

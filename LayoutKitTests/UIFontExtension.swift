@@ -17,4 +17,8 @@ extension UIFont {
     static func helvetica(size size: CGFloat = 17) -> UIFont {
         return UIFont(name: "Helvetica", size: size)!
     }
+
+    static func helveticaNeue(size size: CGFloat = 17) -> UIFont {
+        return UIFont(name: "Helvetica Neue", size: size)!
+    }
 }

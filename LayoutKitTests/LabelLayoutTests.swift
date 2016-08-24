@@ -123,6 +123,52 @@ class LabelLayoutTests: XCTestCase {
         XCTAssertNotNil(label)
         XCTAssertEqual(configCount, 1)
     }
+
+    func testHelveticaNeueOneLineText() {
+        let text = "7 d"
+        let font = UIFont.helveticaNeue(size: 12)
+        let numberOfLines = 1
+
+        let label = UILabel(text: text, font: font, numberOfLines: numberOfLines)
+        let arrangement = LabelLayout(text: text, font: font, numberOfLines: numberOfLines).arrangement()
+
+        XCTAssertEqual(arrangement.makeViews().frame.size, label.intrinsicContentSize())
+    }
+
+    func testHelveticaNeueOneLineAttributedText() {
+        let text = NSAttributedString(string: "7 d")
+        let font = UIFont.helveticaNeue(size: 12)
+        let numberOfLines = 1
+
+        let label = UILabel(attributedText: text, font: font, numberOfLines: numberOfLines)
+        let arrangement = LabelLayout(attributedText: text, font: font, numberOfLines: numberOfLines).arrangement()
+
+        XCTAssertEqual(arrangement.makeViews().frame.size, label.intrinsicContentSize())
+    }
+
+    func testHelveticaNeueTwoLineText() {
+        let text = "7 d"
+        let font = UIFont.helveticaNeue(size: 12)
+        let numberOfLines = 2
+
+        let label = UILabel(text: text, font: font, numberOfLines: numberOfLines)
+        let layout = LabelLayout(text: text, font: font, numberOfLines: numberOfLines)
+
+        let maxSize = CGSize(width: 17, height: .max)
+        XCTAssertEqual(layout.measurement(within: maxSize).size, label.sizeThatFits(maxSize))
+    }
+
+    func testHelveticaNeueTwoLineAttributedText() {
+        let text = NSAttributedString(string: "7 d")
+        let font = UIFont.helveticaNeue(size: 12)
+        let numberOfLines = 2
+
+        let label = UILabel(attributedText: text, font: font, numberOfLines: numberOfLines)
+        let layout = LabelLayout(attributedText: text, font: font, numberOfLines: numberOfLines)
+
+        let maxSize = CGSize(width: 17, height: .max)
+        XCTAssertEqual(layout.measurement(within: maxSize).size, label.sizeThatFits(maxSize))
+    }
 }
 
 extension UILabel {
