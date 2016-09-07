@@ -16,6 +16,16 @@ time xcodebuild clean test \
     | xcpretty &&
 cat build.log | sh debug-time-function-bodies.sh &&
 rm -rf $DERIVED_DATA &&
+time xcodebuild clean test \
+    -project LayoutKit.xcodeproj \
+    -scheme LayoutKit-tvOS \
+    -sdk appletvsimulator9.2 \
+    -derivedDataPath $DERIVED_DATA \
+    OTHER_SWIFT_FLAGS='-Xfrontend -debug-time-function-bodies' \
+    | tee build.log \
+    | xcpretty &&
+cat build.log | sh debug-time-function-bodies.sh &&
+rm -rf $DERIVED_DATA &&
 time xcodebuild clean build \
     -project LayoutKit.xcodeproj \
     -scheme LayoutKitSampleApp-iOS \
