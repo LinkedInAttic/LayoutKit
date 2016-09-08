@@ -28,17 +28,20 @@ extension UIView {
         if #available(iOS 9.0, *) {
             return UIView.userInterfaceLayoutDirectionForSemanticContentAttribute(semanticContentAttribute)
         } else {
-            #if LAYOUTKIT_EXTENSION_SAFE
-                // Not aware of any API that we can use on iOS 8.0 in an extension
-                // that would allow us to know 
+            if let isoLangCode = NSBundle.mainBundle().preferredLocalizations.first {
+                switch NSLocale.characterDirectionForLanguage(isoLangCode) {
+                case .Unknown, .LeftToRight, .TopToBottom, .BottomToTop:
+                    return .LeftToRight
+                case .RightToLeft:
+                    return .RightToLeft
+                }
+            } else {
                 #if LAYOUTKIT_EXTENSION_DEFAULT_RIGHT_TO_LEFT
-                    return .rightToLeft
+                    return .RightToLeft
                 #else
-                    return .leftToRight
+                    return .LeftToRight
                 #endif
-            #else
-                return UIApplication.sharedApplication().userInterfaceLayoutDirection
-            #endif
+            }
         }
     }
 }
