@@ -14,8 +14,6 @@ public typealias EdgeInsets = UIEdgeInsets
 
 public typealias UserInterfaceLayoutDirection = UIUserInterfaceLayoutDirection
 
-public typealias Application = UIApplication
-
 extension UIView {
 
     func convertToAbsoluteCoordinates(rect: CGRect) -> CGRect {
@@ -24,5 +22,23 @@ extension UIView {
 
     func convertFromAbsoluteCoordinates(rect: CGRect) -> CGRect {
         return convertRect(rect, fromCoordinateSpace: UIScreen.mainScreen().fixedCoordinateSpace)
+    }
+
+    var userInterfaceLayoutDirection: UIUserInterfaceLayoutDirection {
+        if #available(iOS 9.0, *) {
+            return UIView.userInterfaceLayoutDirectionForSemanticContentAttribute(semanticContentAttribute)
+        } else {
+            #if LAYOUTKIT_EXTENSION_SAFE
+                // Not aware of any API that we can use on iOS 8.0 in an extension
+                // that would allow us to know 
+                #if LAYOUTKIT_EXTENSION_DEFAULT_RIGHT_TO_LEFT
+                    return .rightToLeft
+                #else
+                    return .leftToRight
+                #endif
+            #else
+                return UIApplication.sharedApplication().userInterfaceLayoutDirection
+            #endif
+        }
     }
 }
