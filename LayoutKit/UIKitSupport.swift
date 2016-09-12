@@ -24,10 +24,15 @@ extension UIView {
         return convertRect(rect, fromCoordinateSpace: UIScreen.mainScreen().fixedCoordinateSpace)
     }
 
+    /// Expose API that is identical to NSView.
     var userInterfaceLayoutDirection: UIUserInterfaceLayoutDirection {
         if #available(iOS 9.0, *) {
             return UIView.userInterfaceLayoutDirectionForSemanticContentAttribute(semanticContentAttribute)
         } else {
+            // Before iOS 9, there wasn't good support for RTL interfaces
+            // (even the OS itself didn't swap interfaces right to left).
+            // The best we can do is check the language direction of the preferred localization
+            // and use that.
             if let isoLangCode = NSBundle.mainBundle().preferredLocalizations.first {
                 switch NSLocale.characterDirectionForLanguage(isoLangCode) {
                 case .Unknown, .LeftToRight, .TopToBottom, .BottomToTop:
