@@ -102,7 +102,7 @@ public struct LayoutArrangement {
 
     /// Horizontally flips the view frames if direction does not match the user's language direction.
     private func handleLayoutDirection(view: View, direction: UserInterfaceLayoutDirection) {
-        if Application.sharedApplication().userInterfaceLayoutDirection != direction {
+        if view.userInterfaceLayoutDirection != direction {
             flipSubviewsHorizontally(view)
         }
     }

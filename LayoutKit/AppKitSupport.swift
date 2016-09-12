@@ -14,8 +14,6 @@ public typealias EdgeInsets = NSEdgeInsets
 
 public typealias UserInterfaceLayoutDirection = NSUserInterfaceLayoutDirection
 
-public typealias Application = NSApplication
-
 extension NSView {
     
     func convertToAbsoluteCoordinates(rect: CGRect) -> CGRect {
