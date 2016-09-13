@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0730"
+   LastUpgradeVersion = "0800"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0B5191421D2922C800769358"
+               BlueprintIdentifier = "0BCB75971D8722370065E02A"
                BuildableName = "LayoutKit.framework"
                BlueprintName = "LayoutKit-macOS"
                ReferencedContainer = "container:LayoutKit.xcodeproj">
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0B5191651D29241200769358"
-               BuildableName = "LayoutKitTests-macOS.xctest"
-               BlueprintName = "LayoutKitTests-macOS"
+               BlueprintIdentifier = "0BCB759F1D8722370065E02A"
+               BuildableName = "LayoutKit-macOSTests.xctest"
+               BlueprintName = "LayoutKit-macOSTests"
                ReferencedContainer = "container:LayoutKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0B5191421D2922C800769358"
+            BlueprintIdentifier = "0BCB75971D8722370065E02A"
             BuildableName = "LayoutKit.framework"
             BlueprintName = "LayoutKit-macOS"
             ReferencedContainer = "container:LayoutKit.xcodeproj">
@@ -64,7 +64,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0B5191421D2922C800769358"
+            BlueprintIdentifier = "0BCB75971D8722370065E02A"
             BuildableName = "LayoutKit.framework"
             BlueprintName = "LayoutKit-macOS"
             ReferencedContainer = "container:LayoutKit.xcodeproj">
@@ -82,7 +82,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0B5191421D2922C800769358"
+            BlueprintIdentifier = "0BCB75971D8722370065E02A"
             BuildableName = "LayoutKit.framework"
             BlueprintName = "LayoutKit-macOS"
             ReferencedContainer = "container:LayoutKit.xcodeproj">

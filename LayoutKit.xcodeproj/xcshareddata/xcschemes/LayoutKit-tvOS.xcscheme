@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0730"
+   LastUpgradeVersion = "0800"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0B2E753C1D40837100CD7336"
+               BlueprintIdentifier = "0BCB757B1D8721370065E02A"
                BuildableName = "LayoutKit.framework"
                BlueprintName = "LayoutKit-tvOS"
                ReferencedContainer = "container:LayoutKit.xcodeproj">
@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0B2E75631D4084C400CD7336"
-               BuildableName = "LayoutKitTests-tvOS.xctest"
-               BlueprintName = "LayoutKitTests-tvOS"
+               BlueprintIdentifier = "0BCB75831D8721370065E02A"
+               BuildableName = "LayoutKit-tvOSTests.xctest"
+               BlueprintName = "LayoutKit-tvOSTests"
                ReferencedContainer = "container:LayoutKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0B2E753C1D40837100CD7336"
+            BlueprintIdentifier = "0BCB757B1D8721370065E02A"
             BuildableName = "LayoutKit.framework"
             BlueprintName = "LayoutKit-tvOS"
             ReferencedContainer = "container:LayoutKit.xcodeproj">
@@ -64,7 +64,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0B2E753C1D40837100CD7336"
+            BlueprintIdentifier = "0BCB757B1D8721370065E02A"
             BuildableName = "LayoutKit.framework"
             BlueprintName = "LayoutKit-tvOS"
             ReferencedContainer = "container:LayoutKit.xcodeproj">
@@ -82,7 +82,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0B2E753C1D40837100CD7336"
+            BlueprintIdentifier = "0BCB757B1D8721370065E02A"
             BuildableName = "LayoutKit.framework"
             BlueprintName = "LayoutKit-tvOS"
             ReferencedContainer = "container:LayoutKit.xcodeproj">

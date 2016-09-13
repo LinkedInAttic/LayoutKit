@@ -13,7 +13,7 @@ class LayoutArrangementTests: XCTestCase {
 
     func testAnimation() {
 
-        var redSquare: UIView? = nil
+        var redSquare: View? = nil
 
         let before = InsetLayout(
             inset: 10,
@@ -21,39 +21,29 @@ class LayoutArrangementTests: XCTestCase {
                 axis: .vertical,
                 distribution: .fillEqualSpacing,
                 sublayouts: [
-                    SizeLayout<UIView>(
+                    SizeLayout<View>(
                         width: 100,
                         height: 100,
                         alignment: .topLeading,
                         viewReuseId: "bigSquare",
-                        sublayout: SizeLayout<UIView>(
+                        sublayout: SizeLayout<View>(
                             width: 10,
                             height: 10,
                             alignment: .bottomTrailing,
                             viewReuseId: "redSquare",
                             config: { view in
-                                view.backgroundColor = UIColor.redColor()
                                 redSquare = view
                             }
-                        ),
-                        config: { view in
-                            view.backgroundColor = UIColor.grayColor()
-                        }
+                        )
                     ),
-                    SizeLayout<UIView>(
+                    SizeLayout<View>(
                         width: 80,
                         height: 80,
                         alignment: .bottomTrailing,
-                        viewReuseId: "littleSquare",
-                        config: { view in
-                            view.backgroundColor = UIColor.lightGrayColor()
-                        }
+                        viewReuseId: "littleSquare"
                     )
                 ]
-            ),
-            config: { view in
-                view.backgroundColor = UIColor.blackColor()
-            }
+            )
         )
 
 
@@ -63,42 +53,32 @@ class LayoutArrangementTests: XCTestCase {
                 axis: .vertical,
                 distribution: .fillEqualSpacing,
                 sublayouts: [
-                    SizeLayout<UIView>(
+                    SizeLayout<View>(
                         width: 100,
                         height: 100,
                         alignment: .topLeading,
-                        viewReuseId: "bigSquare",
-                        config: { view in
-                            view.backgroundColor = UIColor.grayColor()
-                        }
+                        viewReuseId: "bigSquare"
                     ),
-                    SizeLayout<UIView>(
+                    SizeLayout<View>(
                         width: 50,
                         height: 50,
                         alignment: .bottomTrailing,
                         viewReuseId: "littleSquare",
-                        sublayout: SizeLayout<UIView>(
+                        sublayout: SizeLayout<View>(
                             width: 20,
                             height: 20,
                             alignment: .topLeading,
                             viewReuseId: "redSquare",
                             config: { view in
-                                view.backgroundColor = UIColor.redColor()
                                 redSquare = view
                             }
-                        ),
-                        config: { view in
-                            view.backgroundColor = UIColor.lightGrayColor()
-                        }
+                        )
                     )
                 ]
-            ),
-            config: { view in
-                view.backgroundColor = UIColor.blackColor()
-            }
+            )
         )
 
-        let rootView = UIView(frame: CGRect(x: 0, y: 0, width: 250, height: 250))
+        let rootView = View(frame: CGRect(x: 0, y: 0, width: 250, height: 250))
         before.arrangement(width: 250, height: 250).makeViews(in: rootView)
         XCTAssertEqual(redSquare?.frame, CGRect(x: 90, y: 90, width: 10, height: 10))
 
