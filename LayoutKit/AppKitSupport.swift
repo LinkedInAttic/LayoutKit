@@ -17,7 +17,7 @@ public typealias UserInterfaceLayoutDirection = NSUserInterfaceLayoutDirection
 extension NSView {
     
     func convertToAbsoluteCoordinates(rect: CGRect) -> CGRect {
-        return convertRect(rect, fromView: nil)
+        return convertRect(rect, toView: nil)
     }
 
     func convertFromAbsoluteCoordinates(rect: CGRect) -> CGRect {
