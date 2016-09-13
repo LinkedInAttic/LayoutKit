@@ -32,28 +32,18 @@ class LayoutArrangementTests: XCTestCase {
                             alignment: .bottomTrailing,
                             viewReuseId: "redSquare",
                             config: { view in
-//                                view.backgroundColor = UIColor.redColor()
                                 redSquare = view
                             }
-                        ),
-                        config: { view in
-//                            view.backgroundColor = UIColor.grayColor()
-                        }
+                        )
                     ),
                     SizeLayout<View>(
                         width: 80,
                         height: 80,
                         alignment: .bottomTrailing,
-                        viewReuseId: "littleSquare",
-                        config: { view in
-//                            view.backgroundColor = UIColor.lightGrayColor()
-                        }
+                        viewReuseId: "littleSquare"
                     )
                 ]
-            ),
-            config: { view in
-//                view.backgroundColor = UIColor.blackColor()
-            }
+            )
         )
 
 
@@ -67,10 +57,7 @@ class LayoutArrangementTests: XCTestCase {
                         width: 100,
                         height: 100,
                         alignment: .topLeading,
-                        viewReuseId: "bigSquare",
-                        config: { view in
-//                            view.backgroundColor = UIColor.grayColor()
-                        }
+                        viewReuseId: "bigSquare"
                     ),
                     SizeLayout<View>(
                         width: 50,
@@ -83,19 +70,12 @@ class LayoutArrangementTests: XCTestCase {
                             alignment: .topLeading,
                             viewReuseId: "redSquare",
                             config: { view in
-//                                view.backgroundColor = UIColor.redColor()
                                 redSquare = view
                             }
-                        ),
-                        config: { view in
-//                            view.backgroundColor = UIColor.lightGrayColor()
-                        }
+                        )
                     )
                 ]
-            ),
-            config: { view in
-//                view.backgroundColor = UIColor.blackColor()
-            }
+            )
         )
 
         let rootView = View(frame: CGRect(x: 0, y: 0, width: 250, height: 250))
