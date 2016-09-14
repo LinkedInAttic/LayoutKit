@@ -12,7 +12,7 @@ import UIKit
 import LayoutKit
 
 /// A small version of a LinkedIn profile.
-public class MiniProfileLayout: InsetLayout<View> {
+open class MiniProfileLayout: InsetLayout<View> {
 
     public init(imageName: String, name: String, headline: String) {
         let image = SizeLayout<UIImageView>(
@@ -28,13 +28,13 @@ public class MiniProfileLayout: InsetLayout<View> {
             }
         )
 
-        let nameLayout = LabelLayout(text: name, font: UIFont.systemFontOfSize(40))
+        let nameLayout = LabelLayout(text: name, font: UIFont.systemFont(ofSize: 40))
 
         let headlineLayout = LabelLayout(
             text: headline,
-            font: UIFont.systemFontOfSize(20),
+            font: UIFont.systemFont(ofSize: 20),
             config: { label in
-                label.textColor = UIColor.darkGrayColor()
+                label.textColor = UIColor.darkGray
             }
         )
 
@@ -49,7 +49,7 @@ public class MiniProfileLayout: InsetLayout<View> {
                 ]
             ),
             config: { view in
-                view.backgroundColor = UIColor.whiteColor()
+                view.backgroundColor = UIColor.white
             }
         )
     }

@@ -9,11 +9,11 @@
 import UIKit
 import LayoutKit
 
-public class ProfileCardLayout: StackLayout<UIView> {
+open class ProfileCardLayout: StackLayout<UIView> {
 
     public init(name: String, connectionDegree: String, headline: String, timestamp: String, profileImageName: String) {
         let labelConfig = { (label: UILabel) in
-            label.backgroundColor = UIColor.yellowColor()
+            label.backgroundColor = UIColor.yellow
         }
 
         let nameAndConnectionDegree = StackLayout(
@@ -22,7 +22,7 @@ public class ProfileCardLayout: StackLayout<UIView> {
             sublayouts: [
                 LabelLayout(text: name, config: labelConfig),
                 LabelLayout(text: connectionDegree, config: { label in
-                    label.backgroundColor = UIColor.grayColor()
+                    label.backgroundColor = UIColor.gray
                 }),
             ]
         )

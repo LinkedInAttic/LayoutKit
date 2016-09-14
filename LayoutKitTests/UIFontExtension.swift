@@ -14,11 +14,11 @@ extension UIFont {
      Returns helvetica font.
      Layout tests should always explicitly specify a font so that sizes don't change if the default system font or font size changes.
      */
-    static func helvetica(size size: CGFloat = 17) -> UIFont {
+    static func helvetica(size: CGFloat = 17) -> UIFont {
         return UIFont(name: "Helvetica", size: size)!
     }
 
-    static func helveticaNeue(size size: CGFloat = 17) -> UIFont {
+    static func helveticaNeue(size: CGFloat = 17) -> UIFont {
         return UIFont(name: "Helvetica Neue", size: size)!
     }
 }

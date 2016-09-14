@@ -7,20 +7,21 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import CoreGraphics
+import Foundation
 
 /**
  A layout that insets another layout.
  */
-public class InsetLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
+open class InsetLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
     
-    public let insets: EdgeInsets
-    public let sublayout: Layout
+    open let insets: EdgeInsets
+    open let sublayout: Layout
 
     public init(insets: EdgeInsets,
                 alignment: Alignment = Alignment.fill,
                 viewReuseId: String? = nil,
                 sublayout: Layout,
-                config: (View -> Void)? = nil) {
+                config: ((View) -> Void)? = nil) {
         self.insets = insets
         self.sublayout = sublayout
         super.init(alignment: alignment, flexibility: sublayout.flexibility, viewReuseId: viewReuseId, config: config)
@@ -30,19 +31,19 @@ public class InsetLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
                             alignment: Alignment = Alignment.fill,
                             viewReuseId: String? = nil,
                             sublayout: Layout,
-                            config: (View -> Void)? = nil) {
+                            config: ((View) -> Void)? = nil) {
         let insets = EdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
         self.init(insets: insets, alignment: alignment, viewReuseId: viewReuseId, sublayout: sublayout, config: config)
     }
 
-    public func measurement(within maxSize: CGSize) -> LayoutMeasurement {
+    open func measurement(within maxSize: CGSize) -> LayoutMeasurement {
         let insetMaxSize = maxSize.decreasedByInsets(insets)
         let sublayoutMeasurement = sublayout.measurement(within: insetMaxSize)
         let size = sublayoutMeasurement.size.increasedByInsets(insets)
         return LayoutMeasurement(layout: self, size: size, maxSize: maxSize, sublayouts: [sublayoutMeasurement])
     }
 
-    public func arrangement(within rect: CGRect, measurement: LayoutMeasurement) -> LayoutArrangement {
+    open func arrangement(within rect: CGRect, measurement: LayoutMeasurement) -> LayoutArrangement {
         let frame = alignment.position(size: measurement.size, in: rect)
         let insetOrigin = CGPoint(x: insets.left, y: insets.top)
         let insetSize = frame.size.decreasedByInsets(insets)

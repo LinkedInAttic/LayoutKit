@@ -8,12 +8,12 @@
 
 import Foundation
 
-extension NSIndexSet {
+extension IndexSet {
     /// Returns the only index in the set.
     /// It returns nil if there is not exactly one index in the set.
     public var only: Int? {
         if count == 1 {
-            return firstIndex
+            return first
         }
         return nil
     }

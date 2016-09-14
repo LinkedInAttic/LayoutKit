@@ -10,7 +10,7 @@ import CoreGraphics
 
 /**
  A layout that has size constraints.
- 
+
  ## Default behavior
 
  Alignment along a dimension defaults to .fill if there is no maximum constraint along that dimension and .center otherwise.
@@ -23,7 +23,7 @@ import CoreGraphics
  1. The maxSize paremeter of measurement.
  2. The SizeLayout's maxSize
  3. The SizeLayout's minSize
- 
+
  In other words, if it is impossible to satisfy all constraints simultaneously then
  constraints are broken starting with minSize.
 
@@ -44,14 +44,14 @@ import CoreGraphics
  // A label with minimum width.
  SizeLayout<UIView>(minWidth: 100, sublayout: LabelLayout(text: "Hello", alignment: .fill))
  ```
-*/
-public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
+ */
+open class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
 
-    public let minWidth: CGFloat?
-    public let maxWidth: CGFloat?
-    public let minHeight: CGFloat?
-    public let maxHeight: CGFloat?
-    public let sublayout: Layout?
+    open let minWidth: CGFloat?
+    open let maxWidth: CGFloat?
+    open let minHeight: CGFloat?
+    open let maxHeight: CGFloat?
+    open let sublayout: Layout?
 
     // MARK: - Designated initializers
 
@@ -63,7 +63,7 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
                 flexibility: Flexibility? = nil,
                 viewReuseId: String? = nil,
                 sublayout: Layout? = nil,
-                config: (V -> Void)? = nil) {
+                config: ((V) -> Void)? = nil) {
 
         self.minWidth = minWidth
         self.maxWidth = maxWidth
@@ -88,7 +88,7 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
                             flexibility: Flexibility? = nil,
                             viewReuseId: String? = nil,
                             sublayout: Layout? = nil,
-                            config: (V -> Void)? = nil) {
+                            config: ((V) -> Void)? = nil) {
 
         self.init(minWidth: width,
                   maxWidth: width,
@@ -108,7 +108,7 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
                             flexibility: Flexibility? = nil,
                             viewReuseId: String? = nil,
                             sublayout: Layout? = nil,
-                            config: (V -> Void)? = nil) {
+                            config: ((V) -> Void)? = nil) {
 
         self.init(minWidth: width,
                   maxWidth: width,
@@ -128,7 +128,7 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
                             flexibility: Flexibility? = nil,
                             viewReuseId: String? = nil,
                             sublayout: Layout? = nil,
-                            config: (V -> Void)? = nil) {
+                            config: ((V) -> Void)? = nil) {
 
         self.init(minWidth: minWidth,
                   maxWidth: maxWidth,
@@ -146,7 +146,7 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
                             flexibility: Flexibility? = nil,
                             viewReuseId: String? = nil,
                             sublayout: Layout? = nil,
-                            config: (V -> Void)? = nil) {
+                            config: ((V) -> Void)? = nil) {
 
         self.init(width: size.width,
                   height: size.height,
@@ -162,7 +162,7 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
                             flexibility: Flexibility? = nil,
                             viewReuseId: String? = nil,
                             sublayout: Layout? = nil,
-                            config: (V -> Void)? = nil) {
+                            config: ((V) -> Void)? = nil) {
 
         self.init(maxWidth: maxSize.width,
                   maxHeight: maxSize.height,
@@ -178,7 +178,7 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
                             flexibility: Flexibility? = nil,
                             viewReuseId: String? = nil,
                             sublayout: Layout? = nil,
-                            config: (V -> Void)? = nil) {
+                            config: ((V) -> Void)? = nil) {
 
         self.init(minWidth: minSize.width,
                   minHeight: minSize.height,
@@ -191,15 +191,15 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
 
     // MARK: - Initialization helpers
 
-    private static func defaultAlignment(maxWidth maxWidth: CGFloat?, maxHeight: CGFloat?) -> Alignment {
+    private static func defaultAlignment(maxWidth: CGFloat?, maxHeight: CGFloat?) -> Alignment {
         return Alignment(vertical: maxHeight == nil ? .fill : .center,
                          horizontal: maxWidth == nil ? .fill : .center)
     }
 
-    private static func defaultFlexibility(minWidth minWidth: CGFloat?,
-                                                    maxWidth: CGFloat?,
-                                                    minHeight: CGFloat?,
-                                                    maxHeight: CGFloat?) -> Flexibility {
+    private static func defaultFlexibility(minWidth: CGFloat?,
+                                           maxWidth: CGFloat?,
+                                           minHeight: CGFloat?,
+                                           maxHeight: CGFloat?) -> Flexibility {
         let horizontal = dimensionFlex(min: minWidth, max: maxWidth)
         let vertical = dimensionFlex(min: minHeight, max: maxHeight)
         return Flexibility(horizontal: horizontal, vertical: vertical)
@@ -207,7 +207,7 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
 
     /// If we have an exact constraint on a dimension then it is inflexible.
     /// Otherwise, it has default flex.
-    private static func dimensionFlex(min min: CGFloat?, max: CGFloat?) -> Flexibility.Flex {
+    private static func dimensionFlex(min: CGFloat?, max: CGFloat?) -> Flexibility.Flex {
         return equals(min, max) ? Flexibility.inflexibleFlex : Flexibility.defaultFlex
     }
 
@@ -219,8 +219,8 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
 
     /// Returns true if left and right are equal within a small tolerance.
     /// A nil value is not equal to anything else.
-    private static func equals(left: CGFloat?, _ right: CGFloat?) -> Bool {
-        guard let left = left, right = right else {
+    private static func equals(_ left: CGFloat?, _ right: CGFloat?) -> Bool {
+        guard let left = left, let right = right else {
             // treat nil != nil
             return false
         }
@@ -229,13 +229,13 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
 
     // MARK: - Layout protocol
 
-    public func measurement(within maxSize: CGSize) -> LayoutMeasurement {
+    open func measurement(within maxSize: CGSize) -> LayoutMeasurement {
         // Take the smaller of our configured max size and the given max size for measurement.
-        let availableSize = maxSize.decreasedToSize(CGSize(width: maxWidth ?? .max, height: maxHeight ?? .max))
+        let availableSize = maxSize.decreasedToSize(CGSize(width: maxWidth ?? .greatestFiniteMagnitude, height: maxHeight ?? .greatestFiniteMagnitude))
 
         // Measure the sublayout if it exists.
         let sublayoutMeasurement = sublayout?.measurement(within: availableSize)
-        let sublayoutSize = sublayoutMeasurement?.size ?? CGSizeZero
+        let sublayoutSize = sublayoutMeasurement?.size ?? .zero
 
         // Make sure that our size is in the desired range.
         let size = sublayoutSize.increasedToSize(CGSize(width: minWidth ?? 0, height: minHeight ?? 0)).decreasedToSize(availableSize)
@@ -244,12 +244,12 @@ public class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
         return LayoutMeasurement(layout: self, size: size, maxSize: maxSize, sublayouts: sublayouts)
     }
 
-    public func arrangement(within rect: CGRect, measurement: LayoutMeasurement) -> LayoutArrangement {
+    open func arrangement(within rect: CGRect, measurement: LayoutMeasurement) -> LayoutArrangement {
         let frame = alignment.position(size: measurement.size, in: rect)
         let sublayoutRect = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
         let sublayouts = measurement.sublayouts.map { (measurement) in
             return measurement.arrangement(within: sublayoutRect)
         }
-        return LayoutArrangement(layout: self, frame: frame, sublayouts: sublayouts ?? [])
+        return LayoutArrangement(layout: self, frame: frame, sublayouts: sublayouts)
     }
 }

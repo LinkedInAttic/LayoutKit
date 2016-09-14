@@ -15,7 +15,7 @@ let twoThirds = 2.0 / 3.0
 
 private let densityAccuracy: CGFloat = 0.00001
 
-func AssertEqualDensity(actual: CGRect, _ expected: [CGFloat: CGRect], file: StaticString = #file, line: UInt = #line) {
+func AssertEqualDensity(_ actual: CGRect, _ expected: [CGFloat: CGRect], file: StaticString = #file, line: UInt = #line) {
     guard let expected = expectationForCurrentDensity(expected, file: file, line: line) else {
         return
     }
@@ -25,7 +25,7 @@ func AssertEqualDensity(actual: CGRect, _ expected: [CGFloat: CGRect], file: Sta
     XCTAssertEqualWithAccuracy(actual.size.height, expected.size.height, accuracy: densityAccuracy, file: file, line: line)
 }
 
-func AssertEqualDensity(actual: CGSize, _ expected: [CGFloat: CGSize], file: StaticString = #file, line: UInt = #line) {
+func AssertEqualDensity(_ actual: CGSize, _ expected: [CGFloat: CGSize], file: StaticString = #file, line: UInt = #line) {
     guard let expected = expectationForCurrentDensity(expected, file: file, line: line) else {
         return
     }
@@ -33,7 +33,7 @@ func AssertEqualDensity(actual: CGSize, _ expected: [CGFloat: CGSize], file: Sta
     XCTAssertEqualWithAccuracy(actual.height, expected.height, accuracy: densityAccuracy, file: file, line: line)
 }
 
-func AssertEqualDensity(actual: CGFloat, _ expected: [CGFloat: CGFloat], file: StaticString = #file, line: UInt = #line) {
+func AssertEqualDensity(_ actual: CGFloat, _ expected: [CGFloat: CGFloat], file: StaticString = #file, line: UInt = #line) {
     guard let expected = expectationForCurrentDensity(expected, file: file, line: line) else {
         return
     }
@@ -41,11 +41,11 @@ func AssertEqualDensity(actual: CGFloat, _ expected: [CGFloat: CGFloat], file: S
 }
 
 /// Returns the expectation for the current density.
-private func expectationForCurrentDensity<T>(expected: [CGFloat: T], file: StaticString, line: UInt) -> T? {
+private func expectationForCurrentDensity<T>(_ expected: [CGFloat: T], file: StaticString, line: UInt) -> T? {
     #if os(iOS)
-        let scale = UIScreen.mainScreen().scale
+        let scale = UIScreen.main.scale
     #elseif os(OSX)
-        let scale = NSScreen.mainScreen()?.backingScaleFactor ?? 2.0
+        let scale = NSScreen.main()?.backingScaleFactor ?? 2.0
     #elseif os(tvOS)
         let scale: CGFloat = 1.0
     #endif

@@ -20,7 +20,7 @@ struct FeedItemData {
     let contentDomain: String
     let actorComment: String
 
-    static func generate(count count: Int) -> [FeedItemData] {
+    static func generate(count: Int) -> [FeedItemData] {
         var datas = [FeedItemData]()
         for i in 0..<count {
             let data = FeedItemData(

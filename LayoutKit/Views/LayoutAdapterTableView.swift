@@ -11,8 +11,8 @@ import UIKit
 /**
  A UITableView that retains and uses a ReloadableViewLayoutAdapter as its delegate and data source.
  */
-public class LayoutAdapterTableView: UITableView {
-    public lazy var layoutAdapter: ReloadableViewLayoutAdapter = {
+open class LayoutAdapterTableView: UITableView {
+    open lazy var layoutAdapter: ReloadableViewLayoutAdapter = {
         let adapter = ReloadableViewLayoutAdapter(reloadableView: self)
         self.dataSource = adapter
         self.delegate = adapter

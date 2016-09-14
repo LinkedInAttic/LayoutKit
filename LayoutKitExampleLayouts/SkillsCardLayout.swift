@@ -9,7 +9,7 @@
 import UIKit
 import LayoutKit
 
-public class SkillsCardLayout: InsetLayout<View> {
+open class SkillsCardLayout: InsetLayout<View> {
 
     public init(skill: String, endorsementCount: String, endorserProfileImageName: String) {
         let skillLabel = LabelLayout(
@@ -17,7 +17,7 @@ public class SkillsCardLayout: InsetLayout<View> {
             alignment: Alignment.center,
             flexibility: Flexibility.high, // Higher than default flexibility
             config: { label in
-                label.backgroundColor = UIColor.yellowColor()
+                label.backgroundColor = UIColor.yellow
             }
         )
         let countLabel = LabelLayout(
@@ -25,7 +25,7 @@ public class SkillsCardLayout: InsetLayout<View> {
             alignment: Alignment.center,
             flexibility: Flexibility.low,
             config: { label in
-                label.backgroundColor = UIColor.yellowColor()
+                label.backgroundColor = UIColor.yellow
             }
         )
         let endorserImage = SizeLayout<UIImageView>(

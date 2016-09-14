@@ -19,8 +19,8 @@ class FeedCollectionViewController: FeedBaseViewController {
         super.viewDidLoad()
 
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewFlowLayout())
-        collectionView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        collectionView.backgroundColor = UIColor.purpleColor()
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.backgroundColor = UIColor.purple
 
         reloadableViewLayoutAdapter = ReloadableViewLayoutAdapter(reloadableView: collectionView)
         collectionView.dataSource = reloadableViewLayoutAdapter
@@ -30,14 +30,14 @@ class FeedCollectionViewController: FeedBaseViewController {
         self.layoutFeed(width: collectionView.frame.width, synchronous: false)
     }
 
-    private func layoutFeed(width width: CGFloat, synchronous: Bool) {
+    private func layoutFeed(width: CGFloat, synchronous: Bool) {
         reloadableViewLayoutAdapter.reload(width: width, synchronous: synchronous, layoutProvider: { [weak self] in
             return [Section(header: nil, items: self?.getFeedItems() ?? [], footer: nil)]
         })
     }
 
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         layoutFeed(width: size.width, synchronous: true)
     }
 }

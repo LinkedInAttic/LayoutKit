@@ -96,11 +96,11 @@ class BatchUpdatesBaseViewController: UIViewController {
 
     func batchUpdates() -> BatchUpdates {
         var batchUpdates = BatchUpdates()
-        batchUpdates.deleteSections.addIndex(0)
-        batchUpdates.deleteItems.append(NSIndexPath(forItem: 0, inSection: 1))
-        batchUpdates.insertItems.append(NSIndexPath(forItem: 1, inSection: 1))
-        batchUpdates.insertSections.addIndex(3)
-        batchUpdates.moveItems.append(ItemMove(from: NSIndexPath(forItem: 0, inSection: 3), to: NSIndexPath(forItem: 1, inSection: 2)))
+        batchUpdates.deleteSections.insert(0)
+        batchUpdates.deleteItems.append(IndexPath(item: 0, section: 1))
+        batchUpdates.insertItems.append(IndexPath(item: 1, section: 1))
+        batchUpdates.insertSections.insert(3)
+        batchUpdates.moveItems.append(ItemMove(from: IndexPath(item: 0, section: 3), to: IndexPath(item: 1, section: 2)))
         return batchUpdates
     }
 }
@@ -109,7 +109,7 @@ private class TestLayout: LabelLayout<UILabel> {
 
     init(text: String) {
         super.init(textType: .unattributed(text), alignment: .fill, config: { (label: UILabel) in
-            label.backgroundColor = UIColor.redColor()
+            label.backgroundColor = UIColor.red
         })
     }
 }

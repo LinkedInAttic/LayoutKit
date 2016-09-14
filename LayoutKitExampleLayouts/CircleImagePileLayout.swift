@@ -10,13 +10,13 @@ import UIKit
 import LayoutKit
 
 /// Displays a pile of overlapping circular images.
-public class CircleImagePileLayout: StackLayout<CircleImagePileView> {
+open class CircleImagePileLayout: StackLayout<CircleImagePileView> {
 
     public enum Mode {
         case leadingOnTop, trailingOnTop
     }
 
-    public let mode: Mode
+    open let mode: Mode
 
     public init(imageNames: [String], mode: Mode = .trailingOnTop, alignment: Alignment = .topLeading, viewReuseId: String? = nil) {
         self.mode = mode
@@ -25,7 +25,7 @@ public class CircleImagePileLayout: StackLayout<CircleImagePileView> {
                 imageView.image = UIImage(named: imageName)
                 imageView.layer.cornerRadius = 25
                 imageView.layer.masksToBounds = true
-                imageView.layer.borderColor = UIColor.whiteColor().CGColor
+                imageView.layer.borderColor = UIColor.white.cgColor
                 imageView.layer.borderWidth = 2
             })
         }
@@ -39,14 +39,14 @@ public class CircleImagePileLayout: StackLayout<CircleImagePileView> {
             sublayouts: sublayouts)
     }
 
-    public override var needsView: Bool {
+    open override var needsView: Bool {
         return super.needsView || mode == .leadingOnTop
     }
 }
 
-public class CircleImagePileView: UIView {
+open class CircleImagePileView: UIView {
 
-    public override func addSubview(view: UIView) {
+    open override func addSubview(_ view: UIView) {
         // Make sure views are inserted below existing views so that the first image in the face pile is on top.
         if let lastSubview = subviews.last {
             insertSubview(view, belowSubview: lastSubview)

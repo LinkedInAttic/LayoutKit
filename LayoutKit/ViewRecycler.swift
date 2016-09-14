@@ -15,7 +15,7 @@ import ObjectiveC
  Call `makeView(layoutId:)` to recycle or create a view of the desired type and id.
  Call `purgeViews()` to remove all unrecycled views from the view hierarchy.
  */
-public class ViewRecycler {
+open class ViewRecycler {
 
     private var viewsById = [String: View]()
     private var unidentifiedViews = Set<View>()
@@ -33,7 +33,7 @@ public class ViewRecycler {
 
     /// Marks a view as recycled so that `purgeViews()` doesn't remove it from the view hierarchy.
     /// It is only necessary to call this if a view is reused without calling `makeView(layoutId:)`.
-    public func markViewAsRecycled(view: View) {
+    open func markViewAsRecycled(_ view: View) {
         if let viewReuseId = view.viewReuseId {
             viewsById[viewReuseId] = nil
         } else {
@@ -42,9 +42,9 @@ public class ViewRecycler {
     }
 
     /// Creates or recycles a view of the desired type and id.
-    public func makeView<V: View>(viewReuseId viewReuseId: String?) -> V {
+    open func makeView<V: View>(viewReuseId: String?) -> V {
         // If we have a recyclable view that matches type and id, then reuse it.
-        if let viewReuseId = viewReuseId, view = viewsById[viewReuseId] as? V {
+        if let viewReuseId = viewReuseId, let view = viewsById[viewReuseId] as? V {
             viewsById[viewReuseId] = nil
             return view
         }
@@ -55,7 +55,7 @@ public class ViewRecycler {
     }
 
     /// Removes all unrecycled views from the view hierarchy.
-    public func purgeViews() {
+    open func purgeViews() {
         for view in viewsById.values {
             view.removeFromSuperview()
         }
@@ -73,7 +73,7 @@ private var viewReuseIdKey: UInt8 = 0
 extension View {
 
     /// Calls visitor for each transitive subview.
-    func walkSubviews(@noescape visitor visitor: (View) -> Void) {
+    func walkSubviews(visitor: (View) -> Void) {
         for subview in subviews {
             visitor(subview)
             subview.walkSubviews(visitor: visitor)

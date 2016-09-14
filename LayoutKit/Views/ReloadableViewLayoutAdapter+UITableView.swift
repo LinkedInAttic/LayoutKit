@@ -12,27 +12,27 @@ import UIKit
 
 extension ReloadableViewLayoutAdapter: UITableViewDelegate {
 
-    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return currentArrangement[indexPath.section].items[indexPath.item].frame.height
     }
 
-    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return currentArrangement[section].header?.frame.height ?? 0
     }
 
-    public func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return currentArrangement[section].footer?.frame.height ?? 0
     }
 
-    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return renderLayout(currentArrangement[section].header, tableView: tableView)
     }
 
-    public func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return renderLayout(currentArrangement[section].footer, tableView: tableView)
     }
 
-    private func renderLayout(layout: LayoutArrangement?, tableView: UITableView) -> UIView? {
+    private func renderLayout(_ layout: LayoutArrangement?, tableView: UITableView) -> UIView? {
         guard let layout = layout else {
             return nil
         }
@@ -41,8 +41,8 @@ extension ReloadableViewLayoutAdapter: UITableViewDelegate {
         return view
     }
 
-    private func dequeueHeaderFooterView(tableView tableView: UITableView) -> UITableViewHeaderFooterView {
-        if let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(reuseIdentifier) {
+    private func dequeueHeaderFooterView(tableView: UITableView) -> UITableViewHeaderFooterView {
+        if let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseIdentifier) {
             return view
         } else {
             return UITableViewHeaderFooterView(reuseIdentifier: reuseIdentifier)
@@ -54,17 +54,17 @@ extension ReloadableViewLayoutAdapter: UITableViewDelegate {
 
 extension ReloadableViewLayoutAdapter: UITableViewDataSource {
 
-    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return currentArrangement.count
     }
 
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentArrangement[section].items.count
     }
 
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = currentArrangement[indexPath.section].items[indexPath.item]
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         item.makeViews(in: cell.contentView)
         return cell
     }

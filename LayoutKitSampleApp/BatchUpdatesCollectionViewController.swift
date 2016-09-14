@@ -21,14 +21,14 @@ class BatchUpdatesCollectionViewController: BatchUpdatesBaseViewController {
         layout.minimumLineSpacing = 2
 
         collectionView = LayoutAdapterCollectionView(frame: view.bounds, collectionViewLayout: layout)
-        collectionView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        collectionView.backgroundColor = UIColor.whiteColor()
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.backgroundColor = UIColor.white
 
         view.addSubview(collectionView)
         collectionView.layoutAdapter.reload(width: collectionView.bounds.width, synchronous: true, layoutProvider: layoutOne)
 
-        let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
-        dispatch_after(delay, dispatch_get_main_queue()) {
+        let delay = DispatchTime.now() + 2.0
+        DispatchQueue.main.asyncAfter(deadline: delay) {
             self.collectionView.layoutAdapter.reload(
                 width: self.collectionView.bounds.width,
                 synchronous: true,

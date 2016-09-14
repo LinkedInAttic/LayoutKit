@@ -12,7 +12,7 @@ import LayoutKit
 /**
  A layout that is similar to an item in the LinkedIn feed.
  */
-public class FeedItemLayout: InsetLayout<View> {
+open class FeedItemLayout: InsetLayout<View> {
 
     public init(actionText: String,
                 posterProfile: ProfileCardLayout,
@@ -33,7 +33,7 @@ public class FeedItemLayout: InsetLayout<View> {
         ])
 
         let buttonConfig = { (label: UILabel) in
-            label.backgroundColor = UIColor.greenColor()
+            label.backgroundColor = UIColor.green
         }
         let socialActions = StackLayout(axis: .horizontal, distribution: .fillEqualSize, sublayouts: [
             LabelLayout(text: "Like", alignment: .centerLeading, config: buttonConfig),
@@ -61,12 +61,12 @@ public class FeedItemLayout: InsetLayout<View> {
             ]
         )
         super.init(insets: EdgeInsets(top: 8, left: 8, bottom: 8, right: 8), sublayout: feedItem, config: { view in
-            view.backgroundColor = UIColor.whiteColor()
+            view.backgroundColor = UIColor.white
         })
     }
 }
 
-public class ContentLayout: StackLayout<UIView> {
+open class ContentLayout: StackLayout<UIView> {
 
     public init(title: String, domain: String) {
         super.init(axis: .vertical, sublayouts: [

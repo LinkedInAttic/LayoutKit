@@ -11,12 +11,12 @@ import Foundation
 
 /// A set of updates to apply to a `ReloadableView`.
 public struct BatchUpdates {
-    public var insertItems = [NSIndexPath]()
-    public var deleteItems = [NSIndexPath]()
+    public var insertItems = [IndexPath]()
+    public var deleteItems = [IndexPath]()
     public var moveItems = [ItemMove]()
 
-    public var insertSections = NSMutableIndexSet()
-    public var deleteSections = NSMutableIndexSet()
+    public var insertSections = IndexSet()
+    public var deleteSections = IndexSet()
     public var moveSections = [SectionMove]()
 
     public init() { }
@@ -24,10 +24,10 @@ public struct BatchUpdates {
 
 /// Instruction to move an item from one index path to another.
 public struct ItemMove: Equatable {
-    public let from: NSIndexPath
-    public let to: NSIndexPath
+    public let from: IndexPath
+    public let to: IndexPath
 
-    public init(from: NSIndexPath, to: NSIndexPath) {
+    public init(from: IndexPath, to: IndexPath) {
         self.from = from
         self.to = to
     }
