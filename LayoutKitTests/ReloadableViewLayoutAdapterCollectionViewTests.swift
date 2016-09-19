@@ -64,75 +64,75 @@ private class TestCollectionView: LayoutAdapterCollectionView, TestableReloadabl
         reloadDataCount += 1
     }
 
-    private override func insertItemsAtIndexPaths(indexPaths: [NSIndexPath]) {
-        super.insertItemsAtIndexPaths(indexPaths)
-        batchUpdates.insertItems.appendContentsOf(indexPaths)
+    private override func insertItems(at indexPaths: [IndexPath]) {
+        super.insertItems(at: indexPaths)
+        batchUpdates.insertItems.append(contentsOf: indexPaths)
     }
 
-    private override func deleteItemsAtIndexPaths(indexPaths: [NSIndexPath]) {
-        super.deleteItemsAtIndexPaths(indexPaths)
-        batchUpdates.deleteItems.appendContentsOf(indexPaths)
+    private override func deleteItems(at indexPaths: [IndexPath]) {
+        super.deleteItems(at: indexPaths)
+        batchUpdates.deleteItems.append(contentsOf: indexPaths)
     }
 
-    private override func moveItemAtIndexPath(indexPath: NSIndexPath, toIndexPath newIndexPath: NSIndexPath) {
-        super.moveItemAtIndexPath(indexPath, toIndexPath: newIndexPath)
+    private override func moveItem(at indexPath: IndexPath, to newIndexPath: IndexPath) {
+        super.moveItem(at: indexPath, to: newIndexPath)
         batchUpdates.moveItems.append(ItemMove(from: indexPath, to: newIndexPath))
     }
 
-    private override func insertSections(sections: NSIndexSet) {
+    private override func insertSections(_ sections: IndexSet) {
         super.insertSections(sections)
-        batchUpdates.insertSections.addIndexes(sections)
+        batchUpdates.insertSections.formUnion(sections)
     }
 
-    private override func deleteSections(sections: NSIndexSet) {
+    private override func deleteSections(_ sections: IndexSet) {
         super.deleteSections(sections)
-        batchUpdates.deleteSections.addIndexes(sections)
+        batchUpdates.deleteSections.formUnion(sections)
     }
 
-    private override func moveSection(section: Int, toSection newSection: Int) {
+    private override func moveSection(_ section: Int, toSection newSection: Int) {
         super.moveSection(section, toSection: newSection)
         batchUpdates.moveSections.append(SectionMove(from: section, to: newSection))
     }
 
-    private func resetTestCounts() {
+    fileprivate func resetTestCounts() {
         reloadDataCount = 0
         batchUpdates = BatchUpdates()
     }
 
-    private func verifyHeader(section section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {
-        verifySupplementaryView(kind: UICollectionElementKindSectionHeader, section: section, text: text, frame: frame, file: file, line: line)
+    fileprivate func verifyHeader(_ section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {
+        verifySupplementaryView(UICollectionElementKindSectionHeader, section: section, text: text, frame: frame, file: file, line: line)
     }
 
-    private func verifyFooter(section section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {
-        verifySupplementaryView(kind: UICollectionElementKindSectionFooter, section: section, text: text, frame: frame, file: file, line: line)
+    fileprivate func verifyFooter(_ section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {
+        verifySupplementaryView(UICollectionElementKindSectionFooter, section: section, text: text, frame: frame, file: file, line: line)
     }
 
-    private func verifySupplementaryView(kind kind: String, section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {
-        let indexPath = NSIndexPath(forItem: 0, inSection: section)
-        let attributes = layoutAttributesForSupplementaryElementOfKind(kind, atIndexPath: indexPath)
+    private func verifySupplementaryView(_ kind: String, section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {
+        let indexPath = IndexPath(item: 0, section: section)
+        let attributes = layoutAttributesForSupplementaryElement(ofKind: kind, at: indexPath)
         if let frame = frame {
             XCTAssertEqual(attributes?.frame, frame, file: file, line: line)
         } else {
-            XCTAssertEqual(attributes?.frame.size, CGSizeZero, file: file, line: line)
+            XCTAssertEqual(attributes?.frame.size, .zero, file: file, line: line)
         }
 
         if #available(iOS 9.0, *) {
-            func labelText(reusableView: UICollectionReusableView?) -> String? {
+            func labelText(_ reusableView: UICollectionReusableView?) -> String? {
                 guard let label = reusableView?.subviews.first as? UILabel else {
                     return nil
                 }
                 return label.text
             }
 
-            let supplementaryViewTexts = visibleSupplementaryViewsOfKind(kind).flatMap(labelText)
+            let supplementaryViewTexts = visibleSupplementaryViews(ofKind: kind).flatMap(labelText)
             if let text = text {
                 XCTAssertTrue(supplementaryViewTexts.contains(text), file: file, line: line)
             }
         }
     }
 
-    private func verifyVisibleItem(text text: String, frame: CGRect, file: StaticString, line: UInt) {
-        let items = visibleCells().filter { cell -> Bool in
+    fileprivate func verifyVisibleItem(_ text: String, frame: CGRect, file: StaticString, line: UInt) {
+        let items = visibleCells.filter { cell -> Bool in
             guard let label = cell.contentView.subviews.first as? UILabel else {
                 return false
             }

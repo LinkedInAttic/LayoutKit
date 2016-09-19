@@ -4,7 +4,8 @@
 DERIVED_DATA=${1:-/tmp/LayoutKit}
 echo "Derived data location: $DERIVED_DATA";
 
-# TODO: need to fixup tests for iOS 10
+# TODO: enable tvOS 10.0 tests. These tests work locally but codesign fails on travis.
+# https://github.com/linkedin/LayoutKit/issues/51
 #-destination 'platform=tvOS Simulator,name=Apple TV 1080p,OS=10.0' \
 
 # Looks like iOS 8 simulator doesn't work in Xcode 8.

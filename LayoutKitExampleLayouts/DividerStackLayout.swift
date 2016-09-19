@@ -12,15 +12,15 @@ import LayoutKit
 /**
  A layout that places a divider view in the spacing between the stack's sublayouts.
  */
-public class DividerStackLayout<DividerView: UIView, V: View>: StackLayout<V> {
+open class DividerStackLayout<DividerView: View, V: View>: StackLayout<V> {
 
-    public init(stack: StackLayout<V>, dividerConfig: DividerView -> Void) {
+    public init(stack: StackLayout<V>, dividerConfig: ((DividerView) -> Void)?) {
         let sublayouts: [Layout]
         if stack.spacing > 0 {
             var dividedSublayouts = [Layout]()
             let size = AxisSize(axis: stack.axis, axisLength: stack.spacing, crossLength: 0).size
             let divider = SizeLayout<DividerView>(size: size, alignment: .fill, flexibility: .flexible, config: dividerConfig)
-            for (index, sublayout) in stack.sublayouts.enumerate() {
+            for (index, sublayout) in stack.sublayouts.enumerated() {
                 dividedSublayouts.append(sublayout)
                 if index != stack.sublayouts.count - 1 {
                     dividedSublayouts.append(divider)

@@ -18,7 +18,7 @@ import LayoutKit
  
  Compare to HelloWorldAutoLayout.swift
  */
-public class HelloWorldLayout: InsetLayout<View> {
+open class HelloWorldLayout: InsetLayout<View> {
 
     public init(text: String = "Hello World!") {
         super.init(

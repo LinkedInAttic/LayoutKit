@@ -94,7 +94,7 @@ class StackLayoutDistributionTests: XCTestCase {
         XCTAssertNil(stack.oneView)
         XCTAssertNil(stack.twoView)
         XCTAssertNil(stack.threeView)
-        XCTAssertEqual(stack.stackView.frame, CGRect.zero)
+        XCTAssertEqual(stack.stackView.frame, .zero)
     }
     
     func testVerticalEqualSizeDistributionOneLayoutDropped() {
@@ -188,7 +188,7 @@ class StackLayoutDistributionTests: XCTestCase {
         XCTAssertNil(stack.oneView)
         XCTAssertNil(stack.twoView)
         XCTAssertNil(stack.threeView)
-        XCTAssertEqual(stack.stackView.frame, CGRect.zero)
+        XCTAssertEqual(stack.stackView.frame, .zero)
     }
 
     func testHorizontalEqualSizeDistributionOneLayoutDropped() {

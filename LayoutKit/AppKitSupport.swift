@@ -10,17 +10,15 @@ import AppKit
 
 public typealias View = NSView
 
-public typealias EdgeInsets = NSEdgeInsets
-
 public typealias UserInterfaceLayoutDirection = NSUserInterfaceLayoutDirection
 
 extension NSView {
     
-    func convertToAbsoluteCoordinates(rect: CGRect) -> CGRect {
-        return convertRect(rect, toView: nil)
+    func convertToAbsoluteCoordinates(_ rect: CGRect) -> CGRect {
+        return convert(rect, to: nil)
     }
 
-    func convertFromAbsoluteCoordinates(rect: CGRect) -> CGRect {
-        return convertRect(rect, fromView: nil)
+    func convertFromAbsoluteCoordinates(_ rect: CGRect) -> CGRect {
+        return convert(rect, from: nil)
     }
 }

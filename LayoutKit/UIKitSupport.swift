@@ -16,35 +16,35 @@ public typealias UserInterfaceLayoutDirection = UIUserInterfaceLayoutDirection
 
 extension UIView {
 
-    func convertToAbsoluteCoordinates(rect: CGRect) -> CGRect {
-        return convertRect(rect, toCoordinateSpace: UIScreen.mainScreen().fixedCoordinateSpace)
+    func convertToAbsoluteCoordinates(_ rect: CGRect) -> CGRect {
+        return convert(rect, to: UIScreen.main.fixedCoordinateSpace)
     }
 
-    func convertFromAbsoluteCoordinates(rect: CGRect) -> CGRect {
-        return convertRect(rect, fromCoordinateSpace: UIScreen.mainScreen().fixedCoordinateSpace)
+    func convertFromAbsoluteCoordinates(_ rect: CGRect) -> CGRect {
+        return convert(rect, from: UIScreen.main.fixedCoordinateSpace)
     }
 
     /// Expose API that is identical to NSView.
     var userInterfaceLayoutDirection: UIUserInterfaceLayoutDirection {
         if #available(iOS 9.0, *) {
-            return UIView.userInterfaceLayoutDirectionForSemanticContentAttribute(semanticContentAttribute)
+            return UIView.userInterfaceLayoutDirection(for: semanticContentAttribute)
         } else {
             // Before iOS 9, there wasn't good support for RTL interfaces
             // (even the OS itself didn't swap interfaces right to left).
             // The best we can do is check the language direction of the preferred localization
             // and use that.
-            if let isoLangCode = NSBundle.mainBundle().preferredLocalizations.first {
-                switch NSLocale.characterDirectionForLanguage(isoLangCode) {
-                case .Unknown, .LeftToRight, .TopToBottom, .BottomToTop:
-                    return .LeftToRight
-                case .RightToLeft:
-                    return .RightToLeft
+            if let isoLangCode = Bundle.main.preferredLocalizations.first {
+                switch NSLocale.characterDirection(forLanguage: isoLangCode) {
+                case .unknown, .leftToRight, .topToBottom, .bottomToTop:
+                    return .leftToRight
+                case .rightToLeft:
+                    return .rightToLeft
                 }
             } else {
                 #if LAYOUTKIT_EXTENSION_DEFAULT_RIGHT_TO_LEFT
-                    return .RightToLeft
+                    return .rightToLeft
                 #else
-                    return .LeftToRight
+                    return .leftToRight
                 #endif
             }
         }

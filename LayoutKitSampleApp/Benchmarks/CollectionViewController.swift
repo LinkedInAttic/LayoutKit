@@ -9,7 +9,7 @@
 import UIKit
 
 /// A UICollectionView controller where each cell's content view is a DataBinder.
-class CollectionViewController<ContentViewType: UIView where ContentViewType: DataBinder>: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class CollectionViewController<ContentViewType: UIView>: UICollectionViewController, UICollectionViewDelegateFlowLayout where ContentViewType: DataBinder {
 
     typealias CellType = CollectionCell<ContentViewType>
 
@@ -23,7 +23,7 @@ class CollectionViewController<ContentViewType: UIView where ContentViewType: Da
         self.start = CFAbsoluteTimeGetCurrent()
         self.data = data
         self.flowLayout = UICollectionViewFlowLayout()
-        self.manequinCell = CellType(frame: CGRectZero)
+        self.manequinCell = CellType(frame: .zero)
         super.init(collectionViewLayout: flowLayout)
     }
 
@@ -33,34 +33,34 @@ class CollectionViewController<ContentViewType: UIView where ContentViewType: Da
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView?.registerClass(CellType.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView?.register(CellType.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return data.count
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: CellType = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CellType
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: CellType = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CellType
         cell.setData(data[indexPath.row])
         return cell
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         manequinCell.setData(data[indexPath.row])
-        var size = manequinCell.sizeThatFits(CGSize(width: collectionView.bounds.width, height: CGFloat.max))
+        var size = manequinCell.sizeThatFits(CGSize(width: collectionView.bounds.width, height: CGFloat.greatestFiniteMagnitude))
         size.width = collectionView.bounds.width
         return size
     }
 
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         flowLayout.invalidateLayout()
     }
 }
 
 /// A UICollectionView cell that adds a DataBinder to its content view.
-class CollectionCell<ContentView: UIView where ContentView: DataBinder>: UICollectionViewCell, DataBinder {
+class CollectionCell<ContentView: UIView>: UICollectionViewCell, DataBinder where ContentView: DataBinder {
 
     let wrappedContentView: ContentView
 
@@ -70,16 +70,20 @@ class CollectionCell<ContentView: UIView where ContentView: DataBinder>: UIColle
         wrappedContentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(wrappedContentView)
         let views = ["v": wrappedContentView]
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[v]-0-|", options: [], metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v]-0-|", options: [], metrics: nil, views: views))
-        contentView.backgroundColor = UIColor.whiteColor()
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[v]-0-|", options: [], metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[v]-0-|", options: [], metrics: nil, views: views))
+        contentView.backgroundColor = UIColor.white
     }
 
-    func setData(data: ContentView.DataType) {
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func setData(_ data: ContentView.DataType) {
         wrappedContentView.setData(data)
     }
 
-    override func sizeThatFits(size: CGSize) -> CGSize {
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
         return wrappedContentView.sizeThatFits(size)
     }
 }

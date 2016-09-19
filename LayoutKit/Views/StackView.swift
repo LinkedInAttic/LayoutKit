@@ -23,35 +23,35 @@ import UIKit
  Subviews MUST implement sizeThatFits so StackView can allocate space correctly.
  If a subview uses Auto Layout, then the subview may implement sizeThatFits by calling systemLayoutSizeFittingSize.
  */
-public class StackView: UIView {
+open class StackView: UIView {
 
     /// The axis along which arranged views are stacked.
-    public let axis: Axis
+    open let axis: Axis
 
     /**
      The distance in points between adjacent edges of sublayouts along the axis.
      For Distribution.EqualSpacing, this is a minimum spacing. For all other distributions it is an exact spacing.
      */
-    public let spacing: CGFloat
+    open let spacing: CGFloat
 
     /// The distribution of space along the stack's axis.
-    public let distribution: StackLayoutDistribution
+    open let distribution: StackLayoutDistribution
 
     /// The distance that the arranged views are inset from the stack view. Defaults to 0.
-    public let contentInsets: UIEdgeInsets
+    open let contentInsets: UIEdgeInsets
 
     /// The stack's alignment inside its parent.
-    public let alignment: Alignment
+    open let alignment: Alignment
 
     /// The stack's flexibility.
-    public let flexibility: Flexibility?
+    open let flexibility: Flexibility?
 
     private var arrangedSubviews: [UIView] = []
 
     public init(axis: Axis,
                 spacing: CGFloat = 0,
                 distribution: StackLayoutDistribution = .leading,
-                contentInsets: UIEdgeInsets = UIEdgeInsetsZero,
+                contentInsets: UIEdgeInsets = .zero,
                 alignment: Alignment = .fill,
                 flexibility: Flexibility? = nil) {
 
@@ -61,7 +61,7 @@ public class StackView: UIView {
         self.contentInsets = contentInsets
         self.alignment = alignment
         self.flexibility = flexibility
-        super.init(frame: CGRectZero)
+        super.init(frame: .zero)
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -74,8 +74,8 @@ public class StackView: UIView {
      Subviews MUST implement sizeThatFits so StackView can allocate space correctly.
      If a subview uses Auto Layout, then the subview can implement sizeThatFits by calling systemLayoutSizeFittingSize.
      */
-    public func addArrangedSubviews(subviews: [UIView]) {
-        arrangedSubviews.appendContentsOf(subviews)
+    open func addArrangedSubviews(_ subviews: [UIView]) {
+        arrangedSubviews.append(contentsOf: subviews)
         for subview in subviews {
             addSubview(subview)
         }
@@ -83,15 +83,15 @@ public class StackView: UIView {
         setNeedsLayout()
     }
 
-    public override func sizeThatFits(size: CGSize) -> CGSize {
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
         return stackLayout.measurement(within: size).size
     }
 
-    public override func intrinsicContentSize() -> CGSize {
-        return sizeThatFits(CGSize(width: CGFloat.max, height: CGFloat.max))
+    open override var intrinsicContentSize: CGSize {
+        return sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
     }
 
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         stackLayout.measurement(within: bounds.size).arrangement(within: bounds).makeViews(in: self)
     }
 
@@ -132,17 +132,17 @@ private struct ViewLayout: Layout {
         return view
     }
 
-    func configure(baseTypeView baseTypeView: UIView) {
+    func configure(baseTypeView: UIView) {
     }
 
     var flexibility: Flexibility {
-        let horizontal = flexForAxis(.Horizontal)
-        let vertical = flexForAxis(.Vertical)
+        let horizontal = flexForAxis(.horizontal)
+        let vertical = flexForAxis(.vertical)
         return Flexibility(horizontal: horizontal, vertical: vertical)
     }
 
-    private func flexForAxis(axis: UILayoutConstraintAxis) -> Flexibility.Flex {
-        switch view.contentHuggingPriorityForAxis(.Horizontal) {
+    private func flexForAxis(_ axis: UILayoutConstraintAxis) -> Flexibility.Flex {
+        switch view.contentHuggingPriority(for: .horizontal) {
         case UILayoutPriorityRequired:
             return nil
         case let priority:

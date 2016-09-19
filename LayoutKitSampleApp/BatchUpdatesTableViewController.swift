@@ -16,14 +16,14 @@ class BatchUpdatesTableViewController: BatchUpdatesBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView = LayoutAdapterTableView(frame: view.bounds, style: .Grouped)
-        tableView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        tableView = LayoutAdapterTableView(frame: view.bounds, style: .grouped)
+        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
         view.addSubview(tableView)
         tableView.layoutAdapter.reload(width: tableView.bounds.width, synchronous: true, layoutProvider: layoutOne)
 
-        let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
-        dispatch_after(delay, dispatch_get_main_queue()) {
+        let delay = DispatchTime.now() + 2.0
+        DispatchQueue.main.asyncAfter(deadline: delay) {
             self.tableView.layoutAdapter.reload(
                 width: self.tableView.bounds.width,
                 synchronous: true,

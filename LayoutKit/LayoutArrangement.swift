@@ -37,7 +37,8 @@ public struct LayoutArrangement {
 
      - returns: The root view. If a view was provided, then the same view will be returned, otherwise, a new one will be created.
      */
-    public func makeViews(in view: View? = nil, direction: UserInterfaceLayoutDirection = .LeftToRight) -> View {
+    @discardableResult
+    public func makeViews(in view: View? = nil, direction: UserInterfaceLayoutDirection = .leftToRight) -> View {
         return makeViews(in: view, direction: direction, prepareAnimation: false)
     }
 
@@ -59,7 +60,7 @@ public struct LayoutArrangement {
      
      MUST be run on the main thread.
      */
-    public func prepareAnimation(for view: View, direction: UserInterfaceLayoutDirection = .LeftToRight) -> Animation {
+    public func prepareAnimation(for view: View, direction: UserInterfaceLayoutDirection = .leftToRight) -> Animation {
         makeViews(in: view, direction: direction, prepareAnimation: true)
         return Animation(arrangement: self, rootView: view, direction: direction)
     }
@@ -68,6 +69,7 @@ public struct LayoutArrangement {
      Helper function for `makeViews(in:direction:)` and `prepareAnimation(for:direction:)`.
      See the documentation for those two functions.
      */
+    @discardableResult
     private func makeViews(in view: View? = nil, direction: UserInterfaceLayoutDirection, prepareAnimation: Bool) -> View {
         let recycler = ViewRecycler(rootView: view)
         let views = makeSubviews(from: recycler, prepareAnimation: prepareAnimation)
@@ -78,7 +80,7 @@ public struct LayoutArrangement {
                 view.addSubview(subview, maintainCoordinates: prepareAnimation)
             }
             rootView = view
-        } else if let view = views.first where views.count == 1 {
+        } else if let view = views.first, views.count == 1 {
             // We have a single view so it is our root view.
             rootView = view
         } else {
@@ -87,7 +89,7 @@ public struct LayoutArrangement {
             for subview in views {
                 if !prepareAnimation {
                     // Unapply the offset that was applied in makeSubviews()
-                    subview.frame.offsetInPlace(dx: -frame.origin.x, dy: -frame.origin.y)
+                    subview.frame = subview.frame.offsetBy(dx: -frame.origin.x, dy: -frame.origin.y)
                 }
                 rootView.addSubview(subview)
             }
@@ -95,20 +97,16 @@ public struct LayoutArrangement {
         recycler.purgeViews()
 
         if !prepareAnimation {
-            handleLayoutDirection(rootView, direction: direction)
+            // Horizontally flip the view frames if direction does not match the root view's language direction.
+            if rootView.userInterfaceLayoutDirection != direction {
+                flipSubviewsHorizontally(rootView)
+            }
         }
         return rootView
     }
 
-    /// Horizontally flips the view frames if direction does not match the user's language direction.
-    private func handleLayoutDirection(view: View, direction: UserInterfaceLayoutDirection) {
-        if view.userInterfaceLayoutDirection != direction {
-            flipSubviewsHorizontally(view)
-        }
-    }
-
     /// Flips the right and left edges of the view's subviews.
-    private func flipSubviewsHorizontally(view: View) {
+    private func flipSubviewsHorizontally(_ view: View) {
         for subview in view.subviews {
             subview.frame.origin.x = view.frame.width - subview.frame.maxX
             flipSubviewsHorizontally(subview)
@@ -135,7 +133,7 @@ public struct LayoutArrangement {
         } else {
             if !prepareAnimation {
                 for subview in subviews {
-                    subview.frame.offsetInPlace(dx: frame.origin.x, dy: frame.origin.y)
+                    subview.frame = subview.frame.offsetBy(dx: frame.origin.x, dy: frame.origin.y)
                 }
             }
             return subviews
@@ -151,7 +149,7 @@ extension View {
      
      It doesn't do anything of view is already a subview.
      */
-    private func addSubview(view: View, maintainCoordinates: Bool) {
+    fileprivate func addSubview(_ view: View, maintainCoordinates: Bool) {
         if view.superview == self {
             return
         }

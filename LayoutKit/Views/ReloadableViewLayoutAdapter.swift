@@ -13,33 +13,33 @@ import UIKit
 
  Set it as a UICollectionView or UITableView's dataSource and delegate.
  */
-public class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerDelegate {
+open class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerDelegate {
 
-    let reuseIdentifier = String(ReloadableViewLayoutAdapter)
+    let reuseIdentifier = String(describing: ReloadableViewLayoutAdapter.self)
 
     /// The current layout arrangement.
     /// Must be accessed from the main thread only.
-    public internal(set) var currentArrangement = [Section<[LayoutArrangement]>]()
+    open internal(set) var currentArrangement = [Section<[LayoutArrangement]>]()
 
     /// The queue that layouts are computed on.
-    let backgroundLayoutQueue: NSOperationQueue = {
-        let queue = NSOperationQueue()
-        queue.name = String(ReloadableViewLayoutAdapter)
+    let backgroundLayoutQueue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.name = String(describing: ReloadableViewLayoutAdapter.self)
         // The queue is serial so we can do streaming properly.
         // If a new layout request comes it, the existing request will be cancelled and terminate as quickly as possible.
         queue.maxConcurrentOperationCount = 1
-        queue.qualityOfService = .UserInitiated
+        queue.qualityOfService = .userInitiated
         return queue
     }()
 
     weak var reloadableView: ReloadableView?
 
     /// Logs messages.
-    public var logger: ((String) -> Void)? = nil
+    open var logger: ((String) -> Void)? = nil
 
     public init(reloadableView: ReloadableView) {
         self.reloadableView = reloadableView
-        reloadableView.registerViews(reuseIdentifier: reuseIdentifier)
+        reloadableView.registerViews(withReuseIdentifier: reuseIdentifier)
     }
 
     /**
@@ -57,15 +57,15 @@ public class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerD
      - parameter layoutProvider: A closure that produces the layout. It is called on a background thread so it must be threadsafe.
      - parameter completion: A closure that is called on the main thread when the operation is complete.
      */
-    public func reload<T: CollectionType, U: CollectionType where U.Generator.Element == Layout, T.Generator.Element == Section<U>>(
-        width width: CGFloat? = nil,
-              height: CGFloat? = nil,
-              synchronous: Bool = false,
-              batchUpdates: BatchUpdates? = nil,
-              layoutProvider: Void -> T,
-              completion: (() -> Void)? = nil) {
+    open func reload<T: Collection, U: Collection>(
+        width: CGFloat? = nil,
+        height: CGFloat? = nil,
+        synchronous: Bool = false,
+        batchUpdates: BatchUpdates? = nil,
+        layoutProvider: @escaping (Void) -> T,
+        completion: (() -> Void)? = nil) where U.Iterator.Element == Layout, T.Iterator.Element == Section<U> {
 
-        assert(NSThread.isMainThread(), "reload must be called on the main thread")
+        assert(Thread.isMainThread, "reload must be called on the main thread")
 
         // All previous layouts are invalid.
         backgroundLayoutQueue.cancelAllOperations()
@@ -81,11 +81,11 @@ public class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerD
         }
     }
 
-    private func reloadSynchronously<T: CollectionType, U: CollectionType where U.Generator.Element == Layout, T.Generator.Element == Section<U>>(
-        layoutProvider layoutProvider: Void -> T,
-                       layoutFunc: Layout -> LayoutArrangement,
-                       batchUpdates: BatchUpdates?,
-                       completion: (Void -> Void)?) {
+    private func reloadSynchronously<T: Collection, U: Collection>(
+        layoutProvider: (Void) -> T,
+        layoutFunc: @escaping (Layout) -> LayoutArrangement,
+        batchUpdates: BatchUpdates?,
+        completion: ((Void) -> Void)?) where U.Iterator.Element == Layout, T.Iterator.Element == Section<U> {
 
         let start = CFAbsoluteTimeGetCurrent()
         currentArrangement = layoutProvider().map { sectionLayout in
@@ -94,21 +94,21 @@ public class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerD
         if let batchUpdates = batchUpdates {
             reloadableView?.perform(batchUpdates: batchUpdates)
         } else {
-            reloadableView?.reloadDataSync()
+            reloadableView?.reloadDataSynchronously()
         }
         let end = CFAbsoluteTimeGetCurrent()
         logger?("user: \((end-start).ms)")
         completion?()
     }
 
-    private func reloadAsynchronously<T: CollectionType, U: CollectionType where U.Generator.Element == Layout, T.Generator.Element == Section<U>>(
-        layoutProvider layoutProvider: Void -> T,
-                       layoutFunc: Layout -> LayoutArrangement,
-                       batchUpdates: BatchUpdates?,
-                       completion: (Void -> Void)?) {
+    private func reloadAsynchronously<T: Collection, U: Collection>(
+        layoutProvider: @escaping (Void) -> T,
+        layoutFunc: @escaping (Layout) -> LayoutArrangement,
+        batchUpdates: BatchUpdates?,
+        completion: ((Void) -> Void)?) where U.Iterator.Element == Layout, T.Iterator.Element == Section<U> {
 
         let start = CFAbsoluteTimeGetCurrent()
-        let operation = NSBlockOperation()
+        let operation = BlockOperation()
 
         // Only do incremental rendering if there is currently no data and if there are no batch updates.
         // Otherwise wait for layout to complete before updating the view.
@@ -119,8 +119,8 @@ public class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerD
 
         operation.addExecutionBlock { [weak operation] in
             var pendingArrangement = [Section<[LayoutArrangement]>]()
-            for (sectionIndex, sectionLayout) in layoutProvider().enumerate() {
-                if operation?.cancelled ?? true {
+            for (sectionIndex, sectionLayout) in layoutProvider().enumerated() {
+                if operation?.isCancelled ?? true {
                     return
                 }
 
@@ -128,8 +128,8 @@ public class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerD
                 let footer = sectionLayout.footer.map(layoutFunc)
                 var items = [LayoutArrangement]()
 
-                for (itemIndex, itemLayout) in sectionLayout.items.enumerate() {
-                    if operation?.cancelled ?? true {
+                for (itemIndex, itemLayout) in sectionLayout.items.enumerated() {
+                    if operation?.isCancelled ?? true {
                         return
                     }
 
@@ -138,7 +138,7 @@ public class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerD
                     let partialSection = Section(header: header, items: items, footer: footer)
                     var partialArrangement = pendingArrangement
                     partialArrangement.append(partialSection)
-                    let insertedIndexPath = NSIndexPath(forItem: itemIndex, inSection: sectionIndex)
+                    let insertedIndexPath = IndexPath(item: itemIndex, section: sectionIndex)
                     updateManager.apply(partialArrangement: partialArrangement, insertedIndexPath: insertedIndexPath)
                 }
 
@@ -162,18 +162,18 @@ public class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerD
      This is useful if you want to precompute the layout for this collection view as part of another layout.
      One example is nested collection/table views (see NestedCollectionViewController.swift in the sample app).
      */
-    public func reload(arrangement arrangement: [Section<[LayoutArrangement]>]) {
-        assert(NSThread.isMainThread(), "reload must be called on the main thread")
+    open func reload(arrangement: [Section<[LayoutArrangement]>]) {
+        assert(Thread.isMainThread, "reload must be called on the main thread")
         backgroundLayoutQueue.cancelAllOperations()
         currentArrangement = arrangement
-        reloadableView?.reloadDataSync()
+        reloadableView?.reloadDataSynchronously()
     }
 }
 
 /// A section in a `ReloadableView`.
-public struct Section<C: CollectionType> {
+public struct Section<C: Collection> {
 
-    typealias T = C.Generator.Element
+    typealias T = C.Iterator.Element
 
     public let header: T?
     public let items: C
@@ -185,7 +185,7 @@ public struct Section<C: CollectionType> {
         self.footer = footer
     }
 
-    public func map<U>(mapper: T -> U) -> Section<[U]> {
+    public func map<U>(_ mapper: (T) -> U) -> Section<[U]> {
         let header = self.header.map(mapper)
         let items = self.items.map(mapper)
         let footer = self.footer.map(mapper)

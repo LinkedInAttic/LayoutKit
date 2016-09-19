@@ -43,14 +43,14 @@ public protocol ConfigurableLayout: Layout {
 
      MUST be run on the main thread.
      */
-    func configure(view view: ConfigurableView)
+    func configure(view: ConfigurableView)
 }
 
 // Implement `configure` and `makeView` from `Layout`.
 public extension ConfigurableLayout {
-    public func configure(baseTypeView baseTypeView: View) {
+    public func configure(baseTypeView: View) {
         guard let view = baseTypeView as? ConfigurableView else {
-            assertionFailure("Expected baseTypeView \(baseTypeView) to be of type \(ConfigurableView.self) but it was of type \(baseTypeView.dynamicType)")
+            assertionFailure("Expected baseTypeView \(baseTypeView) to be of type \(ConfigurableView.self) but it was of type \(type(of: baseTypeView))")
             return
         }
         configure(view: view)

@@ -23,10 +23,10 @@ protocol ReloadableViewUpdateManager {
     /// The operation that this update manager is associated with.
     /// The update manager will stop updating the delegate
     /// if the operation is cancelled or dellocated.
-    weak var operation: NSOperation? { get }
+    weak var operation: Operation? { get }
 
     /// Applies a partial arrangement to the delegate's reloadable view and data source.
-    func apply(partialArrangement arrangement: [Section<[LayoutArrangement]>], insertedIndexPath: NSIndexPath)
+    func apply(partialArrangement arrangement: [Section<[LayoutArrangement]>], insertedIndexPath: IndexPath)
 
     /// Applies the final arrangement to the delegate's reloadable view and data source.
     func apply(finalArrangement arrangement: [Section<[LayoutArrangement]>], batchUpdates: BatchUpdates?, completion: (() -> Void)?)
@@ -36,25 +36,25 @@ extension ReloadableViewUpdateManager {
 
     /// Applies the updates closure to the reloadable view on the main thread
     /// if the reloadable view has not beed deallocationed and if the operation is not cancelled.
-    func updateReloadableView(waitUntilFinished waitUntilFinished: Bool, updates: (reloadableView: ReloadableView) -> Void) {
-        let mainOperation = NSBlockOperation()
+    func updateReloadableView(waitUntilFinished: Bool, updates: @escaping (_ reloadableView: ReloadableView) -> Void) {
+        let mainOperation = BlockOperation()
         mainOperation.addExecutionBlock {
-            let operationCancelled = self.operation?.cancelled ?? true
+            let operationCancelled = self.operation?.isCancelled ?? true
             guard !operationCancelled, let reloadableView = self.delegate?.reloadableView else {
                 return
             }
-            updates(reloadableView: reloadableView)
+            updates(reloadableView)
         }
-        NSOperationQueue.mainQueue().addOperations([mainOperation], waitUntilFinished: waitUntilFinished)
+        OperationQueue.main.addOperations([mainOperation], waitUntilFinished: waitUntilFinished)
     }
 }
 
 /// Base class for implementations of ReloadableViewUpdateManager.
 class BaseReloadableViewUpdateManager {
     weak var delegate: ReloadableViewUpdateManagerDelegate?
-    weak var operation: NSOperation?
+    weak var operation: Operation?
 
-    init(delegate: ReloadableViewUpdateManagerDelegate, operation: NSOperation) {
+    init(delegate: ReloadableViewUpdateManagerDelegate, operation: Operation) {
         self.delegate = delegate
         self.operation = operation
     }
@@ -63,9 +63,9 @@ class BaseReloadableViewUpdateManager {
 /// Updates the `ReloadableView` incrementally as items are inserted.
 class IncrementalUpdateManager: BaseReloadableViewUpdateManager, ReloadableViewUpdateManager {
 
-    private var pendingInsertedIndexPaths = [NSIndexPath]()
+    private var pendingInsertedIndexPaths = [IndexPath]()
 
-    func apply(partialArrangement arrangement: [Section<[LayoutArrangement]>], insertedIndexPath: NSIndexPath) {
+    func apply(partialArrangement arrangement: [Section<[LayoutArrangement]>], insertedIndexPath: IndexPath) {
         updateReloadableView(waitUntilFinished: false) { (reloadableView: ReloadableView) in
             self.pendingInsertedIndexPaths.append(insertedIndexPath)
 
@@ -87,8 +87,8 @@ class IncrementalUpdateManager: BaseReloadableViewUpdateManager, ReloadableViewU
         }
     }
 
-    private func flushPendingInserts(arrangement arrangement: [Section<[LayoutArrangement]>], reloadableView: ReloadableView) {
-        assert(NSThread.isMainThread(), "flushPendingInserts must be called on the main thread")
+    private func flushPendingInserts(arrangement: [Section<[LayoutArrangement]>], reloadableView: ReloadableView) {
+        assert(Thread.isMainThread, "flushPendingInserts must be called on the main thread")
 
         guard let delegate = self.delegate else {
             return
@@ -99,14 +99,14 @@ class IncrementalUpdateManager: BaseReloadableViewUpdateManager, ReloadableViewU
 
         if oldArrangement.isEmpty {
             // Can't do incremental updates on an empty reloadable view.
-            reloadableView.reloadDataSync()
+            reloadableView.reloadDataSynchronously()
         } else {
             // Compute the actual inserted index paths.
             // If indexes are inserted into a section that doesn't exist, then we insert the section instead.
             var batchUpdates = BatchUpdates()
             for pendingInsertedIndexPath in pendingInsertedIndexPaths {
                 if pendingInsertedIndexPath.section >= oldArrangement.count {
-                    batchUpdates.insertSections.addIndex(pendingInsertedIndexPath.section)
+                    batchUpdates.insertSections.insert(pendingInsertedIndexPath.section)
                 } else {
                     batchUpdates.insertItems.append(pendingInsertedIndexPath)
                 }
@@ -121,7 +121,7 @@ class IncrementalUpdateManager: BaseReloadableViewUpdateManager, ReloadableViewU
 /// Only updates the `ReloadableView` with the final arrangement.
 class BatchUpdateManager: BaseReloadableViewUpdateManager, ReloadableViewUpdateManager {
 
-    func apply(partialArrangement arrangement: [Section<[LayoutArrangement]>], insertedIndexPath: NSIndexPath) {
+    func apply(partialArrangement arrangement: [Section<[LayoutArrangement]>], insertedIndexPath: IndexPath) {
         // Nothing to do here. This update strategy ignores partial arrangements.
     }
 
@@ -139,7 +139,7 @@ class BatchUpdateManager: BaseReloadableViewUpdateManager, ReloadableViewUpdateM
             if canBatchUpdate, let batchUpdates = batchUpdates {
                 reloadableView.perform(batchUpdates: batchUpdates)
             } else {
-                reloadableView.reloadDataSync()
+                reloadableView.reloadDataSynchronously()
             }
             
             completion?()

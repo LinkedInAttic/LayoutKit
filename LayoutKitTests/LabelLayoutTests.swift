@@ -18,7 +18,7 @@ class LabelLayoutTests: XCTestCase {
         let arrangement = LabelLayout(text: text, font: font).arrangement()
         let label = UILabel(text: text, font: font)
 
-        XCTAssertEqual(arrangement.makeViews().frame.size, label.intrinsicContentSize())
+        XCTAssertEqual(arrangement.makeViews().frame.size, label.intrinsicContentSize)
     }
 
     func testAttributedLabel() {
@@ -28,7 +28,7 @@ class LabelLayoutTests: XCTestCase {
         let arrangement = LabelLayout(attributedText: attributedText, font: font).arrangement()
         let label = UILabel(attributedText: attributedText, font: font)
 
-        XCTAssertEqual(arrangement.makeViews().frame.size, label.intrinsicContentSize())
+        XCTAssertEqual(arrangement.makeViews().frame.size, label.intrinsicContentSize)
     }
 
     func testTwoLineLabel() {
@@ -37,7 +37,7 @@ class LabelLayoutTests: XCTestCase {
         let font = UIFont.helvetica()
         let width: CGFloat = 90
 
-        let arrangement = LabelLayout(text: text, numberOfLines: numberOfLines, font: font).arrangement(width: width)
+        let arrangement = LabelLayout(text: text, font: font, numberOfLines: numberOfLines).arrangement(width: width)
         let label = UILabel(text: text, font: font, numberOfLines: numberOfLines)
 
         let labelSize = label.sizeThatFits(CGSize(width: 90, height: .max))
@@ -50,7 +50,7 @@ class LabelLayoutTests: XCTestCase {
         let font = UIFont.helvetica()
         let width: CGFloat = 90
 
-        let arrangement = LabelLayout(text: text, numberOfLines: numberOfLines, font: font).arrangement(width: width)
+        let arrangement = LabelLayout(text: text, font: font, numberOfLines: numberOfLines).arrangement(width: width)
         let label = UILabel(text: text, font: font, numberOfLines: numberOfLines)
 
         let height = label.sizeThatFits(CGSize(width: 90, height: .max)).height
@@ -60,22 +60,22 @@ class LabelLayoutTests: XCTestCase {
     func testEmptyLabel() {
         let labelLayout = LabelLayout(text: "", font: UIFont.helvetica())
         let arrangement = labelLayout.arrangement()
-        XCTAssertEqual(arrangement.frame, CGRectZero)
+        XCTAssertEqual(arrangement.frame, .zero)
     }
 
     func testSingleLineHeight() {
         let text = "hello world"
 
-        func testFont(font: UIFont) {
+        func testFont(_ font: UIFont) {
             let label = UILabel(text: text, font: font)
             let layoutSize = LabelLayout(text: text, font: font).arrangement().frame.size
-            XCTAssertEqual(label.intrinsicContentSize(), layoutSize)
-            XCTAssertEqual(label.sizeThatFits(CGSize(width: CGFloat.max, height: CGFloat.max)), layoutSize)
+            XCTAssertEqual(label.intrinsicContentSize, layoutSize)
+            XCTAssertEqual(label.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)), layoutSize)
         }
 
         for fontSize in 1...50 {
             testFont(UIFont(name: "Helvetica", size: CGFloat(fontSize))!)
-            testFont(UIFont.systemFontOfSize(CGFloat(fontSize)))
+            testFont(UIFont.systemFont(ofSize: CGFloat(fontSize)))
         }
     }
 
@@ -85,7 +85,7 @@ class LabelLayoutTests: XCTestCase {
         let arrangement = LabelLayout(attributedText: text).arrangement()
         let label = UILabel(attributedText: text)
 
-        XCTAssertEqual(arrangement.frame.size, label.intrinsicContentSize())
+        XCTAssertEqual(arrangement.frame.size, label.intrinsicContentSize)
     }
 
     func testAttributedTextCustomFont() {
@@ -97,7 +97,7 @@ class LabelLayoutTests: XCTestCase {
         let arrangement = LabelLayout(attributedText: text).arrangement()
         let label = UILabel(attributedText: text)
 
-        XCTAssertEqual(arrangement.frame.size, label.intrinsicContentSize())
+        XCTAssertEqual(arrangement.frame.size, label.intrinsicContentSize)
         #endif
     }
 
@@ -110,7 +110,7 @@ class LabelLayoutTests: XCTestCase {
         let arrangement = LabelLayout(attributedText: text).arrangement()
         let label = UILabel(attributedText: text)
 
-        XCTAssertEqual(arrangement.frame.size, label.intrinsicContentSize())
+        XCTAssertEqual(arrangement.frame.size, label.intrinsicContentSize)
         #endif
     }
 
@@ -132,7 +132,7 @@ class LabelLayoutTests: XCTestCase {
         let label = UILabel(text: text, font: font, numberOfLines: numberOfLines)
         let arrangement = LabelLayout(text: text, font: font, numberOfLines: numberOfLines).arrangement()
 
-        XCTAssertEqual(arrangement.makeViews().frame.size, label.intrinsicContentSize())
+        XCTAssertEqual(arrangement.makeViews().frame.size, label.intrinsicContentSize)
     }
 
     func testHelveticaNeueOneLineAttributedText() {
@@ -143,7 +143,7 @@ class LabelLayoutTests: XCTestCase {
         let label = UILabel(attributedText: text, font: font, numberOfLines: numberOfLines)
         let arrangement = LabelLayout(attributedText: text, font: font, numberOfLines: numberOfLines).arrangement()
 
-        XCTAssertEqual(arrangement.makeViews().frame.size, label.intrinsicContentSize())
+        XCTAssertEqual(arrangement.makeViews().frame.size, label.intrinsicContentSize)
     }
 
     func testHelveticaNeueTwoLineText() {

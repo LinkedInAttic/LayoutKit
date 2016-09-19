@@ -13,7 +13,7 @@ class FeedItemManualView: UIView, DataBinder {
 
     let actionLabel: UILabel = {
         let l = UILabel()
-        l.backgroundColor = UIColor.blueColor()
+        l.backgroundColor = UIColor.blue
         return l
     }()
 
@@ -27,8 +27,8 @@ class FeedItemManualView: UIView, DataBinder {
     let posterImageView: UIImageView = {
         let i = UIImageView()
         i.image = UIImage(named: "50x50.png")
-        i.backgroundColor = UIColor.orangeColor()
-        i.contentMode = .Center
+        i.backgroundColor = UIColor.orange
+        i.contentMode = .center
         i.sizeToFit()
         return i
     }()
@@ -47,8 +47,8 @@ class FeedItemManualView: UIView, DataBinder {
     let contentImageView: UIImageView = {
         let i = UIImageView()
         i.image = UIImage(named: "350x200.png")
-        i.contentMode = .ScaleAspectFit
-        i.backgroundColor = UIColor.orangeColor()
+        i.contentMode = .scaleAspectFit
+        i.backgroundColor = UIColor.orange
         i.sizeToFit()
         return i
     }()
@@ -67,7 +67,7 @@ class FeedItemManualView: UIView, DataBinder {
         let l = UILabel()
         l.text = "Comment"
         l.backgroundColor = UIColor(red: 0, green: 1.0, blue: 0, alpha: 1)
-        l.textAlignment = .Center
+        l.textAlignment = .center
         return l
     }()
 
@@ -75,7 +75,7 @@ class FeedItemManualView: UIView, DataBinder {
         let l = UILabel()
         l.text = "Share"
         l.backgroundColor = UIColor(red: 0, green: 0.8, blue: 0, alpha: 1)
-        l.textAlignment = .Right
+        l.textAlignment = .right
         return l
     }()
 
@@ -104,14 +104,14 @@ class FeedItemManualView: UIView, DataBinder {
         addSubview(shareLabel)
         addSubview(actorImageView)
         addSubview(actorCommentLabel)
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setData(data: FeedItemData) {
+    func setData(_ data: FeedItemData) {
         actionLabel.text = data.actionText
         posterNameLabel.text = data.posterName
         posterHeadlineLabel.text = data.posterHeadline
@@ -172,14 +172,14 @@ class FeedItemManualView: UIView, DataBinder {
         actorCommentLabel.sizeToFit()
     }
 
-    override func sizeThatFits(size: CGSize) -> CGSize {
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
         frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         layoutSubviews()
         return CGSize(width: size.width, height: max(actorImageView.frame.bottom, actorCommentLabel.frame.bottom))
     }
 
-    override func intrinsicContentSize() -> CGSize {
-        return sizeThatFits(CGSize(width: frame.width, height: CGFloat.max))
+    override var intrinsicContentSize: CGSize {
+        return sizeThatFits(CGSize(width: frame.width, height: CGFloat.greatestFiniteMagnitude))
     }
 }
 

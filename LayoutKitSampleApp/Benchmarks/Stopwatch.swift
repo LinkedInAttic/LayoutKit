@@ -41,7 +41,7 @@ class Stopwatch {
      Benchmarks the block and logs the result.
      The block is responsible for calling `resume()` and `pause()` on the stopwatch.
      */
-    static func benchmark(name: String, block: (stopwatch: Stopwatch) -> Void) {
+    static func benchmark(_ name: String, block: @escaping (_ stopwatch: Stopwatch) -> Void) {
         autoreleasepool {
             let stopwatch = Stopwatch(name: name)
 
@@ -52,7 +52,7 @@ class Stopwatch {
             var iterationCount = 1
             while true {
                 autoreleasepool {
-                    block(stopwatch: stopwatch)
+                    block(stopwatch)
                 }
                 if stopwatch.elapsedTime >= minimumBenchmarkTime && iterationCount >= minimumIterationCount {
                     break

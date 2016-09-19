@@ -56,7 +56,7 @@ private class TestTableView: LayoutAdapterTableView, TestableReloadableView {
     
     init() {
         let frame = CGRect(x: 0, y: 0, width: 320, height: 1000)
-        super.init(frame: frame, style: .Plain)
+        super.init(frame: frame, style: .plain)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -68,50 +68,50 @@ private class TestTableView: LayoutAdapterTableView, TestableReloadableView {
         reloadDataCount += 1
     }
 
-    private override func insertRowsAtIndexPaths(indexPaths: [NSIndexPath], withRowAnimation animation: UITableViewRowAnimation) {
-        super.insertRowsAtIndexPaths(indexPaths, withRowAnimation: animation)
-        batchUpdates.insertItems.appendContentsOf(indexPaths)
+    private override func insertRows(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation) {
+        super.insertRows(at: indexPaths, with: animation)
+        batchUpdates.insertItems.append(contentsOf: indexPaths)
     }
 
-    private override func deleteRowsAtIndexPaths(indexPaths: [NSIndexPath], withRowAnimation animation: UITableViewRowAnimation) {
-        super.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: animation)
-        batchUpdates.deleteItems.appendContentsOf(indexPaths)
+    private override func deleteRows(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation) {
+        super.deleteRows(at: indexPaths, with: animation)
+        batchUpdates.deleteItems.append(contentsOf: indexPaths)
     }
 
-    private override func moveRowAtIndexPath(indexPath: NSIndexPath, toIndexPath newIndexPath: NSIndexPath) {
-        super.moveRowAtIndexPath(indexPath, toIndexPath: newIndexPath)
+    private override func moveRow(at indexPath: IndexPath, to newIndexPath: IndexPath) {
+        super.moveRow(at: indexPath, to: newIndexPath)
         batchUpdates.moveItems.append(ItemMove(from: indexPath, to: newIndexPath))
     }
 
-    private override func insertSections(sections: NSIndexSet, withRowAnimation animation: UITableViewRowAnimation) {
-        super.insertSections(sections, withRowAnimation: animation)
-        batchUpdates.insertSections.addIndexes(sections)
+    private override func insertSections(_ sections: IndexSet, with animation: UITableViewRowAnimation) {
+        super.insertSections(sections, with: animation)
+        batchUpdates.insertSections.formUnion(sections)
     }
 
-    private override func deleteSections(sections: NSIndexSet, withRowAnimation animation: UITableViewRowAnimation) {
-        super.deleteSections(sections, withRowAnimation: animation)
-        batchUpdates.deleteSections.addIndexes(sections)
+    private override func deleteSections(_ sections: IndexSet, with animation: UITableViewRowAnimation) {
+        super.deleteSections(sections, with: animation)
+        batchUpdates.deleteSections.formUnion(sections)
     }
 
-    private override func moveSection(section: Int, toSection newSection: Int) {
+    private override func moveSection(_ section: Int, toSection newSection: Int) {
         super.moveSection(section, toSection: newSection)
         batchUpdates.moveSections.append(SectionMove(from: section, to: newSection))
     }
 
-    private func resetTestCounts() {
+    fileprivate func resetTestCounts() {
         reloadDataCount = 0
         batchUpdates = BatchUpdates()
     }
 
-    private func verifyHeader(section section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {
-        verify(rectForHeaderInSection, section: section, text: text, frame: frame, file: file, line: line)
+    fileprivate func verifyHeader(_ section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {
+        verify(rectForHeader(inSection:), section: section, text: text, frame: frame, file: file, line: line)
     }
 
-    private func verifyFooter(section section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {
-        verify(rectForFooterInSection, section: section, text: text, frame: frame, file: file, line: line)
+    fileprivate func verifyFooter(_ section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {
+        verify(rectForFooter(inSection:), section: section, text: text, frame: frame, file: file, line: line)
     }
 
-    private func verify(getter: Int -> CGRect, section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {
+    private func verify(_ getter: (Int) -> CGRect, section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {
         let headerFrame = getter(section)
         if let frame = frame {
             XCTAssertEqual(headerFrame, frame, file: file, line: line)
@@ -120,7 +120,7 @@ private class TestTableView: LayoutAdapterTableView, TestableReloadableView {
         }
     }
 
-    private func verifyVisibleItem(text text: String, frame: CGRect, file: StaticString, line: UInt) {
+    fileprivate func verifyVisibleItem(_ text: String, frame: CGRect, file: StaticString, line: UInt) {
         let items = visibleCells.filter { cell -> Bool in
             guard let label = cell.contentView.subviews.first as? UILabel else {
                 return false

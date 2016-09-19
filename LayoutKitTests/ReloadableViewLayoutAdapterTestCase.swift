@@ -12,7 +12,7 @@ import XCTest
 class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 
     /// Loads two layouts synchronously one after the other and verifies the layout are correct.
-    func verifyReloadSync(view: TestableReloadableView) {
+    func verifyReloadSync(_ view: TestableReloadableView) {
 
         // Test loading layout one while the collection is empty.
         do {
@@ -25,7 +25,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
             // Need to trigger a layout on UICollectionViews so we can test the results.
             (view as? UICollectionView)?.layoutIfNeeded()
 
-            verifyLayoutOne(view: view)
+            verifyLayoutOne(view)
 
             // Expect reload since this is synchronous.
             XCTAssertEqual(view.batchUpdates.insertSections.count, 0)
@@ -46,7 +46,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
             // Need to trigger a layout on UICollectionViews so we can test the results.
             (view as? UICollectionView)?.layoutIfNeeded()
 
-            verifyLayoutTwo(view: view)
+            verifyLayoutTwo(view)
 
             // Expect reload since this is synchronous.
             XCTAssertEqual(view.batchUpdates.insertSections.count, 0)
@@ -56,7 +56,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
     }
 
     /// Verifies that batch updates work when layouts are loaded synchronously.
-    func verifyReloadBatchUpdatesSync(view: TestableReloadableView) {
+    func verifyReloadBatchUpdatesSync(_ view: TestableReloadableView) {
 
         // Setup initial layout.
         view.layoutAdapter.reload(width: view.bounds.width, synchronous: true, layoutProvider: layoutProviderOne)
@@ -84,7 +84,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
             // Need to trigger a layout on UICollectionViews so we can test the results.
             (view as? UICollectionView)?.layoutIfNeeded()
 
-            verifyLayoutTwo(view: view)
+            verifyLayoutTwo(view)
 
             // Expect batch update.
             XCTAssertEqual(view.batchUpdates.insertSections.count, 1)
@@ -112,21 +112,21 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
             // Need to trigger a layout on UICollectionViews so we can test the results.
             (view as? UICollectionView)?.layoutIfNeeded()
 
-            verifyLayoutThree(view: view, batchUpdate: true)
+            verifyLayoutThree(view, batchUpdate: true)
         }
     }
 
     /// Loads two layouts asynchronously one after the other and verifies the layouts are correct.
-    func verifyReloadAsync(view: TestableReloadableView) {
+    func verifyReloadAsync(_ view: TestableReloadableView) {
         // Test loading layout one while the collection is empty.
         do {
-            let completionExpectation = expectationWithDescription("completion")
+            let completionExpectation = expectation(description: "completion")
             view.layoutAdapter.reload(width: view.bounds.width, synchronous: false, layoutProvider: layoutProviderOne, completion: {
                 completionExpectation.fulfill()
             })
 
-            waitForExpectationsWithTimeout(10, handler: nil)
-            verifyLayoutOne(view: view)
+            waitForExpectations(timeout: 10, handler: nil)
+            verifyLayoutOne(view)
 
             // Expect items and sections to be inserted incrementally (except first reload).
             XCTAssertEqual(view.reloadDataCount, 1)
@@ -138,13 +138,13 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 
         // Test loading layout two while the collection is not empty.
         do {
-            let completionExpectation = expectationWithDescription("completion")
+            let completionExpectation = expectation(description: "completion")
             view.layoutAdapter.reload(width: view.bounds.width, synchronous: false, layoutProvider: layoutProviderTwo, completion: {
                 completionExpectation.fulfill()
             })
 
-            waitForExpectationsWithTimeout(10, handler: nil)
-            verifyLayoutTwo(view: view)
+            waitForExpectations(timeout: 10, handler: nil)
+            verifyLayoutTwo(view)
 
             // Expect reload since the view already has content.
             XCTAssertEqual(view.reloadDataCount, 1)
@@ -154,7 +154,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
     }
 
     /// Verifies that batch updates work when layouts are loaded asynchronously.
-    func verifyReloadBatchUpdatesAsync(view: TestableReloadableView) {
+    func verifyReloadBatchUpdatesAsync(_ view: TestableReloadableView) {
         // Setup initial layout.
         view.layoutAdapter.reload(width: view.bounds.width, synchronous: true, layoutProvider: layoutProviderOne)
 
@@ -165,14 +165,14 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 
         // Test batch update to layout two.
         do {
-            let completionExpectation = expectationWithDescription("completion")
+            let completionExpectation = expectation(description: "completion")
             let batchUpdates = batchUpdatesForLayoutTwo()
             view.layoutAdapter.reload(width: view.bounds.width, synchronous: false, batchUpdates: batchUpdates, layoutProvider: layoutProviderTwo, completion: {
                 completionExpectation.fulfill()
             })
 
-            waitForExpectationsWithTimeout(10, handler: nil)
-            verifyLayoutTwo(view: view)
+            waitForExpectations(timeout: 10, handler: nil)
+            verifyLayoutTwo(view)
 
             // Expect batch update.
             XCTAssertEqual(view.batchUpdates.insertSections.count, 1)
@@ -183,19 +183,19 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 
         // Test batch update to layout two.
         do {
-            let completionExpectation = expectationWithDescription("completion")
+            let completionExpectation = expectation(description: "completion")
             let batchUpdates = batchUpdatesForLayoutThree()
             view.layoutAdapter.reload(width: view.bounds.width, synchronous: false, batchUpdates: batchUpdates, layoutProvider: layoutProviderThree, completion: {
                 completionExpectation.fulfill()
             })
 
-            waitForExpectationsWithTimeout(10, handler: nil)
-            verifyLayoutThree(view: view, batchUpdate: true)
+            waitForExpectations(timeout: 10, handler: nil)
+            verifyLayoutThree(view, batchUpdate: true)
         }
     }
 
     /// Verifies that all asynchronous layouts are cancelled when a synchronous layout happens.
-    func verifyReloadSyncCancelsPreviousLayout(view: TestableReloadableView) {
+    func verifyReloadSyncCancelsPreviousLayout(_ view: TestableReloadableView) {
         // Start some asynchronous layouts.
         for i in 0..<5 {
             view.layoutAdapter.reload(width: view.bounds.width, synchronous: false, layoutProvider: layoutProviderOne, completion: {
@@ -208,7 +208,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 
         // Verify that only the synchronous layout happened.
         let verify = {
-            self.verifyLayoutTwo(view: view)
+            self.verifyLayoutTwo(view)
 
             // Expect reload since this is synchronous.
             XCTAssertEqual(view.reloadDataCount, 1)
@@ -221,16 +221,16 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
         verify()
     }
 
-    private func waitForBackgroundOperations(adapter: ReloadableViewLayoutAdapter) {
-        let expectation = expectationWithDescription("background layout operations")
-        adapter.backgroundLayoutQueue.addOperationWithBlock {
+    private func waitForBackgroundOperations(_ adapter: ReloadableViewLayoutAdapter) {
+        let expectation = self.expectation(description: "background layout operations")
+        adapter.backgroundLayoutQueue.addOperation {
             expectation.fulfill()
         }
-        waitForExpectationsWithTimeout(10, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
     }
 
     /// Verifies that all asynchronous layouts are cancelled when a asynchronous layout happens.
-    func verifyReloadAsyncCancelsPreviousLayout(view: TestableReloadableView) {
+    func verifyReloadAsyncCancelsPreviousLayout(_ view: TestableReloadableView) {
         // Start some asynchronous layouts.
         for i in 0..<5 {
             view.layoutAdapter.reload(width: view.bounds.width, synchronous: false, layoutProvider: layoutProviderOne, completion: {
@@ -239,15 +239,15 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
         }
 
         // Do an asynchronous layout.
-        let completionExpectation = expectationWithDescription("completion")
+        let completionExpectation = expectation(description: "completion")
         view.layoutAdapter.reload(width: view.bounds.width, synchronous: false, layoutProvider: layoutProviderTwo, completion: {
             completionExpectation.fulfill()
         })
 
-        waitForExpectationsWithTimeout(10, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
 
         // Verify that only the last asynchronous layout happened.
-        verifyLayoutTwo(view: view)
+        verifyLayoutTwo(view)
 
         // Expect items and sections to be inserted incrementally (except first reload).
         XCTAssertEqual(view.reloadDataCount, 1)
@@ -256,7 +256,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
     }
 
     /// Verifies that layout operations are cancelled if the reloadable view is deallocated.
-    func verifyReloadAsyncCancelledOnViewDeinit(@autoclosure viewProvider: Void -> TestableReloadableView) {
+    func verifyReloadAsyncCancelledOnViewDeinit(_ viewProvider: @autoclosure (Void) -> TestableReloadableView) {
         var adapter: ReloadableViewLayoutAdapter!
         autoreleasepool {
             let view = viewProvider()
@@ -268,66 +268,115 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
         waitForBackgroundOperations(adapter)
     }
 
-    private func verifySectionZero(view: TestableReloadableView) {
+    private func verifySectionZero(_ view: TestableReloadableView) {
         let itemWidth = 320 - view.itemWidthInset
-        view.verifyHeader(section: 0, text: "header 0", frame: CGRect(x: 0, y: 0, width: 320, height: 51), file: #file, line: #line)
-        view.verifyVisibleItem(text: "item 0", frame: CGRect(x: 0, y: 51 + view.itemSpacing, width: itemWidth, height: 52), file: #file, line: #line)
-        view.verifyVisibleItem(text: "item 1", frame: CGRect(x: 0, y: 103 + 2*view.itemSpacing, width: itemWidth, height: 53), file: #file, line: #line)
-        view.verifyVisibleItem(text: "item 2", frame: CGRect(x: 0, y: 156 + 3*view.itemSpacing, width: itemWidth, height: 54), file: #file, line: #line)
-        view.verifyFooter(section: 0, text: "footer 0", frame: CGRect(x: 0, y: 210 + 4*view.itemSpacing, width: 320, height: 55), file: #file, line: #line)
+        if #available(tvOS 10, *) {
+            view.verifyHeader(0, text: "header 0", frame: CGRect(x: 0, y: 0, width: 320, height: 51), file: #file, line: #line)
+            view.verifyVisibleItem("item 0", frame: CGRect(x: 0, y: 51, width: itemWidth, height: 52), file: #file, line: #line)
+            view.verifyVisibleItem("item 1", frame: CGRect(x: 0, y: 103 + 1*view.itemSpacing, width: itemWidth, height: 53), file: #file, line: #line)
+            view.verifyVisibleItem("item 2", frame: CGRect(x: 0, y: 156 + 2*view.itemSpacing, width: itemWidth, height: 54), file: #file, line: #line)
+            view.verifyFooter(0, text: "footer 0", frame: CGRect(x: 0, y: 210 + 3*view.itemSpacing, width: 320, height: 55), file: #file, line: #line)
+        } else {
+            view.verifyHeader(0, text: "header 0", frame: CGRect(x: 0, y: 0, width: 320, height: 51), file: #file, line: #line)
+            view.verifyVisibleItem("item 0", frame: CGRect(x: 0, y: 51 + view.itemSpacing, width: itemWidth, height: 52), file: #file, line: #line)
+            view.verifyVisibleItem("item 1", frame: CGRect(x: 0, y: 103 + 2*view.itemSpacing, width: itemWidth, height: 53), file: #file, line: #line)
+            view.verifyVisibleItem("item 2", frame: CGRect(x: 0, y: 156 + 3*view.itemSpacing, width: itemWidth, height: 54), file: #file, line: #line)
+            view.verifyFooter(0, text: "footer 0", frame: CGRect(x: 0, y: 210 + 4*view.itemSpacing, width: 320, height: 55), file: #file, line: #line)
+        }
     }
 
-    private func verifyLayoutOne(view view: TestableReloadableView) {
+    private func verifyLayoutOne(_ view: TestableReloadableView) {
         verifySectionZero(view)
 
         // Section 1
         let itemWidth = 320 - view.itemWidthInset
-        view.verifyHeader(section: 1, text: nil, frame: nil, file: #file, line: #line)
-        view.verifyVisibleItem(text: "item 3", frame: CGRect(x: 0, y: 265 + 5*view.itemSpacing, width: itemWidth, height: 56), file: #file, line: #line)
-        view.verifyVisibleItem(text: "item 4", frame: CGRect(x: 0, y: 321 + 6*view.itemSpacing, width: itemWidth, height: 57), file: #file, line: #line)
-        view.verifyFooter(section: 1, text: nil, frame: nil, file: #file, line: #line)
+        if #available(tvOS 10, *) {
+            view.verifyHeader(1, text: nil, frame: nil, file: #file, line: #line)
+            view.verifyVisibleItem("item 3", frame: CGRect(x: 0, y: 265 + 4*view.itemSpacing, width: itemWidth, height: 56), file: #file, line: #line)
+            view.verifyVisibleItem("item 4", frame: CGRect(x: 0, y: 321 + 5*view.itemSpacing, width: itemWidth, height: 57), file: #file, line: #line)
+            view.verifyFooter(1, text: nil, frame: nil, file: #file, line: #line)
+        } else {
+            view.verifyHeader(1, text: nil, frame: nil, file: #file, line: #line)
+            view.verifyVisibleItem("item 3", frame: CGRect(x: 0, y: 265 + 5*view.itemSpacing, width: itemWidth, height: 56), file: #file, line: #line)
+            view.verifyVisibleItem("item 4", frame: CGRect(x: 0, y: 321 + 6*view.itemSpacing, width: itemWidth, height: 57), file: #file, line: #line)
+            view.verifyFooter(1, text: nil, frame: nil, file: #file, line: #line)
+        }
     }
 
-    private func verifyLayoutTwo(view view: TestableReloadableView) {
+    private func verifyLayoutTwo(_ view: TestableReloadableView) {
         let itemWidth = 320 - view.itemWidthInset
         verifySectionZero(view)
 
         // Section 1
-        view.verifyHeader(section: 1, text: nil, frame: nil, file: #file, line: #line)
-        view.verifyVisibleItem(text: "item 3", frame: CGRect(x: 0, y: 265 + 5*view.itemSpacing, width: itemWidth, height: 56), file: #file, line: #line)
-        view.verifyVisibleItem(text: "item 4", frame: CGRect(x: 0, y: 321 + 6*view.itemSpacing, width: itemWidth, height: 57), file: #file, line: #line)
-        view.verifyVisibleItem(text: "item 5", frame: CGRect(x: 0, y: 378 + 7*view.itemSpacing, width: itemWidth, height: 58), file: #file, line: #line)
-        view.verifyFooter(section: 1, text: nil, frame: nil, file: #file, line: #line)
+        if #available(tvOS 10, *) {
+            view.verifyHeader(1, text: nil, frame: nil, file: #file, line: #line)
+            view.verifyVisibleItem("item 3", frame: CGRect(x: 0, y: 265 + 4*view.itemSpacing, width: itemWidth, height: 56), file: #file, line: #line)
+            view.verifyVisibleItem("item 4", frame: CGRect(x: 0, y: 321 + 5*view.itemSpacing, width: itemWidth, height: 57), file: #file, line: #line)
+            view.verifyVisibleItem("item 5", frame: CGRect(x: 0, y: 378 + 6*view.itemSpacing, width: itemWidth, height: 58), file: #file, line: #line)
+            view.verifyFooter(1, text: nil, frame: nil, file: #file, line: #line)
+        } else {
+            view.verifyHeader(1, text: nil, frame: nil, file: #file, line: #line)
+            view.verifyVisibleItem("item 3", frame: CGRect(x: 0, y: 265 + 5*view.itemSpacing, width: itemWidth, height: 56), file: #file, line: #line)
+            view.verifyVisibleItem("item 4", frame: CGRect(x: 0, y: 321 + 6*view.itemSpacing, width: itemWidth, height: 57), file: #file, line: #line)
+            view.verifyVisibleItem("item 5", frame: CGRect(x: 0, y: 378 + 7*view.itemSpacing, width: itemWidth, height: 58), file: #file, line: #line)
+            view.verifyFooter(1, text: nil, frame: nil, file: #file, line: #line)
+        }
 
         // Section 2
-        view.verifyHeader(section: 2, text: "header 2", frame: CGRect(x: 0, y: 436 + 8*view.itemSpacing, width: 320, height: 59), file: #file, line: #line)
-        view.verifyVisibleItem(text: "item 6", frame: CGRect(x: 0, y: 495 + 9*view.itemSpacing, width: itemWidth, height: 60), file: #file, line: #line)
-        view.verifyVisibleItem(text: "item 7", frame: CGRect(x: 0, y: 555 + 10*view.itemSpacing, width: itemWidth, height: 61), file: #file, line: #line)
-        view.verifyVisibleItem(text: "item 8", frame: CGRect(x: 0, y: 616 + 11*view.itemSpacing, width: itemWidth, height: 62), file: #file, line: #line)
-        view.verifyFooter(section: 2, text: "footer 2", frame: CGRect(x: 0, y: 678 + 12*view.itemSpacing, width: 320, height: 63), file: #file, line: #line)
+        if #available(tvOS 10, *) {
+            view.verifyHeader(2, text: "header 2", frame: CGRect(x: 0, y: 436 + 7*view.itemSpacing, width: 320, height: 59), file: #file, line: #line)
+            view.verifyVisibleItem("item 6", frame: CGRect(x: 0, y: 495 + 7*view.itemSpacing, width: itemWidth, height: 60), file: #file, line: #line)
+            view.verifyVisibleItem("item 7", frame: CGRect(x: 0, y: 555 + 8*view.itemSpacing, width: itemWidth, height: 61), file: #file, line: #line)
+            view.verifyVisibleItem("item 8", frame: CGRect(x: 0, y: 616 + 9*view.itemSpacing, width: itemWidth, height: 62), file: #file, line: #line)
+            view.verifyFooter(2, text: "footer 2", frame: CGRect(x: 0, y: 678 + 10*view.itemSpacing, width: 320, height: 63), file: #file, line: #line)
+        } else {
+            view.verifyHeader(2, text: "header 2", frame: CGRect(x: 0, y: 436 + 8*view.itemSpacing, width: 320, height: 59), file: #file, line: #line)
+            view.verifyVisibleItem("item 6", frame: CGRect(x: 0, y: 495 + 9*view.itemSpacing, width: itemWidth, height: 60), file: #file, line: #line)
+            view.verifyVisibleItem("item 7", frame: CGRect(x: 0, y: 555 + 10*view.itemSpacing, width: itemWidth, height: 61), file: #file, line: #line)
+            view.verifyVisibleItem("item 8", frame: CGRect(x: 0, y: 616 + 11*view.itemSpacing, width: itemWidth, height: 62), file: #file, line: #line)
+            view.verifyFooter(2, text: "footer 2", frame: CGRect(x: 0, y: 678 + 12*view.itemSpacing, width: 320, height: 63), file: #file, line: #line)
+        }
+
     }
 
-    private func verifyLayoutThree(view view: TestableReloadableView, batchUpdate: Bool) {
+    private func verifyLayoutThree(_ view: TestableReloadableView, batchUpdate: Bool) {
         let itemWidth = 320 - view.itemWidthInset
 
         // Section 0
-        view.verifyHeader(section: 0, text: "header 2", frame: CGRect(x: 0, y: 0, width: 320, height: 59), file: #file, line: #line)
-        view.verifyVisibleItem(text: "item 6", frame: CGRect(x: 0, y: 59 + 1*view.itemSpacing, width: itemWidth, height: 60), file: #file, line: #line)
-        view.verifyVisibleItem(text: "item 7", frame: CGRect(x: 0, y: 119 + 2*view.itemSpacing, width: itemWidth, height: 61), file: #file, line: #line)
-        view.verifyVisibleItem(text: "item 8", frame: CGRect(x: 0, y: 180 + 3*view.itemSpacing, width: itemWidth, height: 62), file: #file, line: #line)
-        view.verifyFooter(section: 0, text: "footer 2", frame: CGRect(x: 0, y: 242 + 4*view.itemSpacing, width: 320, height: 63), file: #file, line: #line)
+        if #available(tvOS 10, *) {
+            view.verifyHeader(0, text: "header 2", frame: CGRect(x: 0, y: 0, width: 320, height: 59), file: #file, line: #line)
+            view.verifyVisibleItem("item 6", frame: CGRect(x: 0, y: 59 + 0*view.itemSpacing, width: itemWidth, height: 60), file: #file, line: #line)
+            view.verifyVisibleItem("item 7", frame: CGRect(x: 0, y: 119 + 1*view.itemSpacing, width: itemWidth, height: 61), file: #file, line: #line)
+            view.verifyVisibleItem("item 8", frame: CGRect(x: 0, y: 180 + 2*view.itemSpacing, width: itemWidth, height: 62), file: #file, line: #line)
+            view.verifyFooter(0, text: "footer 2", frame: CGRect(x: 0, y: 242 + 3*view.itemSpacing, width: 320, height: 63), file: #file, line: #line)
+        } else {
+            view.verifyHeader(0, text: "header 2", frame: CGRect(x: 0, y: 0, width: 320, height: 59), file: #file, line: #line)
+            view.verifyVisibleItem("item 6", frame: CGRect(x: 0, y: 59 + 1*view.itemSpacing, width: itemWidth, height: 60), file: #file, line: #line)
+            view.verifyVisibleItem("item 7", frame: CGRect(x: 0, y: 119 + 2*view.itemSpacing, width: itemWidth, height: 61), file: #file, line: #line)
+            view.verifyVisibleItem("item 8", frame: CGRect(x: 0, y: 180 + 3*view.itemSpacing, width: itemWidth, height: 62), file: #file, line: #line)
+            view.verifyFooter(0, text: "footer 2", frame: CGRect(x: 0, y: 242 + 4*view.itemSpacing, width: 320, height: 63), file: #file, line: #line)
+        }
+
 
         // Section 1
-        view.verifyHeader(section: 1, text: nil, frame: nil, file: #file, line: #line)
-        view.verifyVisibleItem(text: "item 4", frame: CGRect(x: 0, y: 305 + 5*view.itemSpacing, width: itemWidth, height: 57), file: #file, line: #line)
-        view.verifyVisibleItem(text: "item 3", frame: CGRect(x: 0, y: 362 + 6*view.itemSpacing, width: itemWidth, height: 56), file: #file, line: #line)
-        view.verifyFooter(section: 1, text: nil, frame: nil, file: #file, line: #line)
+        if #available(tvOS 10, *) {
+            view.verifyHeader(1, text: nil, frame: nil, file: #file, line: #line)
+            view.verifyVisibleItem("item 4", frame: CGRect(x: 0, y: 305 + 4*view.itemSpacing, width: itemWidth, height: 57), file: #file, line: #line)
+            view.verifyVisibleItem("item 3", frame: CGRect(x: 0, y: 362 + 5*view.itemSpacing, width: itemWidth, height: 56), file: #file, line: #line)
+            view.verifyFooter(1, text: nil, frame: nil, file: #file, line: #line)
+        } else {
+            view.verifyHeader(1, text: nil, frame: nil, file: #file, line: #line)
+            view.verifyVisibleItem("item 4", frame: CGRect(x: 0, y: 305 + 5*view.itemSpacing, width: itemWidth, height: 57), file: #file, line: #line)
+            view.verifyVisibleItem("item 3", frame: CGRect(x: 0, y: 362 + 6*view.itemSpacing, width: itemWidth, height: 56), file: #file, line: #line)
+            view.verifyFooter(1, text: nil, frame: nil, file: #file, line: #line)
+        }
+
 
         if batchUpdate {
-            let itemMove = ItemMove(from: NSIndexPath(forItem: 0, inSection: 1), to: NSIndexPath(forItem: 1, inSection: 1))
+            let itemMove = ItemMove(from: IndexPath(item: 0, section: 1), to: IndexPath(item: 1, section: 1))
             XCTAssertEqual(view.batchUpdates.moveItems.only, itemMove)
             XCTAssertEqual(view.batchUpdates.moveSections.only, SectionMove(from: 2, to: 0))
-            XCTAssertEqual(view.batchUpdates.deleteItems.only, NSIndexPath(forItem: 2, inSection: 1))
+            XCTAssertEqual(view.batchUpdates.deleteItems.only, IndexPath(item: 2, section: 1))
             XCTAssertEqual(view.batchUpdates.deleteSections.only, 0)
             XCTAssertEqual(view.reloadDataCount, 0)
         } else {
@@ -395,8 +444,8 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 
     private func batchUpdatesForLayoutTwo() -> BatchUpdates {
         var batchUpdates = BatchUpdates()
-        batchUpdates.insertItems.append(NSIndexPath(forItem: 2, inSection: 1))
-        batchUpdates.insertSections.addIndex(2)
+        batchUpdates.insertItems.append(IndexPath(item: 2, section: 1))
+        batchUpdates.insertSections.insert(2)
         return batchUpdates
     }
 
@@ -424,10 +473,10 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 
     private func batchUpdatesForLayoutThree() -> BatchUpdates {
         var batchUpdates = BatchUpdates()
-        batchUpdates.deleteSections.addIndex(0)
+        batchUpdates.deleteSections.insert(0)
         batchUpdates.moveSections.append(SectionMove(from: 2, to: 0))
-        batchUpdates.moveItems.append(ItemMove(from: NSIndexPath(forItem: 0, inSection: 1), to: NSIndexPath(forItem: 1, inSection: 1)))
-        batchUpdates.deleteItems.append(NSIndexPath(forItem: 2, inSection: 1))
+        batchUpdates.moveItems.append(ItemMove(from: IndexPath(item: 0, section: 1), to: IndexPath(item: 1, section: 1)))
+        batchUpdates.deleteItems.append(IndexPath(item: 2, section: 1))
         return batchUpdates
     }
 }
@@ -462,7 +511,7 @@ protocol TestableReloadableView: ReloadableView {
     var batchUpdates: BatchUpdates { get }
 
     func resetTestCounts()
-    func verifyHeader(section section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt)
-    func verifyFooter(section section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt)
-    func verifyVisibleItem(text text: String, frame: CGRect, file: StaticString, line: UInt)
+    func verifyHeader(_ section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt)
+    func verifyFooter(_ section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt)
+    func verifyVisibleItem(_ text: String, frame: CGRect, file: StaticString, line: UInt)
 }

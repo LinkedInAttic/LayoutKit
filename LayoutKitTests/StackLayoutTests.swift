@@ -15,8 +15,8 @@ class StackLayoutTests: XCTestCase {
     func testTwoLabelVerticalStack() {
         let stack = StackLayout(
             axis: .vertical,
-            distribution: .leading,
             spacing: 4,
+            distribution: .leading,
             sublayouts: [
                 LabelLayout(text: "Hi", font: UIFont.helvetica()),
                 LabelLayout(text: "Nick Snyder", font: UIFont.helvetica()),

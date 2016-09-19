@@ -11,19 +11,19 @@ import UIKit
 /**
  Layout for a UILabel.
  */
-public class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
+open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
 
-    public let textType: LabelLayoutTextType
-    public let numberOfLines: Int
-    public let font: UIFont
+    open let textType: LabelLayoutTextType
+    open let font: UIFont
+    open let numberOfLines: Int
 
     public init(textType: LabelLayoutTextType,
-                numberOfLines: Int = defaultNumberOfLines,
                 font: UIFont = defaultFont,
+                numberOfLines: Int = defaultNumberOfLines,
                 alignment: Alignment = defaultAlignment,
                 flexibility: Flexibility = defaultFlexibility,
                 viewReuseId: String? = nil,
-                config: (Label -> Void)? = nil) {
+                config: ((Label) -> Void)? = nil) {
         
         self.textType = textType
         self.numberOfLines = numberOfLines
@@ -34,32 +34,34 @@ public class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout 
     // MARK: - Convenience initializers
 
     public convenience init(text: String,
-                            numberOfLines: Int = defaultNumberOfLines,
                             font: UIFont = defaultFont,
+                            numberOfLines: Int = defaultNumberOfLines,
                             alignment: Alignment = defaultAlignment,
                             flexibility: Flexibility = defaultFlexibility,
                             viewReuseId: String? = nil,
-                            config: (Label -> Void)? = nil) {
+                            config: ((Label) -> Void)? = nil) {
 
         self.init(textType: .unattributed(text),
+                  font: font,
                   numberOfLines: numberOfLines,
-                  font: font, alignment: alignment,
+                  alignment: alignment,
                   flexibility: flexibility,
                   viewReuseId: viewReuseId,
                   config: config)
     }
 
     public convenience init(attributedText: NSAttributedString,
-                            numberOfLines: Int = defaultNumberOfLines,
                             font: UIFont = defaultFont,
+                            numberOfLines: Int = defaultNumberOfLines,
                             alignment: Alignment = defaultAlignment,
                             flexibility: Flexibility = defaultFlexibility,
                             viewReuseId: String? = nil,
-                            config: (Label -> Void)? = nil) {
+                            config: ((Label) -> Void)? = nil) {
 
         self.init(textType: .attributed(attributedText),
+                  font: font,
                   numberOfLines: numberOfLines,
-                  font: font, alignment: alignment,
+                  alignment: alignment,
                   flexibility: flexibility,
                   viewReuseId: viewReuseId,
                   config: config)
@@ -67,21 +69,21 @@ public class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout 
 
     // MARK: - Layout protocol
 
-    public func measurement(within maxSize: CGSize) -> LayoutMeasurement {
+    open func measurement(within maxSize: CGSize) -> LayoutMeasurement {
         let fittedSize = textSize(within: maxSize)
         return LayoutMeasurement(layout: self, size: fittedSize.decreasedToSize(maxSize), maxSize: maxSize, sublayouts: [])
     }
 
     private func textSize(within maxSize: CGSize) -> CGSize {
         let options: NSStringDrawingOptions = [
-            .UsesLineFragmentOrigin
+            .usesLineFragmentOrigin
         ]
 
         var size: CGSize
         switch textType {
         case .attributed(let attributedText):
-            if attributedText == "" {
-                return CGSizeZero
+            if attributedText.length == 0 {
+                return .zero
             }
 
             // UILabel uses a default font if one is not specified in the attributed string.
@@ -93,17 +95,17 @@ public class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout 
             let attributedTextWithFont = NSMutableAttributedString(string: attributedText.string, attributes: fontAttribute)
             let fullRange = NSMakeRange(0, (attributedText.string as NSString).length)
             attributedTextWithFont.beginEditing()
-            attributedText.enumerateAttributesInRange(fullRange, options: .LongestEffectiveRangeNotRequired, usingBlock: { (attributes, range, _) in
+            attributedText.enumerateAttributes(in: fullRange, options: .longestEffectiveRangeNotRequired, using: { (attributes, range, _) in
                 attributedTextWithFont.addAttributes(attributes, range: range)
             })
             attributedTextWithFont.endEditing()
 
-            size = attributedTextWithFont.boundingRectWithSize(maxSize, options: options, context: nil).size
+            size = attributedTextWithFont.boundingRect(with: maxSize, options: options, context: nil).size
         case .unattributed(let text):
             if text == "" {
-                return CGSizeZero
+                return .zero
             }
-            size = text.boundingRectWithSize(maxSize, options: options, attributes: [NSFontAttributeName: font], context: nil).size
+            size = text.boundingRect(with: maxSize, options: options, attributes: [NSFontAttributeName: font], context: nil).size
         }
         // boundingRectWithSize returns size to a precision of hundredths of a point,
         // but UILabel only returns sizes with a point precision of 1/screenDensity.
@@ -118,11 +120,11 @@ public class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout 
         return size
     }
 
-    private func roundUpToFractionalPoint(point: CGFloat) -> CGFloat {
+    private func roundUpToFractionalPoint(_ point: CGFloat) -> CGFloat {
         if point <= 0 {
             return 0
         }
-        let scale: CGFloat = UIScreen.mainScreen().scale
+        let scale: CGFloat = UIScreen.main.scale
         // The smallest precision in points (aka the number of points per hardware pixel).
         let pointPrecision = 1.0 / scale
         if point <= pointPrecision {
@@ -131,12 +133,12 @@ public class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout 
         return ceil(point * scale) / scale
     }
 
-    public func arrangement(within rect: CGRect, measurement: LayoutMeasurement) -> LayoutArrangement {
+    open func arrangement(within rect: CGRect, measurement: LayoutMeasurement) -> LayoutArrangement {
         let frame = alignment.position(size: measurement.size, in: rect)
         return LayoutArrangement(layout: self, frame: frame, sublayouts: [])
     }
 
-    public override func configure(view label: Label) {
+    open override func configure(view label: Label) {
         config?(label)
         label.numberOfLines = numberOfLines
         label.font = font
@@ -148,7 +150,7 @@ public class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout 
         }
     }
 
-    public override var needsView: Bool {
+    open override var needsView: Bool {
         return true
     }
 }
@@ -164,6 +166,6 @@ public enum LabelLayoutTextType {
 }
 
 private let defaultNumberOfLines = 0
-private let defaultFont = UILabel().font
+private let defaultFont = UILabel().font ?? UIFont.systemFont(ofSize: 17)
 private let defaultAlignment = Alignment.topLeading
 private let defaultFlexibility = Flexibility.flexible

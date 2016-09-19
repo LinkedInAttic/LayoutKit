@@ -11,33 +11,33 @@
  A base class for layouts.
  This layout does not require a view at runtime unless a configuration block has been provided.
  */
-public class BaseLayout<V: View> {
+open class BaseLayout<V: View> {
 
     /// The layout's alignment inside of the rect that it is assigned during arrangement.
-    public let alignment: Alignment
+    open let alignment: Alignment
 
     /// The flexibility of the layout along both dimensions.
-    public let flexibility: Flexibility
+    open let flexibility: Flexibility
 
     /// An identifier for the layout.
     /// It is used to identify which views should be reused when animating from one layout to another.
-    public let viewReuseId: String?
+    open let viewReuseId: String?
 
     /// A configuration block that is run on the main thread after the view is created.
-    public let config: (V -> Void)?
+    open let config: ((V) -> Void)?
 
-    public var needsView: Bool {
+    open var needsView: Bool {
         return viewReuseId != nil || config != nil
     }
 
-    public init(alignment: Alignment, flexibility: Flexibility, viewReuseId: String? = nil, config: (V -> Void)?) {
+    public init(alignment: Alignment, flexibility: Flexibility, viewReuseId: String? = nil, config: ((V) -> Void)?) {
         self.alignment = alignment
         self.flexibility = flexibility
         self.viewReuseId = viewReuseId
         self.config = config
     }
 
-    public func configure(view view: V) {
+    open func configure(view: V) {
         config?(view)
     }
 }

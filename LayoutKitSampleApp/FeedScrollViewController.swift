@@ -16,20 +16,20 @@ class FeedScrollViewController: FeedBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.purpleColor()
+        view.backgroundColor = UIColor.purple
 
         scrollView = UIScrollView(frame: view.bounds)
-        scrollView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(scrollView)
 
         self.layoutFeed(width: self.view.bounds.width)
     }
 
-    private func layoutFeed(width width: CGFloat) {
+    private func layoutFeed(width: CGFloat) {
         let _ = CFAbsoluteTimeGetCurrent()
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
             let arrangement = self.getFeedLayout().arrangement(width: width)
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.scrollView.contentSize = arrangement.frame.size
                 arrangement.makeViews(in: self.scrollView)
                 let _ = CFAbsoluteTimeGetCurrent()
@@ -53,8 +53,8 @@ class FeedScrollViewController: FeedBaseViewController {
         return feedLayout
     }
 
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         layoutFeed(width: size.width)
     }
 }
