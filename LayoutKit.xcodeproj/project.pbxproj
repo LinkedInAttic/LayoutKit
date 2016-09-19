@@ -7,12 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B193BB81D887BCF00FCA22D /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB61D887BCF00FCA22D /* CollectionExtension.swift */; };
+		0B0EA2271D90983200310E20 /* CollectionViewTableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0EA2261D90983200310E20 /* CollectionViewTableLayout.swift */; };
+		0B0EA2281D90984300310E20 /* CollectionViewTableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0EA2261D90983200310E20 /* CollectionViewTableLayout.swift */; };
+		0B0EA22A1D90984D00310E20 /* AxisRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0EA2291D90984D00310E20 /* AxisRect.swift */; };
+		0B0EA22B1D90986E00310E20 /* AxisRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0EA2291D90984D00310E20 /* AxisRect.swift */; };
+		0B0EA22C1D90986E00310E20 /* AxisRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0EA2291D90984D00310E20 /* AxisRect.swift */; };
+		0B0EA2351D90990F00310E20 /* FlowLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0EA22F1D90990F00310E20 /* FlowLayoutViewController.swift */; };
+		0B0EA2361D90990F00310E20 /* ObservationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0EA2301D90990F00310E20 /* ObservationsTableViewController.swift */; };
+		0B0EA2371D90990F00310E20 /* TableLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0EA2311D90990F00310E20 /* TableLayoutViewController.swift */; };
+		0B0EA2381D90990F00310E20 /* CollectionViewLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0EA2321D90990F00310E20 /* CollectionViewLayoutViewController.swift */; };
+		0B0EA2391D90990F00310E20 /* CollectionViewLoggingFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0EA2331D90990F00310E20 /* CollectionViewLoggingFlowLayout.swift */; };
+		0B0EA23A1D90990F00310E20 /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0EA2341D90990F00310E20 /* LabelCell.swift */; };
+		0B0EA23D1D90996D00310E20 /* CollectionExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0EA22D1D9098F100310E20 /* CollectionExtensionTests.swift */; };
+		0B0EA23E1D90996E00310E20 /* CollectionExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0EA22D1D9098F100310E20 /* CollectionExtensionTests.swift */; };
+		0B0EA23F1D90996E00310E20 /* CollectionExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0EA22D1D9098F100310E20 /* CollectionExtensionTests.swift */; };
+		0B0EA2451D909CF300310E20 /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0EA2441D909CF300310E20 /* CollectionExtension.swift */; };
+		0B0EA2461D909CF300310E20 /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0EA2441D909CF300310E20 /* CollectionExtension.swift */; };
+		0B0EA2471D909CF300310E20 /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0EA2441D909CF300310E20 /* CollectionExtension.swift */; };
 		0B193BB91D887BCF00FCA22D /* IndexSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB71D887BCF00FCA22D /* IndexSetExtension.swift */; };
 		0B193BBA1D888B6300FCA22D /* IndexSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB71D887BCF00FCA22D /* IndexSetExtension.swift */; };
 		0B193BBB1D888B6400FCA22D /* IndexSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB71D887BCF00FCA22D /* IndexSetExtension.swift */; };
-		0B193BBC1D888B6D00FCA22D /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB61D887BCF00FCA22D /* CollectionExtension.swift */; };
-		0B193BBD1D888B6D00FCA22D /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB61D887BCF00FCA22D /* CollectionExtension.swift */; };
 		0B2D09231D872F75007E487C /* AlignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76531D8725310065E02A /* AlignmentTests.swift */; };
 		0B2D09251D872F75007E487C /* CollectionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76551D8725310065E02A /* CollectionViewTests.swift */; };
 		0B2D09261D872F75007E487C /* DensityAssertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76561D8725310065E02A /* DensityAssertions.swift */; };
@@ -100,6 +114,9 @@
 		0B2D09F81D87365F007E487C /* StackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D09DB1D87365F007E487C /* StackViewController.swift */; };
 		0B2D09F91D87365F007E487C /* UrlImageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D09DC1D87365F007E487C /* UrlImageLayout.swift */; };
 		0B2D09FC1D873726007E487C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2D09FB1D873726007E487C /* LaunchScreen.xib */; };
+		0B7B269B1D90AE6000CD1956 /* TestsCollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB61D887BCF00FCA22D /* TestsCollectionExtension.swift */; };
+		0B7B269C1D90AE6000CD1956 /* TestsCollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB61D887BCF00FCA22D /* TestsCollectionExtension.swift */; };
+		0B7B269D1D90AE6100CD1956 /* TestsCollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB61D887BCF00FCA22D /* TestsCollectionExtension.swift */; };
 		0BA02E481D874BBB00F1E8D3 /* LayoutArrangementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76591D8725310065E02A /* LayoutArrangementTests.swift */; };
 		0BCB75691D8720110065E02A /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB755F1D8720110065E02A /* LayoutKit.framework */; };
 		0BCB75701D8720110065E02A /* LayoutKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BCB75621D8720110065E02A /* LayoutKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -233,7 +250,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B193BB61D887BCF00FCA22D /* CollectionExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
+		0B0EA2261D90983200310E20 /* CollectionViewTableLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewTableLayout.swift; sourceTree = "<group>"; };
+		0B0EA2291D90984D00310E20 /* AxisRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxisRect.swift; sourceTree = "<group>"; };
+		0B0EA22D1D9098F100310E20 /* CollectionExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionExtensionTests.swift; sourceTree = "<group>"; };
+		0B0EA22F1D90990F00310E20 /* FlowLayoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowLayoutViewController.swift; sourceTree = "<group>"; };
+		0B0EA2301D90990F00310E20 /* ObservationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservationsTableViewController.swift; sourceTree = "<group>"; };
+		0B0EA2311D90990F00310E20 /* TableLayoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableLayoutViewController.swift; sourceTree = "<group>"; };
+		0B0EA2321D90990F00310E20 /* CollectionViewLayoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewLayoutViewController.swift; sourceTree = "<group>"; };
+		0B0EA2331D90990F00310E20 /* CollectionViewLoggingFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewLoggingFlowLayout.swift; sourceTree = "<group>"; };
+		0B0EA2341D90990F00310E20 /* LabelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
+		0B0EA2441D909CF300310E20 /* CollectionExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
+		0B193BB61D887BCF00FCA22D /* TestsCollectionExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsCollectionExtension.swift; sourceTree = "<group>"; };
 		0B193BB71D887BCF00FCA22D /* IndexSetExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexSetExtension.swift; sourceTree = "<group>"; };
 		0B2D09651D8734DB007E487C /* CircleImagePileLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImagePileLayout.swift; sourceTree = "<group>"; };
 		0B2D09661D8734DB007E487C /* DividerStackLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DividerStackLayout.swift; sourceTree = "<group>"; };
@@ -410,17 +437,23 @@
 				0B2D09C61D87365F007E487C /* BatchUpdatesCollectionViewController.swift */,
 				0B2D09C71D87365F007E487C /* BatchUpdatesTableViewController.swift */,
 				0B2D09C81D87365F007E487C /* Benchmarks */,
+				0B0EA2321D90990F00310E20 /* CollectionViewLayoutViewController.swift */,
+				0B0EA2331D90990F00310E20 /* CollectionViewLoggingFlowLayout.swift */,
 				0B2D09D31D87365F007E487C /* FeedBaseViewController.swift */,
 				0B2D09D41D87365F007E487C /* FeedCollectionViewController.swift */,
 				0B2D09D51D87365F007E487C /* FeedScrollViewController.swift */,
 				0B2D09D61D87365F007E487C /* FeedTableViewController.swift */,
+				0B0EA22F1D90990F00310E20 /* FlowLayoutViewController.swift */,
 				0B2D09D71D87365F007E487C /* ForegroundProfileViewController.swift */,
 				0B2D09BE1D8735E1007E487C /* Info.plist */,
+				0B0EA2341D90990F00310E20 /* LabelCell.swift */,
 				0B2D09D81D87365F007E487C /* LabledImageLayout.swift */,
 				0B2D09FB1D873726007E487C /* LaunchScreen.xib */,
 				0B2D09D91D87365F007E487C /* MenuViewController.swift */,
 				0B2D09DA1D87365F007E487C /* NestedCollectionViewController.swift */,
+				0B0EA2301D90990F00310E20 /* ObservationsTableViewController.swift */,
 				0B2D09DB1D87365F007E487C /* StackViewController.swift */,
+				0B0EA2311D90990F00310E20 /* TableLayoutViewController.swift */,
 				0B2D09DC1D87365F007E487C /* UrlImageLayout.swift */,
 			);
 			path = LayoutKitSampleApp;
@@ -496,11 +529,13 @@
 		0BCB756C1D8720110065E02A /* LayoutKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				0B193BB61D887BCF00FCA22D /* CollectionExtension.swift */,
-				0B193BB71D887BCF00FCA22D /* IndexSetExtension.swift */,
 				0BCB76531D8725310065E02A /* AlignmentTests.swift */,
+				0B193BB61D887BCF00FCA22D /* TestsCollectionExtension.swift */,
+				0B0EA22D1D9098F100310E20 /* CollectionExtensionTests.swift */,
 				0BCB76551D8725310065E02A /* CollectionViewTests.swift */,
 				0BCB76561D8725310065E02A /* DensityAssertions.swift */,
+				0B193BB71D887BCF00FCA22D /* IndexSetExtension.swift */,
+				0BCB756F1D8720110065E02A /* Info.plist */,
 				0BCB76571D8725310065E02A /* InsetLayoutTests.swift */,
 				0BCB76581D8725310065E02A /* LabelLayoutTests.swift */,
 				0BCB76591D8725310065E02A /* LayoutArrangementTests.swift */,
@@ -518,7 +553,6 @@
 				0BCB76661D8725310065E02A /* TestStack.swift */,
 				0BCB76671D8725310065E02A /* UIFontExtension.swift */,
 				0BCB76681D8725310065E02A /* ViewRecyclerTests.swift */,
-				0BCB756F1D8720110065E02A /* Info.plist */,
 			);
 			path = LayoutKitTests;
 			sourceTree = "<group>";
@@ -544,6 +578,7 @@
 		0BCB75DA1D8724800065E02A /* Internal */ = {
 			isa = PBXGroup;
 			children = (
+				0B0EA2441D909CF300310E20 /* CollectionExtension.swift */,
 				0BCB75DB1D8724800065E02A /* CFAbsoluteTimeExtension.swift */,
 				0BCB75DC1D8724800065E02A /* CGSizeExtension.swift */,
 			);
@@ -567,6 +602,7 @@
 			children = (
 				0BCB75E71D8724800065E02A /* AxisFlexibility.swift */,
 				0BCB75E81D8724800065E02A /* AxisPoint.swift */,
+				0B0EA2291D90984D00310E20 /* AxisRect.swift */,
 				0BCB75E91D8724800065E02A /* AxisSize.swift */,
 			);
 			path = Math;
@@ -576,12 +612,13 @@
 			isa = PBXGroup;
 			children = (
 				0BCB75ED1D8724800065E02A /* BatchUpdates.swift */,
+				0B0EA2261D90983200310E20 /* CollectionViewTableLayout.swift */,
 				0BCB75EE1D8724800065E02A /* LayoutAdapterCollectionView.swift */,
 				0BCB75EF1D8724800065E02A /* LayoutAdapterTableView.swift */,
 				0BCB75F01D8724800065E02A /* ReloadableView.swift */,
+				0BCB75F31D8724800065E02A /* ReloadableViewLayoutAdapter.swift */,
 				0BCB75F11D8724800065E02A /* ReloadableViewLayoutAdapter+UICollectionView.swift */,
 				0BCB75F21D8724800065E02A /* ReloadableViewLayoutAdapter+UITableView.swift */,
-				0BCB75F31D8724800065E02A /* ReloadableViewLayoutAdapter.swift */,
 				0BCB75F41D8724800065E02A /* ReloadableViewUpdateManager.swift */,
 				0BCB75F51D8724800065E02A /* StackView.swift */,
 			);
@@ -909,15 +946,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B0EA2351D90990F00310E20 /* FlowLayoutViewController.swift in Sources */,
+				0B0EA23A1D90990F00310E20 /* LabelCell.swift in Sources */,
 				0B2D09E41D87365F007E487C /* BatchUpdatesCollectionViewController.swift in Sources */,
 				0B2D09E81D87365F007E487C /* DataBinder.swift in Sources */,
 				0B2D09EA1D87365F007E487C /* FeedItemData.swift in Sources */,
+				0B0EA2361D90990F00310E20 /* ObservationsTableViewController.swift in Sources */,
 				0B2D09F41D87365F007E487C /* ForegroundProfileViewController.swift in Sources */,
+				0B0EA2391D90990F00310E20 /* CollectionViewLoggingFlowLayout.swift in Sources */,
 				0B2D09ED1D87365F007E487C /* FeedItemUIStackView.swift in Sources */,
 				0B2D09EC1D87365F007E487C /* FeedItemManualView.swift in Sources */,
 				0B2D09F01D87365F007E487C /* FeedBaseViewController.swift in Sources */,
 				0B2D09EE1D87365F007E487C /* Stopwatch.swift in Sources */,
 				0B2D09E31D87365F007E487C /* BatchUpdatesBaseViewController.swift in Sources */,
+				0B0EA2371D90990F00310E20 /* TableLayoutViewController.swift in Sources */,
 				0B2D09F81D87365F007E487C /* StackViewController.swift in Sources */,
 				0B2D09F51D87365F007E487C /* LabledImageLayout.swift in Sources */,
 				0B2D09F11D87365F007E487C /* FeedCollectionViewController.swift in Sources */,
@@ -932,6 +974,7 @@
 				0B2D09E61D87365F007E487C /* BenchmarkViewController.swift in Sources */,
 				0B2D09F71D87365F007E487C /* NestedCollectionViewController.swift in Sources */,
 				0B2D09EF1D87365F007E487C /* TableViewController.swift in Sources */,
+				0B0EA2381D90990F00310E20 /* CollectionViewLayoutViewController.swift in Sources */,
 				0B2D09E51D87365F007E487C /* BatchUpdatesTableViewController.swift in Sources */,
 				0B2D09F21D87365F007E487C /* FeedScrollViewController.swift in Sources */,
 			);
@@ -946,8 +989,9 @@
 				0BCB76071D8724800065E02A /* AxisPoint.swift in Sources */,
 				0BCB75F71D8724800065E02A /* Animation.swift in Sources */,
 				0BCB76081D8724800065E02A /* AxisSize.swift in Sources */,
-				0B193BB81D887BCF00FCA22D /* CollectionExtension.swift in Sources */,
 				0BCB760C1D8724800065E02A /* LayoutAdapterCollectionView.swift in Sources */,
+				0B0EA22A1D90984D00310E20 /* AxisRect.swift in Sources */,
+				0B0EA2271D90983200310E20 /* CollectionViewTableLayout.swift in Sources */,
 				0BCB76001D8724800065E02A /* LayoutMeasurement.swift in Sources */,
 				0BCB76021D8724800065E02A /* InsetLayout.swift in Sources */,
 				0BCB76061D8724800065E02A /* AxisFlexibility.swift in Sources */,
@@ -966,6 +1010,7 @@
 				0BCB75F61D8724800065E02A /* Alignment.swift in Sources */,
 				0B193BB91D887BCF00FCA22D /* IndexSetExtension.swift in Sources */,
 				0BCB75FC1D8724800065E02A /* CFAbsoluteTimeExtension.swift in Sources */,
+				0B0EA2451D909CF300310E20 /* CollectionExtension.swift in Sources */,
 				0BCB76041D8724800065E02A /* SizeLayout.swift in Sources */,
 				0BCB76031D8724800065E02A /* LabelLayout.swift in Sources */,
 				0BCB76101D8724800065E02A /* ReloadableViewLayoutAdapter+UITableView.swift in Sources */,
@@ -988,7 +1033,9 @@
 				0B2D09341D872F75007E487C /* StackViewTests.swift in Sources */,
 				0B2D09281D872F75007E487C /* LabelLayoutTests.swift in Sources */,
 				0B2D09231D872F75007E487C /* AlignmentTests.swift in Sources */,
+				0B0EA23D1D90996D00310E20 /* CollectionExtensionTests.swift in Sources */,
 				0B2D09261D872F75007E487C /* DensityAssertions.swift in Sources */,
+				0B7B269B1D90AE6000CD1956 /* TestsCollectionExtension.swift in Sources */,
 				0B2D09271D872F75007E487C /* InsetLayoutTests.swift in Sources */,
 				0B2D09371D872F75007E487C /* UIFontExtension.swift in Sources */,
 				0B2D09251D872F75007E487C /* CollectionViewTests.swift in Sources */,
@@ -1013,6 +1060,8 @@
 				0BCB76151D8724C00065E02A /* Animation.swift in Sources */,
 				0BCB76421D8724CF0065E02A /* AxisSize.swift in Sources */,
 				0BCB76301D8724C70065E02A /* LayoutMeasurement.swift in Sources */,
+				0B0EA22B1D90986E00310E20 /* AxisRect.swift in Sources */,
+				0B0EA2281D90984300310E20 /* CollectionViewTableLayout.swift in Sources */,
 				0B193BBA1D888B6300FCA22D /* IndexSetExtension.swift in Sources */,
 				0BCB76371D8724CA0065E02A /* InsetLayout.swift in Sources */,
 				0BCB76401D8724CF0065E02A /* AxisFlexibility.swift in Sources */,
@@ -1027,10 +1076,10 @@
 				0BCB764F1D8724E70065E02A /* ReloadableViewLayoutAdapter+UITableView.swift in Sources */,
 				0BCB76431D8724CF0065E02A /* UIKitSupport.swift in Sources */,
 				0BCB762D1D8724C70065E02A /* Layout.swift in Sources */,
-				0B193BBC1D888B6D00FCA22D /* CollectionExtension.swift in Sources */,
 				0BCB762E1D8724C70065E02A /* LayoutArrangement.swift in Sources */,
 				0BCB76141D8724C00065E02A /* Alignment.swift in Sources */,
 				0BCB76501D8724E70065E02A /* ReloadableViewLayoutAdapter.swift in Sources */,
+				0B0EA2461D909CF300310E20 /* CollectionExtension.swift in Sources */,
 				0BCB762B1D8724C70065E02A /* CFAbsoluteTimeExtension.swift in Sources */,
 				0BCB76391D8724CA0065E02A /* SizeLayout.swift in Sources */,
 				0BCB76381D8724CA0065E02A /* LabelLayout.swift in Sources */,
@@ -1053,7 +1102,9 @@
 				0B2D094A1D872F75007E487C /* StackViewTests.swift in Sources */,
 				0B2D093E1D872F75007E487C /* LabelLayoutTests.swift in Sources */,
 				0B2D09391D872F75007E487C /* AlignmentTests.swift in Sources */,
+				0B0EA23E1D90996E00310E20 /* CollectionExtensionTests.swift in Sources */,
 				0B2D093C1D872F75007E487C /* DensityAssertions.swift in Sources */,
+				0B7B269C1D90AE6000CD1956 /* TestsCollectionExtension.swift in Sources */,
 				0B2D093D1D872F75007E487C /* InsetLayoutTests.swift in Sources */,
 				0B2D094D1D872F75007E487C /* UIFontExtension.swift in Sources */,
 				0B2D093B1D872F75007E487C /* CollectionViewTests.swift in Sources */,
@@ -1079,16 +1130,17 @@
 				0BCB76351D8724C70065E02A /* LayoutMeasurement.swift in Sources */,
 				0BCB763C1D8724CB0065E02A /* InsetLayout.swift in Sources */,
 				0B193BBB1D888B6400FCA22D /* IndexSetExtension.swift in Sources */,
-				0B193BBD1D888B6D00FCA22D /* CollectionExtension.swift in Sources */,
 				0BCB76451D8724D00065E02A /* AxisFlexibility.swift in Sources */,
 				0BCB76321D8724C70065E02A /* CGSizeExtension.swift in Sources */,
 				0BCB763B1D8724CB0065E02A /* BaseLayout.swift in Sources */,
+				0B0EA2471D909CF300310E20 /* CollectionExtension.swift in Sources */,
 				0BCB761E1D8724C10065E02A /* ConfigurableLayout.swift in Sources */,
 				0BCB761D1D8724C10065E02A /* Axis.swift in Sources */,
 				0BCB76491D8724D00065E02A /* ViewRecycler.swift in Sources */,
 				0BCB76331D8724C70065E02A /* Layout.swift in Sources */,
 				0BCB76341D8724C70065E02A /* LayoutArrangement.swift in Sources */,
 				0BCB761A1D8724C10065E02A /* Alignment.swift in Sources */,
+				0B0EA22C1D90986E00310E20 /* AxisRect.swift in Sources */,
 				0BCB76311D8724C70065E02A /* CFAbsoluteTimeExtension.swift in Sources */,
 				0BCB763E1D8724CB0065E02A /* SizeLayout.swift in Sources */,
 				0BCB761F1D8724C10065E02A /* Flexibility.swift in Sources */,
@@ -1102,6 +1154,8 @@
 				0B2D09571D872F76007E487C /* PositionedLayoutTests.swift in Sources */,
 				0B2D095E1D872F76007E487C /* StackLayoutSpacingTests.swift in Sources */,
 				0B2D09641D872F76007E487C /* ViewRecyclerTests.swift in Sources */,
+				0B7B269D1D90AE6100CD1956 /* TestsCollectionExtension.swift in Sources */,
+				0B0EA23F1D90996E00310E20 /* CollectionExtensionTests.swift in Sources */,
 				0B2D094F1D872F76007E487C /* AlignmentTests.swift in Sources */,
 				0B2D09521D872F76007E487C /* DensityAssertions.swift in Sources */,
 				0B2D09531D872F76007E487C /* InsetLayoutTests.swift in Sources */,

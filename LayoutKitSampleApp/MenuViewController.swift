@@ -23,7 +23,10 @@ class MenuViewController: UITableViewController {
         ForegroundMiniProfileViewController.self,
         BackgroundMiniProfileViewController.self,
         BatchUpdatesCollectionViewController.self,
-        BatchUpdatesTableViewController.self
+        BatchUpdatesTableViewController.self,
+        TableLayoutViewController.self,
+        FlowLayoutViewController.self,
+        ObservationsTableViewController.self
     ]
 
     convenience init() {

@@ -10,7 +10,7 @@ import CoreGraphics
 
 /// A wrapper around CGSize that makes it easy to do math relative to an axis.
 public struct AxisSize {
-    public let axis: Axis
+    public var axis: Axis
     public var size: CGSize
 
     public var axisLength: CGFloat {

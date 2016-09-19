@@ -11,16 +11,10 @@ extension Collection {
 
     /// Returns the only element in the collection.
     /// It returns nil if there is not exactly one element in the collection.
-    public var only: Self.Iterator.Element? {
+    var only: Self.Iterator.Element? {
         if count == 1 {
             return first
         }
         return nil
-    }
-
-    /// Returns the element at the specified index iff it is within bounds, otherwise nil.
-    /// http://stackoverflow.com/questions/25329186/safe-bounds-checked-array-lookup-in-swift-through-optional-bindings
-    public subscript(safe index: Index) -> _Element? {
-        return index >= startIndex && index < endIndex ? self[index] : nil
     }
 }
