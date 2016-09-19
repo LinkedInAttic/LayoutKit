@@ -8,7 +8,6 @@
 
 import CoreGraphics
 
-
 /**
  A layout that stacks sublayouts along an axis.
  
