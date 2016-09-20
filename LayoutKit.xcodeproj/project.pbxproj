@@ -273,6 +273,7 @@
 		0B2D09DB1D87365F007E487C /* StackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackViewController.swift; sourceTree = "<group>"; };
 		0B2D09DC1D87365F007E487C /* UrlImageLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlImageLayout.swift; sourceTree = "<group>"; };
 		0B2D09FB1D873726007E487C /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		0B7B269E1D919A9200CD1956 /* LayoutKit.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = LayoutKit.playground; sourceTree = "<group>"; };
 		0BCB755F1D8720110065E02A /* LayoutKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LayoutKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BCB75621D8720110065E02A /* LayoutKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayoutKit.h; sourceTree = "<group>"; };
 		0BCB75631D8720110065E02A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -446,6 +447,7 @@
 		0BCB75531D871FC40065E02A = {
 			isa = PBXGroup;
 			children = (
+				0B7B269E1D919A9200CD1956 /* LayoutKit.playground */,
 				0BCB75611D8720110065E02A /* LayoutKit */,
 				0BCB756C1D8720110065E02A /* LayoutKitTests */,
 				0BCB75B71D8723B30065E02A /* LayoutKitExampleLayouts */,
