@@ -7,7 +7,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import UIKit
-import XCPlayground
+import PlaygroundSupport
 import LayoutKit
 import LayoutKitExampleLayouts
 

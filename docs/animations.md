@@ -16,7 +16,7 @@ Here is a complete example that works in a playground:
 
 ```swift
 import UIKit
-import XCPlayground
+import PlaygroundSupport
 import LayoutKit
 
 // The initial layout.
@@ -37,11 +37,11 @@ let before = InsetLayout(
                     alignment: .bottomTrailing,
                     viewReuseId: "redSquare",
                     config: { view in
-                        view.backgroundColor = UIColor.redColor()
+                        view.backgroundColor = UIColor.red
                     }
                 ),
                 config: { view in
-                    view.backgroundColor = UIColor.grayColor()
+                    view.backgroundColor = UIColor.gray
                 }
             ),
             SizeLayout<UIView>(
@@ -50,7 +50,7 @@ let before = InsetLayout(
                 alignment: .bottomTrailing,
                 viewReuseId: "littleSquare",
                 config: { view in
-                    view.backgroundColor = UIColor.lightGrayColor()
+                    view.backgroundColor = UIColor.lightGray
                 }
             )
         ]
@@ -70,7 +70,7 @@ let after = InsetLayout(
                 alignment: .topLeading,
                 viewReuseId: "bigSquare",
                 config: { view in
-                    view.backgroundColor = UIColor.grayColor()
+                    view.backgroundColor = UIColor.gray
                 }
             ),
             SizeLayout<UIView>(
@@ -84,11 +84,11 @@ let after = InsetLayout(
                     alignment: .topLeading,
                     viewReuseId: "redSquare",
                     config: { view in
-                        view.backgroundColor = UIColor.redColor()
+                        view.backgroundColor = UIColor.red
                     }
                 ),
                 config: { view in
-                    view.backgroundColor = UIColor.lightGrayColor()
+                    view.backgroundColor = UIColor.lightGray
                 }
             )
         ]
@@ -97,19 +97,17 @@ let after = InsetLayout(
 
 // Setup a root view.
 let rootView = UIView(frame: CGRect(x: 0, y: 0, width: 350, height: 250))
-rootView.backgroundColor = UIColor.whiteColor()
-XCPlaygroundPage.currentPage.liveView = rootView
+rootView.backgroundColor = UIColor.white
+PlaygroundPage.current.liveView = rootView
 
 // Apply the initial layout.
 before.arrangement(width: 350, height: 250).makeViews(in: rootView)
 
 // Prepare the animation to the final layout.
-let animation = after.arrangement(width: 350, height: 250).prepareAnimation(for: rootView, direction: .RightToLeft)
+let animation = after.arrangement(width: 350, height: 250).prepareAnimation(for: rootView, direction: .rightToLeft)
 
 // Perform the animation.
-UIView.animateWithDuration(5.0, delay: 2.0, options: [], animations: {
-    animation.apply()
-}, completion: { (_) in
-    XCPlaygroundPage.currentPage.finishExecution()
+UIView.animate(withDuration: 5.0, animations: animation.apply, completion: { (_) in
+    PlaygroundPage.current.finishExecution()
 })
 ```
