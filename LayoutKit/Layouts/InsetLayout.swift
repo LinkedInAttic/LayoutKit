@@ -21,7 +21,7 @@ open class InsetLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
                 alignment: Alignment = Alignment.fill,
                 viewReuseId: String? = nil,
                 sublayout: Layout,
-                config: ((View) -> Void)? = nil) {
+                config: ((V) -> Void)? = nil) {
         self.insets = insets
         self.sublayout = sublayout
         super.init(alignment: alignment, flexibility: sublayout.flexibility, viewReuseId: viewReuseId, config: config)
@@ -31,7 +31,7 @@ open class InsetLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
                             alignment: Alignment = Alignment.fill,
                             viewReuseId: String? = nil,
                             sublayout: Layout,
-                            config: ((View) -> Void)? = nil) {
+                            config: ((V) -> Void)? = nil) {
         let insets = EdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
         self.init(insets: insets, alignment: alignment, viewReuseId: viewReuseId, sublayout: sublayout, config: config)
     }
