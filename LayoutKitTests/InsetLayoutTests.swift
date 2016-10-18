@@ -20,7 +20,7 @@ class InsetLayoutTests: XCTestCase {
         let arrangement = insetLabel.arrangement()
         AssertEqualDensity(arrangement.frame, [
             2.0: CGRect(x: 0, y: 0, width: 4+16.5+16, height: 2+20+8),
-            3.0: CGRect(x: 0, y: 0, width: 4+16+oneThird+16, height: 2+20-oneThird+8),
+            3.0: CGRect(x: 0, y: 0, width: CGFloat(4+16+oneThird+16), height: CGFloat(2+20-oneThird+8)),
         ])
         AssertEqualDensity(arrangement.sublayouts.first!.frame, [
             2.0:  CGRect(x: 4, y: 2, width: 16.5, height: 20),
