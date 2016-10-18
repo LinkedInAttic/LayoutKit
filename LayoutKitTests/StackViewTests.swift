@@ -25,14 +25,14 @@ class StackViewTests: XCTestCase {
         sv.addArrangedSubviews([view1, view2, view3])
 
         let ics = sv.intrinsicContentSize
-        XCTAssertEqual(ics, CGSize(width: 4 + 33.5 + 16, height: 2 + 14 + 3 + 18.5 + 3 + 23 + 8))
+        XCTAssertEqual(ics, CGSize(width: 4 + 33.5 + 16, height: CGFloat(2 + 14 + 3 + 18.5 + 3 + 23 + 8)))
 
         sv.frame = CGRect(origin: .zero, size: ics)
         sv.layoutIfNeeded()
 
         XCTAssertEqual(view1.frame, CGRect(x: 4, y: 2, width: 33.5, height: 14))
         XCTAssertEqual(view2.frame, CGRect(x: 4, y: 2+14+3, width: 33.5, height: 18.5))
-        XCTAssertEqual(view3.frame, CGRect(x: 4, y: 2+14+3+18.5+3, width: 33.5, height: 23))
+        XCTAssertEqual(view3.frame, CGRect(x: 4, y: CGFloat(2+14+3+18.5+3), width: 33.5, height: 23))
     }
 
     func testHorizontalStackView() {
@@ -44,14 +44,15 @@ class StackViewTests: XCTestCase {
         sv.addArrangedSubviews([view1, view2, view3])
 
         let ics = sv.intrinsicContentSize
-        XCTAssertEqual(ics, CGSize(width: 4 + 7 + 3 + 18 + 3 + 33.5 + 16, height: 2 + 23 + 8))
+        XCTAssertEqual(ics, CGSize(width: CGFloat(4 + 7 + 3 + 18 + 3 + 33.5 + 16),
+                                   height: CGFloat(2 + 23 + 8)))
 
         sv.frame = CGRect(origin: .zero, size: ics)
         sv.layoutIfNeeded()
 
         XCTAssertEqual(view1.frame, CGRect(x: 4, y: 2, width: 7, height: 23))
         XCTAssertEqual(view2.frame, CGRect(x: 4+7+3, y: 2, width: 18, height: 23))
-        XCTAssertEqual(view3.frame, CGRect(x: 4+7+3+18+3, y: 2, width: 33.5, height: 23))
+        XCTAssertEqual(view3.frame, CGRect(x: CGFloat(4+7+3+18+3), y: 2, width: 33.5, height: 23))
     }
 
     func testStackViewRequiresInvalidateIntrinsicContentSizeWhenContentChanges() {

@@ -41,15 +41,15 @@ class StackLayoutSpacingTests: XCTestCase {
 
         // The measured size should not include trailing spacing.
         let measurement = stack.stackLayout.measurement(within: CGSize(width: CGFloat.greatestFiniteMagnitude, height: stack.intrinsicSize.height - 23))
-        XCTAssertEqual(measurement.size, CGSize(width: 18, height: 14+4+18.5))
+        XCTAssertEqual(measurement.size, CGSize(width: 18, height: CGFloat(14+4+18.5)))
 
         // Position the stack in the space it requested plus some spacing (but not enough to show the third label).
-        stack.stackLayout.arrangement(within: CGRect(x: 0, y: 0, width: 18, height: 14+4+18.5+4), measurement: measurement).makeViews()
+        stack.stackLayout.arrangement(within: CGRect(x: 0, y: 0, width: 18, height: CGFloat(14+4+18.5+4)), measurement: measurement).makeViews()
 
         XCTAssertEqual(stack.oneView.frame, CGRect(x: 0, y: 0, width: 18, height: 14))
         XCTAssertEqual(stack.twoView.frame, CGRect(x: 0, y: 14+4, width: 18, height: 18.5))
         XCTAssertNil(stack.threeView)
-        XCTAssertEqual(stack.stackView.frame, CGRect(x: 0, y: 0, width: 18, height: 14+4+18.5+4))
+        XCTAssertEqual(stack.stackView.frame, CGRect(x: 0, y: 0, width: 18, height: CGFloat(14+4+18.5+4)))
     }
 
     // MARK: - Horizontal

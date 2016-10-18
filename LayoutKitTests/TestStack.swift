@@ -23,9 +23,9 @@ class TestStack {
 
         switch axis {
         case .vertical:
-            self.intrinsicSize = CGSize(width: 33.5, height: 2*spacing + 14 + 18.5 + 23)
+            self.intrinsicSize = CGSize(width: 33.5, height: CGFloat(2*spacing + 14 + 18.5 + 23))
         case .horizontal:
-            self.intrinsicSize = CGSize(width: 2*spacing + 7 + 18 + 33.5, height: 23)
+            self.intrinsicSize = CGSize(width: CGFloat(2*spacing + 7 + 18 + 33.5), height: 23)
         }
         
         stackLayout = StackLayout(
