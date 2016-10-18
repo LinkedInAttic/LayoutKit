@@ -187,6 +187,9 @@
 		0BCB76501D8724E70065E02A /* ReloadableViewLayoutAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB75F31D8724800065E02A /* ReloadableViewLayoutAdapter.swift */; };
 		0BCB76511D8724E70065E02A /* ReloadableViewUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB75F41D8724800065E02A /* ReloadableViewUpdateManager.swift */; };
 		0BCB76521D8724E70065E02A /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB75F51D8724800065E02A /* StackView.swift */; };
+		0BD42BDC1DB5EAAD00E04AA3 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD42BDB1DB5EAAD00E04AA3 /* Text.swift */; };
+		0BD42BDD1DB5EC8800E04AA3 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD42BDB1DB5EAAD00E04AA3 /* Text.swift */; };
+		0BD42BDE1DB5EC8800E04AA3 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD42BDB1DB5EAAD00E04AA3 /* Text.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -353,6 +356,7 @@
 		0BCB76661D8725310065E02A /* TestStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestStack.swift; sourceTree = "<group>"; };
 		0BCB76671D8725310065E02A /* UIFontExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		0BCB76681D8725310065E02A /* ViewRecyclerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRecyclerTests.swift; sourceTree = "<group>"; };
+		0BD42BDB1DB5EAAD00E04AA3 /* Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -508,6 +512,7 @@
 				0BCB75DF1D8724800065E02A /* LayoutMeasurement.swift */,
 				0BCB75E01D8724800065E02A /* Layouts */,
 				0BCB75E61D8724800065E02A /* Math */,
+				0BD42BDB1DB5EAAD00E04AA3 /* Text.swift */,
 				0BCB75EA1D8724800065E02A /* UIKitSupport.swift */,
 				0BCB75EB1D8724800065E02A /* ViewRecycler.swift */,
 				0BCB75EC1D8724800065E02A /* Views */,
@@ -994,6 +999,7 @@
 				0BCB76101D8724800065E02A /* ReloadableViewLayoutAdapter+UITableView.swift in Sources */,
 				0BCB75FB1D8724800065E02A /* Flexibility.swift in Sources */,
 				0BCB76121D8724800065E02A /* ReloadableViewUpdateManager.swift in Sources */,
+				0BD42BDC1DB5EAAD00E04AA3 /* Text.swift in Sources */,
 				0BCB76131D8724800065E02A /* StackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1058,6 +1064,7 @@
 				0BCB76381D8724CA0065E02A /* LabelLayout.swift in Sources */,
 				0BCB76191D8724C00065E02A /* Flexibility.swift in Sources */,
 				0BCB764C1D8724E70065E02A /* LayoutAdapterTableView.swift in Sources */,
+				0BD42BDD1DB5EC8800E04AA3 /* Text.swift in Sources */,
 				0BCB764E1D8724E70065E02A /* ReloadableViewLayoutAdapter+UICollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1112,6 +1119,7 @@
 				0BCB761A1D8724C10065E02A /* Alignment.swift in Sources */,
 				0BCB76311D8724C70065E02A /* CFAbsoluteTimeExtension.swift in Sources */,
 				0BCB763E1D8724CB0065E02A /* SizeLayout.swift in Sources */,
+				0BD42BDE1DB5EC8800E04AA3 /* Text.swift in Sources */,
 				0BCB761F1D8724C10065E02A /* Flexibility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
