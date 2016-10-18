@@ -19,7 +19,6 @@
 		0B2D09271D872F75007E487C /* InsetLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76571D8725310065E02A /* InsetLayoutTests.swift */; };
 		0B2D09281D872F75007E487C /* LabelLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76581D8725310065E02A /* LabelLayoutTests.swift */; };
 		0B2D09291D872F75007E487C /* LayoutArrangementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76591D8725310065E02A /* LayoutArrangementTests.swift */; };
-		0B2D092B1D872F75007E487C /* PositionedLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB765B1D8725310065E02A /* PositionedLayoutTests.swift */; };
 		0B2D092C1D872F75007E487C /* ReloadableViewLayoutAdapterCollectionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB765C1D8725310065E02A /* ReloadableViewLayoutAdapterCollectionViewTests.swift */; };
 		0B2D092D1D872F75007E487C /* ReloadableViewLayoutAdapterTableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB765D1D8725310065E02A /* ReloadableViewLayoutAdapterTableViewTests.swift */; };
 		0B2D092E1D872F75007E487C /* ReloadableViewLayoutAdapterTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB765E1D8725310065E02A /* ReloadableViewLayoutAdapterTestCase.swift */; };
@@ -39,7 +38,6 @@
 		0B2D093D1D872F75007E487C /* InsetLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76571D8725310065E02A /* InsetLayoutTests.swift */; };
 		0B2D093E1D872F75007E487C /* LabelLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76581D8725310065E02A /* LabelLayoutTests.swift */; };
 		0B2D093F1D872F75007E487C /* LayoutArrangementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76591D8725310065E02A /* LayoutArrangementTests.swift */; };
-		0B2D09411D872F75007E487C /* PositionedLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB765B1D8725310065E02A /* PositionedLayoutTests.swift */; };
 		0B2D09421D872F75007E487C /* ReloadableViewLayoutAdapterCollectionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB765C1D8725310065E02A /* ReloadableViewLayoutAdapterCollectionViewTests.swift */; };
 		0B2D09431D872F75007E487C /* ReloadableViewLayoutAdapterTableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB765D1D8725310065E02A /* ReloadableViewLayoutAdapterTableViewTests.swift */; };
 		0B2D09441D872F75007E487C /* ReloadableViewLayoutAdapterTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB765E1D8725310065E02A /* ReloadableViewLayoutAdapterTestCase.swift */; };
@@ -56,7 +54,6 @@
 		0B2D094F1D872F76007E487C /* AlignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76531D8725310065E02A /* AlignmentTests.swift */; };
 		0B2D09521D872F76007E487C /* DensityAssertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76561D8725310065E02A /* DensityAssertions.swift */; };
 		0B2D09531D872F76007E487C /* InsetLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76571D8725310065E02A /* InsetLayoutTests.swift */; };
-		0B2D09571D872F76007E487C /* PositionedLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB765B1D8725310065E02A /* PositionedLayoutTests.swift */; };
 		0B2D095B1D872F76007E487C /* SizeLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB765F1D8725310065E02A /* SizeLayoutTests.swift */; };
 		0B2D095C1D872F76007E487C /* StackLayoutDistributionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76601D8725310065E02A /* StackLayoutDistributionTests.swift */; };
 		0B2D095D1D872F76007E487C /* StackLayoutFlexibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76611D8725310065E02A /* StackLayoutFlexibilityTests.swift */; };
@@ -322,7 +319,6 @@
 		0BCB76571D8725310065E02A /* InsetLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetLayoutTests.swift; sourceTree = "<group>"; };
 		0BCB76581D8725310065E02A /* LabelLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelLayoutTests.swift; sourceTree = "<group>"; };
 		0BCB76591D8725310065E02A /* LayoutArrangementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutArrangementTests.swift; sourceTree = "<group>"; };
-		0BCB765B1D8725310065E02A /* PositionedLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionedLayoutTests.swift; sourceTree = "<group>"; };
 		0BCB765C1D8725310065E02A /* ReloadableViewLayoutAdapterCollectionViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewLayoutAdapterCollectionViewTests.swift; sourceTree = "<group>"; };
 		0BCB765D1D8725310065E02A /* ReloadableViewLayoutAdapterTableViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewLayoutAdapterTableViewTests.swift; sourceTree = "<group>"; };
 		0BCB765E1D8725310065E02A /* ReloadableViewLayoutAdapterTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewLayoutAdapterTestCase.swift; sourceTree = "<group>"; };
@@ -506,7 +502,6 @@
 				0BCB76571D8725310065E02A /* InsetLayoutTests.swift */,
 				0BCB76581D8725310065E02A /* LabelLayoutTests.swift */,
 				0BCB76591D8725310065E02A /* LayoutArrangementTests.swift */,
-				0BCB765B1D8725310065E02A /* PositionedLayoutTests.swift */,
 				0BCB765C1D8725310065E02A /* ReloadableViewLayoutAdapterCollectionViewTests.swift */,
 				0BCB765D1D8725310065E02A /* ReloadableViewLayoutAdapterTableViewTests.swift */,
 				0BCB765E1D8725310065E02A /* ReloadableViewLayoutAdapterTestCase.swift */,
@@ -984,7 +979,6 @@
 				0B2D092C1D872F75007E487C /* ReloadableViewLayoutAdapterCollectionViewTests.swift in Sources */,
 				0B2D092E1D872F75007E487C /* ReloadableViewLayoutAdapterTestCase.swift in Sources */,
 				0B2D092D1D872F75007E487C /* ReloadableViewLayoutAdapterTableViewTests.swift in Sources */,
-				0B2D092B1D872F75007E487C /* PositionedLayoutTests.swift in Sources */,
 				0B2D09321D872F75007E487C /* StackLayoutSpacingTests.swift in Sources */,
 				0B2D09381D872F75007E487C /* ViewRecyclerTests.swift in Sources */,
 				0B2D09341D872F75007E487C /* StackViewTests.swift in Sources */,
@@ -1049,7 +1043,6 @@
 				0B2D09421D872F75007E487C /* ReloadableViewLayoutAdapterCollectionViewTests.swift in Sources */,
 				0B2D09441D872F75007E487C /* ReloadableViewLayoutAdapterTestCase.swift in Sources */,
 				0B2D09431D872F75007E487C /* ReloadableViewLayoutAdapterTableViewTests.swift in Sources */,
-				0B2D09411D872F75007E487C /* PositionedLayoutTests.swift in Sources */,
 				0B2D09481D872F75007E487C /* StackLayoutSpacingTests.swift in Sources */,
 				0B2D094E1D872F75007E487C /* ViewRecyclerTests.swift in Sources */,
 				0B2D094A1D872F75007E487C /* StackViewTests.swift in Sources */,
@@ -1101,7 +1094,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B2D09571D872F76007E487C /* PositionedLayoutTests.swift in Sources */,
 				0B2D095E1D872F76007E487C /* StackLayoutSpacingTests.swift in Sources */,
 				0B2D09641D872F76007E487C /* ViewRecyclerTests.swift in Sources */,
 				0B2D094F1D872F76007E487C /* AlignmentTests.swift in Sources */,
