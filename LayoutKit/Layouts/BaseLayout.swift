@@ -29,6 +29,8 @@ open class BaseLayout<V: View> {
     open var needsView: Bool {
         return viewReuseId != nil || config != nil
     }
+    
+    open var view: V?
 
     public init(alignment: Alignment, flexibility: Flexibility, viewReuseId: String? = nil, config: ((V) -> Void)?) {
         self.alignment = alignment

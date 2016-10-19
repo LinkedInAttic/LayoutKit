@@ -27,6 +27,11 @@ public protocol ConfigurableLayout: Layout {
      Layouts that just position their sublayouts can return false here.
      */
     var needsView: Bool { get }
+    
+    /**
+     a View object associated to this layout.
+     */
+    var view: ConfigurableView? { get set }
 
     /**
      Configures the given view.
@@ -57,7 +62,11 @@ public extension ConfigurableLayout {
     }
 
     public func makeView(from recycler: ViewRecycler) -> View? {
-        if needsView {
+        if let view = self.view {
+            recycler.markViewAsRecycled(view)
+            return view
+        }
+        else if needsView {
             let newOrRecycledView: ConfigurableView = recycler.makeView(viewReuseId: viewReuseId)
             return newOrRecycledView
         } else {
