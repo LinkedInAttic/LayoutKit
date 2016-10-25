@@ -87,16 +87,7 @@ open class StackView: UIView {
      Deletes all subviews from the stack.
      */
     open func removeArrangedSubviews() {
-        arrangedSubviews.removeAll()
-        invalidateIntrinsicContentSize()
-        setNeedsLayout()
-    }
-
-    /**
-     Deletes all subviews from the stack.
-     */
-    open func removeArrangedSubviews() {
-        for subview in subviews {
+        for subview in arrangedSubviews {
             subview.removeFromSuperview()
         }
         arrangedSubviews.removeAll()

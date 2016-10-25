@@ -119,27 +119,15 @@ class StackViewTests: XCTestCase {
         XCTAssertEqual(view2.frame, CGRect(x: 0, y: 14, width: 33.5, height: 18.5))
         XCTAssertEqual(view3.frame, CGRect(x: 0, y: CGFloat(14+18.5), width: 33.5, height: 23))
 
-        // Now let's remove the views
+        // Now let's remove the views and make sure they're removed
         sv.removeArrangedSubviews()
-
-        sv.frame = CGRect(origin: .zero, size: ics)
-        sv.layoutIfNeeded()
 
         ics = sv.intrinsicContentSize
         XCTAssertEqual(ics, CGSize.zero)
-
-        // Add them back
-        sv.addArrangedSubviews([view1, view2, view3])
-
-        ics = sv.intrinsicContentSize
-        XCTAssertEqual(ics, CGSize(width: 33.5, height: CGFloat(14 + 18.5 + 23)))
+        XCTAssertEqual(sv.subviews.count, 0)
 
         sv.frame = CGRect(origin: .zero, size: ics)
         sv.layoutIfNeeded()
-
-        XCTAssertEqual(view1.frame, CGRect(x: 0, y: 0, width: 33.5, height: 14))
-        XCTAssertEqual(view2.frame, CGRect(x: 0, y: 14, width: 33.5, height: 18.5))
-        XCTAssertEqual(view3.frame, CGRect(x: 0, y: CGFloat(14+18.5), width: 33.5, height: 23))
     }
 
     func testUIStackViewAutomaticallyInvalidatesIntrinsicContentSizeWhenContentChanges() {
