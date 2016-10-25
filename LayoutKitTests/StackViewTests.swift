@@ -99,35 +99,22 @@ class StackViewTests: XCTestCase {
 
     /**
      This tests to make sure we can add subviews to the stack view, lay them out, then
-     remove them, then add them back again.
+     remove them.
      */
-    func testReusableStackView() {
+    func testRemoveArrangedSubviews() {
         let view1 = FixedSizeView(width: 7, height: 14)
         let view2 = FixedSizeView(width: 18, height: 18.5)
         let view3 = FixedSizeView(width: 33.5, height: 23)
 
-        let sv = StackView(axis: .vertical)
-        sv.addArrangedSubviews([view1, view2, view3])
+        let stackView = StackView(axis: .vertical)
 
-        var ics = sv.intrinsicContentSize
-        XCTAssertEqual(ics, CGSize(width: 33.5, height: CGFloat(14 + 18.5 + 23)))
+        stackView.addArrangedSubviews([view1, view2, view3])
+        XCTAssertEqual(stackView.intrinsicContentSize, CGSize(width: 33.5, height: CGFloat(14 + 18.5 + 23)))
+        XCTAssertEqual(stackView.subviews.count, 3)
 
-        sv.frame = CGRect(origin: .zero, size: ics)
-        sv.layoutIfNeeded()
-
-        XCTAssertEqual(view1.frame, CGRect(x: 0, y: 0, width: 33.5, height: 14))
-        XCTAssertEqual(view2.frame, CGRect(x: 0, y: 14, width: 33.5, height: 18.5))
-        XCTAssertEqual(view3.frame, CGRect(x: 0, y: CGFloat(14+18.5), width: 33.5, height: 23))
-
-        // Now let's remove the views and make sure they're removed
-        sv.removeArrangedSubviews()
-
-        ics = sv.intrinsicContentSize
-        XCTAssertEqual(ics, CGSize.zero)
-        XCTAssertEqual(sv.subviews.count, 0)
-
-        sv.frame = CGRect(origin: .zero, size: ics)
-        sv.layoutIfNeeded()
+        stackView.removeArrangedSubviews()
+        XCTAssertEqual(stackView.intrinsicContentSize, CGSize.zero)
+        XCTAssertEqual(stackView.subviews.count, 0)
     }
 
     func testUIStackViewAutomaticallyInvalidatesIntrinsicContentSizeWhenContentChanges() {
