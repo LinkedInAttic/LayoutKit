@@ -97,6 +97,51 @@ class StackViewTests: XCTestCase {
         ])
     }
 
+    /**
+     This tests to make sure we can add subviews to the stack view, lay them out, then
+     remove them, then add them back again.
+     */
+    func testReusableStackView() {
+        let view1 = FixedSizeView(width: 7, height: 14)
+        let view2 = FixedSizeView(width: 18, height: 18.5)
+        let view3 = FixedSizeView(width: 33.5, height: 23)
+
+        let sv = StackView(axis: .vertical)
+        sv.addArrangedSubviews([view1, view2, view3])
+
+        var ics = sv.intrinsicContentSize
+        XCTAssertEqual(ics, CGSize(width: 33.5, height: CGFloat(14 + 18.5 + 23)))
+
+        sv.frame = CGRect(origin: .zero, size: ics)
+        sv.layoutIfNeeded()
+
+        XCTAssertEqual(view1.frame, CGRect(x: 0, y: 0, width: 33.5, height: 14))
+        XCTAssertEqual(view2.frame, CGRect(x: 0, y: 14, width: 33.5, height: 18.5))
+        XCTAssertEqual(view3.frame, CGRect(x: 0, y: CGFloat(14+18.5), width: 33.5, height: 23))
+
+        // Now let's remove the views
+        sv.removeArrangedSubviews()
+
+        sv.frame = CGRect(origin: .zero, size: ics)
+        sv.layoutIfNeeded()
+
+        ics = sv.intrinsicContentSize
+        XCTAssertEqual(ics, CGSize.zero)
+
+        // Add them back
+        sv.addArrangedSubviews([view1, view2, view3])
+
+        ics = sv.intrinsicContentSize
+        XCTAssertEqual(ics, CGSize(width: 33.5, height: CGFloat(14 + 18.5 + 23)))
+
+        sv.frame = CGRect(origin: .zero, size: ics)
+        sv.layoutIfNeeded()
+
+        XCTAssertEqual(view1.frame, CGRect(x: 0, y: 0, width: 33.5, height: 14))
+        XCTAssertEqual(view2.frame, CGRect(x: 0, y: 14, width: 33.5, height: 18.5))
+        XCTAssertEqual(view3.frame, CGRect(x: 0, y: CGFloat(14+18.5), width: 33.5, height: 23))
+    }
+
     func testUIStackViewAutomaticallyInvalidatesIntrinsicContentSizeWhenContentChanges() {
         if #available(iOS 9.0, *) {
             let label = UILabel(text: "Nick", font: UIFont(name: "Helvetica", size: 17)!)

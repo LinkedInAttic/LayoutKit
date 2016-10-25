@@ -83,6 +83,27 @@ open class StackView: UIView {
         setNeedsLayout()
     }
 
+    /**
+     Deletes all subviews from the stack.
+     */
+    open func removeArrangedSubviews() {
+        arrangedSubviews.removeAll()
+        invalidateIntrinsicContentSize()
+        setNeedsLayout()
+    }
+
+    /**
+     Deletes all subviews from the stack.
+     */
+    open func removeArrangedSubviews() {
+        for subview in subviews {
+            subview.removeFromSuperview()
+        }
+        arrangedSubviews.removeAll()
+        invalidateIntrinsicContentSize()
+        setNeedsLayout()
+    }
+
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
         return stackLayout.measurement(within: size).size
     }
