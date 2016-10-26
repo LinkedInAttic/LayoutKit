@@ -199,7 +199,7 @@
 </ul>
 <p>LayoutKit is faster than Auto Layout by default so it is perfectly fine to not bother with background layout if performance on the main thread is acceptable.</p>
 <h2 id="uicollectionview-and-uitableview">UICollectionView and UITableView</h2>
-<p>If you have a UICollectionView or UITableView and all of the cells use LayoutKit, then you can use <a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Views/ReloadableLayoutViewAdapter.swift">ReloadableViewLayoutAdapter</a> to automatically handle computing cell layouts on a background thread.</p>
+<p>If you have a UICollectionView or UITableView and all of the cells use LayoutKit, then you can use <a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Views/ReloadableViewLayoutAdapter.swift">ReloadableViewLayoutAdapter</a> to automatically handle computing cell layouts on a background thread.</p>
 <h2 id="mixing-auto-layout-and-layoutkit">Mixing Auto Layout and LayoutKit</h2>
 <p>If you have a UI that mixes LayoutKit and Auto Layout (e.g. some cells use LayoutKit and others use Auto Layout), then you may want to avoid the additional complexity of background layout.</p>
 <p>Instead, perform all layout computations on the main thread (similar to how <a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Views/StackView.swift">StackView</a> is implemented).</p>
