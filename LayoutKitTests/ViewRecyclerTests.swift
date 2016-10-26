@@ -17,9 +17,11 @@ class ViewRecyclerTests: XCTestCase {
         root.addSubview(zero)
 
         let recycler = ViewRecycler(rootView: root)
-
-        let v: View = recycler.makeView(viewReuseId: nil)
-        XCTAssertNotEqual(v, zero)
+        let expectedView = View()
+        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: nil, viewProvider: {
+            return expectedView
+        })
+        XCTAssertEqual(v, expectedView)
 
         recycler.purgeViews()
         XCTAssertNil(zero.superview)
@@ -31,23 +33,43 @@ class ViewRecyclerTests: XCTestCase {
         root.addSubview(one)
 
         let recycler = ViewRecycler(rootView: root)
-
-        let v: View = recycler.makeView(viewReuseId: "1")
+        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: "1", viewProvider: {
+            XCTFail("view should have been recycled")
+            return View()
+        })
         XCTAssertEqual(v, one)
 
         recycler.purgeViews()
         XCTAssertNotNil(one.superview)
     }
 
-    func testMarkViewAsRecycled() {
+    func testRecycledViewWithViewReuseId() {
         let root = View()
         let one = View(viewReuseId: "1")
         root.addSubview(one)
 
         let recycler = ViewRecycler(rootView: root)
-        recycler.markViewAsRecycled(one)
+        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: nil, viewProvider: {
+            return one
+        })
+        XCTAssertEqual(v, one)
+        
         recycler.purgeViews()
+        XCTAssertNotNil(one.superview)
+    }
 
+    func testRecycledViewWithoutViewReuseId() {
+        let root = View()
+        let one = View()
+        root.addSubview(one)
+
+        let recycler = ViewRecycler(rootView: root)
+        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: nil, viewProvider: {
+            return one
+        })
+        XCTAssertEqual(v, one)
+
+        recycler.purgeViews()
         XCTAssertNotNil(one.superview)
     }
 }

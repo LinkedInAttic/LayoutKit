@@ -67,14 +67,18 @@ public protocol Layout {
     func arrangement(within rect: CGRect, measurement: LayoutMeasurement) -> LayoutArrangement
 
     /**
-     Returns a UIView for the layout or nil if the layout does not require a view (i.e. it merely positions sublayouts).
-     
-     To support animations, the implementation:
-         - SHOULD call `makeView(layoutId:)` on the provided recycler instead of instantiating the view directly.
+     Indicates whether a View object needs to be created for this layout.
+     Layouts that just position their sublayouts can return false here.
+     */
+    var needsView: Bool { get }
+    
+    /**
+     Returns a new UIView for the layout.
+     It is not called on a layout if the layout is using a recycled view.
 
      MUST be run on the main thread.
      */
-    func makeView(from recycler: ViewRecycler) -> View?
+    func makeView() -> View
 
     /**
      Configures the given view.

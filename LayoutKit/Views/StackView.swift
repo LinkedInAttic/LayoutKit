@@ -125,8 +125,9 @@ open class StackView: UIView {
 }
 
 /// Wraps a UIView so that it conforms to the Layout protocol.
-private struct ViewLayout: Layout {
+private struct ViewLayout: ConfigurableLayout {
 
+    let needsView = true
     let view: UIView
     let viewReuseId: String? = nil
 
@@ -139,12 +140,12 @@ private struct ViewLayout: Layout {
         return LayoutArrangement(layout: self, frame: rect, sublayouts: [])
     }
 
-    func makeView(from recycler: ViewRecycler) -> UIView? {
-        recycler.markViewAsRecycled(view)
+    func makeView() -> UIView {
         return view
     }
 
-    func configure(baseTypeView: UIView) {
+    func configure(view: UIView) {
+        // Nothing to configure.
     }
 
     var flexibility: Flexibility {
