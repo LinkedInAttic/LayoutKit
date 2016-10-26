@@ -11,8 +11,8 @@ import Foundation
 /**
  Convenient optional protocol for layout implementations to use instead of `Layout`.
 
- This protocol conforms to `Layout` and adds a default implementation of `Layout.makeView(from:)`
- and an overload of `configure` that allows a specific view class for its parameter.
+ It requires a more typesafe `configure(view:)` method that is used to implement
+ `configure(baseViewType:)` in the Layout protocol.
  */
 public protocol ConfigurableLayout: Layout {
 
@@ -21,12 +21,6 @@ public protocol ConfigurableLayout: Layout {
      This is specified by the conforming class via its implementation of `configure(view:)`.
      */
     associatedtype ConfigurableView: View
-
-    /**
-     Indicates whether a View object needs to be created for this layout.
-     Layouts that just position their sublayouts can return false here.
-     */
-    var needsView: Bool { get }
 
     /**
      Configures the given view.
@@ -46,7 +40,7 @@ public protocol ConfigurableLayout: Layout {
     func configure(view: ConfigurableView)
 }
 
-// Implement `configure` and `makeView` from `Layout`.
+// Implement `configure(baseViewType:)` from `Layout`.
 public extension ConfigurableLayout {
     public func configure(baseTypeView: View) {
         guard let view = baseTypeView as? ConfigurableView else {
@@ -54,14 +48,5 @@ public extension ConfigurableLayout {
             return
         }
         configure(view: view)
-    }
-
-    public func makeView(from recycler: ViewRecycler) -> View? {
-        if needsView {
-            let newOrRecycledView: ConfigurableView = recycler.makeView(viewReuseId: viewReuseId)
-            return newOrRecycledView
-        } else {
-            return nil
-        }
     }
 }

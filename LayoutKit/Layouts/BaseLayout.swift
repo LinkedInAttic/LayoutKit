@@ -40,4 +40,8 @@ open class BaseLayout<V: View> {
     open func configure(view: V) {
         config?(view)
     }
+
+    open func makeView() -> View {
+        return V()
+    }
 }
