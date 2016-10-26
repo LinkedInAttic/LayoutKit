@@ -21,7 +21,7 @@ LayoutKit is faster than Auto Layout by default so it is perfectly fine to not b
 
 ## UICollectionView and UITableView
 
-If you have a UICollectionView or UITableView and all of the cells use LayoutKit, then you can use [ReloadableViewLayoutAdapter](https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Views/ReloadableLayoutViewAdapter.swift) to automatically handle computing cell layouts on a background thread.
+If you have a UICollectionView or UITableView and all of the cells use LayoutKit, then you can use [ReloadableViewLayoutAdapter](https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Views/ReloadableViewLayoutAdapter.swift) to automatically handle computing cell layouts on a background thread.
 
 ## Mixing Auto Layout and LayoutKit
 

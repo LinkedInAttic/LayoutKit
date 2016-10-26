@@ -97,6 +97,26 @@ class StackViewTests: XCTestCase {
         ])
     }
 
+    /**
+     This tests to make sure we can add subviews to the stack view, lay them out, then
+     remove them.
+     */
+    func testRemoveArrangedSubviews() {
+        let view1 = FixedSizeView(width: 7, height: 14)
+        let view2 = FixedSizeView(width: 18, height: 18.5)
+        let view3 = FixedSizeView(width: 33.5, height: 23)
+
+        let stackView = StackView(axis: .vertical)
+
+        stackView.addArrangedSubviews([view1, view2, view3])
+        XCTAssertEqual(stackView.intrinsicContentSize, CGSize(width: 33.5, height: CGFloat(14 + 18.5 + 23)))
+        XCTAssertEqual(stackView.subviews.count, 3)
+
+        stackView.removeArrangedSubviews()
+        XCTAssertEqual(stackView.intrinsicContentSize, CGSize.zero)
+        XCTAssertEqual(stackView.subviews.count, 0)
+    }
+
     func testUIStackViewAutomaticallyInvalidatesIntrinsicContentSizeWhenContentChanges() {
         if #available(iOS 9.0, *) {
             let label = UILabel(text: "Nick", font: UIFont(name: "Helvetica", size: 17)!)
