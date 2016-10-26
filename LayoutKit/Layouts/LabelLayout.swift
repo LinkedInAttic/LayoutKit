@@ -109,28 +109,15 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
         }
         // boundingRectWithSize returns size to a precision of hundredths of a point,
         // but UILabel only returns sizes with a point precision of 1/screenDensity.
-        size.height = roundUpToFractionalPoint(size.height)
-        size.width = roundUpToFractionalPoint(size.width)
+        size.height = size.height.roundedUpToFractionalPoint
+        size.width = size.width.roundedUpToFractionalPoint
         if numberOfLines > 0 {
-            let maxHeight = roundUpToFractionalPoint(CGFloat(numberOfLines) * font.lineHeight)
+            let maxHeight = (CGFloat(numberOfLines) * font.lineHeight).roundedUpToFractionalPoint
             if size.height > maxHeight {
                 size = CGSize(width: maxSize.width, height: maxHeight)
             }
         }
         return size
-    }
-
-    private func roundUpToFractionalPoint(_ point: CGFloat) -> CGFloat {
-        if point <= 0 {
-            return 0
-        }
-        let scale: CGFloat = UIScreen.main.scale
-        // The smallest precision in points (aka the number of points per hardware pixel).
-        let pointPrecision = 1.0 / scale
-        if point <= pointPrecision {
-            return pointPrecision
-        }
-        return ceil(point * scale) / scale
     }
 
     open func arrangement(within rect: CGRect, measurement: LayoutMeasurement) -> LayoutArrangement {
