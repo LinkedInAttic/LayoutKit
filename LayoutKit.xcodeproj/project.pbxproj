@@ -102,7 +102,15 @@
 		0B6B04391DC8470200F23EEA /* LayoutKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB755F1D8720110065E02A /* LayoutKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0B6B043B1DC8472A00F23EEA /* LayoutKitExampleLayouts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB75B61D8723B30065E02A /* LayoutKitExampleLayouts.framework */; };
 		0B6B043C1DC8472A00F23EEA /* LayoutKitExampleLayouts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB75B61D8723B30065E02A /* LayoutKitExampleLayouts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0B765F2C1DC0514F000BF1FD /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B765F2B1DC0514F000BF1FD /* CGFloatExtension.swift */; };
+		0B765F2D1DC0514F000BF1FD /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B765F2B1DC0514F000BF1FD /* CGFloatExtension.swift */; };
+		0B765F301DC135B8000BF1FD /* CGFloatExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B765F2F1DC135B8000BF1FD /* CGFloatExtensionTests.swift */; };
+		0B765F311DC135B8000BF1FD /* CGFloatExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B765F2F1DC135B8000BF1FD /* CGFloatExtensionTests.swift */; };
+		0B8C078B1DC3E881001CD5EE /* ButtonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD5F8281DB43B4500108688 /* ButtonLayout.swift */; };
+		0B8C078C1DC3E88A001CD5EE /* ButtonLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD5F82B1DB43F9B00108688 /* ButtonLayoutTests.swift */; };
 		0BA02E481D874BBB00F1E8D3 /* LayoutArrangementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76591D8725310065E02A /* LayoutArrangementTests.swift */; };
+		0BB380DB1DB73EFF00E2614F /* TextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB380DA1DB73EFF00E2614F /* TextExtension.swift */; };
+		0BB380DC1DB73EFF00E2614F /* TextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB380DA1DB73EFF00E2614F /* TextExtension.swift */; };
 		0BCB75691D8720110065E02A /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB755F1D8720110065E02A /* LayoutKit.framework */; };
 		0BCB75701D8720110065E02A /* LayoutKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BCB75621D8720110065E02A /* LayoutKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0BCB75851D8721370065E02A /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB757C1D8721370065E02A /* LayoutKit.framework */; };
@@ -190,6 +198,8 @@
 		0BD42BDC1DB5EAAD00E04AA3 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD42BDB1DB5EAAD00E04AA3 /* Text.swift */; };
 		0BD42BDD1DB5EC8800E04AA3 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD42BDB1DB5EAAD00E04AA3 /* Text.swift */; };
 		0BD42BDE1DB5EC8800E04AA3 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD42BDB1DB5EAAD00E04AA3 /* Text.swift */; };
+		0BD5F8291DB43B4500108688 /* ButtonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD5F8281DB43B4500108688 /* ButtonLayout.swift */; };
+		0BD5F82C1DB43F9B00108688 /* ButtonLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD5F82B1DB43F9B00108688 /* ButtonLayoutTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -294,7 +304,10 @@
 		0B2D09DC1D87365F007E487C /* UrlImageLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlImageLayout.swift; sourceTree = "<group>"; };
 		0B2D09FB1D873726007E487C /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		0B6B04361DC8402E00F23EEA /* DWURecyclingAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWURecyclingAlert.m; sourceTree = "<group>"; };
+		0B765F2B1DC0514F000BF1FD /* CGFloatExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
+		0B765F2F1DC135B8000BF1FD /* CGFloatExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloatExtensionTests.swift; sourceTree = "<group>"; };
 		0B7B269E1D919A9200CD1956 /* LayoutKit.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = LayoutKit.playground; sourceTree = "<group>"; };
+		0BB380DA1DB73EFF00E2614F /* TextExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextExtension.swift; sourceTree = "<group>"; };
 		0BCB755F1D8720110065E02A /* LayoutKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LayoutKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BCB75621D8720110065E02A /* LayoutKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayoutKit.h; sourceTree = "<group>"; };
 		0BCB75631D8720110065E02A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -357,6 +370,8 @@
 		0BCB76671D8725310065E02A /* UIFontExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		0BCB76681D8725310065E02A /* ViewRecyclerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRecyclerTests.swift; sourceTree = "<group>"; };
 		0BD42BDB1DB5EAAD00E04AA3 /* Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		0BD5F8281DB43B4500108688 /* ButtonLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonLayout.swift; sourceTree = "<group>"; };
+		0BD5F82B1DB43F9B00108688 /* ButtonLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonLayoutTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -523,11 +538,14 @@
 		0BCB756C1D8720110065E02A /* LayoutKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				0B193BB61D887BCF00FCA22D /* CollectionExtension.swift */,
-				0B193BB71D887BCF00FCA22D /* IndexSetExtension.swift */,
 				0BCB76531D8725310065E02A /* AlignmentTests.swift */,
+				0BD5F82B1DB43F9B00108688 /* ButtonLayoutTests.swift */,
+				0B765F2F1DC135B8000BF1FD /* CGFloatExtensionTests.swift */,
+				0B193BB61D887BCF00FCA22D /* CollectionExtension.swift */,
 				0BCB76551D8725310065E02A /* CollectionViewTests.swift */,
 				0BCB76561D8725310065E02A /* DensityAssertions.swift */,
+				0B193BB71D887BCF00FCA22D /* IndexSetExtension.swift */,
+				0BCB756F1D8720110065E02A /* Info.plist */,
 				0BCB76571D8725310065E02A /* InsetLayoutTests.swift */,
 				0BCB76581D8725310065E02A /* LabelLayoutTests.swift */,
 				0BCB76591D8725310065E02A /* LayoutArrangementTests.swift */,
@@ -542,9 +560,9 @@
 				0BCB76641D8725310065E02A /* StackViewTests.swift */,
 				0BCB76651D8725310065E02A /* TableViewTests.swift */,
 				0BCB76661D8725310065E02A /* TestStack.swift */,
+				0BB380DA1DB73EFF00E2614F /* TextExtension.swift */,
 				0BCB76671D8725310065E02A /* UIFontExtension.swift */,
 				0BCB76681D8725310065E02A /* ViewRecyclerTests.swift */,
-				0BCB756F1D8720110065E02A /* Info.plist */,
 			);
 			path = LayoutKitTests;
 			sourceTree = "<group>";
@@ -572,6 +590,7 @@
 			children = (
 				0BCB75DB1D8724800065E02A /* CFAbsoluteTimeExtension.swift */,
 				0BCB75DC1D8724800065E02A /* CGSizeExtension.swift */,
+				0B765F2B1DC0514F000BF1FD /* CGFloatExtension.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -580,6 +599,7 @@
 			isa = PBXGroup;
 			children = (
 				0BCB75E11D8724800065E02A /* BaseLayout.swift */,
+				0BD5F8281DB43B4500108688 /* ButtonLayout.swift */,
 				0BCB75E21D8724800065E02A /* InsetLayout.swift */,
 				0BCB75E31D8724800065E02A /* LabelLayout.swift */,
 				0BCB75E41D8724800065E02A /* SizeLayout.swift */,
@@ -976,6 +996,7 @@
 				0BCB76081D8724800065E02A /* AxisSize.swift in Sources */,
 				0B193BB81D887BCF00FCA22D /* CollectionExtension.swift in Sources */,
 				0BCB760C1D8724800065E02A /* LayoutAdapterCollectionView.swift in Sources */,
+				0BD5F8291DB43B4500108688 /* ButtonLayout.swift in Sources */,
 				0BCB76001D8724800065E02A /* LayoutMeasurement.swift in Sources */,
 				0BCB76021D8724800065E02A /* InsetLayout.swift in Sources */,
 				0BCB76061D8724800065E02A /* AxisFlexibility.swift in Sources */,
@@ -994,6 +1015,7 @@
 				0BCB75F61D8724800065E02A /* Alignment.swift in Sources */,
 				0B193BB91D887BCF00FCA22D /* IndexSetExtension.swift in Sources */,
 				0BCB75FC1D8724800065E02A /* CFAbsoluteTimeExtension.swift in Sources */,
+				0B765F2C1DC0514F000BF1FD /* CGFloatExtension.swift in Sources */,
 				0BCB76041D8724800065E02A /* SizeLayout.swift in Sources */,
 				0BCB76031D8724800065E02A /* LabelLayout.swift in Sources */,
 				0BCB76101D8724800065E02A /* ReloadableViewLayoutAdapter+UITableView.swift in Sources */,
@@ -1008,6 +1030,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B765F301DC135B8000BF1FD /* CGFloatExtensionTests.swift in Sources */,
 				0B2D092C1D872F75007E487C /* ReloadableViewLayoutAdapterCollectionViewTests.swift in Sources */,
 				0B2D092E1D872F75007E487C /* ReloadableViewLayoutAdapterTestCase.swift in Sources */,
 				0B2D092D1D872F75007E487C /* ReloadableViewLayoutAdapterTableViewTests.swift in Sources */,
@@ -1017,6 +1040,8 @@
 				0B2D09281D872F75007E487C /* LabelLayoutTests.swift in Sources */,
 				0B2D09231D872F75007E487C /* AlignmentTests.swift in Sources */,
 				0B2D09261D872F75007E487C /* DensityAssertions.swift in Sources */,
+				0BD5F82C1DB43F9B00108688 /* ButtonLayoutTests.swift in Sources */,
+				0BB380DB1DB73EFF00E2614F /* TextExtension.swift in Sources */,
 				0B2D09271D872F75007E487C /* InsetLayoutTests.swift in Sources */,
 				0B2D09371D872F75007E487C /* UIFontExtension.swift in Sources */,
 				0B2D09251D872F75007E487C /* CollectionViewTests.swift in Sources */,
@@ -1047,6 +1072,7 @@
 				0BCB762C1D8724C70065E02A /* CGSizeExtension.swift in Sources */,
 				0BCB76361D8724CA0065E02A /* BaseLayout.swift in Sources */,
 				0BCB76181D8724C00065E02A /* ConfigurableLayout.swift in Sources */,
+				0B8C078B1DC3E881001CD5EE /* ButtonLayout.swift in Sources */,
 				0BCB76521D8724E70065E02A /* StackView.swift in Sources */,
 				0BCB76511D8724E70065E02A /* ReloadableViewUpdateManager.swift in Sources */,
 				0BCB76171D8724C00065E02A /* Axis.swift in Sources */,
@@ -1059,6 +1085,7 @@
 				0BCB762E1D8724C70065E02A /* LayoutArrangement.swift in Sources */,
 				0BCB76141D8724C00065E02A /* Alignment.swift in Sources */,
 				0BCB76501D8724E70065E02A /* ReloadableViewLayoutAdapter.swift in Sources */,
+				0B765F2D1DC0514F000BF1FD /* CGFloatExtension.swift in Sources */,
 				0BCB762B1D8724C70065E02A /* CFAbsoluteTimeExtension.swift in Sources */,
 				0BCB76391D8724CA0065E02A /* SizeLayout.swift in Sources */,
 				0BCB76381D8724CA0065E02A /* LabelLayout.swift in Sources */,
@@ -1073,6 +1100,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B765F311DC135B8000BF1FD /* CGFloatExtensionTests.swift in Sources */,
 				0B2D09421D872F75007E487C /* ReloadableViewLayoutAdapterCollectionViewTests.swift in Sources */,
 				0B2D09441D872F75007E487C /* ReloadableViewLayoutAdapterTestCase.swift in Sources */,
 				0B2D09431D872F75007E487C /* ReloadableViewLayoutAdapterTableViewTests.swift in Sources */,
@@ -1082,6 +1110,8 @@
 				0B2D093E1D872F75007E487C /* LabelLayoutTests.swift in Sources */,
 				0B2D09391D872F75007E487C /* AlignmentTests.swift in Sources */,
 				0B2D093C1D872F75007E487C /* DensityAssertions.swift in Sources */,
+				0BB380DC1DB73EFF00E2614F /* TextExtension.swift in Sources */,
+				0B8C078C1DC3E88A001CD5EE /* ButtonLayoutTests.swift in Sources */,
 				0B2D093D1D872F75007E487C /* InsetLayoutTests.swift in Sources */,
 				0B2D094D1D872F75007E487C /* UIFontExtension.swift in Sources */,
 				0B2D093B1D872F75007E487C /* CollectionViewTests.swift in Sources */,

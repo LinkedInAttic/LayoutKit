@@ -1,6 +1,7 @@
 # Build Directory
 build/
 DerivedData/
+build.log
 
 # User Data
 *.xctimeline

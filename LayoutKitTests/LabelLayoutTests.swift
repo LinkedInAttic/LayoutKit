@@ -11,6 +11,28 @@ import LayoutKit
 
 class LabelLayoutTests: XCTestCase {
 
+    func testLabelLayout() {
+        for textTestCase in Text.testCases {
+            let label = UILabel()
+            if let font = textTestCase.font {
+                label.font = font
+            }
+
+            switch textTestCase.text {
+            case .unattributed(let text):
+                label.text = text
+            case .attributed(let text):
+                label.attributedText = text
+            }
+
+            let layout = textTestCase.font.map({ (font: UIFont) -> Layout in
+                return LabelLayout(text: textTestCase.text, font: font)
+            }) ?? LabelLayout(text: textTestCase.text)
+
+            XCTAssertEqual(layout.arrangement().frame.size, label.intrinsicContentSize, "fontName:\(textTestCase.font?.fontName) text:\(textTestCase.text) fontSize:\(textTestCase.font?.pointSize)")
+        }
+    }
+
     func testHiLabel() {
         let text = "Hi"
         let font = UIFont.helvetica()
@@ -58,9 +80,10 @@ class LabelLayoutTests: XCTestCase {
     }
 
     func testEmptyLabel() {
-        let labelLayout = LabelLayout(text: "", font: UIFont.helvetica())
-        let arrangement = labelLayout.arrangement()
-        XCTAssertEqual(arrangement.frame, .zero)
+        let labelLayout = LabelLayout(text: "")
+        let label = UILabel()
+        label.text = ""
+        XCTAssertEqual(labelLayout.arrangement().frame.size, label.intrinsicContentSize)
     }
 
     func testSingleLineHeight() {
