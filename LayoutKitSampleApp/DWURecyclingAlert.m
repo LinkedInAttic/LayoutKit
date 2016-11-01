@@ -1,3 +1,7 @@
+// Copied from https://github.com/diwu/DWURecyclingAlert
+// This adds a debug view that shows how long rendering takes as well as
+// highlights views with a red boarder that are not being reused.
+
 //DWURecyclingAlert.m
 //Copyright (c) 2015 Di Wu
 //
