@@ -64,32 +64,32 @@ private class TestCollectionView: LayoutAdapterCollectionView, TestableReloadabl
         reloadDataCount += 1
     }
 
-    private override func insertItems(at indexPaths: [IndexPath]) {
+    fileprivate override func insertItems(at indexPaths: [IndexPath]) {
         super.insertItems(at: indexPaths)
         batchUpdates.insertItems.append(contentsOf: indexPaths)
     }
 
-    private override func deleteItems(at indexPaths: [IndexPath]) {
+    fileprivate override func deleteItems(at indexPaths: [IndexPath]) {
         super.deleteItems(at: indexPaths)
         batchUpdates.deleteItems.append(contentsOf: indexPaths)
     }
 
-    private override func moveItem(at indexPath: IndexPath, to newIndexPath: IndexPath) {
+    fileprivate override func moveItem(at indexPath: IndexPath, to newIndexPath: IndexPath) {
         super.moveItem(at: indexPath, to: newIndexPath)
         batchUpdates.moveItems.append(ItemMove(from: indexPath, to: newIndexPath))
     }
 
-    private override func insertSections(_ sections: IndexSet) {
+    fileprivate override func insertSections(_ sections: IndexSet) {
         super.insertSections(sections)
         batchUpdates.insertSections.formUnion(sections)
     }
 
-    private override func deleteSections(_ sections: IndexSet) {
+    fileprivate override func deleteSections(_ sections: IndexSet) {
         super.deleteSections(sections)
         batchUpdates.deleteSections.formUnion(sections)
     }
 
-    private override func moveSection(_ section: Int, toSection newSection: Int) {
+    fileprivate override func moveSection(_ section: Int, toSection newSection: Int) {
         super.moveSection(section, toSection: newSection)
         batchUpdates.moveSections.append(SectionMove(from: section, to: newSection))
     }

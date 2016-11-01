@@ -68,32 +68,32 @@ private class TestTableView: LayoutAdapterTableView, TestableReloadableView {
         reloadDataCount += 1
     }
 
-    private override func insertRows(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation) {
+    fileprivate override func insertRows(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation) {
         super.insertRows(at: indexPaths, with: animation)
         batchUpdates.insertItems.append(contentsOf: indexPaths)
     }
 
-    private override func deleteRows(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation) {
+    fileprivate override func deleteRows(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation) {
         super.deleteRows(at: indexPaths, with: animation)
         batchUpdates.deleteItems.append(contentsOf: indexPaths)
     }
 
-    private override func moveRow(at indexPath: IndexPath, to newIndexPath: IndexPath) {
+    fileprivate override func moveRow(at indexPath: IndexPath, to newIndexPath: IndexPath) {
         super.moveRow(at: indexPath, to: newIndexPath)
         batchUpdates.moveItems.append(ItemMove(from: indexPath, to: newIndexPath))
     }
 
-    private override func insertSections(_ sections: IndexSet, with animation: UITableViewRowAnimation) {
+    fileprivate override func insertSections(_ sections: IndexSet, with animation: UITableViewRowAnimation) {
         super.insertSections(sections, with: animation)
         batchUpdates.insertSections.formUnion(sections)
     }
 
-    private override func deleteSections(_ sections: IndexSet, with animation: UITableViewRowAnimation) {
+    fileprivate override func deleteSections(_ sections: IndexSet, with animation: UITableViewRowAnimation) {
         super.deleteSections(sections, with: animation)
         batchUpdates.deleteSections.formUnion(sections)
     }
 
-    private override func moveSection(_ section: Int, toSection newSection: Int) {
+    fileprivate override func moveSection(_ section: Int, toSection newSection: Int) {
         super.moveSection(section, toSection: newSection)
         batchUpdates.moveSections.append(SectionMove(from: section, to: newSection))
     }
