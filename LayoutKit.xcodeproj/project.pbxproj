@@ -97,6 +97,11 @@
 		0B2D09F81D87365F007E487C /* StackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D09DB1D87365F007E487C /* StackViewController.swift */; };
 		0B2D09F91D87365F007E487C /* UrlImageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D09DC1D87365F007E487C /* UrlImageLayout.swift */; };
 		0B2D09FC1D873726007E487C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2D09FB1D873726007E487C /* LaunchScreen.xib */; };
+		0B6B04371DC8402E00F23EEA /* DWURecyclingAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6B04361DC8402E00F23EEA /* DWURecyclingAlert.m */; };
+		0B6B04381DC8470200F23EEA /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB755F1D8720110065E02A /* LayoutKit.framework */; };
+		0B6B04391DC8470200F23EEA /* LayoutKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB755F1D8720110065E02A /* LayoutKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0B6B043B1DC8472A00F23EEA /* LayoutKitExampleLayouts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB75B61D8723B30065E02A /* LayoutKitExampleLayouts.framework */; };
+		0B6B043C1DC8472A00F23EEA /* LayoutKitExampleLayouts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB75B61D8723B30065E02A /* LayoutKitExampleLayouts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0BA02E481D874BBB00F1E8D3 /* LayoutArrangementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76591D8725310065E02A /* LayoutArrangementTests.swift */; };
 		0BCB75691D8720110065E02A /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB755F1D8720110065E02A /* LayoutKit.framework */; };
 		0BCB75701D8720110065E02A /* LayoutKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BCB75621D8720110065E02A /* LayoutKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -229,6 +234,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0B6B043A1DC8470200F23EEA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0B6B043C1DC8472A00F23EEA /* LayoutKitExampleLayouts.framework in Embed Frameworks */,
+				0B6B04391DC8470200F23EEA /* LayoutKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0B193BB61D887BCF00FCA22D /* CollectionExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
 		0B193BB71D887BCF00FCA22D /* IndexSetExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexSetExtension.swift; sourceTree = "<group>"; };
@@ -270,6 +290,7 @@
 		0B2D09DB1D87365F007E487C /* StackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackViewController.swift; sourceTree = "<group>"; };
 		0B2D09DC1D87365F007E487C /* UrlImageLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlImageLayout.swift; sourceTree = "<group>"; };
 		0B2D09FB1D873726007E487C /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		0B6B04361DC8402E00F23EEA /* DWURecyclingAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWURecyclingAlert.m; sourceTree = "<group>"; };
 		0B7B269E1D919A9200CD1956 /* LayoutKit.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = LayoutKit.playground; sourceTree = "<group>"; };
 		0BCB755F1D8720110065E02A /* LayoutKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LayoutKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BCB75621D8720110065E02A /* LayoutKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayoutKit.h; sourceTree = "<group>"; };
@@ -339,6 +360,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B6B043B1DC8472A00F23EEA /* LayoutKitExampleLayouts.framework in Frameworks */,
+				0B6B04381DC8470200F23EEA /* LayoutKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +442,7 @@
 				0B2D09DA1D87365F007E487C /* NestedCollectionViewController.swift */,
 				0B2D09DB1D87365F007E487C /* StackViewController.swift */,
 				0B2D09DC1D87365F007E487C /* UrlImageLayout.swift */,
+				0B6B04361DC8402E00F23EEA /* DWURecyclingAlert.m */,
 			);
 			path = LayoutKitSampleApp;
 			sourceTree = "<group>";
@@ -630,6 +654,7 @@
 				0B2D09AC1D8735E1007E487C /* Sources */,
 				0B2D09AD1D8735E1007E487C /* Frameworks */,
 				0B2D09AE1D8735E1007E487C /* Resources */,
+				0B6B043A1DC8470200F23EEA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -916,6 +941,7 @@
 				0B2D09EE1D87365F007E487C /* Stopwatch.swift in Sources */,
 				0B2D09E31D87365F007E487C /* BatchUpdatesBaseViewController.swift in Sources */,
 				0B2D09F81D87365F007E487C /* StackViewController.swift in Sources */,
+				0B6B04371DC8402E00F23EEA /* DWURecyclingAlert.m in Sources */,
 				0B2D09F51D87365F007E487C /* LabledImageLayout.swift in Sources */,
 				0B2D09F11D87365F007E487C /* FeedCollectionViewController.swift in Sources */,
 				0B2D09F31D87365F007E487C /* FeedTableViewController.swift in Sources */,

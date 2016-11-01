@@ -24,11 +24,12 @@ open class FeedItemLayout: InsetLayout<View> {
             text: "...",
             numberOfLines: 1,
             alignment: .topTrailing,
-            flexibility: .inflexible
+            flexibility: .inflexible,
+            viewReuseId: "contentFilteringOptions"
         )
 
         let actionStack = StackLayout(axis: .horizontal, sublayouts: [
-            LabelLayout(text: actionText),
+            LabelLayout(text: actionText, viewReuseId: "actionText"),
             contentFilteringOptions
         ])
 
@@ -36,16 +37,16 @@ open class FeedItemLayout: InsetLayout<View> {
             label.backgroundColor = UIColor.green
         }
         let socialActions = StackLayout(axis: .horizontal, distribution: .fillEqualSize, sublayouts: [
-            LabelLayout(text: "Like", alignment: .centerLeading, config: buttonConfig),
-            LabelLayout(text: "Comment", alignment: .center, config: buttonConfig),
-            LabelLayout(text: "Share", alignment: .centerTrailing, config: buttonConfig),
+            LabelLayout(text: "Like", alignment: .centerLeading, viewReuseId: "like", config: buttonConfig),
+            LabelLayout(text: "Comment", alignment: .center, viewReuseId: "comment", config: buttonConfig),
+            LabelLayout(text: "Share", alignment: .centerTrailing, viewReuseId: "share", config: buttonConfig),
         ])
 
         let actorCommentLayout = StackLayout(axis: .horizontal, sublayouts: [
-            SizeLayout<UIImageView>(width: 50, height: 50, config: { imageView in
+            SizeLayout<UIImageView>(width: 50, height: 50, viewReuseId: "actorCommentPhoto", config: { imageView in
                 imageView.image = UIImage(named: "50x50.png")
             }),
-            LabelLayout(text: actorComment, alignment: .centerLeading)
+            LabelLayout(text: actorComment, alignment: .centerLeading, viewReuseId: "actorComment")
         ])
 
         let feedItem = StackLayout(
@@ -54,13 +55,13 @@ open class FeedItemLayout: InsetLayout<View> {
             sublayouts: [
                 actionStack,
                 posterProfile,
-                LabelLayout(text: posterComment, numberOfLines: 4),
+                LabelLayout(text: posterComment, numberOfLines: 4, viewReuseId: "posterComment"),
                 contentLayout,
                 socialActions,
                 actorCommentLayout
             ]
         )
-        super.init(insets: EdgeInsets(top: 8, left: 8, bottom: 8, right: 8), sublayout: feedItem, config: { view in
+        super.init(insets: EdgeInsets(top: 8, left: 8, bottom: 8, right: 8), viewReuseId: "feedItem", sublayout: feedItem, config: { view in
             view.backgroundColor = UIColor.white
         })
     }
@@ -73,12 +74,13 @@ open class ContentLayout: StackLayout<UIView> {
             SizeLayout<UIImageView>(
                 size: CGSize(width: 350, height: 200),
                 alignment: Alignment(vertical: .top, horizontal: .fill),
+                viewReuseId: "contentImage",
                 config: { imageView in
                     imageView.image = UIImage(named: "350x200.png")
                 }
             ),
-            LabelLayout(text: title),
-            LabelLayout(text: domain)
+            LabelLayout(text: title, viewReuseId: "contentTitle"),
+            LabelLayout(text: domain, viewReuseId: "contentDomain")
         ])
     }
 }

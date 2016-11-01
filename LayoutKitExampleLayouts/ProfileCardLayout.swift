@@ -20,15 +20,15 @@ open class ProfileCardLayout: StackLayout<UIView> {
             axis: .horizontal,
             spacing: 4,
             sublayouts: [
-                LabelLayout(text: name, config: labelConfig),
-                LabelLayout(text: connectionDegree, config: { label in
+                LabelLayout(text: name, viewReuseId: "name", config: labelConfig),
+                LabelLayout(text: connectionDegree, viewReuseId: "connectionDegree", config: { label in
                     label.backgroundColor = UIColor.gray
                 }),
             ]
         )
 
-        let headline = LabelLayout(text: headline, numberOfLines: 2, config: labelConfig)
-        let timestamp = LabelLayout(text: timestamp, numberOfLines: 2, config: labelConfig)
+        let headline = LabelLayout(text: headline, numberOfLines: 2, viewReuseId: "headline", config: labelConfig)
+        let timestamp = LabelLayout(text: timestamp, numberOfLines: 2, viewReuseId: "timestamp", config: labelConfig)
 
         let verticalLabelStack = StackLayout(
             axis: .vertical,
@@ -39,6 +39,7 @@ open class ProfileCardLayout: StackLayout<UIView> {
 
         let profileImage = SizeLayout<UIImageView>(
             size: CGSize(width: 50, height: 50),
+            viewReuseId: "profileImage",
             config: { imageView in
                 imageView.image = UIImage(named: profileImageName)
             }
