@@ -100,14 +100,14 @@
 		0B6B04371DC8402E00F23EEA /* DWURecyclingAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6B04361DC8402E00F23EEA /* DWURecyclingAlert.m */; };
 		0B6B04381DC8470200F23EEA /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB755F1D8720110065E02A /* LayoutKit.framework */; };
 		0B6B04391DC8470200F23EEA /* LayoutKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB755F1D8720110065E02A /* LayoutKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0B6B043B1DC8472A00F23EEA /* LayoutKitExampleLayouts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB75B61D8723B30065E02A /* LayoutKitExampleLayouts.framework */; };
-		0B6B043C1DC8472A00F23EEA /* LayoutKitExampleLayouts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB75B61D8723B30065E02A /* LayoutKitExampleLayouts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0B765F2C1DC0514F000BF1FD /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B765F2B1DC0514F000BF1FD /* CGFloatExtension.swift */; };
 		0B765F2D1DC0514F000BF1FD /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B765F2B1DC0514F000BF1FD /* CGFloatExtension.swift */; };
 		0B765F301DC135B8000BF1FD /* CGFloatExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B765F2F1DC135B8000BF1FD /* CGFloatExtensionTests.swift */; };
 		0B765F311DC135B8000BF1FD /* CGFloatExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B765F2F1DC135B8000BF1FD /* CGFloatExtensionTests.swift */; };
 		0B8C078B1DC3E881001CD5EE /* ButtonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD5F8281DB43B4500108688 /* ButtonLayout.swift */; };
 		0B8C078C1DC3E88A001CD5EE /* ButtonLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD5F82B1DB43F9B00108688 /* ButtonLayoutTests.swift */; };
+		0B6B043B1DC8472A00F23EEA /* ExampleLayouts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB75B61D8723B30065E02A /* ExampleLayouts.framework */; };
+		0B6B043C1DC8472A00F23EEA /* ExampleLayouts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB75B61D8723B30065E02A /* ExampleLayouts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0BA02E481D874BBB00F1E8D3 /* LayoutArrangementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76591D8725310065E02A /* LayoutArrangementTests.swift */; };
 		0BB380DB1DB73EFF00E2614F /* TextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB380DA1DB73EFF00E2614F /* TextExtension.swift */; };
 		0BB380DC1DB73EFF00E2614F /* TextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB380DA1DB73EFF00E2614F /* TextExtension.swift */; };
@@ -116,7 +116,7 @@
 		0BCB75851D8721370065E02A /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB757C1D8721370065E02A /* LayoutKit.framework */; };
 		0BCB75A11D8722370065E02A /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB75981D8722370065E02A /* LayoutKit.framework */; };
 		0BCB75B01D8722BD0065E02A /* LayoutKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BCB75621D8720110065E02A /* LayoutKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0BCB75BA1D8723B30065E02A /* LayoutKitExampleLayouts.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BCB75B81D8723B30065E02A /* LayoutKitExampleLayouts.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0BCB75BA1D8723B30065E02A /* ExampleLayouts.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BCB75B81D8723B30065E02A /* ExampleLayouts.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0BCB75F61D8724800065E02A /* Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB75D41D8724800065E02A /* Alignment.swift */; };
 		0BCB75F71D8724800065E02A /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB75D51D8724800065E02A /* Animation.swift */; };
 		0BCB75F91D8724800065E02A /* Axis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB75D71D8724800065E02A /* Axis.swift */; };
@@ -215,7 +215,7 @@
 			containerPortal = 0BCB75541D871FC40065E02A /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 0BCB75B51D8723B30065E02A;
-			remoteInfo = LayoutKitExampleLayouts;
+			remoteInfo = "ExampleLayouts-iOS";
 		};
 		0B2D0A011D87377F007E487C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -254,7 +254,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0B6B043C1DC8472A00F23EEA /* LayoutKitExampleLayouts.framework in Embed Frameworks */,
+				0B6B043C1DC8472A00F23EEA /* ExampleLayouts.framework in Embed Frameworks */,
 				0B6B04391DC8470200F23EEA /* LayoutKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -317,8 +317,8 @@
 		0BCB75841D8721370065E02A /* LayoutKit-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LayoutKit-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BCB75981D8722370065E02A /* LayoutKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LayoutKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BCB75A01D8722370065E02A /* LayoutKit-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LayoutKit-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0BCB75B61D8723B30065E02A /* LayoutKitExampleLayouts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LayoutKitExampleLayouts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0BCB75B81D8723B30065E02A /* LayoutKitExampleLayouts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayoutKitExampleLayouts.h; sourceTree = "<group>"; };
+		0BCB75B61D8723B30065E02A /* ExampleLayouts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ExampleLayouts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BCB75B81D8723B30065E02A /* ExampleLayouts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleLayouts.h; sourceTree = "<group>"; };
 		0BCB75B91D8723B30065E02A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0BCB75D41D8724800065E02A /* Alignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alignment.swift; sourceTree = "<group>"; };
 		0BCB75D51D8724800065E02A /* Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
@@ -379,7 +379,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B6B043B1DC8472A00F23EEA /* LayoutKitExampleLayouts.framework in Frameworks */,
+				0B6B043B1DC8472A00F23EEA /* ExampleLayouts.framework in Frameworks */,
 				0B6B04381DC8470200F23EEA /* LayoutKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,7 +489,7 @@
 				0B7B269E1D919A9200CD1956 /* LayoutKit.playground */,
 				0BCB75611D8720110065E02A /* LayoutKit */,
 				0BCB756C1D8720110065E02A /* LayoutKitTests */,
-				0BCB75B71D8723B30065E02A /* LayoutKitExampleLayouts */,
+				0BCB75B71D8723B30065E02A /* ExampleLayouts */,
 				0B2D09B11D8735E1007E487C /* LayoutKitSampleApp */,
 				0BCB75601D8720110065E02A /* Products */,
 			);
@@ -504,7 +504,7 @@
 				0BCB75841D8721370065E02A /* LayoutKit-tvOSTests.xctest */,
 				0BCB75981D8722370065E02A /* LayoutKit.framework */,
 				0BCB75A01D8722370065E02A /* LayoutKit-macOSTests.xctest */,
-				0BCB75B61D8723B30065E02A /* LayoutKitExampleLayouts.framework */,
+				0BCB75B61D8723B30065E02A /* ExampleLayouts.framework */,
 				0B2D09B01D8735E1007E487C /* LayoutKitSampleApp.app */,
 			);
 			name = Products;
@@ -567,7 +567,7 @@
 			path = LayoutKitTests;
 			sourceTree = "<group>";
 		};
-		0BCB75B71D8723B30065E02A /* LayoutKitExampleLayouts */ = {
+		0BCB75B71D8723B30065E02A /* ExampleLayouts */ = {
 			isa = PBXGroup;
 			children = (
 				0B2D09651D8734DB007E487C /* CircleImagePileLayout.swift */,
@@ -579,10 +579,10 @@
 				0B2D096B1D8734DB007E487C /* MiniProfileLayout.swift */,
 				0B2D096C1D8734DB007E487C /* ProfileCardLayout.swift */,
 				0B2D096D1D8734DB007E487C /* SkillsCardLayout.swift */,
-				0BCB75B81D8723B30065E02A /* LayoutKitExampleLayouts.h */,
+				0BCB75B81D8723B30065E02A /* ExampleLayouts.h */,
 				0BCB75B91D8723B30065E02A /* Info.plist */,
 			);
-			path = LayoutKitExampleLayouts;
+			path = ExampleLayouts;
 			sourceTree = "<group>";
 		};
 		0BCB75DA1D8724800065E02A /* Internal */ = {
@@ -665,7 +665,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BCB75BA1D8723B30065E02A /* LayoutKitExampleLayouts.h in Headers */,
+				0BCB75BA1D8723B30065E02A /* ExampleLayouts.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,9 +800,9 @@
 			productReference = 0BCB75A01D8722370065E02A /* LayoutKit-macOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		0BCB75B51D8723B30065E02A /* LayoutKitExampleLayouts */ = {
+		0BCB75B51D8723B30065E02A /* ExampleLayouts-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0BCB75BB1D8723B30065E02A /* Build configuration list for PBXNativeTarget "LayoutKitExampleLayouts" */;
+			buildConfigurationList = 0BCB75BB1D8723B30065E02A /* Build configuration list for PBXNativeTarget "ExampleLayouts-iOS" */;
 			buildPhases = (
 				0BCB75B11D8723B30065E02A /* Sources */,
 				0BCB75B21D8723B30065E02A /* Frameworks */,
@@ -814,9 +814,9 @@
 			dependencies = (
 				0B2D0A021D87377F007E487C /* PBXTargetDependency */,
 			);
-			name = LayoutKitExampleLayouts;
-			productName = LayoutKitExampleLayouts;
-			productReference = 0BCB75B61D8723B30065E02A /* LayoutKitExampleLayouts.framework */;
+			name = "ExampleLayouts-iOS";
+			productName = "ExampleLayouts-iOS";
+			productReference = 0BCB75B61D8723B30065E02A /* ExampleLayouts.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -881,7 +881,7 @@
 				0BCB755E1D8720110065E02A /* LayoutKit-iOS */,
 				0BCB757B1D8721370065E02A /* LayoutKit-tvOS */,
 				0BCB75971D8722370065E02A /* LayoutKit-macOS */,
-				0BCB75B51D8723B30065E02A /* LayoutKitExampleLayouts */,
+				0BCB75B51D8723B30065E02A /* ExampleLayouts-iOS */,
 				0BCB75671D8720110065E02A /* LayoutKit-iOSTests */,
 				0BCB75831D8721370065E02A /* LayoutKit-tvOSTests */,
 				0BCB759F1D8722370065E02A /* LayoutKit-macOSTests */,
@@ -1198,7 +1198,7 @@
 		};
 		0B2D0A001D873777007E487C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0BCB75B51D8723B30065E02A /* LayoutKitExampleLayouts */;
+			target = 0BCB75B51D8723B30065E02A /* ExampleLayouts-iOS */;
 			targetProxy = 0B2D09FF1D873777007E487C /* PBXContainerItemProxy */;
 		};
 		0B2D0A021D87377F007E487C /* PBXTargetDependency */ = {
@@ -2067,14 +2067,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = LayoutKitExampleLayouts/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ExampleLayouts/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.linkedin.LayoutKitExampleLayouts;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.linkedin.ExampleLayouts-iOS";
+				PRODUCT_NAME = ExampleLayouts;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -2126,13 +2126,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = LayoutKitExampleLayouts/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ExampleLayouts/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.linkedin.LayoutKitExampleLayouts;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.linkedin.ExampleLayouts-iOS";
+				PRODUCT_NAME = ExampleLayouts;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -2219,7 +2219,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0BCB75BB1D8723B30065E02A /* Build configuration list for PBXNativeTarget "LayoutKitExampleLayouts" */ = {
+		0BCB75BB1D8723B30065E02A /* Build configuration list for PBXNativeTarget "ExampleLayouts-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0BCB75BC1D8723B30065E02A /* Debug */,
