@@ -9,9 +9,9 @@
 import UIKit
 import PlaygroundSupport
 import LayoutKit
-import LayoutKitExampleLayouts
+import ExampleLayouts
 
-// REMINDER: you need to manually build LayoutKitExampleLayouts on the simulator for changes to be reflected in this playground.
+// REMINDER: you need to manually build ExampleLayouts on the simulator for changes to be reflected in this playground.
 
 let helloWorld = HelloWorldLayout()
 

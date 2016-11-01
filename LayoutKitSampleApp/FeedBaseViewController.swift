@@ -8,7 +8,7 @@
 
 import UIKit
 import LayoutKit
-import LayoutKitExampleLayouts
+import ExampleLayouts
 
 /// A base class for various view controllers that display a fake feed.
 class FeedBaseViewController: UIViewController {

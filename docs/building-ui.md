@@ -20,7 +20,7 @@ If you are already using UIStackView (or any other Auto Layout based stack) and 
 
 It is easy to compose layouts into reusable components.
 
-Here is an example of a reusable [MiniProfileLayout](https://github.com/linkedin/LayoutKit/blob/master/LayoutKitExampleLayouts/MiniProfileLayout.swift):
+Here is an example of a reusable [MiniProfileLayout](https://github.com/linkedin/LayoutKit/blob/master/ExampleLayouts/MiniProfileLayout.swift):
 
 ```swift
 import UIKit
@@ -92,7 +92,7 @@ sergeiProfile.arrangement().makeViews()
 
 ![Sergei's profile](img/sergei.png)
 
-More examples can be found in [LayoutKitExampleLayouts](https://github.com/linkedin/LayoutKit/blob/master/LayoutKitExampleLayouts).
+More examples can be found in [ExampleLayouts](https://github.com/linkedin/LayoutKit/blob/master/ExampleLayouts).
 
 ## View configuration
 
