@@ -31,7 +31,7 @@ class LayoutArrangementTests: XCTestCase {
     }
 
     func testAnimation() {
-
+        let forceViewConfig: (View) -> Void = { _ in }
         var redSquare: View? = nil
 
         let before = InsetLayout(
@@ -53,13 +53,15 @@ class LayoutArrangementTests: XCTestCase {
                             config: { view in
                                 redSquare = view
                             }
-                        )
+                        ),
+                        config: forceViewConfig
                     ),
                     SizeLayout<View>(
                         width: 80,
                         height: 80,
                         alignment: .bottomTrailing,
-                        viewReuseId: "littleSquare"
+                        viewReuseId: "littleSquare",
+                        config: forceViewConfig
                     )
                 ]
             )
@@ -76,7 +78,8 @@ class LayoutArrangementTests: XCTestCase {
                         width: 100,
                         height: 100,
                         alignment: .topLeading,
-                        viewReuseId: "bigSquare"
+                        viewReuseId: "bigSquare",
+                        config: forceViewConfig
                     ),
                     SizeLayout<View>(
                         width: 50,
@@ -91,7 +94,8 @@ class LayoutArrangementTests: XCTestCase {
                             config: { view in
                                 redSquare = view
                             }
-                        )
+                        ),
+                        config: forceViewConfig
                     )
                 ]
             )
