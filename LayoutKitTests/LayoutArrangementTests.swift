@@ -30,6 +30,29 @@ class LayoutArrangementTests: XCTestCase {
         XCTAssertEqual(view.subviews[1].frame, CGRect(x: 80, y: 10, width: 50, height: 50))
     }
 
+    func testSubviewOrderIsStable() {
+        // Forces the SizeLayout to produce a view.
+        let forceViewConfig: (View) -> Void = { _ in }
+        let top = SizeLayout(width: 5, height: 10, config: forceViewConfig)
+        let middle = SizeLayout(width: 5, height: 20, viewReuseId: "middle", config: forceViewConfig)
+        let bottom = SizeLayout(width: 5, height: 30, config: forceViewConfig)
+
+        let stack = StackLayout(axis: .vertical, sublayouts: [top, middle, bottom])
+        let container = View()
+
+        stack.arrangement().makeViews(in: container)
+        XCTAssertEqual(container.subviews[0].frame, CGRect(x: 0, y: 0, width: 5, height: 10))
+        XCTAssertEqual(container.subviews[1].frame, CGRect(x: 0, y: 10, width: 5, height: 20))
+        XCTAssertEqual(container.subviews[2].frame, CGRect(x: 0, y: 30, width: 5, height: 30))
+
+        // Make sure that if we apply the same layout again that the views stay in the same order
+        // even if some views are reused and others are not.
+        stack.arrangement().makeViews(in: container)
+        XCTAssertEqual(container.subviews[0].frame, CGRect(x: 0, y: 0, width: 5, height: 10))
+        XCTAssertEqual(container.subviews[1].frame, CGRect(x: 0, y: 10, width: 5, height: 20))
+        XCTAssertEqual(container.subviews[2].frame, CGRect(x: 0, y: 30, width: 5, height: 30))
+    }
+
     func testAnimation() {
 
         var redSquare: View? = nil
