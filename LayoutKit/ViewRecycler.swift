@@ -15,13 +15,13 @@ import ObjectiveC
  Call `makeView(layoutId:)` to recycle or create a view of the desired type and id.
  Call `purgeViews()` to remove all unrecycled views from the view hierarchy.
  */
-open class ViewRecycler {
+class ViewRecycler {
 
     private var viewsById = [String: View]()
     private var unidentifiedViews = Set<View>()
 
     /// Retains all subviews of rootView for recycling.
-    public init(rootView: View?) {
+    init(rootView: View?) {
         rootView?.walkSubviews { (view) in
             if let viewReuseId = view.viewReuseId {
                 self.viewsById[viewReuseId] = view
@@ -35,7 +35,7 @@ open class ViewRecycler {
      Returns a view for the layout.
      It may recycle an existing view or create a new view.
      */
-    open func makeOrRecycleView(havingViewReuseId viewReuseId: String?, viewProvider: () -> View) -> View? {
+    func makeOrRecycleView(havingViewReuseId viewReuseId: String?, viewProvider: () -> View) -> View? {
         // If we have a recyclable view that matches type and id, then reuse it.
         if let viewReuseId = viewReuseId, let view = viewsById[viewReuseId] {
             viewsById[viewReuseId] = nil
@@ -54,7 +54,7 @@ open class ViewRecycler {
     }
 
     /// Removes all unrecycled views from the view hierarchy.
-    open func purgeViews() {
+    func purgeViews() {
         for view in viewsById.values {
             view.removeFromSuperview()
         }
