@@ -51,6 +51,8 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
             // Expect reload since this is synchronous.
             XCTAssertEqual(view.batchUpdates.insertSections.count, 0)
             XCTAssertEqual(view.batchUpdates.insertItems.count, 0)
+            XCTAssertEqual(view.batchUpdates.reloadItems.count, 0)
+            XCTAssertEqual(view.batchUpdates.reloadSections.count, 0)
             XCTAssertEqual(view.reloadDataCount, 1)
         }
     }
@@ -89,6 +91,8 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
             // Expect batch update.
             XCTAssertEqual(view.batchUpdates.insertSections.count, 1)
             XCTAssertEqual(view.batchUpdates.insertItems.count, 1)
+            XCTAssertEqual(view.batchUpdates.reloadItems.count, 1)
+            XCTAssertEqual(view.batchUpdates.reloadSections.count, 1)
             XCTAssertEqual(view.reloadDataCount, 0)
         }
 
@@ -268,18 +272,19 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
         waitForBackgroundOperations(adapter)
     }
 
-    private func verifySectionZero(_ view: TestableReloadableView) {
+    private func verifySectionZero(_ view: TestableReloadableView, updated: Bool = false) {
         let itemWidth = 320 - view.itemWidthInset
+        let suffix = updated ? " updated" : ""
         if #available(tvOS 10, *) {
-            view.verifyHeader(0, text: "header 0", frame: CGRect(x: 0, y: 0, width: 320, height: 51), file: #file, line: #line)
+            view.verifyHeader(0, text: "header 0" + suffix, frame: CGRect(x: 0, y: 0, width: 320, height: 51), file: #file, line: #line)
             view.verifyVisibleItem("item 0", frame: CGRect(x: 0, y: 51, width: itemWidth, height: 52), file: #file, line: #line)
-            view.verifyVisibleItem("item 1", frame: CGRect(x: 0, y: 103 + 1*view.itemSpacing, width: itemWidth, height: 53), file: #file, line: #line)
+            view.verifyVisibleItem("item 1" + suffix, frame: CGRect(x: 0, y: 103 + 1*view.itemSpacing, width: itemWidth, height: 53), file: #file, line: #line)
             view.verifyVisibleItem("item 2", frame: CGRect(x: 0, y: 156 + 2*view.itemSpacing, width: itemWidth, height: 54), file: #file, line: #line)
             view.verifyFooter(0, text: "footer 0", frame: CGRect(x: 0, y: 210 + 3*view.itemSpacing, width: 320, height: 55), file: #file, line: #line)
         } else {
-            view.verifyHeader(0, text: "header 0", frame: CGRect(x: 0, y: 0, width: 320, height: 51), file: #file, line: #line)
+            view.verifyHeader(0, text: "header 0" + suffix, frame: CGRect(x: 0, y: 0, width: 320, height: 51), file: #file, line: #line)
             view.verifyVisibleItem("item 0", frame: CGRect(x: 0, y: 51 + view.itemSpacing, width: itemWidth, height: 52), file: #file, line: #line)
-            view.verifyVisibleItem("item 1", frame: CGRect(x: 0, y: 103 + 2*view.itemSpacing, width: itemWidth, height: 53), file: #file, line: #line)
+            view.verifyVisibleItem("item 1" + suffix, frame: CGRect(x: 0, y: 103 + 2*view.itemSpacing, width: itemWidth, height: 53), file: #file, line: #line)
             view.verifyVisibleItem("item 2", frame: CGRect(x: 0, y: 156 + 3*view.itemSpacing, width: itemWidth, height: 54), file: #file, line: #line)
             view.verifyFooter(0, text: "footer 0", frame: CGRect(x: 0, y: 210 + 4*view.itemSpacing, width: 320, height: 55), file: #file, line: #line)
         }
@@ -305,18 +310,18 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 
     private func verifyLayoutTwo(_ view: TestableReloadableView) {
         let itemWidth = 320 - view.itemWidthInset
-        verifySectionZero(view)
+        verifySectionZero(view, updated: true)
 
         // Section 1
         if #available(tvOS 10, *) {
             view.verifyHeader(1, text: nil, frame: nil, file: #file, line: #line)
-            view.verifyVisibleItem("item 3", frame: CGRect(x: 0, y: 265 + 4*view.itemSpacing, width: itemWidth, height: 56), file: #file, line: #line)
+            view.verifyVisibleItem("item 3 updated", frame: CGRect(x: 0, y: 265 + 4*view.itemSpacing, width: itemWidth, height: 56), file: #file, line: #line)
             view.verifyVisibleItem("item 4", frame: CGRect(x: 0, y: 321 + 5*view.itemSpacing, width: itemWidth, height: 57), file: #file, line: #line)
             view.verifyVisibleItem("item 5", frame: CGRect(x: 0, y: 378 + 6*view.itemSpacing, width: itemWidth, height: 58), file: #file, line: #line)
             view.verifyFooter(1, text: nil, frame: nil, file: #file, line: #line)
         } else {
             view.verifyHeader(1, text: nil, frame: nil, file: #file, line: #line)
-            view.verifyVisibleItem("item 3", frame: CGRect(x: 0, y: 265 + 5*view.itemSpacing, width: itemWidth, height: 56), file: #file, line: #line)
+            view.verifyVisibleItem("item 3 updated", frame: CGRect(x: 0, y: 265 + 5*view.itemSpacing, width: itemWidth, height: 56), file: #file, line: #line)
             view.verifyVisibleItem("item 4", frame: CGRect(x: 0, y: 321 + 6*view.itemSpacing, width: itemWidth, height: 57), file: #file, line: #line)
             view.verifyVisibleItem("item 5", frame: CGRect(x: 0, y: 378 + 7*view.itemSpacing, width: itemWidth, height: 58), file: #file, line: #line)
             view.verifyFooter(1, text: nil, frame: nil, file: #file, line: #line)
@@ -362,12 +367,12 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
         if #available(tvOS 10, *) {
             view.verifyHeader(1, text: nil, frame: nil, file: #file, line: #line)
             view.verifyVisibleItem("item 4", frame: CGRect(x: 0, y: 305 + 4*view.itemSpacing, width: itemWidth, height: 57), file: #file, line: #line)
-            view.verifyVisibleItem("item 3", frame: CGRect(x: 0, y: 362 + 5*view.itemSpacing, width: itemWidth, height: 56), file: #file, line: #line)
+            view.verifyVisibleItem("item 3 updated", frame: CGRect(x: 0, y: 362 + 5*view.itemSpacing, width: itemWidth, height: 56), file: #file, line: #line)
             view.verifyFooter(1, text: nil, frame: nil, file: #file, line: #line)
         } else {
             view.verifyHeader(1, text: nil, frame: nil, file: #file, line: #line)
             view.verifyVisibleItem("item 4", frame: CGRect(x: 0, y: 305 + 5*view.itemSpacing, width: itemWidth, height: 57), file: #file, line: #line)
-            view.verifyVisibleItem("item 3", frame: CGRect(x: 0, y: 362 + 6*view.itemSpacing, width: itemWidth, height: 56), file: #file, line: #line)
+            view.verifyVisibleItem("item 3 updated", frame: CGRect(x: 0, y: 362 + 6*view.itemSpacing, width: itemWidth, height: 56), file: #file, line: #line)
             view.verifyFooter(1, text: nil, frame: nil, file: #file, line: #line)
         }
 
@@ -413,10 +418,10 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
     private func layoutProviderTwo() -> [Section<[Layout]>] {
         return [
             Section(
-                header: TestLabelLayout(text: "header 0", height: 51),
+                header: TestLabelLayout(text: "header 0 updated", height: 51),
                 items: [
                     TestLabelLayout(text: "item 0", height: 52),
-                    TestLabelLayout(text: "item 1", height: 53),
+                    TestLabelLayout(text: "item 1 updated", height: 53),
                     TestLabelLayout(text: "item 2", height: 54),
                 ],
                 footer: TestLabelLayout(text: "footer 0", height: 55)
@@ -424,7 +429,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
             Section(
                 header: nil,
                 items: [
-                    TestLabelLayout(text: "item 3", height: 56),
+                    TestLabelLayout(text: "item 3 updated", height: 56),
                     TestLabelLayout(text: "item 4", height: 57),
                     TestLabelLayout(text: "item 5", height: 58),
                 ],
@@ -446,6 +451,8 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
         var batchUpdates = BatchUpdates()
         batchUpdates.insertItems.append(IndexPath(item: 2, section: 1))
         batchUpdates.insertSections.insert(2)
+        batchUpdates.reloadItems.append(IndexPath(item: 0, section: 1))
+        batchUpdates.reloadSections.insert(0)
         return batchUpdates
     }
 
@@ -464,7 +471,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
                 header: nil,
                 items: [
                     TestLabelLayout(text: "item 4", height: 57),
-                    TestLabelLayout(text: "item 3", height: 56),
+                    TestLabelLayout(text: "item 3 updated", height: 56),
                 ],
                 footer: nil
             )
