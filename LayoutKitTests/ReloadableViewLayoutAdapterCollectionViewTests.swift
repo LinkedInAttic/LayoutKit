@@ -74,6 +74,11 @@ private class TestCollectionView: LayoutAdapterCollectionView, TestableReloadabl
         batchUpdates.deleteItems.append(contentsOf: indexPaths)
     }
 
+    fileprivate override func reloadItems(at indexPaths: [IndexPath]) {
+        super.reloadItems(at: indexPaths)
+        batchUpdates.reloadItems.append(contentsOf: indexPaths)
+    }
+
     fileprivate override func moveItem(at indexPath: IndexPath, to newIndexPath: IndexPath) {
         super.moveItem(at: indexPath, to: newIndexPath)
         batchUpdates.moveItems.append(ItemMove(from: indexPath, to: newIndexPath))
@@ -87,6 +92,11 @@ private class TestCollectionView: LayoutAdapterCollectionView, TestableReloadabl
     fileprivate override func deleteSections(_ sections: IndexSet) {
         super.deleteSections(sections)
         batchUpdates.deleteSections.formUnion(sections)
+    }
+
+    fileprivate override func reloadSections(_ sections: IndexSet) {
+        super.reloadSections(sections)
+        batchUpdates.reloadSections.formUnion(sections)
     }
 
     fileprivate override func moveSection(_ section: Int, toSection newSection: Int) {

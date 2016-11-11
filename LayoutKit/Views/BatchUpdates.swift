@@ -13,10 +13,12 @@ import Foundation
 public struct BatchUpdates {
     public var insertItems = [IndexPath]()
     public var deleteItems = [IndexPath]()
+    public var reloadItems = [IndexPath]()
     public var moveItems = [ItemMove]()
 
     public var insertSections = IndexSet()
     public var deleteSections = IndexSet()
+    public var reloadSections = IndexSet()
     public var moveSections = [SectionMove]()
 
     public init() { }

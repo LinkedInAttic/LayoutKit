@@ -78,6 +78,11 @@ private class TestTableView: LayoutAdapterTableView, TestableReloadableView {
         batchUpdates.deleteItems.append(contentsOf: indexPaths)
     }
 
+    fileprivate override func reloadRows(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation) {
+        super.reloadRows(at: indexPaths, with: animation)
+        batchUpdates.reloadItems.append(contentsOf: indexPaths)
+    }
+
     fileprivate override func moveRow(at indexPath: IndexPath, to newIndexPath: IndexPath) {
         super.moveRow(at: indexPath, to: newIndexPath)
         batchUpdates.moveItems.append(ItemMove(from: indexPath, to: newIndexPath))
@@ -86,6 +91,11 @@ private class TestTableView: LayoutAdapterTableView, TestableReloadableView {
     fileprivate override func insertSections(_ sections: IndexSet, with animation: UITableViewRowAnimation) {
         super.insertSections(sections, with: animation)
         batchUpdates.insertSections.formUnion(sections)
+    }
+
+    fileprivate override func reloadSections(_ sections: IndexSet, with animation: UITableViewRowAnimation) {
+        super.reloadSections(sections, with: animation)
+        batchUpdates.reloadSections.formUnion(sections)
     }
 
     fileprivate override func deleteSections(_ sections: IndexSet, with animation: UITableViewRowAnimation) {

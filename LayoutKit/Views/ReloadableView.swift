@@ -70,6 +70,9 @@ extension UICollectionView: ReloadableView {
             if batchUpdates.deleteItems.count > 0 {
                 self.deleteItems(at: batchUpdates.deleteItems)
             }
+            if batchUpdates.reloadItems.count > 0 {
+                self.reloadItems(at: batchUpdates.reloadItems)
+            }
             for move in batchUpdates.moveItems {
                 self.moveItem(at: move.from, to: move.to)
             }
@@ -79,6 +82,9 @@ extension UICollectionView: ReloadableView {
             }
             if batchUpdates.deleteSections.count > 0 {
                 self.deleteSections(batchUpdates.deleteSections)
+            }
+            if batchUpdates.reloadSections.count > 0 {
+                self.reloadSections(batchUpdates.reloadSections)
             }
             for move in batchUpdates.moveSections {
                 self.moveSection(move.from, toSection: move.to)
@@ -111,6 +117,9 @@ extension UITableView: ReloadableView {
         if batchUpdates.deleteItems.count > 0 {
             deleteRows(at: batchUpdates.deleteItems, with: .automatic)
         }
+        if batchUpdates.reloadItems.count > 0 {
+            reloadRows(at: batchUpdates.reloadItems, with: .automatic)
+        }
         for move in batchUpdates.moveItems {
             moveRow(at: move.from, to: move.to)
         }
@@ -121,6 +130,9 @@ extension UITableView: ReloadableView {
         }
         if batchUpdates.deleteSections.count > 0 {
             deleteSections(batchUpdates.deleteSections, with: .automatic)
+        }
+        if batchUpdates.reloadSections.count > 0 {
+            reloadSections(batchUpdates.reloadSections, with: .automatic)
         }
         for move in batchUpdates.moveSections {
             moveSection(move.from, toSection: move.to)
