@@ -11,6 +11,11 @@ import LayoutKit
 
 class LabelLayoutTests: XCTestCase {
 
+    func testNeedsView() {
+        let l = LabelLayout(text: "hi").arrangement().makeViews()
+        XCTAssertNotNil(l as? UILabel)
+    }
+
     func testLabelLayout() {
         for textTestCase in Text.testCases {
             let label = UILabel()

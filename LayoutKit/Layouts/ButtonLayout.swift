@@ -231,6 +231,10 @@ open class ButtonLayout<Button: UIButton>: BaseLayout<Button>, ConfigurableLayou
             break
         }
     }
+
+    open override var needsView: Bool {
+        return true
+    }
 }
 
 /**

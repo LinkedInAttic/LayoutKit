@@ -11,6 +11,11 @@ import LayoutKit
 
 class ButtonLayoutTests: XCTestCase {
 
+    func testNeedsView() {
+        let b = ButtonLayout(type: .custom, title: "Hi").arrangement().makeViews()
+        XCTAssertNotNil(b as? UIButton)
+    }
+
     func testButtonLayouts() {
         let types: [ButtonLayoutType] = [
             .custom,
