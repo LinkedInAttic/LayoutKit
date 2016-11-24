@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name             = 'LayoutKit'
-  spec.version          = '3.1.0'
+  spec.version          = '4.0.0'
   spec.license          = { :type => 'Apache License, Version 2.0' }
   spec.homepage         = 'http://layoutkit.org'
   spec.authors          = 'LinkedIn'
@@ -14,7 +14,13 @@ Pod::Spec.new do |spec|
 
   spec.osx.deployment_target = '10.9'
   spec.osx.frameworks        = 'Foundation', 'CoreGraphics', 'AppKit'
-  spec.osx.exclude_files     = 'LayoutKit/UIKitSupport.swift', 'LayoutKit/Layouts/LabelLayout.Swift', 'LayoutKit/Views/**'
+  spec.osx.exclude_files     = [
+    'LayoutKit/Internal/CGFloatExtension.swift',
+    'LayoutKit/Layouts/ButtonLayout.swift',
+    'LayoutKit/Layouts/LabelLayout.swift',
+    'LayoutKit/UIKitSupport.swift',
+    'LayoutKit/Views/**'
+  ]
 
   spec.tvos.deployment_target = '9.0'
   spec.tvos.frameworks        = 'Foundation', 'CoreGraphics', 'UIKit'
