@@ -185,9 +185,10 @@
 <h1 id="building-ui">Building UI</h1>
 <p>This page is an overview of how to build UIs using LayoutKit.</p>
 <h2 id="basic-layouts">Basic layouts</h2>
-<p>LayoutKit provides a four basic layouts:</p>
+<p>LayoutKit provides some basic layouts:</p>
 <ul>
 <li><a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Layouts/LabelLayout.swift">LabelLayout</a>: A layout for a UILabel.</li>
+<li><a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Layouts/LabelLayout.swift">ButtonLayout</a>: A layout for a UIButton.</li>
 <li><a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Layouts/SizeLayout.swift">SizeLayout</a>: A layout for a specific size (e.g. UIImageView).</li>
 <li><a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Layouts/InsetLayout.swift">InsetLayout</a>: A layout that insets its child layout (i.e. padding).</li>
 <li><a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Layouts/StackLayout.swift">StackLayout</a>: A layout that stacks its child layouts horizontally or vertically.</li>
@@ -196,7 +197,7 @@
 <p>If you are already using UIStackView (or any other Auto Layout based stack) and are looking for a quick performance win, check out <a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Views/StackView.swift">StackView</a>. It is similar to UIStackView except it is much faster because it uses StackLayout.</p>
 <h2 id="defining-composite-layouts">Defining composite layouts</h2>
 <p>It is easy to compose layouts into reusable components.</p>
-<p>Here is an example of a reusable <a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKitExampleLayouts/MiniProfileLayout.swift">MiniProfileLayout</a>:</p>
+<p>Here is an example of a reusable <a href="https://github.com/linkedin/LayoutKit/blob/master/ExampleLayouts/MiniProfileLayout.swift">MiniProfileLayout</a>:</p>
 <pre><code class="swift">import UIKit
 import LayoutKit
 
@@ -261,7 +262,7 @@ sergeiProfile.arrangement().makeViews()
 </code></pre>
 
 <p><img alt="Sergei's profile" src="../img/sergei.png" /></p>
-<p>More examples can be found in <a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKitExampleLayouts">LayoutKitExampleLayouts</a>.</p>
+<p>More examples can be found in <a href="https://github.com/linkedin/LayoutKit/blob/master/ExampleLayouts">ExampleLayouts</a>.</p>
 <h2 id="view-configuration">View configuration</h2>
 <p>Layouts generally only capture information that is necessary to compute the size and position of a layout.</p>
 <p>All other properties that don't affect the layout of a view can be configured in the <code>config</code> closure passed to a layout's initializer.</p>
