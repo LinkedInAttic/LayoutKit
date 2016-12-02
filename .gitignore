@@ -9,3 +9,6 @@ xcuserdata
 
 # mkdocs
 site/
+
+# macOS
+.DS_Store
