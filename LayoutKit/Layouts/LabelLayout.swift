@@ -102,7 +102,7 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
 
             size = attributedTextWithFont.boundingRect(with: maxSize, options: options, context: nil).size
         case .unattributed(let text):
-            if text == "" {
+            if text.isEmpty {
                 return .zero
             }
             size = text.boundingRect(with: maxSize, options: options, attributes: [NSFontAttributeName: font], context: nil).size
