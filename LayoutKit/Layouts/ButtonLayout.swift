@@ -75,7 +75,7 @@ open class ButtonLayout<Button: UIButton>: BaseLayout<Button>, ConfigurableLayou
     private func sizeOfTitle(within maxSize: CGSize) -> CGSize {
         switch title {
         case .attributed(let text):
-            if text.string == "" && preserveHeightOfEmptyTitle {
+            if text.string.isEmpty && preserveHeightOfEmptyTitle {
                 let attributedText = NSMutableAttributedString(attributedString: text)
                 attributedText.mutableString.setString(" ")
                 return CGSize(width: 0, height: sizeOf(text: .attributed(attributedText), maxSize: maxSize).height)
@@ -83,7 +83,7 @@ open class ButtonLayout<Button: UIButton>: BaseLayout<Button>, ConfigurableLayou
                 return sizeOf(text: title, maxSize: maxSize)
             }
         case .unattributed(let text):
-            if text == "" && preserveHeightOfEmptyTitle {
+            if text.isEmpty && preserveHeightOfEmptyTitle {
                 return CGSize(width: 0, height: sizeOf(text: .unattributed(" "), maxSize: maxSize).height)
             } else {
                 return sizeOf(text: title, maxSize: maxSize)
@@ -194,9 +194,9 @@ open class ButtonLayout<Button: UIButton>: BaseLayout<Button>, ConfigurableLayou
     private var isTitleEmpty: Bool {
         switch title {
         case .unattributed(let text):
-            return text == ""
+            return text.isEmpty
         case .attributed(let text):
-            return text.string == ""
+            return text.string.isEmpty
         }
     }
 
