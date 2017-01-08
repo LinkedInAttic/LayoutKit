@@ -11,9 +11,10 @@ import XCTest
 
 class ViewRecyclerTests: XCTestCase {
 
-    func testNilIdNotRecycled() {
+    func testNilIdNotRecycledAndNotRemoved() {
         let root = View()
         let zero = View()
+        zero.isLayoutKitView = false    // default
         root.addSubview(zero)
 
         let recycler = ViewRecycler(rootView: root)
@@ -24,7 +25,24 @@ class ViewRecyclerTests: XCTestCase {
         XCTAssertEqual(v, expectedView)
 
         recycler.purgeViews()
-        XCTAssertNil(zero.superview)
+        XCTAssertNotNil(zero.superview, "`zero` should not be removed because `isLayoutKitView` is false")
+    }
+
+    func testNilIdNotRecycledAndRemoved() {
+        let root = View()
+        let zero = View()
+        zero.isLayoutKitView = true // requires this flag to be removed by `ViewRecycler`
+        root.addSubview(zero)
+
+        let recycler = ViewRecycler(rootView: root)
+        let expectedView = View()
+        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: nil, viewProvider: {
+            return expectedView
+        })
+        XCTAssertEqual(v, expectedView)
+
+        recycler.purgeViews()
+        XCTAssertNil(zero.superview, "`zero` should be removed")
     }
 
     func testNonNilIdRecycled() {

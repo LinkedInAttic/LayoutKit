@@ -93,7 +93,7 @@ extension View {
     }
 
     /// Indicates the view is managed by LayoutKit that can be safely removed.
-    fileprivate var isLayoutKitView: Bool {
+    var isLayoutKitView: Bool {
         get {
             return (objc_getAssociatedObject(self, &isLayoutKitViewKey) as? NSNumber)?.boolValue ?? false
         }
