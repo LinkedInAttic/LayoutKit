@@ -41,7 +41,9 @@ class ViewRecycler {
             viewsById[viewReuseId] = nil
             return view
         }
+
         let providedView = viewProvider()
+        providedView.isLayoutKitView = true
 
         // Remove the provided view from the list of cached views.
         if let viewReuseId = providedView.viewReuseId, let oldView = viewsById[viewReuseId], oldView == providedView {
@@ -60,7 +62,7 @@ class ViewRecycler {
         }
         viewsById.removeAll()
 
-        for view in unidentifiedViews {
+        for view in unidentifiedViews where view.isLayoutKitView {
             view.removeFromSuperview()
         }
         unidentifiedViews.removeAll()
@@ -68,6 +70,7 @@ class ViewRecycler {
 }
 
 private var viewReuseIdKey: UInt8 = 0
+private var isLayoutKitViewKey: UInt8 = 0
 
 extension View {
 
@@ -86,6 +89,16 @@ extension View {
         }
         set {
             objc_setAssociatedObject(self, &viewReuseIdKey, newValue, .OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+
+    /// Indicates the view is managed by LayoutKit that can be safely removed.
+    fileprivate var isLayoutKitView: Bool {
+        get {
+            return (objc_getAssociatedObject(self, &isLayoutKitViewKey) as? NSNumber)?.boolValue ?? false
+        }
+        set {
+            objc_setAssociatedObject(self, &isLayoutKitViewKey, NSNumber(value: newValue), .OBJC_ASSOCIATION_RETAIN)
         }
     }
 }
