@@ -100,14 +100,14 @@
 		0B6B04371DC8402E00F23EEA /* DWURecyclingAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6B04361DC8402E00F23EEA /* DWURecyclingAlert.m */; };
 		0B6B04381DC8470200F23EEA /* LayoutKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB755F1D8720110065E02A /* LayoutKit.framework */; };
 		0B6B04391DC8470200F23EEA /* LayoutKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB755F1D8720110065E02A /* LayoutKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0B6B043B1DC8472A00F23EEA /* ExampleLayouts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB75B61D8723B30065E02A /* ExampleLayouts.framework */; };
+		0B6B043C1DC8472A00F23EEA /* ExampleLayouts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB75B61D8723B30065E02A /* ExampleLayouts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0B765F2C1DC0514F000BF1FD /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B765F2B1DC0514F000BF1FD /* CGFloatExtension.swift */; };
 		0B765F2D1DC0514F000BF1FD /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B765F2B1DC0514F000BF1FD /* CGFloatExtension.swift */; };
 		0B765F301DC135B8000BF1FD /* CGFloatExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B765F2F1DC135B8000BF1FD /* CGFloatExtensionTests.swift */; };
 		0B765F311DC135B8000BF1FD /* CGFloatExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B765F2F1DC135B8000BF1FD /* CGFloatExtensionTests.swift */; };
 		0B8C078B1DC3E881001CD5EE /* ButtonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD5F8281DB43B4500108688 /* ButtonLayout.swift */; };
 		0B8C078C1DC3E88A001CD5EE /* ButtonLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD5F82B1DB43F9B00108688 /* ButtonLayoutTests.swift */; };
-		0B6B043B1DC8472A00F23EEA /* ExampleLayouts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB75B61D8723B30065E02A /* ExampleLayouts.framework */; };
-		0B6B043C1DC8472A00F23EEA /* ExampleLayouts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCB75B61D8723B30065E02A /* ExampleLayouts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0BA02E481D874BBB00F1E8D3 /* LayoutArrangementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76591D8725310065E02A /* LayoutArrangementTests.swift */; };
 		0BB380DB1DB73EFF00E2614F /* TextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB380DA1DB73EFF00E2614F /* TextExtension.swift */; };
 		0BB380DC1DB73EFF00E2614F /* TextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB380DA1DB73EFF00E2614F /* TextExtension.swift */; };
@@ -200,6 +200,8 @@
 		0BD42BDE1DB5EC8800E04AA3 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD42BDB1DB5EAAD00E04AA3 /* Text.swift */; };
 		0BD5F8291DB43B4500108688 /* ButtonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD5F8281DB43B4500108688 /* ButtonLayout.swift */; };
 		0BD5F82C1DB43F9B00108688 /* ButtonLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD5F82B1DB43F9B00108688 /* ButtonLayoutTests.swift */; };
+		0BDDF95B1E25ACCE008B0A6F /* ReloadableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */; };
+		0BDDF95C1E25ACCE008B0A6F /* ReloadableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -372,6 +374,7 @@
 		0BD42BDB1DB5EAAD00E04AA3 /* Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		0BD5F8281DB43B4500108688 /* ButtonLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonLayout.swift; sourceTree = "<group>"; };
 		0BD5F82B1DB43F9B00108688 /* ButtonLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonLayoutTests.swift; sourceTree = "<group>"; };
+		0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -552,6 +555,7 @@
 				0BCB765C1D8725310065E02A /* ReloadableViewLayoutAdapterCollectionViewTests.swift */,
 				0BCB765D1D8725310065E02A /* ReloadableViewLayoutAdapterTableViewTests.swift */,
 				0BCB765E1D8725310065E02A /* ReloadableViewLayoutAdapterTestCase.swift */,
+				0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */,
 				0BCB765F1D8725310065E02A /* SizeLayoutTests.swift */,
 				0BCB76601D8725310065E02A /* StackLayoutDistributionTests.swift */,
 				0BCB76611D8725310065E02A /* StackLayoutFlexibilityTests.swift */,
@@ -1042,6 +1046,7 @@
 				0B2D09261D872F75007E487C /* DensityAssertions.swift in Sources */,
 				0BD5F82C1DB43F9B00108688 /* ButtonLayoutTests.swift in Sources */,
 				0BB380DB1DB73EFF00E2614F /* TextExtension.swift in Sources */,
+				0BDDF95B1E25ACCE008B0A6F /* ReloadableViewTests.swift in Sources */,
 				0B2D09271D872F75007E487C /* InsetLayoutTests.swift in Sources */,
 				0B2D09371D872F75007E487C /* UIFontExtension.swift in Sources */,
 				0B2D09251D872F75007E487C /* CollectionViewTests.swift in Sources */,
@@ -1112,6 +1117,7 @@
 				0B2D093C1D872F75007E487C /* DensityAssertions.swift in Sources */,
 				0BB380DC1DB73EFF00E2614F /* TextExtension.swift in Sources */,
 				0B8C078C1DC3E88A001CD5EE /* ButtonLayoutTests.swift in Sources */,
+				0BDDF95C1E25ACCE008B0A6F /* ReloadableViewTests.swift in Sources */,
 				0B2D093D1D872F75007E487C /* InsetLayoutTests.swift in Sources */,
 				0B2D094D1D872F75007E487C /* UIFontExtension.swift in Sources */,
 				0B2D093B1D872F75007E487C /* CollectionViewTests.swift in Sources */,
