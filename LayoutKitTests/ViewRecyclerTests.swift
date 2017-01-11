@@ -93,6 +93,7 @@ class ViewRecyclerTests: XCTestCase {
 
     /// Test for safe subview-purge in composite view e.g. UIButton.
     /// - SeeAlso: https://github.com/linkedin/LayoutKit/pull/85
+    #if os(iOS) || os(tvOS)
     func testRecycledCompositeView() {
         let root = View()
         let button = UIButton(viewReuseId: "1")
@@ -114,6 +115,7 @@ class ViewRecyclerTests: XCTestCase {
         XCTAssertNotNil(button.superview)
         XCTAssertEqual(button.subviews.count, 1, "UIButton's subviews should not be removed by `recycler`")
     }
+    #endif
 }
 
 extension View {
