@@ -42,7 +42,7 @@ class ViewRecyclerTests: XCTestCase {
         XCTAssertEqual(v, expectedView)
 
         recycler.purgeViews()
-        XCTAssertNil(zero.superview, "`zero` should be removed")
+        XCTAssertNil(zero.superview, "`zero` should be removed because `isLayoutKitView` is true")
     }
 
     func testNonNilIdRecycled() {
@@ -89,6 +89,30 @@ class ViewRecyclerTests: XCTestCase {
 
         recycler.purgeViews()
         XCTAssertNotNil(one.superview)
+    }
+
+    /// Test for safe subview-purge in composite view e.g. UIButton.
+    /// - SeeAlso: https://github.com/linkedin/LayoutKit/pull/85
+    func testRecycledCompositeView() {
+        let root = View()
+        let button = UIButton(viewReuseId: "1")
+        root.addSubview(button)
+
+        button.setTitle("dummy", for: .normal)
+        button.layoutIfNeeded()
+        XCTAssertEqual(button.subviews.count, 1, "UIButton should have 1 subview because `title` is set")
+
+        let recycler = ViewRecycler(rootView: root)
+        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: "1", viewProvider: {
+            XCTFail("button should have been recycled")
+            return View()
+        })
+        XCTAssertEqual(v, button)
+
+        recycler.purgeViews()
+
+        XCTAssertNotNil(button.superview)
+        XCTAssertEqual(button.subviews.count, 1, "UIButton's subviews should not be removed by `recycler`")
     }
 }
 
