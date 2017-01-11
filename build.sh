@@ -41,8 +41,8 @@ time xcodebuild clean build \
     -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=8.4' \
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' \
     -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=9.3' \
-    -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.2' \
-    -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=10.2' \
+    -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2' \
+    -destination 'platform=iOS Simulator,name=iPhone 7 Plus,OS=10.2' \
     OTHER_SWIFT_FLAGS='-Xfrontend -debug-time-function-bodies' \
     | tee build.log \
     | xcpretty &&
@@ -57,8 +57,8 @@ time xcodebuild clean test \
     -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=8.4' \
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' \
     -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=9.3' \
-    -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.2' \
-    -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=10.2' \
+    -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2' \
+    -destination 'platform=iOS Simulator,name=iPhone 7 Plus,OS=10.2' \
     OTHER_SWIFT_FLAGS='-Xfrontend -debug-time-function-bodies' \
     | tee build.log \
     | xcpretty &&
