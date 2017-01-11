@@ -56,7 +56,7 @@ extension UICollectionView: ReloadableView {
         layoutIfNeeded()
     }
 
-    public func registerViews(withReuseIdentifier reuseIdentifier: String) {
+    open func registerViews(withReuseIdentifier reuseIdentifier: String) {
         register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: reuseIdentifier)
         register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: reuseIdentifier)
@@ -102,7 +102,7 @@ extension UITableView: ReloadableView {
         reloadData()
     }
 
-    public func registerViews(withReuseIdentifier reuseIdentifier: String) {
+    open func registerViews(withReuseIdentifier reuseIdentifier: String) {
         register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: reuseIdentifier)
     }
