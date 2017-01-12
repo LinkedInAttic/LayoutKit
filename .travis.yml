@@ -4,4 +4,4 @@ script: sh build.sh /tmp/LayoutKit
 after_success:
   - bash <(curl -s https://codecov.io/bash) -D /tmp/LayoutKit
 before_install:
-  - xcrun simctl delete E40727B3-41FB-4D6E-B4CB-BFA87109EB12
+  - xcrun simctl delete 22FA2149-1241-469C-BF6D-462D3837DB72
