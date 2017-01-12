@@ -4,6 +4,9 @@
 DERIVED_DATA=${1:-/tmp/LayoutKit}
 echo "Derived data location: $DERIVED_DATA";
 
+    #-destination 'platform=iOS Simulator,name=iPhone 6,OS=8.4' \
+    #-destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=8.4' \
+
 set -o pipefail &&
 rm -rf $DERIVED_DATA &&
 time xcodebuild clean test \
@@ -33,8 +36,6 @@ time xcodebuild clean build \
     -scheme LayoutKitSampleApp \
     -sdk iphonesimulator10.2 \
     -derivedDataPath $DERIVED_DATA \
-    -destination 'platform=iOS Simulator,name=iPhone 6,OS=8.4' \
-    -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=8.4' \
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' \
     -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=9.3' \
     -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2' \
@@ -49,8 +50,6 @@ time xcodebuild clean test \
     -scheme LayoutKit-iOS \
     -sdk iphonesimulator10.2 \
     -derivedDataPath $DERIVED_DATA \
-    -destination 'platform=iOS Simulator,name=iPhone 6,OS=8.4' \
-    -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=8.4' \
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' \
     -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=9.3' \
     -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2' \
