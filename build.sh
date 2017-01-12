@@ -4,10 +4,6 @@
 DERIVED_DATA=${1:-/tmp/LayoutKit}
 echo "Derived data location: $DERIVED_DATA";
 
-# Looks like iOS 8 simulator doesn't work in Xcode 8.
-#    -destination 'platform=iOS Simulator,name=iPhone 6,OS=8.4' \
-#    -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=8.4' \
-
 set -o pipefail &&
 rm -rf $DERIVED_DATA &&
 time xcodebuild clean test \
