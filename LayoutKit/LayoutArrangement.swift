@@ -151,8 +151,9 @@ extension LayoutArrangement: CustomDebugStringConvertible {
         let t = String(repeatElement(" ", count: indent * 2))
         let sublayouts = self.sublayouts.isEmpty
             ? ""
-            : self.sublayouts.map { $0._debugDescription(indent + 1) }.joined(separator: "")
-        return"\(t)LayoutArrangement: \(frame)\n\(sublayouts)"
+            : self.sublayouts.map { $0._debugDescription(indent + 1) }.joined()
+        let layoutName = String(describing: layout).components(separatedBy: ".").last!
+        return"\(t)\(layoutName): \(frame)\n\(sublayouts)"
     }
 
 }

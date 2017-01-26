@@ -8,6 +8,7 @@ extension UIControl {
         let target = CocoaTarget<UIControl>(handler)
         objc_setAssociatedObject(self, &controlHandlerKey, target, .OBJC_ASSOCIATION_RETAIN)
 
+        self.removeTarget(target, action: #selector(target.sendNext), for: controlEvents)
         self.addTarget(target, action: #selector(target.sendNext), for: controlEvents)
     }
 
