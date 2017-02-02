@@ -141,6 +141,21 @@ public struct LayoutArrangement {
     }
 }
 
+extension LayoutArrangement: CustomDebugStringConvertible {
+
+    public var debugDescription: String {
+        return _debugDescription(0)
+    }
+
+    private func _debugDescription(_ indent: Int) -> String {
+        let t = String(repeatElement(" ", count: indent * 2))
+        let sublayoutsString = sublayouts.map { $0._debugDescription(indent + 1) }.joined()
+        let layoutName = String(describing: layout).components(separatedBy: ".").last!
+        return"\(t)\(layoutName): \(frame)\n\(sublayoutsString)"
+    }
+
+}
+
 extension View {
 
     /**
