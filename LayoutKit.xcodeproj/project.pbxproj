@@ -209,7 +209,6 @@
 		44F968181E4263DC00392763 /* TextViewLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968161E42639500392763 /* TextViewLayoutTests.swift */; };
 		44F968191E4263DC00392763 /* TextViewLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968161E42639500392763 /* TextViewLayoutTests.swift */; };
 		44F9681A1E42640400392763 /* TextViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968141E425F5D00392763 /* TextViewLayout.swift */; };
-		44F9681B1E42640500392763 /* TextViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968141E425F5D00392763 /* TextViewLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1160,7 +1159,6 @@
 				0BCB761C1D8724C10065E02A /* AppKitSupport.swift in Sources */,
 				0BCB761B1D8724C10065E02A /* Animation.swift in Sources */,
 				0BCB76471D8724D00065E02A /* AxisSize.swift in Sources */,
-				44F9681B1E42640500392763 /* TextViewLayout.swift in Sources */,
 				0BCB76351D8724C70065E02A /* LayoutMeasurement.swift in Sources */,
 				0BCB763C1D8724CB0065E02A /* InsetLayout.swift in Sources */,
 				0B193BBB1D888B6400FCA22D /* IndexSetExtension.swift in Sources */,

@@ -12,9 +12,9 @@ enum TextCalculatorHelper {
 
     /// Calculate the text size within `maxSize` by given `Text`, `UIFont`, and `numberOfLines`.
     /// `numberOfLines` is an optional or make it 0 if dynamic number of lines is requied
-    static func textSize(_ maxSize: CGSize,
-                         _ text: Text,
-                         _ font: UIFont) -> CGSize {
+    static func textSize(maxSize: CGSize,
+                         text: Text,
+                         font: UIFont) -> CGSize {
         let options: NSStringDrawingOptions = [
             .usesLineFragmentOrigin
         ]

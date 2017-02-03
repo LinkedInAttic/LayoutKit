@@ -75,7 +75,7 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
     }
 
     private func textSize(within maxSize: CGSize) -> CGSize {
-        var size = TextCalculatorHelper.textSize(maxSize, text, font)
+        var size = TextCalculatorHelper.textSize(maxSize: maxSize, text: text, font: font)
         if numberOfLines > 0 {
             let maxHeight = (CGFloat(numberOfLines) * font.lineHeight).roundedUpToFractionalPoint
             if size.height > maxHeight {

@@ -18,6 +18,7 @@ Pod::Spec.new do |spec|
     'LayoutKit/Internal/CGFloatExtension.swift',
     'LayoutKit/Layouts/ButtonLayout.swift',
     'LayoutKit/Layouts/LabelLayout.swift',
+    'LayoutKit/Layouts/TextViewLayout.swift',
     'LayoutKit/UIKitSupport.swift',
     'LayoutKit/Views/**'
   ]

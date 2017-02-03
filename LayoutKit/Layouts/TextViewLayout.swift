@@ -105,7 +105,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     // MARK: - private helpers
 
     private func textSize(within maxSize: CGSize) -> CGSize {
-        var size = TextCalculatorHelper.textSize(maxSize, text, font)
+        var size = TextCalculatorHelper.textSize(maxSize: maxSize, text: text, font: font)
 
         let heightInset = (textContainerInset.top + textContainerInset.bottom) + (layoutMargins.top + layoutMargins.bottom)
         let widthInset = (textContainerInset.left + textContainerInset.right) + (layoutMargins.left + layoutMargins.right) + lineFragmentPadding * 2
