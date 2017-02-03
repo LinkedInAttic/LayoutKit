@@ -202,6 +202,14 @@
 		0BD5F82C1DB43F9B00108688 /* ButtonLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD5F82B1DB43F9B00108688 /* ButtonLayoutTests.swift */; };
 		0BDDF95B1E25ACCE008B0A6F /* ReloadableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */; };
 		0BDDF95C1E25ACCE008B0A6F /* ReloadableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */; };
+		4468A2A71E44367300341D07 /* TextCalculatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4468A2A61E44367300341D07 /* TextCalculatorHelper.swift */; };
+		4468A2A81E44367300341D07 /* TextCalculatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4468A2A61E44367300341D07 /* TextCalculatorHelper.swift */; };
+		4468A2A91E44367300341D07 /* TextCalculatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4468A2A61E44367300341D07 /* TextCalculatorHelper.swift */; };
+		44F968151E425F5D00392763 /* TextViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968141E425F5D00392763 /* TextViewLayout.swift */; };
+		44F968181E4263DC00392763 /* TextViewLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968161E42639500392763 /* TextViewLayoutTests.swift */; };
+		44F968191E4263DC00392763 /* TextViewLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968161E42639500392763 /* TextViewLayoutTests.swift */; };
+		44F9681A1E42640400392763 /* TextViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968141E425F5D00392763 /* TextViewLayout.swift */; };
+		44F9681B1E42640500392763 /* TextViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968141E425F5D00392763 /* TextViewLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -375,6 +383,9 @@
 		0BD5F8281DB43B4500108688 /* ButtonLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonLayout.swift; sourceTree = "<group>"; };
 		0BD5F82B1DB43F9B00108688 /* ButtonLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonLayoutTests.swift; sourceTree = "<group>"; };
 		0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewTests.swift; sourceTree = "<group>"; };
+		4468A2A61E44367300341D07 /* TextCalculatorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextCalculatorHelper.swift; sourceTree = "<group>"; };
+		44F968141E425F5D00392763 /* TextViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewLayout.swift; sourceTree = "<group>"; };
+		44F968161E42639500392763 /* TextViewLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewLayoutTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -565,6 +576,7 @@
 				0BCB76651D8725310065E02A /* TableViewTests.swift */,
 				0BCB76661D8725310065E02A /* TestStack.swift */,
 				0BB380DA1DB73EFF00E2614F /* TextExtension.swift */,
+				44F968161E42639500392763 /* TextViewLayoutTests.swift */,
 				0BCB76671D8725310065E02A /* UIFontExtension.swift */,
 				0BCB76681D8725310065E02A /* ViewRecyclerTests.swift */,
 			);
@@ -595,6 +607,7 @@
 				0BCB75DB1D8724800065E02A /* CFAbsoluteTimeExtension.swift */,
 				0BCB75DC1D8724800065E02A /* CGSizeExtension.swift */,
 				0B765F2B1DC0514F000BF1FD /* CGFloatExtension.swift */,
+				4468A2A61E44367300341D07 /* TextCalculatorHelper.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -608,6 +621,7 @@
 				0BCB75E31D8724800065E02A /* LabelLayout.swift */,
 				0BCB75E41D8724800065E02A /* SizeLayout.swift */,
 				0BCB75E51D8724800065E02A /* StackLayout.swift */,
+				44F968141E425F5D00392763 /* TextViewLayout.swift */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
@@ -1003,6 +1017,7 @@
 				0BD5F8291DB43B4500108688 /* ButtonLayout.swift in Sources */,
 				0BCB76001D8724800065E02A /* LayoutMeasurement.swift in Sources */,
 				0BCB76021D8724800065E02A /* InsetLayout.swift in Sources */,
+				4468A2A71E44367300341D07 /* TextCalculatorHelper.swift in Sources */,
 				0BCB76061D8724800065E02A /* AxisFlexibility.swift in Sources */,
 				0BCB760E1D8724800065E02A /* ReloadableView.swift in Sources */,
 				0BCB75FD1D8724800065E02A /* CGSizeExtension.swift in Sources */,
@@ -1025,6 +1040,7 @@
 				0BCB76101D8724800065E02A /* ReloadableViewLayoutAdapter+UITableView.swift in Sources */,
 				0BCB75FB1D8724800065E02A /* Flexibility.swift in Sources */,
 				0BCB76121D8724800065E02A /* ReloadableViewUpdateManager.swift in Sources */,
+				44F968151E425F5D00392763 /* TextViewLayout.swift in Sources */,
 				0BD42BDC1DB5EAAD00E04AA3 /* Text.swift in Sources */,
 				0BCB76131D8724800065E02A /* StackView.swift in Sources */,
 			);
@@ -1039,6 +1055,7 @@
 				0B2D092E1D872F75007E487C /* ReloadableViewLayoutAdapterTestCase.swift in Sources */,
 				0B2D092D1D872F75007E487C /* ReloadableViewLayoutAdapterTableViewTests.swift in Sources */,
 				0B2D09321D872F75007E487C /* StackLayoutSpacingTests.swift in Sources */,
+				44F968181E4263DC00392763 /* TextViewLayoutTests.swift in Sources */,
 				0B2D09381D872F75007E487C /* ViewRecyclerTests.swift in Sources */,
 				0B2D09341D872F75007E487C /* StackViewTests.swift in Sources */,
 				0B2D09281D872F75007E487C /* LabelLayoutTests.swift in Sources */,
@@ -1074,6 +1091,7 @@
 				0B193BBA1D888B6300FCA22D /* IndexSetExtension.swift in Sources */,
 				0BCB76371D8724CA0065E02A /* InsetLayout.swift in Sources */,
 				0BCB76401D8724CF0065E02A /* AxisFlexibility.swift in Sources */,
+				4468A2A81E44367300341D07 /* TextCalculatorHelper.swift in Sources */,
 				0BCB762C1D8724C70065E02A /* CGSizeExtension.swift in Sources */,
 				0BCB76361D8724CA0065E02A /* BaseLayout.swift in Sources */,
 				0BCB76181D8724C00065E02A /* ConfigurableLayout.swift in Sources */,
@@ -1096,6 +1114,7 @@
 				0BCB76381D8724CA0065E02A /* LabelLayout.swift in Sources */,
 				0BCB76191D8724C00065E02A /* Flexibility.swift in Sources */,
 				0BCB764C1D8724E70065E02A /* LayoutAdapterTableView.swift in Sources */,
+				44F9681A1E42640400392763 /* TextViewLayout.swift in Sources */,
 				0BD42BDD1DB5EC8800E04AA3 /* Text.swift in Sources */,
 				0BCB764E1D8724E70065E02A /* ReloadableViewLayoutAdapter+UICollectionView.swift in Sources */,
 			);
@@ -1110,6 +1129,7 @@
 				0B2D09441D872F75007E487C /* ReloadableViewLayoutAdapterTestCase.swift in Sources */,
 				0B2D09431D872F75007E487C /* ReloadableViewLayoutAdapterTableViewTests.swift in Sources */,
 				0B2D09481D872F75007E487C /* StackLayoutSpacingTests.swift in Sources */,
+				44F968191E4263DC00392763 /* TextViewLayoutTests.swift in Sources */,
 				0B2D094E1D872F75007E487C /* ViewRecyclerTests.swift in Sources */,
 				0B2D094A1D872F75007E487C /* StackViewTests.swift in Sources */,
 				0B2D093E1D872F75007E487C /* LabelLayoutTests.swift in Sources */,
@@ -1140,12 +1160,14 @@
 				0BCB761C1D8724C10065E02A /* AppKitSupport.swift in Sources */,
 				0BCB761B1D8724C10065E02A /* Animation.swift in Sources */,
 				0BCB76471D8724D00065E02A /* AxisSize.swift in Sources */,
+				44F9681B1E42640500392763 /* TextViewLayout.swift in Sources */,
 				0BCB76351D8724C70065E02A /* LayoutMeasurement.swift in Sources */,
 				0BCB763C1D8724CB0065E02A /* InsetLayout.swift in Sources */,
 				0B193BBB1D888B6400FCA22D /* IndexSetExtension.swift in Sources */,
 				0B193BBD1D888B6D00FCA22D /* CollectionExtension.swift in Sources */,
 				0BCB76451D8724D00065E02A /* AxisFlexibility.swift in Sources */,
 				0BCB76321D8724C70065E02A /* CGSizeExtension.swift in Sources */,
+				4468A2A91E44367300341D07 /* TextCalculatorHelper.swift in Sources */,
 				0BCB763B1D8724CB0065E02A /* BaseLayout.swift in Sources */,
 				0BCB761E1D8724C10065E02A /* ConfigurableLayout.swift in Sources */,
 				0BCB761D1D8724C10065E02A /* Axis.swift in Sources */,

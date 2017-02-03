@@ -44,12 +44,39 @@ extension Text {
                 let font = fontName.flatMap({ (fontName) -> UIFont? in
                     return UIFont(name: fontName, size: CGFloat(fontSize))
                 })
+
                 for text in texts {
-                    tests.append(TestCase(text: text, font: font))
+                    if let font = font {
+                        tests.append(TestCase(
+                            text: self.addFontAttribute(with: font, to: text),
+                            font: font))
+                    } else {
+                        tests.append(TestCase(text: text, font: font))
+                    }
                 }
             }
 
         }
         return tests
+    }
+
+    // MARK: - private helper
+
+    private static func addFontAttribute(with font: UIFont,
+                                         to text: Text) -> Text {
+        switch text {
+        case .attributed(let attributedText):
+            let fontAttribute = [NSFontAttributeName: font]
+            let attributedTextWithFont = NSMutableAttributedString(string: attributedText.string, attributes: fontAttribute)
+            let fullRange = NSMakeRange(0, (attributedText.string as NSString).length)
+            attributedTextWithFont.beginEditing()
+            attributedText.enumerateAttributes(in: fullRange, options: .longestEffectiveRangeNotRequired, using: { (attributes, range, _) in
+                attributedTextWithFont.addAttributes(attributes, range: range)
+            })
+            attributedTextWithFont.endEditing()
+            return Text.attributed(attributedTextWithFont)
+        default:
+            return text
+        }
     }
 }
