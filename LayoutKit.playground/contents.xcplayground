@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<playground version='6.0' target-platform='ios'/>
+<playground version='6.0' target-platform='ios'>
+    <pages>
+        <page name='Introduction'/>
+        <page name='Animation'/>
+        <page name='Size'/>
+        <page name='Inset'/>
+        <page name='Label'/>
+        <page name='Button'/>
+        <page name='Stack'/>
+        <page name='Counter'/>
+        <page name='Test'/>
+        <page name='TextView’/>
+    </pages>
+</playground>
