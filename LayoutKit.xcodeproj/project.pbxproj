@@ -204,7 +204,6 @@
 		0BDDF95C1E25ACCE008B0A6F /* ReloadableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */; };
 		4468A2A71E44367300341D07 /* TextCalculatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4468A2A61E44367300341D07 /* TextCalculatorHelper.swift */; };
 		4468A2A81E44367300341D07 /* TextCalculatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4468A2A61E44367300341D07 /* TextCalculatorHelper.swift */; };
-		4468A2A91E44367300341D07 /* TextCalculatorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4468A2A61E44367300341D07 /* TextCalculatorHelper.swift */; };
 		44F968151E425F5D00392763 /* TextViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968141E425F5D00392763 /* TextViewLayout.swift */; };
 		44F968181E4263DC00392763 /* TextViewLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968161E42639500392763 /* TextViewLayoutTests.swift */; };
 		44F968191E4263DC00392763 /* TextViewLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968161E42639500392763 /* TextViewLayoutTests.swift */; };
@@ -1165,7 +1164,6 @@
 				0B193BBD1D888B6D00FCA22D /* CollectionExtension.swift in Sources */,
 				0BCB76451D8724D00065E02A /* AxisFlexibility.swift in Sources */,
 				0BCB76321D8724C70065E02A /* CGSizeExtension.swift in Sources */,
-				4468A2A91E44367300341D07 /* TextCalculatorHelper.swift in Sources */,
 				0BCB763B1D8724CB0065E02A /* BaseLayout.swift in Sources */,
 				0BCB761E1D8724C10065E02A /* ConfigurableLayout.swift in Sources */,
 				0BCB761D1D8724C10065E02A /* Axis.swift in Sources */,
