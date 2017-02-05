@@ -26,21 +26,10 @@ enum TextCalculatorHelper {
                 return .zero
             }
 
-            // UILabel/UITextView uses a default font if one is not specified in the attributed string.
-            // boundingRectWithSize does not appear to have the same logic,
-            // so we need to ensure that our attributed string has a default font.
-            // We do this by creating a new attributed string with the default font and then
-            // applying all of the attributes from the provided attributed string.
-            let fontAttribute = [NSFontAttributeName: font]
-            let attributedTextWithFont = NSMutableAttributedString(string: attributedText.string, attributes: fontAttribute)
-            let fullRange = NSMakeRange(0, (attributedText.string as NSString).length)
-            attributedTextWithFont.beginEditing()
-            attributedText.enumerateAttributes(in: fullRange, options: .longestEffectiveRangeNotRequired, using: { (attributes, range, _) in
-                attributedTextWithFont.addAttributes(attributes, range: range)
-            })
-            attributedTextWithFont.endEditing()
+            let fontAppliedAttributeString = attributedText.createAttrbutedString(
+                with: font)
 
-            size = attributedTextWithFont.boundingRect(with: maxSize, options: options, context: nil).size
+            size = fontAppliedAttributeString.boundingRect(with: maxSize, options: options, context: nil).size
         case .unattributed(let text):
             if text.isEmpty {
                 return .zero
@@ -54,4 +43,5 @@ enum TextCalculatorHelper {
         
         return size
     }
+
 }

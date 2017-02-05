@@ -7,7 +7,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import UIKit
-import LayoutKit
+@testable import LayoutKit
 
 extension Text {
     struct TestCase {
@@ -48,7 +48,7 @@ extension Text {
                 for text in texts {
                     if let font = font {
                         tests.append(TestCase(
-                            text: self.addFontAttribute(with: font, to: text),
+                            text: text.createFontAttribute(with: font),
                             font: font))
                     } else {
                         tests.append(TestCase(text: text, font: font))
@@ -60,23 +60,14 @@ extension Text {
         return tests
     }
 
-    // MARK: - private helper
+    // MARK: - helper
 
-    private static func addFontAttribute(with font: UIFont,
-                                         to text: Text) -> Text {
-        switch text {
+    func createFontAttribute(with font: UIFont) -> Text {
+        switch self {
         case .attributed(let attributedText):
-            let fontAttribute = [NSFontAttributeName: font]
-            let attributedTextWithFont = NSMutableAttributedString(string: attributedText.string, attributes: fontAttribute)
-            let fullRange = NSMakeRange(0, (attributedText.string as NSString).length)
-            attributedTextWithFont.beginEditing()
-            attributedText.enumerateAttributes(in: fullRange, options: .longestEffectiveRangeNotRequired, using: { (attributes, range, _) in
-                attributedTextWithFont.addAttributes(attributes, range: range)
-            })
-            attributedTextWithFont.endEditing()
-            return Text.attributed(attributedTextWithFont)
+            return .attributed(attributedText.createAttrbutedString(with: font))
         default:
-            return text
+            return self
         }
     }
 }

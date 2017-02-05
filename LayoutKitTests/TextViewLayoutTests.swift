@@ -7,9 +7,11 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import XCTest
-import LayoutKit
+@testable import LayoutKit
 
 class TextViewLayoutTests: XCTestCase {
+
+    private let defaultTextViewLayoutFont = UIFont.systemFont(ofSize: 12)
 
     func testNeedsView() {
         let layout = TextViewLayout(text: "hi").arrangement().makeViews()
@@ -19,15 +21,18 @@ class TextViewLayoutTests: XCTestCase {
     func testTextViewLayout() {
         for textTestCase in Text.testCases {
             let textView = UITextView()
-            if let font = textTestCase.font {
-                textView.font = font
-            }
 
             switch textTestCase.text {
             case .unattributed(let text):
                 textView.text = text
+                textView.font = textTestCase.font ?? defaultTextViewLayoutFont
             case .attributed(let attributedText):
-                textView.attributedText = attributedText
+                // If font is using default, applied default font to attributedString
+                if let font = textTestCase.font {
+                    textView.attributedText = attributedText.createAttrbutedString(with: font)
+                } else {
+                    textView.attributedText = attributedText.createAttrbutedString(with: defaultTextViewLayoutFont)
+                }
             }
 
             textView.updateAttributes()
@@ -53,6 +58,7 @@ class TextViewLayoutTests: XCTestCase {
 
         let textView = UITextView()
         textView.text = textString
+        textView.font = defaultTextViewLayoutFont
         textView.updateAttributes()
 
         let layout = TextViewLayout(text: text)
@@ -102,10 +108,11 @@ class TextViewLayoutTests: XCTestCase {
     func testLineFragmentPadding() {
         let textString = "Hello World\nHello World\nHello World\nHello World\nHello World"
         let text = Text.unattributed(textString)
-        let lineFragmentPadding: CGFloat = 50.0
+        let lineFragmentPadding: CGFloat = 30.0
 
         let textView = UITextView()
         textView.text = textString
+        textView.font = defaultTextViewLayoutFont
         textView.updateAttributes(lineFragmentPadding: lineFragmentPadding)
 
         let layout = TextViewLayout(text: text, lineFragmentPadding: lineFragmentPadding)
@@ -121,6 +128,7 @@ class TextViewLayoutTests: XCTestCase {
 
         let textView = UITextView()
         textView.text = textString
+        textView.font = defaultTextViewLayoutFont
         textView.updateAttributes(textContainerInset: textContainerInset)
 
         let layout = TextViewLayout(text: text, textContainerInset: textContainerInset)
@@ -133,7 +141,8 @@ class TextViewLayoutTests: XCTestCase {
 
 // MARK: - helper extension
 
-extension UITextView {
+private extension UITextView {
+
     func updateAttributes(lineFragmentPadding: CGFloat = 0,
                           textContainerInset: UIEdgeInsets = UIEdgeInsets.zero,
                           contentInset: UIEdgeInsets = UIEdgeInsets.zero,
@@ -150,4 +159,5 @@ extension UITextView {
         // http://stackoverflow.com/questions/16868117/uitextview-that-expands-to-text-using-auto-layout/21287306#21287306
         self.isScrollEnabled = false
     }
+
 }

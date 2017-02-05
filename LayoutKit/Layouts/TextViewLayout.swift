@@ -117,6 +117,10 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
 
     // MARK: - overriden methods
 
+    /// Don't change `textContainerInset`, `lineFragmentPadding`, `contentInset`
+    /// and `layoutMargins` in `configure`. By changing those, it will cause the incorrect
+    /// size calculation. So they will be reset by using parameters from initializer.
+    /// `usesFontLeading` doesn't support in `TextViewLayout`.
     open override func configure(view textView: TextView) {
         config?(textView)
         textView.textContainerInset = textContainerInset
@@ -152,11 +156,8 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
 // MARK: - Things that belong in TextViewLayout but aren't because TextViewLayout is generic.
 // "Static stored properties not yet supported in generic types"
 
-private let defaultFont: UIFont = {
-    let textView = UITextView()
-    // Font is only available when text has been set
-    textView.text = " "
-    return textView.font ?? UIFont.systemFont(ofSize: 17)
-}()
+// Since the `UITextView` will return different font for different iOS/tvOS version,
+// we give a fixed default font here
+private let defaultFont = UIFont.systemFont(ofSize: 12)
 private let defaultAlignment = Alignment.topLeading
 private let defaultFlexibility = Flexibility.flexible
