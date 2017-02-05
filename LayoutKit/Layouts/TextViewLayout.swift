@@ -94,7 +94,8 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
 
     open func measurement(within maxSize: CGSize) -> LayoutMeasurement {
         let fittedSize = textSize(within: maxSize)
-        return LayoutMeasurement(layout: self, size: fittedSize.decreasedToSize(maxSize), maxSize: maxSize, sublayouts: [])
+        let decreasedToSize = fittedSize.decreasedToSize(maxSize)
+        return LayoutMeasurement(layout: self, size:decreasedToSize, maxSize: maxSize, sublayouts: [])
     }
 
     open func arrangement(within rect: CGRect, measurement: LayoutMeasurement) -> LayoutArrangement {
@@ -105,8 +106,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     // MARK: - private helpers
 
     private func textSize(within maxSize: CGSize) -> CGSize {
-        var size = TextCalculatorHelper.textSize(maxSize: maxSize, text: text, font: font)
-
+        var size = text.textSize(maxSize: maxSize, font: font)
         let heightInset = (textContainerInset.top + textContainerInset.bottom) + (layoutMargins.top + layoutMargins.bottom)
         let widthInset = (textContainerInset.left + textContainerInset.right) + (layoutMargins.left + layoutMargins.right) + lineFragmentPadding * 2
             + (contentInset.left + contentInset.right)
@@ -138,17 +138,6 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     }
 
     open override var needsView: Bool {
-        switch text {
-        case .attributed(let attributedText):
-            if attributedText.length == 0 {
-                return false
-            }
-        case .unattributed(let text):
-            if text.isEmpty {
-                return false
-            }
-        }
-
         return true
     }
 }

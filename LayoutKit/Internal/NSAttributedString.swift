@@ -10,18 +10,13 @@ import UIKit
 
 extension NSAttributedString {
 
-    /// Create an `NSAttributedString` and add specified font to it
-    func createAttrbutedString(with font: UIFont) -> NSAttributedString {
+    /// Returns a new NSAttributedString with a default font and the same attributes.
+    func with(defaultFont: UIFont) -> NSAttributedString {
         if length == 0 {
             return self
         }
 
-        // UILabel/UITextView uses a default font if one is not specified in the attributed string.
-        // boundingRectWithSize does not appear to have the same logic,
-        // so we need to ensure that our attributed string has a default font.
-        // We do this by creating a new attributed string with the default font and then
-        // applying all of the attributes from the provided attributed string.
-        let fontAttribute = [NSFontAttributeName: font]
+        let fontAttribute = [NSFontAttributeName: defaultFont]
         let attributedTextWithFont = NSMutableAttributedString(string: string, attributes: fontAttribute)
         let fullRange = NSMakeRange(0, (string as NSString).length)
         attributedTextWithFont.beginEditing()

@@ -8,26 +8,29 @@
 
 import UIKit
 
-enum TextCalculatorHelper {
+extension Text {
 
-    /// Calculate the text size within `maxSize` by given `Text`, `UIFont`, and `numberOfLines`.
-    /// `numberOfLines` is an optional or make it 0 if dynamic number of lines is requied
-    static func textSize(maxSize: CGSize,
-                         text: Text,
-                         font: UIFont) -> CGSize {
+    /// Calculate the text size within `maxSize` by given `UIFont`
+    func textSize(maxSize: CGSize,
+                  font: UIFont) -> CGSize {
         let options: NSStringDrawingOptions = [
             .usesLineFragmentOrigin
         ]
 
         var size: CGSize
-        switch text {
+        switch self {
         case .attributed(let attributedText):
             if attributedText.length == 0 {
                 return .zero
             }
 
-            let fontAppliedAttributeString = attributedText.createAttrbutedString(
-                with: font)
+            // UILabel/UITextView uses a default font if one is not specified in the attributed string.
+            // boundingRectWithSize does not appear to have the same logic,
+            // so we need to ensure that our attributed string has a default font.
+            // We do this by creating a new attributed string with the default font and then
+            // applying all of the attributes from the provided attributed string.
+            let fontAppliedAttributeString = attributedText.with(
+                defaultFont: font)
 
             size = fontAppliedAttributeString.boundingRect(with: maxSize, options: options, context: nil).size
         case .unattributed(let text):

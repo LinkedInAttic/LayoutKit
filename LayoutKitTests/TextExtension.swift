@@ -7,7 +7,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import UIKit
-@testable import LayoutKit
+import LayoutKit
 
 extension Text {
     struct TestCase {
@@ -34,7 +34,7 @@ extension Text {
             .attributed(NSAttributedString(string: "Hello world")),
             .attributed(NSAttributedString(string: "Hello! 😄😄😄")),
             .attributed(NSAttributedString(string: "Hello! 😄😄😄", attributes: [NSFontAttributeName: UIFont.helvetica(size: 42)])),
-        ]
+            ]
 
         let fontSizes = 0...20
 
@@ -44,30 +44,12 @@ extension Text {
                 let font = fontName.flatMap({ (fontName) -> UIFont? in
                     return UIFont(name: fontName, size: CGFloat(fontSize))
                 })
-
                 for text in texts {
-                    if let font = font {
-                        tests.append(TestCase(
-                            text: text.createFontAttribute(with: font),
-                            font: font))
-                    } else {
-                        tests.append(TestCase(text: text, font: font))
-                    }
+                    tests.append(TestCase(text: text, font: font))
                 }
             }
 
         }
         return tests
-    }
-
-    // MARK: - helper
-
-    func createFontAttribute(with font: UIFont) -> Text {
-        switch self {
-        case .attributed(let attributedText):
-            return .attributed(attributedText.createAttrbutedString(with: font))
-        default:
-            return self
-        }
     }
 }

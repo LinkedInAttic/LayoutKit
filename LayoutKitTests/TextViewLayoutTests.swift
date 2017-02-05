@@ -11,8 +11,6 @@ import XCTest
 
 class TextViewLayoutTests: XCTestCase {
 
-    private let defaultTextViewLayoutFont = UIFont.systemFont(ofSize: 12)
-
     func testNeedsView() {
         let layout = TextViewLayout(text: "hi").arrangement().makeViews()
         XCTAssertNotNil(layout as? UITextView)
@@ -20,22 +18,8 @@ class TextViewLayoutTests: XCTestCase {
 
     func testTextViewLayout() {
         for textTestCase in Text.testCases {
-            let textView = UITextView()
-
-            switch textTestCase.text {
-            case .unattributed(let text):
-                textView.text = text
-                textView.font = textTestCase.font ?? defaultTextViewLayoutFont
-            case .attributed(let attributedText):
-                // If font is using default, applied default font to attributedString
-                if let font = textTestCase.font {
-                    textView.attributedText = attributedText.createAttrbutedString(with: font)
-                } else {
-                    textView.attributedText = attributedText.createAttrbutedString(with: defaultTextViewLayoutFont)
-                }
-            }
-
-            textView.updateAttributes()
+            let textView = UITextView(text: textTestCase.text,
+                                      font: textTestCase.font)
 
             let layout = textTestCase.font.map({ (font: UIFont) -> Layout in
                 return TextViewLayout(text: textTestCase.text, font: font)
@@ -44,6 +28,7 @@ class TextViewLayoutTests: XCTestCase {
             let layoutView = layout.arrangement()
 
             // Skip if the both widths equal to 0, no need to check height
+            // `intrinsicContentSize` of `UITextView` still has non-zero height even the text is empty
             if layout.arrangement().frame.size.width == 0 && textView.intrinsicContentSize.width == 0 {
                 continue
             }
@@ -56,10 +41,7 @@ class TextViewLayoutTests: XCTestCase {
         let textString = "Hello World\nHello World\nHello World\nHello World\nHello World"
         let text = Text.unattributed(textString)
 
-        let textView = UITextView()
-        textView.text = textString
-        textView.font = defaultTextViewLayoutFont
-        textView.updateAttributes()
+        let textView = UITextView(text: text)
 
         let layout = TextViewLayout(text: text)
         let layoutView = layout.arrangement()
@@ -74,9 +56,7 @@ class TextViewLayoutTests: XCTestCase {
             attributes: [NSFontAttributeName: UIFont.helvetica(size: 15)])
         let attributedText = Text.attributed(attributedString)
 
-        let textView = UITextView()
-        textView.attributedText = attributedString
-        textView.updateAttributes()
+        let textView = UITextView(text: attributedText)
 
         let layout = TextViewLayout(text: attributedText)
         let layoutView = layout.arrangement()
@@ -95,9 +75,7 @@ class TextViewLayoutTests: XCTestCase {
         attributedString1.append(attributedString2)
         let attributedText = Text.attributed(attributedString1)
 
-        let textView = UITextView()
-        textView.attributedText = attributedString1
-        textView.updateAttributes()
+        let textView = UITextView(text: attributedText)
 
         let layout = TextViewLayout(text: attributedText)
         let layoutView = layout.arrangement()
@@ -110,10 +88,8 @@ class TextViewLayoutTests: XCTestCase {
         let text = Text.unattributed(textString)
         let lineFragmentPadding: CGFloat = 30.0
 
-        let textView = UITextView()
-        textView.text = textString
-        textView.font = defaultTextViewLayoutFont
-        textView.updateAttributes(lineFragmentPadding: lineFragmentPadding)
+        let textView = UITextView(text: text,
+                                  lineFragmentPadding: lineFragmentPadding)
 
         let layout = TextViewLayout(text: text, lineFragmentPadding: lineFragmentPadding)
         let layoutView = layout.arrangement()
@@ -126,10 +102,8 @@ class TextViewLayoutTests: XCTestCase {
         let text = Text.unattributed(textString)
         let textContainerInset = UIEdgeInsets(top: 2, left: 3, bottom: 4, right: 5)
 
-        let textView = UITextView()
-        textView.text = textString
-        textView.font = defaultTextViewLayoutFont
-        textView.updateAttributes(textContainerInset: textContainerInset)
+        let textView = UITextView(text: text,
+                                  textContainerInset: textContainerInset)
 
         let layout = TextViewLayout(text: text, textContainerInset: textContainerInset)
         let layoutView = layout.arrangement()
@@ -139,14 +113,29 @@ class TextViewLayoutTests: XCTestCase {
 
 }
 
-// MARK: - helper extension
+// MARK: - private helper extension
 
 private extension UITextView {
 
-    func updateAttributes(lineFragmentPadding: CGFloat = 0,
-                          textContainerInset: UIEdgeInsets = UIEdgeInsets.zero,
-                          contentInset: UIEdgeInsets = UIEdgeInsets.zero,
-                          layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+    static let defaultFont = UIFont.systemFont(ofSize: 12)
+
+    convenience init(text: Text,
+                     font: UIFont? = nil,
+                     lineFragmentPadding: CGFloat = 0,
+                     textContainerInset: UIEdgeInsets = UIEdgeInsets.zero,
+                     contentInset: UIEdgeInsets = UIEdgeInsets.zero,
+                     layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        self.init()
+
+        switch text {
+        case .unattributed(let unattributedText):
+            self.text = unattributedText
+            self.font = font ?? UITextView.defaultFont
+        case .attributed(let attributedText):
+            // If font is using default, applied default font to attributedString
+            self.attributedText = attributedText.with(defaultFont: font ?? UITextView.defaultFont)
+        }
+
         self.textContainer.lineFragmentPadding = lineFragmentPadding
         self.textContainerInset = textContainerInset
         self.contentInset = contentInset
