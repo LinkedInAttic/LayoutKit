@@ -19,16 +19,12 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     open let font: UIFont
     open let textContainerInset: UIEdgeInsets
     open let lineFragmentPadding: CGFloat
-    open let contentInset: UIEdgeInsets
-    open let layoutMargins: UIEdgeInsets
 
     // MARK: - initializers
 
     public init(text: Text,
                 font: UIFont = defaultFont,
                 lineFragmentPadding: CGFloat = 0,
-                contentInset: UIEdgeInsets = .zero,
-                layoutMargins: UIEdgeInsets = .zero,
                 textContainerInset: UIEdgeInsets = .zero,
                 layoutAlignment: Alignment = defaultAlignment,
                 flexibility: Flexibility = defaultFlexibility,
@@ -37,8 +33,6 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
         self.text = text
         self.font = font
         self.lineFragmentPadding = lineFragmentPadding
-        self.contentInset = contentInset
-        self.layoutMargins = layoutMargins
         self.textContainerInset = textContainerInset
 
         super.init(alignment: layoutAlignment, flexibility: flexibility, viewReuseId: viewReuseId, config: configure)
@@ -49,8 +43,6 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     public convenience init(text: String,
                             font: UIFont = defaultFont,
                             lineFragmentPadding: CGFloat = 0,
-                            contentInset: UIEdgeInsets = .zero,
-                            layoutMargins: UIEdgeInsets = .zero,
                             textContainerInset: UIEdgeInsets = .zero,
                             layoutAlignment: Alignment = defaultAlignment,
                             flexibility: Flexibility = defaultFlexibility,
@@ -59,8 +51,6 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
         self.init(text: .unattributed(text),
                   font: font,
                   lineFragmentPadding: lineFragmentPadding,
-                  contentInset: contentInset,
-                  layoutMargins: layoutMargins,
                   textContainerInset: textContainerInset,
                   layoutAlignment: layoutAlignment,
                   flexibility: flexibility,
@@ -71,8 +61,6 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     public convenience init(attributedText: NSAttributedString,
                             font: UIFont = defaultFont,
                             lineFragmentPadding: CGFloat = 0,
-                            contentInset: UIEdgeInsets = .zero,
-                            layoutMargins: UIEdgeInsets = .zero,
                             textContainerInset: UIEdgeInsets = .zero,
                             layoutAlignment: Alignment = defaultAlignment,
                             flexibility: Flexibility = defaultFlexibility,
@@ -81,8 +69,6 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
         self.init(text: .attributed(attributedText),
                   font: font,
                   lineFragmentPadding: lineFragmentPadding,
-                  contentInset: contentInset,
-                  layoutMargins: layoutMargins,
                   textContainerInset: textContainerInset,
                   layoutAlignment: layoutAlignment,
                   flexibility: flexibility,
@@ -107,9 +93,8 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
 
     private func textSize(within maxSize: CGSize) -> CGSize {
         var size = text.textSize(maxSize: maxSize, font: font)
-        let heightInset = (textContainerInset.top + textContainerInset.bottom) + (layoutMargins.top + layoutMargins.bottom)
-        let widthInset = (textContainerInset.left + textContainerInset.right) + (layoutMargins.left + layoutMargins.right) + lineFragmentPadding * 2
-            + (contentInset.left + contentInset.right)
+        let heightInset = textContainerInset.top + textContainerInset.bottom
+        let widthInset = textContainerInset.left + textContainerInset.right + lineFragmentPadding * 2
         size = CGSize(width: size.width + widthInset, height: size.height + heightInset)
 
         return size
@@ -117,16 +102,16 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
 
     // MARK: - overriden methods
 
-    /// Don't change `textContainerInset`, `lineFragmentPadding`, `contentInset`
-    /// and `layoutMargins` in `configure`. By changing those, it will cause the incorrect
+    /// Don't change `textContainerInset`, `lineFragmentPadding`, `contentInset`, `layoutMargins`
+    /// and `usesFontLeading` in `configure`. By changing those, it will cause the incorrect
     /// size calculation. So they will be reset by using parameters from initializer.
-    /// `usesFontLeading` doesn't support in `TextViewLayout`.
+    /// `usesFontLeading`, `contentInset`, and `layoutMargins` are not avilable in `TextViewLayout`.
     open override func configure(view textView: TextView) {
         config?(textView)
         textView.textContainerInset = textContainerInset
         textView.textContainer.lineFragmentPadding = lineFragmentPadding
-        textView.contentInset = contentInset
-        textView.layoutMargins = layoutMargins
+        textView.contentInset = UIEdgeInsets.zero
+        textView.layoutMargins = UIEdgeInsets.zero
         textView.layoutManager.usesFontLeading = false
         textView.font = font
         switch text {
