@@ -113,6 +113,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
         textView.contentInset = UIEdgeInsets.zero
         textView.layoutMargins = UIEdgeInsets.zero
         textView.layoutManager.usesFontLeading = false
+        textView.isScrollEnabled = false
         textView.font = font
         switch text {
         case .unattributed(let text):
