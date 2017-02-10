@@ -18,20 +18,15 @@ class TextViewLayoutTests: XCTestCase {
 
     func testTextViewLayout() {
         for textTestCase in Text.testCases {
-            let textView = UITextView(text: textTestCase.text,
-                                      font: textTestCase.font)
+            let textView = UITextView(
+                text: textTestCase.text,
+                font: textTestCase.font)
 
             let layout = textTestCase.font.map({ (font: UIFont) -> Layout in
                 return TextViewLayout(text: textTestCase.text, font: font)
             }) ?? TextViewLayout(text: textTestCase.text)
 
             let layoutView = layout.arrangement()
-
-            // Skip if the both widths equal to 0, no need to check height
-            // `intrinsicContentSize` of `UITextView` still has non-zero height even the text is empty
-            if layout.arrangement().frame.size.width == 0 && textView.intrinsicContentSize.width == 0 {
-                continue
-            }
 
             XCTAssertEqual(layoutView.frame.size, textView.intrinsicContentSize, "fontName:\(textTestCase.font?.fontName) text:\(textTestCase.text) fontSize:\(textTestCase.font?.pointSize)")
         }
@@ -52,8 +47,7 @@ class TextViewLayoutTests: XCTestCase {
     func testMutipleLinesWithAttributedString() {
         let textString = "Hello World\nHello World\nHello World\nHello World\nHello World"
         let attributedString = NSAttributedString(
-            string: textString,
-            attributes: [NSFontAttributeName: UIFont.helvetica(size: 15)])
+            string: textString)
         let attributedText = Text.attributed(attributedString)
 
         let textView = UITextView(text: attributedText)
@@ -111,13 +105,22 @@ class TextViewLayoutTests: XCTestCase {
         XCTAssertEqual(layoutView.frame.size, textView.intrinsicContentSize)
     }
 
+    func testInSpecificViewSize() {
+        let textString = "Hello World\nHello World\nHello World\nHello World\nHello World"
+        let text = Text.unattributed(textString)
+
+        let layout = TextViewLayout(text: text)
+        let layoutView = layout.arrangement(origin: CGPoint.zero, width: 20, height: 20)
+
+        XCTAssertTrue(layoutView.frame.size.width <= 20, "Width should be less than the max width")
+        XCTAssertTrue(layoutView.frame.size.height <= 20, "Width should be less than the max height")
+    }
+
 }
 
 // MARK: - private helper extension
 
 private extension UITextView {
-
-    static let defaultFont = UIFont.systemFont(ofSize: 12)
 
     convenience init(text: Text,
                      font: UIFont? = nil,
@@ -130,10 +133,14 @@ private extension UITextView {
         switch text {
         case .unattributed(let unattributedText):
             self.text = unattributedText
-            self.font = font ?? UITextView.defaultFont
+            if font != nil {
+                self.font = font
+            }
         case .attributed(let attributedText):
             // If font is using default, applied default font to attributedString
-            self.attributedText = attributedText.with(defaultFont: font ?? UITextView.defaultFont)
+            self.attributedText = font != nil
+                ? attributedText.with(defaultFont: font)
+                : attributedText
         }
 
         self.textContainer.lineFragmentPadding = lineFragmentPadding

@@ -23,7 +23,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     // MARK: - initializers
 
     public init(text: Text,
-                font: UIFont = defaultFont,
+                font: UIFont? = nil,
                 lineFragmentPadding: CGFloat = 0,
                 textContainerInset: UIEdgeInsets = .zero,
                 layoutAlignment: Alignment = defaultAlignment,
@@ -31,7 +31,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
                 viewReuseId: String? = nil,
                 configure: ((TextView) -> Void)? = nil) {
         self.text = text
-        self.font = font
+        self.font = font ?? TextViewLayout.defaultFont(withText: text)
         self.lineFragmentPadding = lineFragmentPadding
         self.textContainerInset = textContainerInset
 
@@ -41,7 +41,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     // MARK: - Convenience initializers
 
     public convenience init(text: String,
-                            font: UIFont = defaultFont,
+                            font: UIFont? = nil,
                             lineFragmentPadding: CGFloat = 0,
                             textContainerInset: UIEdgeInsets = .zero,
                             layoutAlignment: Alignment = defaultAlignment,
@@ -59,7 +59,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     }
 
     public convenience init(attributedText: NSAttributedString,
-                            font: UIFont = defaultFont,
+                            font: UIFont? = nil,
                             lineFragmentPadding: CGFloat = 0,
                             textContainerInset: UIEdgeInsets = .zero,
                             layoutAlignment: Alignment = defaultAlignment,
@@ -81,7 +81,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     open func measurement(within maxSize: CGSize) -> LayoutMeasurement {
         let fittedSize = textSize(within: maxSize)
         let decreasedToSize = fittedSize.decreasedToSize(maxSize)
-        return LayoutMeasurement(layout: self, size:decreasedToSize, maxSize: maxSize, sublayouts: [])
+        return LayoutMeasurement(layout: self, size: decreasedToSize, maxSize: maxSize, sublayouts: [])
     }
 
     open func arrangement(within rect: CGRect, measurement: LayoutMeasurement) -> LayoutArrangement {
@@ -92,12 +92,26 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     // MARK: - private helpers
 
     private func textSize(within maxSize: CGSize) -> CGSize {
-        var size = text.textSize(maxSize: maxSize, font: font)
-        let heightInset = textContainerInset.top + textContainerInset.bottom
-        let widthInset = textContainerInset.left + textContainerInset.right + lineFragmentPadding * 2
-        size = CGSize(width: size.width + widthInset, height: size.height + heightInset)
+        let size = text.textSize(
+            within: maxSize,
+            font: font,
+            isHeightMeasuredForEmptyText: true)
 
-        return size
+        let widthInset = textContainerInset.left + textContainerInset.right + lineFragmentPadding * 2
+        let heightInset = textContainerInset.top + textContainerInset.bottom
+
+        return CGSize(width: size.width + widthInset, height: size.height + heightInset)
+    }
+
+    private static func defaultFont(withText text: Text) -> UIFont {
+        switch text {
+        case .unattributed(_):
+            return TextViewDefaultFontMeasurement.sharedInstance.unattributedTextFont
+        case .attributed(let attributedText):
+            return attributedText.string == ""
+                ? TextViewDefaultFontMeasurement.sharedInstance.attributedTextFontWithEmptyString
+                : TextViewDefaultFontMeasurement.sharedInstance.attributedTextFont
+        }
     }
 
     // MARK: - overriden methods
@@ -105,7 +119,8 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     /// Don't change `textContainerInset`, `lineFragmentPadding`, `contentInset`, `layoutMargins`
     /// and `usesFontLeading` in `configure`. By changing those, it will cause the incorrect
     /// size calculation. So they will be reset by using parameters from initializer.
-    /// `usesFontLeading`, `contentInset`, and `layoutMargins` are not avilable in `TextViewLayout`.
+    /// `usesFontLeading`, `contentInset`, `layoutMargins`, `isScrollEnabled`, `isEditable`
+    /// and `isSelectable` are not avilable in `TextViewLayout`.
     open override func configure(view textView: TextView) {
         config?(textView)
         textView.textContainerInset = textContainerInset
@@ -114,6 +129,11 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
         textView.layoutMargins = UIEdgeInsets.zero
         textView.layoutManager.usesFontLeading = false
         textView.isScrollEnabled = false
+        // tvOS doesn't support `isEditable`
+        #if os(iOS)
+            textView.isEditable = false
+        #endif
+        textView.isSelectable = false
         textView.font = font
         switch text {
         case .unattributed(let text):
@@ -131,8 +151,5 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
 // MARK: - Things that belong in TextViewLayout but aren't because TextViewLayout is generic.
 // "Static stored properties not yet supported in generic types"
 
-// Since the `UITextView` will return different font for different iOS/tvOS version,
-// we give a fixed default font here
-private let defaultFont = UIFont.systemFont(ofSize: 12)
 private let defaultAlignment = Alignment.topLeading
 private let defaultFlexibility = Flexibility.flexible
