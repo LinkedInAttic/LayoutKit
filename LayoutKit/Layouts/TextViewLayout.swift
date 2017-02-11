@@ -92,25 +92,28 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     // MARK: - private helpers
 
     private func textSize(within maxSize: CGSize) -> CGSize {
+        let insetMaxSize = maxSize.decreased(
+            byInsets: textContainerInset,
+            lineFragmentPadding: lineFragmentPadding)
+
         let size = text.textSize(
-            within: maxSize,
+            within: insetMaxSize,
             font: font,
             isHeightMeasuredForEmptyText: true)
 
-        let widthInset = textContainerInset.left + textContainerInset.right + lineFragmentPadding * 2
-        let heightInset = textContainerInset.top + textContainerInset.bottom
-
-        return CGSize(width: size.width + widthInset, height: size.height + heightInset)
+        return size.increased(
+            byInsets: textContainerInset,
+            lineFragmentPadding: lineFragmentPadding)
     }
 
     private static func defaultFont(withText text: Text) -> UIFont {
         switch text {
         case .unattributed(_):
-            return TextViewDefaultFontMeasurement.sharedInstance.unattributedTextFont
+            return TextViewDefaultFont.unattributedTextFont
         case .attributed(let attributedText):
-            return attributedText.string == ""
-                ? TextViewDefaultFontMeasurement.sharedInstance.attributedTextFontWithEmptyString
-                : TextViewDefaultFontMeasurement.sharedInstance.attributedTextFont
+            return attributedText.length == 0
+                ? TextViewDefaultFont.attributedTextFontWithEmptyString
+                : TextViewDefaultFont.attributedTextFont
         }
     }
 
@@ -119,14 +122,12 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     /// Don't change `textContainerInset`, `lineFragmentPadding`, `contentInset`, `layoutMargins`
     /// and `usesFontLeading` in `configure`. By changing those, it will cause the incorrect
     /// size calculation. So they will be reset by using parameters from initializer.
-    /// `usesFontLeading`, `contentInset`, `layoutMargins`, `isScrollEnabled`, `isEditable`
-    /// and `isSelectable` are not avilable in `TextViewLayout`.
+    /// `usesFontLeading`, `isScrollEnabled`, `isEditable` and `isSelectable`
+    /// are not avilable in `TextViewLayout`.
     open override func configure(view textView: TextView) {
         config?(textView)
         textView.textContainerInset = textContainerInset
         textView.textContainer.lineFragmentPadding = lineFragmentPadding
-        textView.contentInset = UIEdgeInsets.zero
-        textView.layoutMargins = UIEdgeInsets.zero
         textView.layoutManager.usesFontLeading = false
         textView.isScrollEnabled = false
         // tvOS doesn't support `isEditable`

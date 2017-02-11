@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   spec.osx.frameworks        = 'Foundation', 'CoreGraphics', 'AppKit'
   spec.osx.exclude_files     = [
     'LayoutKit/Internal/CGFloatExtension.swift',
-    'LayoutKit/Internal/TextViewDefaultFontMeasurement.swift',
+    'LayoutKit/Internal/TextViewDefaultFont.swift',
     'LayoutKit/Internal/NSAttributedStringExtension.swift',
     'LayoutKit/Layouts/ButtonLayout.swift',
     'LayoutKit/Layouts/LabelLayout.swift',

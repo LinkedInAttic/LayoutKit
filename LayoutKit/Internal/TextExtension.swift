@@ -58,7 +58,7 @@ extension Text {
                                        font: UIFont,
                                        isAttributedText: Bool = false) -> CGSize {
         let emptyString = " "
-        let attributedFont = TextViewDefaultFontMeasurement.sharedInstance.attributedTextFontWithEmptyString
+        let attributedFont = TextViewDefaultFont.attributedTextFontWithEmptyString
 
         let size: CGSize
         switch self {

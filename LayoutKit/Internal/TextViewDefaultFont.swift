@@ -1,0 +1,45 @@
+// Copyright 2016 LinkedIn Corp.
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+
+import UIKit
+
+/// This class provides default UITextView font
+enum TextViewDefaultFont {
+
+    // Default unattributed font
+    static var unattributedTextFont: UIFont {
+        #if os(tvOS)
+            return UIFont.systemFont(ofSize: 38, weight: UIFontWeightMedium)
+        #else
+            return helveticaFont(ofSize: 12)
+        #endif
+    }
+
+    // Default attributed font
+    static var attributedTextFont: UIFont {
+        #if os(tvOS)
+            return helveticaFont(ofSize: 12)
+        #else
+            return helveticaFont(ofSize: 12)
+        #endif
+    }
+
+    // Default attributed font with empty string
+    static var attributedTextFontWithEmptyString: UIFont {
+        #if os(tvOS)
+            return UIFont.systemFont(ofSize: 38, weight: UIFontWeightMedium)
+        #else
+            return helveticaFont(ofSize: 12)
+        #endif
+    }
+
+    private static func helveticaFont(ofSize size: CGFloat) -> UIFont {
+        return UIFont(name: "Helvetica", size: size) ?? UIFont.systemFont(ofSize: size)
+    }
+
+}

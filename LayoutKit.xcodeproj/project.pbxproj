@@ -206,8 +206,8 @@
 		4468A2A81E44367300341D07 /* TextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4468A2A61E44367300341D07 /* TextExtension.swift */; };
 		4468A31D1E46460B00341D07 /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4468A31C1E46460B00341D07 /* NSAttributedStringExtension.swift */; };
 		4468A31E1E464A3900341D07 /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4468A31C1E46460B00341D07 /* NSAttributedStringExtension.swift */; };
-		448CEC0F1E4E0CB500F8AD9E /* TextViewDefaultFontMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448CEC0E1E4E0CB500F8AD9E /* TextViewDefaultFontMeasurement.swift */; };
-		448CEC101E4E0CEE00F8AD9E /* TextViewDefaultFontMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448CEC0E1E4E0CB500F8AD9E /* TextViewDefaultFontMeasurement.swift */; };
+		448CEC0F1E4E0CB500F8AD9E /* TextViewDefaultFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448CEC0E1E4E0CB500F8AD9E /* TextViewDefaultFont.swift */; };
+		448CEC101E4E0CEE00F8AD9E /* TextViewDefaultFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448CEC0E1E4E0CB500F8AD9E /* TextViewDefaultFont.swift */; };
 		44F968151E425F5D00392763 /* TextViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968141E425F5D00392763 /* TextViewLayout.swift */; };
 		44F968181E4263DC00392763 /* TextViewLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968161E42639500392763 /* TextViewLayoutTests.swift */; };
 		44F968191E4263DC00392763 /* TextViewLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968161E42639500392763 /* TextViewLayoutTests.swift */; };
@@ -387,7 +387,7 @@
 		0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewTests.swift; sourceTree = "<group>"; };
 		4468A2A61E44367300341D07 /* TextExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextExtension.swift; sourceTree = "<group>"; };
 		4468A31C1E46460B00341D07 /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
-		448CEC0E1E4E0CB500F8AD9E /* TextViewDefaultFontMeasurement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewDefaultFontMeasurement.swift; sourceTree = "<group>"; };
+		448CEC0E1E4E0CB500F8AD9E /* TextViewDefaultFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewDefaultFont.swift; sourceTree = "<group>"; };
 		44F968141E425F5D00392763 /* TextViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewLayout.swift; sourceTree = "<group>"; };
 		44F968161E42639500392763 /* TextViewLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewLayoutTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -613,7 +613,7 @@
 				0B765F2B1DC0514F000BF1FD /* CGFloatExtension.swift */,
 				4468A31C1E46460B00341D07 /* NSAttributedStringExtension.swift */,
 				4468A2A61E44367300341D07 /* TextExtension.swift */,
-				448CEC0E1E4E0CB500F8AD9E /* TextViewDefaultFontMeasurement.swift */,
+				448CEC0E1E4E0CB500F8AD9E /* TextViewDefaultFont.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -1026,7 +1026,7 @@
 				0BCB76021D8724800065E02A /* InsetLayout.swift in Sources */,
 				4468A2A71E44367300341D07 /* TextExtension.swift in Sources */,
 				0BCB76061D8724800065E02A /* AxisFlexibility.swift in Sources */,
-				448CEC0F1E4E0CB500F8AD9E /* TextViewDefaultFontMeasurement.swift in Sources */,
+				448CEC0F1E4E0CB500F8AD9E /* TextViewDefaultFont.swift in Sources */,
 				0BCB760E1D8724800065E02A /* ReloadableView.swift in Sources */,
 				0BCB75FD1D8724800065E02A /* CGSizeExtension.swift in Sources */,
 				0BCB760B1D8724800065E02A /* BatchUpdates.swift in Sources */,
@@ -1104,7 +1104,7 @@
 				0BCB762C1D8724C70065E02A /* CGSizeExtension.swift in Sources */,
 				0BCB76361D8724CA0065E02A /* BaseLayout.swift in Sources */,
 				0BCB76181D8724C00065E02A /* ConfigurableLayout.swift in Sources */,
-				448CEC101E4E0CEE00F8AD9E /* TextViewDefaultFontMeasurement.swift in Sources */,
+				448CEC101E4E0CEE00F8AD9E /* TextViewDefaultFont.swift in Sources */,
 				0B8C078B1DC3E881001CD5EE /* ButtonLayout.swift in Sources */,
 				0BCB76521D8724E70065E02A /* StackView.swift in Sources */,
 				0BCB76511D8724E70065E02A /* ReloadableViewUpdateManager.swift in Sources */,

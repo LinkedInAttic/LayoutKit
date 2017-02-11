@@ -36,9 +36,9 @@ class TextViewLayoutTests: XCTestCase {
         let textString = "Hello World\nHello World\nHello World\nHello World\nHello World"
         let text = Text.unattributed(textString)
 
-        let textView = UITextView(text: text)
+        let textView = UITextView(text: text, font: UIFont.systemFont(ofSize: 12))
 
-        let layout = TextViewLayout(text: text)
+        let layout = TextViewLayout(text: text, font: UIFont.systemFont(ofSize: 12))
         let layoutView = layout.arrangement()
 
         XCTAssertEqual(layoutView.frame.size, textView.intrinsicContentSize)
@@ -82,10 +82,15 @@ class TextViewLayoutTests: XCTestCase {
         let text = Text.unattributed(textString)
         let lineFragmentPadding: CGFloat = 30.0
 
-        let textView = UITextView(text: text,
-                                  lineFragmentPadding: lineFragmentPadding)
+        let textView = UITextView(
+            text: text,
+            font: UIFont.systemFont(ofSize: 12),
+            lineFragmentPadding: lineFragmentPadding)
 
-        let layout = TextViewLayout(text: text, lineFragmentPadding: lineFragmentPadding)
+        let layout = TextViewLayout(
+            text: text,
+            font: UIFont.systemFont(ofSize: 12),
+            lineFragmentPadding: lineFragmentPadding)
         let layoutView = layout.arrangement()
 
         XCTAssertEqual(layoutView.frame.size, textView.intrinsicContentSize)
@@ -96,10 +101,15 @@ class TextViewLayoutTests: XCTestCase {
         let text = Text.unattributed(textString)
         let textContainerInset = UIEdgeInsets(top: 2, left: 3, bottom: 4, right: 5)
 
-        let textView = UITextView(text: text,
-                                  textContainerInset: textContainerInset)
+        let textView = UITextView(
+            text: text,
+            font: UIFont.systemFont(ofSize: 12),
+            textContainerInset: textContainerInset)
 
-        let layout = TextViewLayout(text: text, textContainerInset: textContainerInset)
+        let layout = TextViewLayout(
+            text: text,
+            font: UIFont.systemFont(ofSize: 12),
+            textContainerInset: textContainerInset)
         let layoutView = layout.arrangement()
 
         XCTAssertEqual(layoutView.frame.size, textView.intrinsicContentSize)
