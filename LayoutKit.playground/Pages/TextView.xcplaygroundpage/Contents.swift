@@ -17,8 +17,8 @@ let attributedText = Text.attributed(attributedString1)
 
 let textContainerInset = UIEdgeInsets(top: 2, left: 3, bottom: 4, right: 5)
 
-let layout = TextViewLayout(text: attributedText, layoutMargins: textContainerInset)
-let arrangement = layout.arrangement()
+let textViewLayout = TextViewLayout(text: attributedText, layoutMargins: textContainerInset)
+let arrangement = textViewLayout.arrangement()
 arrangement.makeViews(in: rootView)
 
 Debug.addBorderColorsRecursively(rootView)
