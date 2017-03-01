@@ -93,7 +93,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
 
     private func textSize(within maxSize: CGSize) -> CGSize {
         let insetMaxSize = maxSize.decreased(
-            byInsets: textContainerInset,
+            by: textContainerInset,
             lineFragmentPadding: lineFragmentPadding)
 
         let size = text.textSize(
@@ -102,7 +102,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
             isHeightMeasuredForEmptyText: true)
 
         return size.increased(
-            byInsets: textContainerInset,
+            by: textContainerInset,
             lineFragmentPadding: lineFragmentPadding)
     }
 

@@ -11,7 +11,7 @@ import UIKit
 /// This class provides default UITextView font
 enum TextViewDefaultFont {
 
-    // Default unattributed font
+    // The font used by UITextView for unattributed strings
     static var unattributedTextFont: UIFont {
         #if os(tvOS)
             return UIFont.systemFont(ofSize: 38, weight: UIFontWeightMedium)
@@ -20,16 +20,12 @@ enum TextViewDefaultFont {
         #endif
     }
 
-    // Default attributed font
+    // The font used by UITextView for attributed strings
     static var attributedTextFont: UIFont {
-        #if os(tvOS)
-            return helveticaFont(ofSize: 12)
-        #else
-            return helveticaFont(ofSize: 12)
-        #endif
+        return helveticaFont(ofSize: 12)
     }
 
-    // Default attributed font with empty string
+    // The font used by UITextView for empty attributed strings
     static var attributedTextFontWithEmptyString: UIFont {
         #if os(tvOS)
             return UIFont.systemFont(ofSize: 38, weight: UIFontWeightMedium)

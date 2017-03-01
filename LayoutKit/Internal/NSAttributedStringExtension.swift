@@ -12,8 +12,7 @@ extension NSAttributedString {
 
     /// Returns a new NSAttributedString with a default font and the same attributes.
     func with(defaultFont: UIFont?) -> NSAttributedString {
-        guard length > 0,
-            let font = defaultFont else {
+        guard let font = defaultFont else {
             return self
         }
 

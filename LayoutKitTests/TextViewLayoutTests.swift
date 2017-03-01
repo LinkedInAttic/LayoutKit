@@ -26,9 +26,12 @@ class TextViewLayoutTests: XCTestCase {
                 return TextViewLayout(text: textTestCase.text, font: font)
             }) ?? TextViewLayout(text: textTestCase.text)
 
-            let layoutView = layout.arrangement()
+            let layoutViewArrangement = layout.arrangement()
 
-            XCTAssertEqual(layoutView.frame.size, textView.intrinsicContentSize, "fontName:\(textTestCase.font?.fontName) text:\(textTestCase.text) fontSize:\(textTestCase.font?.pointSize)")
+            XCTAssertEqual(
+                layoutViewArrangement.frame.size,
+                textView.intrinsicContentSize,
+                "fontName:\(textTestCase.font?.fontName) text:\(textTestCase.text) fontSize:\(textTestCase.font?.pointSize)")
         }
     }
 

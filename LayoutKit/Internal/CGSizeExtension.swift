@@ -10,13 +10,13 @@ import CoreGraphics
 import Foundation
 
 extension CGSize {
-    func increased(byInsets insets: EdgeInsets, lineFragmentPadding: CGFloat = 0) -> CGSize {
+    func increased(by insets: EdgeInsets, lineFragmentPadding: CGFloat = 0) -> CGSize {
         return CGSize(
             width: width + insets.left + insets.right + lineFragmentPadding * 2,
             height: height + insets.top + insets.bottom)
     }
 
-    func decreased(byInsets insets: EdgeInsets, lineFragmentPadding: CGFloat = 0) -> CGSize {
+    func decreased(by insets: EdgeInsets, lineFragmentPadding: CGFloat = 0) -> CGSize {
         return CGSize(
             width: width - insets.left - insets.right - lineFragmentPadding * 2,
             height: height - insets.top - insets.bottom)
