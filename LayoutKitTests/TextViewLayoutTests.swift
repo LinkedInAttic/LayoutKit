@@ -138,9 +138,7 @@ private extension UITextView {
     convenience init(text: Text,
                      font: UIFont? = nil,
                      lineFragmentPadding: CGFloat = 0,
-                     textContainerInset: UIEdgeInsets = UIEdgeInsets.zero,
-                     contentInset: UIEdgeInsets = UIEdgeInsets.zero,
-                     layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+                     textContainerInset: UIEdgeInsets = UIEdgeInsets.zero) {
         self.init()
 
         switch text {
@@ -158,8 +156,6 @@ private extension UITextView {
 
         self.textContainer.lineFragmentPadding = lineFragmentPadding
         self.textContainerInset = textContainerInset
-        self.contentInset = contentInset
-        self.layoutMargins = layoutMargins
 
         // Not supporting `usesFontLeading`
         self.layoutManager.usesFontLeading = false

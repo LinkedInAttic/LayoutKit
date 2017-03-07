@@ -119,8 +119,8 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
 
     // MARK: - overriden methods
 
-    /// Don't change `textContainerInset`, `lineFragmentPadding`, `contentInset`, `layoutMargins`
-    /// and `usesFontLeading` in `configure`. By changing those, it will cause the incorrect
+    /// Don't change `textContainerInset`, `lineFragmentPadding` and
+    /// `usesFontLeading` in `configure`. By changing those, it will cause the incorrect
     /// size calculation. So they will be reset by using parameters from initializer.
     /// `usesFontLeading`, `isScrollEnabled`, `isEditable` and `isSelectable`
     /// are not avilable in `TextViewLayout`.
