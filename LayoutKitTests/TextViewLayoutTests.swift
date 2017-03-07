@@ -11,6 +11,8 @@ import XCTest
 
 class TextViewLayoutTests: XCTestCase {
 
+    private let delta: CGFloat = 0.0000001
+
     func testNeedsView() {
         let layout = TextViewLayout(text: "hi").arrangement().makeViews()
         XCTAssertNotNil(layout as? UITextView)
@@ -116,6 +118,26 @@ class TextViewLayoutTests: XCTestCase {
         let layoutView = layout.arrangement()
 
         XCTAssertEqual(layoutView.frame.size, textView.intrinsicContentSize)
+    }
+
+    func testTextContainerInsetWithWordWrap() {
+        let textString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        let text = Text.unattributed(textString)
+        let textContainerInset = UIEdgeInsets(top: 2, left: 3, bottom: 4, right: 5)
+
+        let textView = UITextView(
+            text: text,
+            font: UIFont.systemFont(ofSize: 12),
+            textContainerInset: textContainerInset)
+
+        let layout = TextViewLayout(
+            text: text,
+            font: UIFont.systemFont(ofSize: 12),
+            textContainerInset: textContainerInset)
+        let layoutView = layout.arrangement()
+
+        XCTAssertTrue(abs(layoutView.frame.size.width - textView.intrinsicContentSize.width) < delta)
+        XCTAssertTrue(abs(layoutView.frame.size.height - textView.intrinsicContentSize.height) < delta)
     }
 
     func testInSpecificViewSize() {

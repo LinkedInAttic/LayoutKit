@@ -119,9 +119,10 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
 
     // MARK: - overriden methods
 
-    /// Don't change `textContainerInset`, `lineFragmentPadding` and
-    /// `usesFontLeading` in `configure`. By changing those, it will cause the incorrect
-    /// size calculation. So they will be reset by using parameters from initializer.
+    /// Don't change `textContainerInset`, `lineFragmentPadding` and `usesFontLeading`
+    /// in `configure` closure that's paased to init. 
+    /// By changing those, it will cause the Layout's size calulation
+    /// to be incorrect. So they will be reset by using parameters from initializer.
     /// `usesFontLeading`, `isScrollEnabled`, `isEditable` and `isSelectable`
     /// are not avilable in `TextViewLayout`.
     open override func configure(view textView: TextView) {
@@ -147,6 +148,22 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     open override var needsView: Bool {
         return true
     }
+}
+
+extension CGSize {
+
+    func increased(by insets: EdgeInsets, lineFragmentPadding: CGFloat = 0) -> CGSize {
+        return CGSize(
+            width: width + insets.left + insets.right + lineFragmentPadding * 2,
+            height: height + insets.top + insets.bottom)
+    }
+
+    func decreased(by insets: EdgeInsets, lineFragmentPadding: CGFloat = 0) -> CGSize {
+        return CGSize(
+            width: width - insets.left - insets.right - lineFragmentPadding * 2,
+            height: height - insets.top - insets.bottom)
+    }
+
 }
 
 // MARK: - Things that belong in TextViewLayout but aren't because TextViewLayout is generic.

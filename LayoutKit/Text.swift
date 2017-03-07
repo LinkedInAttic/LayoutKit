@@ -58,7 +58,6 @@ public enum Text {
                                        font: UIFont,
                                        isAttributedText: Bool = false) -> CGSize {
         let emptyString = " "
-        let attributedFont = TextViewDefaultFont.attributedTextFontWithEmptyString
 
         let size: CGSize
         switch self {
@@ -66,8 +65,8 @@ public enum Text {
         case .attributed(_):
             let text = Text.attributed(NSAttributedString(
                 string: emptyString,
-                attributes: [NSFontAttributeName: attributedFont]))
-            size = text.textSize(within: maxSize, font: attributedFont)
+                attributes: [NSFontAttributeName: TextViewDefaultFont.attributedTextFontWithEmptyString]))
+            size = text.textSize(within: maxSize, font: TextViewDefaultFont.attributedTextFontWithEmptyString)
 
         // For the unattributed string, it used the custom font
         case .unattributed(_):

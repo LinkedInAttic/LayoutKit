@@ -21,6 +21,7 @@ Pod::Spec.new do |spec|
     'LayoutKit/Layouts/ButtonLayout.swift',
     'LayoutKit/Layouts/LabelLayout.swift',
     'LayoutKit/Layouts/TextViewLayout.swift',
+    'LayoutKit/Text.swift',
     'LayoutKit/UIKitSupport.swift',
     'LayoutKit/Views/**'
   ]
