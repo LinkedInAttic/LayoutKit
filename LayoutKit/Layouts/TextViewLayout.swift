@@ -92,18 +92,17 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     // MARK: - private helpers
 
     private func textSize(within maxSize: CGSize) -> CGSize {
-        let insetMaxSize = maxSize.decreased(
-            by: textContainerInset,
-            lineFragmentPadding: lineFragmentPadding)
+        var insetMaxSize = maxSize.decreased(by: textContainerInset)
+        insetMaxSize.width -= lineFragmentPadding * 2
 
         let size = text.textSize(
             within: insetMaxSize,
             font: font,
             isHeightMeasuredForEmptyText: true)
 
-        return size.increased(
-            by: textContainerInset,
-            lineFragmentPadding: lineFragmentPadding)
+        var textSize = size.increased(by: textContainerInset)
+        textSize.width += lineFragmentPadding * 2
+        return textSize
     }
 
     private static func defaultFont(withText text: Text) -> UIFont {
@@ -148,22 +147,6 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     open override var needsView: Bool {
         return true
     }
-}
-
-extension CGSize {
-
-    func increased(by insets: EdgeInsets, lineFragmentPadding: CGFloat = 0) -> CGSize {
-        return CGSize(
-            width: width + insets.left + insets.right + lineFragmentPadding * 2,
-            height: height + insets.top + insets.bottom)
-    }
-
-    func decreased(by insets: EdgeInsets, lineFragmentPadding: CGFloat = 0) -> CGSize {
-        return CGSize(
-            width: width - insets.left - insets.right - lineFragmentPadding * 2,
-            height: height - insets.top - insets.bottom)
-    }
-
 }
 
 // MARK: - Things that belong in TextViewLayout but aren't because TextViewLayout is generic.
