@@ -22,7 +22,7 @@ open class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerDel
     open internal(set) var currentArrangement = [Section<[LayoutArrangement]>]()
 
     /// The queue that layouts are computed on.
-    let backgroundLayoutQueue: OperationQueue = {
+    public let backgroundLayoutQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.name = String(describing: ReloadableViewLayoutAdapter.self)
         // The queue is serial so we can do streaming properly.
