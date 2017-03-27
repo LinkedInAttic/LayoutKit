@@ -12,27 +12,25 @@ import UIKit
 enum TextViewDefaultFont {
 
     // The font used by UITextView for unattributed strings
-    static var unattributedTextFont: UIFont {
+    static let unattributedTextFont: UIFont = {
         #if os(tvOS)
             return UIFont.systemFont(ofSize: 38, weight: UIFontWeightMedium)
         #else
             return helveticaFont(ofSize: 12)
         #endif
-    }
+    }()
 
     // The font used by UITextView for attributed strings
-    static var attributedTextFont: UIFont {
-        return helveticaFont(ofSize: 12)
-    }
+    static let attributedTextFont = helveticaFont(ofSize: 12)
 
     // The font used by UITextView for empty attributed strings
-    static var attributedTextFontWithEmptyString: UIFont {
+    static let attributedTextFontWithEmptyString: UIFont = {
         #if os(tvOS)
             return UIFont.systemFont(ofSize: 38, weight: UIFontWeightMedium)
         #else
             return helveticaFont(ofSize: 12)
         #endif
-    }
+    }()
 
     private static func helveticaFont(ofSize size: CGFloat) -> UIFont {
         return UIFont(name: "Helvetica", size: size) ?? UIFont.systemFont(ofSize: size)

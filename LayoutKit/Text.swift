@@ -15,8 +15,7 @@ public enum Text {
 
     /// Calculate the text size within `maxSize` by given `UIFont`
     func textSize(within maxSize: CGSize,
-                  font: UIFont,
-                  isHeightMeasuredForEmptyText: Bool = false) -> CGSize {
+                  font: UIFont) -> CGSize {
         let options: NSStringDrawingOptions = [
             .usesLineFragmentOrigin
         ]
@@ -25,9 +24,7 @@ public enum Text {
         switch self {
         case .attributed(let attributedText):
             if attributedText.length == 0 {
-                return isHeightMeasuredForEmptyText
-                    ? textSizeWithEmptyText(within: maxSize, font: font)
-                    : .zero
+                return .zero
             }
 
             // UILabel/UITextView uses a default font if one is not specified in the attributed string.
@@ -35,45 +32,17 @@ public enum Text {
             // so we need to ensure that our attributed string has a default font.
             // We do this by creating a new attributed string with the default font and then
             // applying all of the attributes from the provided attributed string.
-            let fontAppliedAttributeString = attributedText.with(
-                defaultFont: font)
+            let fontAppliedAttributeString = attributedText.with(defaultFont: font)
 
             size = fontAppliedAttributeString.boundingRect(with: maxSize, options: options, context: nil).size
         case .unattributed(let text):
             if text.isEmpty {
-                return isHeightMeasuredForEmptyText
-                    ? textSizeWithEmptyText(within: maxSize, font: font, isAttributedText: true)
-                    : .zero
+                return .zero
             }
             size = text.boundingRect(with: maxSize, options: options, attributes: [NSFontAttributeName: font], context: nil).size
         }
         // boundingRectWithSize returns size to a precision of hundredths of a point,
         // but UILabel only returns sizes with a point precision of 1/screenDensity.
         return CGSize(width: size.width.roundedUpToFractionalPoint, height: size.height.roundedUpToFractionalPoint)
-    }
-
-    /// By the default behavior of `UITextView`, it will give a height for a empty text
-    /// For the measurement, we can measure a space string to match the default behavior
-    private func textSizeWithEmptyText(within maxSize: CGSize,
-                                       font: UIFont,
-                                       isAttributedText: Bool = false) -> CGSize {
-        let emptyString = " "
-
-        let size: CGSize
-        switch self {
-        // For the attrbuted string, it used the `UITextView` default font
-        case .attributed(_):
-            let text = Text.attributed(NSAttributedString(
-                string: emptyString,
-                attributes: [NSFontAttributeName: TextViewDefaultFont.attributedTextFontWithEmptyString]))
-            size = text.textSize(within: maxSize, font: TextViewDefaultFont.attributedTextFontWithEmptyString)
-
-        // For the unattributed string, it used the custom font
-        case .unattributed(_):
-            let text = Text.unattributed(emptyString)
-            size = text.textSize(within: maxSize, font: font)
-        }
-
-        return CGSize(width: 0, height: size.height)
     }
 }

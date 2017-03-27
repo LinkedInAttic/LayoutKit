@@ -20,8 +20,20 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     open let textContainerInset: UIEdgeInsets
     open let lineFragmentPadding: CGFloat
 
+    private lazy var isTextEmpty: Bool = {
+        switch self.text {
+        case .attributed(let attributedText):
+            return attributedText.length == 0
+        case .unattributed(let text):
+            return text.isEmpty
+        }
+    }()
+
     // MARK: - initializers
 
+    /// Don't change `textContainerInset`, `lineFragmentPadding` and `usesFontLeading` in `configure` closure that's passed to init.
+    /// By changing those, it will cause the Layout's size calculation to be incorrect. So they will be reset by using parameters from initializer.
+    /// `TextViewLayout` sets `usesFontLeading = false`, `isScrollEnabled = false`, `isSelectable` = false by the default. Don't override those values.
     public init(text: Text,
                 font: UIFont? = nil,
                 lineFragmentPadding: CGFloat = 0,
@@ -95,10 +107,9 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
         var insetMaxSize = maxSize.decreased(by: textContainerInset)
         insetMaxSize.width -= lineFragmentPadding * 2
 
-        let size = text.textSize(
-            within: insetMaxSize,
-            font: font,
-            isHeightMeasuredForEmptyText: true)
+        let size = self.isTextEmpty
+        ? text.textSizeWithEmptyText(within: insetMaxSize, font: font)
+        : text.textSize(within: insetMaxSize, font: font)
 
         var textSize = size.increased(by: textContainerInset)
         textSize.width += lineFragmentPadding * 2
@@ -118,12 +129,6 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
 
     // MARK: - overriden methods
 
-    /// Don't change `textContainerInset`, `lineFragmentPadding` and `usesFontLeading`
-    /// in `configure` closure that's paased to init. 
-    /// By changing those, it will cause the Layout's size calulation
-    /// to be incorrect. So they will be reset by using parameters from initializer.
-    /// `usesFontLeading`, `isScrollEnabled`, `isEditable` and `isSelectable`
-    /// are not avilable in `TextViewLayout`.
     open override func configure(view textView: TextView) {
         config?(textView)
         textView.textContainerInset = textContainerInset
@@ -146,6 +151,32 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
 
     open override var needsView: Bool {
         return true
+    }
+}
+
+private extension Text {
+
+    /// By the default behavior of `UITextView`, it will give a height for a empty text
+    /// For the measurement, we can measure a space string to match the default behavior
+    func textSizeWithEmptyText(within maxSize: CGSize, font: UIFont) -> CGSize {
+        let spaceString = " "
+
+        let size: CGSize
+        switch self {
+        // For the attributed string, it used the `UITextView` default font
+        case .attributed(_):
+            let text = Text.attributed(NSAttributedString(
+                string: spaceString,
+                attributes: [NSFontAttributeName: TextViewDefaultFont.attributedTextFontWithEmptyString]))
+            size = text.textSize(within: maxSize, font: TextViewDefaultFont.attributedTextFontWithEmptyString)
+
+        // For the unattributed string, it used the custom font
+        case .unattributed(_):
+            let text = Text.unattributed(spaceString)
+            size = text.textSize(within: maxSize, font: font)
+        }
+
+        return CGSize(width: 0, height: size.height)
     }
 }
 
