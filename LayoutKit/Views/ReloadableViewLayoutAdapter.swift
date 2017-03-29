@@ -173,7 +173,7 @@ open class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerDel
 /// A section in a `ReloadableView`.
 public struct Section<C: Collection> {
 
-    typealias T = C.Iterator.Element
+    public typealias T = C.Iterator.Element
 
     public let header: T?
     public let items: C
