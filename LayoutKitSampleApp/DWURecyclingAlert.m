@@ -1,3 +1,7 @@
+// Copied from https://github.com/diwu/DWURecyclingAlert
+// This adds a debug view that shows how long rendering takes as well as
+// highlights views with a red boarder that are not being reused.
+
 //DWURecyclingAlert.m
 //Copyright (c) 2015 Di Wu
 //
@@ -140,13 +144,13 @@ static BOOL dwu_replaceMethodWithBlock(Class c, SEL origSEL, SEL newSEL, id bloc
     if (!number || ![number isKindOfClass:[NSNumber class]]) {
         return;
     }
-    
+
     if ([keyPath isEqualToString:@"dwuCellForRowTimeCountNumber"]) {
         self.cellForRowTimeInteger = [number integerValue];
     } else if ([keyPath isEqualToString:@"dwuDrawRectTimeCountNumber"]) {
         self.drawRectTimeInteger += [number integerValue];
     }
-    
+
     [self updateText];
 }
 
@@ -300,7 +304,7 @@ static void dwu_swizzleDrawRectIfNotYet(CALayer *layer) {
     } else if (!recyclingCount && self.superlayer && self.superlayer.dwuRecyclingCount) {
         viewTargetFound = YES;
     }
-    
+
     if (viewTargetFound || imageTargetFound) {
         [self dwu_addRedBorderEffect];
     } else {
@@ -446,7 +450,7 @@ static void dwu_generateTimeLabelForUICollectionViewCell() {
         NSString *cellForItemSelStr = NSStringFromSelector(cellForItemSel);
         SEL newCellForItemSel = NSSelectorFromString([NSString stringWithFormat:@"dwu_%@", cellForItemSelStr]);
         dwu_replaceMethodWithBlock([arg class], cellForItemSel, newCellForItemSel, dwu_generateTimeLabel(newCellForItemSel, DWU_LABEL_WIDTH_UICOLLECTIONVIEW_CELL, DWU_LABEL_FORMAT_UICOLLECTIONVIEW_CELL));
-        
+
         cellForItemSel = @selector(collectionView:viewForSupplementaryElementOfKind:atIndexPath:);
         if ([arg respondsToSelector:cellForItemSel]) {
             cellForItemSelStr = NSStringFromSelector(cellForItemSel);
