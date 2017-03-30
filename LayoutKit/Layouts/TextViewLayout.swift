@@ -108,8 +108,8 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
         insetMaxSize.width -= lineFragmentPadding * 2
 
         let size = self.isTextEmpty
-        ? text.textSizeWithEmptyText(within: insetMaxSize, font: font)
-        : text.textSize(within: insetMaxSize, font: font)
+            ? text.textSizeWithEmptyText(within: insetMaxSize, font: font)
+            : text.textSize(within: insetMaxSize, font: font)
 
         var textSize = size.increased(by: textContainerInset)
         textSize.width += lineFragmentPadding * 2
@@ -156,7 +156,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
 
 private extension Text {
 
-    /// By the default behavior of `UITextView`, it will give a height for a empty text
+    /// By the default behavior of `UITextView`, it will give a height for an empty text
     /// For the measurement, we can measure a space string to match the default behavior
     func textSizeWithEmptyText(within maxSize: CGSize, font: UIFont) -> CGSize {
         let spaceString = " "
@@ -167,8 +167,8 @@ private extension Text {
         case .attributed(_):
             let text = Text.attributed(NSAttributedString(
                 string: spaceString,
-                attributes: [NSFontAttributeName: TextViewDefaultFont.attributedTextFontWithEmptyString]))
-            size = text.textSize(within: maxSize, font: TextViewDefaultFont.attributedTextFontWithEmptyString)
+                attributes: [NSFontAttributeName: font]))
+            size = text.textSize(within: maxSize, font: font)
 
         // For the unattributed string, it used the custom font
         case .unattributed(_):

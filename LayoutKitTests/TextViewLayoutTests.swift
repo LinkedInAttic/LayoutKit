@@ -165,12 +165,14 @@ private extension UITextView {
 
         switch text {
         case .unattributed(let unattributedText):
-            self.text = unattributedText
             if font != nil {
                 self.font = font
             }
+            self.text = unattributedText
         case .attributed(let attributedText):
-            // If font is using default, applied default font to attributedString
+            if font != nil {
+                self.font = font
+            }
             self.attributedText = font != nil
                 ? attributedText.with(defaultFont: font)
                 : attributedText
