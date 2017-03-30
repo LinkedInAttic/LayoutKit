@@ -40,7 +40,7 @@
 #import <UIKit/UICollectionViewCell.h>
 #import <UIKit/UICollectionView.h>
 #import <UIKit/UITableViewHeaderFooterView.h>
-#import "DWURecyclingAlert.h"
+#import "UIView+TimeLabel.h"
 
 // ------------ UI Configuration ------------
 static const CGFloat DWU_BORDER_WIDTH = 5.0;
