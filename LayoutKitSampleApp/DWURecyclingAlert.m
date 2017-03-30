@@ -40,6 +40,7 @@
 #import <UIKit/UICollectionViewCell.h>
 #import <UIKit/UICollectionView.h>
 #import <UIKit/UITableViewHeaderFooterView.h>
+#import "DWURecyclingAlert.h"
 
 // ------------ UI Configuration ------------
 static const CGFloat DWU_BORDER_WIDTH = 5.0;
@@ -379,33 +380,38 @@ static CellForRowAtIndexPathBlock dwu_generateTimeLabel(SEL targetSelector, CGFl
     };
 }
 
-static CollectionHeaderFooterBlock dwu_generateCollectionViewHeaderFooterTimeLabel(SEL targetSelector, CGFloat labelWidth, NSString *timeStringFormat) {
-    return ^(__unsafe_unretained id _self, __unsafe_unretained id arg1, __unsafe_unretained id arg2,  __unsafe_unretained id arg3) {
-        NSDate *date = [NSDate date];
-        UIView *returnView = ((UIView * ( *)(id, SEL, id, id, id))objc_msgSend)(_self, targetSelector, arg1, arg2, arg3);
-        NSTimeInterval timeInterval = ceilf(-[date timeIntervalSinceNow] * 1000);
-        [[returnView layer] dwu_scanLayerHierarchyRecursively];
-        DWUKVOLabel *timeIntervalLabel = (DWUKVOLabel *)[returnView viewWithTag:DWU_TIME_INTERVAL_LABEL_TAG];
-        if (!timeIntervalLabel) {
-            timeIntervalLabel = [[DWUKVOLabel alloc] initWithKVOTarget:returnView frame:CGRectMake(0, 0, labelWidth, DWU_LABEL_HEIGHT)];
-            timeIntervalLabel.userInteractionEnabled = NO;
-            timeIntervalLabel.backgroundColor = DWU_TEXT_LABEL_BACKGROUND_COLOR;
-            timeIntervalLabel.textColor = DWU_TEXT_LABEL_FONT_COLOR;
-            timeIntervalLabel.font = [UIFont boldSystemFontOfSize:DWU_LABEL_FONT_SIZE];
-            timeIntervalLabel.textAlignment = NSTextAlignmentCenter;
-            timeIntervalLabel.adjustsFontSizeToFitWidth = YES;
-            timeIntervalLabel.tag = DWU_TIME_INTERVAL_LABEL_TAG;
-            timeIntervalLabel.layer.dwuRecyclingCount++;
-            [returnView addSubview:timeIntervalLabel];
-        }
-        timeIntervalLabel.format = timeStringFormat;
-        timeIntervalLabel.cellForRowTimeInteger = 0;
-        timeIntervalLabel.drawRectTimeInteger = 0;
-        [returnView bringSubviewToFront:timeIntervalLabel];
-        returnView.dwuCellForRowTimeCountNumber = @(timeInterval);
-        return returnView;
-    };
-}
+/**
+ The code below has been commented out becuase the UICollectionView swizzling has unexpected crash issue
+ https://github.com/linkedin/LayoutKit/issues/103
+ Please use `applyTimeLabelForUICollectionView` instead
+ */
+//static CollectionHeaderFooterBlock dwu_generateCollectionViewHeaderFooterTimeLabel(SEL targetSelector, CGFloat labelWidth, NSString *timeStringFormat) {
+//    return ^(__unsafe_unretained id _self, __unsafe_unretained id arg1, __unsafe_unretained id arg2,  __unsafe_unretained id arg3) {
+//        NSDate *date = [NSDate date];
+//        UIView *returnView = ((UIView * ( *)(id, SEL, id, id, id))objc_msgSend)(_self, targetSelector, arg1, arg2, arg3);
+//        NSTimeInterval timeInterval = ceilf(-[date timeIntervalSinceNow] * 1000);
+//        [[returnView layer] dwu_scanLayerHierarchyRecursively];
+//        DWUKVOLabel *timeIntervalLabel = (DWUKVOLabel *)[returnView viewWithTag:DWU_TIME_INTERVAL_LABEL_TAG];
+//        if (!timeIntervalLabel) {
+//            timeIntervalLabel = [[DWUKVOLabel alloc] initWithKVOTarget:returnView frame:CGRectMake(0, 0, labelWidth, DWU_LABEL_HEIGHT)];
+//            timeIntervalLabel.userInteractionEnabled = NO;
+//            timeIntervalLabel.backgroundColor = DWU_TEXT_LABEL_BACKGROUND_COLOR;
+//            timeIntervalLabel.textColor = DWU_TEXT_LABEL_FONT_COLOR;
+//            timeIntervalLabel.font = [UIFont boldSystemFontOfSize:DWU_LABEL_FONT_SIZE];
+//            timeIntervalLabel.textAlignment = NSTextAlignmentCenter;
+//            timeIntervalLabel.adjustsFontSizeToFitWidth = YES;
+//            timeIntervalLabel.tag = DWU_TIME_INTERVAL_LABEL_TAG;
+//            timeIntervalLabel.layer.dwuRecyclingCount++;
+//            [returnView addSubview:timeIntervalLabel];
+//        }
+//        timeIntervalLabel.format = timeStringFormat;
+//        timeIntervalLabel.cellForRowTimeInteger = 0;
+//        timeIntervalLabel.drawRectTimeInteger = 0;
+//        [returnView bringSubviewToFront:timeIntervalLabel];
+//        returnView.dwuCellForRowTimeCountNumber = @(timeInterval);
+//        return returnView;
+//    };
+//}
 
 static void dwu_generateTimeLabelForUITableViewHeaderFooterView() {
     SEL selector = @selector(setDelegate:);
@@ -441,32 +447,77 @@ static void dwu_generateTimeLabelForUITableViewCell() {
     });
 }
 
-static void dwu_generateTimeLabelForUICollectionViewCell() {
-    SEL selector = @selector(setDataSource:);
-    NSString *selStr = NSStringFromSelector(selector);
-    SEL newSelector = NSSelectorFromString([NSString stringWithFormat:@"dwu_uicollectionview_%@", selStr]);
-    dwu_replaceMethodWithBlock(UICollectionView.class, selector, newSelector, ^(__unsafe_unretained UICollectionView *_self, __unsafe_unretained id arg) {
-        SEL cellForItemSel = @selector(collectionView:cellForItemAtIndexPath:);
-        NSString *cellForItemSelStr = NSStringFromSelector(cellForItemSel);
-        SEL newCellForItemSel = NSSelectorFromString([NSString stringWithFormat:@"dwu_%@", cellForItemSelStr]);
-        dwu_replaceMethodWithBlock([arg class], cellForItemSel, newCellForItemSel, dwu_generateTimeLabel(newCellForItemSel, DWU_LABEL_WIDTH_UICOLLECTIONVIEW_CELL, DWU_LABEL_FORMAT_UICOLLECTIONVIEW_CELL));
-
-        cellForItemSel = @selector(collectionView:viewForSupplementaryElementOfKind:atIndexPath:);
-        if ([arg respondsToSelector:cellForItemSel]) {
-            cellForItemSelStr = NSStringFromSelector(cellForItemSel);
-            newCellForItemSel = NSSelectorFromString([NSString stringWithFormat:@"dwu_%@", cellForItemSelStr]);
-            dwu_replaceMethodWithBlock([arg class], cellForItemSel, newCellForItemSel, dwu_generateCollectionViewHeaderFooterTimeLabel(newCellForItemSel, DWU_LABEL_WIDTH_UICOLLECTIONVIEW_CELL, DWU_LABEL_FORMAT_UICOLLECTIONVIEW_CELL));
-        }
-
-        ((void ( *)(id, SEL, id))objc_msgSend)(_self, newSelector, arg);
-    });
-}
+/**
+ The code below has been commented out becuase the UICollectionView swizzling has unexpected crash issue
+ https://github.com/linkedin/LayoutKit/issues/103
+ Please use `applyTimeLabelForUICollectionView` instead
+ */
+//static void dwu_generateTimeLabelForUICollectionViewCell() {
+//    SEL selector = @selector(setDataSource:);
+//    NSString *selStr = NSStringFromSelector(selector);
+//    SEL newSelector = NSSelectorFromString([NSString stringWithFormat:@"dwu_uicollectionview_%@", selStr]);
+//    dwu_replaceMethodWithBlock(UICollectionView.class, selector, newSelector, ^(__unsafe_unretained UICollectionView *_self, __unsafe_unretained id arg) {
+//        SEL cellForItemSel = @selector(collectionView:cellForItemAtIndexPath:);
+//        NSString *cellForItemSelStr = NSStringFromSelector(cellForItemSel);
+//        SEL newCellForItemSel = NSSelectorFromString([NSString stringWithFormat:@"dwu_%@", cellForItemSelStr]);
+//        dwu_replaceMethodWithBlock([arg class], cellForItemSel, newCellForItemSel, dwu_generateTimeLabel(newCellForItemSel, DWU_LABEL_WIDTH_UICOLLECTIONVIEW_CELL, DWU_LABEL_FORMAT_UICOLLECTIONVIEW_CELL));
+//
+//        cellForItemSel = @selector(collectionView:viewForSupplementaryElementOfKind:atIndexPath:);
+//        if ([arg respondsToSelector:cellForItemSel]) {
+//            cellForItemSelStr = NSStringFromSelector(cellForItemSel);
+//            newCellForItemSel = NSSelectorFromString([NSString stringWithFormat:@"dwu_%@", cellForItemSelStr]);
+//            dwu_replaceMethodWithBlock([arg class], cellForItemSel, newCellForItemSel, dwu_generateCollectionViewHeaderFooterTimeLabel(newCellForItemSel, DWU_LABEL_WIDTH_UICOLLECTIONVIEW_CELL, DWU_LABEL_FORMAT_UICOLLECTIONVIEW_CELL));
+//        }
+//
+//        ((void ( *)(id, SEL, id))objc_msgSend)(_self, newSelector, arg);
+//    });
+//}
 
 __attribute__((constructor)) static void DWURecyclingAlert(void) {
     @autoreleasepool {
         dwu_generateTimeLabelForUITableViewCell();
         dwu_generateTimeLabelForUITableViewHeaderFooterView();
-        dwu_generateTimeLabelForUICollectionViewCell();
+        /**
+         The code below has been commented out becuase the UICollectionView swizzling has unexpected crash issue
+         https://github.com/linkedin/LayoutKit/issues/103
+         Please use `applyTimeLabelForUICollectionView` instead
+         */
+        //dwu_generateTimeLabelForUICollectionViewCell();
     }
 }
 #endif
+
+/**
+ The category below is to add time label manually into UICollectionView
+ */
+@implementation UIView(TimeLabel)
+
+- (void)applyTimeLabelForUICollectionView {
+    [self applyTimeLabelWithLabelWidth:DWU_LABEL_WIDTH_UICOLLECTIONVIEW_CELL timeStringFormat:DWU_LABEL_FORMAT_UICOLLECTIONVIEW_CELL];
+}
+
+- (void)applyTimeLabelWithLabelWidth:(CGFloat)labelWidth timeStringFormat:(NSString *)timeStringFormat {
+    NSDate *date = [NSDate date];
+    NSTimeInterval timeInterval = ceilf(-[date timeIntervalSinceNow] * 1000);
+    [[self layer] dwu_scanLayerHierarchyRecursively];
+    DWUKVOLabel *timeIntervalLabel = (DWUKVOLabel *)[self viewWithTag:DWU_TIME_INTERVAL_LABEL_TAG];
+    if (!timeIntervalLabel) {
+        timeIntervalLabel = [[DWUKVOLabel alloc] initWithKVOTarget:self frame:CGRectMake(0, 0, labelWidth, DWU_LABEL_HEIGHT)];
+        timeIntervalLabel.userInteractionEnabled = NO;
+        timeIntervalLabel.backgroundColor = DWU_TEXT_LABEL_BACKGROUND_COLOR;
+        timeIntervalLabel.textColor = DWU_TEXT_LABEL_FONT_COLOR;
+        timeIntervalLabel.font = [UIFont boldSystemFontOfSize:DWU_LABEL_FONT_SIZE];
+        timeIntervalLabel.textAlignment = NSTextAlignmentCenter;
+        timeIntervalLabel.adjustsFontSizeToFitWidth = YES;
+        timeIntervalLabel.tag = DWU_TIME_INTERVAL_LABEL_TAG;
+        timeIntervalLabel.layer.dwuRecyclingCount++;
+        [self addSubview:timeIntervalLabel];
+    }
+    timeIntervalLabel.format = timeStringFormat;
+    timeIntervalLabel.cellForRowTimeInteger = 0;
+    timeIntervalLabel.drawRectTimeInteger = 0;
+    [self bringSubviewToFront:timeIntervalLabel];
+    self.dwuCellForRowTimeCountNumber = @(timeInterval);
+}
+
+@end

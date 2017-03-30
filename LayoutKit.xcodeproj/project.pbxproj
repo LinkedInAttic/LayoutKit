@@ -202,6 +202,7 @@
 		0BD5F82C1DB43F9B00108688 /* ButtonLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD5F82B1DB43F9B00108688 /* ButtonLayoutTests.swift */; };
 		0BDDF95B1E25ACCE008B0A6F /* ReloadableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */; };
 		0BDDF95C1E25ACCE008B0A6F /* ReloadableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */; };
+		444866A91E8CDD140099DBB1 /* DWURecyclingAlert.h in Sources */ = {isa = PBXBuildFile; fileRef = 444866A81E8CDD140099DBB1 /* DWURecyclingAlert.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -375,6 +376,8 @@
 		0BD5F8281DB43B4500108688 /* ButtonLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonLayout.swift; sourceTree = "<group>"; };
 		0BD5F82B1DB43F9B00108688 /* ButtonLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonLayoutTests.swift; sourceTree = "<group>"; };
 		0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewTests.swift; sourceTree = "<group>"; };
+		444866A81E8CDD140099DBB1 /* DWURecyclingAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWURecyclingAlert.h; sourceTree = "<group>"; };
+		444866AA1E8CDEF90099DBB1 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -465,6 +468,8 @@
 				0B2D09DB1D87365F007E487C /* StackViewController.swift */,
 				0B2D09DC1D87365F007E487C /* UrlImageLayout.swift */,
 				0B6B04361DC8402E00F23EEA /* DWURecyclingAlert.m */,
+				444866A81E8CDD140099DBB1 /* DWURecyclingAlert.h */,
+				444866AA1E8CDEF90099DBB1 /* BridgingHeader.h */,
 			);
 			path = LayoutKitSampleApp;
 			sourceTree = "<group>";
@@ -977,6 +982,7 @@
 				0B2D09E01D87365F007E487C /* AppDelegate.swift in Sources */,
 				0B2D09E21D87365F007E487C /* BackgroundMiniProfileViewController.swift in Sources */,
 				0B2D09E91D87365F007E487C /* FeedItemAutoLayoutView.swift in Sources */,
+				444866A91E8CDD140099DBB1 /* DWURecyclingAlert.h in Sources */,
 				0B2D09F61D87365F007E487C /* MenuViewController.swift in Sources */,
 				0B2D09F91D87365F007E487C /* UrlImageLayout.swift in Sources */,
 				0B2D09E71D87365F007E487C /* CollectionViewController.swift in Sources */,
@@ -1280,6 +1286,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = LayoutKitSampleApp/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1328,6 +1335,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.linkedin.LayoutKitSampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = LayoutKitSampleApp/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
