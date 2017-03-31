@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode8.2
+osx_image: xcode8.3
 script: sh build.sh /tmp/LayoutKit
 after_success:
   - bash <(curl -s https://codecov.io/bash) -D /tmp/LayoutKit
