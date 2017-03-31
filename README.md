@@ -2,6 +2,7 @@
 
 [![CocoaPods](https://img.shields.io/cocoapods/p/LayoutKit.svg?maxAge=3601)](#)
 [![GitHub release](https://img.shields.io/github/release/linkedin/layoutkit.svg?maxAge=3600)](https://github.com/linkedin/LayoutKit/releases)
+[![Version](https://img.shields.io/cocoapods/v/LayoutKit.svg)](http://cocoapods.org/pods/LayoutKit)
 [![Build Status](https://travis-ci.org/linkedin/LayoutKit.svg?branch=master)](https://travis-ci.org/linkedin/LayoutKit)
 [![codecov](https://codecov.io/gh/linkedin/LayoutKit/branch/master/graph/badge.svg)](https://codecov.io/gh/linkedin/LayoutKit)
 [![CocoaPods](https://img.shields.io/cocoapods/metrics/doc-percent/LayoutKit.svg?maxAge=3600)](http://cocoadocs.org/docsets/LayoutKit)
