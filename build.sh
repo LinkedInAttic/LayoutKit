@@ -7,8 +7,10 @@ echo "Derived data location: $DERIVED_DATA";
     #-destination 'platform=iOS Simulator,name=iPhone 6,OS=8.4' \
     #-destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=8.4' \
 
+
 set -o pipefail &&
 rm -rf $DERIVED_DATA &&
+# Run test on MacOS
 time xcodebuild clean test \
     -project LayoutKit.xcodeproj \
     -scheme LayoutKit-macOS \
@@ -19,6 +21,7 @@ time xcodebuild clean test \
     | xcpretty &&
 cat build.log | sh debug-time-function-bodies.sh &&
 rm -rf $DERIVED_DATA &&
+# Run test on tvOS
 time xcodebuild clean test \
     -project LayoutKit.xcodeproj \
     -scheme LayoutKit-tvOS \
@@ -31,20 +34,22 @@ time xcodebuild clean test \
     | xcpretty &&
 cat build.log | sh debug-time-function-bodies.sh &&
 rm -rf $DERIVED_DATA &&
-time xcodebuild clean test \
+# Build sample app
+time xcodebuild clean build \
     -project LayoutKit.xcodeproj \
-    -scheme LayoutKit-iOS \
+    -scheme LayoutKitSampleApp \
     -sdk iphonesimulator10.2 \
     -derivedDataPath $DERIVED_DATA \
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' \
     -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=9.3' \
-    -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2' \
-    -destination 'platform=iOS Simulator,name=iPhone 7 Plus,OS=10.2' \
+    -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3' \
+    -destination 'platform=iOS Simulator,name=iPhone 7 Plus,OS=10.3' \
     OTHER_SWIFT_FLAGS='-Xfrontend -debug-time-function-bodies' \
     | tee build.log \
     | xcpretty &&
-cat build.log | sh debug-time-function-bodies.sh
+cat build.log | sh debug-time-function-bodies.sh &&
 rm -rf $DERIVED_DATA &&
+# Run test on iOS
 time xcodebuild clean test \
     -project LayoutKit.xcodeproj \
     -scheme LayoutKit-iOS \
