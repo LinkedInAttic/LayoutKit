@@ -41,13 +41,13 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
                 layoutAlignment: Alignment = defaultAlignment,
                 flexibility: Flexibility = defaultFlexibility,
                 viewReuseId: String? = nil,
-                configure: ((TextView) -> Void)? = nil) {
+                config: ((TextView) -> Void)? = nil) {
         self.text = text
         self.font = font ?? TextViewLayout.defaultFont(withText: text)
         self.lineFragmentPadding = lineFragmentPadding
         self.textContainerInset = textContainerInset
 
-        super.init(alignment: layoutAlignment, flexibility: flexibility, viewReuseId: viewReuseId, config: configure)
+        super.init(alignment: layoutAlignment, flexibility: flexibility, viewReuseId: viewReuseId, config: config)
     }
 
     // MARK: - Convenience initializers
@@ -59,7 +59,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
                             layoutAlignment: Alignment = defaultAlignment,
                             flexibility: Flexibility = defaultFlexibility,
                             viewReuseId: String? = nil,
-                            configure: ((TextView) -> Void)? = nil) {
+                            config: ((TextView) -> Void)? = nil) {
         self.init(text: .unattributed(text),
                   font: font,
                   lineFragmentPadding: lineFragmentPadding,
@@ -67,7 +67,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
                   layoutAlignment: layoutAlignment,
                   flexibility: flexibility,
                   viewReuseId: viewReuseId,
-                  configure: configure)
+                  config: config)
     }
 
     public convenience init(attributedText: NSAttributedString,
@@ -77,7 +77,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
                             layoutAlignment: Alignment = defaultAlignment,
                             flexibility: Flexibility = defaultFlexibility,
                             viewReuseId: String? = nil,
-                            configure: ((TextView) -> Void)? = nil) {
+                            config: ((TextView) -> Void)? = nil) {
         self.init(text: .attributed(attributedText),
                   font: font,
                   lineFragmentPadding: lineFragmentPadding,
@@ -85,7 +85,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
                   layoutAlignment: layoutAlignment,
                   flexibility: flexibility,
                   viewReuseId: viewReuseId,
-                  configure: configure)
+                  config: config)
     }
 
     // MARK: - Layout protocol
@@ -136,11 +136,11 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
         textView.layoutManager.usesFontLeading = false
         textView.isScrollEnabled = false
         // tvOS doesn't support `isEditable`
-        #if os(iOS)
+        #if !os(tvOS)
             textView.isEditable = false
         #endif
         textView.isSelectable = false
-        textView.font = font
+
         switch text {
         case .unattributed(let text):
             textView.text = text
@@ -163,14 +163,12 @@ private extension Text {
 
         let size: CGSize
         switch self {
-        // For the attributed string, it used the `UITextView` default font
         case .attributed(_):
             let text = Text.attributed(NSAttributedString(
                 string: spaceString,
                 attributes: [NSFontAttributeName: font]))
             size = text.textSize(within: maxSize, font: font)
 
-        // For the unattributed string, it used the custom font
         case .unattributed(_):
             let text = Text.unattributed(spaceString)
             size = text.textSize(within: maxSize, font: font)

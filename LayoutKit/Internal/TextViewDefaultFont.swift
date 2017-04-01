@@ -33,7 +33,11 @@ enum TextViewDefaultFont {
     }()
 
     private static func helveticaFont(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: "Helvetica", size: size) ?? UIFont.systemFont(ofSize: size)
+        guard let font = UIFont(name: "Helvetica", size: size) else {
+            assertionFailure("`Helvetica` font couldn't be found")
+            return UIFont.systemFont(ofSize: size)
+        }
+        return font
     }
 
 }

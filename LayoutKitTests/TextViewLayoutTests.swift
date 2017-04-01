@@ -28,10 +28,10 @@ class TextViewLayoutTests: XCTestCase {
                 return TextViewLayout(text: textTestCase.text, font: font)
             }) ?? TextViewLayout(text: textTestCase.text)
 
-            let layoutViewArrangement = layout.arrangement()
+            let layoutArrangement = layout.arrangement()
 
             XCTAssertEqual(
-                layoutViewArrangement.frame.size,
+                layoutArrangement.frame.size,
                 textView.intrinsicContentSize,
                 "fontName:\(textTestCase.font?.fontName) text:\(textTestCase.text) fontSize:\(textTestCase.font?.pointSize)")
         }
@@ -44,9 +44,9 @@ class TextViewLayoutTests: XCTestCase {
         let textView = UITextView(text: text, font: UIFont.systemFont(ofSize: 12))
 
         let layout = TextViewLayout(text: text, font: UIFont.systemFont(ofSize: 12))
-        let layoutView = layout.arrangement()
+        let layoutArrangement = layout.arrangement()
 
-        XCTAssertEqual(layoutView.frame.size, textView.intrinsicContentSize)
+        XCTAssertEqual(layoutArrangement.frame.size, textView.intrinsicContentSize)
     }
 
     func testMutipleLinesWithAttributedString() {
@@ -58,9 +58,9 @@ class TextViewLayoutTests: XCTestCase {
         let textView = UITextView(text: attributedText)
 
         let layout = TextViewLayout(text: attributedText)
-        let layoutView = layout.arrangement()
+        let layoutArrangement = layout.arrangement()
 
-        XCTAssertEqual(layoutView.frame.size, textView.intrinsicContentSize)
+        XCTAssertEqual(layoutArrangement.frame.size, textView.intrinsicContentSize)
     }
 
     func testMutipleLinesWithMutipleAttributedStrings() {
@@ -77,9 +77,9 @@ class TextViewLayoutTests: XCTestCase {
         let textView = UITextView(text: attributedText)
 
         let layout = TextViewLayout(text: attributedText)
-        let layoutView = layout.arrangement()
+        let layoutArrangement = layout.arrangement()
 
-        XCTAssertEqual(layoutView.frame.size, textView.intrinsicContentSize)
+        XCTAssertEqual(layoutArrangement.frame.size, textView.intrinsicContentSize)
     }
 
     func testLineFragmentPadding() {
@@ -96,9 +96,9 @@ class TextViewLayoutTests: XCTestCase {
             text: text,
             font: UIFont.systemFont(ofSize: 12),
             lineFragmentPadding: lineFragmentPadding)
-        let layoutView = layout.arrangement()
+        let layoutArrangement = layout.arrangement()
 
-        XCTAssertEqual(layoutView.frame.size, textView.intrinsicContentSize)
+        XCTAssertEqual(layoutArrangement.frame.size, textView.intrinsicContentSize)
     }
 
     func testTextContainerInset() {
@@ -115,9 +115,9 @@ class TextViewLayoutTests: XCTestCase {
             text: text,
             font: UIFont.systemFont(ofSize: 12),
             textContainerInset: textContainerInset)
-        let layoutView = layout.arrangement()
+        let layoutArrangement = layout.arrangement()
 
-        XCTAssertEqual(layoutView.frame.size, textView.intrinsicContentSize)
+        XCTAssertEqual(layoutArrangement.frame.size, textView.intrinsicContentSize)
     }
 
     func testTextContainerInsetWithWordWrap() {
@@ -134,10 +134,10 @@ class TextViewLayoutTests: XCTestCase {
             text: text,
             font: UIFont.systemFont(ofSize: 12),
             textContainerInset: textContainerInset)
-        let layoutView = layout.arrangement()
+        let layoutArrangement = layout.arrangement()
 
-        XCTAssertTrue(abs(layoutView.frame.size.width - textView.intrinsicContentSize.width) < delta)
-        XCTAssertTrue(abs(layoutView.frame.size.height - textView.intrinsicContentSize.height) < delta)
+        XCTAssertTrue(abs(layoutArrangement.frame.size.width - textView.intrinsicContentSize.width) < delta)
+        XCTAssertTrue(abs(layoutArrangement.frame.size.height - textView.intrinsicContentSize.height) < delta)
     }
 
     func testInSpecificViewSize() {
@@ -145,10 +145,10 @@ class TextViewLayoutTests: XCTestCase {
         let text = Text.unattributed(textString)
 
         let layout = TextViewLayout(text: text)
-        let layoutView = layout.arrangement(origin: CGPoint.zero, width: 20, height: 20)
+        let layoutArrangement = layout.arrangement(origin: CGPoint.zero, width: 20, height: 20)
 
-        XCTAssertTrue(layoutView.frame.size.width <= 20, "Width should be less than the max width")
-        XCTAssertTrue(layoutView.frame.size.height <= 20, "Width should be less than the max height")
+        XCTAssertTrue(layoutArrangement.frame.size.width <= 20, "Width should be less than the max width")
+        XCTAssertTrue(layoutArrangement.frame.size.height <= 20, "Width should be less than the max height")
     }
 
 }
