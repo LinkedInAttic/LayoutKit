@@ -38,7 +38,7 @@ rm -rf $DERIVED_DATA &&
 time xcodebuild clean build \
     -project LayoutKit.xcodeproj \
     -scheme LayoutKitSampleApp \
-    -sdk iphonesimulator10.2 \
+    -sdk iphonesimulator10.3 \
     -derivedDataPath $DERIVED_DATA \
     -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' \
     -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=9.3' \
