@@ -16,7 +16,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     // MARK: - instance variables
 
     open let text: Text
-    open let font: UIFont
+    open let font: UIFont?
     open let textContainerInset: UIEdgeInsets
     open let lineFragmentPadding: CGFloat
 
@@ -43,7 +43,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
                 viewReuseId: String? = nil,
                 config: ((TextView) -> Void)? = nil) {
         self.text = text
-        self.font = font ?? TextViewLayout.defaultFont(withText: text)
+        self.font = font
         self.lineFragmentPadding = lineFragmentPadding
         self.textContainerInset = textContainerInset
 
@@ -108,8 +108,8 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
         insetMaxSize.width -= lineFragmentPadding * 2
 
         let size = self.isTextEmpty
-            ? text.textSizeWithEmptyText(within: insetMaxSize, font: font)
-            : text.textSize(within: insetMaxSize, font: font)
+            ? text.textSizeWithEmptyText(within: insetMaxSize, font: font ?? TextViewLayout.defaultFont(withText: text))
+            : text.textSize(within: insetMaxSize, font: font ?? TextViewLayout.defaultFont(withText: text))
 
         var textSize = size.increased(by: textContainerInset)
         textSize.width += lineFragmentPadding * 2
