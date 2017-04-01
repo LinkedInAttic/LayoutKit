@@ -170,12 +170,12 @@ private extension UITextView {
             }
             self.text = unattributedText
         case .attributed(let attributedText):
-            if font != nil {
+            if let font = font {
                 self.font = font
+                self.attributedText = attributedText.with(defaultFont: font)
+            } else {
+                self.attributedText = attributedText
             }
-            self.attributedText = font != nil
-                ? attributedText.with(defaultFont: font)
-                : attributedText
         }
 
         self.textContainer.lineFragmentPadding = lineFragmentPadding

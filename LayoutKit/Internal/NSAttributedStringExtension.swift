@@ -11,12 +11,8 @@ import UIKit
 extension NSAttributedString {
 
     /// Returns a new NSAttributedString with a default font and the same attributes.
-    func with(defaultFont: UIFont?) -> NSAttributedString {
-        guard let font = defaultFont else {
-            return self
-        }
-
-        let fontAttribute = [NSFontAttributeName: font]
+    func with(defaultFont: UIFont) -> NSAttributedString {
+        let fontAttribute = [NSFontAttributeName: defaultFont]
         let attributedTextWithFont = NSMutableAttributedString(string: string, attributes: fontAttribute)
         let fullRange = NSMakeRange(0, (string as NSString).length)
         attributedTextWithFont.beginEditing()
