@@ -140,6 +140,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
             textView.isEditable = false
         #endif
         textView.isSelectable = false
+        textView.font = font
 
         switch text {
         case .unattributed(let text):
