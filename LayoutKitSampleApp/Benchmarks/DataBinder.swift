@@ -6,9 +6,37 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-import Foundation
+import UIKit
 
 protocol DataBinder {
-    associatedtype DataType
-    func setData(_ data: DataType)
+    func setData(_ data: FeedItemData)
+}
+
+enum DataBinderHelper {
+    static func setData(_ data: FeedItemData, forView view: UIView) {
+
+        if let feedItemAutoLayoutView = view as? FeedItemAutoLayoutView {
+            feedItemAutoLayoutView.setData(data)
+            return
+        }
+
+        if let feedItemManualView = view as? FeedItemManualView {
+            feedItemManualView.setData(data)
+            return
+        }
+
+        if let feedItemLayoutKitView = view as? FeedItemLayoutKitView {
+            feedItemLayoutKitView.setData(data)
+            return
+        }
+
+        if #available(iOS 9.0, *) {
+            if let feedItemUIStackView = view as? FeedItemUIStackView {
+                feedItemUIStackView.setData(data)
+                return
+            }
+        }
+
+        assertionFailure("Unknown type of the view")
+    }
 }
