@@ -10,6 +10,7 @@ echo "Derived data location: $DERIVED_DATA";
 
 set -o pipefail &&
 rm -rf $DERIVED_DATA &&
+
 # Run test on MacOS
 time xcodebuild clean test \
     -project LayoutKit.xcodeproj \
@@ -21,6 +22,7 @@ time xcodebuild clean test \
     | xcpretty &&
 cat build.log | sh debug-time-function-bodies.sh &&
 rm -rf $DERIVED_DATA &&
+
 # Run test on tvOS
 time xcodebuild clean test \
     -project LayoutKit.xcodeproj \
@@ -34,6 +36,7 @@ time xcodebuild clean test \
     | xcpretty &&
 cat build.log | sh debug-time-function-bodies.sh &&
 rm -rf $DERIVED_DATA &&
+
 # Build sample app
 time xcodebuild clean build \
     -project LayoutKit.xcodeproj \
@@ -49,6 +52,7 @@ time xcodebuild clean build \
     | xcpretty &&
 cat build.log | sh debug-time-function-bodies.sh &&
 rm -rf $DERIVED_DATA &&
+
 # Run test on iOS
 time xcodebuild clean test \
     -project LayoutKit.xcodeproj \
