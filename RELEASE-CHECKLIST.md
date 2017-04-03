@@ -45,3 +45,14 @@ How to release a new version of LayoutKit.
     `$ pod trunk push`
 
 - 👍
+
+# Required release tools
+
+- cocoapods (try beta if cocoapods have any issues) 
+
+    `$ sudo gem install cocoapods`
+
+- mkdocs
+
+    `$ brew install mkdocs`
+
