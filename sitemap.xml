@@ -3,8 +3,8 @@
 
     
     <url>
-     <loc>None/</loc>
-     <lastmod>2017-01-12</lastmod>
+     <loc>/</loc>
+     <lastmod>2017-04-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,32 +12,32 @@
     
         
     <url>
-     <loc>None/building-ui/</loc>
-     <lastmod>2017-01-12</lastmod>
+     <loc>/building-ui/</loc>
+     <lastmod>2017-04-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/custom-layouts/</loc>
-     <lastmod>2017-01-12</lastmod>
+     <loc>/custom-layouts/</loc>
+     <lastmod>2017-04-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/uikit/</loc>
-     <lastmod>2017-01-12</lastmod>
+     <loc>/uikit/</loc>
+     <lastmod>2017-04-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/animations/</loc>
-     <lastmod>2017-01-12</lastmod>
+     <loc>/animations/</loc>
+     <lastmod>2017-04-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/code-documentation/</loc>
-     <lastmod>2017-01-12</lastmod>
+     <loc>/code-documentation/</loc>
+     <lastmod>2017-04-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -46,8 +46,8 @@
     
         
     <url>
-     <loc>None/benchmarks/</loc>
-     <lastmod>2017-01-12</lastmod>
+     <loc>/benchmarks/</loc>
+     <lastmod>2017-04-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
