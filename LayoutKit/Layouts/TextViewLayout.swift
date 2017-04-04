@@ -20,14 +20,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     open let textContainerInset: UIEdgeInsets
     open let lineFragmentPadding: CGFloat
 
-    private lazy var isTextEmpty: Bool = {
-        switch self.text {
-        case .attributed(let attributedText):
-            return attributedText.length == 0
-        case .unattributed(let text):
-            return text.isEmpty
-        }
-    }()
+    private let isTextEmpty: Bool
 
     // MARK: - initializers
 
@@ -46,6 +39,13 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
         self.font = font
         self.lineFragmentPadding = lineFragmentPadding
         self.textContainerInset = textContainerInset
+
+        switch text {
+        case .attributed(let attributedText):
+            self.isTextEmpty = attributedText.length == 0
+        case .unattributed(let text):
+            self.isTextEmpty = text.isEmpty
+        }
 
         super.init(alignment: layoutAlignment, flexibility: flexibility, viewReuseId: viewReuseId, config: config)
     }
@@ -130,7 +130,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     // MARK: - overriden methods
 
     open override func configure(view textView: TextView) {
-        config?(textView)
+        super.configure(view: textView)
         textView.textContainerInset = textContainerInset
         textView.textContainer.lineFragmentPadding = lineFragmentPadding
         textView.layoutManager.usesFontLeading = false

@@ -172,7 +172,7 @@ private extension UITextView {
         case .attributed(let attributedText):
             if let font = font {
                 self.font = font
-                self.attributedText = attributedText.with(defaultFont: font)
+                self.attributedText = attributedText.with(font: font)
             } else {
                 self.attributedText = attributedText
             }

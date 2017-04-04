@@ -32,7 +32,7 @@ public enum Text {
             // so we need to ensure that our attributed string has a default font.
             // We do this by creating a new attributed string with the default font and then
             // applying all of the attributes from the provided attributed string.
-            let fontAppliedAttributeString = attributedText.with(defaultFont: font)
+            let fontAppliedAttributeString = attributedText.with(font: font)
 
             size = fontAppliedAttributeString.boundingRect(with: maxSize, options: options, context: nil).size
         case .unattributed(let text):
@@ -41,7 +41,7 @@ public enum Text {
             }
             size = text.boundingRect(with: maxSize, options: options, attributes: [NSFontAttributeName: font], context: nil).size
         }
-        // boundingRectWithSize returns size to a precision of hundredths of a point,
+        // boundingRect(with:options:attributes:) returns size to a precision of hundredths of a point,
         // but UILabel only returns sizes with a point precision of 1/screenDensity.
         return CGSize(width: size.width.roundedUpToFractionalPoint, height: size.height.roundedUpToFractionalPoint)
     }
