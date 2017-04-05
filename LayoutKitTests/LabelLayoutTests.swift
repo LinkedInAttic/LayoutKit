@@ -34,7 +34,10 @@ class LabelLayoutTests: XCTestCase {
                 return LabelLayout(text: textTestCase.text, font: font)
             }) ?? LabelLayout(text: textTestCase.text)
 
-            XCTAssertEqual(layout.arrangement().frame.size, label.intrinsicContentSize, "fontName:\(textTestCase.font?.fontName) text:\(textTestCase.text) fontSize:\(textTestCase.font?.pointSize)")
+            XCTAssertEqual(
+                layout.arrangement().frame.size,
+                label.intrinsicContentSize,
+                "fontName:\(String(describing: textTestCase.font?.fontName)) text:\(textTestCase.text) fontSize:\(String(describing: textTestCase.font?.pointSize))")
         }
     }
 
