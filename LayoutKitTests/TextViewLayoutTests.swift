@@ -11,7 +11,7 @@ import XCTest
 
 class TextViewLayoutTests: XCTestCase {
 
-    private let delta: CGFloat = 0.0000001
+    private let epsilon: CGFloat = 0.0000001
 
     func testNeedsView() {
         let layout = TextViewLayout(text: "hi").arrangement().makeViews()
@@ -136,8 +136,8 @@ class TextViewLayoutTests: XCTestCase {
             textContainerInset: textContainerInset)
         let layoutArrangement = layout.arrangement()
 
-        XCTAssertTrue(abs(layoutArrangement.frame.size.width - textView.intrinsicContentSize.width) < delta)
-        XCTAssertTrue(abs(layoutArrangement.frame.size.height - textView.intrinsicContentSize.height) < delta)
+        XCTAssertTrue(abs(layoutArrangement.frame.size.width - textView.intrinsicContentSize.width) < epsilon)
+        XCTAssertTrue(abs(layoutArrangement.frame.size.height - textView.intrinsicContentSize.height) < epsilon)
     }
 
     func testInSpecificViewSize() {
