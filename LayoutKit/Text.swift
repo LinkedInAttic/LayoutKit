@@ -28,7 +28,7 @@ public enum Text {
             }
 
             // UILabel/UITextView uses a default font if one is not specified in the attributed string.
-            // boundingRectWithSize does not appear to have the same logic,
+            // boundingRect(with:options:attributes:) does not appear to have the same logic,
             // so we need to ensure that our attributed string has a default font.
             // We do this by creating a new attributed string with the default font and then
             // applying all of the attributes from the provided attributed string.
