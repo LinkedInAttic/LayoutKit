@@ -9,21 +9,24 @@
 import UIKit
 
 /// A UICollectionView controller where each cell's content view is a DataBinder.
-class CollectionViewController<ContentViewType: UIView>: UICollectionViewController, UICollectionViewDelegateFlowLayout where ContentViewType: DataBinder {
-
-    typealias CellType = CollectionCell<ContentViewType>
+class CollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     let reuseIdentifier = "cell"
-    let data: [ContentViewType.DataType]
+    let data: [FeedItemData]
     let flowLayout: UICollectionViewFlowLayout
-    let manequinCell: CellType
+    let manequinCell: CollectionCell
     let start: CFAbsoluteTime
+    let wrappedContentView: UIView
+    let contentViewClass: UIView.Type
 
-    init(data: [ContentViewType.DataType]) {
+    init(data: [FeedItemData], contentViewClass: UIView.Type) {
         self.start = CFAbsoluteTimeGetCurrent()
         self.data = data
+        self.contentViewClass = contentViewClass
         self.flowLayout = UICollectionViewFlowLayout()
-        self.manequinCell = CellType(frame: .zero)
+        self.manequinCell = CollectionCell(frame: .zero)
+        self.manequinCell.setupWrappedContentView(withContentViewClass: contentViewClass)
+        self.wrappedContentView = contentViewClass.init()
         super.init(collectionViewLayout: flowLayout)
     }
 
@@ -33,7 +36,7 @@ class CollectionViewController<ContentViewType: UIView>: UICollectionViewControl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView?.register(CellType.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView?.register(CollectionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -41,7 +44,8 @@ class CollectionViewController<ContentViewType: UIView>: UICollectionViewControl
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: CellType = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CellType
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionCell
+        cell.setupWrappedContentView(withContentViewClass: contentViewClass)
         cell.setData(data[indexPath.row])
         return cell
     }
@@ -60,30 +64,40 @@ class CollectionViewController<ContentViewType: UIView>: UICollectionViewControl
 }
 
 /// A UICollectionView cell that adds a DataBinder to its content view.
-class CollectionCell<ContentView: UIView>: UICollectionViewCell, DataBinder where ContentView: DataBinder {
+class CollectionCell: UICollectionViewCell {
 
-    let wrappedContentView: ContentView
+    var wrappedContentView: UIView?
 
-    override init(frame: CGRect) {
-        wrappedContentView = ContentView()
-        super.init(frame: frame)
+    func setupWrappedContentView(withContentViewClass contentViewClass: UIView.Type) {
+        guard self.wrappedContentView == nil else {
+            return
+        }
+
+        let wrappedContentView = contentViewClass.init()
+
         wrappedContentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(wrappedContentView)
         let views = ["v": wrappedContentView]
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[v]-0-|", options: [], metrics: nil, views: views))
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[v]-0-|", options: [], metrics: nil, views: views))
         contentView.backgroundColor = UIColor.white
+
+        self.wrappedContentView = wrappedContentView
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    func setData(_ data: FeedItemData) {
+        guard let wrappedContentView = self.wrappedContentView else {
+            return
+        }
 
-    func setData(_ data: ContentView.DataType) {
-        wrappedContentView.setData(data)
+        DataBinderHelper.setData(data, forView: wrappedContentView)
     }
 
     override func sizeThatFits(_ size: CGSize) -> CGSize {
+        guard let wrappedContentView = self.wrappedContentView else {
+            return CGSize.zero
+        }
+
         return wrappedContentView.sizeThatFits(size)
     }
 }

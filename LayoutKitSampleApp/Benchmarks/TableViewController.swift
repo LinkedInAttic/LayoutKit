@@ -9,15 +9,15 @@
 import UIKit
 
 /// A TableViewController controller where each cell's content view is a DataBinder.
-class TableViewController<ContentViewType: UIView>: UITableViewController where ContentViewType: DataBinder {
-
-    typealias CellType = TableCell<ContentViewType>
+class TableViewController: UITableViewController {
 
     let reuseIdentifier = "cell"
-    let data: [CellType.DataType]
+    let data: [FeedItemData]
+    let contentViewClass: UIView.Type
 
-    init(data: [CellType.DataType]) {
+    init(data: [FeedItemData], contentViewClass: UIView.Type) {
         self.data = data
+        self.contentViewClass = contentViewClass
         super.init(style: UITableViewStyle.grouped)
     }
 
@@ -28,7 +28,7 @@ class TableViewController<ContentViewType: UIView>: UITableViewController where 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 100
-        tableView.register(CellType.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(TableCell.self, forCellReuseIdentifier: reuseIdentifier)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -36,7 +36,8 @@ class TableViewController<ContentViewType: UIView>: UITableViewController where 
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: CellType = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! CellType
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! TableCell
+        cell.setupWrappedContentView(withContentViewClass: contentViewClass)
         cell.setData(data[indexPath.row])
         return cell
     }
@@ -47,19 +48,32 @@ class TableViewController<ContentViewType: UIView>: UITableViewController where 
 }
 
 /// A UITableViewCell cell that adds a DataBinder to its content view.
-class TableCell<ContentView: UIView>: UITableViewCell, DataBinder where ContentView: DataBinder {
+class TableCell: UITableViewCell {
 
-    lazy var wrappedContentView: ContentView = {
-        let v = ContentView()
-        v.translatesAutoresizingMaskIntoConstraints = false
-        self.contentView.addSubview(v)
-        let views = ["v": v]
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[v]-0-|", options: [], metrics: nil, views: views))
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[v]-0-|", options: [], metrics: nil, views: views))
-        return v
-    }()
+    var wrappedContentView: UIView?
 
-    func setData(_ data: ContentView.DataType) {
-        wrappedContentView.setData(data)
+    func setupWrappedContentView(withContentViewClass contentViewClass: UIView.Type) {
+        guard self.wrappedContentView == nil else {
+            return
+        }
+
+        let wrappedContentView = contentViewClass.init()
+
+        wrappedContentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(wrappedContentView)
+        let views = ["v": wrappedContentView]
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[v]-0-|", options: [], metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[v]-0-|", options: [], metrics: nil, views: views))
+        contentView.backgroundColor = UIColor.white
+
+        self.wrappedContentView = wrappedContentView
+    }
+
+    func setData(_ data: FeedItemData) {
+        guard let wrappedContentView = self.wrappedContentView else {
+            return
+        }
+
+        DataBinderHelper.setData(data, forView: wrappedContentView)
     }
 }
