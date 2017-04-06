@@ -107,7 +107,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
         var insetMaxSize = maxSize.decreased(by: textContainerInset)
         insetMaxSize.width -= lineFragmentPadding * 2
 
-        let size = self.isTextEmpty
+        let size = isTextEmpty
             ? text.textSizeWithEmptyText(within: insetMaxSize, font: font ?? TextViewLayout.defaultFont(withText: text))
             : text.textSize(within: insetMaxSize, font: font ?? TextViewLayout.defaultFont(withText: text))
 
