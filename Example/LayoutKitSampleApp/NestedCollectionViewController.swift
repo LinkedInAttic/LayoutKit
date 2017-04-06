@@ -8,7 +8,6 @@
 
 import UIKit
 import LayoutKit
-import ExampleLayouts
 
 /**
  A vertical collection view where each cell contains a horizontal collection view.

@@ -7,7 +7,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import UIKit
-import ExampleLayouts
 
 /// A LinkedIn feed item that is implemented with LayoutKit.
 class FeedItemLayoutKitView: UIView, DataBinder {
