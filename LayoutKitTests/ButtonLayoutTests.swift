@@ -85,7 +85,10 @@ class ButtonLayoutTests: XCTestCase {
             return ButtonLayout(type: type, title: title, image: image, font: font, contentEdgeInsets: contentEdgeInsets)
         }) ?? ButtonLayout(type: type, title: title, image: image, contentEdgeInsets: contentEdgeInsets)
 
-        XCTAssertEqual(layout.arrangement().frame.size, button.intrinsicContentSize, "fontName:\(textTestCase.font?.fontName) title:'\(textTestCase.text)' image:\(image) fontSize:\(textTestCase.font?.pointSize) type:\(type) contentEdgeInsets:\(contentEdgeInsets)")
+        XCTAssertEqual(
+            layout.arrangement().frame.size,
+            button.intrinsicContentSize,
+            "fontName:\(String(describing: textTestCase.font?.fontName)) title:'\(textTestCase.text)' image:\(image) fontSize:\(String(describing: textTestCase.font?.pointSize)) type:\(type) contentEdgeInsets:\(contentEdgeInsets)")
     }
 
     private func imageOfSize(_ size: CGSize) -> UIImage? {

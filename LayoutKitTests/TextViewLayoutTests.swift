@@ -33,7 +33,7 @@ class TextViewLayoutTests: XCTestCase {
             XCTAssertEqual(
                 layoutArrangement.frame.size,
                 textView.intrinsicContentSize,
-                "fontName:\(textTestCase.font?.fontName) text:\(textTestCase.text) fontSize:\(textTestCase.font?.pointSize)")
+                "fontName:\(String(describing: textTestCase.font?.fontName)) text:\(textTestCase.text) fontSize:\(String(describing: textTestCase.font?.pointSize))")
         }
     }
 
