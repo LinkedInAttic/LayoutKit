@@ -30,11 +30,13 @@ extension Text {
             .unattributed("Hello! 😄😄😄"),
             .attributed(NSAttributedString(string: "")),
             .attributed(NSAttributedString(string: " ")),
+            .attributed(NSAttributedString(string: "", attributes: [NSFontAttributeName: UIFont.helvetica(size: 42)])),
+            .attributed(NSAttributedString(string: " ", attributes: [NSFontAttributeName: UIFont.helvetica(size: 42)])),
             .attributed(NSAttributedString(string: "Hi")),
             .attributed(NSAttributedString(string: "Hello world")),
             .attributed(NSAttributedString(string: "Hello! 😄😄😄")),
             .attributed(NSAttributedString(string: "Hello! 😄😄😄", attributes: [NSFontAttributeName: UIFont.helvetica(size: 42)])),
-        ]
+            ]
 
         let fontSizes = 0...20
 

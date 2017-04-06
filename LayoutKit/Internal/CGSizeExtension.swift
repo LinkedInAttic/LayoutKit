@@ -10,12 +10,16 @@ import CoreGraphics
 import Foundation
 
 extension CGSize {
-    func decreasedByInsets(_ insets: EdgeInsets) -> CGSize {
-        return CGSize(width: width - insets.left - insets.right, height: height - insets.top - insets.bottom)
+    func increased(by insets: EdgeInsets) -> CGSize {
+        return CGSize(
+            width: width + insets.left + insets.right,
+            height: height + insets.top + insets.bottom)
     }
 
-    func increasedByInsets(_ insets: EdgeInsets) -> CGSize {
-        return CGSize(width: width + insets.left + insets.right, height: height + insets.top + insets.bottom)
+    func decreased(by insets: EdgeInsets) -> CGSize {
+        return CGSize(
+            width: width - insets.left - insets.right,
+            height: height - insets.top - insets.bottom)
     }
 
     func decreasedToSize(_ maxSize: CGSize) -> CGSize {
