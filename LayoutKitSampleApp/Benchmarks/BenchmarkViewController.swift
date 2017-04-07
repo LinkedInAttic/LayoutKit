@@ -17,7 +17,7 @@ class BenchmarkViewController: UITableViewController {
         ViewControllerData(title: "UICollectionView UIStack feed", factoryBlock: { viewCount in
             if #available(iOS 9.0, *) {
                 let data = FeedItemData.generate(count: viewCount)
-                return CollectionViewController<FeedItemUIStackView>(data: data)
+                return CollectionViewControllerFeedItemUIStackView(data: data)
             } else {
                 NSLog("UIStackView only supported on iOS 9+")
                 return nil
@@ -26,23 +26,23 @@ class BenchmarkViewController: UITableViewController {
 
         ViewControllerData(title: "UICollectionView Auto Layout feed", factoryBlock: { viewCount in
             let data = FeedItemData.generate(count: viewCount)
-            return CollectionViewController<FeedItemAutoLayoutView>(data: data)
+            return CollectionViewControllerFeedItemAutoLayoutView(data: data)
         }),
 
         ViewControllerData(title: "UICollectionView LayoutKit feed", factoryBlock: { viewCount in
             let data = FeedItemData.generate(count: viewCount)
-            return CollectionViewController<FeedItemLayoutKitView>(data: data)
+            return CollectionViewControllerFeedItemLayoutKitView(data: data)
         }),
 
         ViewControllerData(title: "UICollectionView Manual Layout feed", factoryBlock: { viewCount in
             let data = FeedItemData.generate(count: viewCount)
-            return CollectionViewController<FeedItemManualView>(data: data)
+            return CollectionViewControllerFeedItemManualView(data: data)
         }),
 
         ViewControllerData(title: "UITableView UIStack feed", factoryBlock: { viewCount in
             if #available(iOS 9.0, *) {
                 let data = FeedItemData.generate(count: viewCount)
-                return TableViewController<FeedItemUIStackView>(data: data)
+                return TableViewControllerFeedItemUIStackView(data: data)
             } else {
                 NSLog("UIStackView only supported on iOS 9+")
                 return nil
@@ -51,17 +51,17 @@ class BenchmarkViewController: UITableViewController {
 
         ViewControllerData(title: "UITableView Auto Layout feed", factoryBlock: { viewCount in
             let data = FeedItemData.generate(count: viewCount)
-            return TableViewController<FeedItemAutoLayoutView>(data: data)
+            return TableViewControllerFeedItemAutoLayoutView(data: data)
         }),
 
         ViewControllerData(title: "UITableView LayoutKit feed", factoryBlock: { viewCount in
             let data = FeedItemData.generate(count: viewCount)
-            return TableViewController<FeedItemLayoutKitView>(data: data)
+            return TableViewControllerFeedItemLayoutKitView(data: data)
         }),
 
         ViewControllerData(title: "UITableView Manual Layout feed", factoryBlock: { viewCount in
             let data = FeedItemData.generate(count: viewCount)
-            return TableViewController<FeedItemManualView>(data: data)
+            return TableViewControllerFeedItemManualView(data: data)
         })
     ]
 
