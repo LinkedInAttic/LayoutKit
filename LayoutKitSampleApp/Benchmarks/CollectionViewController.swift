@@ -8,6 +8,24 @@
 
 import UIKit
 
+/// Each view type of collection view should be a non-generic subclass from CollectionViewController
+/// If each view type uses the generic CollectionViewController, it will cause the crash.
+///
+/// The crash reproduce steps: BenchmarkViewController -> UICollectionViewUIStackFeed
+/// -> Back -> Any other UICollectionView
+///
+/// The reason behinds this is `DWURecyclingAlert` injects benchmark and label by using
+/// method swizzling. Method swizzling doesn't work well with generics. The second time
+/// of method sizzling would not work and bring into infinite loop if different view type
+/// uses `CollectionViewController` directly.
+///
+@available(iOS 9, *)
+class CollectionViewControllerFeedItemUIStackView: CollectionViewController<FeedItemUIStackView> {}
+
+class CollectionViewControllerFeedItemAutoLayoutView: CollectionViewController<FeedItemAutoLayoutView> {}
+class CollectionViewControllerFeedItemLayoutKitView: CollectionViewController<FeedItemLayoutKitView> {}
+class CollectionViewControllerFeedItemManualView: CollectionViewController<FeedItemManualView> {}
+
 /// A UICollectionView controller where each cell's content view is a DataBinder.
 class CollectionViewController<ContentViewType: UIView>: UICollectionViewController, UICollectionViewDelegateFlowLayout where ContentViewType: DataBinder {
 
