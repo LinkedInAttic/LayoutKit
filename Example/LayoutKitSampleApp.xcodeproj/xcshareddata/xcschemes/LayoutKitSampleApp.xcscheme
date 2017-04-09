@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0820"
+   LastUpgradeVersion = "0830"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0B2D09AF1D8735E1007E487C"
+               BlueprintIdentifier = "44D184101E996D7E00161C7E"
                BuildableName = "LayoutKitSampleApp.app"
                BlueprintName = "LayoutKitSampleApp"
-               ReferencedContainer = "container:LayoutKit.xcodeproj">
+               ReferencedContainer = "container:LayoutKitSampleApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0B2D09AF1D8735E1007E487C"
+            BlueprintIdentifier = "44D184101E996D7E00161C7E"
             BuildableName = "LayoutKitSampleApp.app"
             BlueprintName = "LayoutKitSampleApp"
-            ReferencedContainer = "container:LayoutKit.xcodeproj">
+            ReferencedContainer = "container:LayoutKitSampleApp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0B2D09AF1D8735E1007E487C"
+            BlueprintIdentifier = "44D184101E996D7E00161C7E"
             BuildableName = "LayoutKitSampleApp.app"
             BlueprintName = "LayoutKitSampleApp"
-            ReferencedContainer = "container:LayoutKit.xcodeproj">
+            ReferencedContainer = "container:LayoutKitSampleApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0B2D09AF1D8735E1007E487C"
+            BlueprintIdentifier = "44D184101E996D7E00161C7E"
             BuildableName = "LayoutKitSampleApp.app"
             BlueprintName = "LayoutKitSampleApp"
-            ReferencedContainer = "container:LayoutKit.xcodeproj">
+            ReferencedContainer = "container:LayoutKitSampleApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

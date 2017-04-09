@@ -3,6 +3,11 @@ build/
 DerivedData/
 build.log
 
+# Sample Project Cocoapods file
+Example/*.xcworkspace
+Example/Podfile.lock
+Example/Pods/
+
 # User Data
 *.xctimeline
 xcuserdata
