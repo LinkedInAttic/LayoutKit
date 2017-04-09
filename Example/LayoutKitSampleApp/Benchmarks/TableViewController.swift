@@ -8,6 +8,16 @@
 
 import UIKit
 
+/// Each view type of collection view should be a non-generic subclass from TableViewController
+/// If each view type uses the generic TableViewController, it will cause the crash.
+/// Please see `CollectionViewController.swift` for details
+@available(iOS 9, *)
+class TableViewControllerFeedItemUIStackView: TableViewController<FeedItemUIStackView> {}
+
+class TableViewControllerFeedItemAutoLayoutView: TableViewController<FeedItemAutoLayoutView> {}
+class TableViewControllerFeedItemLayoutKitView: TableViewController<FeedItemLayoutKitView> {}
+class TableViewControllerFeedItemManualView: TableViewController<FeedItemManualView> {}
+
 /// A TableViewController controller where each cell's content view is a DataBinder.
 class TableViewController<ContentViewType: UIView>: UITableViewController where ContentViewType: DataBinder {
 
