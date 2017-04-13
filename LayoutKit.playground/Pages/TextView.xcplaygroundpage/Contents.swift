@@ -17,7 +17,7 @@ let attributedText = Text.attributed(attributedString1)
 
 let textContainerInset = UIEdgeInsets(top: 2, left: 3, bottom: 4, right: 5)
 
-let textViewLayout = TextViewLayout(text: attributedText, layoutMargins: textContainerInset)
+let textViewLayout = TextViewLayout(text: attributedText, textContainerInset: textContainerInset)
 let arrangement = textViewLayout.arrangement()
 arrangement.makeViews(in: rootView)
 
