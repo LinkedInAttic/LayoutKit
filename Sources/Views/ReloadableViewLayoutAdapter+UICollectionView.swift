@@ -37,7 +37,7 @@ extension ReloadableViewLayoutAdapter: UICollectionViewDataSource {
         return currentArrangement.count
     }
 
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = currentArrangement[indexPath.section].items[indexPath.item]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         item.makeViews(in: cell.contentView)
