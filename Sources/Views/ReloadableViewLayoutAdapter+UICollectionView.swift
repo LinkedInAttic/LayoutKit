@@ -12,15 +12,15 @@ import UIKit
 
 extension ReloadableViewLayoutAdapter: UICollectionViewDelegateFlowLayout {
 
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return currentArrangement[indexPath.section].items[indexPath.item].frame.size
     }
 
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return currentArrangement[section].header?.frame.size ?? .zero
     }
 
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         return currentArrangement[section].footer?.frame.size ?? .zero
     }
 }
@@ -29,11 +29,11 @@ extension ReloadableViewLayoutAdapter: UICollectionViewDelegateFlowLayout {
 
 extension ReloadableViewLayoutAdapter: UICollectionViewDataSource {
     
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return currentArrangement[section].items.count
     }
 
-    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+    open func numberOfSections(in collectionView: UICollectionView) -> Int {
         return currentArrangement.count
     }
 
@@ -44,7 +44,7 @@ extension ReloadableViewLayoutAdapter: UICollectionViewDataSource {
         return cell
     }
 
-    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseIdentifier, for: indexPath)
         let arrangement: LayoutArrangement?
         switch kind {

@@ -12,23 +12,23 @@ import UIKit
 
 extension ReloadableViewLayoutAdapter: UITableViewDelegate {
 
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return currentArrangement[indexPath.section].items[indexPath.item].frame.height
     }
 
-    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return currentArrangement[section].header?.frame.height ?? 0
     }
 
-    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return currentArrangement[section].footer?.frame.height ?? 0
     }
 
-    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return renderLayout(currentArrangement[section].header, tableView: tableView)
     }
 
-    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return renderLayout(currentArrangement[section].footer, tableView: tableView)
     }
 
@@ -54,11 +54,11 @@ extension ReloadableViewLayoutAdapter: UITableViewDelegate {
 
 extension ReloadableViewLayoutAdapter: UITableViewDataSource {
 
-    public func numberOfSections(in tableView: UITableView) -> Int {
+    open func numberOfSections(in tableView: UITableView) -> Int {
         return currentArrangement.count
     }
 
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentArrangement[section].items.count
     }
 
