@@ -30,12 +30,11 @@ class OverlayViewController: UIViewController {
 
     // MARK: - variables
 
-    private var reloadableViewLayoutAdapter: ReloadableViewLayoutAdapter!
-    private var tableView: UITableView!
-    private lazy var cachedLayouts: [Layout] = {
-        var layouts = [Layout]()
-        (0..<alignments.count).forEach { backgroundCount in
-            (0..<alignments.count).forEach { overlayCount in
+    private var reloadableViewLayoutAdapter: ReloadableViewLayoutAdapter?
+    private var tableView = UITableView(frame: .zero, style: .grouped)
+    private var cachedLayouts: [Layout] = {
+        let layouts: [Layout] = (0..<alignments.count).flatMap { backgroundCount in
+            return (0..<alignments.count).map { overlayCount in
                 let backgroundLayouts = (0...backgroundCount).map { index in
                     return SizeLayout(
                         width: 60,
@@ -56,10 +55,10 @@ class OverlayViewController: UIViewController {
                 let baseLayout = InsetLayout(
                     inset: 70,
                     sublayout: LabelLayout(text: text))
-                layouts.append(OverlayLayout(
+                return OverlayLayout(
                     primary: baseLayout,
                     background: backgroundLayouts,
-                    overlay: overlayLayouts))
+                    overlay: overlayLayouts)
             }
         }
         return layouts
@@ -70,7 +69,7 @@ class OverlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView = UITableView(frame: view.bounds, style: .grouped)
+        tableView.frame = view.bounds
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableView.backgroundColor = UIColor.purple
 
@@ -88,7 +87,7 @@ class OverlayViewController: UIViewController {
     }
 
     private func layoutOverlays(width: CGFloat, synchronous: Bool) {
-        reloadableViewLayoutAdapter.reload(width: width, synchronous: synchronous, layoutProvider: { [weak self] in
+        reloadableViewLayoutAdapter?.reload(width: width, synchronous: synchronous, layoutProvider: { [weak self] in
             return [Section(header: nil, items: self?.cachedLayouts ?? [], footer: nil)]
         })
     }

@@ -22,8 +22,10 @@ class OverlayLayoutTests: XCTestCase {
 
     private enum Measurement {
 
-        static let primaryHeight: CGFloat = 300.0
+        static let hugeWidth: CGFloat = 5000.0
+        static let hugeHeight: CGFloat = 5000.0
         static let primaryWidth: CGFloat = 600.0
+        static let primaryHeight: CGFloat = 300.0
         static let backgroundWidth: CGFloat = 60.0
         static let backgroundHeight: CGFloat = 40.0
         static let overlayWidth: CGFloat = 40.0
@@ -105,7 +107,7 @@ class OverlayLayoutTests: XCTestCase {
      given size in the max rectangle.
      */
     func testComplexLayoutWithAlignment() {
-        let maxSize = CGSize(width: 5000, height: 5000)
+        let maxSize = CGSize(width: Measurement.hugeWidth, height: Measurement.hugeHeight)
         let maxRect = CGRect(origin: .zero, size: maxSize)
         let layoutSize = CGSize(width: Measurement.primaryWidth, height: Measurement.primaryHeight)
         (0..<Constant.alignments.count).forEach { primaryAlignmentIndex in
@@ -121,12 +123,15 @@ class OverlayLayoutTests: XCTestCase {
                         backgroundCount: backgroundCount,
                         overlayCount: overlayCount,
                         primaryAlignment: primaryAlignment)
-                    let measurement = layout.measurement(within: maxSize)
-                    let arrangement = layout.arrangement(within: maxRect, measurement: measurement)
+                    let arrangement = layout.arrangement(
+                        origin: .zero,
+                        width: maxSize.width,
+                        height: maxSize.height)
                     let expectedRect = primaryAlignment.position(size: layoutSize, in: maxRect)
-
-                    // Make sure the frame is right for the main arrangement (should be the full size)
-                    AssertEqualDensity(arrangement.frame, [1.0: expectedRect, 2.0: expectedRect, 3.0: expectedRect])
+                    assertAlignment(for: arrangement,
+                                    equalTo: expectedRect,
+                                    backgroundCount: backgroundCount,
+                                    onlyOverlay: true)
                 }
             }
         }
@@ -152,30 +157,59 @@ class OverlayLayoutTests: XCTestCase {
                     overlayCount: overlayCount,
                     primaryAlignment: .center)
                 let arrangement = layout.arrangement()
+                assertAlignment(for: arrangement, equalTo: expectedRect, backgroundCount: backgroundCount)
+            }
+        }
+    }
 
-                // Make sure the frame is right for the main arrangement (should be the full size)
-                AssertEqualDensity(arrangement.frame, [1.0: expectedRect, 2.0: expectedRect, 3.0: expectedRect])
+    /**
+     Makes sure that huge overlays and underlays don't overflow their bounds - they are constrained
+     to the size of the primary layout.
+     */
+    func testHugeOverlaysAndUnderlays() {
+        Constant.alignments.forEach { primaryAlignment in
+            Constant.alignments.forEach { hugeAlignment in
+                let huge = SizeLayout(
+                    width: Measurement.hugeWidth,
+                    height: Measurement.hugeHeight,
+                    alignment: hugeAlignment)
+                let primary = SizeLayout(
+                    width: Measurement.primaryWidth,
+                    height: Measurement.primaryHeight,
+                    alignment: primaryAlignment)
+                let overlay = OverlayLayout(primary: primary, background: [huge], overlay: [huge])
+                let expectedFrame = CGRect(
+                    origin: .zero,
+                    size: CGSize(width: Measurement.primaryWidth, height: Measurement.primaryHeight))
+                let arrangement = overlay.arrangement()
+                AssertEqualDensity(arrangement.frame, [1.0: expectedFrame, 2.0: expectedFrame, 3.0: expectedFrame])
+            }
+        }
+    }
 
-
-                // Now check the children's alignments, using the expected frame from the alignment object
-                arrangement.sublayouts.enumerated().forEach { (index, subLayout) in
-                    if index <= backgroundCount {
-                        // We have a background layout
-                        let backgroundSize = CGSize(width: Measurement.backgroundWidth, height: Measurement.backgroundHeight)
-                        let frame = Constant.alignments[index].position(size: backgroundSize, in: expectedRect)
-                        AssertEqualDensity(subLayout.frame, [1.0: frame, 2.0: frame, 3.0: frame])
-                    } else if index == backgroundCount + 1 {
-                        // We have the primary layout - should be laid out just like the overlay itself
-                        AssertEqualDensity(subLayout.frame, [1.0: expectedRect, 2.0: expectedRect, 3.0: expectedRect])
-                    } else if index > backgroundCount + 1 {
-                        // We have an overlay layout
-                        let overlaySize = CGSize(width: Measurement.overlayWidth, height: Measurement.overlayHeight)
-                        let frame = Constant.alignments[index - backgroundCount - 2].position(
-                            size: overlaySize,
-                            in: expectedRect)
-                        AssertEqualDensity(subLayout.frame, [1.0: frame, 2.0: frame, 3.0: frame])
-                    }
-                }
+    /**
+     Tests the overlay layout when the size it is being laid into is unlimited. Confirms that all the
+     alignments are correct, using a complex layout with lots of sublayouts. Lays it out into the top
+     left so we can know the correct size.
+     */
+    func testUnlimitedSize() {
+        let layoutSize = CGSize(width: Measurement.primaryWidth, height: Measurement.primaryHeight)
+        let expectedRect = CGRect(origin: .zero, size: layoutSize)
+        (0..<Constant.alignments.count).forEach { backgroundCount in
+            (0..<Constant.alignments.count).forEach { overlayCount in
+                /**
+                 Create a complex layout and simulate laying it out in the largest frame possible so we can
+                 test the alignment of all of the sublayouts.
+                 */
+                let layout = self.createComplexLayout(
+                    backgroundCount: backgroundCount,
+                    overlayCount: overlayCount,
+                    primaryAlignment: .topLeading)
+                let arrangement = layout.arrangement(
+                    origin: .zero,
+                    width: CGFloat.greatestFiniteMagnitude,
+                    height: CGFloat.greatestFiniteMagnitude)
+                assertAlignment(for: arrangement, equalTo: expectedRect, backgroundCount: backgroundCount)
             }
         }
     }
@@ -208,6 +242,42 @@ class OverlayLayoutTests: XCTestCase {
     }
 
     // MARK: - helpers
+
+    /**
+     Asserts that the alignments have the correct frames based on the given params.
+     */
+    private func assertAlignment(for arrangement: LayoutArrangement,
+                                 equalTo expectedRect: CGRect,
+                                 backgroundCount: Int,
+                                 onlyOverlay: Bool = false) {
+        // Make sure the frame is right for the main arrangement (should be the full size)
+        AssertEqualDensity(arrangement.frame, [1.0: expectedRect, 2.0: expectedRect, 3.0: expectedRect])
+
+        // If we were only supposed to assert the overlay frame, return
+        if onlyOverlay {
+            return
+        }
+
+        // Now check the children's alignments, using the expected frame from the alignment object
+        arrangement.sublayouts.enumerated().forEach { (index, subLayout) in
+            if index <= backgroundCount {
+                // We have a background layout
+                let backgroundSize = CGSize(width: Measurement.backgroundWidth, height: Measurement.backgroundHeight)
+                let frame = Constant.alignments[index].position(size: backgroundSize, in: expectedRect)
+                AssertEqualDensity(subLayout.frame, [1.0: frame, 2.0: frame, 3.0: frame])
+            } else if index == backgroundCount + 1 {
+                // We have the primary layout - should be laid out just like the overlay itself
+                AssertEqualDensity(subLayout.frame, [1.0: expectedRect, 2.0: expectedRect, 3.0: expectedRect])
+            } else if index > backgroundCount + 1 {
+                // We have an overlay layout
+                let overlaySize = CGSize(width: Measurement.overlayWidth, height: Measurement.overlayHeight)
+                let frame = Constant.alignments[index - backgroundCount - 2].position(
+                    size: overlaySize,
+                    in: expectedRect)
+                AssertEqualDensity(subLayout.frame, [1.0: frame, 2.0: frame, 3.0: frame])
+            }
+        }
+    }
 
     /**
      Given the passed-in parameters, creates a complex overlay layout.
