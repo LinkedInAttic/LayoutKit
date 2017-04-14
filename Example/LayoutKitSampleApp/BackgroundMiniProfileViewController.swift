@@ -7,7 +7,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import UIKit
-import ExampleLayouts
 
 class BackgroundMiniProfileViewController: UIViewController {
 
