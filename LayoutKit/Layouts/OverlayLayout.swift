@@ -15,14 +15,32 @@ import CoreGraphics
  */
 open class OverlayLayout<V: View>: BaseLayout<V> {
 
+    /**
+     The primary layout that the `OverlayLayout` will use for sizing and flexibility.
+     */
     open let primary: Layout
+
+    /**
+     The layouts to put behind the primary layout. They will be at most as large as the primary
+     layout.
+     */
     open let background: [Layout]
+
+    /**
+     The layouts to put in front of the primary layout. They will be at most as large as the primary
+     layout.
+     */
     open let overlay: [Layout]
 
+    /**
+     Creates an `OverlayLayout` with the given primary, background, and overlay layouts. Alignment
+     can be specified but defaults to `.fill`. Flexibility will always be the flexibility of the
+     primary layout.
+     */
     public init(primary: Layout,
                 background: [Layout] = [],
                 overlay: [Layout] = [],
-                alignment: Alignment = .topFill,
+                alignment: Alignment = .fill,
                 viewReuseId: String? = nil,
                 config: ((V) -> Void)? = nil) {
         self.primary = primary

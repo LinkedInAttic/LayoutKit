@@ -30,10 +30,9 @@ class OverlayViewController: UIViewController {
 
     // MARK: - variables
 
-    private var reloadableViewLayoutAdapter: ReloadableViewLayoutAdapter?
-    private var tableView = UITableView(frame: .zero, style: .grouped)
+    private var tableView = LayoutAdapterTableView(frame: .zero, style: .grouped)
     private var cachedLayouts: [Layout] = {
-        let layouts: [Layout] = (0..<alignments.count).flatMap { backgroundCount in
+        return (0..<alignments.count).flatMap { backgroundCount in
             return (0..<alignments.count).map { overlayCount in
                 let backgroundLayouts = (0...backgroundCount).map { index in
                     return SizeLayout(
@@ -50,8 +49,8 @@ class OverlayViewController: UIViewController {
                         config: { $0.backgroundColor = .yellow })
                 }
                 let text = "Primary alignment is me!\n"
-                + "Background: \(backgroundCount + 1) views (orange)\n"
-                + "Overlay: \(overlayCount + 1) views (yellow)"
+                    + "Background: \(backgroundCount + 1) views (orange)\n"
+                    + "Overlay: \(overlayCount + 1) views (yellow)"
                 let baseLayout = InsetLayout(
                     inset: 70,
                     sublayout: LabelLayout(text: text))
@@ -61,7 +60,6 @@ class OverlayViewController: UIViewController {
                     overlay: overlayLayouts)
             }
         }
-        return layouts
     }()
 
     // MARK: - layout methods
@@ -73,10 +71,6 @@ class OverlayViewController: UIViewController {
         tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableView.backgroundColor = UIColor.purple
 
-        reloadableViewLayoutAdapter = ReloadableViewLayoutAdapter(reloadableView: tableView)
-        tableView.dataSource = reloadableViewLayoutAdapter
-        tableView.delegate = reloadableViewLayoutAdapter
-
         view.addSubview(tableView)
         self.layoutOverlays(width: tableView.frame.width, synchronous: false)
     }
@@ -87,7 +81,7 @@ class OverlayViewController: UIViewController {
     }
 
     private func layoutOverlays(width: CGFloat, synchronous: Bool) {
-        reloadableViewLayoutAdapter?.reload(width: width, synchronous: synchronous, layoutProvider: { [weak self] in
+        tableView.layoutAdapter.reload(width: width, synchronous: synchronous, layoutProvider: { [weak self] in
             return [Section(header: nil, items: self?.cachedLayouts ?? [], footer: nil)]
         })
     }

@@ -33,9 +33,9 @@ class OverlayLayoutTests: XCTestCase {
 
     }
 
-    private enum Constant {
+    private enum TestAlignment {
 
-        static let alignments: [Alignment] = [
+        static let all: [Alignment] = [
             .center,
             .centerLeading,
             .centerTrailing,
@@ -110,15 +110,15 @@ class OverlayLayoutTests: XCTestCase {
         let maxSize = CGSize(width: Measurement.hugeWidth, height: Measurement.hugeHeight)
         let maxRect = CGRect(origin: .zero, size: maxSize)
         let layoutSize = CGSize(width: Measurement.primaryWidth, height: Measurement.primaryHeight)
-        (0..<Constant.alignments.count).forEach { primaryAlignmentIndex in
-            (0..<Constant.alignments.count).forEach { backgroundCount in
-                (0..<Constant.alignments.count).forEach { overlayCount in
+        (0..<TestAlignment.all.count).forEach { primaryAlignmentIndex in
+            (0..<TestAlignment.all.count).forEach { backgroundCount in
+                (0..<TestAlignment.all.count).forEach { overlayCount in
                     /**
                      Create a complex layout and simulate laying it out in a giant frame so we can
                      test the alignment of the complex layout itself, as well as all of the sublayouts'
                      alignment values.
                      */
-                    let primaryAlignment = Constant.alignments[primaryAlignmentIndex]
+                    let primaryAlignment = TestAlignment.all[primaryAlignmentIndex]
                     let layout = self.createComplexLayout(
                         backgroundCount: backgroundCount,
                         overlayCount: overlayCount,
@@ -146,8 +146,8 @@ class OverlayLayoutTests: XCTestCase {
     func testComplexLayoutSublayouts() {
         let layoutSize = CGSize(width: Measurement.primaryWidth, height: Measurement.primaryHeight)
         let expectedRect = CGRect(origin: .zero, size: layoutSize)
-        (0..<Constant.alignments.count).forEach { backgroundCount in
-            (0..<Constant.alignments.count).forEach { overlayCount in
+        (0..<TestAlignment.all.count).forEach { backgroundCount in
+            (0..<TestAlignment.all.count).forEach { overlayCount in
                 /**
                  Create a complex layout and simulate laying it out in a giant frame so we can
                  test the alignment of all of the sublayouts.
@@ -167,8 +167,8 @@ class OverlayLayoutTests: XCTestCase {
      to the size of the primary layout.
      */
     func testHugeOverlaysAndUnderlays() {
-        Constant.alignments.forEach { primaryAlignment in
-            Constant.alignments.forEach { hugeAlignment in
+        TestAlignment.all.forEach { primaryAlignment in
+            TestAlignment.all.forEach { hugeAlignment in
                 let huge = SizeLayout(
                     width: Measurement.hugeWidth,
                     height: Measurement.hugeHeight,
@@ -195,8 +195,8 @@ class OverlayLayoutTests: XCTestCase {
     func testUnlimitedSize() {
         let layoutSize = CGSize(width: Measurement.primaryWidth, height: Measurement.primaryHeight)
         let expectedRect = CGRect(origin: .zero, size: layoutSize)
-        (0..<Constant.alignments.count).forEach { backgroundCount in
-            (0..<Constant.alignments.count).forEach { overlayCount in
+        (0..<TestAlignment.all.count).forEach { backgroundCount in
+            (0..<TestAlignment.all.count).forEach { overlayCount in
                 /**
                  Create a complex layout and simulate laying it out in the largest frame possible so we can
                  test the alignment of all of the sublayouts.
@@ -241,6 +241,47 @@ class OverlayLayoutTests: XCTestCase {
         }
     }
 
+    /**
+     Makes sure that the views are ordered correctly - first background, then primary, then overlay.
+     */
+    func testViewOrdering() {
+        let background = SizeLayout(
+            width: Measurement.backgroundWidth,
+            height: Measurement.backgroundHeight,
+            alignment: .topLeading)
+        let overlay = SizeLayout(
+            width: Measurement.overlayWidth,
+            height: Measurement.overlayHeight,
+            alignment: .topLeading)
+        let primary = SizeLayout(
+            width: Measurement.primaryWidth,
+            height: Measurement.primaryHeight,
+            alignment: .topLeading)
+        let layout = OverlayLayout(
+            primary: primary,
+            background: [background, background, background],
+            overlay: [overlay, overlay])
+
+        // Make sure (using the frames) that we have the correct order
+        XCTAssertEqual(layout.background.count, 3, "Background layouts incorrect")
+        XCTAssertEqual(layout.overlay.count, 2, "Overlay layouts incorrect")
+        let arrangement = layout.arrangement()
+        XCTAssertEqual(arrangement.sublayouts.count, 6, "Wrong number of arrangement sublayouts")
+
+        let backgroundFrame = CGRect(x: 0, y: 0, width: Measurement.backgroundWidth, height: Measurement.backgroundHeight)
+        arrangement.sublayouts.prefix(upTo: 3).forEach { sublayout in
+            AssertEqualDensity(sublayout.frame, [1.0: backgroundFrame, 2.0: backgroundFrame, 3.0: backgroundFrame])
+        }
+
+        let primaryFrame = CGRect(x: 0, y: 0, width: Measurement.primaryWidth, height: Measurement.primaryHeight)
+        AssertEqualDensity(arrangement.sublayouts[3].frame, [1.0: primaryFrame, 2.0: primaryFrame, 3.0: primaryFrame])
+
+        let overlayFrame = CGRect(x: 0, y: 0, width: Measurement.overlayWidth, height: Measurement.overlayHeight)
+        arrangement.sublayouts.suffix(from: 4).forEach { sublayout in
+            AssertEqualDensity(sublayout.frame, [1.0: overlayFrame, 2.0: overlayFrame, 3.0: overlayFrame])
+        }
+    }
+
     // MARK: - helpers
 
     /**
@@ -263,7 +304,7 @@ class OverlayLayoutTests: XCTestCase {
             if index <= backgroundCount {
                 // We have a background layout
                 let backgroundSize = CGSize(width: Measurement.backgroundWidth, height: Measurement.backgroundHeight)
-                let frame = Constant.alignments[index].position(size: backgroundSize, in: expectedRect)
+                let frame = TestAlignment.all[index].position(size: backgroundSize, in: expectedRect)
                 AssertEqualDensity(subLayout.frame, [1.0: frame, 2.0: frame, 3.0: frame])
             } else if index == backgroundCount + 1 {
                 // We have the primary layout - should be laid out just like the overlay itself
@@ -271,7 +312,7 @@ class OverlayLayoutTests: XCTestCase {
             } else if index > backgroundCount + 1 {
                 // We have an overlay layout
                 let overlaySize = CGSize(width: Measurement.overlayWidth, height: Measurement.overlayHeight)
-                let frame = Constant.alignments[index - backgroundCount - 2].position(
+                let frame = TestAlignment.all[index - backgroundCount - 2].position(
                     size: overlaySize,
                     in: expectedRect)
                 AssertEqualDensity(subLayout.frame, [1.0: frame, 2.0: frame, 3.0: frame])
@@ -289,13 +330,13 @@ class OverlayLayoutTests: XCTestCase {
             return SizeLayout(
                 width: Measurement.backgroundWidth,
                 height: Measurement.backgroundHeight,
-                alignment: Constant.alignments[index])
+                alignment: TestAlignment.all[index])
         }
         let overlayLayouts = (0...overlayCount).map { index in
             return SizeLayout(
                 width: Measurement.overlayWidth,
                 height: Measurement.overlayHeight,
-                alignment: Constant.alignments[index])
+                alignment: TestAlignment.all[index])
         }
         let baseLayout = SizeLayout(
             width: Measurement.primaryWidth,
