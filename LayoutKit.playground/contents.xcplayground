@@ -7,6 +7,7 @@
         <page name='Inset'/>
         <page name='Label'/>
         <page name='Button'/>
+        <page name='Overlay'/>
         <page name='Stack'/>
         <page name='Counter'/>
         <page name='Test'/>

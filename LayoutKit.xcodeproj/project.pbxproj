@@ -209,6 +209,13 @@
 		44F968181E4263DC00392763 /* TextViewLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968161E42639500392763 /* TextViewLayoutTests.swift */; };
 		44F968191E4263DC00392763 /* TextViewLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968161E42639500392763 /* TextViewLayoutTests.swift */; };
 		44F9681A1E42640400392763 /* TextViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968141E425F5D00392763 /* TextViewLayout.swift */; };
+		75D94A361EA01B6A00A5FD01 /* OverlayLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A351EA01B6A00A5FD01 /* OverlayLayout.swift */; };
+		75D94A371EA01B7100A5FD01 /* OverlayLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A351EA01B6A00A5FD01 /* OverlayLayout.swift */; };
+		75D94A381EA01B7200A5FD01 /* OverlayLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A351EA01B6A00A5FD01 /* OverlayLayout.swift */; };
+		75D94A3B1EA045F100A5FD01 /* OverlayLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A3A1EA045F100A5FD01 /* OverlayLayoutTests.swift */; };
+		75D94A3C1EA045F100A5FD01 /* OverlayLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A3A1EA045F100A5FD01 /* OverlayLayoutTests.swift */; };
+		75D94A3D1EA045F100A5FD01 /* OverlayLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A3A1EA045F100A5FD01 /* OverlayLayoutTests.swift */; };
+		75D94A401EA05D5A00A5FD01 /* OverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A3F1EA05D5A00A5FD01 /* OverlayViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -386,6 +393,9 @@
 		448CEC0E1E4E0CB500F8AD9E /* TextViewDefaultFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewDefaultFont.swift; sourceTree = "<group>"; };
 		44F968141E425F5D00392763 /* TextViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewLayout.swift; sourceTree = "<group>"; };
 		44F968161E42639500392763 /* TextViewLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewLayoutTests.swift; sourceTree = "<group>"; };
+		75D94A351EA01B6A00A5FD01 /* OverlayLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayLayout.swift; sourceTree = "<group>"; };
+		75D94A3A1EA045F100A5FD01 /* OverlayLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayLayoutTests.swift; sourceTree = "<group>"; };
+		75D94A3F1EA05D5A00A5FD01 /* OverlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -468,6 +478,7 @@
 				0B2D09D51D87365F007E487C /* FeedScrollViewController.swift */,
 				0B2D09D61D87365F007E487C /* FeedTableViewController.swift */,
 				0B2D09D71D87365F007E487C /* ForegroundProfileViewController.swift */,
+				75D94A3F1EA05D5A00A5FD01 /* OverlayViewController.swift */,
 				0B2D09BE1D8735E1007E487C /* Info.plist */,
 				0B2D09D81D87365F007E487C /* LabledImageLayout.swift */,
 				0B2D09FB1D873726007E487C /* LaunchScreen.xib */,
@@ -564,6 +575,7 @@
 				0BCB76571D8725310065E02A /* InsetLayoutTests.swift */,
 				0BCB76581D8725310065E02A /* LabelLayoutTests.swift */,
 				0BCB76591D8725310065E02A /* LayoutArrangementTests.swift */,
+				75D94A3A1EA045F100A5FD01 /* OverlayLayoutTests.swift */,
 				0BCB765C1D8725310065E02A /* ReloadableViewLayoutAdapterCollectionViewTests.swift */,
 				0BCB765D1D8725310065E02A /* ReloadableViewLayoutAdapterTableViewTests.swift */,
 				0BCB765E1D8725310065E02A /* ReloadableViewLayoutAdapterTestCase.swift */,
@@ -621,6 +633,7 @@
 				0BD5F8281DB43B4500108688 /* ButtonLayout.swift */,
 				0BCB75E21D8724800065E02A /* InsetLayout.swift */,
 				0BCB75E31D8724800065E02A /* LabelLayout.swift */,
+				75D94A351EA01B6A00A5FD01 /* OverlayLayout.swift */,
 				0BCB75E41D8724800065E02A /* SizeLayout.swift */,
 				0BCB75E51D8724800065E02A /* StackLayout.swift */,
 				44F968141E425F5D00392763 /* TextViewLayout.swift */,
@@ -979,6 +992,7 @@
 				0B2D09E41D87365F007E487C /* BatchUpdatesCollectionViewController.swift in Sources */,
 				0B2D09E81D87365F007E487C /* DataBinder.swift in Sources */,
 				0B2D09EA1D87365F007E487C /* FeedItemData.swift in Sources */,
+				75D94A401EA05D5A00A5FD01 /* OverlayViewController.swift in Sources */,
 				0B2D09F41D87365F007E487C /* ForegroundProfileViewController.swift in Sources */,
 				0B2D09ED1D87365F007E487C /* FeedItemUIStackView.swift in Sources */,
 				0B2D09EC1D87365F007E487C /* FeedItemManualView.swift in Sources */,
@@ -1023,6 +1037,7 @@
 				0BCB76061D8724800065E02A /* AxisFlexibility.swift in Sources */,
 				448CEC0F1E4E0CB500F8AD9E /* TextViewDefaultFont.swift in Sources */,
 				0BCB760E1D8724800065E02A /* ReloadableView.swift in Sources */,
+				75D94A361EA01B6A00A5FD01 /* OverlayLayout.swift in Sources */,
 				0BCB75FD1D8724800065E02A /* CGSizeExtension.swift in Sources */,
 				0BCB760B1D8724800065E02A /* BatchUpdates.swift in Sources */,
 				0BCB76011D8724800065E02A /* BaseLayout.swift in Sources */,
@@ -1058,6 +1073,7 @@
 				0B2D092E1D872F75007E487C /* ReloadableViewLayoutAdapterTestCase.swift in Sources */,
 				0B2D092D1D872F75007E487C /* ReloadableViewLayoutAdapterTableViewTests.swift in Sources */,
 				0B2D09321D872F75007E487C /* StackLayoutSpacingTests.swift in Sources */,
+				75D94A3B1EA045F100A5FD01 /* OverlayLayoutTests.swift in Sources */,
 				44F968181E4263DC00392763 /* TextViewLayoutTests.swift in Sources */,
 				0B2D09381D872F75007E487C /* ViewRecyclerTests.swift in Sources */,
 				0B2D09341D872F75007E487C /* StackViewTests.swift in Sources */,
@@ -1098,6 +1114,7 @@
 				0BCB762C1D8724C70065E02A /* CGSizeExtension.swift in Sources */,
 				0BCB76361D8724CA0065E02A /* BaseLayout.swift in Sources */,
 				0BCB76181D8724C00065E02A /* ConfigurableLayout.swift in Sources */,
+				75D94A371EA01B7100A5FD01 /* OverlayLayout.swift in Sources */,
 				448CEC101E4E0CEE00F8AD9E /* TextViewDefaultFont.swift in Sources */,
 				0B8C078B1DC3E881001CD5EE /* ButtonLayout.swift in Sources */,
 				0BCB76521D8724E70065E02A /* StackView.swift in Sources */,
@@ -1133,6 +1150,7 @@
 				0B2D09441D872F75007E487C /* ReloadableViewLayoutAdapterTestCase.swift in Sources */,
 				0B2D09431D872F75007E487C /* ReloadableViewLayoutAdapterTableViewTests.swift in Sources */,
 				0B2D09481D872F75007E487C /* StackLayoutSpacingTests.swift in Sources */,
+				75D94A3C1EA045F100A5FD01 /* OverlayLayoutTests.swift in Sources */,
 				44F968191E4263DC00392763 /* TextViewLayoutTests.swift in Sources */,
 				0B2D094E1D872F75007E487C /* ViewRecyclerTests.swift in Sources */,
 				0B2D094A1D872F75007E487C /* StackViewTests.swift in Sources */,
@@ -1175,6 +1193,7 @@
 				0BCB761D1D8724C10065E02A /* Axis.swift in Sources */,
 				0BCB76491D8724D00065E02A /* ViewRecycler.swift in Sources */,
 				0BCB76331D8724C70065E02A /* Layout.swift in Sources */,
+				75D94A381EA01B7200A5FD01 /* OverlayLayout.swift in Sources */,
 				0BCB76341D8724C70065E02A /* LayoutArrangement.swift in Sources */,
 				0BCB761A1D8724C10065E02A /* Alignment.swift in Sources */,
 				0BCB76311D8724C70065E02A /* CFAbsoluteTimeExtension.swift in Sources */,
@@ -1193,6 +1212,7 @@
 				0B2D09521D872F76007E487C /* DensityAssertions.swift in Sources */,
 				0B2D09531D872F76007E487C /* InsetLayoutTests.swift in Sources */,
 				0BA02E481D874BBB00F1E8D3 /* LayoutArrangementTests.swift in Sources */,
+				75D94A3D1EA045F100A5FD01 /* OverlayLayoutTests.swift in Sources */,
 				0B2D095B1D872F76007E487C /* SizeLayoutTests.swift in Sources */,
 				0B2D09621D872F76007E487C /* TestStack.swift in Sources */,
 				0B2D095D1D872F76007E487C /* StackLayoutFlexibilityTests.swift in Sources */,
