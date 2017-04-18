@@ -28,7 +28,7 @@ class ReloadableViewTests: XCTestCase {
         let registerViewsCollectionView = RegisterViewsCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         registerViewsCollectionView.reloadDataSynchronouslyExpectation = expectation(description: "reloadDataSynchronously")
 
-        // upcast to UITableView to make sure that overloading works correctly
+        // upcast to UICollectionView to make sure that overloading works correctly
         let collectionView: UICollectionView = registerViewsCollectionView
         collectionView.reloadDataSynchronously()
 
@@ -39,7 +39,7 @@ class ReloadableViewTests: XCTestCase {
         let registerViewsCollectionView = RegisterViewsCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         registerViewsCollectionView.performExpectation = expectation(description: "perform")
 
-        // upcast to UITableView to make sure that overloading works correctly
+        // upcast to UICollectionView to make sure that overloading works correctly
         let collectionView: UICollectionView = registerViewsCollectionView
         collectionView.perform(batchUpdates: BatchUpdates())
 
