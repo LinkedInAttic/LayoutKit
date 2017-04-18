@@ -70,7 +70,7 @@ cat build.log | sh debug-time-function-bodies.sh
 
 # Test Cocopods, Carthage, Swift Package Management
 
-# Build an empty project with cocoapods
+# Build an iOS empty project with cocoapods
 rm -rf $DERIVED_DATA &&
 cd Tests/cocoapods/ios &&
 pod install &&
@@ -83,6 +83,21 @@ time xcodebuild clean build \
     -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=9.3' \
     -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3' \
     -destination 'platform=iOS Simulator,name=iPhone 7 Plus,OS=10.3' \
+    OTHER_SWIFT_FLAGS='-Xfrontend -debug-time-function-bodies' \
+    | tee ../../../build.log \
+    | xcpretty &&
+cd ../../.. &&
+cat build.log | sh debug-time-function-bodies.sh
+
+# Build a macOS empty project with cocoapods
+rm -rf $DERIVED_DATA &&
+cd Tests/cocoapods/macos &&
+pod install &&
+time xcodebuild clean build \
+    -workspace LayoutKit-macOS.xcworkspace \
+    -scheme LayoutKit-macOS \
+    -sdk macosx10.12 \
+    -derivedDataPath $DERIVED_DATA \
     OTHER_SWIFT_FLAGS='-Xfrontend -debug-time-function-bodies' \
     | tee ../../../build.log \
     | xcpretty &&
