@@ -113,7 +113,7 @@ class OverlayLayoutTests: XCTestCase {
         (0..<TestAlignment.all.count).forEach { primaryAlignmentIndex in
             (0..<TestAlignment.all.count).forEach { backgroundCount in
                 (0..<TestAlignment.all.count).forEach { overlayCount in
-                    /**
+                    /*
                      Create a complex layout and simulate laying it out in a giant frame so we can
                      test the alignment of the complex layout itself, as well as all of the sublayouts'
                      alignment values.
@@ -128,10 +128,7 @@ class OverlayLayoutTests: XCTestCase {
                         width: maxSize.width,
                         height: maxSize.height)
                     let expectedRect = primaryAlignment.position(size: layoutSize, in: maxRect)
-                    assertAlignment(for: arrangement,
-                                    equalTo: expectedRect,
-                                    backgroundCount: backgroundCount,
-                                    onlyOverlay: true)
+                    AssertEqualDensity(arrangement.frame, [1.0: expectedRect, 2.0: expectedRect, 3.0: expectedRect])
                 }
             }
         }
@@ -148,7 +145,7 @@ class OverlayLayoutTests: XCTestCase {
         let expectedRect = CGRect(origin: .zero, size: layoutSize)
         (0..<TestAlignment.all.count).forEach { backgroundCount in
             (0..<TestAlignment.all.count).forEach { overlayCount in
-                /**
+                /*
                  Create a complex layout and simulate laying it out in a giant frame so we can
                  test the alignment of all of the sublayouts.
                  */
@@ -197,7 +194,7 @@ class OverlayLayoutTests: XCTestCase {
         let expectedRect = CGRect(origin: .zero, size: layoutSize)
         (0..<TestAlignment.all.count).forEach { backgroundCount in
             (0..<TestAlignment.all.count).forEach { overlayCount in
-                /**
+                /*
                  Create a complex layout and simulate laying it out in the largest frame possible so we can
                  test the alignment of all of the sublayouts.
                  */
@@ -304,15 +301,9 @@ class OverlayLayoutTests: XCTestCase {
      */
     private func assertAlignment(for arrangement: LayoutArrangement,
                                  equalTo expectedRect: CGRect,
-                                 backgroundCount: Int,
-                                 onlyOverlay: Bool = false) {
+                                 backgroundCount: Int) {
         // Make sure the frame is right for the main arrangement (should be the full size)
         AssertEqualDensity(arrangement.frame, [1.0: expectedRect, 2.0: expectedRect, 3.0: expectedRect])
-
-        // If we were only supposed to assert the overlay frame, return
-        if onlyOverlay {
-            return
-        }
 
         // Now check the children's alignments, using the expected frame from the alignment object
         arrangement.sublayouts.enumerated().forEach { (index, subLayout) in

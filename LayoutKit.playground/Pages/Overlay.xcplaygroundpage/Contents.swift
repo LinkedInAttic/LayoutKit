@@ -4,7 +4,7 @@ import LayoutKit
 
 /**
  This page demonstrates a complex layout that uses `OverlayLayout`, so that
- you can see the affect of various alignment values and how composing views
+ you can see the effect of various alignment values and how composing views
  together works. There's an orange view that the layout sits in. The layout
  is bordered by a white border & has a black background. The semi-transparent
  text is the base layout, centered within the overlay layout. The overlay

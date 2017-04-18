@@ -79,6 +79,11 @@ extension OverlayLayout: ConfigurableLayout {
         // Get measurement sublayouts
         let measuredBackgroundLayouts = measurement.sublayouts.prefix(background.count)
         let measuredOverlayLayouts = measurement.sublayouts.suffix(overlay.count)
+
+        // Make sure we have at least enough sublayouts to get the primary layout
+        guard measurement.sublayouts.count >= background.count else {
+            return LayoutArrangement(layout: self, frame: frame, sublayouts: [])
+        }
         let primaryLayoutMeasurement = measurement.sublayouts[background.count]
 
         // We arrange the background and overlay layouts based on the rect of the sublayout
