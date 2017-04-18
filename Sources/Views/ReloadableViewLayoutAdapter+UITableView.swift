@@ -12,27 +12,27 @@ import UIKit
 
 extension ReloadableViewLayoutAdapter: UITableViewDelegate {
 
-    /// - Warning: Not calling super may result in unexpected behaviour
+    /// - Warning: Subclasses that override this method must call super
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return currentArrangement[indexPath.section].items[indexPath.item].frame.height
     }
 
-    /// - Warning: Not calling super may result in unexpected behaviour
+    /// - Warning: Subclasses that override this method must call super
     open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return currentArrangement[section].header?.frame.height ?? 0
     }
 
-    /// - Warning: Not calling super may result in unexpected behaviour
+    /// - Warning: Subclasses that override this method must call super
     open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return currentArrangement[section].footer?.frame.height ?? 0
     }
 
-    /// - Warning: Not calling super may result in unexpected behaviour
+    /// - Warning: Subclasses that override this method must call super
     open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return renderLayout(currentArrangement[section].header, tableView: tableView)
     }
 
-    /// - Warning: Not calling super may result in unexpected behaviour
+    /// - Warning: Subclasses that override this method must call super
     open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return renderLayout(currentArrangement[section].footer, tableView: tableView)
     }
@@ -59,17 +59,17 @@ extension ReloadableViewLayoutAdapter: UITableViewDelegate {
 
 extension ReloadableViewLayoutAdapter: UITableViewDataSource {
 
-    /// - Warning: Not calling super may result in unexpected behaviour
+    /// - Warning: Subclasses that override this method must call super
     open func numberOfSections(in tableView: UITableView) -> Int {
         return currentArrangement.count
     }
 
-    /// - Warning: Not calling super may result in unexpected behaviour
+    /// - Warning: Subclasses that override this method must call super
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentArrangement[section].items.count
     }
 
-    /// - Warning: Not calling super may result in unexpected behaviour
+    /// - Warning: Subclasses that override this method must call super
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = currentArrangement[indexPath.section].items[indexPath.item]
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
