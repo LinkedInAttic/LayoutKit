@@ -245,41 +245,56 @@ class OverlayLayoutTests: XCTestCase {
      Makes sure that the views are ordered correctly - first background, then primary, then overlay.
      */
     func testViewOrdering() {
+        // Note: the empty configs here are used to ensure that views get created for these layouts
         let background = SizeLayout(
             width: Measurement.backgroundWidth,
             height: Measurement.backgroundHeight,
-            alignment: .topLeading)
+            alignment: .topLeading,
+            config: { _ in })
         let overlay = SizeLayout(
             width: Measurement.overlayWidth,
             height: Measurement.overlayHeight,
-            alignment: .topLeading)
+            alignment: .topLeading,
+            config: { _ in })
         let primary = SizeLayout(
             width: Measurement.primaryWidth,
             height: Measurement.primaryHeight,
-            alignment: .topLeading)
+            alignment: .topLeading,
+            config: { _ in })
         let layout = OverlayLayout(
             primary: primary,
             background: [background, background, background],
             overlay: [overlay, overlay])
 
-        // Make sure (using the frames) that we have the correct order
+        let backgroundFrame = CGRect(x: 0, y: 0, width: Measurement.backgroundWidth, height: Measurement.backgroundHeight)
+        let primaryFrame = CGRect(x: 0, y: 0, width: Measurement.primaryWidth, height: Measurement.primaryHeight)
+        let overlayFrame = CGRect(x: 0, y: 0, width: Measurement.overlayWidth, height: Measurement.overlayHeight)
+
+        // Asserts that all the frames match up correctly with the expected
+        let testFrames = { (frames: [CGRect]) in
+            XCTAssertEqual(frames.count, 6, "Wrong number of frames")
+            frames.prefix(upTo: 3).forEach { frame in
+                AssertEqualDensity(frame, [1.0: backgroundFrame, 2.0: backgroundFrame, 3.0: backgroundFrame])
+            }
+            AssertEqualDensity(frames[3], [1.0: primaryFrame, 2.0: primaryFrame, 3.0: primaryFrame])
+            frames.suffix(from: 4).forEach { frame in
+                AssertEqualDensity(frame, [1.0: overlayFrame, 2.0: overlayFrame, 3.0: overlayFrame])
+            }
+        }
+
+        // Make sure (using the layout properties) that we have the correct lists of layouts
         XCTAssertEqual(layout.background.count, 3, "Background layouts incorrect")
         XCTAssertEqual(layout.overlay.count, 2, "Overlay layouts incorrect")
+
+        // Make sure (using the arrangement's sublayouts' frames) that we have the correct order
         let arrangement = layout.arrangement()
-        XCTAssertEqual(arrangement.sublayouts.count, 6, "Wrong number of arrangement sublayouts")
+        testFrames(arrangement.sublayouts.map({ $0.frame }))
 
-        let backgroundFrame = CGRect(x: 0, y: 0, width: Measurement.backgroundWidth, height: Measurement.backgroundHeight)
-        arrangement.sublayouts.prefix(upTo: 3).forEach { sublayout in
-            AssertEqualDensity(sublayout.frame, [1.0: backgroundFrame, 2.0: backgroundFrame, 3.0: backgroundFrame])
-        }
 
-        let primaryFrame = CGRect(x: 0, y: 0, width: Measurement.primaryWidth, height: Measurement.primaryHeight)
-        AssertEqualDensity(arrangement.sublayouts[3].frame, [1.0: primaryFrame, 2.0: primaryFrame, 3.0: primaryFrame])
-
-        let overlayFrame = CGRect(x: 0, y: 0, width: Measurement.overlayWidth, height: Measurement.overlayHeight)
-        arrangement.sublayouts.suffix(from: 4).forEach { sublayout in
-            AssertEqualDensity(sublayout.frame, [1.0: overlayFrame, 2.0: overlayFrame, 3.0: overlayFrame])
-        }
+        // Make sure (using the view frames themselves) that we have the correct order in `makeViews`.
+        let mainView = arrangement.makeViews()
+        AssertEqualDensity(mainView.frame, [1.0: primaryFrame, 2.0: primaryFrame, 3.0: primaryFrame])
+        testFrames(mainView.subviews.map({ $0.frame }))
     }
 
     // MARK: - helpers
