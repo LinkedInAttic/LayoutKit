@@ -10,7 +10,7 @@ import Foundation
 
 
 /// A set of updates to apply to a `ReloadableView`.
-public struct BatchUpdates {
+public class BatchUpdates: NSObject {
     public var insertItems = [IndexPath]()
     public var deleteItems = [IndexPath]()
     public var reloadItems = [IndexPath]()
@@ -21,7 +21,9 @@ public struct BatchUpdates {
     public var reloadSections = IndexSet()
     public var moveSections = [SectionMove]()
 
-    public init() { }
+    public override init() {
+        super.init()
+    }
 }
 
 /// Instruction to move an item from one index path to another.
