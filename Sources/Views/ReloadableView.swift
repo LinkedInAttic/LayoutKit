@@ -49,7 +49,7 @@ public protocol ReloadableView: class {
 /// Make UICollectionView conform to ReloadableView protocol.
 extension UICollectionView: ReloadableView {
 
-    public func reloadDataSynchronously() {
+    open func reloadDataSynchronously() {
         reloadData()
 
         // Force a layout so that it is safe to call insert after this.
@@ -62,7 +62,7 @@ extension UICollectionView: ReloadableView {
         register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: reuseIdentifier)
     }
 
-    public func perform(batchUpdates: BatchUpdates) {
+    open func perform(batchUpdates: BatchUpdates) {
         performBatchUpdates({
             if batchUpdates.insertItems.count > 0 {
                 self.insertItems(at: batchUpdates.insertItems)
@@ -98,7 +98,7 @@ extension UICollectionView: ReloadableView {
 /// Make UITableView conform to ReloadableView protocol.
 extension UITableView: ReloadableView {
 
-    public func reloadDataSynchronously() {
+    open func reloadDataSynchronously() {
         reloadData()
     }
 
@@ -107,7 +107,7 @@ extension UITableView: ReloadableView {
         register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: reuseIdentifier)
     }
 
-    public func perform(batchUpdates: BatchUpdates) {
+    open func perform(batchUpdates: BatchUpdates) {
         beginUpdates()
 
         // Update items.
