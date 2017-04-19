@@ -22,6 +22,7 @@ class MenuViewController: UITableViewController {
         NestedCollectionViewController.self,
         ForegroundMiniProfileViewController.self,
         BackgroundMiniProfileViewController.self,
+        OverlayViewController.self,
         BatchUpdatesCollectionViewController.self,
         BatchUpdatesTableViewController.self
     ]
