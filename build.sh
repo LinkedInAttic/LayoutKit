@@ -103,3 +103,21 @@ time xcodebuild clean build \
     | xcpretty &&
 cd ../../.. &&
 cat build.log | sh debug-time-function-bodies.sh
+
+# Build a tvOS empty project with cocoapods
+rm -rf $DERIVED_DATA &&
+cd Tests/cocoapods/tvos &&
+pod install &&
+time xcodebuild clean build \
+    -workspace LayoutKit-tvOS.xcworkspace \
+    -scheme LayoutKit-tvOS \
+    -sdk appletvsimulator10.2 \
+    -derivedDataPath $DERIVED_DATA \
+    -destination 'platform=tvOS Simulator,name=Apple TV 1080p,OS=9.2' \
+    -destination 'platform=tvOS Simulator,name=Apple TV 1080p,OS=10.2' \
+    OTHER_SWIFT_FLAGS='-Xfrontend -debug-time-function-bodies' \
+    OTHER_SWIFT_FLAGS='-Xfrontend -debug-time-function-bodies' \
+    | tee ../../../build.log \
+    | xcpretty &&
+cd ../../.. &&
+cat build.log | sh debug-time-function-bodies.sh
