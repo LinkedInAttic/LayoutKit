@@ -8,17 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		448160371EA5A76A00FBA809 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448160361EA5A76A00FBA809 /* AppDelegate.swift */; };
-		448160391EA5A76A00FBA809 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448160381EA5A76A00FBA809 /* ViewController.swift */; };
-		4481603C1EA5A76B00FBA809 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4481603A1EA5A76B00FBA809 /* Main.storyboard */; };
-		4481603E1EA5A76B00FBA809 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4481603D1EA5A76B00FBA809 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		448160331EA5A76A00FBA809 /* LayoutKit-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LayoutKit-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		448160361EA5A76A00FBA809 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		448160381EA5A76A00FBA809 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4481603B1EA5A76B00FBA809 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4481603D1EA5A76B00FBA809 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4481603F1EA5A76B00FBA809 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -53,9 +47,6 @@
 			isa = PBXGroup;
 			children = (
 				448160361EA5A76A00FBA809 /* AppDelegate.swift */,
-				448160381EA5A76A00FBA809 /* ViewController.swift */,
-				4481603A1EA5A76B00FBA809 /* Main.storyboard */,
-				4481603D1EA5A76B00FBA809 /* Assets.xcassets */,
 				4481603F1EA5A76B00FBA809 /* Info.plist */,
 			);
 			path = "LayoutKit-tvOS";
@@ -120,8 +111,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4481603E1EA5A76B00FBA809 /* Assets.xcassets in Resources */,
-				4481603C1EA5A76B00FBA809 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,23 +121,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				448160391EA5A76A00FBA809 /* ViewController.swift in Sources */,
 				448160371EA5A76A00FBA809 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		4481603A1EA5A76B00FBA809 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4481603B1EA5A76B00FBA809 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		448160401EA5A76B00FBA809 /* Debug */ = {
@@ -247,8 +224,6 @@
 		448160431EA5A76B00FBA809 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "LayoutKit-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.linkedin.LayoutKit-tvOS";
@@ -260,8 +235,6 @@
 		448160441EA5A76B00FBA809 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "LayoutKit-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.linkedin.LayoutKit-tvOS";
@@ -289,6 +262,7 @@
 				448160441EA5A76B00FBA809 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

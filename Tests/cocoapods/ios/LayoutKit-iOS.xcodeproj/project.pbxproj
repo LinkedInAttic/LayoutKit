@@ -7,25 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		286865833404B779CC48B03A /* Pods_LayoutKit_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC8D08924D8AD1EA82984698 /* Pods_LayoutKit_iOS.framework */; };
 		447D4B341EA5599F002FDFF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447D4B331EA5599F002FDFF4 /* AppDelegate.swift */; };
-		447D4B361EA5599F002FDFF4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447D4B351EA5599F002FDFF4 /* ViewController.swift */; };
-		447D4B391EA5599F002FDFF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447D4B371EA5599F002FDFF4 /* Main.storyboard */; };
-		447D4B3B1EA5599F002FDFF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 447D4B3A1EA5599F002FDFF4 /* Assets.xcassets */; };
-		447D4B3E1EA5599F002FDFF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447D4B3C1EA5599F002FDFF4 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		447D4B301EA5599F002FDFF4 /* LayoutKit-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LayoutKit-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		447D4B331EA5599F002FDFF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		447D4B351EA5599F002FDFF4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		447D4B381EA5599F002FDFF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		447D4B3A1EA5599F002FDFF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		447D4B3D1EA5599F002FDFF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		447D4B3F1EA5599F002FDFF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7F2460053D184B0E1F267928 /* Pods-LayoutKit-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LayoutKit-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LayoutKit-iOS/Pods-LayoutKit-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		B121756D8BED3F7B211BA831 /* Pods-LayoutKit-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LayoutKit-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-LayoutKit-iOS/Pods-LayoutKit-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		BC8D08924D8AD1EA82984698 /* Pods_LayoutKit_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LayoutKit_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,7 +21,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				286865833404B779CC48B03A /* Pods_LayoutKit_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,8 +32,6 @@
 			children = (
 				447D4B321EA5599F002FDFF4 /* LayoutKit-iOS */,
 				447D4B311EA5599F002FDFF4 /* Products */,
-				584C49B6274D904F601B6E0E /* Pods */,
-				529ED7E59A7AE8EB5DB8B490 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,30 +47,9 @@
 			isa = PBXGroup;
 			children = (
 				447D4B331EA5599F002FDFF4 /* AppDelegate.swift */,
-				447D4B351EA5599F002FDFF4 /* ViewController.swift */,
-				447D4B371EA5599F002FDFF4 /* Main.storyboard */,
-				447D4B3A1EA5599F002FDFF4 /* Assets.xcassets */,
-				447D4B3C1EA5599F002FDFF4 /* LaunchScreen.storyboard */,
 				447D4B3F1EA5599F002FDFF4 /* Info.plist */,
 			);
 			path = "LayoutKit-iOS";
-			sourceTree = "<group>";
-		};
-		529ED7E59A7AE8EB5DB8B490 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				BC8D08924D8AD1EA82984698 /* Pods_LayoutKit_iOS.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		584C49B6274D904F601B6E0E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				7F2460053D184B0E1F267928 /* Pods-LayoutKit-iOS.debug.xcconfig */,
-				B121756D8BED3F7B211BA831 /* Pods-LayoutKit-iOS.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -95,12 +59,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 447D4B421EA5599F002FDFF4 /* Build configuration list for PBXNativeTarget "LayoutKit-iOS" */;
 			buildPhases = (
-				18A41E8F9C52499F559F2172 /* [CP] Check Pods Manifest.lock */,
 				447D4B2C1EA5599F002FDFF4 /* Sources */,
 				447D4B2D1EA5599F002FDFF4 /* Frameworks */,
 				447D4B2E1EA5599F002FDFF4 /* Resources */,
-				06724DFCD8A0EA853D649D16 /* [CP] Embed Pods Frameworks */,
-				8299ABC74A00AAC51D803B7B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -150,92 +111,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				447D4B3E1EA5599F002FDFF4 /* LaunchScreen.storyboard in Resources */,
-				447D4B3B1EA5599F002FDFF4 /* Assets.xcassets in Resources */,
-				447D4B391EA5599F002FDFF4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		06724DFCD8A0EA853D649D16 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LayoutKit-iOS/Pods-LayoutKit-iOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		18A41E8F9C52499F559F2172 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		8299ABC74A00AAC51D803B7B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LayoutKit-iOS/Pods-LayoutKit-iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		447D4B2C1EA5599F002FDFF4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				447D4B361EA5599F002FDFF4 /* ViewController.swift in Sources */,
 				447D4B341EA5599F002FDFF4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		447D4B371EA5599F002FDFF4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				447D4B381EA5599F002FDFF4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		447D4B3C1EA5599F002FDFF4 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				447D4B3D1EA5599F002FDFF4 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		447D4B401EA5599F002FDFF4 /* Debug */ = {
@@ -335,9 +225,7 @@
 		};
 		447D4B431EA5599F002FDFF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F2460053D184B0E1F267928 /* Pods-LayoutKit-iOS.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "LayoutKit-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -349,9 +237,7 @@
 		};
 		447D4B441EA5599F002FDFF4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B121756D8BED3F7B211BA831 /* Pods-LayoutKit-iOS.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "LayoutKit-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
