@@ -12,23 +12,28 @@ import UIKit
 
 extension ReloadableViewLayoutAdapter: UITableViewDelegate {
 
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    /// - Warning: Subclasses that override this method must call super
+    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return currentArrangement[indexPath.section].items[indexPath.item].frame.height
     }
 
-    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    /// - Warning: Subclasses that override this method must call super
+    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return currentArrangement[section].header?.frame.height ?? 0
     }
 
-    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    /// - Warning: Subclasses that override this method must call super
+    open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return currentArrangement[section].footer?.frame.height ?? 0
     }
 
-    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    /// - Warning: Subclasses that override this method must call super
+    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return renderLayout(currentArrangement[section].header, tableView: tableView)
     }
 
-    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    /// - Warning: Subclasses that override this method must call super
+    open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return renderLayout(currentArrangement[section].footer, tableView: tableView)
     }
 
@@ -54,15 +59,18 @@ extension ReloadableViewLayoutAdapter: UITableViewDelegate {
 
 extension ReloadableViewLayoutAdapter: UITableViewDataSource {
 
-    public func numberOfSections(in tableView: UITableView) -> Int {
+    /// - Warning: Subclasses that override this method must call super
+    open func numberOfSections(in tableView: UITableView) -> Int {
         return currentArrangement.count
     }
 
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    /// - Warning: Subclasses that override this method must call super
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentArrangement[section].items.count
     }
 
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    /// - Warning: Subclasses that override this method must call super
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = currentArrangement[indexPath.section].items[indexPath.item]
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         item.makeViews(in: cell.contentView)

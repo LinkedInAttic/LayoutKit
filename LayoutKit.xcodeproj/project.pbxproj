@@ -209,6 +209,8 @@
 		44F968181E4263DC00392763 /* TextViewLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968161E42639500392763 /* TextViewLayoutTests.swift */; };
 		44F968191E4263DC00392763 /* TextViewLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968161E42639500392763 /* TextViewLayoutTests.swift */; };
 		44F9681A1E42640400392763 /* TextViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968141E425F5D00392763 /* TextViewLayout.swift */; };
+		AD2C36441EA5AFB500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2C36421EA5AF9500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift */; };
+		ADE5FCC11EA5B5F3006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE5FCBF1EA5B5C8006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift */; };
 		75D94A361EA01B6A00A5FD01 /* OverlayLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A351EA01B6A00A5FD01 /* OverlayLayout.swift */; };
 		75D94A371EA01B7100A5FD01 /* OverlayLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A351EA01B6A00A5FD01 /* OverlayLayout.swift */; };
 		75D94A381EA01B7200A5FD01 /* OverlayLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A351EA01B6A00A5FD01 /* OverlayLayout.swift */; };
@@ -393,6 +395,8 @@
 		448CEC0E1E4E0CB500F8AD9E /* TextViewDefaultFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewDefaultFont.swift; sourceTree = "<group>"; };
 		44F968141E425F5D00392763 /* TextViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewLayout.swift; sourceTree = "<group>"; };
 		44F968161E42639500392763 /* TextViewLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewLayoutTests.swift; sourceTree = "<group>"; };
+		AD2C36421EA5AF9500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift; sourceTree = "<group>"; };
+		ADE5FCBF1EA5B5C8006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewLayoutAdapterTableViewOverrideTests.swift; sourceTree = "<group>"; };
 		75D94A351EA01B6A00A5FD01 /* OverlayLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayLayout.swift; sourceTree = "<group>"; };
 		75D94A3A1EA045F100A5FD01 /* OverlayLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayLayoutTests.swift; sourceTree = "<group>"; };
 		75D94A3F1EA05D5A00A5FD01 /* OverlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayViewController.swift; sourceTree = "<group>"; };
@@ -577,7 +581,9 @@
 				0BCB76591D8725310065E02A /* LayoutArrangementTests.swift */,
 				75D94A3A1EA045F100A5FD01 /* OverlayLayoutTests.swift */,
 				0BCB765C1D8725310065E02A /* ReloadableViewLayoutAdapterCollectionViewTests.swift */,
+				AD2C36421EA5AF9500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift */,
 				0BCB765D1D8725310065E02A /* ReloadableViewLayoutAdapterTableViewTests.swift */,
+				ADE5FCBF1EA5B5C8006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift */,
 				0BCB765E1D8725310065E02A /* ReloadableViewLayoutAdapterTestCase.swift */,
 				0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */,
 				0BCB765F1D8725310065E02A /* SizeLayoutTests.swift */,
@@ -1068,6 +1074,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADE5FCC11EA5B5F3006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift in Sources */,
+				AD2C36441EA5AFB500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift in Sources */,
 				0B765F301DC135B8000BF1FD /* CGFloatExtensionTests.swift in Sources */,
 				0B2D092C1D872F75007E487C /* ReloadableViewLayoutAdapterCollectionViewTests.swift in Sources */,
 				0B2D092E1D872F75007E487C /* ReloadableViewLayoutAdapterTestCase.swift in Sources */,
