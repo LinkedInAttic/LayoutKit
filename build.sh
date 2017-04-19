@@ -113,9 +113,7 @@ time xcodebuild clean build \
     -scheme LayoutKit-tvOS \
     -sdk appletvsimulator10.2 \
     -derivedDataPath $DERIVED_DATA \
-    -destination 'platform=tvOS Simulator,name=Apple TV 1080p,OS=9.2' \
     -destination 'platform=tvOS Simulator,name=Apple TV 1080p,OS=10.2' \
-    OTHER_SWIFT_FLAGS='-Xfrontend -debug-time-function-bodies' \
     OTHER_SWIFT_FLAGS='-Xfrontend -debug-time-function-bodies' \
     | tee ../../../build.log \
     | xcpretty &&
