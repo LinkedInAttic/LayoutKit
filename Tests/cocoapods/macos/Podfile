@@ -1,0 +1,8 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :osx, '10.11'
+
+use_frameworks!
+
+target 'LayoutKit-macOS' do
+  pod 'LayoutKit'
+end

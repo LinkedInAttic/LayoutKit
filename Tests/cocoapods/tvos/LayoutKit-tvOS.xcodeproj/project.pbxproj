@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		447D4B341EA5599F002FDFF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447D4B331EA5599F002FDFF4 /* AppDelegate.swift */; };
+		448160371EA5A76A00FBA809 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448160361EA5A76A00FBA809 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		447D4B301EA5599F002FDFF4 /* LayoutKit-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LayoutKit-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		447D4B331EA5599F002FDFF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		447D4B3F1EA5599F002FDFF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		448160331EA5A76A00FBA809 /* LayoutKit-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LayoutKit-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		448160361EA5A76A00FBA809 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4481603F1EA5A76B00FBA809 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		447D4B2D1EA5599F002FDFF4 /* Frameworks */ = {
+		448160301EA5A76A00FBA809 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -27,68 +27,68 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		447D4B271EA5599F002FDFF4 = {
+		4481602A1EA5A76A00FBA809 = {
 			isa = PBXGroup;
 			children = (
-				447D4B321EA5599F002FDFF4 /* LayoutKit-iOS */,
-				447D4B311EA5599F002FDFF4 /* Products */,
+				448160351EA5A76A00FBA809 /* LayoutKit-tvOS */,
+				448160341EA5A76A00FBA809 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		447D4B311EA5599F002FDFF4 /* Products */ = {
+		448160341EA5A76A00FBA809 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				447D4B301EA5599F002FDFF4 /* LayoutKit-iOS.app */,
+				448160331EA5A76A00FBA809 /* LayoutKit-tvOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		447D4B321EA5599F002FDFF4 /* LayoutKit-iOS */ = {
+		448160351EA5A76A00FBA809 /* LayoutKit-tvOS */ = {
 			isa = PBXGroup;
 			children = (
-				447D4B331EA5599F002FDFF4 /* AppDelegate.swift */,
-				447D4B3F1EA5599F002FDFF4 /* Info.plist */,
+				448160361EA5A76A00FBA809 /* AppDelegate.swift */,
+				4481603F1EA5A76B00FBA809 /* Info.plist */,
 			);
-			path = "LayoutKit-iOS";
+			path = "LayoutKit-tvOS";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		447D4B2F1EA5599F002FDFF4 /* LayoutKit-iOS */ = {
+		448160321EA5A76A00FBA809 /* LayoutKit-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 447D4B421EA5599F002FDFF4 /* Build configuration list for PBXNativeTarget "LayoutKit-iOS" */;
+			buildConfigurationList = 448160421EA5A76B00FBA809 /* Build configuration list for PBXNativeTarget "LayoutKit-tvOS" */;
 			buildPhases = (
-				447D4B2C1EA5599F002FDFF4 /* Sources */,
-				447D4B2D1EA5599F002FDFF4 /* Frameworks */,
-				447D4B2E1EA5599F002FDFF4 /* Resources */,
+				4481602F1EA5A76A00FBA809 /* Sources */,
+				448160301EA5A76A00FBA809 /* Frameworks */,
+				448160311EA5A76A00FBA809 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "LayoutKit-iOS";
-			productName = "LayoutKit-iOS";
-			productReference = 447D4B301EA5599F002FDFF4 /* LayoutKit-iOS.app */;
+			name = "LayoutKit-tvOS";
+			productName = "LayoutKit-tvOS";
+			productReference = 448160331EA5A76A00FBA809 /* LayoutKit-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		447D4B281EA5599F002FDFF4 /* Project object */ = {
+		4481602B1EA5A76A00FBA809 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Linkedin;
 				TargetAttributes = {
-					447D4B2F1EA5599F002FDFF4 = {
+					448160321EA5A76A00FBA809 = {
 						CreatedOnToolsVersion = 8.3.1;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 447D4B2B1EA5599F002FDFF4 /* Build configuration list for PBXProject "LayoutKit-iOS" */;
+			buildConfigurationList = 4481602E1EA5A76A00FBA809 /* Build configuration list for PBXProject "LayoutKit-tvOS" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -96,18 +96,18 @@
 				en,
 				Base,
 			);
-			mainGroup = 447D4B271EA5599F002FDFF4;
-			productRefGroup = 447D4B311EA5599F002FDFF4 /* Products */;
+			mainGroup = 4481602A1EA5A76A00FBA809;
+			productRefGroup = 448160341EA5A76A00FBA809 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				447D4B2F1EA5599F002FDFF4 /* LayoutKit-iOS */,
+				448160321EA5A76A00FBA809 /* LayoutKit-tvOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		447D4B2E1EA5599F002FDFF4 /* Resources */ = {
+		448160311EA5A76A00FBA809 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -117,18 +117,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		447D4B2C1EA5599F002FDFF4 /* Sources */ = {
+		4481602F1EA5A76A00FBA809 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				447D4B341EA5599F002FDFF4 /* AppDelegate.swift in Sources */,
+				448160371EA5A76A00FBA809 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		447D4B401EA5599F002FDFF4 /* Debug */ = {
+		448160401EA5A76B00FBA809 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -150,7 +150,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -169,17 +168,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = appletvos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.2;
 			};
 			name = Debug;
 		};
-		447D4B411EA5599F002FDFF4 /* Release */ = {
+		448160411EA5A76B00FBA809 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -201,7 +200,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -214,34 +212,32 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
+				SDKROOT = appletvos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		447D4B431EA5599F002FDFF4 /* Debug */ = {
+		448160431EA5A76B00FBA809 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = "LayoutKit-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				INFOPLIST_FILE = "LayoutKit-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Linkedin.LayoutKit-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.linkedin.LayoutKit-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		447D4B441EA5599F002FDFF4 /* Release */ = {
+		448160441EA5A76B00FBA809 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = "LayoutKit-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				INFOPLIST_FILE = "LayoutKit-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Linkedin.LayoutKit-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.linkedin.LayoutKit-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -250,25 +246,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		447D4B2B1EA5599F002FDFF4 /* Build configuration list for PBXProject "LayoutKit-iOS" */ = {
+		4481602E1EA5A76A00FBA809 /* Build configuration list for PBXProject "LayoutKit-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				447D4B401EA5599F002FDFF4 /* Debug */,
-				447D4B411EA5599F002FDFF4 /* Release */,
+				448160401EA5A76B00FBA809 /* Debug */,
+				448160411EA5A76B00FBA809 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		447D4B421EA5599F002FDFF4 /* Build configuration list for PBXNativeTarget "LayoutKit-iOS" */ = {
+		448160421EA5A76B00FBA809 /* Build configuration list for PBXNativeTarget "LayoutKit-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				447D4B431EA5599F002FDFF4 /* Debug */,
-				447D4B441EA5599F002FDFF4 /* Release */,
+				448160431EA5A76B00FBA809 /* Debug */,
+				448160441EA5A76B00FBA809 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 447D4B281EA5599F002FDFF4 /* Project object */;
+	rootObject = 4481602B1EA5A76A00FBA809 /* Project object */;
 }

@@ -70,7 +70,7 @@ cat build.log | sh debug-time-function-bodies.sh
 
 # Test Cocopods, Carthage, Swift Package Management
 
-# Build an empty project with cocoapods
+# Build an iOS empty project with cocoapods
 rm -rf $DERIVED_DATA &&
 cd Tests/cocoapods/ios &&
 pod install &&
@@ -79,10 +79,38 @@ time xcodebuild clean build \
     -scheme LayoutKit-iOS \
     -sdk iphonesimulator10.3 \
     -derivedDataPath $DERIVED_DATA \
-    -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' \
-    -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=9.3' \
     -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3' \
-    -destination 'platform=iOS Simulator,name=iPhone 7 Plus,OS=10.3' \
+    OTHER_SWIFT_FLAGS='-Xfrontend -debug-time-function-bodies' \
+    | tee ../../../build.log \
+    | xcpretty &&
+cd ../../.. &&
+cat build.log | sh debug-time-function-bodies.sh
+
+# Build a macOS empty project with cocoapods
+rm -rf $DERIVED_DATA &&
+cd Tests/cocoapods/macos &&
+pod install &&
+time xcodebuild clean build \
+    -workspace LayoutKit-macOS.xcworkspace \
+    -scheme LayoutKit-macOS \
+    -sdk macosx10.12 \
+    -derivedDataPath $DERIVED_DATA \
+    OTHER_SWIFT_FLAGS='-Xfrontend -debug-time-function-bodies' \
+    | tee ../../../build.log \
+    | xcpretty &&
+cd ../../.. &&
+cat build.log | sh debug-time-function-bodies.sh
+
+# Build a tvOS empty project with cocoapods
+rm -rf $DERIVED_DATA &&
+cd Tests/cocoapods/tvos &&
+pod install &&
+time xcodebuild clean build \
+    -workspace LayoutKit-tvOS.xcworkspace \
+    -scheme LayoutKit-tvOS \
+    -sdk appletvsimulator10.2 \
+    -derivedDataPath $DERIVED_DATA \
+    -destination 'platform=tvOS Simulator,name=Apple TV 1080p,OS=10.2' \
     OTHER_SWIFT_FLAGS='-Xfrontend -debug-time-function-bodies' \
     | tee ../../../build.log \
     | xcpretty &&

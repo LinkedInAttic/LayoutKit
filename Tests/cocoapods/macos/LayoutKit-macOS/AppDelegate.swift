@@ -6,18 +6,20 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-import UIKit
+import Cocoa
+import LayoutKit
 
-class ViewController: UIViewController {
+@NSApplicationMain
+class AppDelegate: NSObject, NSApplicationDelegate {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
+        // Insert code here to initialize your application
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func applicationWillTerminate(_ aNotification: Notification) {
+        // Insert code here to tear down your application
     }
 
 
