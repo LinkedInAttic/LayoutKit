@@ -66,7 +66,7 @@ time xcodebuild clean build \
     OTHER_SWIFT_FLAGS='-Xfrontend -debug-time-function-bodies' \
     | tee ../build.log \
     | xcpretty &&
-cat build.log | sh debug-time-function-bodies.sh
+cat build.log | sh debug-time-function-bodies.sh &&
 
 # Test Cocopods, Carthage, Swift Package Management
 
