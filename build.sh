@@ -9,7 +9,7 @@ echo "Derived data location: $DERIVED_DATA";
     #-destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=8.4' \
 
 set -o pipefail &&
-rm -rf $DERIVED_DATA &&
+instruments -s devices &&
 
 # Run test on iOS
 rm -rf $DERIVED_DATA &&
