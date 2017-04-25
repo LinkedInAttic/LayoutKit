@@ -5,11 +5,7 @@
 DERIVED_DATA=${1:-/tmp/LayoutKit}
 echo "Derived data location: $DERIVED_DATA";
 
-    #-destination 'platform=iOS Simulator,name=iPhone 6,OS=8.4' \
-    #-destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=8.4' \
-
 set -o pipefail &&
-instruments -s devices &&
 
 echo "Run tests on iOS" &&
 rm -rf $DERIVED_DATA &&
