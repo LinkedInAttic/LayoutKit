@@ -78,7 +78,7 @@ time xcodebuild clean build \
     | tee ../../../build.log \
     | xcpretty &&
 cd ../../.. &&
-cat build.log | sh debug-time-function-bodies.sh
+cat build.log | sh debug-time-function-bodies.sh &&
 
 echo "Run building a macOS empty project with cocoapods" &&
 rm -rf $DERIVED_DATA &&
@@ -93,7 +93,7 @@ time xcodebuild clean build \
     | tee ../../../build.log \
     | xcpretty &&
 cd ../../.. &&
-cat build.log | sh debug-time-function-bodies.sh
+cat build.log | sh debug-time-function-bodies.sh &&
 
 echo "Run building a tvOS empty project with cocoapods" &&
 rm -rf $DERIVED_DATA &&
