@@ -46,7 +46,7 @@ time xcodebuild clean test \
     | xcpretty &&
 cat build.log | sh debug-time-function-bodies.sh &&
 
-echo "Test building sample app" &&
+echo "Run building sample app" &&
 rm -rf $DERIVED_DATA &&
 time xcodebuild clean build \
     -project LayoutKit.xcodeproj \
@@ -64,7 +64,7 @@ cat build.log | sh debug-time-function-bodies.sh &&
 
 # Test Cocopods, Carthage, Swift Package Management
 
-echo "Test building an iOS empty project with cocoapods" &&
+echo "Run building an iOS empty project with cocoapods" &&
 rm -rf $DERIVED_DATA &&
 cd Tests/cocoapods/ios &&
 pod install &&
@@ -80,7 +80,7 @@ time xcodebuild clean build \
 cd ../../.. &&
 cat build.log | sh debug-time-function-bodies.sh
 
-echo "Test build a macOS empty project with cocoapods" &&
+echo "Run building a macOS empty project with cocoapods" &&
 rm -rf $DERIVED_DATA &&
 cd Tests/cocoapods/macos &&
 pod install &&
@@ -95,7 +95,7 @@ time xcodebuild clean build \
 cd ../../.. &&
 cat build.log | sh debug-time-function-bodies.sh
 
-echo "Test building a tvOS empty project with cocoapods" &&
+echo "Run building a tvOS empty project with cocoapods" &&
 rm -rf $DERIVED_DATA &&
 cd Tests/cocoapods/tvos &&
 pod install &&
