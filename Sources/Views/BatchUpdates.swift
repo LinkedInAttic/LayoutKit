@@ -9,8 +9,13 @@
 import Foundation
 
 
-/// A set of updates to apply to a `ReloadableView`.
-public struct BatchUpdates {
+/**
+ A set of updates to apply to a `ReloadableView`.
+ 
+ Inherits from NSObject in order to be exposable to Objective-C.
+ Objective-C exposability is needed in order to override methods from extensions that use `BatchUpdates` as parameter.
+ */
+public class BatchUpdates: NSObject {
     public var insertItems = [IndexPath]()
     public var deleteItems = [IndexPath]()
     public var reloadItems = [IndexPath]()
@@ -21,7 +26,9 @@ public struct BatchUpdates {
     public var reloadSections = IndexSet()
     public var moveSections = [SectionMove]()
 
-    public init() { }
+    public override init() {
+        super.init()
+    }
 }
 
 /// Instruction to move an item from one index path to another.
