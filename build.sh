@@ -7,7 +7,7 @@ echo "Derived data location: $DERIVED_DATA";
 
 set -o pipefail &&
 
-echo "Run tests on iOS" &&
+echo "Run tests on iOS..." &&
 rm -rf $DERIVED_DATA &&
 time xcodebuild clean test \
     -project LayoutKit.xcodeproj \
@@ -21,7 +21,7 @@ time xcodebuild clean test \
     | xcpretty &&
 cat build.log | sh debug-time-function-bodies.sh &&
 
-echo "Run tests on MacOS" &&
+echo "Run tests on macOS..." &&
 time xcodebuild clean test \
     -project LayoutKit.xcodeproj \
     -scheme LayoutKit-macOS \
@@ -32,7 +32,7 @@ time xcodebuild clean test \
     | xcpretty &&
 cat build.log | sh debug-time-function-bodies.sh &&
 
-echo "Run tests on tvOS" &&
+echo "Run tests on tvOS..." &&
 rm -rf $DERIVED_DATA &&
 time xcodebuild clean test \
     -project LayoutKit.xcodeproj \
@@ -46,15 +46,13 @@ time xcodebuild clean test \
     | xcpretty &&
 cat build.log | sh debug-time-function-bodies.sh &&
 
-echo "Run building sample app" &&
+echo "Run building sample app..." &&
 rm -rf $DERIVED_DATA &&
 time xcodebuild clean build \
     -project LayoutKit.xcodeproj \
     -scheme LayoutKitSampleApp \
     -sdk iphonesimulator10.3 \
     -derivedDataPath $DERIVED_DATA \
-    -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' \
-    -destination 'platform=iOS Simulator,name=iPhone 6 Plus,OS=9.3' \
     -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3' \
     -destination 'platform=iOS Simulator,name=iPhone 7 Plus,OS=10.3' \
     OTHER_SWIFT_FLAGS='-Xfrontend -debug-time-function-bodies' \
@@ -64,7 +62,7 @@ cat build.log | sh debug-time-function-bodies.sh &&
 
 # Test Cocopods, Carthage, Swift Package Management
 
-echo "Run building an iOS empty project with cocoapods" &&
+echo "Run building an iOS empty project with cocoapods..." &&
 rm -rf $DERIVED_DATA &&
 cd Tests/cocoapods/ios &&
 pod install &&
@@ -80,7 +78,7 @@ time xcodebuild clean build \
 cd ../../.. &&
 cat build.log | sh debug-time-function-bodies.sh &&
 
-echo "Run building a macOS empty project with cocoapods" &&
+echo "Run building a macOS empty project with cocoapods..." &&
 rm -rf $DERIVED_DATA &&
 cd Tests/cocoapods/macos &&
 pod install &&
@@ -95,7 +93,7 @@ time xcodebuild clean build \
 cd ../../.. &&
 cat build.log | sh debug-time-function-bodies.sh &&
 
-echo "Run building a tvOS empty project with cocoapods" &&
+echo "Run building a tvOS empty project with cocoapods..." &&
 rm -rf $DERIVED_DATA &&
 cd Tests/cocoapods/tvos &&
 pod install &&
