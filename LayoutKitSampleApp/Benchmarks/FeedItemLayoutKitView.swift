@@ -14,6 +14,14 @@ class FeedItemLayoutKitView: UIView, DataBinder {
 
     private var layout: FeedItemLayout? = nil
 
+    private var intrinsicContentSizeCalculated = false
+    
+    private lazy var heightConstraint: NSLayoutConstraint = {
+        let constraint = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: self.bounds.height)
+        constraint.isActive = true
+        return constraint
+    }()
+    
     func setData(_ data: FeedItemData) {
         let posterProfile = ProfileCardLayout(
             name: data.posterName,
@@ -26,6 +34,10 @@ class FeedItemLayoutKitView: UIView, DataBinder {
         layout = FeedItemLayout(actionText: data.actionText, posterProfile: posterProfile, posterComment: data.posterComment, contentLayout: content, actorComment: data.actorComment)
         
         setNeedsLayout()
+        
+        if intrinsicContentSizeCalculated {
+            heightConstraint.constant = sizeThatFits(CGSize(width: bounds.width, height: .greatestFiniteMagnitude)).height
+        }
     }
 
     override func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -33,6 +45,7 @@ class FeedItemLayoutKitView: UIView, DataBinder {
     }
 
     override var intrinsicContentSize: CGSize {
+        intrinsicContentSizeCalculated = true
         return sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
     }
 
