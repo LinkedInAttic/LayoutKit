@@ -24,6 +24,8 @@ class FeedItemLayoutKitView: UIView, DataBinder {
 
         let content = ContentLayout(title: data.contentTitle, domain: data.contentDomain)
         layout = FeedItemLayout(actionText: data.actionText, posterProfile: posterProfile, posterComment: data.posterComment, contentLayout: content, actorComment: data.actorComment)
+        
+        setNeedsLayout()
     }
 
     override func sizeThatFits(_ size: CGSize) -> CGSize {
