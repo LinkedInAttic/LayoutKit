@@ -13,8 +13,6 @@ import ExampleLayouts
 class FeedItemLayoutKitView: UIView, DataBinder {
 
     private var layout: FeedItemLayout? = nil
-
-    private var intrinsicContentSizeCalculated = false
     
     private lazy var heightConstraint: NSLayoutConstraint = {
         let constraint = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: self.bounds.height)
@@ -35,7 +33,7 @@ class FeedItemLayoutKitView: UIView, DataBinder {
         
         setNeedsLayout()
         
-        if intrinsicContentSizeCalculated {
+        if bounds.width > 0 {
             heightConstraint.constant = sizeThatFits(CGSize(width: bounds.width, height: .greatestFiniteMagnitude)).height
         }
     }
@@ -45,7 +43,6 @@ class FeedItemLayoutKitView: UIView, DataBinder {
     }
 
     override var intrinsicContentSize: CGSize {
-        intrinsicContentSizeCalculated = true
         return sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
     }
 
