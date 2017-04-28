@@ -95,7 +95,7 @@ class BatchUpdatesBaseViewController: UIViewController {
     }
 
     func batchUpdates() -> BatchUpdates {
-        var batchUpdates = BatchUpdates()
+        let batchUpdates = BatchUpdates()
         batchUpdates.deleteSections.insert(0)
         batchUpdates.deleteItems.append(IndexPath(item: 0, section: 1))
         batchUpdates.insertItems.append(IndexPath(item: 1, section: 1))

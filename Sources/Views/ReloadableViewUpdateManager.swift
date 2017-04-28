@@ -103,7 +103,7 @@ class IncrementalUpdateManager: BaseReloadableViewUpdateManager, ReloadableViewU
         } else {
             // Compute the actual inserted index paths.
             // If indexes are inserted into a section that doesn't exist, then we insert the section instead.
-            var batchUpdates = BatchUpdates()
+            let batchUpdates = BatchUpdates()
             for pendingInsertedIndexPath in pendingInsertedIndexPaths {
                 if pendingInsertedIndexPath.section >= oldArrangement.count {
                     batchUpdates.insertSections.insert(pendingInsertedIndexPath.section)

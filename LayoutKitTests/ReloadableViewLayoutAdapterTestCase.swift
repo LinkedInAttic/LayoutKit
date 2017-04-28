@@ -448,7 +448,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
     }
 
     private func batchUpdatesForLayoutTwo() -> BatchUpdates {
-        var batchUpdates = BatchUpdates()
+        let batchUpdates = BatchUpdates()
         batchUpdates.insertItems.append(IndexPath(item: 2, section: 1))
         batchUpdates.insertSections.insert(2)
         batchUpdates.reloadItems.append(IndexPath(item: 0, section: 1))
@@ -479,7 +479,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
     }
 
     private func batchUpdatesForLayoutThree() -> BatchUpdates {
-        var batchUpdates = BatchUpdates()
+        let batchUpdates = BatchUpdates()
         batchUpdates.deleteSections.insert(0)
         batchUpdates.moveSections.append(SectionMove(from: 2, to: 0))
         batchUpdates.moveItems.append(ItemMove(from: IndexPath(item: 0, section: 1), to: IndexPath(item: 1, section: 1)))
