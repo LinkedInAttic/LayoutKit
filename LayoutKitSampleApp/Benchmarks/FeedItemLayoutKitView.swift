@@ -42,8 +42,10 @@ class FeedItemLayoutKitView: UIView, DataBinder {
             contentLayout: content,
             actorComment: data.actorComment)
         
+        // Assure that `layoutSubviews` is called
         setNeedsLayout()
         
+        // Only calculate height for valid width
         if bounds.width > 0 {
             heightConstraint.constant = sizeThatFits(CGSize(width: bounds.width, height: .greatestFiniteMagnitude)).height
         }
