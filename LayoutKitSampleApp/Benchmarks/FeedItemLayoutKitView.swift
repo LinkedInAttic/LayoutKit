@@ -15,7 +15,13 @@ class FeedItemLayoutKitView: UIView, DataBinder {
     private var layout: FeedItemLayout? = nil
     
     private lazy var heightConstraint: NSLayoutConstraint = {
-        let constraint = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: self.bounds.height)
+        let constraint = NSLayoutConstraint(
+            item: self, attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: self.bounds.height)
         constraint.isActive = true
         return constraint
     }()
@@ -29,7 +35,12 @@ class FeedItemLayoutKitView: UIView, DataBinder {
             profileImageName: "50x50.png")
 
         let content = ContentLayout(title: data.contentTitle, domain: data.contentDomain)
-        layout = FeedItemLayout(actionText: data.actionText, posterProfile: posterProfile, posterComment: data.posterComment, contentLayout: content, actorComment: data.actorComment)
+        layout = FeedItemLayout(
+            actionText: data.actionText,
+            posterProfile: posterProfile,
+            posterComment: data.posterComment,
+            contentLayout: content,
+            actorComment: data.actorComment)
         
         setNeedsLayout()
         
