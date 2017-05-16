@@ -219,15 +219,22 @@
 		AD2C36441EA5AFB500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2C36421EA5AF9500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift */; };
 		ADE5FCC11EA5B5F3006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE5FCBF1EA5B5C8006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift */; };
 		F6A1A8F51ECAEFC80058DF07 /* LayoutAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A8F41ECAEFC80058DF07 /* LayoutAdapter.swift */; };
+<<<<<<< HEAD
+		F6A1A8F71ECAF0920058DF07 /* LayoutAdapterWithCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A8F61ECAF0920058DF07 /* LayoutAdapterWithCache.swift */; };
+=======
 		F6A1A8F71ECAF0920058DF07 /* LayoutAdapterCacheHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A8F61ECAF0920058DF07 /* LayoutAdapterCacheHandler.swift */; };
+>>>>>>> LayoutAdapter with cached layouts
 		F6A1A8F91ECAF1040058DF07 /* BatchUpdatesArrayUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A8F81ECAF1040058DF07 /* BatchUpdatesArrayUpdate.swift */; };
 		F6A1A8FB1ECAF1380058DF07 /* SafeArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A8FA1ECAF1380058DF07 /* SafeArray.swift */; };
 		F6A1A8FE1ECB07AF0058DF07 /* BatchUpdatesArrayUpdateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A8FC1ECB03B90058DF07 /* BatchUpdatesArrayUpdateTest.swift */; };
 		F6A1A9021ECB09880058DF07 /* SafeArrayTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A9001ECB08FA0058DF07 /* SafeArrayTest.swift */; };
 		F6A1A90E1ECB513B0058DF07 /* LayoutAdapterWithCacheTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A90C1ECB510E0058DF07 /* LayoutAdapterWithCacheTest.swift */; };
+<<<<<<< HEAD
+=======
 		F6A1A9101ECB661F0058DF07 /* LayoutAdapterWithAutomaticBatchUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A90F1ECB661F0058DF07 /* LayoutAdapterWithAutomaticBatchUpdates.swift */; };
 		F6A1A9121ECB66500058DF07 /* BatchUpdatesFromArrayDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A9111ECB66500058DF07 /* BatchUpdatesFromArrayDifference.swift */; };
 		F6A1A9151ECB66C00058DF07 /* BatchUpdatesFromArrayDifferenceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A9131ECB66AD0058DF07 /* BatchUpdatesFromArrayDifferenceTest.swift */; };
+>>>>>>> LayoutAdapter with cached layouts
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -411,15 +418,22 @@
 		AD2C36421EA5AF9500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift; sourceTree = "<group>"; };
 		ADE5FCBF1EA5B5C8006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewLayoutAdapterTableViewOverrideTests.swift; sourceTree = "<group>"; };
 		F6A1A8F41ECAEFC80058DF07 /* LayoutAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAdapter.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
+		F6A1A8F61ECAF0920058DF07 /* LayoutAdapterWithCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAdapterWithCache.swift; sourceTree = "<group>"; };
+=======
 		F6A1A8F61ECAF0920058DF07 /* LayoutAdapterCacheHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAdapterCacheHandler.swift; sourceTree = "<group>"; };
+>>>>>>> LayoutAdapter with cached layouts
 		F6A1A8F81ECAF1040058DF07 /* BatchUpdatesArrayUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchUpdatesArrayUpdate.swift; sourceTree = "<group>"; };
 		F6A1A8FA1ECAF1380058DF07 /* SafeArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeArray.swift; sourceTree = "<group>"; };
 		F6A1A8FC1ECB03B90058DF07 /* BatchUpdatesArrayUpdateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchUpdatesArrayUpdateTest.swift; sourceTree = "<group>"; };
 		F6A1A9001ECB08FA0058DF07 /* SafeArrayTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeArrayTest.swift; sourceTree = "<group>"; };
 		F6A1A90C1ECB510E0058DF07 /* LayoutAdapterWithCacheTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAdapterWithCacheTest.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
 		F6A1A90F1ECB661F0058DF07 /* LayoutAdapterWithAutomaticBatchUpdates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAdapterWithAutomaticBatchUpdates.swift; sourceTree = "<group>"; };
 		F6A1A9111ECB66500058DF07 /* BatchUpdatesFromArrayDifference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchUpdatesFromArrayDifference.swift; sourceTree = "<group>"; };
 		F6A1A9131ECB66AD0058DF07 /* BatchUpdatesFromArrayDifferenceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchUpdatesFromArrayDifferenceTest.swift; sourceTree = "<group>"; };
+>>>>>>> LayoutAdapter with cached layouts
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -621,7 +635,10 @@
 				F6A1A8FC1ECB03B90058DF07 /* BatchUpdatesArrayUpdateTest.swift */,
 				F6A1A9001ECB08FA0058DF07 /* SafeArrayTest.swift */,
 				F6A1A90C1ECB510E0058DF07 /* LayoutAdapterWithCacheTest.swift */,
+<<<<<<< HEAD
+=======
 				F6A1A9131ECB66AD0058DF07 /* BatchUpdatesFromArrayDifferenceTest.swift */,
+>>>>>>> LayoutAdapter with cached layouts
 			);
 			path = LayoutKitTests;
 			sourceTree = "<group>";
@@ -687,7 +704,10 @@
 			children = (
 				0BCB75ED1D8724800065E02A /* BatchUpdates.swift */,
 				F6A1A8F81ECAF1040058DF07 /* BatchUpdatesArrayUpdate.swift */,
+<<<<<<< HEAD
+=======
 				F6A1A9111ECB66500058DF07 /* BatchUpdatesFromArrayDifference.swift */,
+>>>>>>> LayoutAdapter with cached layouts
 				0BCB75EE1D8724800065E02A /* LayoutAdapterCollectionView.swift */,
 				0BCB75EF1D8724800065E02A /* LayoutAdapterTableView.swift */,
 				0BCB75F01D8724800065E02A /* ReloadableView.swift */,
@@ -697,8 +717,12 @@
 				0BCB75F41D8724800065E02A /* ReloadableViewUpdateManager.swift */,
 				0BCB75F51D8724800065E02A /* StackView.swift */,
 				F6A1A8F41ECAEFC80058DF07 /* LayoutAdapter.swift */,
+<<<<<<< HEAD
+				F6A1A8F61ECAF0920058DF07 /* LayoutAdapterWithCache.swift */,
+=======
 				F6A1A8F61ECAF0920058DF07 /* LayoutAdapterCacheHandler.swift */,
 				F6A1A90F1ECB661F0058DF07 /* LayoutAdapterWithAutomaticBatchUpdates.swift */,
+>>>>>>> LayoutAdapter with cached layouts
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1076,7 +1100,11 @@
 				F6A1A9121ECB66500058DF07 /* BatchUpdatesFromArrayDifference.swift in Sources */,
 				0BCB76061D8724800065E02A /* AxisFlexibility.swift in Sources */,
 				448CEC0F1E4E0CB500F8AD9E /* TextViewDefaultFont.swift in Sources */,
+<<<<<<< HEAD
+				F6A1A8F71ECAF0920058DF07 /* LayoutAdapterWithCache.swift in Sources */,
+=======
 				F6A1A8F71ECAF0920058DF07 /* LayoutAdapterCacheHandler.swift in Sources */,
+>>>>>>> LayoutAdapter with cached layouts
 				0BCB760E1D8724800065E02A /* ReloadableView.swift in Sources */,
 				75D94A361EA01B6A00A5FD01 /* OverlayLayout.swift in Sources */,
 				F6A1A9101ECB661F0058DF07 /* LayoutAdapterWithAutomaticBatchUpdates.swift in Sources */,
@@ -1110,7 +1138,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
+=======
 				F6A1A9151ECB66C00058DF07 /* BatchUpdatesFromArrayDifferenceTest.swift in Sources */,
+>>>>>>> LayoutAdapter with cached layouts
 				F6A1A90E1ECB513B0058DF07 /* LayoutAdapterWithCacheTest.swift in Sources */,
 				F6A1A9021ECB09880058DF07 /* SafeArrayTest.swift in Sources */,
 				F6A1A8FE1ECB07AF0058DF07 /* BatchUpdatesArrayUpdateTest.swift in Sources */,
