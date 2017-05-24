@@ -250,7 +250,7 @@ static void dwu_swizzleDrawRectIfNotYet(CALayer *layer) {
     if (![layer.delegate isKindOfClass:[UIView class]]) {
         return;
     }
-    UIView *containerView = (UIView *)layer.delegate;
+    UIView *containerView = layer.delegate;
     if (!dwu_implementsSelector(containerView, @selector(drawRect:))) {
         return;
     }
@@ -320,7 +320,7 @@ static void dwu_swizzleDrawRectIfNotYet(CALayer *layer) {
 }
 
 - (UIView *)dwu_findCell {
-    UIView *containerView = (UIView *)self.delegate;
+    UIView *containerView = self.delegate;
     if (!containerView) {
         return nil;
     }
@@ -342,7 +342,7 @@ static void dwu_swizzleDrawRectIfNotYet(CALayer *layer) {
 
 - (void)dwu_injectLayer: (CALayer *)layer withCellDelegate:(UIView *)cellDelegate {
     if (layer.delegate && [layer.delegate isKindOfClass:[UIView class]]) {
-        UIView *containerView = (UIView *)layer.delegate;
+        UIView *containerView = layer.delegate;
         containerView.dwuCellDelegate = cellDelegate;
     }
 }
