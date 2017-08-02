@@ -21,10 +21,10 @@ public protocol ReloadableView: class {
     var bounds: CGRect { get }
 
     /// Returns whether the user has touched the content to initiate scrolling.
-    var tracking: Bool { get }
+    var isTracking: Bool { get }
 
     /// Returns whether the content is moving in the scroll view after the user lifted their finger.
-    var decelerating: Bool { get }
+    var isDecelerating: Bool { get }
 
     /**
      Reloads the data synchronously.
@@ -49,6 +49,7 @@ public protocol ReloadableView: class {
 /// Make UICollectionView conform to ReloadableView protocol.
 extension UICollectionView: ReloadableView {
 
+    @objc
     open func reloadDataSynchronously() {
         reloadData()
 
@@ -56,12 +57,14 @@ extension UICollectionView: ReloadableView {
         layoutIfNeeded()
     }
 
+    @objc
     open func registerViews(withReuseIdentifier reuseIdentifier: String) {
         register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: reuseIdentifier)
         register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: reuseIdentifier)
     }
 
+    @objc
     open func perform(batchUpdates: BatchUpdates) {
         performBatchUpdates({
             if batchUpdates.insertItems.count > 0 {
@@ -98,15 +101,18 @@ extension UICollectionView: ReloadableView {
 /// Make UITableView conform to ReloadableView protocol.
 extension UITableView: ReloadableView {
 
+    @objc
     open func reloadDataSynchronously() {
         reloadData()
     }
 
+    @objc
     open func registerViews(withReuseIdentifier reuseIdentifier: String) {
         register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: reuseIdentifier)
     }
 
+    @objc
     open func perform(batchUpdates: BatchUpdates) {
         beginUpdates()
 

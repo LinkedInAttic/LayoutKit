@@ -67,10 +67,10 @@ class TextViewLayoutTests: XCTestCase {
         let textString = "Hello World\nHello World\nHello World\nHello World\nHello World"
         let attributedString1 = NSMutableAttributedString(
             string: textString,
-            attributes: [NSFontAttributeName: UIFont.helvetica(size: 15)])
+            attributes: [NSAttributedStringKey.font: UIFont.helvetica(size: 15)])
         let attributedString2 = NSMutableAttributedString(
             string: textString,
-            attributes: [NSFontAttributeName: UIFont.helvetica(size: 12)])
+            attributes: [NSAttributedStringKey.font: UIFont.helvetica(size: 12)])
         attributedString1.append(attributedString2)
         let attributedText = Text.attributed(attributedString1)
 

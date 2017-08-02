@@ -19,25 +19,25 @@ func AssertEqualDensity(_ actual: CGRect, _ expected: [CGFloat: CGRect], file: S
     guard let expected = expectationForCurrentDensity(expected, file: file, line: line) else {
         return
     }
-    XCTAssertEqualWithAccuracy(actual.origin.x, expected.origin.x, accuracy: densityAccuracy, file: file, line: line)
-    XCTAssertEqualWithAccuracy(actual.origin.y, expected.origin.y, accuracy: densityAccuracy, file: file, line: line)
-    XCTAssertEqualWithAccuracy(actual.size.width, expected.size.width, accuracy: densityAccuracy, file: file, line: line)
-    XCTAssertEqualWithAccuracy(actual.size.height, expected.size.height, accuracy: densityAccuracy, file: file, line: line)
+    XCTAssertEqual(actual.origin.x, expected.origin.x, accuracy: densityAccuracy, file: file, line: line)
+    XCTAssertEqual(actual.origin.y, expected.origin.y, accuracy: densityAccuracy, file: file, line: line)
+    XCTAssertEqual(actual.size.width, expected.size.width, accuracy: densityAccuracy, file: file, line: line)
+    XCTAssertEqual(actual.size.height, expected.size.height, accuracy: densityAccuracy, file: file, line: line)
 }
 
 func AssertEqualDensity(_ actual: CGSize, _ expected: [CGFloat: CGSize], file: StaticString = #file, line: UInt = #line) {
     guard let expected = expectationForCurrentDensity(expected, file: file, line: line) else {
         return
     }
-    XCTAssertEqualWithAccuracy(actual.width, expected.width, accuracy: densityAccuracy, file: file, line: line)
-    XCTAssertEqualWithAccuracy(actual.height, expected.height, accuracy: densityAccuracy, file: file, line: line)
+    XCTAssertEqual(actual.width, expected.width, accuracy: densityAccuracy, file: file, line: line)
+    XCTAssertEqual(actual.height, expected.height, accuracy: densityAccuracy, file: file, line: line)
 }
 
 func AssertEqualDensity(_ actual: CGFloat, _ expected: [CGFloat: CGFloat], file: StaticString = #file, line: UInt = #line) {
     guard let expected = expectationForCurrentDensity(expected, file: file, line: line) else {
         return
     }
-    XCTAssertEqualWithAccuracy(actual, expected, accuracy: densityAccuracy, file: file, line: line)
+    XCTAssertEqual(actual, expected, accuracy: densityAccuracy, file: file, line: line)
 }
 
 /// Returns the expectation for the current density.

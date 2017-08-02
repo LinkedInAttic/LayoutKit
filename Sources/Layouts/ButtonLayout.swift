@@ -33,8 +33,8 @@ open class ButtonLayout<Button: UIButton>: BaseLayout<Button>, ConfigurableLayou
                 image: ButtonLayoutImage = .defaultImage,
                 font: UIFont? = nil,
                 contentEdgeInsets: UIEdgeInsets? = nil,
-                alignment: Alignment = defaultAlignment,
-                flexibility: Flexibility = defaultFlexibility,
+                alignment: Alignment = ButtonLayoutDefaults.defaultAlignment,
+                flexibility: Flexibility = ButtonLayoutDefaults.defaultFlexibility,
                 viewReuseId: String? = nil,
                 config: ((Button) -> Void)? = nil) {
 
@@ -291,5 +291,8 @@ public enum ButtonLayoutType {
     }
 }
 
-private let defaultAlignment = Alignment.topLeading
-private let defaultFlexibility = Flexibility.flexible
+public class ButtonLayoutDefaults {
+    public static let defaultAlignment = Alignment.topLeading
+    public static let defaultFlexibility = Flexibility.flexible
+}
+

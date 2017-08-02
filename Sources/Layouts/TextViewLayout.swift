@@ -31,8 +31,8 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
                 font: UIFont? = nil,
                 lineFragmentPadding: CGFloat = 0,
                 textContainerInset: UIEdgeInsets = .zero,
-                layoutAlignment: Alignment = defaultAlignment,
-                flexibility: Flexibility = defaultFlexibility,
+                layoutAlignment: Alignment = TextViewLayoutDefaults.defaultAlignment,
+                flexibility: Flexibility = TextViewLayoutDefaults.defaultFlexibility,
                 viewReuseId: String? = nil,
                 config: ((TextView) -> Void)? = nil) {
         self.text = text
@@ -56,8 +56,8 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
                             font: UIFont? = nil,
                             lineFragmentPadding: CGFloat = 0,
                             textContainerInset: UIEdgeInsets = .zero,
-                            layoutAlignment: Alignment = defaultAlignment,
-                            flexibility: Flexibility = defaultFlexibility,
+                            layoutAlignment: Alignment = TextViewLayoutDefaults.defaultAlignment,
+                            flexibility: Flexibility = TextViewLayoutDefaults.defaultFlexibility,
                             viewReuseId: String? = nil,
                             config: ((TextView) -> Void)? = nil) {
         self.init(text: .unattributed(text),
@@ -74,8 +74,8 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
                             font: UIFont? = nil,
                             lineFragmentPadding: CGFloat = 0,
                             textContainerInset: UIEdgeInsets = .zero,
-                            layoutAlignment: Alignment = defaultAlignment,
-                            flexibility: Flexibility = defaultFlexibility,
+                            layoutAlignment: Alignment = TextViewLayoutDefaults.defaultAlignment,
+                            flexibility: Flexibility = TextViewLayoutDefaults.defaultFlexibility,
                             viewReuseId: String? = nil,
                             config: ((TextView) -> Void)? = nil) {
         self.init(text: .attributed(attributedText),
@@ -167,7 +167,7 @@ private extension Text {
         case .attributed(_):
             let text = Text.attributed(NSAttributedString(
                 string: spaceString,
-                attributes: [NSFontAttributeName: font]))
+                attributes: [NSAttributedStringKey.font: font]))
             size = text.textSize(within: maxSize, font: font)
 
         case .unattributed(_):
@@ -182,5 +182,8 @@ private extension Text {
 // MARK: - Things that belong in TextViewLayout but aren't because TextViewLayout is generic.
 // "Static stored properties not yet supported in generic types"
 
-private let defaultAlignment = Alignment.topLeading
-private let defaultFlexibility = Flexibility.flexible
+public class TextViewLayoutDefaults {
+    public static let defaultAlignment = Alignment.topLeading
+    public static let defaultFlexibility = Flexibility.flexible
+}
+

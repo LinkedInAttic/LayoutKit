@@ -260,7 +260,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
     }
 
     /// Verifies that layout operations are cancelled if the reloadable view is deallocated.
-    func verifyReloadAsyncCancelledOnViewDeinit(_ viewProvider: @autoclosure (Void) -> TestableReloadableView) {
+    func verifyReloadAsyncCancelledOnViewDeinit(_ viewProvider: @autoclosure () -> TestableReloadableView) {
         var adapter: ReloadableViewLayoutAdapter!
         autoreleasepool {
             let view = viewProvider()
