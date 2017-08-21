@@ -130,6 +130,10 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     // MARK: - overriden methods
 
     open override func configure(view textView: TextView) {
+        /// `isSelectable` is default to false, but it allows overriding in `configure` block
+        /// By enabling it, it may have side effects
+        textView.isSelectable = false
+
         super.configure(view: textView)
         textView.textContainerInset = textContainerInset
         textView.textContainer.lineFragmentPadding = lineFragmentPadding
@@ -139,7 +143,6 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
         #if !os(tvOS)
             textView.isEditable = false
         #endif
-        textView.isSelectable = false
         textView.font = font
 
         switch text {
