@@ -130,8 +130,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     // MARK: - overriden methods
 
     open override func configure(view textView: TextView) {
-        /// `isSelectable` is default to false, but it allows overriding in `configure` block
-        /// By enabling it, it may have side effects
+        // `isSelectable` is default to false, but it allows overriding in `configure` block
         textView.isSelectable = false
 
         super.configure(view: textView)
