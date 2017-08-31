@@ -173,6 +173,37 @@ open class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerDel
         currentArrangement = arrangement
         reloadableView?.reloadDataSynchronously()
     }
+
+    /**
+     */
+    open func prepareInvalidation<T: Collection, U: Collection>(
+        items: [IndexPath],
+        width: CGFloat? = nil,
+        height: CGFloat? = nil,
+        layoutProvider: @escaping (Void) -> T,
+        completion: ([Animation]) -> Void) where U.Iterator.Element == Layout, T.Iterator.Element == Section<U> {
+
+        let start = CFAbsoluteTimeGetCurrent()
+        backgroundLayoutQueue.cancelAllOperations()
+
+        let layoutFunc = { (layout: Layout) -> LayoutArrangement in
+            return layout.arrangement(width: width, height: height)
+        }
+
+        currentArrangement = layoutProvider().map { sectionLayout in
+            return sectionLayout.map(layoutFunc)
+        }
+
+        let animations: [Animation] = items.flatMap({ indexPath in
+            guard let contentView = reloadableView?.contentView(forIndexPath: indexPath) else { return nil }
+            let arrangement = currentArrangement[indexPath.section].items[indexPath.item]
+            return arrangement.prepareAnimation(for: contentView)
+        })
+
+        let end = CFAbsoluteTimeGetCurrent()
+        logger?("user: \((end-start).ms)")
+        completion(animations)
+    }
 }
 
 /// A section in a `ReloadableView`.
