@@ -26,7 +26,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
 
     /// Don't change `textContainerInset`, `lineFragmentPadding` and `usesFontLeading` in `configure` closure that's passed to init.
     /// By changing those, it will cause the Layout's size calculation to be incorrect. So they will be reset by using parameters from initializer.
-    /// `TextViewLayout` sets `usesFontLeading = false`, `isScrollEnabled = false`, `isSelectable` = false by the default. Don't override those values.
+    /// `TextViewLayout` sets `usesFontLeading = false`, `isScrollEnabled = false` by the default. Don't override those values.
     public init(text: Text,
                 font: UIFont? = nil,
                 lineFragmentPadding: CGFloat = 0,
@@ -130,9 +130,6 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
     // MARK: - overriden methods
 
     open override func configure(view textView: TextView) {
-        // `isSelectable` is default to false, but it allows overriding in `configure` block
-        textView.isSelectable = false
-
         super.configure(view: textView)
         textView.textContainerInset = textContainerInset
         textView.textContainer.lineFragmentPadding = lineFragmentPadding
