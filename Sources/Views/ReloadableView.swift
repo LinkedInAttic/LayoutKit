@@ -89,9 +89,9 @@ extension UICollectionView: ReloadableView {
             for move in batchUpdates.moveSections {
                 self.moveSection(move.from, toSection: move.to)
             }
-        }) { _ in
+        }, completion: { _ in
             completion?()
-        }
+        })
     }
 }
 

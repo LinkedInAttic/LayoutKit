@@ -100,6 +100,7 @@ class IncrementalUpdateManager: BaseReloadableViewUpdateManager, ReloadableViewU
         if oldArrangement.isEmpty {
             // Can't do incremental updates on an empty reloadable view.
             reloadableView.reloadDataSynchronously()
+            pendingInsertedIndexPaths.removeAll()
         } else {
             // Compute the actual inserted index paths.
             // If indexes are inserted into a section that doesn't exist, then we insert the section instead.
@@ -111,10 +112,10 @@ class IncrementalUpdateManager: BaseReloadableViewUpdateManager, ReloadableViewU
                     batchUpdates.insertItems.append(pendingInsertedIndexPath)
                 }
             }
-            reloadableView.perform(batchUpdates: batchUpdates, completion: nil)
+            reloadableView.perform(batchUpdates: batchUpdates, completion: {
+                self.pendingInsertedIndexPaths.removeAll()
+            })
         }
-
-        pendingInsertedIndexPaths.removeAll()
     }
 }
 
