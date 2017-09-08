@@ -70,7 +70,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 
         // Test batch update to layout two.
         do {
-            var completed = false
+            let completionExpectation = expectation(description: "completion")
             let batchUpdates = batchUpdatesForLayoutTwo()
             view.layoutAdapter.reload(
                 width: view.bounds.width,
@@ -78,10 +78,10 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
                 batchUpdates: batchUpdates,
                 layoutProvider: layoutProviderTwo,
                 completion: {
-                    completed = true
+                    completionExpectation.fulfill()
                 }
             )
-            XCTAssertTrue(completed)
+            waitForExpectations(timeout: 10, handler: nil)
 
             // Need to trigger a layout on UICollectionViews so we can test the results.
             (view as? UICollectionView)?.layoutIfNeeded()
@@ -100,7 +100,7 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
 
         // Test batch update to layout three.
         do {
-            var completed = false
+            let completionExpectation = expectation(description: "completion")
             let batchUpdates = batchUpdatesForLayoutThree()
             view.layoutAdapter.reload(
                 width: view.bounds.width,
@@ -108,10 +108,10 @@ class ReloadableViewLayoutAdapterTestCase: XCTestCase {
                 batchUpdates: batchUpdates,
                 layoutProvider: layoutProviderThree,
                 completion: {
-                    completed = true
+                    completionExpectation.fulfill()
                 }
             )
-            XCTAssertTrue(completed)
+            waitForExpectations(timeout: 10, handler: nil)
 
             // Need to trigger a layout on UICollectionViews so we can test the results.
             (view as? UICollectionView)?.layoutIfNeeded()
