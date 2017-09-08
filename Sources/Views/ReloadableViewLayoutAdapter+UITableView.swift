@@ -42,7 +42,7 @@ extension ReloadableViewLayoutAdapter: UITableViewDelegate {
             return nil
         }
         let view = dequeueHeaderFooterView(tableView: tableView)
-        layout.makeViews(in: view)
+        layout.makeViews(in: view.contentView)
         return view
     }
 
