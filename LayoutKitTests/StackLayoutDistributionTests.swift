@@ -59,6 +59,15 @@ class StackLayoutDistributionTests: XCTestCase {
         XCTAssertEqual(stack.threeView.frame, CGRect(x: 0, y: 10+14+18.5, width: stack.intrinsicSize.width, height: 23))
         XCTAssertEqual(stack.stackView.frame, CGRect(x: 0, y: 0, width: stack.intrinsicSize.width, height: stack.intrinsicSize.height + 10))
     }
+    
+    func testVerticalEqualSpacingDistributionNonZeroSpacing() {
+        let stack = TestStack(axis: .vertical, distribution: .fillEqualSpacing, spacing: 10).arrangement(excessHeight: 10)
+        
+        XCTAssertEqual(stack.oneView.frame, CGRect(x: 0, y: 0, width: stack.intrinsicSize.width, height: 14))
+        XCTAssertEqual(stack.twoView.frame, CGRect(x: 0, y: 10+5+14, width: stack.intrinsicSize.width, height: 18.5))
+        XCTAssertEqual(stack.threeView.frame, CGRect(x: 0, y: 20+10+14+18.5, width: stack.intrinsicSize.width, height: 23))
+        XCTAssertEqual(stack.stackView.frame, CGRect(x: 0, y: 0, width: stack.intrinsicSize.width, height: stack.intrinsicSize.height + 10))
+    }
 
     func testVerticalEqualSizeDistribution() {
         let stack = TestStack(axis: .vertical, distribution: .fillEqualSize).arrangement(excessHeight: 16.5)
@@ -151,6 +160,15 @@ class StackLayoutDistributionTests: XCTestCase {
         XCTAssertEqual(stack.oneView.frame, CGRect(x: 0, y: 0, width: 7, height: stack.intrinsicSize.height))
         XCTAssertEqual(stack.twoView.frame, CGRect(x: 5+7, y: 0, width: 18, height: stack.intrinsicSize.height))
         XCTAssertEqual(stack.threeView.frame, CGRect(x: 10+7+18, y: 0, width: 33.5, height: stack.intrinsicSize.height))
+        XCTAssertEqual(stack.stackView.frame, CGRect(x: 0, y: 0, width: stack.intrinsicSize.width + 10, height: stack.intrinsicSize.height))
+    }
+    
+    func testHorizontalEqualSpacingDistributionNonZeroSpacing() {
+        let stack = TestStack(axis: .horizontal, distribution: .fillEqualSpacing, spacing: 10).arrangement(excessWidth: 10)
+        
+        XCTAssertEqual(stack.oneView.frame, CGRect(x: 0, y: 0, width: 7, height: stack.intrinsicSize.height))
+        XCTAssertEqual(stack.twoView.frame, CGRect(x: 10+5+7, y: 0, width: 18, height: stack.intrinsicSize.height))
+        XCTAssertEqual(stack.threeView.frame, CGRect(x: 20+10+7+18, y: 0, width: 33.5, height: stack.intrinsicSize.height))
         XCTAssertEqual(stack.stackView.frame, CGRect(x: 0, y: 0, width: stack.intrinsicSize.width + 10, height: stack.intrinsicSize.height))
     }
 
