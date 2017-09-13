@@ -220,7 +220,7 @@ extension StackLayout {
             initialAxisOffset = 0
             let numberOfSpaces = CGFloat(sublayouts.count - 1)
             let availableAxisLengthForSpacing = excessAxisLength + numberOfSpaces * spacing
-            axisSpacing = max(spacing, availableAxisLengthForSpacing / numberOfSpaces)
+            axisSpacing = availableAxisLengthForSpacing / numberOfSpaces
         case .fillEqualSize:
             initialAxisOffset = 0
             axisSpacing = spacing
