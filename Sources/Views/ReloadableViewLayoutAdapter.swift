@@ -91,14 +91,19 @@ open class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerDel
         currentArrangement = layoutProvider().map { sectionLayout in
             return sectionLayout.map(layoutFunc)
         }
+
+        let completionAndLogEnd = {
+            let end = CFAbsoluteTimeGetCurrent()
+            self.logger?("user: \((end-start).ms)")
+            completion?()
+        }
+
         if let batchUpdates = batchUpdates {
-            reloadableView?.perform(batchUpdates: batchUpdates)
+            reloadableView?.perform(batchUpdates: batchUpdates, completion: completionAndLogEnd)
         } else {
             reloadableView?.reloadDataSynchronously()
+            completionAndLogEnd()
         }
-        let end = CFAbsoluteTimeGetCurrent()
-        logger?("user: \((end-start).ms)")
-        completion?()
     }
 
     private func reloadAsynchronously<T: Collection, U: Collection>(
