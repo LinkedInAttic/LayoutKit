@@ -111,7 +111,7 @@ class IncrementalUpdateManager: BaseReloadableViewUpdateManager, ReloadableViewU
                     batchUpdates.insertItems.append(pendingInsertedIndexPath)
                 }
             }
-            reloadableView.perform(batchUpdates: batchUpdates)
+            reloadableView.perform(batchUpdates: batchUpdates, completion: nil)
         }
 
         pendingInsertedIndexPaths.removeAll()
@@ -137,12 +137,11 @@ class BatchUpdateManager: BaseReloadableViewUpdateManager, ReloadableViewUpdateM
             // Perform the update.
             delegate.currentArrangement = arrangement
             if canBatchUpdate, let batchUpdates = batchUpdates {
-                reloadableView.perform(batchUpdates: batchUpdates)
+                reloadableView.perform(batchUpdates: batchUpdates, completion: completion)
             } else {
                 reloadableView.reloadDataSynchronously()
+                completion?()
             }
-            
-            completion?()
         }
     }
 }
