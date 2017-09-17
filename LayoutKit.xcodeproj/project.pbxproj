@@ -209,8 +209,6 @@
 		44F968181E4263DC00392763 /* TextViewLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968161E42639500392763 /* TextViewLayoutTests.swift */; };
 		44F968191E4263DC00392763 /* TextViewLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968161E42639500392763 /* TextViewLayoutTests.swift */; };
 		44F9681A1E42640400392763 /* TextViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968141E425F5D00392763 /* TextViewLayout.swift */; };
-		AD2C36441EA5AFB500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2C36421EA5AF9500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift */; };
-		ADE5FCC11EA5B5F3006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE5FCBF1EA5B5C8006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift */; };
 		75D94A361EA01B6A00A5FD01 /* OverlayLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A351EA01B6A00A5FD01 /* OverlayLayout.swift */; };
 		75D94A371EA01B7100A5FD01 /* OverlayLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A351EA01B6A00A5FD01 /* OverlayLayout.swift */; };
 		75D94A381EA01B7200A5FD01 /* OverlayLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A351EA01B6A00A5FD01 /* OverlayLayout.swift */; };
@@ -218,6 +216,18 @@
 		75D94A3C1EA045F100A5FD01 /* OverlayLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A3A1EA045F100A5FD01 /* OverlayLayoutTests.swift */; };
 		75D94A3D1EA045F100A5FD01 /* OverlayLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A3A1EA045F100A5FD01 /* OverlayLayoutTests.swift */; };
 		75D94A401EA05D5A00A5FD01 /* OverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A3F1EA05D5A00A5FD01 /* OverlayViewController.swift */; };
+		AD2C36441EA5AFB500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2C36421EA5AF9500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift */; };
+		ADE5FCC11EA5B5F3006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE5FCBF1EA5B5C8006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift */; };
+		F6A1A8F51ECAEFC80058DF07 /* LayoutAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A8F41ECAEFC80058DF07 /* LayoutAdapter.swift */; };
+		F6A1A8F71ECAF0920058DF07 /* LayoutAdapterCacheHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A8F61ECAF0920058DF07 /* LayoutAdapterCacheHandler.swift */; };
+		F6A1A8F91ECAF1040058DF07 /* BatchUpdatesArrayUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A8F81ECAF1040058DF07 /* BatchUpdatesArrayUpdate.swift */; };
+		F6A1A8FB1ECAF1380058DF07 /* SafeArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A8FA1ECAF1380058DF07 /* SafeArray.swift */; };
+		F6A1A8FE1ECB07AF0058DF07 /* BatchUpdatesArrayUpdateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A8FC1ECB03B90058DF07 /* BatchUpdatesArrayUpdateTest.swift */; };
+		F6A1A9021ECB09880058DF07 /* SafeArrayTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A9001ECB08FA0058DF07 /* SafeArrayTest.swift */; };
+		F6A1A90E1ECB513B0058DF07 /* LayoutAdapterWithCacheTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A90C1ECB510E0058DF07 /* LayoutAdapterWithCacheTest.swift */; };
+		F6A1A9101ECB661F0058DF07 /* LayoutAdapterWithAutomaticBatchUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A90F1ECB661F0058DF07 /* LayoutAdapterWithAutomaticBatchUpdates.swift */; };
+		F6A1A9121ECB66500058DF07 /* BatchUpdatesFromArrayDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A9111ECB66500058DF07 /* BatchUpdatesFromArrayDifference.swift */; };
+		F6A1A9151ECB66C00058DF07 /* BatchUpdatesFromArrayDifferenceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A1A9131ECB66AD0058DF07 /* BatchUpdatesFromArrayDifferenceTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -395,11 +405,21 @@
 		448CEC0E1E4E0CB500F8AD9E /* TextViewDefaultFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewDefaultFont.swift; sourceTree = "<group>"; };
 		44F968141E425F5D00392763 /* TextViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewLayout.swift; sourceTree = "<group>"; };
 		44F968161E42639500392763 /* TextViewLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewLayoutTests.swift; sourceTree = "<group>"; };
-		AD2C36421EA5AF9500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift; sourceTree = "<group>"; };
-		ADE5FCBF1EA5B5C8006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewLayoutAdapterTableViewOverrideTests.swift; sourceTree = "<group>"; };
 		75D94A351EA01B6A00A5FD01 /* OverlayLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayLayout.swift; sourceTree = "<group>"; };
 		75D94A3A1EA045F100A5FD01 /* OverlayLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayLayoutTests.swift; sourceTree = "<group>"; };
 		75D94A3F1EA05D5A00A5FD01 /* OverlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayViewController.swift; sourceTree = "<group>"; };
+		AD2C36421EA5AF9500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift; sourceTree = "<group>"; };
+		ADE5FCBF1EA5B5C8006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewLayoutAdapterTableViewOverrideTests.swift; sourceTree = "<group>"; };
+		F6A1A8F41ECAEFC80058DF07 /* LayoutAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAdapter.swift; sourceTree = "<group>"; };
+		F6A1A8F61ECAF0920058DF07 /* LayoutAdapterCacheHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAdapterCacheHandler.swift; sourceTree = "<group>"; };
+		F6A1A8F81ECAF1040058DF07 /* BatchUpdatesArrayUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchUpdatesArrayUpdate.swift; sourceTree = "<group>"; };
+		F6A1A8FA1ECAF1380058DF07 /* SafeArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeArray.swift; sourceTree = "<group>"; };
+		F6A1A8FC1ECB03B90058DF07 /* BatchUpdatesArrayUpdateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchUpdatesArrayUpdateTest.swift; sourceTree = "<group>"; };
+		F6A1A9001ECB08FA0058DF07 /* SafeArrayTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeArrayTest.swift; sourceTree = "<group>"; };
+		F6A1A90C1ECB510E0058DF07 /* LayoutAdapterWithCacheTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAdapterWithCacheTest.swift; sourceTree = "<group>"; };
+		F6A1A90F1ECB661F0058DF07 /* LayoutAdapterWithAutomaticBatchUpdates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAdapterWithAutomaticBatchUpdates.swift; sourceTree = "<group>"; };
+		F6A1A9111ECB66500058DF07 /* BatchUpdatesFromArrayDifference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchUpdatesFromArrayDifference.swift; sourceTree = "<group>"; };
+		F6A1A9131ECB66AD0058DF07 /* BatchUpdatesFromArrayDifferenceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchUpdatesFromArrayDifferenceTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -598,6 +618,10 @@
 				44F968161E42639500392763 /* TextViewLayoutTests.swift */,
 				0BCB76671D8725310065E02A /* UIFontExtension.swift */,
 				0BCB76681D8725310065E02A /* ViewRecyclerTests.swift */,
+				F6A1A8FC1ECB03B90058DF07 /* BatchUpdatesArrayUpdateTest.swift */,
+				F6A1A9001ECB08FA0058DF07 /* SafeArrayTest.swift */,
+				F6A1A90C1ECB510E0058DF07 /* LayoutAdapterWithCacheTest.swift */,
+				F6A1A9131ECB66AD0058DF07 /* BatchUpdatesFromArrayDifferenceTest.swift */,
 			);
 			path = LayoutKitTests;
 			sourceTree = "<group>";
@@ -628,6 +652,7 @@
 				0B765F2B1DC0514F000BF1FD /* CGFloatExtension.swift */,
 				4468A31C1E46460B00341D07 /* NSAttributedStringExtension.swift */,
 				448CEC0E1E4E0CB500F8AD9E /* TextViewDefaultFont.swift */,
+				F6A1A8FA1ECAF1380058DF07 /* SafeArray.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -661,6 +686,8 @@
 			isa = PBXGroup;
 			children = (
 				0BCB75ED1D8724800065E02A /* BatchUpdates.swift */,
+				F6A1A8F81ECAF1040058DF07 /* BatchUpdatesArrayUpdate.swift */,
+				F6A1A9111ECB66500058DF07 /* BatchUpdatesFromArrayDifference.swift */,
 				0BCB75EE1D8724800065E02A /* LayoutAdapterCollectionView.swift */,
 				0BCB75EF1D8724800065E02A /* LayoutAdapterTableView.swift */,
 				0BCB75F01D8724800065E02A /* ReloadableView.swift */,
@@ -669,6 +696,9 @@
 				0BCB75F31D8724800065E02A /* ReloadableViewLayoutAdapter.swift */,
 				0BCB75F41D8724800065E02A /* ReloadableViewUpdateManager.swift */,
 				0BCB75F51D8724800065E02A /* StackView.swift */,
+				F6A1A8F41ECAEFC80058DF07 /* LayoutAdapter.swift */,
+				F6A1A8F61ECAF0920058DF07 /* LayoutAdapterCacheHandler.swift */,
+				F6A1A90F1ECB661F0058DF07 /* LayoutAdapterWithAutomaticBatchUpdates.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1032,7 +1062,10 @@
 				0BCB76051D8724800065E02A /* StackLayout.swift in Sources */,
 				0BCB760D1D8724800065E02A /* LayoutAdapterTableView.swift in Sources */,
 				0BCB76071D8724800065E02A /* AxisPoint.swift in Sources */,
+				F6A1A8F91ECAF1040058DF07 /* BatchUpdatesArrayUpdate.swift in Sources */,
+				F6A1A8FB1ECAF1380058DF07 /* SafeArray.swift in Sources */,
 				0BCB75F71D8724800065E02A /* Animation.swift in Sources */,
+				F6A1A8F51ECAEFC80058DF07 /* LayoutAdapter.swift in Sources */,
 				0BCB76081D8724800065E02A /* AxisSize.swift in Sources */,
 				0B193BB81D887BCF00FCA22D /* CollectionExtension.swift in Sources */,
 				4468A31D1E46460B00341D07 /* NSAttributedStringExtension.swift in Sources */,
@@ -1040,10 +1073,13 @@
 				0BD5F8291DB43B4500108688 /* ButtonLayout.swift in Sources */,
 				0BCB76001D8724800065E02A /* LayoutMeasurement.swift in Sources */,
 				0BCB76021D8724800065E02A /* InsetLayout.swift in Sources */,
+				F6A1A9121ECB66500058DF07 /* BatchUpdatesFromArrayDifference.swift in Sources */,
 				0BCB76061D8724800065E02A /* AxisFlexibility.swift in Sources */,
 				448CEC0F1E4E0CB500F8AD9E /* TextViewDefaultFont.swift in Sources */,
+				F6A1A8F71ECAF0920058DF07 /* LayoutAdapterCacheHandler.swift in Sources */,
 				0BCB760E1D8724800065E02A /* ReloadableView.swift in Sources */,
 				75D94A361EA01B6A00A5FD01 /* OverlayLayout.swift in Sources */,
+				F6A1A9101ECB661F0058DF07 /* LayoutAdapterWithAutomaticBatchUpdates.swift in Sources */,
 				0BCB75FD1D8724800065E02A /* CGSizeExtension.swift in Sources */,
 				0BCB760B1D8724800065E02A /* BatchUpdates.swift in Sources */,
 				0BCB76011D8724800065E02A /* BaseLayout.swift in Sources */,
@@ -1074,6 +1110,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6A1A9151ECB66C00058DF07 /* BatchUpdatesFromArrayDifferenceTest.swift in Sources */,
+				F6A1A90E1ECB513B0058DF07 /* LayoutAdapterWithCacheTest.swift in Sources */,
+				F6A1A9021ECB09880058DF07 /* SafeArrayTest.swift in Sources */,
+				F6A1A8FE1ECB07AF0058DF07 /* BatchUpdatesArrayUpdateTest.swift in Sources */,
 				ADE5FCC11EA5B5F3006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift in Sources */,
 				AD2C36441EA5AFB500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift in Sources */,
 				0B765F301DC135B8000BF1FD /* CGFloatExtensionTests.swift in Sources */,
