@@ -175,6 +175,10 @@ open class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerDel
     }
 
     /**
+     Computes layouts without applying them on the view. Instead it returns a list of animations that
+     that can be can be used to smoothly resize e.g CollectionViewCells.
+
+     See Playground page CollectionView Animation in LayoutKit.playground for example
      */
     open func reload<T: Collection, U: Collection>(
         items: [IndexPath],
