@@ -188,7 +188,7 @@ class MyViewController : UIViewController {
     private func invalidateItem(at indexPath: IndexPath) {
         let items: [IndexPath] = [indexPath]
 
-        self.layoutAdapterCollectionView.layoutAdapter.prepareInvalidation(
+        self.layoutAdapterCollectionView.layoutAdapter.reload(
             items: items,
             width: self.layoutAdapterCollectionView.bounds.width,
             layoutProvider: self.layoutAdapter,

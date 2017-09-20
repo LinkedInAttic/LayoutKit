@@ -176,7 +176,7 @@ open class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerDel
 
     /**
      */
-    open func prepareInvalidation<T: Collection, U: Collection>(
+    open func reload<T: Collection, U: Collection>(
         items: [IndexPath],
         width: CGFloat? = nil,
         height: CGFloat? = nil,
