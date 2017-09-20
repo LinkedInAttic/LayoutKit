@@ -185,28 +185,41 @@ open class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerDel
         width: CGFloat? = nil,
         height: CGFloat? = nil,
         layoutProvider: @escaping (Void) -> T,
-        completion: ([Animation]) -> Void) where U.Iterator.Element == Layout, T.Iterator.Element == Section<U> {
+        completion: @escaping ([Animation]) -> Void) where U.Iterator.Element == Layout, T.Iterator.Element == Section<U> {
 
         let start = CFAbsoluteTimeGetCurrent()
-        backgroundLayoutQueue.cancelAllOperations()
+        let operation = BlockOperation()
 
-        let layoutFunc = { (layout: Layout) -> LayoutArrangement in
-            return layout.arrangement(width: width, height: height)
+        operation.addExecutionBlock { [weak self, weak operation] in
+            let arrangements: [Section<[LayoutArrangement]>] = layoutProvider().flatMap { sectionLayout in
+                if operation?.isCancelled ?? true {
+                    return nil
+                }
+
+                return sectionLayout.map { (layout: Layout) -> LayoutArrangement in
+                    return layout.arrangement(width: width, height: height)
+                }
+            }
+
+            let mainOperation = BlockOperation(block: {
+                let animations: [Animation] = items.flatMap({ indexPath in
+                    guard let contentView = self?.reloadableView?.contentView(forIndexPath: indexPath) else { return nil }
+                    let arrangement = arrangements[indexPath.section].items[indexPath.item]
+                    return arrangement.prepareAnimation(for: contentView)
+                })
+                self?.currentArrangement = arrangements
+
+                let end = CFAbsoluteTimeGetCurrent()
+                self?.logger?("user: \((end-start).ms)")
+                completion(animations)
+            })
+
+            if let operation = operation, !operation.isCancelled {
+                OperationQueue.main.addOperation(mainOperation)
+            }
         }
 
-        currentArrangement = layoutProvider().map { sectionLayout in
-            return sectionLayout.map(layoutFunc)
-        }
-
-        let animations: [Animation] = items.flatMap({ indexPath in
-            guard let contentView = reloadableView?.contentView(forIndexPath: indexPath) else { return nil }
-            let arrangement = currentArrangement[indexPath.section].items[indexPath.item]
-            return arrangement.prepareAnimation(for: contentView)
-        })
-
-        let end = CFAbsoluteTimeGetCurrent()
-        logger?("user: \((end-start).ms)")
-        completion(animations)
+        backgroundLayoutQueue.addOperation(operation)
     }
 }
 
