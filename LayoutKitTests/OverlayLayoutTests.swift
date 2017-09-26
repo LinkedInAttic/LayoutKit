@@ -100,7 +100,7 @@ class OverlayLayoutTests: XCTestCase {
      */
     func testPrimaryLayoutSmallerThanOverlay() {
         let primaryLayout = SizeLayout<View>(minWidth: 2, minHeight: 2)
-        let sublayout = SizeLayout<View>(minWidth: 10, minHeight: 10, alignment: .fill)
+        let sublayout = SizeLayout<View>(minWidth: 10, minHeight: 10)
 
         let overlay = OverlayLayout(primary: primaryLayout, overlay: [sublayout])
         let arrangement = overlay.arrangement(width: 2.0, height: 2.0)
