@@ -9,6 +9,10 @@
 import CoreGraphics
 import Foundation
 
+#if os(OSX)
+public typealias EdgeInsets = NSEdgeInsets
+#endif
+
 extension CGSize {
     func increased(by insets: EdgeInsets) -> CGSize {
         return CGSize(

@@ -45,7 +45,7 @@ private func expectationForCurrentDensity<T>(_ expected: [CGFloat: T], file: Sta
     #if os(iOS)
         let scale = UIScreen.main.scale
     #elseif os(OSX)
-        let scale = NSScreen.main()?.backingScaleFactor ?? 2.0
+        let scale = NSScreen.main?.backingScaleFactor ?? 2.0
     #elseif os(tvOS)
         let scale: CGFloat = 1.0
     #endif

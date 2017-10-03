@@ -122,7 +122,7 @@ open class ButtonLayout<Button: UIButton>: BaseLayout<Button>, ConfigurableLayou
 
     private var defaultFontForCustomButton: UIFont {
         #if os(tvOS)
-            return UIFont.systemFont(ofSize: 38, weight: UIFontWeightMedium)
+            return UIFont.systemFont(ofSize: 38, weight: UIFont.Weight.medium)
         #else
             return UIFont.systemFont(ofSize: 18)
         #endif
@@ -130,7 +130,7 @@ open class ButtonLayout<Button: UIButton>: BaseLayout<Button>, ConfigurableLayou
 
     private var defaultFontForSystemButton: UIFont {
         #if os(tvOS)
-            return UIFont.systemFont(ofSize: 38, weight: UIFontWeightMedium)
+            return UIFont.systemFont(ofSize: 38, weight: UIFont.Weight.medium)
         #else
             return UIFont.systemFont(ofSize: 15)
         #endif
