@@ -41,7 +41,7 @@ public protocol ReloadableView: class {
      The reloadable view must follow the same semantics for handling the index paths
      of concurrent inserts/updates/deletes as UICollectionView documents in `performBatchUpdates`.
      */
-    func perform(batchUpdates: BatchUpdates)
+    func perform(batchUpdates: BatchUpdates, completion: (() -> Void)?)
 }
 
 // MARK: - UICollectionView
@@ -65,7 +65,7 @@ extension UICollectionView: ReloadableView {
     }
 
     @objc
-    open func perform(batchUpdates: BatchUpdates) {
+    open func perform(batchUpdates: BatchUpdates, completion: (() -> Void)?) {
         performBatchUpdates({
             if batchUpdates.insertItems.count > 0 {
                 self.insertItems(at: batchUpdates.insertItems)
@@ -92,7 +92,9 @@ extension UICollectionView: ReloadableView {
             for move in batchUpdates.moveSections {
                 self.moveSection(move.from, toSection: move.to)
             }
-        }, completion: nil)
+        }, completion: { _ in
+            completion?()
+        })
     }
 }
 
@@ -113,7 +115,7 @@ extension UITableView: ReloadableView {
     }
 
     @objc
-    open func perform(batchUpdates: BatchUpdates) {
+    open func perform(batchUpdates: BatchUpdates, completion: (() -> Void)?) {
         beginUpdates()
 
         // Update items.
@@ -145,5 +147,7 @@ extension UITableView: ReloadableView {
         }
 
         endUpdates()
+
+        completion?()
     }
 }

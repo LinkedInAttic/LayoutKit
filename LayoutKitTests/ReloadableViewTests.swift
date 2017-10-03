@@ -41,7 +41,7 @@ class ReloadableViewTests: XCTestCase {
 
         // upcast to UICollectionView to make sure that overloading works correctly
         let collectionView: UICollectionView = registerViewsCollectionView
-        collectionView.perform(batchUpdates: BatchUpdates())
+        collectionView.perform(batchUpdates: BatchUpdates(), completion: nil)
 
         waitForExpectations(timeout: 10.0, handler: nil)
     }
@@ -77,7 +77,7 @@ class ReloadableViewTests: XCTestCase {
 
         // upcast to UITableView to make sure that overloading works correctly
         let tableView: UITableView = registerViewsTableView
-        tableView.perform(batchUpdates: BatchUpdates())
+        tableView.perform(batchUpdates: BatchUpdates(), completion: nil)
 
         waitForExpectations(timeout: 10.0, handler: nil)
     }
@@ -99,7 +99,7 @@ class RegisterViewsCollectionView: UICollectionView {
 
     var performExpectation: XCTestExpectation?
 
-    override func perform(batchUpdates: BatchUpdates) {
+    override func perform(batchUpdates: BatchUpdates, completion: (() -> Void)?) {
         performExpectation?.fulfill()
     }
 }
@@ -120,7 +120,7 @@ class RegisterViewsTableView: UITableView {
 
     var performExpectation: XCTestExpectation?
 
-    override func perform(batchUpdates: BatchUpdates) {
+    override func perform(batchUpdates: BatchUpdates, completion: (() -> Void)?) {
         performExpectation?.fulfill()
     }
 }
