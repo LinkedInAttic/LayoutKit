@@ -17,10 +17,10 @@ open class HelloWorldAutoLayoutView: UIView {
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.setContentHuggingPriority(UILayoutPriorityRequired, for: .vertical)
-        imageView.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
-        imageView.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .vertical)
-        imageView.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
+        imageView.setContentHuggingPriority(UILayoutPriority.required, for: .vertical)
+        imageView.setContentHuggingPriority(UILayoutPriority.required, for: .horizontal)
+        imageView.setContentCompressionResistancePriority(UILayoutPriority.required, for: .vertical)
+        imageView.setContentCompressionResistancePriority(UILayoutPriority.required, for: .horizontal)
         imageView.image = UIImage(named: "earth.png")
         return imageView
     }()

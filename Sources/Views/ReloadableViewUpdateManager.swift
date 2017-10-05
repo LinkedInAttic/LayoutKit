@@ -72,7 +72,7 @@ class IncrementalUpdateManager: BaseReloadableViewUpdateManager, ReloadableViewU
             // Don't modify the data while the view is moving.
             // Doing so causes weird artifacts (i.e. "bouncing" breaks).
             // We will try again on the next loop iteration or when the final arrangement is applied.
-            if reloadableView.tracking || reloadableView.decelerating {
+            if reloadableView.isTracking || reloadableView.isDecelerating {
                 return
             }
 

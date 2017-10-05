@@ -14,7 +14,7 @@ enum TextViewDefaultFont {
     // The font used by UITextView for unattributed strings
     static let unattributedTextFont: UIFont = {
         #if os(tvOS)
-            return UIFont.systemFont(ofSize: 38, weight: UIFontWeightMedium)
+            return UIFont.systemFont(ofSize: 38, weight: UIFont.Weight.medium)
         #else
             return helveticaFont(ofSize: 12)
         #endif
@@ -26,7 +26,7 @@ enum TextViewDefaultFont {
     // The font used by UITextView for empty attributed strings
     static let attributedTextFontWithEmptyString: UIFont = {
         #if os(tvOS)
-            return UIFont.systemFont(ofSize: 38, weight: UIFontWeightMedium)
+            return UIFont.systemFont(ofSize: 38, weight: UIFont.Weight.medium)
         #else
             return helveticaFont(ofSize: 12)
         #endif

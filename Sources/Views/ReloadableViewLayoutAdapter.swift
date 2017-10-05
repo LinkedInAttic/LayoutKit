@@ -57,12 +57,12 @@ open class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerDel
      - parameter layoutProvider: A closure that produces the layout. It is called on a background thread so it must be threadsafe.
      - parameter completion: A closure that is called on the main thread when the operation is complete.
      */
-    open func reload<T: Collection, U: Collection>(
+    open func reload<T: Collection, U>(
         width: CGFloat? = nil,
         height: CGFloat? = nil,
         synchronous: Bool = false,
         batchUpdates: BatchUpdates? = nil,
-        layoutProvider: @escaping (Void) -> T,
+        layoutProvider: @escaping () -> T,
         completion: (() -> Void)? = nil) where U.Iterator.Element == Layout, T.Iterator.Element == Section<U> {
 
         assert(Thread.isMainThread, "reload must be called on the main thread")
@@ -81,11 +81,11 @@ open class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerDel
         }
     }
 
-    private func reloadSynchronously<T: Collection, U: Collection>(
-        layoutProvider: (Void) -> T,
+    private func reloadSynchronously<T: Collection, U>(
+        layoutProvider: () -> T,
         layoutFunc: @escaping (Layout) -> LayoutArrangement,
         batchUpdates: BatchUpdates?,
-        completion: ((Void) -> Void)?) where U.Iterator.Element == Layout, T.Iterator.Element == Section<U> {
+        completion: (() -> Void)?) where U.Iterator.Element == Layout, T.Iterator.Element == Section<U> {
 
         let start = CFAbsoluteTimeGetCurrent()
         currentArrangement = layoutProvider().map { sectionLayout in
@@ -106,11 +106,11 @@ open class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerDel
         }
     }
 
-    private func reloadAsynchronously<T: Collection, U: Collection>(
-        layoutProvider: @escaping (Void) -> T,
+    private func reloadAsynchronously<T: Collection, U>(
+        layoutProvider: @escaping () -> T,
         layoutFunc: @escaping (Layout) -> LayoutArrangement,
         batchUpdates: BatchUpdates?,
-        completion: ((Void) -> Void)?) where U.Iterator.Element == Layout, T.Iterator.Element == Section<U> {
+        completion: (() -> Void)?) where U.Iterator.Element == Layout, T.Iterator.Element == Section<U> {
 
         let start = CFAbsoluteTimeGetCurrent()
         let operation = BlockOperation()

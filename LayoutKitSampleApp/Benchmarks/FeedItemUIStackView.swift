@@ -17,8 +17,8 @@ class FeedItemUIStackView: DebugStackView, DataBinder {
     let optionsLabel: UILabel = {
         let l = UILabel()
         l.text = "..."
-        l.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
-        l.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
+        l.setContentHuggingPriority(UILayoutPriority.required, for: .horizontal)
+        l.setContentCompressionResistancePriority(UILayoutPriority.required, for: .horizontal)
         return l
     }()
 
@@ -37,8 +37,8 @@ class FeedItemUIStackView: DebugStackView, DataBinder {
         i.image = UIImage(named: "50x50.png")
         i.backgroundColor = UIColor.orange
         i.contentMode = .center
-        i.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
-        i.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
+        i.setContentHuggingPriority(UILayoutPriority.required, for: .horizontal)
+        i.setContentCompressionResistancePriority(UILayoutPriority.required, for: .horizontal)
         return i
     }()
 
@@ -117,8 +117,8 @@ class FeedItemUIStackView: DebugStackView, DataBinder {
     let actorImageView: UIImageView = {
         let i = UIImageView()
         i.image = UIImage(named: "50x50.png")
-        i.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
-        i.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
+        i.setContentHuggingPriority(UILayoutPriority.required, for: .horizontal)
+        i.setContentCompressionResistancePriority(UILayoutPriority.required, for: .horizontal)
         return i
     }()
 

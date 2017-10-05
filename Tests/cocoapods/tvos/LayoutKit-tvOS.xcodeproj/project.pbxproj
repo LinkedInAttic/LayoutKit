@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		448160371EA5A76A00FBA809 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448160361EA5A76A00FBA809 /* AppDelegate.swift */; };
+		90EEF74F7A344F469340D4C2 /* Pods_LayoutKit_tvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06E72F4EC0587A4A1D2712E4 /* Pods_LayoutKit_tvOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06E72F4EC0587A4A1D2712E4 /* Pods_LayoutKit_tvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LayoutKit_tvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		448160331EA5A76A00FBA809 /* LayoutKit-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LayoutKit-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		448160361EA5A76A00FBA809 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4481603F1EA5A76B00FBA809 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86696E2618659C49249D15FD /* Pods-LayoutKit-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LayoutKit-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-LayoutKit-tvOS/Pods-LayoutKit-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		F155CEBDAB0B80A4FB9664BB /* Pods-LayoutKit-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LayoutKit-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LayoutKit-tvOS/Pods-LayoutKit-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -21,6 +25,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90EEF74F7A344F469340D4C2 /* Pods_LayoutKit_tvOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,6 +37,8 @@
 			children = (
 				448160351EA5A76A00FBA809 /* LayoutKit-tvOS */,
 				448160341EA5A76A00FBA809 /* Products */,
+				B9E42D8DA1EA9780BC6BDAE4 /* Pods */,
+				8CFE6041D729CF010D09A6A2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,6 +59,23 @@
 			path = "LayoutKit-tvOS";
 			sourceTree = "<group>";
 		};
+		8CFE6041D729CF010D09A6A2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				06E72F4EC0587A4A1D2712E4 /* Pods_LayoutKit_tvOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B9E42D8DA1EA9780BC6BDAE4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F155CEBDAB0B80A4FB9664BB /* Pods-LayoutKit-tvOS.debug.xcconfig */,
+				86696E2618659C49249D15FD /* Pods-LayoutKit-tvOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -59,9 +83,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 448160421EA5A76B00FBA809 /* Build configuration list for PBXNativeTarget "LayoutKit-tvOS" */;
 			buildPhases = (
+				248410308ACF7C5F13368BC5 /* [CP] Check Pods Manifest.lock */,
 				4481602F1EA5A76A00FBA809 /* Sources */,
 				448160301EA5A76A00FBA809 /* Frameworks */,
 				448160311EA5A76A00FBA809 /* Resources */,
+				1B5572D2AA8D91E522A0E358 /* [CP] Embed Pods Frameworks */,
+				5E8161E7705711B92068D571 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -115,6 +142,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1B5572D2AA8D91E522A0E358 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LayoutKit-tvOS/Pods-LayoutKit-tvOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		248410308ACF7C5F13368BC5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5E8161E7705711B92068D571 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LayoutKit-tvOS/Pods-LayoutKit-tvOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4481602F1EA5A76A00FBA809 /* Sources */ = {
@@ -223,6 +298,7 @@
 		};
 		448160431EA5A76B00FBA809 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F155CEBDAB0B80A4FB9664BB /* Pods-LayoutKit-tvOS.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "LayoutKit-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -234,6 +310,7 @@
 		};
 		448160441EA5A76B00FBA809 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 86696E2618659C49249D15FD /* Pods-LayoutKit-tvOS.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "LayoutKit-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
