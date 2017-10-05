@@ -74,6 +74,48 @@ class OverlayLayoutTests: XCTestCase {
     }
 
     /**
+     Tests flexible size of primary layout. Primary layout is measured with size 2x2.
+     Sublayouts should have same measurements.
+     */
+    func testOverlaySublayoutsSize() {
+        let primaryLayout = SizeLayout<View>(minWidth: 1)
+        let sublayout = SizeLayout<View>(minWidth: 2, alignment: .fillLeading)
+
+        let overlay = OverlayLayout(primary: primaryLayout, overlay: [sublayout])
+        let arrangement = overlay.arrangement(width: 2.0, height: 2.0)
+
+        let expectedFrame = CGRect(x: 0, y: 0, width: 2.0, height: 2.0)
+        arrangement.sublayouts.forEach {
+            AssertEqualDensity($0.frame, [
+                1.0: expectedFrame,
+                2.0: expectedFrame,
+                3.0: expectedFrame
+            ])
+        }
+    }
+
+    /**
+     Tests primary layout smaller than overlay.
+     Sublayouts should have same measurements.
+     */
+    func testPrimaryLayoutSmallerThanOverlay() {
+        let primaryLayout = SizeLayout<View>(minWidth: 2, minHeight: 2)
+        let sublayout = SizeLayout<View>(minWidth: 10, minHeight: 10)
+
+        let overlay = OverlayLayout(primary: primaryLayout, overlay: [sublayout])
+        let arrangement = overlay.arrangement(width: 2.0, height: 2.0)
+
+        let expectedFrame = CGRect(x: 0, y: 0, width: 2.0, height: 2.0)
+        arrangement.sublayouts.forEach {
+            AssertEqualDensity($0.frame, [
+                1.0: expectedFrame,
+                2.0: expectedFrame,
+                3.0: expectedFrame
+            ])
+        }
+    }
+
+    /**
      Tests a simple layout with variable sized background and overlay layouts. The primary layout is
      always 2x2, and the background and overlay layouts are variably sized based on the amount of them.
      */

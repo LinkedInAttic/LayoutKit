@@ -62,8 +62,8 @@ extension OverlayLayout: ConfigurableLayout {
         let measuredSublayout = primary.measurement(within: maxSize)
 
         // Measure the background and overlay layouts
-        let measuredBackgroundLayouts = background.map { $0.measurement(within: measuredSublayout.size) }
-        let measuredOverlayLayouts = overlay.map { $0.measurement(within: measuredSublayout.size) }
+        let measuredBackgroundLayouts = background.map { $0.measurement(within: measuredSublayout.maxSize) }
+        let measuredOverlayLayouts = overlay.map { $0.measurement(within: measuredSublayout.maxSize) }
         let measuredSublayouts = Array([measuredBackgroundLayouts, [measuredSublayout], measuredOverlayLayouts].joined())
         return LayoutMeasurement(layout: self, size: measuredSublayout.size, maxSize: maxSize, sublayouts: measuredSublayouts)
     }
