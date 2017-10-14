@@ -139,14 +139,14 @@
 <h2 id="basic-layouts">Basic layouts</h2>
 <p>LayoutKit provides some basic layouts:</p>
 <ul>
-<li><a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Layouts/LabelLayout.swift">LabelLayout</a>: A layout for a UILabel.</li>
-<li><a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Layouts/LabelLayout.swift">ButtonLayout</a>: A layout for a UIButton.</li>
-<li><a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Layouts/SizeLayout.swift">SizeLayout</a>: A layout for a specific size (e.g. UIImageView).</li>
-<li><a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Layouts/InsetLayout.swift">InsetLayout</a>: A layout that insets its child layout (i.e. padding).</li>
-<li><a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Layouts/StackLayout.swift">StackLayout</a>: A layout that stacks its child layouts horizontally or vertically.</li>
+<li><a href="https://github.com/linkedin/LayoutKit/blob/master/Sources/Layouts/LabelLayout.swift">LabelLayout</a>: A layout for a UILabel.</li>
+<li><a href="https://github.com/linkedin/LayoutKit/blob/master/Sources/Layouts/LabelLayout.swift">ButtonLayout</a>: A layout for a UIButton.</li>
+<li><a href="https://github.com/linkedin/LayoutKit/blob/master/Sources/Layouts/SizeLayout.swift">SizeLayout</a>: A layout for a specific size (e.g. UIImageView).</li>
+<li><a href="https://github.com/linkedin/LayoutKit/blob/master/Sources/Layouts/InsetLayout.swift">InsetLayout</a>: A layout that insets its child layout (i.e. padding).</li>
+<li><a href="https://github.com/linkedin/LayoutKit/blob/master/Sources/Layouts/StackLayout.swift">StackLayout</a>: A layout that stacks its child layouts horizontally or vertically.</li>
 </ul>
 <p>Most UIs are easily expressed by nesting vertical and horizontal stacks. Nesting layouts does not adversely affect performance because because LayoutKit does not create views for layouts that do not require one (e.g. StackLayout, InsetLayout).</p>
-<p>If you are already using UIStackView (or any other Auto Layout based stack) and are looking for a quick performance win, check out <a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Views/StackView.swift">StackView</a>. It is similar to UIStackView except it is much faster because it uses StackLayout.</p>
+<p>If you are already using UIStackView (or any other Auto Layout based stack) and are looking for a quick performance win, check out <a href="https://github.com/linkedin/LayoutKit/blob/master/Sources/Views/StackView.swift">StackView</a>. It is similar to UIStackView except it is much faster because it uses StackLayout.</p>
 <h2 id="defining-composite-layouts">Defining composite layouts</h2>
 <p>It is easy to compose layouts into reusable components.</p>
 <p>Here is an example of a reusable <a href="https://github.com/linkedin/LayoutKit/blob/master/ExampleLayouts/MiniProfileLayout.swift">MiniProfileLayout</a>:</p>
@@ -219,10 +219,10 @@ sergeiProfile.arrangement().makeViews()
 <p>Layouts generally only capture information that is necessary to compute the size and position of a layout.</p>
 <p>All other properties that don't affect the layout of a view can be configured in the <code>config</code> closure passed to a layout's initializer.</p>
 <h2 id="flexibility">Flexibility</h2>
-<p>All layouts declare their <a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Flexibility.swift">Flexibility</a> along each axis. It is a hint to the layout's parent that indicates the priority at which the layout should be compressed or expanded to fit the available space.</p>
+<p>All layouts declare their <a href="https://github.com/linkedin/LayoutKit/blob/master/Sources/Flexibility.swift">Flexibility</a> along each axis. It is a hint to the layout's parent that indicates the priority at which the layout should be compressed or expanded to fit the available space.</p>
 <p>LayoutKit's basic layouts provide reasonable defaults for flexibility so you generally don't need to worry about configuring it unless you need to adjust the relative priority of sibling layouts.</p>
 <h2 id="alignment">Alignment</h2>
-<p>All layouts provided by LayoutKit can be configured with an <a href="https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Alignment.swift">Alignment</a>.</p>
+<p>All layouts provided by LayoutKit can be configured with an <a href="https://github.com/linkedin/LayoutKit/blob/master/Sources/Alignment.swift">Alignment</a>.</p>
 <p>Alignment determines how a layout positions itself in the rect that that its parent gives it during <code>arrangement</code>.</p></div>
         </div>
 
