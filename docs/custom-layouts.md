@@ -8,6 +8,6 @@ Only create a custom layout if your UIs can't be expressed by composing the basi
 
 ## Layout protocol
 
-Create a custom layout by implementing the [Layout](https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Layout.swift) protocol.
+Create a custom layout by implementing the [Layout](https://github.com/linkedin/LayoutKit/blob/master/Sources/Layout.swift) protocol.
 
 Please read the documentation of the protocol and its methods carefully.
