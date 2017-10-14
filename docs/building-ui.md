@@ -6,15 +6,15 @@ This page is an overview of how to build UIs using LayoutKit.
 
 LayoutKit provides some basic layouts:
 
-- [LabelLayout](https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Layouts/LabelLayout.swift): A layout for a UILabel.
-- [ButtonLayout](https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Layouts/LabelLayout.swift): A layout for a UIButton.
-- [SizeLayout](https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Layouts/SizeLayout.swift): A layout for a specific size (e.g. UIImageView).
-- [InsetLayout](https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Layouts/InsetLayout.swift): A layout that insets its child layout (i.e. padding).
-- [StackLayout](https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Layouts/StackLayout.swift): A layout that stacks its child layouts horizontally or vertically.
+- [LabelLayout](https://github.com/linkedin/LayoutKit/blob/master/Sources/Layouts/LabelLayout.swift): A layout for a UILabel.
+- [ButtonLayout](https://github.com/linkedin/LayoutKit/blob/master/Sources/Layouts/LabelLayout.swift): A layout for a UIButton.
+- [SizeLayout](https://github.com/linkedin/LayoutKit/blob/master/Sources/Layouts/SizeLayout.swift): A layout for a specific size (e.g. UIImageView).
+- [InsetLayout](https://github.com/linkedin/LayoutKit/blob/master/Sources/Layouts/InsetLayout.swift): A layout that insets its child layout (i.e. padding).
+- [StackLayout](https://github.com/linkedin/LayoutKit/blob/master/Sources/Layouts/StackLayout.swift): A layout that stacks its child layouts horizontally or vertically.
 
 Most UIs are easily expressed by nesting vertical and horizontal stacks. Nesting layouts does not adversely affect performance because because LayoutKit does not create views for layouts that do not require one (e.g. StackLayout, InsetLayout).
 
-If you are already using UIStackView (or any other Auto Layout based stack) and are looking for a quick performance win, check out [StackView](https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Views/StackView.swift). It is similar to UIStackView except it is much faster because it uses StackLayout.
+If you are already using UIStackView (or any other Auto Layout based stack) and are looking for a quick performance win, check out [StackView](https://github.com/linkedin/LayoutKit/blob/master/Sources/Views/StackView.swift). It is similar to UIStackView except it is much faster because it uses StackLayout.
 
 ## Defining composite layouts
 
@@ -102,12 +102,12 @@ All other properties that don't affect the layout of a view can be configured in
 
 ## Flexibility
 
-All layouts declare their [Flexibility](https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Flexibility.swift) along each axis. It is a hint to the layout's parent that indicates the priority at which the layout should be compressed or expanded to fit the available space.
+All layouts declare their [Flexibility](https://github.com/linkedin/LayoutKit/blob/master/Sources/Flexibility.swift) along each axis. It is a hint to the layout's parent that indicates the priority at which the layout should be compressed or expanded to fit the available space.
 
 LayoutKit's basic layouts provide reasonable defaults for flexibility so you generally don't need to worry about configuring it unless you need to adjust the relative priority of sibling layouts.
 
 ## Alignment
 
-All layouts provided by LayoutKit can be configured with an [Alignment](https://github.com/linkedin/LayoutKit/blob/master/LayoutKit/Alignment.swift).
+All layouts provided by LayoutKit can be configured with an [Alignment](https://github.com/linkedin/LayoutKit/blob/master/Sources/Alignment.swift).
 
 Alignment determines how a layout positions itself in the rect that that its parent gives it during `arrangement`.
