@@ -60,6 +60,17 @@ class LabelLayoutTests: XCTestCase {
 
         XCTAssertEqual(arrangement.makeViews().frame.size, label.intrinsicContentSize)
     }
+    
+    func testAsyncAttributedLabel() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            let attributedText = NSAttributedString(string: "Async", attributes: [NSAttributedStringKey.font: UIFont.helvetica(size: 42)])
+            let arrangement = LabelLayout(attributedText: attributedText).arrangement()
+            DispatchQueue.main.async {
+                let label = UILabel(attributedText: attributedText, font: UIFont.helvetica(size: 42))
+                XCTAssertEqual(arrangement.makeViews().frame.size, label.intrinsicContentSize)
+            }
+        }
+    }
 
     func testTwoLineLabel() {
         let text = "Nick Snyder"
