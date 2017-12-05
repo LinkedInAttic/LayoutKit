@@ -34,6 +34,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
                 layoutAlignment: Alignment = TextViewLayoutDefaults.defaultAlignment,
                 flexibility: Flexibility = TextViewLayoutDefaults.defaultFlexibility,
                 viewReuseId: String? = nil,
+                viewReuseGroup: String? = nil,
                 config: ((TextView) -> Void)? = nil) {
         self.text = text
         self.font = font
@@ -47,7 +48,7 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
             self.isTextEmpty = text.isEmpty
         }
 
-        super.init(alignment: layoutAlignment, flexibility: flexibility, viewReuseId: viewReuseId, config: config)
+        super.init(alignment: layoutAlignment, flexibility: flexibility, viewReuseId: viewReuseId, viewReuseGroup: viewReuseGroup, config: config)
     }
 
     // MARK: - Convenience initializers

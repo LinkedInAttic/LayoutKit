@@ -130,6 +130,7 @@ private struct ViewLayout: ConfigurableLayout {
     let needsView = true
     let view: UIView
     let viewReuseId: String? = nil
+    let viewReuseGroup: String? = nil
 
     func measurement(within maxSize: CGSize) -> LayoutMeasurement {
         let size = view.sizeThatFits(maxSize)
