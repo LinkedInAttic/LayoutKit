@@ -54,7 +54,7 @@ final class ViewRecycler {
 
     /// Removes all unrecycled views
     func purgeViews() {
-        self.viewStorage.beforeEach { view in
+        self.viewStorage.foreach { view in
             if view.isLayoutKitView {
                 view.removeFromSuperview()
             }
