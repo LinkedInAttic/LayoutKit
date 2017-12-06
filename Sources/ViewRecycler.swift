@@ -15,7 +15,7 @@ import ObjectiveC
  Call `makeView(layoutId:)` to recycle or create a view of the desired type and id.
  Call `purgeViews()` to remove all unrecycled views from the view hierarchy.
  */
-class ViewRecycler {
+final class ViewRecycler {
 
     private var viewStorage = ViewRecyclerViewStorage()
 

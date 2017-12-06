@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ViewRecyclerViewStorage {
+final class ViewRecyclerViewStorage {
 
     private var views: Set<View> = []
 
