@@ -17,16 +17,15 @@ import ObjectiveC
  */
 class ViewRecycler {
 
-    private var viewsById = [String: View]()
-    private var unidentifiedViews = Set<View>()
+    private var viewStorage = ViewRecyclerViewStorage()
 
     /// Retains all subviews of rootView for recycling.
     init(rootView: View?) {
-        rootView?.walkSubviews { (view) in
-            if let viewReuseId = view.viewReuseId {
-                self.viewsById[viewReuseId] = view
-            } else {
-                self.unidentifiedViews.insert(view)
+        rootView?.walkSubviews { view in
+            self.viewStorage.add(view: view)
+
+            if view.isLayoutKitView {
+                view.removeFromSuperview()
             }
         }
     }
@@ -35,41 +34,32 @@ class ViewRecycler {
      Returns a view for the layout.
      It may recycle an existing view or create a new view.
      */
-    func makeOrRecycleView(havingViewReuseId viewReuseId: String?, viewProvider: () -> View) -> View? {
+    func makeOrRecycleView(havingViewReuseId viewReuseId: String?, orViewReuseGroup viewReuseGroup: String?, viewProvider: () -> View) -> View? {
+
         // If we have a recyclable view that matches type and id, then reuse it.
-        if let viewReuseId = viewReuseId, let view = viewsById[viewReuseId] {
-            viewsById[viewReuseId] = nil
+        if let viewReuseId = viewReuseId, let view = self.viewStorage.popView(withReuseId: viewReuseId) {
+            return view
+        }
+        if let viewGroup = viewReuseGroup, let view = self.viewStorage.popView(withReuseGroup: viewGroup) {
             return view
         }
 
         let providedView = viewProvider()
         providedView.isLayoutKitView = true
-
-        // Remove the provided view from the list of cached views.
-        if let viewReuseId = providedView.viewReuseId, let oldView = viewsById[viewReuseId], oldView == providedView {
-            viewsById[viewReuseId] = nil
-        } else {
-            unidentifiedViews.remove(providedView)
-        }
         providedView.viewReuseId = viewReuseId
+        providedView.viewReuseGroup = viewReuseGroup
+        self.viewStorage.remove(view: providedView)
         return providedView
     }
 
-    /// Removes all unrecycled views from the view hierarchy.
+    /// Removes all unrecycled views
     func purgeViews() {
-        for view in viewsById.values {
-            view.removeFromSuperview()
-        }
-        viewsById.removeAll()
-
-        for view in unidentifiedViews where view.isLayoutKitView {
-            view.removeFromSuperview()
-        }
-        unidentifiedViews.removeAll()
+        self.viewStorage.removeAll()
     }
 }
 
 private var viewReuseIdKey: UInt8 = 0
+private var viewReuseGroupKey: UInt8 = 0
 private var isLayoutKitViewKey: UInt8 = 0
 
 extension View {
@@ -89,6 +79,16 @@ extension View {
         }
         set {
             objc_setAssociatedObject(self, &viewReuseIdKey, newValue, .OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+
+    // Identifies the reuseg roup this view belongs to
+    public internal(set) var viewReuseGroup: String? {
+        get {
+            return objc_getAssociatedObject(self, &viewReuseGroupKey) as? String
+        }
+        set {
+            objc_setAssociatedObject(self, &viewReuseGroupKey, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
     }
 

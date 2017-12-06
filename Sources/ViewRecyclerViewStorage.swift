@@ -10,10 +10,10 @@ import Foundation
 
 class ViewRecyclerViewStorage {
 
-    private var views: [View] = []
+    private var views: Set<View> = []
 
     func add(view: View) {
-        self.views.append(view)
+        self.views.insert(view)
     }
 
     func popView(withReuseId viewId: String) -> View? {
@@ -40,5 +40,12 @@ class ViewRecyclerViewStorage {
 
     func removeAll() {
         self.views.removeAll()
+    }
+}
+
+extension ViewRecyclerViewStorage : CustomDebugStringConvertible {
+
+    var debugDescription: String {
+        return "\(type(of: self)) - \(self.views)"
     }
 }
