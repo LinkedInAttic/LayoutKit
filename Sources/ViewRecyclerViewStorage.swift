@@ -17,15 +17,17 @@ class ViewRecyclerViewStorage {
     }
 
     func popView(withReuseId viewId: String) -> View? {
-        let index = self.views.index { $0.viewReuseId == viewId }
-        guard let viewIndex = index else { return nil }
-        return self.views.remove(at: viewIndex)
+        guard let index = self.views.index(where: { $0.viewReuseId == viewId }) else {
+            return nil
+        }
+        return self.views.remove(at: index)
     }
 
     func popView(withReuseGroup viewGroup: String) -> View? {
-        let index = self.views.index { $0.viewReuseGroup == viewGroup }
-        guard let viewIndex = index else { return nil }
-        return self.views.remove(at: viewIndex)
+        guard let index = self.views.index(where: { $0.viewReuseGroup == viewGroup }) else {
+            return nil
+        }
+        return self.views.remove(at: index)
     }
 
     func foreach(_ closure: (View) -> Void) {
