@@ -40,6 +40,7 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
                             alignment: Alignment = LabelLayoutDefaults.defaultAlignment,
                             flexibility: Flexibility = LabelLayoutDefaults.defaultFlexibility,
                             viewReuseId: String? = nil,
+                            viewReuseGroup: String? = nil,
                             config: ((Label) -> Void)? = nil) {
 
         self.init(text: .unattributed(text),
@@ -48,6 +49,7 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
                   alignment: alignment,
                   flexibility: flexibility,
                   viewReuseId: viewReuseId,
+                  viewReuseGroup: viewReuseGroup,
                   config: config)
     }
 
@@ -57,6 +59,7 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
                             alignment: Alignment = LabelLayoutDefaults.defaultAlignment,
                             flexibility: Flexibility = LabelLayoutDefaults.defaultFlexibility,
                             viewReuseId: String? = nil,
+                            viewReuseGroup: String? = nil,
                             config: ((Label) -> Void)? = nil) {
 
         self.init(text: .attributed(attributedText),
@@ -65,6 +68,7 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
                   alignment: alignment,
                   flexibility: flexibility,
                   viewReuseId: viewReuseId,
+                  viewReuseGroup: viewReuseGroup,
                   config: config)
     }
 
