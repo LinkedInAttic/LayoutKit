@@ -4,7 +4,6 @@
 [![GitHub release](https://img.shields.io/github/release/linkedin/layoutkit.svg?maxAge=3600)](https://github.com/linkedin/LayoutKit/releases)
 [![Build Status](https://travis-ci.org/linkedin/LayoutKit.svg?branch=master)](https://travis-ci.org/linkedin/LayoutKit)
 [![codecov](https://codecov.io/gh/linkedin/LayoutKit/branch/master/graph/badge.svg)](https://codecov.io/gh/linkedin/LayoutKit)
-[![CocoaPods](https://img.shields.io/cocoapods/metrics/doc-percent/LayoutKit.svg?maxAge=3600)](http://cocoadocs.org/docsets/LayoutKit)
 
 LayoutKit is a fast view layout library for iOS, macOS, and tvOS.
 
