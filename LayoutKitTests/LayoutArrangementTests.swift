@@ -62,7 +62,7 @@ class LayoutArrangementTests: XCTestCase {
             viewReuseGroup: "colorView",
             sublayouts: [
                 InsetLayout(
-                    insets: UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1),
+                    insets: EdgeInsets(top: 1, left: 1, bottom: 1, right: 1),
                     viewReuseGroup: "dummy",
                     sublayout: SizeLayout(width: 5, height: 10, viewReuseGroup: "colorView", config: forceViewConfig),
                     config: forceViewConfig
