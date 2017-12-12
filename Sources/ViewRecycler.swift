@@ -34,13 +34,9 @@ final class ViewRecycler {
 
         // If we have a recyclable view that matches type and id, then reuse it.
         if let viewReuseId = viewReuseId, let view = self.viewStorage.popView(withReuseId: viewReuseId) {
-            // Remove from superview to avoid view cycles
-            view.removeFromSuperview()
             return view
         }
         if let viewGroup = viewReuseGroup, let view = self.viewStorage.popView(withReuseGroup: viewGroup) {
-            // Remove from superview to avoid view cycles
-            view.removeFromSuperview()
             return view
         }
 

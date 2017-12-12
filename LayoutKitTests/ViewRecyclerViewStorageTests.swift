@@ -40,8 +40,8 @@ class ViewRecyclerViewStorageTests: XCTestCase {
         storage.add(view: view1)
         storage.add(view: view2)
 
-        XCTAssertEqual(storage.popView(withReuseGroup: "group1"), view1)
         XCTAssertEqual(storage.popView(withReuseGroup: "group1"), view2)
+        XCTAssertEqual(storage.popView(withReuseGroup: "group1"), view1)
         XCTAssertNil(storage.popView(withReuseGroup: "group1"))
     }
 
@@ -52,8 +52,8 @@ class ViewRecyclerViewStorageTests: XCTestCase {
         storage.add(view: view1)
         storage.add(view: view2)
 
-        XCTAssertEqual(storage.popView(withReuseGroup: "group1"), view1)
-        XCTAssertNil(storage.popView(withReuseId: "1"), "View should already been popped")
+        XCTAssertEqual(storage.popView(withReuseGroup: "group1"), view2)
+        XCTAssertNil(storage.popView(withReuseId: "2"), "View should already been popped")
     }
 
     func testRemoveView() {

@@ -53,6 +53,43 @@ class LayoutArrangementTests: XCTestCase {
         XCTAssertEqual(container.subviews[2].frame, CGRect(x: 0, y: 30, width: 5, height: 30))
     }
 
+    func testSubViewsSameViewReuseGroup() {
+
+        let forceViewConfig: (View) -> Void = { _ in }
+
+        let leftSubTree = StackLayout(
+            axis: .horizontal,
+            viewReuseGroup: "colorView",
+            sublayouts: [
+                InsetLayout(
+                    insets: UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1),
+                    viewReuseGroup: "dummy",
+                    sublayout: SizeLayout(width: 5, height: 10, viewReuseGroup: "colorView", config: forceViewConfig),
+                    config: forceViewConfig
+                )
+            ],
+            config: forceViewConfig
+        )
+
+        let right = SizeLayout(width: 5, height: 20, viewReuseGroup: "dummy", config: forceViewConfig)
+        let stack = StackLayout(axis: .vertical, sublayouts: [leftSubTree, right])
+        let container = View()
+
+        // Make sure that we reuse the views in correct order, otherwise we get a view cycle
+        // that will cause a crash.
+        stack.arrangement().makeViews(in: container)
+        XCTAssertEqual(container.subviews.first?.frame, CGRect(x: 0, y: 0, width: 7, height: 12))
+        XCTAssertEqual(container.subviews.first?.subviews.first?.frame, CGRect(x: 0, y: 0, width: 7, height: 12))
+        XCTAssertEqual(container.subviews.first?.subviews.first?.subviews.first?.frame, CGRect(x: 1, y: 1, width: 5, height: 10))
+        XCTAssertEqual(container.subviews.last?.frame, CGRect(x: 1, y: 12, width: 5, height: 20))
+
+        stack.arrangement().makeViews(in: container)
+        XCTAssertEqual(container.subviews.first?.frame, CGRect(x: 0, y: 0, width: 7, height: 12))
+        XCTAssertEqual(container.subviews.first?.subviews.first?.frame, CGRect(x: 0, y: 0, width: 7, height: 12))
+        XCTAssertEqual(container.subviews.first?.subviews.first?.subviews.first?.frame, CGRect(x: 1, y: 1, width: 5, height: 10))
+        XCTAssertEqual(container.subviews.last?.frame, CGRect(x: 1, y: 12, width: 5, height: 20))
+    }
+
     func testAnimation() {
         let forceViewConfig: (View) -> Void = { _ in }
         var redSquare: View? = nil

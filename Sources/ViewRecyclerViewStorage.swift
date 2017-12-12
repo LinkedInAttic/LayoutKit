@@ -10,10 +10,10 @@ import Foundation
 
 final class ViewRecyclerViewStorage {
 
-    private var views: Set<View> = []
+    private var views: [View] = []
 
     func add(view: View) {
-        self.views.insert(view)
+        self.views.insert(view, at: 0)
     }
 
     func popView(withReuseId viewId: String) -> View? {
@@ -24,6 +24,7 @@ final class ViewRecyclerViewStorage {
     }
 
     func popView(withReuseGroup viewGroup: String) -> View? {
+
         guard let index = self.views.index(where: { $0.viewReuseGroup == viewGroup }) else {
             return nil
         }
