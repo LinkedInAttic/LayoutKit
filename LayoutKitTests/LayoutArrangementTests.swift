@@ -53,6 +53,50 @@ class LayoutArrangementTests: XCTestCase {
         XCTAssertEqual(container.subviews[2].frame, CGRect(x: 0, y: 30, width: 5, height: 30))
     }
 
+    func testViewReuseCircularReferenceDisconnection() {
+
+        let forceViewConfig: (View) -> Void = { _ in }
+
+        let layoutsForReusedView = StackLayout(
+            axis: .vertical,
+            viewReuseGroup: "A",
+            sublayouts: [
+                SizeLayout(
+                    size: .zero,
+                    viewReuseGroup: "B",
+                    config: forceViewConfig
+                )
+            ],
+            config: forceViewConfig
+        )
+
+        let newLayouts = StackLayout(
+            axis: .vertical,
+            viewReuseGroup: "B",
+            sublayouts: [
+                SizeLayout(
+                    size: .zero,
+                    viewReuseGroup: "A",
+                    sublayout: SizeLayout(
+                        size: .zero,
+                        viewReuseGroup: "A",
+                        config: forceViewConfig
+                    ),
+                    config: forceViewConfig
+                )
+            ],
+            config: forceViewConfig
+        )
+
+        let container = View()
+        layoutsForReusedView.arrangement().makeViews(in: container)
+        newLayouts.arrangement().makeViews(in: container)
+
+        XCTAssertEqual(container.subviews.count, 1)
+        XCTAssertEqual(container.subviews.first?.subviews.count, 1)
+        XCTAssertEqual(container.subviews.first?.subviews.first?.subviews.count, 1)
+    }
+
     func testAnimation() {
         let forceViewConfig: (View) -> Void = { _ in }
         var redSquare: View? = nil

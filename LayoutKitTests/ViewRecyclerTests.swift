@@ -19,7 +19,7 @@ class ViewRecyclerTests: XCTestCase {
 
         let recycler = ViewRecycler(rootView: root)
         let expectedView = View()
-        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: nil, viewProvider: {
+        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: nil, orViewReuseGroup: nil, viewProvider: {
             return expectedView
         })
         XCTAssertEqual(v, expectedView)
@@ -36,7 +36,7 @@ class ViewRecyclerTests: XCTestCase {
 
         let recycler = ViewRecycler(rootView: root)
         let expectedView = View()
-        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: nil, viewProvider: {
+        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: nil, orViewReuseGroup: nil, viewProvider: {
             return expectedView
         })
         XCTAssertEqual(v, expectedView)
@@ -51,7 +51,7 @@ class ViewRecyclerTests: XCTestCase {
         root.addSubview(one)
 
         let recycler = ViewRecycler(rootView: root)
-        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: "1", viewProvider: {
+        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: "1", orViewReuseGroup: nil, viewProvider: {
             XCTFail("view should have been recycled")
             return View()
         })
@@ -67,7 +67,7 @@ class ViewRecyclerTests: XCTestCase {
         root.addSubview(one)
 
         let recycler = ViewRecycler(rootView: root)
-        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: nil, viewProvider: {
+        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: nil, orViewReuseGroup: nil, viewProvider: {
             return one
         })
         XCTAssertEqual(v, one)
@@ -82,13 +82,29 @@ class ViewRecyclerTests: XCTestCase {
         root.addSubview(one)
 
         let recycler = ViewRecycler(rootView: root)
-        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: nil, viewProvider: {
+        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: nil, orViewReuseGroup: nil, viewProvider: {
             return one
         })
         XCTAssertEqual(v, one)
 
         recycler.purgeViews()
         XCTAssertNotNil(one.superview)
+    }
+
+    func testViewProviderViewCreationShouldSetViewIdentifiers() {
+        let root = View()
+        let oldView = View()
+        root.addSubview(oldView)
+
+        let newView = View()
+
+        let recycler = ViewRecycler(rootView: root)
+        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: "2", orViewReuseGroup: "group2", viewProvider: {
+            return newView
+        })
+        XCTAssertEqual(v, newView)
+        XCTAssertEqual(newView.viewReuseId, "2")
+        XCTAssertEqual(newView.viewReuseGroup, "group2")
     }
 
     /// Test for safe subview-purge in composite view e.g. UIButton.
@@ -104,7 +120,7 @@ class ViewRecyclerTests: XCTestCase {
         XCTAssertEqual(button.subviews.count, 1, "UIButton should have 1 subview because `title` is set")
 
         let recycler = ViewRecycler(rootView: root)
-        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: "1", viewProvider: {
+        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: "1", orViewReuseGroup: nil, viewProvider: {
             XCTFail("button should have been recycled")
             return View()
         })
@@ -116,11 +132,34 @@ class ViewRecyclerTests: XCTestCase {
         XCTAssertEqual(button.subviews.count, 1, "UIButton's subviews should not be removed by `recycler`")
     }
     #endif
+
+    func testRecycledFromViewGroup() {
+        let root = View()
+        let one = View(viewReuseId: "1", viewReuseGroup: "view")
+        root.addSubview(one)
+
+        let recycler = ViewRecycler(rootView: root)
+        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: "2", orViewReuseGroup: "view", viewProvider: {
+            XCTFail("view should have been recycled")
+            return View()
+        })
+        XCTAssertEqual(v, one)
+
+        recycler.purgeViews()
+        XCTAssertNotNil(one.superview)
+    }
+
 }
 
 extension View {
     convenience init(viewReuseId: String) {
         self.init(frame: .zero)
         self.viewReuseId = viewReuseId
+    }
+
+    convenience init(viewReuseId: String?, viewReuseGroup: String?) {
+        self.init(frame: .zero)
+        self.viewReuseId = viewReuseId
+        self.viewReuseGroup = viewReuseGroup
     }
 }

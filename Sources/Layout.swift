@@ -105,6 +105,14 @@ public protocol Layout {
      then that view will be reused for the new layout. If there is more than one view with the same viewReuseId, then an arbitrary one will be reused.
      */
     var viewReuseId: String? { get }
+
+
+    /**
+     An identifier that specifies the type view content
+
+     Use this identifier enable view reuse between layouts that produce same kind of views.
+    */
+    var viewReuseGroup: String? { get }
 }
 
 public extension Layout {
