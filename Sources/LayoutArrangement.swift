@@ -163,6 +163,12 @@ extension View {
      will be adjusted so that its absolute position on the screen does not change.
      */
     fileprivate func addSubview(_ view: View, maintainCoordinates: Bool) {
+
+        // Disconnect reference cycle
+        if isChildOf(view) {    
+            removeFromSuperview()
+        }
+
         if maintainCoordinates {
             let frame = view.convertToAbsoluteCoordinates(view.frame)
             addSubview(view)
@@ -170,6 +176,17 @@ extension View {
         } else {
             addSubview(view)
         }
+    }
+
+    fileprivate func isChildOf(_ view: View) -> Bool {
+
+        guard let superview = self.superview else { return false }
+
+        if superview == view {
+            return true
+        }
+
+        return superview.isChildOf(view)
     }
 }
 
