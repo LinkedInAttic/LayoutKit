@@ -120,13 +120,13 @@ extension UITableView: ReloadableView {
 
         // Update items.
         if batchUpdates.insertItems.count > 0 {
-            insertRows(at: batchUpdates.insertItems, with: .automatic)
+            insertRows(at: batchUpdates.insertItems, with: batchUpdates.animationType)
         }
         if batchUpdates.deleteItems.count > 0 {
-            deleteRows(at: batchUpdates.deleteItems, with: .automatic)
+            deleteRows(at: batchUpdates.deleteItems, with: batchUpdates.animationType)
         }
         if batchUpdates.reloadItems.count > 0 {
-            reloadRows(at: batchUpdates.reloadItems, with: .automatic)
+            reloadRows(at: batchUpdates.reloadItems, with: batchUpdates.animationType)
         }
         for move in batchUpdates.moveItems {
             moveRow(at: move.from, to: move.to)
@@ -134,13 +134,13 @@ extension UITableView: ReloadableView {
 
         // Update sections.
         if batchUpdates.insertSections.count > 0 {
-            insertSections(batchUpdates.insertSections, with: .automatic)
+            insertSections(batchUpdates.insertSections, with: batchUpdates.animationType)
         }
         if batchUpdates.deleteSections.count > 0 {
-            deleteSections(batchUpdates.deleteSections, with: .automatic)
+            deleteSections(batchUpdates.deleteSections, with: batchUpdates.animationType)
         }
         if batchUpdates.reloadSections.count > 0 {
-            reloadSections(batchUpdates.reloadSections, with: .automatic)
+            reloadSections(batchUpdates.reloadSections, with: batchUpdates.animationType)
         }
         for move in batchUpdates.moveSections {
             moveSection(move.from, toSection: move.to)
