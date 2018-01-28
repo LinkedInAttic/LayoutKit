@@ -6,11 +6,8 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-#import <UIKit/UIKit.h>
-#import <LayoutKit/LayoutKit-Swift.h>
+import Foundation
 
-@interface ViewController : UIViewController
-
-
-@end
-
+@objc public class LOKFlexibility: NSObject {
+    static var normal = LOKFlexibility()
+}
