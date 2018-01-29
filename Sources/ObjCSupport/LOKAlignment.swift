@@ -6,7 +6,7 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-import Foundation
+import CoreGraphics
 
 @objc public class LOKAlignment: NSObject {
     let alignment: Alignment
@@ -29,4 +29,8 @@ import Foundation
     @objc public static let fillLeading = LOKAlignment(alignment: .fillLeading)
     @objc public static let fillTrailing = LOKAlignment(alignment: .fillTrailing)
     @objc public static let fillCenter = LOKAlignment(alignment: Alignment(vertical: .fill, horizontal: .center))
+
+    @objc public func position(size: CGSize, in rect: CGRect) -> CGRect {
+        return alignment.position(size: size, in: rect)
+    }
 }

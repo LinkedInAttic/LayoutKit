@@ -10,13 +10,11 @@ import CoreGraphics
 
 class ReverseWrappedLayout: Layout {
     func arrangement(within rect: CGRect, measurement: LayoutMeasurement) -> LayoutArrangement {
-        let a = layout.arrangement(within: rect, measurement: LOKLayoutMeasurement(wrappedLayout: layout, layoutMeasurement: measurement))
-        return a.layoutArrangement
+        return layout.arrangement(within: rect, measurement: LOKLayoutMeasurement(wrappedLayout: layout, layoutMeasurement: measurement)).layoutArrangement
     }
 
     func measurement(within maxSize: CGSize) -> LayoutMeasurement {
-        let m = layout.measurement(within: maxSize)
-        return LayoutMeasurement(layout: self, size: m.size, maxSize: m.maxSize, sublayouts: m.sublayouts.map { $0.measurement })
+        return layout.measurement(within: maxSize).measurement
     }
 
     var needsView: Bool {
@@ -32,7 +30,7 @@ class ReverseWrappedLayout: Layout {
     }
 
     var flexibility: Flexibility {
-        return Flexibility.inflexible // TODO
+        return layout.flexibility.flexibility
     }
 
     var viewReuseId: String? {

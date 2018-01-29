@@ -10,14 +10,25 @@ import CoreGraphics
 
 @objc public class LOKLayoutArrangement: NSObject {
     let layoutArrangement: LayoutArrangement
+    @objc public let layout: LOKLayout
+    @objc public let sublayouts: [LOKLayoutArrangement]
+
     init(layoutArrangement: LayoutArrangement) {
         self.layoutArrangement = layoutArrangement
+        self.layout = WrappedLayout(layout: layoutArrangement.layout)
+        self.sublayouts = layoutArrangement.sublayouts.map { LOKLayoutArrangement(layoutArrangement: $0) }
     }
 
-    @objc public init(layout: LOKLayout, width: CGFloat, height: CGFloat) {
-        self.layoutArrangement = layout.unwrapped.arrangement(
+    @objc public init(layout: LOKLayout, frame: CGRect, sublayouts: [LOKLayoutArrangement]) {
+        self.layoutArrangement = LayoutArrangement(layout: layout.unwrapped, frame: frame, sublayouts: sublayouts.map { $0.layoutArrangement })
+        self.layout = layout
+        self.sublayouts = sublayouts
+    }
+
+    @objc public class func arrangeLayout(_ layout: LOKLayout, width: CGFloat, height: CGFloat) -> LOKLayoutArrangement {
+        return LOKLayoutArrangement(layoutArrangement: layout.unwrapped.arrangement(
             width: width.isFinite ? width : nil,
-            height: height.isFinite ? height : nil)
+            height: height.isFinite ? height : nil))
     }
 
     @objc public func makeViews(in view: View?) {
@@ -26,6 +37,10 @@ import CoreGraphics
 
     @objc public func makeViews() -> View {
         return layoutArrangement.makeViews()
+    }
+
+    @objc public var frame: CGRect {
+        return layoutArrangement.frame
     }
 }
 
