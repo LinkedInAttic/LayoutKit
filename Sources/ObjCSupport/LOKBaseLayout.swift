@@ -9,7 +9,7 @@
 import CoreGraphics
 
 public class LOKBaseLayout: NSObject, LOKLayout {
-    private let layout: Layout
+    let layout: Layout
 
     init(layout: Layout) {
         self.layout = layout

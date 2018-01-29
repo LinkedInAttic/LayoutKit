@@ -10,6 +10,28 @@
 @import Foundation;
 @import UIKit;
 
+@interface MyLabelView: UILabel
+@end
+@implementation MyLabelView
+-(instancetype)init {
+    if (self = [super init]) {
+        self.textColor = UIColor.redColor;
+    }
+    return self;
+}
+@end
+
+@interface LabelBackgroundView: UIView
+@end
+@implementation LabelBackgroundView
+-(instancetype)init {
+    if (self = [super init]) {
+        self.backgroundColor = UIColor.greenColor;
+    }
+    return self;
+}
+@end
+
 @interface ViewController ()
 
 @property (nonatomic, strong) id<LOKLayout> primaryLayout;
@@ -21,16 +43,23 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        _primaryLayout = [[LOKLabelLayout alloc] initWithString:@"Hello world!"
+        LOKLabelLayout* labelLayout = [[LOKLabelLayout alloc] initWithString:@"Hello world!"
                                                            font:[UIFont systemFontOfSize:UIFont.systemFontSize]
                                                   numberOfLines:0
                                                       alignment:LOKAlignment.topCenter
                                                     flexibility:LOKFlexibility.flexible
                                                     viewReuseId:nil
-                                                      viewClass:nil
+                                                      viewClass:MyLabelView.class
                                                       configure:^(UILabel* label) {
-                                                          label.backgroundColor = UIColor.yellowColor;
+                                                          label.backgroundColor = UIColor.whiteColor;
                                                       }];
+        LOKInsetLayout* insetLayout = [[LOKInsetLayout alloc] initWithInsets:UIEdgeInsetsMake(20, 20, 20, 20)
+                                                                   alignment:LOKAlignment.topCenter
+                                                                 viewReuseId:nil
+                                                                   sublayout:labelLayout
+                                                                   viewClass:LabelBackgroundView.class
+                                                                   configure:^(UIView* view) { }];
+        _primaryLayout = insetLayout;
     }
     return self;
 }
