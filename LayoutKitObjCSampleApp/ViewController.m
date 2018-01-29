@@ -21,16 +21,16 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        _primaryLayout = [[LOKLabelLayout alloc] initWithAttributedText:[[NSAttributedString alloc] initWithString:@"Hello world!"]
-                                                                   font:[UIFont systemFontOfSize:UIFont.systemFontSize]
-                                                          numberOfLines:0
-                                                              alignment:LOKAlignment.topCenter
-                                                            flexibility:LOKFlexibility.flexible
-                                                            viewReuseId:nil
-                                                              viewClass:nil
-                                                              configure:^(UILabel* label) {
-                                                                  label.backgroundColor = UIColor.yellowColor;
-                                                              }];
+        _primaryLayout = [[LOKLabelLayout alloc] initWithString:@"Hello world!"
+                                                           font:[UIFont systemFontOfSize:UIFont.systemFontSize]
+                                                  numberOfLines:0
+                                                      alignment:LOKAlignment.topCenter
+                                                    flexibility:LOKFlexibility.flexible
+                                                    viewReuseId:nil
+                                                      viewClass:nil
+                                                      configure:^(UILabel* label) {
+                                                          label.backgroundColor = UIColor.yellowColor;
+                                                      }];
     }
     return self;
 }
@@ -43,13 +43,7 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
 
-    LOKInsetLayout* safeInsetLayout = [[LOKInsetLayout alloc] initWithInsets:self.view.safeAreaInsets
-                                                                   alignment:LOKAlignment.fill
-                                                                 viewReuseId:nil
-                                                                   sublayout:self.primaryLayout
-                                                                   viewClass:nil
-                                                                   configure:nil];
-
+    id<LOKLayout> safeInsetLayout = [LOKInsetLayout insetBy:self.view.safeAreaInsets sublayout:self.primaryLayout];
 
     LOKLayoutArrangement* arrangement = [[LOKLayoutArrangement alloc] initWithLayout:safeInsetLayout
                                                                                width:self.view.frame.size.width

@@ -10,11 +10,11 @@ import CoreGraphics
 
 @objc public class LOKInsetLayout: LOKBaseLayout {
     @objc public required init(insets: EdgeInsets,
-                               alignment: LOKAlignment?,
-                               viewReuseId: String?,
+                               alignment: LOKAlignment? = nil,
+                               viewReuseId: String? = nil,
                                sublayout: LOKLayout,
-                               viewClass: View.Type?,
-                               configure: ((View) -> Void)?) {
+                               viewClass: View.Type? = nil,
+                               configure: ((View) -> Void)? = nil) {
         let layout = InsetLayout(
             insets: insets,
             alignment: alignment?.alignment ?? .fill,
@@ -23,5 +23,9 @@ import CoreGraphics
             viewClass: viewClass ?? View.self,
             config: configure)
         super.init(layout: layout)
+    }
+
+    @objc public class func inset(by insets: EdgeInsets, sublayout: LOKLayout) -> LOKInsetLayout {
+        return LOKInsetLayout(insets: insets, sublayout: sublayout)
     }
 }

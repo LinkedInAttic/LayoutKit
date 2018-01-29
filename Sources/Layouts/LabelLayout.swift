@@ -31,19 +31,34 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
         super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, config: config)
     }
 
-    init(attributedText: NSAttributedString,
+    init(attributedString: NSAttributedString,
          font: UIFont = LabelLayoutDefaults.defaultFont,
          numberOfLines: Int = LabelLayoutDefaults.defaultNumberOfLines,
          alignment: Alignment = LabelLayoutDefaults.defaultAlignment,
          flexibility: Flexibility = LabelLayoutDefaults.defaultFlexibility,
          viewReuseId: String? = nil,
-         viewClass: Label.Type,
+         viewClass: Label.Type? = nil,
          config: ((Label) -> Void)? = nil) {
 
-        self.text = .attributed(attributedText)
+        self.text = .attributed(attributedString)
         self.numberOfLines = numberOfLines
         self.font = font
-        super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, viewClass: viewClass, config: config)
+        super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, viewClass: viewClass ?? Label.self, config: config)
+    }
+
+    init(string: String,
+         font: UIFont = LabelLayoutDefaults.defaultFont,
+         numberOfLines: Int = LabelLayoutDefaults.defaultNumberOfLines,
+         alignment: Alignment = LabelLayoutDefaults.defaultAlignment,
+         flexibility: Flexibility = LabelLayoutDefaults.defaultFlexibility,
+         viewReuseId: String? = nil,
+         viewClass: Label.Type? = nil,
+         config: ((Label) -> Void)? = nil) {
+
+        self.text = .unattributed(string)
+        self.numberOfLines = numberOfLines
+        self.font = font
+        super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, viewClass: viewClass ?? Label.self, config: config)
     }
 
     // MARK: - Convenience initializers

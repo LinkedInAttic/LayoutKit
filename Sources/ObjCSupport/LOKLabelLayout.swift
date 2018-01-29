@@ -9,7 +9,7 @@
 import UIKit
 
 @objc public class LOKLabelLayout: LOKBaseLayout {
-    @objc public init(attributedText: NSAttributedString,
+    @objc public init(attributedString: NSAttributedString,
                       font: UIFont,
                       numberOfLines: Int,
                       alignment: LOKAlignment,
@@ -18,7 +18,27 @@ import UIKit
                       viewClass: UILabel.Type?,
                       configure: ((UILabel) -> Void)?) {
         let layout = LabelLayout<UILabel>(
-            attributedText: attributedText,
+            attributedString: attributedString,
+            font: font,
+            numberOfLines: numberOfLines,
+            alignment: alignment.alignment,
+            flexibility: flexibility.flexibility,
+            viewReuseId: viewReuseId,
+            viewClass: viewClass ?? UILabel.self,
+            config: configure)
+        super.init(layout: layout)
+    }
+
+    @objc public init(string: String,
+                      font: UIFont,
+                      numberOfLines: Int,
+                      alignment: LOKAlignment,
+                      flexibility: LOKFlexibility,
+                      viewReuseId: String?,
+                      viewClass: UILabel.Type?,
+                      configure: ((UILabel) -> Void)?) {
+        let layout = LabelLayout<UILabel>(
+            string: string,
             font: font,
             numberOfLines: numberOfLines,
             alignment: alignment.alignment,
