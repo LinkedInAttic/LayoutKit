@@ -20,6 +20,6 @@ import CoreGraphics
 
 extension LOKLayout {
     var unwrapped: Layout {
-        return (self as? WrappedLayout)?.layout ?? ReverseWrappedLayout(layout: self)
+        return (self as? WrappedLayout)?.layout ?? (self as? LOKBaseLayout)?.layout ?? ReverseWrappedLayout(layout: self)
     }
 }
