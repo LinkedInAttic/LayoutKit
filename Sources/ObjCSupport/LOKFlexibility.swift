@@ -9,5 +9,16 @@
 import Foundation
 
 @objc public class LOKFlexibility: NSObject {
-    static var normal = LOKFlexibility()
+    let flexibility: Flexibility
+
+    init(flexibility: Flexibility) {
+        self.flexibility = flexibility
+    }
+
+    @objc static let flexible = LOKFlexibility(flexibility: .flexible)
+    @objc static let inflexible = LOKFlexibility(flexibility: .inflexible)
+    @objc static let min = LOKFlexibility(flexibility: .min)
+    @objc static let max = LOKFlexibility(flexibility: .max)
+    @objc static let high = LOKFlexibility(flexibility: .high)
+    @objc static let low = LOKFlexibility(flexibility: .low)
 }

@@ -27,6 +27,17 @@ open class InsetLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
         super.init(alignment: alignment, flexibility: sublayout.flexibility, viewReuseId: viewReuseId, config: config)
     }
 
+    init(insets: EdgeInsets,
+         alignment: Alignment = Alignment.fill,
+         viewReuseId: String? = nil,
+         sublayout: Layout,
+         viewClass: View.Type,
+         config: ((View) -> Void)? = nil) {
+        self.insets = insets
+        self.sublayout = sublayout
+        super.init(alignment: alignment, flexibility: sublayout.flexibility, viewReuseId: viewReuseId, config: config)
+    }
+
     public convenience init(inset: CGFloat,
                             alignment: Alignment = Alignment.fill,
                             viewReuseId: String? = nil,

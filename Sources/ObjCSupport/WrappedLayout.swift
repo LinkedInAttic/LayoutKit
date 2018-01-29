@@ -33,7 +33,7 @@ class WrappedLayout: LOKLayout {
     }
 
     var flexibility: LOKFlexibility {
-        return LOKFlexibility.normal // TODO
+        return LOKFlexibility(flexibility: layout.flexibility)
     }
 
     var viewReuseId: String? {

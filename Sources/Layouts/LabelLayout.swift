@@ -31,6 +31,21 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
         super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, config: config)
     }
 
+    init(attributedText: NSAttributedString,
+         font: UIFont = LabelLayoutDefaults.defaultFont,
+         numberOfLines: Int = LabelLayoutDefaults.defaultNumberOfLines,
+         alignment: Alignment = LabelLayoutDefaults.defaultAlignment,
+         flexibility: Flexibility = LabelLayoutDefaults.defaultFlexibility,
+         viewReuseId: String? = nil,
+         viewClass: Label.Type,
+         config: ((Label) -> Void)? = nil) {
+
+        self.text = .attributed(attributedText)
+        self.numberOfLines = numberOfLines
+        self.font = font
+        super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, viewClass: viewClass, config: config)
+    }
+
     // MARK: - Convenience initializers
 
     public convenience init(text: String,

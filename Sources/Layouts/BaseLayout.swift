@@ -30,10 +30,21 @@ open class BaseLayout<V: View> {
         return config != nil
     }
 
+    private let viewClass: View.Type
+
     public init(alignment: Alignment, flexibility: Flexibility, viewReuseId: String? = nil, config: ((V) -> Void)?) {
         self.alignment = alignment
         self.flexibility = flexibility
         self.viewReuseId = viewReuseId
+        self.viewClass = V.self
+        self.config = config
+    }
+
+    init(alignment: Alignment, flexibility: Flexibility, viewReuseId: String? = nil, viewClass: V.Type, config: ((V) -> Void)?) {
+        self.alignment = alignment
+        self.flexibility = flexibility
+        self.viewReuseId = viewReuseId
+        self.viewClass = viewClass
         self.config = config
     }
 
@@ -42,6 +53,6 @@ open class BaseLayout<V: View> {
     }
 
     open func makeView() -> View {
-        return V()
+        return viewClass.init()
     }
 }

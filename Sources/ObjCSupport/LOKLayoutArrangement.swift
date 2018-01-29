@@ -6,12 +6,26 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-import Foundation
+import CoreGraphics
 
 @objc public class LOKLayoutArrangement: NSObject {
     let layoutArrangement: LayoutArrangement
     init(layoutArrangement: LayoutArrangement) {
         self.layoutArrangement = layoutArrangement
+    }
+
+    @objc public init(layout: LOKLayout, width: CGFloat, height: CGFloat) {
+        self.layoutArrangement = layout.unwrapped.arrangement(
+            width: width.isFinite ? width : nil,
+            height: height.isFinite ? height : nil)
+    }
+
+    @objc public func makeViews(in view: View?) {
+        layoutArrangement.makeViews(in: view)
+    }
+
+    @objc public func makeViews() -> View {
+        return layoutArrangement.makeViews()
     }
 }
 

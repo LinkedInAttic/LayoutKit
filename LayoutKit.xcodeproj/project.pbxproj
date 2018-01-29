@@ -222,6 +222,10 @@
 		7E7B83BC201E55B30001E279 /* LOKFlexibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83BB201E55B30001E279 /* LOKFlexibility.swift */; };
 		7E7B83BE201E56080001E279 /* LOKLayoutArrangement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83BD201E56080001E279 /* LOKLayoutArrangement.swift */; };
 		7E7B83C0201E56590001E279 /* LOKLayoutMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83BF201E56590001E279 /* LOKLayoutMeasurement.swift */; };
+		7E7B83C2201E57230001E279 /* LOKInsetLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83C1201E57230001E279 /* LOKInsetLayout.swift */; };
+		7E7B83C4201E5EB20001E279 /* LOKAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83C3201E5EB20001E279 /* LOKAlignment.swift */; };
+		7E7B83C6201E60BA0001E279 /* LOKLabelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83C5201E60BA0001E279 /* LOKLabelLayout.swift */; };
+		7E7B83C8201E8DDF0001E279 /* LOKBaseLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83C7201E8DDF0001E279 /* LOKBaseLayout.swift */; };
 		7EEA2ABA201D18F20077A088 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEA2AB9201D18F20077A088 /* AppDelegate.m */; };
 		7EEA2ABD201D18F20077A088 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEA2ABC201D18F20077A088 /* ViewController.m */; };
 		7EEA2AC2201D18F20077A088 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EEA2AC1201D18F20077A088 /* Assets.xcassets */; };
@@ -416,6 +420,10 @@
 		7E7B83BB201E55B30001E279 /* LOKFlexibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKFlexibility.swift; sourceTree = "<group>"; };
 		7E7B83BD201E56080001E279 /* LOKLayoutArrangement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKLayoutArrangement.swift; sourceTree = "<group>"; };
 		7E7B83BF201E56590001E279 /* LOKLayoutMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKLayoutMeasurement.swift; sourceTree = "<group>"; };
+		7E7B83C1201E57230001E279 /* LOKInsetLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKInsetLayout.swift; sourceTree = "<group>"; };
+		7E7B83C3201E5EB20001E279 /* LOKAlignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKAlignment.swift; sourceTree = "<group>"; };
+		7E7B83C5201E60BA0001E279 /* LOKLabelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKLabelLayout.swift; sourceTree = "<group>"; };
+		7E7B83C7201E8DDF0001E279 /* LOKBaseLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKBaseLayout.swift; sourceTree = "<group>"; };
 		7EEA2AB6201D18F20077A088 /* LayoutKitObjCSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LayoutKitObjCSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EEA2AB8201D18F20077A088 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7EEA2AB9201D18F20077A088 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -715,12 +723,16 @@
 		7E7B83B4201E54F30001E279 /* ObjCSupport */ = {
 			isa = PBXGroup;
 			children = (
-				7E7B83B5201E550F0001E279 /* LOKLayout.swift */,
-				7E7B83B7201E554A0001E279 /* WrappedLayout.swift */,
-				7E7B83B9201E55690001E279 /* ReverseWrappedLayout.swift */,
+				7E7B83C3201E5EB20001E279 /* LOKAlignment.swift */,
+				7E7B83C7201E8DDF0001E279 /* LOKBaseLayout.swift */,
 				7E7B83BB201E55B30001E279 /* LOKFlexibility.swift */,
+				7E7B83C1201E57230001E279 /* LOKInsetLayout.swift */,
+				7E7B83C5201E60BA0001E279 /* LOKLabelLayout.swift */,
+				7E7B83B5201E550F0001E279 /* LOKLayout.swift */,
 				7E7B83BD201E56080001E279 /* LOKLayoutArrangement.swift */,
 				7E7B83BF201E56590001E279 /* LOKLayoutMeasurement.swift */,
+				7E7B83B9201E55690001E279 /* ReverseWrappedLayout.swift */,
+				7E7B83B7201E554A0001E279 /* WrappedLayout.swift */,
 			);
 			path = ObjCSupport;
 			sourceTree = "<group>";
@@ -1148,6 +1160,7 @@
 				0BCB76021D8724800065E02A /* InsetLayout.swift in Sources */,
 				0BCB76061D8724800065E02A /* AxisFlexibility.swift in Sources */,
 				448CEC0F1E4E0CB500F8AD9E /* TextViewDefaultFont.swift in Sources */,
+				7E7B83C4201E5EB20001E279 /* LOKAlignment.swift in Sources */,
 				0BCB760E1D8724800065E02A /* ReloadableView.swift in Sources */,
 				7E7B83BE201E56080001E279 /* LOKLayoutArrangement.swift in Sources */,
 				7E7B83B6201E550F0001E279 /* LOKLayout.swift in Sources */,
@@ -1155,16 +1168,19 @@
 				0BCB75FD1D8724800065E02A /* CGSizeExtension.swift in Sources */,
 				0BCB760B1D8724800065E02A /* BatchUpdates.swift in Sources */,
 				0BCB76011D8724800065E02A /* BaseLayout.swift in Sources */,
+				7E7B83C2201E57230001E279 /* LOKInsetLayout.swift in Sources */,
 				0BCB75FA1D8724800065E02A /* ConfigurableLayout.swift in Sources */,
 				0BCB76111D8724800065E02A /* ReloadableViewLayoutAdapter.swift in Sources */,
 				0BCB75F91D8724800065E02A /* Axis.swift in Sources */,
 				0BCB760A1D8724800065E02A /* ViewRecycler.swift in Sources */,
 				7E7B83B8201E554A0001E279 /* WrappedLayout.swift in Sources */,
 				0BCB76091D8724800065E02A /* UIKitSupport.swift in Sources */,
+				7E7B83C8201E8DDF0001E279 /* LOKBaseLayout.swift in Sources */,
 				0BCB75FE1D8724800065E02A /* Layout.swift in Sources */,
 				0BCB75FF1D8724800065E02A /* LayoutArrangement.swift in Sources */,
 				0BCB760F1D8724800065E02A /* ReloadableViewLayoutAdapter+UICollectionView.swift in Sources */,
 				0BCB75F61D8724800065E02A /* Alignment.swift in Sources */,
+				7E7B83C6201E60BA0001E279 /* LOKLabelLayout.swift in Sources */,
 				0B193BB91D887BCF00FCA22D /* IndexSetExtension.swift in Sources */,
 				0BCB75FC1D8724800065E02A /* CFAbsoluteTimeExtension.swift in Sources */,
 				0B765F2C1DC0514F000BF1FD /* CGFloatExtension.swift in Sources */,
@@ -2359,6 +2375,7 @@
 		7EEA2AC9201D18F20077A088 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2398,6 +2415,7 @@
 		7EEA2ACA201D18F20077A088 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
