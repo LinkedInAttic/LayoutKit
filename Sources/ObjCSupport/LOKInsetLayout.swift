@@ -12,8 +12,8 @@ import CoreGraphics
     @objc public required init(insets: EdgeInsets,
                                alignment: LOKAlignment? = nil,
                                viewReuseId: String? = nil,
-                               sublayout: LOKLayout,
                                viewClass: View.Type? = nil,
+                               sublayout: LOKLayout,
                                configure: ((View) -> Void)? = nil) {
         let layout = InsetLayout(
             insets: insets,

@@ -107,20 +107,20 @@
 - (instancetype)init {
     if (self = [super init]) {
         LOKLabelLayout* labelLayout = [[LOKLabelLayout alloc] initWithString:@"Hello world!"
-                                                           font:[UIFont systemFontOfSize:UIFont.systemFontSize]
-                                                  numberOfLines:0
-                                                      alignment:LOKAlignment.fill
-                                                    flexibility:LOKFlexibility.flexible
-                                                    viewReuseId:nil
-                                                      viewClass:MyLabelView.class
-                                                      configure:^(UILabel* label) {
-                                                          label.backgroundColor = UIColor.whiteColor;
-                                                      }];
+                                                                        font:[UIFont systemFontOfSize:UIFont.systemFontSize]
+                                                               numberOfLines:0
+                                                                   alignment:LOKAlignment.fill
+                                                                 flexibility:LOKFlexibility.flexible
+                                                                 viewReuseId:nil
+                                                                   viewClass:MyLabelView.class
+                                                                   configure:^(UILabel* label) {
+                                                                       label.backgroundColor = UIColor.whiteColor;
+                                                                   }];
         LOKInsetLayout* insetLayout = [[LOKInsetLayout alloc] initWithInsets:UIEdgeInsetsMake(20, 20, 20, 20)
                                                                    alignment:LOKAlignment.fill
                                                                  viewReuseId:nil
-                                                                   sublayout:labelLayout
                                                                    viewClass:LabelBackgroundView.class
+                                                                   sublayout:labelLayout
                                                                    configure:^(UIView* view) { }];
 
         RotationLayout* rotationLayout = [[RotationLayout alloc] initWithSublayout:insetLayout alignment:LOKAlignment.center viewReuseId:nil];
