@@ -21,23 +21,38 @@ import CoreGraphics
     }
 }
 
-@objc public class LOKStackLayoutDistribution: NSObject {
-    let distribution: StackLayoutDistribution
-    init(_ distribution: StackLayoutDistribution) {
-        self.distribution = distribution
+@objc public enum LOKStackLayoutDistribution: Int {
+    case `default`
+    case leading
+    case trailing
+    case center
+    case fillEqualSpacing
+    case fillEqualSize
+    case fillFlexing
+    var distribution: StackLayoutDistribution? {
+        switch self {
+        case .`default`:
+            return nil
+        case .leading:
+            return .leading
+        case .trailing:
+            return .trailing
+        case .center:
+            return .center
+        case .fillEqualSpacing:
+            return .fillEqualSpacing
+        case .fillEqualSize:
+            return .fillEqualSize
+        case .fillFlexing:
+            return .fillFlexing
+        }
     }
-    @objc public static let Leading = LOKStackLayoutDistribution(.leading)
-    @objc public static let Trailing = LOKStackLayoutDistribution(.trailing)
-    @objc public static let Center = LOKStackLayoutDistribution(.center)
-    @objc public static let FillEqualSpacing = LOKStackLayoutDistribution(.fillEqualSpacing)
-    @objc public static let FillEqualSize = LOKStackLayoutDistribution(.fillEqualSize)
-    @objc public static let FillFlexing = LOKStackLayoutDistribution(.fillFlexing)
 }
 
 @objc public class LOKStackLayout: LOKBaseLayout {
     @objc public init(axis: LOKAxis,
                       spacing: CGFloat = 0,
-                      distribution: LOKStackLayoutDistribution? = nil,
+                      distribution: LOKStackLayoutDistribution,
                       alignment: LOKAlignment? = nil,
                       flexibility: LOKFlexibility? = nil,
                       viewClass: View.Type? = nil,
@@ -47,7 +62,7 @@ import CoreGraphics
         super.init(layout: StackLayout(
             axis: axis.axis,
             spacing: spacing,
-            distribution: distribution?.distribution ?? .fillFlexing,
+            distribution: distribution.distribution ?? .fillFlexing,
             alignment: alignment?.alignment ?? .topFill,
             flexibility: flexibility?.flexibility,
             viewReuseId: viewReuseId,

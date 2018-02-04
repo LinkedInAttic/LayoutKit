@@ -128,7 +128,7 @@
                                                                    }];
         LOKStackLayout* stackLayout = [[LOKStackLayout alloc] initWithAxis:LOKAxisHorizontal
                                                                    spacing:10
-                                                              distribution:nil
+                                                              distribution:LOKStackLayoutDistributionDefault
                                                                  alignment:nil
                                                                flexibility:nil
                                                                  viewClass:nil
