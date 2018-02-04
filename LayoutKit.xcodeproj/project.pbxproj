@@ -227,6 +227,7 @@
 		7E7B83C6201E60BA0001E279 /* LOKLabelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83C5201E60BA0001E279 /* LOKLabelLayout.swift */; };
 		7E7B83C8201E8DDF0001E279 /* LOKBaseLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83C7201E8DDF0001E279 /* LOKBaseLayout.swift */; };
 		7E7B83DD2020F7830001E279 /* LOKSizeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83DC2020F7830001E279 /* LOKSizeLayout.swift */; };
+		7E7B83DF202101340001E279 /* LOKStackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83DE202101340001E279 /* LOKStackLayout.swift */; };
 		7EEA2ABA201D18F20077A088 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEA2AB9201D18F20077A088 /* AppDelegate.m */; };
 		7EEA2ABD201D18F20077A088 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEA2ABC201D18F20077A088 /* ViewController.m */; };
 		7EEA2AC2201D18F20077A088 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EEA2AC1201D18F20077A088 /* Assets.xcassets */; };
@@ -426,6 +427,7 @@
 		7E7B83C5201E60BA0001E279 /* LOKLabelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKLabelLayout.swift; sourceTree = "<group>"; };
 		7E7B83C7201E8DDF0001E279 /* LOKBaseLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKBaseLayout.swift; sourceTree = "<group>"; };
 		7E7B83DC2020F7830001E279 /* LOKSizeLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKSizeLayout.swift; sourceTree = "<group>"; };
+		7E7B83DE202101340001E279 /* LOKStackLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKStackLayout.swift; sourceTree = "<group>"; };
 		7EEA2AB6201D18F20077A088 /* LayoutKitObjCSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LayoutKitObjCSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EEA2AB8201D18F20077A088 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7EEA2AB9201D18F20077A088 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -734,6 +736,7 @@
 				7E7B83BD201E56080001E279 /* LOKLayoutArrangement.swift */,
 				7E7B83BF201E56590001E279 /* LOKLayoutMeasurement.swift */,
 				7E7B83DC2020F7830001E279 /* LOKSizeLayout.swift */,
+				7E7B83DE202101340001E279 /* LOKStackLayout.swift */,
 				7E7B83B9201E55690001E279 /* ReverseWrappedLayout.swift */,
 				7E7B83B7201E554A0001E279 /* WrappedLayout.swift */,
 			);
@@ -1170,6 +1173,7 @@
 				75D94A361EA01B6A00A5FD01 /* OverlayLayout.swift in Sources */,
 				0BCB75FD1D8724800065E02A /* CGSizeExtension.swift in Sources */,
 				0BCB760B1D8724800065E02A /* BatchUpdates.swift in Sources */,
+				7E7B83DF202101340001E279 /* LOKStackLayout.swift in Sources */,
 				0BCB76011D8724800065E02A /* BaseLayout.swift in Sources */,
 				7E7B83C2201E57230001E279 /* LOKInsetLayout.swift in Sources */,
 				0BCB75FA1D8724800065E02A /* ConfigurableLayout.swift in Sources */,
