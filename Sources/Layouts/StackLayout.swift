@@ -41,13 +41,31 @@ open class StackLayout<V: View>: BaseLayout<V> {
                 viewReuseId: String? = nil,
                 sublayouts: [Layout],
                 config: ((V) -> Void)? = nil) {
-        
+
         self.axis = axis
         self.spacing = spacing
         self.distribution = distribution
         self.sublayouts = sublayouts
         let flexibility = flexibility ?? StackLayout.defaultFlexibility(axis: axis, sublayouts: sublayouts)
         super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, config: config)
+    }
+
+    init(axis: Axis,
+         spacing: CGFloat = 0,
+         distribution: StackLayoutDistribution = .fillFlexing,
+         alignment: Alignment = .fill,
+         flexibility: Flexibility? = nil,
+         viewReuseId: String? = nil,
+         viewClass: V.Type? = nil,
+         sublayouts: [Layout],
+         config: ((V) -> Void)? = nil) {
+
+        self.axis = axis
+        self.spacing = spacing
+        self.distribution = distribution
+        self.sublayouts = sublayouts
+        let flexibility = flexibility ?? StackLayout.defaultFlexibility(axis: axis, sublayouts: sublayouts)
+        super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, viewClass: viewClass ?? V.self, config: config)
     }
 }
 
@@ -159,7 +177,7 @@ extension StackLayout: ConfigurableLayout {
 /**
  Specifies how excess space along the axis is allocated.
  */
-public enum StackLayoutDistribution {
+@objc public enum StackLayoutDistribution: Int {
 
     /**
      Sublayouts are positioned starting at the top edge of vertical stacks or at the leading edge of horizontal stacks.

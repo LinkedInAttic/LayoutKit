@@ -8,14 +8,47 @@
 
 import CoreGraphics
 
-@objc public class LOKLayoutParameters: NSObject {
-    @objc public init(alignment: LOKAlignment) {
-
+@objc public class LOKAxis: NSObject {
+    let axis: Axis
+    init(_ axis: Axis) {
+        self.axis = axis
     }
+    @objc public static let Horizonal = LOKAxis(.horizontal)
+    @objc public static let Vertical = LOKAxis(.vertical)
+}
+
+@objc public class LOKStackLayoutDistribution: NSObject {
+    let distribution: StackLayoutDistribution
+    init(_ distribution: StackLayoutDistribution) {
+        self.distribution = distribution
+    }
+    @objc public static let Leading = LOKStackLayoutDistribution(.leading)
+    @objc public static let Trailing = LOKStackLayoutDistribution(.trailing)
+    @objc public static let Center = LOKStackLayoutDistribution(.center)
+    @objc public static let FillEqualSpacing = LOKStackLayoutDistribution(.fillEqualSpacing)
+    @objc public static let FillEqualSize = LOKStackLayoutDistribution(.fillEqualSize)
+    @objc public static let FillFlexing = LOKStackLayoutDistribution(.fillFlexing)
 }
 
 @objc public class LOKStackLayout: LOKBaseLayout {
-    @objc public init(axis: Axis, spacing: CGFloat, parameters: LOKLayoutParameters, sublayouts: [LOKLayout], config: ((View) -> Void)? = nil) {
-        super.init(layout: StackLayout(axis: axis, sublayouts: sublayouts.map { $0.unwrapped }))
+    @objc public init(axis: LOKAxis?,
+                      spacing: CGFloat = 0,
+                      distribution: LOKStackLayoutDistribution? = nil,
+                      alignment: LOKAlignment? = nil,
+                      flexibility: LOKFlexibility? = nil,
+                      viewClass: View.Type? = nil,
+                      viewReuseId: String? = nil,
+                      sublayouts: [LOKLayout],
+                      configure: ((View) -> Void)? = nil) {
+        super.init(layout: StackLayout(
+            axis: axis?.axis ?? .vertical,
+            spacing: spacing,
+            distribution: distribution?.distribution ?? .fillFlexing,
+            alignment: alignment?.alignment ?? .topFill,
+            flexibility: flexibility?.flexibility,
+            viewReuseId: viewReuseId,
+            viewClass: viewClass,
+            sublayouts: sublayouts.map { $0.unwrapped },
+            config: configure))
     }
 }
