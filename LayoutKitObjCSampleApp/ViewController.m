@@ -126,7 +126,7 @@
                                                                    configure:^(UILabel* label) {
                                                                        label.backgroundColor = UIColor.whiteColor;
                                                                    }];
-        LOKStackLayout* stackLayout = [[LOKStackLayout alloc] initWithAxis:LOKAxis.Horizonal
+        LOKStackLayout* stackLayout = [[LOKStackLayout alloc] initWithAxis:LOKAxisHorizontal
                                                                    spacing:10
                                                               distribution:nil
                                                                  alignment:nil

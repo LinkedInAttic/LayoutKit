@@ -8,13 +8,17 @@
 
 import CoreGraphics
 
-@objc public class LOKAxis: NSObject {
-    let axis: Axis
-    init(_ axis: Axis) {
-        self.axis = axis
+@objc public enum LOKAxis: Int {
+    case vertical = 0
+    case horizontal
+    var axis: Axis {
+        switch self {
+        case .vertical:
+            return .vertical
+        case .horizontal:
+            return .horizontal
+        }
     }
-    @objc public static let Horizonal = LOKAxis(.horizontal)
-    @objc public static let Vertical = LOKAxis(.vertical)
 }
 
 @objc public class LOKStackLayoutDistribution: NSObject {
@@ -31,7 +35,7 @@ import CoreGraphics
 }
 
 @objc public class LOKStackLayout: LOKBaseLayout {
-    @objc public init(axis: LOKAxis?,
+    @objc public init(axis: LOKAxis,
                       spacing: CGFloat = 0,
                       distribution: LOKStackLayoutDistribution? = nil,
                       alignment: LOKAlignment? = nil,
@@ -41,7 +45,7 @@ import CoreGraphics
                       sublayouts: [LOKLayout],
                       configure: ((View) -> Void)? = nil) {
         super.init(layout: StackLayout(
-            axis: axis?.axis ?? .vertical,
+            axis: axis.axis,
             spacing: spacing,
             distribution: distribution?.distribution ?? .fillFlexing,
             alignment: alignment?.alignment ?? .topFill,
