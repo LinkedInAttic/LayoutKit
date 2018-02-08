@@ -216,6 +216,9 @@
 		75D94A3C1EA045F100A5FD01 /* OverlayLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A3A1EA045F100A5FD01 /* OverlayLayoutTests.swift */; };
 		75D94A3D1EA045F100A5FD01 /* OverlayLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A3A1EA045F100A5FD01 /* OverlayLayoutTests.swift */; };
 		75D94A401EA05D5A00A5FD01 /* OverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A3F1EA05D5A00A5FD01 /* OverlayViewController.swift */; };
+		7E233E56202CEA8A0012DD1E /* LOKLayoutSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E233E55202CEA8A0012DD1E /* LOKLayoutSection.swift */; };
+		7E233E58202CEAB80012DD1E /* LOKLayoutArrangementSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E233E57202CEAB80012DD1E /* LOKLayoutArrangementSection.swift */; };
+		7E233E5A202CEB0D0012DD1E /* LOKBatchUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E233E59202CEB0D0012DD1E /* LOKBatchUpdates.swift */; };
 		7E7B83B6201E550F0001E279 /* LOKLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83B5201E550F0001E279 /* LOKLayout.swift */; };
 		7E7B83B8201E554A0001E279 /* WrappedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83B7201E554A0001E279 /* WrappedLayout.swift */; };
 		7E7B83BA201E55690001E279 /* ReverseWrappedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83B9201E55690001E279 /* ReverseWrappedLayout.swift */; };
@@ -228,6 +231,8 @@
 		7E7B83C8201E8DDF0001E279 /* LOKBaseLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83C7201E8DDF0001E279 /* LOKBaseLayout.swift */; };
 		7E7B83DD2020F7830001E279 /* LOKSizeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83DC2020F7830001E279 /* LOKSizeLayout.swift */; };
 		7E7B83DF202101340001E279 /* LOKStackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83DE202101340001E279 /* LOKStackLayout.swift */; };
+		7E7B83E120279CD10001E279 /* LOKReloadableViewLayoutAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83E020279CD10001E279 /* LOKReloadableViewLayoutAdapter.swift */; };
+		7E7B83E320281AF30001E279 /* RotationLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83E220281AF30001E279 /* RotationLayout.m */; };
 		7EEA2ABA201D18F20077A088 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEA2AB9201D18F20077A088 /* AppDelegate.m */; };
 		7EEA2ABD201D18F20077A088 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEA2ABC201D18F20077A088 /* ViewController.m */; };
 		7EEA2AC2201D18F20077A088 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EEA2AC1201D18F20077A088 /* Assets.xcassets */; };
@@ -416,6 +421,9 @@
 		75D94A351EA01B6A00A5FD01 /* OverlayLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayLayout.swift; sourceTree = "<group>"; };
 		75D94A3A1EA045F100A5FD01 /* OverlayLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayLayoutTests.swift; sourceTree = "<group>"; };
 		75D94A3F1EA05D5A00A5FD01 /* OverlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayViewController.swift; sourceTree = "<group>"; };
+		7E233E55202CEA8A0012DD1E /* LOKLayoutSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKLayoutSection.swift; sourceTree = "<group>"; };
+		7E233E57202CEAB80012DD1E /* LOKLayoutArrangementSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKLayoutArrangementSection.swift; sourceTree = "<group>"; };
+		7E233E59202CEB0D0012DD1E /* LOKBatchUpdates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKBatchUpdates.swift; sourceTree = "<group>"; };
 		7E7B83B5201E550F0001E279 /* LOKLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKLayout.swift; sourceTree = "<group>"; };
 		7E7B83B7201E554A0001E279 /* WrappedLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedLayout.swift; sourceTree = "<group>"; };
 		7E7B83B9201E55690001E279 /* ReverseWrappedLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseWrappedLayout.swift; sourceTree = "<group>"; };
@@ -428,6 +436,9 @@
 		7E7B83C7201E8DDF0001E279 /* LOKBaseLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKBaseLayout.swift; sourceTree = "<group>"; };
 		7E7B83DC2020F7830001E279 /* LOKSizeLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKSizeLayout.swift; sourceTree = "<group>"; };
 		7E7B83DE202101340001E279 /* LOKStackLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKStackLayout.swift; sourceTree = "<group>"; };
+		7E7B83E020279CD10001E279 /* LOKReloadableViewLayoutAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKReloadableViewLayoutAdapter.swift; sourceTree = "<group>"; };
+		7E7B83E220281AF30001E279 /* RotationLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RotationLayout.m; sourceTree = "<group>"; };
+		7E7B83E420281B1F0001E279 /* RotationLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RotationLayout.h; sourceTree = "<group>"; };
 		7EEA2AB6201D18F20077A088 /* LayoutKitObjCSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LayoutKitObjCSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EEA2AB8201D18F20077A088 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7EEA2AB9201D18F20077A088 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -729,12 +740,16 @@
 			children = (
 				7E7B83C3201E5EB20001E279 /* LOKAlignment.swift */,
 				7E7B83C7201E8DDF0001E279 /* LOKBaseLayout.swift */,
+				7E233E59202CEB0D0012DD1E /* LOKBatchUpdates.swift */,
 				7E7B83BB201E55B30001E279 /* LOKFlexibility.swift */,
 				7E7B83C1201E57230001E279 /* LOKInsetLayout.swift */,
 				7E7B83C5201E60BA0001E279 /* LOKLabelLayout.swift */,
 				7E7B83B5201E550F0001E279 /* LOKLayout.swift */,
 				7E7B83BD201E56080001E279 /* LOKLayoutArrangement.swift */,
+				7E233E57202CEAB80012DD1E /* LOKLayoutArrangementSection.swift */,
 				7E7B83BF201E56590001E279 /* LOKLayoutMeasurement.swift */,
+				7E233E55202CEA8A0012DD1E /* LOKLayoutSection.swift */,
+				7E7B83E020279CD10001E279 /* LOKReloadableViewLayoutAdapter.swift */,
 				7E7B83DC2020F7830001E279 /* LOKSizeLayout.swift */,
 				7E7B83DE202101340001E279 /* LOKStackLayout.swift */,
 				7E7B83B9201E55690001E279 /* ReverseWrappedLayout.swift */,
@@ -750,6 +765,8 @@
 				7EEA2AB9201D18F20077A088 /* AppDelegate.m */,
 				7EEA2ABB201D18F20077A088 /* ViewController.h */,
 				7EEA2ABC201D18F20077A088 /* ViewController.m */,
+				7E7B83E220281AF30001E279 /* RotationLayout.m */,
+				7E7B83E420281B1F0001E279 /* RotationLayout.h */,
 				7EEA2AC1201D18F20077A088 /* Assets.xcassets */,
 				7EEA2AC6201D18F20077A088 /* Info.plist */,
 				7EEA2AC7201D18F20077A088 /* main.m */,
@@ -1153,6 +1170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BCB76051D8724800065E02A /* StackLayout.swift in Sources */,
+				7E233E58202CEAB80012DD1E /* LOKLayoutArrangementSection.swift in Sources */,
 				0BCB760D1D8724800065E02A /* LayoutAdapterTableView.swift in Sources */,
 				0BCB76071D8724800065E02A /* AxisPoint.swift in Sources */,
 				7E7B83BA201E55690001E279 /* ReverseWrappedLayout.swift in Sources */,
@@ -1165,6 +1183,7 @@
 				0BCB76001D8724800065E02A /* LayoutMeasurement.swift in Sources */,
 				0BCB76021D8724800065E02A /* InsetLayout.swift in Sources */,
 				0BCB76061D8724800065E02A /* AxisFlexibility.swift in Sources */,
+				7E233E5A202CEB0D0012DD1E /* LOKBatchUpdates.swift in Sources */,
 				448CEC0F1E4E0CB500F8AD9E /* TextViewDefaultFont.swift in Sources */,
 				7E7B83C4201E5EB20001E279 /* LOKAlignment.swift in Sources */,
 				0BCB760E1D8724800065E02A /* ReloadableView.swift in Sources */,
@@ -1172,11 +1191,13 @@
 				7E7B83B6201E550F0001E279 /* LOKLayout.swift in Sources */,
 				75D94A361EA01B6A00A5FD01 /* OverlayLayout.swift in Sources */,
 				0BCB75FD1D8724800065E02A /* CGSizeExtension.swift in Sources */,
+				7E7B83E120279CD10001E279 /* LOKReloadableViewLayoutAdapter.swift in Sources */,
 				0BCB760B1D8724800065E02A /* BatchUpdates.swift in Sources */,
 				7E7B83DF202101340001E279 /* LOKStackLayout.swift in Sources */,
 				0BCB76011D8724800065E02A /* BaseLayout.swift in Sources */,
 				7E7B83C2201E57230001E279 /* LOKInsetLayout.swift in Sources */,
 				0BCB75FA1D8724800065E02A /* ConfigurableLayout.swift in Sources */,
+				7E233E56202CEA8A0012DD1E /* LOKLayoutSection.swift in Sources */,
 				0BCB76111D8724800065E02A /* ReloadableViewLayoutAdapter.swift in Sources */,
 				0BCB75F91D8724800065E02A /* Axis.swift in Sources */,
 				0BCB760A1D8724800065E02A /* ViewRecycler.swift in Sources */,
@@ -1385,6 +1406,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EEA2ABD201D18F20077A088 /* ViewController.m in Sources */,
+				7E7B83E320281AF30001E279 /* RotationLayout.m in Sources */,
 				7EEA2AC8201D18F20077A088 /* main.m in Sources */,
 				7EEA2ABA201D18F20077A088 /* AppDelegate.m in Sources */,
 			);
