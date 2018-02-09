@@ -219,6 +219,8 @@
 		7E233E56202CEA8A0012DD1E /* LOKLayoutSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E233E55202CEA8A0012DD1E /* LOKLayoutSection.swift */; };
 		7E233E58202CEAB80012DD1E /* LOKLayoutArrangementSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E233E57202CEAB80012DD1E /* LOKLayoutArrangementSection.swift */; };
 		7E233E5A202CEB0D0012DD1E /* LOKBatchUpdates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E233E59202CEB0D0012DD1E /* LOKBatchUpdates.swift */; };
+		7E233E61202E2CC00012DD1E /* LOKButtonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E233E60202E2CC00012DD1E /* LOKButtonLayout.swift */; };
+		7E233E63202E5F870012DD1E /* LOKButtonLayoutType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E233E62202E5F870012DD1E /* LOKButtonLayoutType.swift */; };
 		7E7B83B6201E550F0001E279 /* LOKLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83B5201E550F0001E279 /* LOKLayout.swift */; };
 		7E7B83B8201E554A0001E279 /* WrappedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83B7201E554A0001E279 /* WrappedLayout.swift */; };
 		7E7B83BA201E55690001E279 /* ReverseWrappedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83B9201E55690001E279 /* ReverseWrappedLayout.swift */; };
@@ -424,6 +426,8 @@
 		7E233E55202CEA8A0012DD1E /* LOKLayoutSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKLayoutSection.swift; sourceTree = "<group>"; };
 		7E233E57202CEAB80012DD1E /* LOKLayoutArrangementSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKLayoutArrangementSection.swift; sourceTree = "<group>"; };
 		7E233E59202CEB0D0012DD1E /* LOKBatchUpdates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKBatchUpdates.swift; sourceTree = "<group>"; };
+		7E233E60202E2CC00012DD1E /* LOKButtonLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKButtonLayout.swift; sourceTree = "<group>"; };
+		7E233E62202E5F870012DD1E /* LOKButtonLayoutType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKButtonLayoutType.swift; sourceTree = "<group>"; };
 		7E7B83B5201E550F0001E279 /* LOKLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKLayout.swift; sourceTree = "<group>"; };
 		7E7B83B7201E554A0001E279 /* WrappedLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedLayout.swift; sourceTree = "<group>"; };
 		7E7B83B9201E55690001E279 /* ReverseWrappedLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseWrappedLayout.swift; sourceTree = "<group>"; };
@@ -603,7 +607,6 @@
 		0BCB75611D8720110065E02A /* LayoutKit */ = {
 			isa = PBXGroup;
 			children = (
-				7E7B83B4201E54F30001E279 /* ObjCSupport */,
 				0BCB75D41D8724800065E02A /* Alignment.swift */,
 				0BCB75D51D8724800065E02A /* Animation.swift */,
 				0BCB75D61D8724800065E02A /* AppKitSupport.swift */,
@@ -618,6 +621,7 @@
 				0BCB75DF1D8724800065E02A /* LayoutMeasurement.swift */,
 				0BCB75E01D8724800065E02A /* Layouts */,
 				0BCB75E61D8724800065E02A /* Math */,
+				7E7B83B4201E54F30001E279 /* ObjCSupport */,
 				0BD42BDB1DB5EAAD00E04AA3 /* Text.swift */,
 				0BCB75EA1D8724800065E02A /* UIKitSupport.swift */,
 				0BCB75EB1D8724800065E02A /* ViewRecycler.swift */,
@@ -741,6 +745,8 @@
 				7E7B83C3201E5EB20001E279 /* LOKAlignment.swift */,
 				7E7B83C7201E8DDF0001E279 /* LOKBaseLayout.swift */,
 				7E233E59202CEB0D0012DD1E /* LOKBatchUpdates.swift */,
+				7E233E60202E2CC00012DD1E /* LOKButtonLayout.swift */,
+				7E233E62202E5F870012DD1E /* LOKButtonLayoutType.swift */,
 				7E7B83BB201E55B30001E279 /* LOKFlexibility.swift */,
 				7E7B83C1201E57230001E279 /* LOKInsetLayout.swift */,
 				7E7B83C5201E60BA0001E279 /* LOKLabelLayout.swift */,
@@ -1213,11 +1219,13 @@
 				0BCB75FC1D8724800065E02A /* CFAbsoluteTimeExtension.swift in Sources */,
 				0B765F2C1DC0514F000BF1FD /* CGFloatExtension.swift in Sources */,
 				0BCB76041D8724800065E02A /* SizeLayout.swift in Sources */,
+				7E233E61202E2CC00012DD1E /* LOKButtonLayout.swift in Sources */,
 				7E7B83C0201E56590001E279 /* LOKLayoutMeasurement.swift in Sources */,
 				0BCB76031D8724800065E02A /* LabelLayout.swift in Sources */,
 				0BCB76101D8724800065E02A /* ReloadableViewLayoutAdapter+UITableView.swift in Sources */,
 				7E7B83DD2020F7830001E279 /* LOKSizeLayout.swift in Sources */,
 				7E7B83BC201E55B30001E279 /* LOKFlexibility.swift in Sources */,
+				7E233E63202E5F870012DD1E /* LOKButtonLayoutType.swift in Sources */,
 				0BCB75FB1D8724800065E02A /* Flexibility.swift in Sources */,
 				0BCB76121D8724800065E02A /* ReloadableViewUpdateManager.swift in Sources */,
 				44F968151E425F5D00392763 /* TextViewLayout.swift in Sources */,
