@@ -10,19 +10,19 @@ import UIKit
 
 @objc public class LOKLabelLayout: LOKBaseLayout {
     @objc public init(attributedString: NSAttributedString,
-                      font: UIFont,
+                      font: UIFont?,
                       numberOfLines: Int,
-                      alignment: LOKAlignment,
-                      flexibility: LOKFlexibility,
+                      alignment: LOKAlignment?,
+                      flexibility: LOKFlexibility?,
                       viewReuseId: String?,
                       viewClass: UILabel.Type?,
                       configure: ((UILabel) -> Void)?) {
         let layout = LabelLayout<UILabel>(
             attributedString: attributedString,
-            font: font,
+            font: font ?? UIFont.systemFont(ofSize: UIFont.systemFontSize),
             numberOfLines: numberOfLines,
-            alignment: alignment.alignment,
-            flexibility: flexibility.flexibility,
+            alignment: alignment?.alignment ?? .topLeading,
+            flexibility: flexibility?.flexibility ?? .flexible,
             viewReuseId: viewReuseId,
             viewClass: viewClass ?? UILabel.self,
             config: configure)
@@ -30,19 +30,19 @@ import UIKit
     }
 
     @objc public init(string: String,
-                      font: UIFont,
+                      font: UIFont?,
                       numberOfLines: Int,
-                      alignment: LOKAlignment,
-                      flexibility: LOKFlexibility,
+                      alignment: LOKAlignment?,
+                      flexibility: LOKFlexibility?,
                       viewReuseId: String?,
                       viewClass: UILabel.Type?,
                       configure: ((UILabel) -> Void)?) {
         let layout = LabelLayout<UILabel>(
             string: string,
-            font: font,
+            font: font ?? UIFont.systemFont(ofSize: UIFont.systemFontSize),
             numberOfLines: numberOfLines,
-            alignment: alignment.alignment,
-            flexibility: flexibility.flexibility,
+            alignment: alignment?.alignment ?? .topLeading,
+            flexibility: flexibility?.flexibility ?? .flexible,
             viewReuseId: viewReuseId,
             viewClass: viewClass ?? UILabel.self,
             config: configure)

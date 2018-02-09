@@ -50,14 +50,14 @@ import CoreGraphics
 }
 
 @objc public class LOKStackLayout: LOKBaseLayout {
-    @objc public init(axis: LOKAxis,
+    @objc public init(axis: LOKAxis = .vertical,
                       spacing: CGFloat = 0,
-                      distribution: LOKStackLayoutDistribution,
+                      distribution: LOKStackLayoutDistribution = .`default`,
                       alignment: LOKAlignment? = nil,
                       flexibility: LOKFlexibility? = nil,
                       viewClass: View.Type? = nil,
                       viewReuseId: String? = nil,
-                      sublayouts: [LOKLayout],
+                      sublayouts: [LOKLayout]?,
                       configure: ((View) -> Void)? = nil) {
         super.init(layout: StackLayout(
             axis: axis.axis,
@@ -67,7 +67,7 @@ import CoreGraphics
             flexibility: flexibility?.flexibility,
             viewReuseId: viewReuseId,
             viewClass: viewClass,
-            sublayouts: sublayouts.map { $0.unwrapped },
+            sublayouts: sublayouts?.map { $0.unwrapped } ?? [],
             config: configure))
     }
 }
