@@ -6,8 +6,6 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-import Foundation
-
 extension IndexSet {
     /// Returns the only index in the set.
     /// It returns nil if there is not exactly one index in the set.

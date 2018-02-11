@@ -6,8 +6,6 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-import Foundation
-
 
 /**
  A set of updates to apply to a `ReloadableView`.
@@ -40,10 +38,10 @@ public struct ItemMove: Equatable {
         self.from = from
         self.to = to
     }
-}
 
-public func ==(lhs: ItemMove, rhs: ItemMove) -> Bool {
-    return lhs.from == rhs.from && lhs.to == rhs.to
+    public static func ==(lhs: ItemMove, rhs: ItemMove) -> Bool {
+        return lhs.from == rhs.from && lhs.to == rhs.to
+    }
 }
 
 /// Instruction to move a section from one index to another.
@@ -55,8 +53,10 @@ public struct SectionMove: Equatable {
         self.from = from
         self.to = to
     }
+
+    public static func ==(lhs: SectionMove, rhs: SectionMove) -> Bool {
+        return lhs.from == rhs.from && lhs.to == rhs.to
+    }
 }
 
-public func ==(lhs: SectionMove, rhs: SectionMove) -> Bool {
-    return lhs.from == rhs.from && lhs.to == rhs.to
-}
+
