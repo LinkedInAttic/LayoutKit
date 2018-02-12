@@ -49,13 +49,13 @@ open class OverlayLayout<V: View>: BaseLayout<V> {
         super.init(alignment: alignment, flexibility: primary.flexibility, viewReuseId: viewReuseId, config: config)
     }
 
-    public init(primary: Layout,
-                background: [Layout] = [],
-                overlay: [Layout] = [],
-                alignment: Alignment = .fill,
-                viewReuseId: String? = nil,
-                viewClass: V.Type? = nil,
-                config: ((V) -> Void)? = nil) {
+    init(primary: Layout,
+         background: [Layout] = [],
+         overlay: [Layout] = [],
+         alignment: Alignment = .fill,
+         viewReuseId: String? = nil,
+         viewClass: V.Type? = nil,
+         config: ((V) -> Void)? = nil) {
         self.primary = primary
         self.background = background
         self.overlay = overlay
