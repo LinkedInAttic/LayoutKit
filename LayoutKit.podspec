@@ -8,6 +8,7 @@ Pod::Spec.new do |spec|
   spec.source            = { :git => 'https://github.com/linkedin/LayoutKit.git', :tag => spec.version }
   spec.source_files      = 'Sources/**/*.swift'
   spec.documentation_url = 'http://layoutkit.org'
+  spec.static_framework  = true
 
   spec.ios.deployment_target = '8.0'
   spec.ios.frameworks        = 'Foundation', 'CoreGraphics', 'UIKit'
