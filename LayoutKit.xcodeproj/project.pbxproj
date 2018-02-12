@@ -222,6 +222,7 @@
 		7E233E61202E2CC00012DD1E /* LOKButtonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E233E60202E2CC00012DD1E /* LOKButtonLayout.swift */; };
 		7E233E63202E5F870012DD1E /* LOKButtonLayoutType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E233E62202E5F870012DD1E /* LOKButtonLayoutType.swift */; };
 		7E233E65203129680012DD1E /* LOKOverlayLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E233E64203129680012DD1E /* LOKOverlayLayout.swift */; };
+		7E233E67203130110012DD1E /* LOKTextViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E233E66203130110012DD1E /* LOKTextViewLayout.swift */; };
 		7E7B83B6201E550F0001E279 /* LOKLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83B5201E550F0001E279 /* LOKLayout.swift */; };
 		7E7B83B8201E554A0001E279 /* WrappedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83B7201E554A0001E279 /* WrappedLayout.swift */; };
 		7E7B83BA201E55690001E279 /* ReverseWrappedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83B9201E55690001E279 /* ReverseWrappedLayout.swift */; };
@@ -430,6 +431,7 @@
 		7E233E60202E2CC00012DD1E /* LOKButtonLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKButtonLayout.swift; sourceTree = "<group>"; };
 		7E233E62202E5F870012DD1E /* LOKButtonLayoutType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKButtonLayoutType.swift; sourceTree = "<group>"; };
 		7E233E64203129680012DD1E /* LOKOverlayLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKOverlayLayout.swift; sourceTree = "<group>"; };
+		7E233E66203130110012DD1E /* LOKTextViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKTextViewLayout.swift; sourceTree = "<group>"; };
 		7E7B83B5201E550F0001E279 /* LOKLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKLayout.swift; sourceTree = "<group>"; };
 		7E7B83B7201E554A0001E279 /* WrappedLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedLayout.swift; sourceTree = "<group>"; };
 		7E7B83B9201E55690001E279 /* ReverseWrappedLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseWrappedLayout.swift; sourceTree = "<group>"; };
@@ -761,6 +763,7 @@
 				7E7B83E020279CD10001E279 /* LOKReloadableViewLayoutAdapter.swift */,
 				7E7B83DC2020F7830001E279 /* LOKSizeLayout.swift */,
 				7E7B83DE202101340001E279 /* LOKStackLayout.swift */,
+				7E233E66203130110012DD1E /* LOKTextViewLayout.swift */,
 				7E7B83B9201E55690001E279 /* ReverseWrappedLayout.swift */,
 				7E7B83B7201E554A0001E279 /* WrappedLayout.swift */,
 			);
@@ -1222,6 +1225,7 @@
 				0B193BB91D887BCF00FCA22D /* IndexSetExtension.swift in Sources */,
 				0BCB75FC1D8724800065E02A /* CFAbsoluteTimeExtension.swift in Sources */,
 				0B765F2C1DC0514F000BF1FD /* CGFloatExtension.swift in Sources */,
+				7E233E67203130110012DD1E /* LOKTextViewLayout.swift in Sources */,
 				0BCB76041D8724800065E02A /* SizeLayout.swift in Sources */,
 				7E233E61202E2CC00012DD1E /* LOKButtonLayout.swift in Sources */,
 				7E7B83C0201E56590001E279 /* LOKLayoutMeasurement.swift in Sources */,
