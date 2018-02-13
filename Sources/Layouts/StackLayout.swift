@@ -177,7 +177,7 @@ extension StackLayout: ConfigurableLayout {
 /**
  Specifies how excess space along the axis is allocated.
  */
-@objc public enum StackLayoutDistribution: Int {
+public enum StackLayoutDistribution {
 
     /**
      Sublayouts are positioned starting at the top edge of vertical stacks or at the leading edge of horizontal stacks.
