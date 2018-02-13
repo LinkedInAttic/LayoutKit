@@ -10,11 +10,14 @@
 #import <LayoutKit/LayoutKit-Swift.h>
 
 @interface RotationLayout: NSObject <LOKLayout>
--(nonnull instancetype)initWithSublayout:(nonnull id<LOKLayout>)sublayout alignment:(nullable LOKAlignment *)alignment viewReuseId:(nullable NSString *)viewReuseId;
-@property (readonly, nonatomic, nonnull) id<LOKLayout> sublayout;
-@property (readonly, nonatomic, nonnull) LOKAlignment *alignment;
-@property (readonly, nonatomic) BOOL needsView;
-@property (readonly, nonatomic, nonnull) LOKFlexibility *flexibility;
-@property (readonly, copy, nonatomic, nullable) NSString *viewReuseId;
+
+@property (nonatomic, nonnull, readonly) id<LOKLayout> sublayout;
+@property (nonatomic, nonnull, readonly) LOKAlignment *alignment;
+@property (nonatomic, nonnull, readonly) LOKFlexibility *flexibility;
+@property (nonatomic, copy, nullable, readonly) NSString *viewReuseId;
+@property (nonatomic, readonly) BOOL needsView;
+
+- (nonnull instancetype)initWithSublayout:(nonnull id<LOKLayout>)sublayout alignment:(nullable LOKAlignment *)alignment viewReuseId:(nullable NSString *)viewReuseId;
+
 @end
 

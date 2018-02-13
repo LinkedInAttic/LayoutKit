@@ -15,7 +15,7 @@
 @interface MyLabelView: UILabel
 @end
 @implementation MyLabelView
--(instancetype)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.textColor = UIColor.redColor;
     }
@@ -26,7 +26,7 @@
 @interface LabelBackgroundView: UIView
 @end
 @implementation LabelBackgroundView
--(instancetype)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.backgroundColor = UIColor.greenColor;
     }
@@ -63,12 +63,6 @@
     self.adapter = [[LOKReloadableViewLayoutAdapter alloc] initWithCollectionView:collectionView];
     collectionView.delegate = self.adapter;
     collectionView.dataSource = self.adapter;
-
-//    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-//    [self.view addSubview:tableView];
-//    self.adapter = [[LOKReloadableViewLayoutAdapter alloc] initWithTableView:tableView];
-//    tableView.delegate = self.adapter;
-//    tableView.dataSource = self.adapter;
 
     LOKSizeLayout *cellLayout = [[LOKSizeLayout alloc] initWithMinWidth:self.view.bounds.size.width
                                                                maxWidth:self.view.bounds.size.width

@@ -13,7 +13,7 @@
 @interface RotationView: UIView
 @end
 @implementation RotationView
--(instancetype)init {
+- (instancetype)init {
     if (self = [super init]) {
         self.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI_2);
     }
@@ -23,7 +23,7 @@
 
 @implementation RotationLayout
 
--(instancetype)initWithSublayout:(id<LOKLayout>)sublayout alignment:(LOKAlignment*)alignment viewReuseId:(NSString*)viewReuseId {
+- (instancetype)initWithSublayout:(id<LOKLayout>)sublayout alignment:(LOKAlignment *)alignment viewReuseId:(NSString *)viewReuseId {
     if (self = [super init]) {
         _sublayout = sublayout;
         _alignment = alignment;
