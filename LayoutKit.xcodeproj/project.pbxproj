@@ -743,9 +743,19 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		7E3107A82033B820009BA47A /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				7E7B83B9201E55690001E279 /* ReverseWrappedLayout.swift */,
+				7E7B83B7201E554A0001E279 /* WrappedLayout.swift */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
 		7E7B83B4201E54F30001E279 /* ObjCSupport */ = {
 			isa = PBXGroup;
 			children = (
+				7E3107A82033B820009BA47A /* Internal */,
 				7E7B83C3201E5EB20001E279 /* LOKAlignment.swift */,
 				7E7B83C7201E8DDF0001E279 /* LOKBaseLayout.swift */,
 				7E233E59202CEB0D0012DD1E /* LOKBatchUpdates.swift */,
@@ -764,8 +774,6 @@
 				7E7B83DC2020F7830001E279 /* LOKSizeLayout.swift */,
 				7E7B83DE202101340001E279 /* LOKStackLayout.swift */,
 				7E233E66203130110012DD1E /* LOKTextViewLayout.swift */,
-				7E7B83B9201E55690001E279 /* ReverseWrappedLayout.swift */,
-				7E7B83B7201E554A0001E279 /* WrappedLayout.swift */,
 			);
 			path = ObjCSupport;
 			sourceTree = "<group>";
