@@ -16,9 +16,11 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
     open let text: Text
     open let font: UIFont
     open let numberOfLines: Int
+    open let lineHeight: CGFloat
 
     public init(text: Text,
                 font: UIFont = LabelLayoutDefaults.defaultFont,
+                lineHeight: CGFloat? = nil,
                 numberOfLines: Int = LabelLayoutDefaults.defaultNumberOfLines,
                 alignment: Alignment = LabelLayoutDefaults.defaultAlignment,
                 flexibility: Flexibility = LabelLayoutDefaults.defaultFlexibility,
@@ -28,6 +30,7 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
         self.text = text
         self.numberOfLines = numberOfLines
         self.font = font
+        self.lineHeight = lineHeight ?? font.lineHeight
         super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, config: config)
     }
 
@@ -65,6 +68,7 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
 
     public convenience init(text: String,
                             font: UIFont = LabelLayoutDefaults.defaultFont,
+                            lineHeight: CGFloat? = nil,
                             numberOfLines: Int = LabelLayoutDefaults.defaultNumberOfLines,
                             alignment: Alignment = LabelLayoutDefaults.defaultAlignment,
                             flexibility: Flexibility = LabelLayoutDefaults.defaultFlexibility,
@@ -73,6 +77,7 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
 
         self.init(text: .unattributed(text),
                   font: font,
+                  lineHeight: lineHeight,
                   numberOfLines: numberOfLines,
                   alignment: alignment,
                   flexibility: flexibility,
@@ -82,6 +87,7 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
 
     public convenience init(attributedText: NSAttributedString,
                             font: UIFont = LabelLayoutDefaults.defaultFont,
+                            lineHeight: CGFloat? = nil,
                             numberOfLines: Int = LabelLayoutDefaults.defaultNumberOfLines,
                             alignment: Alignment = LabelLayoutDefaults.defaultAlignment,
                             flexibility: Flexibility = LabelLayoutDefaults.defaultFlexibility,
@@ -90,6 +96,7 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
 
         self.init(text: .attributed(attributedText),
                   font: font,
+                  lineHeight: lineHeight,
                   numberOfLines: numberOfLines,
                   alignment: alignment,
                   flexibility: flexibility,
@@ -107,7 +114,7 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
     private func textSize(within maxSize: CGSize) -> CGSize {
         var size = text.textSize(within: maxSize, font: font)
         if numberOfLines > 0 {
-            let maxHeight = (CGFloat(numberOfLines) * font.lineHeight).roundedUpToFractionalPoint
+            let maxHeight = (CGFloat(numberOfLines) * lineHeight).roundedUpToFractionalPoint
             if size.height > maxHeight {
                 size = CGSize(width: maxSize.width, height: maxHeight)
             }
