@@ -11,6 +11,7 @@ import UIKit
 @objc public class LOKLabelLayout: LOKBaseLayout {
     @objc public init(attributedString: NSAttributedString,
                       font: UIFont?,
+                      lineHeight: CGFloat,
                       numberOfLines: Int,
                       alignment: LOKAlignment?,
                       flexibility: LOKFlexibility?,
@@ -20,6 +21,7 @@ import UIKit
         let layout = LabelLayout<UILabel>(
             attributedString: attributedString,
             font: font ?? UIFont.systemFont(ofSize: UIFont.systemFontSize),
+            lineHeight: lineHeight > 0 && lineHeight.isFinite ? lineHeight : Optional<CGFloat>.none,
             numberOfLines: numberOfLines,
             alignment: alignment?.alignment ?? .topLeading,
             flexibility: flexibility?.flexibility ?? .flexible,
@@ -31,6 +33,7 @@ import UIKit
 
     @objc public init(string: String,
                       font: UIFont?,
+                      lineHeight: CGFloat,
                       numberOfLines: Int,
                       alignment: LOKAlignment?,
                       flexibility: LOKFlexibility?,
@@ -40,6 +43,7 @@ import UIKit
         let layout = LabelLayout<UILabel>(
             string: string,
             font: font ?? UIFont.systemFont(ofSize: UIFont.systemFontSize),
+            lineHeight: lineHeight > 0 && lineHeight.isFinite ? lineHeight : Optional<CGFloat>.none,
             numberOfLines: numberOfLines,
             alignment: alignment?.alignment ?? .topLeading,
             flexibility: flexibility?.flexibility ?? .flexible,

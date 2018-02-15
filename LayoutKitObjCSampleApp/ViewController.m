@@ -110,6 +110,7 @@
 + (id<LOKLayout>)makeHelloLayout {
     LOKLabelLayout *labelLayoutA = [[LOKLabelLayout alloc] initWithString:@"Hello"
                                                                      font:[UIFont systemFontOfSize:UIFont.systemFontSize]
+                                                               lineHeight:0
                                                             numberOfLines:0
                                                                 alignment:LOKAlignment.fill
                                                               flexibility:LOKFlexibility.flexible
@@ -120,6 +121,7 @@
                                                                 }];
     LOKLabelLayout *labelLayoutB = [[LOKLabelLayout alloc] initWithString:@"world!"
                                                                      font:[UIFont systemFontOfSize:UIFont.systemFontSize]
+                                                               lineHeight:0
                                                             numberOfLines:0
                                                                 alignment:LOKAlignment.fill
                                                               flexibility:LOKFlexibility.flexible

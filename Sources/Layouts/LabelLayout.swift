@@ -36,6 +36,7 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
 
     init(attributedString: NSAttributedString,
          font: UIFont = LabelLayoutDefaults.defaultFont,
+         lineHeight: CGFloat? = nil,
          numberOfLines: Int = LabelLayoutDefaults.defaultNumberOfLines,
          alignment: Alignment = LabelLayoutDefaults.defaultAlignment,
          flexibility: Flexibility = LabelLayoutDefaults.defaultFlexibility,
@@ -46,11 +47,13 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
         self.text = .attributed(attributedString)
         self.numberOfLines = numberOfLines
         self.font = font
+        self.lineHeight = lineHeight ?? font.lineHeight
         super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, viewClass: viewClass ?? Label.self, config: config)
     }
 
     init(string: String,
          font: UIFont = LabelLayoutDefaults.defaultFont,
+         lineHeight: CGFloat? = nil,
          numberOfLines: Int = LabelLayoutDefaults.defaultNumberOfLines,
          alignment: Alignment = LabelLayoutDefaults.defaultAlignment,
          flexibility: Flexibility = LabelLayoutDefaults.defaultFlexibility,
@@ -61,6 +64,7 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
         self.text = .unattributed(string)
         self.numberOfLines = numberOfLines
         self.font = font
+        self.lineHeight = lineHeight ?? font.lineHeight
         super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, viewClass: viewClass ?? Label.self, config: config)
     }
 
