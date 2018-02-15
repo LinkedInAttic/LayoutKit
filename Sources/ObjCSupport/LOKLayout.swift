@@ -13,7 +13,7 @@ import CoreGraphics
     @objc func arrangement(within rect: CGRect, measurement: LOKLayoutMeasurement) -> LOKLayoutArrangement
     @objc var needsView: Bool { get }
     @objc func makeView() -> View
-    @objc func configure(baseTypeView: View)
+    @objc optional func configureView(_ view: View)
     @objc var flexibility: LOKFlexibility { get }
     @objc var viewReuseId: String? { get }
 }

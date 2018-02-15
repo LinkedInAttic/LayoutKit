@@ -45,10 +45,6 @@
                                              sublayouts:@[sublayoutArrangement]];
 }
 
-- (void)configureWithBaseTypeView:(nonnull UIView *)baseTypeView {
-
-}
-
 - (nonnull UIView *)makeView {
     return [[RotationView alloc] init];
 }

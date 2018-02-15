@@ -26,7 +26,7 @@ class ReverseWrappedLayout: Layout {
     }
 
     func configure(baseTypeView: View) {
-        layout.configure(baseTypeView: baseTypeView)
+        layout.configureView?(baseTypeView)
     }
 
     var flexibility: Flexibility {
