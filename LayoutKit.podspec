@@ -13,7 +13,8 @@ Pod::Spec.new do |spec|
   spec.ios.frameworks        = 'Foundation', 'CoreGraphics', 'UIKit'
   spec.ios.exclude_files     = [
     'Sources/AppKitSupport.swift',
-    'Sources/ObjCSupport/**'
+    'Sources/ObjCSupport/**',
+    'Sources/ObjCSupport/Internal/**'
   ]
 
   spec.osx.deployment_target = '10.9'
@@ -26,6 +27,7 @@ Pod::Spec.new do |spec|
     'Sources/Layouts/LabelLayout.swift',
     'Sources/Layouts/TextViewLayout.swift',
     'Sources/ObjCSupport/**',
+    'Sources/ObjCSupport/Internal/**',
     'Sources/Text.swift',
     'Sources/UIKitSupport.swift',
     'Sources/Views/**'
@@ -35,7 +37,8 @@ Pod::Spec.new do |spec|
   spec.tvos.frameworks        = 'Foundation', 'CoreGraphics', 'UIKit'
   spec.tvos.exclude_files     = [
     'Sources/AppKitSupport.swift',
-    'Sources/ObjCSupport/**'
+    'Sources/ObjCSupport/**',
+    'Sources/ObjCSupport/Internal/**'
   ]
 
 end
