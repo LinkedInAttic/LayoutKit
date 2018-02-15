@@ -1,4 +1,4 @@
-// Copyright 2016 LinkedIn Corp.
+// Copyright 2018 LinkedIn Corp.
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
 //
@@ -6,11 +6,11 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-public enum Axis {
+#import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
-    /// The y-axis.
-    case vertical
-
-    /// The x-axis.
-    case horizontal
+int main(int argc, char * argv[]) {
+    @autoreleasepool {
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+    }
 }

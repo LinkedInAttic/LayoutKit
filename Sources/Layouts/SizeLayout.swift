@@ -78,6 +78,30 @@ open class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
         super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, config: config)
     }
 
+    init(minWidth: CGFloat? = nil,
+         maxWidth: CGFloat? = nil,
+         minHeight: CGFloat? = nil,
+         maxHeight: CGFloat? = nil,
+         alignment: Alignment? = nil,
+         flexibility: Flexibility? = nil,
+         viewReuseId: String? = nil,
+         viewClass: V.Type? = nil,
+         sublayout: Layout? = nil,
+         config: ((V) -> Void)? = nil) {
+
+        self.minWidth = minWidth
+        self.maxWidth = maxWidth
+        self.minHeight = minHeight
+        self.maxHeight = maxHeight
+        self.sublayout = sublayout
+        let alignment = alignment ?? SizeLayout.defaultAlignment(maxWidth: maxWidth, maxHeight: maxHeight)
+        let flexibility = flexibility ?? SizeLayout.defaultFlexibility(minWidth: minWidth,
+                                                                       maxWidth: maxWidth,
+                                                                       minHeight: minHeight,
+                                                                       maxHeight: maxHeight)
+        super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, viewClass: viewClass ?? V.self, config: config)
+    }
+
     // MARK: - Convenience initializers
     // These convenience initializers enable all permutations of an exact constraint on one dimension
     // and min/max/both/neither constraint on the other dimension.

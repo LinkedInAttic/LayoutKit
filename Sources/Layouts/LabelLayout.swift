@@ -34,6 +34,40 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
         super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, config: config)
     }
 
+    init(attributedString: NSAttributedString,
+         font: UIFont = LabelLayoutDefaults.defaultFont,
+         lineHeight: CGFloat? = nil,
+         numberOfLines: Int = LabelLayoutDefaults.defaultNumberOfLines,
+         alignment: Alignment = LabelLayoutDefaults.defaultAlignment,
+         flexibility: Flexibility = LabelLayoutDefaults.defaultFlexibility,
+         viewReuseId: String? = nil,
+         viewClass: Label.Type? = nil,
+         config: ((Label) -> Void)? = nil) {
+
+        self.text = .attributed(attributedString)
+        self.numberOfLines = numberOfLines
+        self.font = font
+        self.lineHeight = lineHeight ?? font.lineHeight
+        super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, viewClass: viewClass ?? Label.self, config: config)
+    }
+
+    init(string: String,
+         font: UIFont = LabelLayoutDefaults.defaultFont,
+         lineHeight: CGFloat? = nil,
+         numberOfLines: Int = LabelLayoutDefaults.defaultNumberOfLines,
+         alignment: Alignment = LabelLayoutDefaults.defaultAlignment,
+         flexibility: Flexibility = LabelLayoutDefaults.defaultFlexibility,
+         viewReuseId: String? = nil,
+         viewClass: Label.Type? = nil,
+         config: ((Label) -> Void)? = nil) {
+
+        self.text = .unattributed(string)
+        self.numberOfLines = numberOfLines
+        self.font = font
+        self.lineHeight = lineHeight ?? font.lineHeight
+        super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, viewClass: viewClass ?? Label.self, config: config)
+    }
+
     // MARK: - Convenience initializers
 
     public convenience init(text: String,

@@ -49,6 +49,18 @@ open class OverlayLayout<V: View>: BaseLayout<V> {
         super.init(alignment: alignment, flexibility: primary.flexibility, viewReuseId: viewReuseId, config: config)
     }
 
+    init(primary: Layout,
+         background: [Layout] = [],
+         overlay: [Layout] = [],
+         alignment: Alignment = .fill,
+         viewReuseId: String? = nil,
+         viewClass: V.Type? = nil,
+         config: ((V) -> Void)? = nil) {
+        self.primary = primary
+        self.background = background
+        self.overlay = overlay
+        super.init(alignment: alignment, flexibility: primary.flexibility, viewReuseId: viewReuseId, viewClass: viewClass ?? V.self, config: config)
+    }
 }
 
 // MARK: - Layout interface

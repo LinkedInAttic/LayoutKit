@@ -78,14 +78,81 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
                             flexibility: Flexibility = TextViewLayoutDefaults.defaultFlexibility,
                             viewReuseId: String? = nil,
                             config: ((TextView) -> Void)? = nil) {
-        self.init(text: .attributed(attributedText),
-                  font: font,
-                  lineFragmentPadding: lineFragmentPadding,
-                  textContainerInset: textContainerInset,
-                  layoutAlignment: layoutAlignment,
-                  flexibility: flexibility,
-                  viewReuseId: viewReuseId,
-                  config: config)
+        self.init(
+            text: .attributed(attributedText),
+            font: font,
+            lineFragmentPadding: lineFragmentPadding,
+            textContainerInset: textContainerInset,
+            layoutAlignment: layoutAlignment,
+            flexibility: flexibility,
+            viewReuseId: viewReuseId,
+            config: config)
+    }
+
+    convenience init(text: String,
+                     font: UIFont? = nil,
+                     lineFragmentPadding: CGFloat = 0,
+                     textContainerInset: UIEdgeInsets = .zero,
+                     layoutAlignment: Alignment = TextViewLayoutDefaults.defaultAlignment,
+                     flexibility: Flexibility = TextViewLayoutDefaults.defaultFlexibility,
+                     viewReuseId: String? = nil,
+                     viewClass: TextView.Type? = nil,
+                     config: ((TextView) -> Void)? = nil) {
+        self.init(
+            text: .unattributed(text),
+            font: font,
+            lineFragmentPadding: lineFragmentPadding,
+            textContainerInset: textContainerInset,
+            layoutAlignment: layoutAlignment,
+            flexibility: flexibility,
+            viewReuseId: viewReuseId,
+            viewClass: viewClass,
+            config: config)
+    }
+
+    convenience init(attributedText: NSAttributedString,
+                     font: UIFont? = nil,
+                     lineFragmentPadding: CGFloat = 0,
+                     textContainerInset: UIEdgeInsets = .zero,
+                     layoutAlignment: Alignment = TextViewLayoutDefaults.defaultAlignment,
+                     flexibility: Flexibility = TextViewLayoutDefaults.defaultFlexibility,
+                     viewReuseId: String? = nil,
+                     viewClass: TextView.Type? = nil,
+                     config: ((TextView) -> Void)? = nil) {
+        self.init(
+            text: .attributed(attributedText),
+            font: font,
+            lineFragmentPadding: lineFragmentPadding,
+            textContainerInset: textContainerInset,
+            layoutAlignment: layoutAlignment,
+            flexibility: flexibility,
+            viewReuseId: viewReuseId,
+            viewClass: viewClass,
+            config: config)
+    }
+
+    init(text: Text,
+         font: UIFont? = nil,
+         lineFragmentPadding: CGFloat = 0,
+         textContainerInset: UIEdgeInsets = .zero,
+         layoutAlignment: Alignment = TextViewLayoutDefaults.defaultAlignment,
+         flexibility: Flexibility = TextViewLayoutDefaults.defaultFlexibility,
+         viewReuseId: String? = nil,
+         viewClass: TextView.Type? = nil,
+         config: ((TextView) -> Void)? = nil) {
+        self.text = text
+        self.font = font
+        self.lineFragmentPadding = lineFragmentPadding
+        self.textContainerInset = textContainerInset
+
+        switch text {
+        case .attributed(let attributedText):
+            self.isTextEmpty = attributedText.length == 0
+        case .unattributed(let text):
+            self.isTextEmpty = text.isEmpty
+        }
+
+        super.init(alignment: layoutAlignment, flexibility: flexibility, viewReuseId: viewReuseId, viewClass: viewClass ?? TextView.self, config: config)
     }
 
     // MARK: - Layout protocol
