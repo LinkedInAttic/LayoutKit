@@ -15,10 +15,10 @@ import Foundation
         self.flexibility = flexibility
     }
 
-    @objc static let flexible = LOKFlexibility(flexibility: .flexible)
-    @objc static let inflexible = LOKFlexibility(flexibility: .inflexible)
-    @objc static let min = LOKFlexibility(flexibility: .min)
-    @objc static let max = LOKFlexibility(flexibility: .max)
-    @objc static let high = LOKFlexibility(flexibility: .high)
-    @objc static let low = LOKFlexibility(flexibility: .low)
+    @objc public static let flexible = LOKFlexibility(flexibility: .flexible)
+    @objc public static let inflexible = LOKFlexibility(flexibility: .inflexible)
+    @objc public static let min = LOKFlexibility(flexibility: .min)
+    @objc public static let max = LOKFlexibility(flexibility: .max)
+    @objc public static let high = LOKFlexibility(flexibility: .high)
+    @objc public static let low = LOKFlexibility(flexibility: .low)
 }
