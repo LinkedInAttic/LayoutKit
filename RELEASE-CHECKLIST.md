@@ -6,11 +6,11 @@ How to release a new version of LayoutKit.
 
     [![Build Status](https://travis-ci.org/linkedin/LayoutKit.svg?branch=master)](https://travis-ci.org/linkedin/LayoutKit)
 
-- Bump version in LayoutKit.podspec.
+- Bump version in `LayoutKit.podspec` and `LayoutKitObjC.podspec`.
 
     `spec.version          = '2.0.0'`
 
-- Bump the version in `Info.plist`
+- Bump the version in `Sources/Info.plist`
 
     ```
     <key>CFBundleShortVersionString</key>
