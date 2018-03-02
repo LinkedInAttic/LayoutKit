@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc public class LOKLayoutArrangementSection: NSObject {
+@objc open class LOKLayoutArrangementSection: NSObject {
     let unwrapped: Section<[LayoutArrangement]>
     @objc public init(header: LOKLayoutArrangement?, items: [LOKLayoutArrangement], footer: LOKLayoutArrangement?) {
         unwrapped = Section(header: header?.layoutArrangement, items: items.map { $0.layoutArrangement }, footer: footer?.layoutArrangement)

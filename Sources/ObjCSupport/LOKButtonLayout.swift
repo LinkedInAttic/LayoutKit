@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc public class LOKButtonLayout: LOKBaseLayout {
+@objc open class LOKButtonLayout: LOKBaseLayout {
     @objc public init(type: LOKButtonLayoutType,
                       title: String?,
                       image: UIImage?,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc public class LOKTextViewLayout: LOKBaseLayout {
+@objc open class LOKTextViewLayout: LOKBaseLayout {
     @objc public init(text: String? = nil,
                       font: UIFont? = nil,
                       lineFragmentPadding: CGFloat = 0,

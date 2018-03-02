@@ -8,7 +8,7 @@
 
 import CoreGraphics
 
-@objc public class LOKInsetLayout: LOKBaseLayout {
+@objc open class LOKInsetLayout: LOKBaseLayout {
     @objc public required init(insets: EdgeInsets,
                                alignment: LOKAlignment? = nil,
                                viewReuseId: String? = nil,

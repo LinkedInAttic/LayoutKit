@@ -8,6 +8,6 @@
 
 import Foundation
 
-@objc public class LOKBatchUpdates: NSObject {
+@objc open class LOKBatchUpdates: NSObject {
     // todo
 }

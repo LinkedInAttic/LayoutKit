@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc public class LOKLabelLayout: LOKBaseLayout {
+@objc open class LOKLabelLayout: LOKBaseLayout {
     @objc public init(attributedString: NSAttributedString,
                       font: UIFont?,
                       lineHeight: CGFloat,

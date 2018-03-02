@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc public class LOKReloadableViewLayoutAdapter: NSObject {
+@objc open class LOKReloadableViewLayoutAdapter: NSObject {
     @objc public var log: ((String) -> Void)? {
         get {
             return adapter.logger
@@ -28,12 +28,12 @@ import UIKit
         adapter = ReloadableViewLayoutAdapter(reloadableView: tableView)
     }
 
-    @objc public func reload(synchronous: Bool,
-                             width: CGFloat = CGFloat.infinity,
-                             height: CGFloat = CGFloat.infinity,
-                             batchUpdates: BatchUpdates? = nil,
-                             layoutProvider: @escaping () -> [LOKLayoutSection],
-                             completion: (() -> Void)? = nil) {
+    @objc open func reload(synchronous: Bool,
+                           width: CGFloat = CGFloat.infinity,
+                           height: CGFloat = CGFloat.infinity,
+                           batchUpdates: BatchUpdates? = nil,
+                           layoutProvider: @escaping () -> [LOKLayoutSection],
+                           completion: (() -> Void)? = nil) {
         adapter.reload(
             width: width.isFinite ? width : nil,
             height: height.isFinite ? height : nil,
@@ -43,7 +43,7 @@ import UIKit
             completion: completion)
     }
 
-    @objc public func reload(arrangements: [LOKLayoutArrangementSection]) {
+    @objc open func reload(arrangements: [LOKLayoutArrangementSection]) {
         adapter.reload(arrangement: arrangements.map { $0.unwrapped })
     }
 }
@@ -73,7 +73,7 @@ extension LOKReloadableViewLayoutAdapter: UITableViewDelegate {
 
 extension LOKReloadableViewLayoutAdapter: UITableViewDataSource {
 
-    @objc public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    @objc open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return adapter.tableView(tableView, numberOfRowsInSection: section)
     }
 

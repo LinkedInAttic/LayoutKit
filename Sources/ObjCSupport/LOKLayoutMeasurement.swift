@@ -8,7 +8,7 @@
 
 import CoreGraphics
 
-@objc public class LOKLayoutMeasurement: NSObject {
+@objc open class LOKLayoutMeasurement: NSObject {
     let measurement: LayoutMeasurement
     private let wrappedLayout: LOKLayout
 
