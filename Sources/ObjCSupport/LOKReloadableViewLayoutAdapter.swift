@@ -31,14 +31,14 @@ import UIKit
     @objc open func reload(synchronous: Bool,
                            width: CGFloat = CGFloat.infinity,
                            height: CGFloat = CGFloat.infinity,
-                           batchUpdates: BatchUpdates? = nil,
+                           batchUpdates: LOKBatchUpdates? = nil,
                            layoutProvider: @escaping () -> [LOKLayoutSection],
                            completion: (() -> Void)? = nil) {
         adapter.reload(
             width: width.isFinite ? width : nil,
             height: height.isFinite ? height : nil,
             synchronous: synchronous,
-            batchUpdates: nil,// todo
+            batchUpdates: batchUpdates?.unwrapped,
             layoutProvider: { return layoutProvider().map { $0.unwrapped } },
             completion: completion)
     }
