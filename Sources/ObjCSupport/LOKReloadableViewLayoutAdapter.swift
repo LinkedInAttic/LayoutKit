@@ -9,6 +9,7 @@
 import UIKit
 
 @objc public class LOKReloadableViewLayoutAdapter: NSObject {
+@objc open class LOKReloadableViewLayoutAdapter: NSObject {
     @objc public var log: ((String) -> Void)? {
         get {
             return adapter.logger
