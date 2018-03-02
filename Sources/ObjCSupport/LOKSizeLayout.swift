@@ -17,7 +17,8 @@ import CoreGraphics
                       flexibility: LOKFlexibility?,
                       viewReuseId: String?,
                       viewClass: View.Type?,
-                      sublayout: LOKLayout?) {
+                      sublayout: LOKLayout?,
+                      configure: ((View) -> Void)? = nil) {
         let layout = SizeLayout(
             minWidth: minWidth,
             maxWidth: maxWidth,
@@ -28,7 +29,7 @@ import CoreGraphics
             viewReuseId: viewReuseId,
             viewClass: viewClass,
             sublayout: sublayout?.unwrapped,
-            config: nil)
+            config: configure)
         super.init(layout: layout)
     }
 }
