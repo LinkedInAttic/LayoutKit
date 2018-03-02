@@ -8,7 +8,7 @@
 
 import CoreGraphics
 
-@objc public class LOKAlignment: NSObject {
+@objc open class LOKAlignment: NSObject {
     let alignment: Alignment
     init(alignment: Alignment) {
         self.alignment = alignment

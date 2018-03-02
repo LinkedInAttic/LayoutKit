@@ -72,7 +72,8 @@
                                                             flexibility:nil
                                                             viewReuseId:nil
                                                               viewClass:nil
-                                                              sublayout:self.helloWorldLayout];
+                                                              sublayout:self.helloWorldLayout
+                                                              configure:nil];
 
     NSArray *items = @[
                        cellLayout, cellLayout, cellLayout, cellLayout,

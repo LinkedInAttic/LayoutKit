@@ -43,7 +43,7 @@ import UIKit
             completion: completion)
     }
 
-    @objc public func reload(arrangements: [LOKLayoutArrangementSection]) {
+    @objc open func reload(arrangements: [LOKLayoutArrangementSection]) {
         adapter.reload(arrangement: arrangements.map { $0.unwrapped })
     }
 }
@@ -73,7 +73,7 @@ extension LOKReloadableViewLayoutAdapter: UITableViewDelegate {
 
 extension LOKReloadableViewLayoutAdapter: UITableViewDataSource {
 
-    @objc public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    @objc open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return adapter.tableView(tableView, numberOfRowsInSection: section)
     }
 
