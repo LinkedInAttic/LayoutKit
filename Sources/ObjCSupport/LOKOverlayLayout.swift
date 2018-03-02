@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc public class LOKOverlayLayout: LOKBaseLayout {
+@objc open class LOKOverlayLayout: LOKBaseLayout {
     @objc public init(primary: LOKLayout,
                       background: [LOKLayout]? = nil,
                       overlay: [LOKLayout]? = nil,

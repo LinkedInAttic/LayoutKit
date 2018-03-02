@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc public class LOKFlexibility: NSObject {
+@objc open class LOKFlexibility: NSObject {
     let flexibility: Flexibility
 
     init(flexibility: Flexibility) {

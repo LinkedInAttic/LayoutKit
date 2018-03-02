@@ -49,7 +49,7 @@ import CoreGraphics
     }
 }
 
-@objc public class LOKStackLayout: LOKBaseLayout {
+@objc open class LOKStackLayout: LOKBaseLayout {
     @objc public init(axis: LOKAxis = .vertical,
                       spacing: CGFloat = 0,
                       distribution: LOKStackLayoutDistribution = .`default`,

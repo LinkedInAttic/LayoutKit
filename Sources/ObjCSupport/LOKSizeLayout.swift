@@ -8,7 +8,7 @@
 
 import CoreGraphics
 
-@objc public class LOKSizeLayout: LOKBaseLayout {
+@objc open class LOKSizeLayout: LOKBaseLayout {
     @objc public init(minWidth: CGFloat,
                       maxWidth: CGFloat,
                       minHeight: CGFloat,

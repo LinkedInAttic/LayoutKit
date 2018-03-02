@@ -8,7 +8,7 @@
 
 import CoreGraphics
 
-@objc public class LOKLayoutArrangement: NSObject {
+@objc open class LOKLayoutArrangement: NSObject {
     let layoutArrangement: LayoutArrangement
     @objc public let layout: LOKLayout
     @objc public let sublayouts: [LOKLayoutArrangement]
