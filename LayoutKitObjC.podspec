@@ -22,6 +22,7 @@ Pod::Spec.new do |spec|
     'Sources/Layouts/ButtonLayout.swift',
     'Sources/Layouts/LabelLayout.swift',
     'Sources/Layouts/TextViewLayout.swift',
+    'Sources/ObjCSupport/LOKBatchUpdates.swift',
     'Sources/ObjCSupport/LOKButtonLayout.swift',
     'Sources/ObjCSupport/LOKButtonLayoutType.swift',
     'Sources/ObjCSupport/LOKLabelLayout.swift',
