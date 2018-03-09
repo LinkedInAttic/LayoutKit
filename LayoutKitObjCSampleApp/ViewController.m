@@ -8,6 +8,10 @@
 
 #import "ViewController.h"
 #import "RotationLayout.h"
+#import "LOKLabelLayoutBuilder.h"
+#import "LOKInsetLayoutBuilder.h"
+#import "LOKSizeLayoutBuilder.h"
+#import "LOKStackLayoutBuilder.h"
 
 @import Foundation;
 @import UIKit;
@@ -64,16 +68,9 @@
     collectionView.delegate = self.adapter;
     collectionView.dataSource = self.adapter;
 
-    LOKSizeLayout *cellLayout = [[LOKSizeLayout alloc] initWithMinWidth:self.view.bounds.size.width
-                                                               maxWidth:self.view.bounds.size.width
-                                                              minHeight:0
-                                                              maxHeight:INFINITY
-                                                              alignment:nil
-                                                            flexibility:nil
-                                                            viewReuseId:nil
-                                                              viewClass:nil
-                                                              sublayout:self.helloWorldLayout
-                                                              configure:nil];
+    LOKSizeLayoutBuilder *cellLayoutBuilder = [LOKSizeLayoutBuilder withSublayout:self.helloWorldLayout];
+    cellLayoutBuilder.width = self.view.bounds.size.width;
+    LOKSizeLayout *cellLayout = [cellLayoutBuilder build];
 
     NSArray *items = @[
                        cellLayout, cellLayout, cellLayout, cellLayout,
@@ -109,44 +106,26 @@
 }
 
 + (id<LOKLayout>)makeHelloLayout {
-    LOKLabelLayout *labelLayoutA = [[LOKLabelLayout alloc] initWithString:@"Hello"
-                                                                     font:[UIFont systemFontOfSize:UIFont.systemFontSize]
-                                                               lineHeight:0
-                                                            numberOfLines:0
-                                                                alignment:LOKAlignment.fill
-                                                              flexibility:LOKFlexibility.flexible
-                                                              viewReuseId:nil
-                                                                viewClass:MyLabelView.class
-                                                                configure:^(UILabel *label) {
-                                                                    label.backgroundColor = UIColor.whiteColor;
-                                                                }];
-    LOKLabelLayout *labelLayoutB = [[LOKLabelLayout alloc] initWithString:@"world!"
-                                                                     font:[UIFont systemFontOfSize:UIFont.systemFontSize]
-                                                               lineHeight:0
-                                                            numberOfLines:0
-                                                                alignment:LOKAlignment.fill
-                                                              flexibility:LOKFlexibility.flexible
-                                                              viewReuseId:nil
-                                                                viewClass:MyLabelView.class
-                                                                configure:^(UILabel *label) {
-                                                                    label.backgroundColor = UIColor.whiteColor;
-                                                                }];
-    LOKStackLayout *stackLayout = [[LOKStackLayout alloc] initWithAxis:LOKAxisHorizontal
-                                                               spacing:10
-                                                          distribution:LOKStackLayoutDistributionDefault
-                                                             alignment:nil
-                                                           flexibility:nil
-                                                             viewClass:nil
-                                                           viewReuseId:nil
-                                                            sublayouts:@[labelLayoutA, labelLayoutB]
-                                                             configure:nil];
-    LOKInsetLayout *insetLayout = [[LOKInsetLayout alloc] initWithInsets:UIEdgeInsetsMake(20, 20, 20, 20)
-                                                               alignment:LOKAlignment.fill
-                                                             viewReuseId:nil
-                                                               viewClass:LabelBackgroundView.class
-                                                               sublayout:stackLayout
-                                                               configure:^(UIView *view) { }];
-    return [[RotationLayout alloc] initWithSublayout:insetLayout
+    LOKLabelLayoutBuilder *labelLayoutBuilderA = [LOKLabelLayoutBuilder withString:@"Hello"];
+    labelLayoutBuilderA.viewClass = MyLabelView.class;
+    labelLayoutBuilderA.configure = ^(UIView * _Nonnull label) {
+        label.backgroundColor = UIColor.whiteColor;
+    };
+    LOKLabelLayout *labelLayoutA = [labelLayoutBuilderA build];
+    LOKLabelLayoutBuilder *labelLayoutBuilderB = [LOKLabelLayoutBuilder withString:@"world!"];
+    labelLayoutBuilderB.viewClass = MyLabelView.class;
+    labelLayoutBuilderB.configure = ^(UIView * _Nonnull label) {
+        label.backgroundColor = UIColor.whiteColor;
+    };
+    LOKLabelLayout *labelLayoutB = [labelLayoutBuilderB build];
+    LOKStackLayoutBuilder *stackLayoutBuilder = [LOKStackLayoutBuilder withSublayouts:@[labelLayoutA, labelLayoutB]];
+    stackLayoutBuilder.axis = LOKAxisHorizontal;
+    stackLayoutBuilder.spacing = 10;
+    LOKInsetLayoutBuilder *insetLayoutBuilder = [LOKInsetLayoutBuilder withInsets:UIEdgeInsetsMake(20, 20, 20, 20) around:[stackLayoutBuilder build]];
+    insetLayoutBuilder.alignment = LOKAlignment.fill;
+    insetLayoutBuilder.viewClass = LabelBackgroundView.class;
+    insetLayoutBuilder.configure = ^(UIView * _Nonnull view) { };
+    return [[RotationLayout alloc] initWithSublayout:[insetLayoutBuilder build]
                                            alignment:LOKAlignment.center
                                          viewReuseId:nil];
 }
