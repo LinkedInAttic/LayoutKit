@@ -19,9 +19,6 @@
 @property (nonatomic) UIEdgeInsets textContainerInset;
 @property (nonatomic) CGFloat lineFragmentPadding;
 
-
 - (nonnull LOKTextViewLayout *)build;
 
-
 @end
-

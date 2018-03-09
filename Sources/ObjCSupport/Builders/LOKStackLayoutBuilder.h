@@ -17,8 +17,6 @@
 @property (nonatomic) CGFloat spacing;
 @property (nonatomic) LOKStackLayoutDistribution distribution;
 
-
 - (nonnull LOKStackLayout *)build;
 
 @end
-

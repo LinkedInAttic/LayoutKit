@@ -15,12 +15,6 @@
 @property (nonatomic) UIEdgeInsets insets;
 @property (nonatomic, nonnull) id<LOKLayout> sublayout;
 
-@property (nonatomic, nullable) LOKAlignment *alignment;
-@property (nonatomic, nullable) LOKFlexibility *flexibility;
-@property (nonatomic, nullable) NSString *viewReuseId;
-@property (nonatomic, nullable) Class viewClass;
-@property (nonatomic, nullable) void (^ configure)(UIView * _Nonnull);
-
 - (nonnull LOKInsetLayout *)build;
 
 @end

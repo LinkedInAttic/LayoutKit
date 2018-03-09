@@ -21,5 +21,4 @@
 
 - (nonnull LOKLabelLayout *)build;
 
-
 @end
