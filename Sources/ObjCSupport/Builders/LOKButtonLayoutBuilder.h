@@ -11,12 +11,12 @@
 @class LOKButtonLayout;
 
 typedef NS_ENUM(NSInteger, LOKButtonLayoutType) {
-    LOKButtonLayoutTypeCustom = 0,
-    LOKButtonLayoutTypeSystem = 1,
-    LOKButtonLayoutTypeDetailDisclosure = 2,
-    LOKButtonLayoutTypeInfoLight = 3,
-    LOKButtonLayoutTypeInfoDark = 4,
-    LOKButtonLayoutTypeContactAdd = 5,
+    LOKButtonLayoutTypeCustom,
+    LOKButtonLayoutTypeSystem,
+    LOKButtonLayoutTypeDetailDisclosure,
+    LOKButtonLayoutTypeInfoLight,
+    LOKButtonLayoutTypeInfoDark,
+    LOKButtonLayoutTypeContactAdd
 };
 
 @interface LOKButtonLayoutBuilder : LOKBaseLayoutBuilder

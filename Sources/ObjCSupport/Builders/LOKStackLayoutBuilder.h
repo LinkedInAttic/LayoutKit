@@ -9,18 +9,18 @@
 #import "LOKBaseLayoutBuilder.h"
 
 typedef NS_ENUM(NSInteger, LOKStackLayoutDistribution) {
-    LOKStackLayoutDistributionDefault = 0,
-    LOKStackLayoutDistributionLeading = 1,
-    LOKStackLayoutDistributionTrailing = 2,
-    LOKStackLayoutDistributionCenter = 3,
-    LOKStackLayoutDistributionFillEqualSpacing = 4,
-    LOKStackLayoutDistributionFillEqualSize = 5,
-    LOKStackLayoutDistributionFillFlexing = 6,
+    LOKStackLayoutDistributionDefault,
+    LOKStackLayoutDistributionLeading,
+    LOKStackLayoutDistributionTrailing,
+    LOKStackLayoutDistributionCenter,
+    LOKStackLayoutDistributionFillEqualSpacing,
+    LOKStackLayoutDistributionFillEqualSize,
+    LOKStackLayoutDistributionFillFlexing
 };
 
 typedef NS_ENUM(NSInteger, LOKAxis) {
-    LOKAxisVertical = 0,
-    LOKAxisHorizontal = 1,
+    LOKAxisVertical,
+    LOKAxisHorizontal
 };
 
 @class LOKStackLayout;
