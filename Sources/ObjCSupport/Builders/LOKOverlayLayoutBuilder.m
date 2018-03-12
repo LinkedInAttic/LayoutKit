@@ -8,6 +8,8 @@
 
 #import "LOKOverlayLayoutBuilder.h"
 
+#import <LayoutKitObjC/LayoutKitObjC-Swift.h>
+
 @implementation LOKOverlayLayoutBuilder
 
 + (instancetype)withPrimaryLayout:(id<LOKLayout>)primaryLayout {

@@ -8,11 +8,13 @@
 
 #import "LOKBaseLayoutBuilder.h"
 
+@class LOKInsetLayout;
+
 @interface LOKInsetLayoutBuilder : LOKBaseLayoutBuilder
 
-+ (nonnull instancetype)withInsets:(UIEdgeInsets)insets around:(nonnull id<LOKLayout>)sublayout;
++ (nonnull instancetype)withInsets:(EdgeInsets)insets around:(nonnull id<LOKLayout>)sublayout;
 
-@property (nonatomic) UIEdgeInsets insets;
+@property (nonatomic) EdgeInsets insets;
 @property (nonatomic, nonnull) id<LOKLayout> sublayout;
 
 - (nonnull LOKInsetLayout *)build;

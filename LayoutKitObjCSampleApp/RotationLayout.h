@@ -7,7 +7,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 #import <UIKit/UIKit.h>
-#import <LayoutKit/LayoutKit-Swift.h>
+#import <LayoutKitObjC/LayoutKitObjC-Swift.h>
 
 @interface RotationLayout: NSObject <LOKLayout>
 

@@ -8,6 +8,8 @@
 
 #import "LOKButtonLayoutBuilder.h"
 
+#import <LayoutKitObjC/LayoutKitObjC-Swift.h>
+
 @implementation LOKButtonLayoutBuilder
 
 + (instancetype)withTitle:(NSString *)title {

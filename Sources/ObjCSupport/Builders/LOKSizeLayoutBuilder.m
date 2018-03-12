@@ -8,6 +8,8 @@
 
 #import "LOKSizeLayoutBuilder.h"
 
+#import <LayoutKitObjC/LayoutKitObjC-Swift.h>
+
 @implementation LOKSizeLayoutBuilder
 
 + (instancetype)withSublayout:(id<LOKLayout>)sublayout {

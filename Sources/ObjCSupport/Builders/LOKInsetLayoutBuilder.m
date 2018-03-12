@@ -8,9 +8,11 @@
 
 #import "LOKInsetLayoutBuilder.h"
 
+#import <LayoutKitObjC/LayoutKitObjC-Swift.h>
+
 @implementation LOKInsetLayoutBuilder
 
-+ (nonnull instancetype)withInsets:(UIEdgeInsets)insets around:(nonnull id<LOKLayout>)sublayout {
++ (nonnull instancetype)withInsets:(EdgeInsets)insets around:(nonnull id<LOKLayout>)sublayout {
     LOKInsetLayoutBuilder *builder = [[self alloc] init];
     if (builder) {
         builder.insets = insets;

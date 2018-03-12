@@ -8,6 +8,8 @@
 
 #import "LOKBaseLayoutBuilder.h"
 
+@class LOKSizeLayout;
+
 @interface LOKSizeLayoutBuilder : LOKBaseLayoutBuilder
 
 + (nonnull instancetype)withSublayout:(nullable id<LOKLayout>)sublayout;

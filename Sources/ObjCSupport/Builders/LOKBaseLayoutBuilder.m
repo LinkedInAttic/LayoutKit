@@ -10,4 +10,8 @@
 
 @implementation LOKBaseLayoutBuilder
 
+- (id<LOKLayout>)build {
+    return nil;
+}
+
 @end

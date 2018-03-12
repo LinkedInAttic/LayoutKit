@@ -8,6 +8,23 @@
 
 #import "LOKBaseLayoutBuilder.h"
 
+typedef NS_ENUM(NSInteger, LOKStackLayoutDistribution) {
+    LOKStackLayoutDistributionDefault = 0,
+    LOKStackLayoutDistributionLeading = 1,
+    LOKStackLayoutDistributionTrailing = 2,
+    LOKStackLayoutDistributionCenter = 3,
+    LOKStackLayoutDistributionFillEqualSpacing = 4,
+    LOKStackLayoutDistributionFillEqualSize = 5,
+    LOKStackLayoutDistributionFillFlexing = 6,
+};
+
+typedef NS_ENUM(NSInteger, LOKAxis) {
+    LOKAxisVertical = 0,
+    LOKAxisHorizontal = 1,
+};
+
+@class LOKStackLayout;
+
 @interface LOKStackLayoutBuilder : LOKBaseLayoutBuilder
 
 + (nonnull instancetype)withSublayouts:(nonnull NSArray< id<LOKLayout> > *)sublayouts;

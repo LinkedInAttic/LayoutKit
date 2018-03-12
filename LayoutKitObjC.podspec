@@ -6,7 +6,7 @@ Pod::Spec.new do |spec|
   spec.authors           = 'LinkedIn'
   spec.summary           = 'LayoutKit is a fast view layout library for iOS, macOS, and tvOS. Now with Objective-C support.'
   spec.source            = { :git => 'https://github.com/linkedin/LayoutKit.git', :tag => spec.version }
-  spec.source_files      = 'Sources/**/*.swift'
+  spec.source_files      = 'Sources/**/*.{swift,h,m}'
   spec.documentation_url = 'http://layoutkit.org'
 
   spec.ios.deployment_target = '8.0'
@@ -22,6 +22,9 @@ Pod::Spec.new do |spec|
     'Sources/Layouts/ButtonLayout.swift',
     'Sources/Layouts/LabelLayout.swift',
     'Sources/Layouts/TextViewLayout.swift',
+    'Sources/ObjCSupport/Builders/LOKButtonLayoutBuilder.*',
+    'Sources/ObjCSupport/Builders/LOKLabelLayoutBuilder.*',
+    'Sources/ObjCSupport/Builders/LOKTextViewLayoutBuilder.*',
     'Sources/ObjCSupport/LOKBatchUpdates.swift',
     'Sources/ObjCSupport/LOKButtonLayout.swift',
     'Sources/ObjCSupport/LOKButtonLayoutType.swift',
@@ -41,6 +44,7 @@ Pod::Spec.new do |spec|
     'Sources/AppKitSupport.swift',
 
     # Excluded due to "'systemFontSize' is unavailable"
+    'Sources/ObjCSupport/Builders/LOKLabelLayoutBuilder.*',
     'Sources/ObjCSupport/LOKLabelLayout.swift' 
   ]
 
