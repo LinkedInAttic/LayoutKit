@@ -8,6 +8,17 @@
 
 #import "LOKBaseLayoutBuilder.h"
 
+@class LOKButtonLayout;
+
+typedef NS_ENUM(NSInteger, LOKButtonLayoutType) {
+    LOKButtonLayoutTypeCustom,
+    LOKButtonLayoutTypeSystem,
+    LOKButtonLayoutTypeDetailDisclosure,
+    LOKButtonLayoutTypeInfoLight,
+    LOKButtonLayoutTypeInfoDark,
+    LOKButtonLayoutTypeContactAdd
+};
+
 @interface LOKButtonLayoutBuilder : LOKBaseLayoutBuilder
 
 + (nonnull instancetype)withTitle:(nullable NSString *)title;

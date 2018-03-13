@@ -8,6 +8,8 @@
 
 #import "LOKBaseLayoutBuilder.h"
 
+@class LOKLabelLayout;
+
 @interface LOKLabelLayoutBuilder : LOKBaseLayoutBuilder
 
 + (nonnull instancetype)withString:(nullable NSString *)string;

@@ -8,6 +8,8 @@
 
 #import "LOKStackLayoutBuilder.h"
 
+#import <LayoutKitObjC/LayoutKitObjC-Swift.h>
+
 @implementation LOKStackLayoutBuilder
 
 + (instancetype)withSublayouts:(NSArray<id<LOKLayout>> *)sublayouts {

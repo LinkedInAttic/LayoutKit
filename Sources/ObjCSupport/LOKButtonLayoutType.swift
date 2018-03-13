@@ -8,14 +8,7 @@
 
 import Foundation
 
-@objc public enum LOKButtonLayoutType: Int {
-    case custom
-    case system
-    case detailDisclosure
-    case infoLight
-    case infoDark
-    case contactAdd
-
+extension LOKButtonLayoutType {
     var unwrapped: ButtonLayoutType {
         switch self {
         case .custom:

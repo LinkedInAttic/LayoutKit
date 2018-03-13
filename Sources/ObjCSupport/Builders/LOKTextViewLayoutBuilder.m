@@ -8,6 +8,8 @@
 
 #import "LOKTextViewLayoutBuilder.h"
 
+#import <LayoutKitObjC/LayoutKitObjC-Swift.h>
+
 @implementation LOKTextViewLayoutBuilder
 
 + (nonnull instancetype)withString:(nullable NSString *)string {

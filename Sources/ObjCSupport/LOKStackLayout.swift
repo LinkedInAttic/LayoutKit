@@ -8,9 +8,7 @@
 
 import CoreGraphics
 
-@objc public enum LOKAxis: Int {
-    case vertical = 0
-    case horizontal
+extension LOKAxis {
     var axis: Axis {
         switch self {
         case .vertical:
@@ -21,14 +19,7 @@ import CoreGraphics
     }
 }
 
-@objc public enum LOKStackLayoutDistribution: Int {
-    case `default`
-    case leading
-    case trailing
-    case center
-    case fillEqualSpacing
-    case fillEqualSize
-    case fillFlexing
+extension LOKStackLayoutDistribution {
     var distribution: StackLayoutDistribution? {
         switch self {
         case .`default`:

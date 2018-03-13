@@ -8,6 +8,8 @@
 
 #import "LOKBaseLayoutBuilder.h"
 
+@class LOKOverlayLayout;
+
 @interface LOKOverlayLayoutBuilder : LOKBaseLayoutBuilder
 
 + (nonnull instancetype)withPrimaryLayout:(nonnull id<LOKLayout>)primaryLayout;

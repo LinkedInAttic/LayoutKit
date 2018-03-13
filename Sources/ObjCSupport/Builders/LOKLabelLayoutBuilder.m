@@ -8,6 +8,8 @@
 
 #import "LOKLabelLayoutBuilder.h"
 
+#import <LayoutKitObjC/LayoutKitObjC-Swift.h>
+
 @implementation LOKLabelLayoutBuilder
 
 + (nonnull instancetype)withString:(nullable NSString *)string {
