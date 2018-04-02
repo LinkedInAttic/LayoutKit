@@ -174,6 +174,10 @@ extension View {
 }
 
 fileprivate extension CGRect {
+    
+    /**
+     Returns an integral version of the rect dependant on the screen density scale
+     */
     var integralByScale: CGRect {
         return CGRect(x: origin.x.roundedDownToFractionalPoint,
                       y: origin.y.roundedDownToFractionalPoint,
