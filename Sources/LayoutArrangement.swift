@@ -133,7 +133,7 @@ public struct LayoutArrangement {
         } else {
             if !prepareAnimation {
                 for subview in subviews {
-                    subview.frame = subview.frame.offsetBy(dx: frame.origin.x, dy: frame.origin.y)
+                    subview.frame = subview.frame.offsetBy(dx: frame.origin.x, dy: frame.origin.y).integralByScale
                 }
             }
             return subviews
@@ -173,3 +173,11 @@ extension View {
     }
 }
 
+fileprivate extension CGRect {
+    var integralByScale: CGRect {
+        return CGRect(x: origin.x.roundedDownToFractionalPoint,
+                      y: origin.y.roundedDownToFractionalPoint,
+                      width: size.width.roundedUpToFractionalPoint,
+                      height: size.height.roundedUpToFractionalPoint)
+    }
+}
