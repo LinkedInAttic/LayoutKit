@@ -18,7 +18,7 @@ public struct LayoutArrangement {
 
     public init(layout: Layout, frame: CGRect, sublayouts: [LayoutArrangement]) {
         self.layout = layout
-        self.frame = frame
+        self.frame = frame.integralByScale
         self.sublayouts = sublayouts
     }
 
@@ -89,7 +89,7 @@ public struct LayoutArrangement {
             for subview in views {
                 if !prepareAnimation {
                     // Unapply the offset that was applied in makeSubviews()
-                    subview.frame = subview.frame.offsetBy(dx: -frame.origin.x, dy: -frame.origin.y)
+                    subview.frame = subview.frame.offsetBy(dx: -frame.origin.x, dy: -frame.origin.y).integralByScale
                 }
                 rootView.addSubview(subview)
             }
@@ -121,7 +121,7 @@ public struct LayoutArrangement {
         // If we are preparing an animation, then we don't want to update frames or configure views.
         if layout.needsView, let view = recycler.makeOrRecycleView(havingViewReuseId: layout.viewReuseId, viewProvider: layout.makeView) {
             if !prepareAnimation {
-                view.frame = frame
+                view.frame = frame.integralByScale
                 layout.configure(baseTypeView: view)
             }
             for subview in subviews {
@@ -164,9 +164,9 @@ extension View {
      */
     fileprivate func addSubview(_ view: View, maintainCoordinates: Bool) {
         if maintainCoordinates {
-            let frame = view.convertToAbsoluteCoordinates(view.frame)
+            let frame = view.convertToAbsoluteCoordinates(view.frame).integralByScale
             addSubview(view)
-            view.frame = view.convertFromAbsoluteCoordinates(frame)
+            view.frame = view.convertFromAbsoluteCoordinates(frame).integralByScale
         } else {
             addSubview(view)
         }
