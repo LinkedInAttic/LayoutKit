@@ -49,4 +49,140 @@
     }
 }
 
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(UIFont * _Nullable))withFont {
+    return ^LOKTextViewLayoutBuilder *(UIFont * _Nullable font){
+        self.font = font;
+        return self;
+    };
+}
+
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(UIEdgeInsets))withTextContainerInset {
+    return ^LOKTextViewLayoutBuilder *(UIEdgeInsets textContainerInset){
+        self.textContainerInset = textContainerInset;
+        return self;
+    };
+}
+
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(CGFloat))withLineFragmentPadding {
+    return ^LOKTextViewLayoutBuilder *(CGFloat lineFragmentPadding){
+        self.lineFragmentPadding = lineFragmentPadding;
+        return self;
+    };
+}
+
+- (LOKTextViewLayoutBuilder *)center {
+    self.alignment = LOKAlignment.center;
+    return self;
+}
+
+- (LOKTextViewLayoutBuilder *)fill {
+    self.alignment = LOKAlignment.fill;
+    return self;
+}
+
+- (LOKTextViewLayoutBuilder *)topCenter {
+    self.alignment = LOKAlignment.topCenter;
+    return self;
+}
+
+- (LOKTextViewLayoutBuilder *)topFill {
+    self.alignment = LOKAlignment.topFill;
+    return self;
+}
+
+- (LOKTextViewLayoutBuilder *)topLeading {
+    self.alignment = LOKAlignment.topLeading;
+    return self;
+}
+
+- (LOKTextViewLayoutBuilder *)topTrailing {
+    self.alignment = LOKAlignment.topTrailing;
+    return self;
+}
+
+- (LOKTextViewLayoutBuilder *)bottomCenter {
+    self.alignment = LOKAlignment.bottomCenter;
+    return self;
+}
+
+- (LOKTextViewLayoutBuilder *)bottomFill {
+    self.alignment = LOKAlignment.bottomFill;
+    return self;
+}
+
+- (LOKTextViewLayoutBuilder *)bottomLeading {
+    self.alignment = LOKAlignment.bottomLeading;
+    return self;
+}
+
+- (LOKTextViewLayoutBuilder *)bottomTrailing {
+    self.alignment = LOKAlignment.bottomTrailing;
+    return self;
+}
+
+- (LOKTextViewLayoutBuilder *)centerFill {
+    self.alignment = LOKAlignment.centerFill;
+    return self;
+}
+
+- (LOKTextViewLayoutBuilder *)centerLeading {
+    self.alignment = LOKAlignment.centerLeading;
+    return self;
+}
+
+- (LOKTextViewLayoutBuilder *)centerTrailing {
+    self.alignment = LOKAlignment.centerTrailing;
+    return self;
+}
+
+- (LOKTextViewLayoutBuilder *)fillLeading {
+    self.alignment = LOKAlignment.fillLeading;
+    return self;
+}
+
+- (LOKTextViewLayoutBuilder *)fillTrailing {
+    self.alignment = LOKAlignment.fillTrailing;
+    return self;
+}
+
+- (LOKTextViewLayoutBuilder *)fillCenter {
+    self.alignment = LOKAlignment.fillCenter;
+    return self;
+}
+
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))withAlignment {
+    return ^LOKTextViewLayoutBuilder *(LOKAlignment * alignment){
+        self.alignment = alignment;
+        return self;
+    };
+}
+
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))withFlexibility {
+    return ^LOKTextViewLayoutBuilder *(LOKFlexibility * flexibility){
+        self.flexibility = flexibility;
+        return self;
+    };
+}
+
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))withViewReuseId {
+    return ^LOKTextViewLayoutBuilder *(NSString * viewReuseId){
+        self.viewReuseId = viewReuseId;
+        return self;
+    };
+}
+
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(Class _Nonnull))withViewClass {
+    return ^LOKTextViewLayoutBuilder *(Class viewClass){
+        self.viewClass = viewClass;
+        return self;
+    };
+}
+
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(View *_Nonnull)))withConfig {
+    return ^LOKTextViewLayoutBuilder *(void(^ _Nonnull config)(View *_Nonnull)){
+        self.configure = config;
+        return self;
+    };
+}
+
 @end

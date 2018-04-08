@@ -44,5 +44,12 @@ class WrappedLayout: LOKLayout {
     init(layout: Layout) {
         self.layout = layout
     }
-}
 
+    func insetted(by insets: EdgeInsets) -> LOKInsetLayout {
+        return LOKInsetLayout(insets: insets, sublayout: self)
+    }
+
+    func insetted(by insets: EdgeInsets, alignment: LOKAlignment) -> LOKInsetLayout {
+        return LOKInsetLayoutBuilder.withInsets(insets, around: self).withAlignment(alignment).build()
+    }
+}

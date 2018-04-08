@@ -34,6 +34,37 @@ typedef NS_ENUM(NSInteger, LOKAxis) {
 @property (nonatomic) CGFloat spacing;
 @property (nonatomic) LOKStackLayoutDistribution distribution;
 
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder *horizontal;
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder *vertical;
+
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withSpacing)(CGFloat);
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withDistribution)(LOKStackLayoutDistribution);
+
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder *center;
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder *fill;
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder *topCenter;
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder *topFill;
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder *topLeading;
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder *topTrailing;
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder *bottomCenter;
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder *bottomFill;
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder *bottomLeading;
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder *bottomTrailing;
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder *centerFill;
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder *centerLeading;
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder *centerTrailing;
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder *fillLeading;
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder *fillTrailing;
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder *fillCenter;
+
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withViewClass)(Class _Nonnull);
+
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(View *_Nonnull));
+
+
 - (nonnull LOKStackLayout *)build;
 
 @end

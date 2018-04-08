@@ -68,9 +68,7 @@
     collectionView.delegate = self.adapter;
     collectionView.dataSource = self.adapter;
 
-    LOKSizeLayoutBuilder *cellLayoutBuilder = [LOKSizeLayoutBuilder withSublayout:self.helloWorldLayout];
-    cellLayoutBuilder.width = self.view.bounds.size.width;
-    LOKSizeLayout *cellLayout = [cellLayoutBuilder build];
+    __auto_type cellLayout = [LOKSizeLayoutBuilder withSublayout:self.helloWorldLayout].withWidth(self.view.bounds.size.width).layout;
 
     NSArray *items = @[
                        cellLayout, cellLayout, cellLayout, cellLayout,
@@ -96,7 +94,7 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
 
-    id<LOKLayout> safeInsetLayout = [LOKInsetLayout insetBy:self.view.safeAreaInsets sublayout:self.helloWorldLayout];
+    id<LOKLayout> safeInsetLayout = [self.helloWorldLayout insettedBy:self.view.safeAreaInsets];
 
     LOKLayoutArrangement *arrangement = [LOKLayoutArrangement arrangeLayout:safeInsetLayout
                                                                       width:self.view.frame.size.width
@@ -106,26 +104,31 @@
 }
 
 + (id<LOKLayout>)makeHelloLayout {
-    LOKLabelLayoutBuilder *labelLayoutBuilderA = [LOKLabelLayoutBuilder withString:@"Hello"];
-    labelLayoutBuilderA.viewClass = MyLabelView.class;
-    labelLayoutBuilderA.configure = ^(UIView * _Nonnull label) {
+    __auto_type labelLayoutA =
+    [LOKLabelLayoutBuilder withString:@"Hello"]
+    .withViewClass([MyLabelView class])
+    .withConfig(^(UIView * _Nonnull label) {
         label.backgroundColor = UIColor.whiteColor;
-    };
-    LOKLabelLayout *labelLayoutA = [labelLayoutBuilderA build];
-    LOKLabelLayoutBuilder *labelLayoutBuilderB = [LOKLabelLayoutBuilder withString:@"world!"];
-    labelLayoutBuilderB.viewClass = MyLabelView.class;
-    labelLayoutBuilderB.configure = ^(UIView * _Nonnull label) {
+    })
+    .layout;
+
+    __auto_type labelLayoutB = [LOKLabelLayoutBuilder withString:@"world!"]
+    .withViewClass([MyLabelView class])
+    .withConfig(^(UIView * _Nonnull label) {
         label.backgroundColor = UIColor.whiteColor;
-    };
-    LOKLabelLayout *labelLayoutB = [labelLayoutBuilderB build];
-    LOKStackLayoutBuilder *stackLayoutBuilder = [LOKStackLayoutBuilder withSublayouts:@[labelLayoutA, labelLayoutB]];
-    stackLayoutBuilder.axis = LOKAxisHorizontal;
-    stackLayoutBuilder.spacing = 10;
-    LOKInsetLayoutBuilder *insetLayoutBuilder = [LOKInsetLayoutBuilder withInsets:UIEdgeInsetsMake(20, 20, 20, 20) around:[stackLayoutBuilder build]];
-    insetLayoutBuilder.alignment = LOKAlignment.fill;
-    insetLayoutBuilder.viewClass = LabelBackgroundView.class;
-    insetLayoutBuilder.configure = ^(UIView * _Nonnull view) { };
-    return [[RotationLayout alloc] initWithSublayout:[insetLayoutBuilder build]
+    })
+    .layout;
+
+    __auto_type layout = [LOKStackLayoutBuilder withSublayouts:@[labelLayoutA, labelLayoutB]]
+    .horizontal
+    .withSpacing(10)
+    .withInsets(UIEdgeInsetsMake(20, 20, 20, 20))
+    .fill
+    .withViewClass(LabelBackgroundView.class)
+    .withConfig(^(UIView * _Nonnull view) { })
+    .layout;
+
+    return [[RotationLayout alloc] initWithSublayout:layout
                                            alignment:LOKAlignment.center
                                          viewReuseId:nil];
 }

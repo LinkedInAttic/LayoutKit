@@ -22,6 +22,38 @@
 @property (nonatomic) CGFloat width;
 @property (nonatomic) CGFloat height;
 
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withWidth)(CGFloat);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withHeight)(CGFloat);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withMinWidth)(CGFloat);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withMinHeight)(CGFloat);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withMaxWidth)(CGFloat);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withMaxHeight)(CGFloat);
+
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder *center;
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder *fill;
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder *topCenter;
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder *topFill;
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder *topLeading;
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder *topTrailing;
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder *bottomCenter;
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder *bottomFill;
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder *bottomLeading;
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder *bottomTrailing;
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder *centerFill;
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder *centerLeading;
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder *centerTrailing;
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder *fillLeading;
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder *fillTrailing;
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder *fillCenter;
+
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withViewClass)(Class _Nonnull);
+
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(View *_Nonnull));
+
+
 - (nonnull LOKSizeLayout *)build;
 
 @end

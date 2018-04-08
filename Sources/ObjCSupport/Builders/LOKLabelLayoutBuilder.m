@@ -49,4 +49,140 @@
     }
 }
 
+- (LOKLabelLayoutBuilder * _Nonnull (^)(UIFont * _Nullable))withFont {
+    return ^LOKLabelLayoutBuilder *(UIFont * font){
+        self.font = font;
+        return self;
+    };
+}
+
+- (LOKLabelLayoutBuilder * _Nonnull (^)(NSInteger))withNumberOfLines {
+    return ^LOKLabelLayoutBuilder *(NSInteger numberOfLines){
+        self.numberOfLines = numberOfLines;
+        return self;
+    };
+}
+
+- (LOKLabelLayoutBuilder * _Nonnull (^)(CGFloat))withLineHeight {
+    return ^LOKLabelLayoutBuilder *(CGFloat lineHeight){
+        self.lineHeight = lineHeight;
+        return self;
+    };
+}
+
+- (LOKLabelLayoutBuilder *)center {
+    self.alignment = LOKAlignment.center;
+    return self;
+}
+
+- (LOKLabelLayoutBuilder *)fill {
+    self.alignment = LOKAlignment.fill;
+    return self;
+}
+
+- (LOKLabelLayoutBuilder *)topCenter {
+    self.alignment = LOKAlignment.topCenter;
+    return self;
+}
+
+- (LOKLabelLayoutBuilder *)topFill {
+    self.alignment = LOKAlignment.topFill;
+    return self;
+}
+
+- (LOKLabelLayoutBuilder *)topLeading {
+    self.alignment = LOKAlignment.topLeading;
+    return self;
+}
+
+- (LOKLabelLayoutBuilder *)topTrailing {
+    self.alignment = LOKAlignment.topTrailing;
+    return self;
+}
+
+- (LOKLabelLayoutBuilder *)bottomCenter {
+    self.alignment = LOKAlignment.bottomCenter;
+    return self;
+}
+
+- (LOKLabelLayoutBuilder *)bottomFill {
+    self.alignment = LOKAlignment.bottomFill;
+    return self;
+}
+
+- (LOKLabelLayoutBuilder *)bottomLeading {
+    self.alignment = LOKAlignment.bottomLeading;
+    return self;
+}
+
+- (LOKLabelLayoutBuilder *)bottomTrailing {
+    self.alignment = LOKAlignment.bottomTrailing;
+    return self;
+}
+
+- (LOKLabelLayoutBuilder *)centerFill {
+    self.alignment = LOKAlignment.centerFill;
+    return self;
+}
+
+- (LOKLabelLayoutBuilder *)centerLeading {
+    self.alignment = LOKAlignment.centerLeading;
+    return self;
+}
+
+- (LOKLabelLayoutBuilder *)centerTrailing {
+    self.alignment = LOKAlignment.centerTrailing;
+    return self;
+}
+
+- (LOKLabelLayoutBuilder *)fillLeading {
+    self.alignment = LOKAlignment.fillLeading;
+    return self;
+}
+
+- (LOKLabelLayoutBuilder *)fillTrailing {
+    self.alignment = LOKAlignment.fillTrailing;
+    return self;
+}
+
+- (LOKLabelLayoutBuilder *)fillCenter {
+    self.alignment = LOKAlignment.fillCenter;
+    return self;
+}
+
+- (LOKLabelLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))withAlignment {
+    return ^LOKLabelLayoutBuilder *(LOKAlignment * alignment){
+        self.alignment = alignment;
+        return self;
+    };
+}
+
+- (LOKLabelLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))withFlexibility {
+    return ^LOKLabelLayoutBuilder *(LOKFlexibility * flexibility){
+        self.flexibility = flexibility;
+        return self;
+    };
+}
+
+- (LOKLabelLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))withViewReuseId {
+    return ^LOKLabelLayoutBuilder *(NSString * viewReuseId){
+        self.viewReuseId = viewReuseId;
+        return self;
+    };
+}
+
+- (LOKLabelLayoutBuilder * _Nonnull (^)(Class _Nonnull))withViewClass {
+    return ^LOKLabelLayoutBuilder *(Class viewClass){
+        self.viewClass = viewClass;
+        return self;
+    };
+}
+
+- (LOKLabelLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(View *_Nonnull)))withConfig {
+    return ^LOKLabelLayoutBuilder *(void(^ _Nonnull config)(View *_Nonnull)){
+        self.configure = config;
+        return self;
+    };
+}
+
 @end

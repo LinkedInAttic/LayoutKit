@@ -42,4 +42,12 @@ open class LOKBaseLayout: NSObject, LOKLayout {
     public var viewReuseId: String? {
         return layout.viewReuseId
     }
+
+    public func insetted(by insets: UIEdgeInsets) -> LOKInsetLayout {
+        return LOKInsetLayout(insets: insets, sublayout: self)
+    }
+
+    public func insetted(by insets: EdgeInsets, alignment: LOKAlignment) -> LOKInsetLayout {
+        return LOKInsetLayoutBuilder.withInsets(insets, around: self).withAlignment(alignment).build()
+    }
 }

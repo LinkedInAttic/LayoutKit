@@ -30,4 +30,133 @@
                                            configure:self.configure];
 }
 
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(NSArray< id<LOKLayout> > * _Nullable))withOverlay {
+    return ^LOKOverlayLayoutBuilder *(NSArray< id<LOKLayout> > * _Nullable overlay){
+        self.overlay = overlay;
+        return self;
+    };
+}
+
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(NSArray< id<LOKLayout> > * _Nullable))withBackground {
+    return ^LOKOverlayLayoutBuilder *(NSArray< id<LOKLayout> > * _Nullable background){
+        self.background = background;
+        return self;
+    };
+}
+
+- (LOKOverlayLayoutBuilder *)center {
+    self.alignment = LOKAlignment.center;
+    return self;
+}
+
+- (LOKOverlayLayoutBuilder *)fill {
+    self.alignment = LOKAlignment.fill;
+    return self;
+}
+
+- (LOKOverlayLayoutBuilder *)topCenter {
+    self.alignment = LOKAlignment.topCenter;
+    return self;
+}
+
+- (LOKOverlayLayoutBuilder *)topFill {
+    self.alignment = LOKAlignment.topFill;
+    return self;
+}
+
+- (LOKOverlayLayoutBuilder *)topLeading {
+    self.alignment = LOKAlignment.topLeading;
+    return self;
+}
+
+- (LOKOverlayLayoutBuilder *)topTrailing {
+    self.alignment = LOKAlignment.topTrailing;
+    return self;
+}
+
+- (LOKOverlayLayoutBuilder *)bottomCenter {
+    self.alignment = LOKAlignment.bottomCenter;
+    return self;
+}
+
+- (LOKOverlayLayoutBuilder *)bottomFill {
+    self.alignment = LOKAlignment.bottomFill;
+    return self;
+}
+
+- (LOKOverlayLayoutBuilder *)bottomLeading {
+    self.alignment = LOKAlignment.bottomLeading;
+    return self;
+}
+
+- (LOKOverlayLayoutBuilder *)bottomTrailing {
+    self.alignment = LOKAlignment.bottomTrailing;
+    return self;
+}
+
+- (LOKOverlayLayoutBuilder *)centerFill {
+    self.alignment = LOKAlignment.centerFill;
+    return self;
+}
+
+- (LOKOverlayLayoutBuilder *)centerLeading {
+    self.alignment = LOKAlignment.centerLeading;
+    return self;
+}
+
+- (LOKOverlayLayoutBuilder *)centerTrailing {
+    self.alignment = LOKAlignment.centerTrailing;
+    return self;
+}
+
+- (LOKOverlayLayoutBuilder *)fillLeading {
+    self.alignment = LOKAlignment.fillLeading;
+    return self;
+}
+
+- (LOKOverlayLayoutBuilder *)fillTrailing {
+    self.alignment = LOKAlignment.fillTrailing;
+    return self;
+}
+
+- (LOKOverlayLayoutBuilder *)fillCenter {
+    self.alignment = LOKAlignment.fillCenter;
+    return self;
+}
+
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))withAlignment {
+    return ^LOKOverlayLayoutBuilder *(LOKAlignment * alignment){
+        self.alignment = alignment;
+        return self;
+    };
+}
+
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))withFlexibility {
+    return ^LOKOverlayLayoutBuilder *(LOKFlexibility * flexibility){
+        self.flexibility = flexibility;
+        return self;
+    };
+}
+
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))withViewReuseId {
+    return ^LOKOverlayLayoutBuilder *(NSString * viewReuseId){
+        self.viewReuseId = viewReuseId;
+        return self;
+    };
+}
+
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(Class _Nonnull))withViewClass {
+    return ^LOKOverlayLayoutBuilder *(Class viewClass){
+        self.viewClass = viewClass;
+        return self;
+    };
+}
+
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(View *_Nonnull)))withConfig {
+    return ^LOKOverlayLayoutBuilder *(void(^ _Nonnull config)(View *_Nonnull)){
+        self.configure = config;
+        return self;
+    };
+}
+
 @end

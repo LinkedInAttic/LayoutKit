@@ -7,6 +7,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 #import <Foundation/Foundation.h>
+#import <LayoutKitObjC/LayoutKitObjC.h>
 
 #import "RotationLayout.h"
 
@@ -57,5 +58,15 @@
                                                 maxSize:maxSize
                                              sublayouts:@[sublayoutMeasurement]];
 }
+
+- (LOKInsetLayout * _Nonnull)insettedBy:(UIEdgeInsets)insets {
+    return [LOKInsetLayout insetBy:insets sublayout:self];
+}
+
+
+- (LOKInsetLayout * _Nonnull)insettedBy:(UIEdgeInsets)insets alignment:(LOKAlignment * _Nonnull)alignment {
+    return [[LOKInsetLayoutBuilder withInsets:insets around:self].withAlignment(alignment) build];
+}
+
 
 @end

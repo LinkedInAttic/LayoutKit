@@ -16,6 +16,8 @@ import CoreGraphics
     @objc optional func configureView(_ view: View)
     @objc var flexibility: LOKFlexibility { get }
     @objc var viewReuseId: String? { get }
+    @objc func insetted(by insets: EdgeInsets) -> LOKInsetLayout
+    @objc func insetted(by insets: EdgeInsets, alignment: LOKAlignment) -> LOKInsetLayout
 }
 
 extension LOKLayout {
