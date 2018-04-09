@@ -201,6 +201,7 @@
 		0BD5F82C1DB43F9B00108688 /* ButtonLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD5F82B1DB43F9B00108688 /* ButtonLayoutTests.swift */; };
 		0BDDF95B1E25ACCE008B0A6F /* ReloadableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */; };
 		0BDDF95C1E25ACCE008B0A6F /* ReloadableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */; };
+		37BEBEF5207C25BF002BD761 /* LOKAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BEBEF3207C23B6002BD761 /* LOKAnimation.swift */; };
 		4468A31D1E46460B00341D07 /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4468A31C1E46460B00341D07 /* NSAttributedStringExtension.swift */; };
 		4468A31E1E464A3900341D07 /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4468A31C1E46460B00341D07 /* NSAttributedStringExtension.swift */; };
 		448CEC0F1E4E0CB500F8AD9E /* TextViewDefaultFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448CEC0E1E4E0CB500F8AD9E /* TextViewDefaultFont.swift */; };
@@ -473,6 +474,7 @@
 		0BD5F8281DB43B4500108688 /* ButtonLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonLayout.swift; sourceTree = "<group>"; };
 		0BD5F82B1DB43F9B00108688 /* ButtonLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonLayoutTests.swift; sourceTree = "<group>"; };
 		0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewTests.swift; sourceTree = "<group>"; };
+		37BEBEF3207C23B6002BD761 /* LOKAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKAnimation.swift; sourceTree = "<group>"; };
 		4468A31C1E46460B00341D07 /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
 		448CEC0E1E4E0CB500F8AD9E /* TextViewDefaultFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewDefaultFont.swift; sourceTree = "<group>"; };
 		44F968141E425F5D00392763 /* TextViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewLayout.swift; sourceTree = "<group>"; };
@@ -882,6 +884,7 @@
 				7E7B83DC2020F7830001E279 /* LOKSizeLayout.swift */,
 				7E7B83DE202101340001E279 /* LOKStackLayout.swift */,
 				7E233E66203130110012DD1E /* LOKTextViewLayout.swift */,
+				37BEBEF3207C23B6002BD761 /* LOKAnimation.swift */,
 			);
 			path = ObjCSupport;
 			sourceTree = "<group>";
@@ -1572,6 +1575,7 @@
 			files = (
 				7EECD0102053916C003DC4B1 /* StackLayout.swift in Sources */,
 				7EECD0112053916C003DC4B1 /* LOKLayoutArrangementSection.swift in Sources */,
+				37BEBEF5207C25BF002BD761 /* LOKAnimation.swift in Sources */,
 				7EECD0122053916C003DC4B1 /* LOKButtonLayoutBuilder.m in Sources */,
 				7EECD0132053916C003DC4B1 /* LayoutAdapterTableView.swift in Sources */,
 				7EECD0142053916C003DC4B1 /* AxisPoint.swift in Sources */,
