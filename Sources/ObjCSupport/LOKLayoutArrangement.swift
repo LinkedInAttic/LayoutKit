@@ -39,6 +39,16 @@ import CoreGraphics
         return layoutArrangement.makeViews()
     }
 
+    @objc(prepareAnimationForView:direction:)
+    public func prepareAnimation(for view: View, direction: UserInterfaceLayoutDirection) -> LOKAnimation {
+        return LOKAnimation(animation: layoutArrangement.prepareAnimation(for: view, direction: direction))
+    }
+
+    @objc(prepareAnimationForView:)
+    public func prepareAnimation(for view: View) -> LOKAnimation {
+        return prepareAnimation(for: view, direction: .leftToRight)
+    }
+
     @objc public var frame: CGRect {
         return layoutArrangement.frame
     }
