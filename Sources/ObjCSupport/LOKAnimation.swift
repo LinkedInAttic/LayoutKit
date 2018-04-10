@@ -7,17 +7,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 @objc open class LOKAnimation: NSObject {
-    let animation: Animation
-
-    let arrangement: LayoutArrangement
-    let rootView: View
-    let direction: UserInterfaceLayoutDirection
+    private let animation: Animation
 
     init(animation: Animation) {
         self.animation = animation
-        self.arrangement = animation.arrangement
-        self.rootView = animation.rootView
-        self.direction = animation.direction
     }
 
     @objc public func apply() {
