@@ -7,7 +7,7 @@ This page is an overview of how to build UIs using LayoutKit.
 LayoutKit provides some basic layouts:
 
 - [LabelLayout](https://github.com/linkedin/LayoutKit/blob/master/Sources/Layouts/LabelLayout.swift): A layout for a UILabel.
-- [ButtonLayout](https://github.com/linkedin/LayoutKit/blob/master/Sources/Layouts/LabelLayout.swift): A layout for a UIButton.
+- [ButtonLayout](https://github.com/linkedin/LayoutKit/blob/master/Sources/Layouts/ButtonLayout.swift): A layout for a UIButton.
 - [SizeLayout](https://github.com/linkedin/LayoutKit/blob/master/Sources/Layouts/SizeLayout.swift): A layout for a specific size (e.g. UIImageView).
 - [InsetLayout](https://github.com/linkedin/LayoutKit/blob/master/Sources/Layouts/InsetLayout.swift): A layout that insets its child layout (i.e. padding).
 - [StackLayout](https://github.com/linkedin/LayoutKit/blob/master/Sources/Layouts/StackLayout.swift): A layout that stacks its child layouts horizontally or vertically.
