@@ -94,7 +94,7 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
 
-    id<LOKLayout> safeInsetLayout = [self.helloWorldLayout insettedBy:self.view.safeAreaInsets];
+    id<LOKLayout> safeInsetLayout = [LOKInsetLayout insetBy:self.view.safeAreaInsets sublayout:self.helloWorldLayout];
 
     LOKLayoutArrangement *arrangement = [LOKLayoutArrangement arrangeLayout:safeInsetLayout
                                                                       width:self.view.frame.size.width

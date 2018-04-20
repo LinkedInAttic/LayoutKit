@@ -59,14 +59,4 @@
                                              sublayouts:@[sublayoutMeasurement]];
 }
 
-- (LOKInsetLayout * _Nonnull)insettedBy:(UIEdgeInsets)insets {
-    return [LOKInsetLayout insetBy:insets sublayout:self];
-}
-
-
-- (LOKInsetLayout * _Nonnull)insettedBy:(UIEdgeInsets)insets alignment:(LOKAlignment * _Nonnull)alignment {
-    return [[LOKInsetLayoutBuilder withInsets:insets around:self].withAlignment(alignment) build];
-}
-
-
 @end
