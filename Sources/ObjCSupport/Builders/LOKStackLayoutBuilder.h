@@ -34,9 +34,7 @@ typedef NS_ENUM(NSInteger, LOKAxis) {
 @property (nonatomic) CGFloat spacing;
 @property (nonatomic) LOKStackLayoutDistribution distribution;
 
-@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder *horizontal;
-@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder *vertical;
-
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withAxis)(LOKAxis);
 @property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withSpacing)(CGFloat);
 @property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withDistribution)(LOKStackLayoutDistribution);
 

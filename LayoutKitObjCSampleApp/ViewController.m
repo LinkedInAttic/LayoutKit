@@ -120,7 +120,7 @@
     .layout;
 
     __auto_type layout = [LOKStackLayoutBuilder withSublayouts:@[labelLayoutA, labelLayoutB]]
-    .horizontal
+    .withAxis(LOKAxisHorizontal)
     .withSpacing(10)
     .withInsets(UIEdgeInsetsMake(20, 20, 20, 20))
     .withAlignment(LOKAlignment.fill)

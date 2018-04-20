@@ -31,14 +31,11 @@
                                       configure:self.configure];
 }
 
-- (LOKStackLayoutBuilder *)horizontal {
-    self.axis = LOKAxisHorizontal;
-    return self;
-}
-
-- (LOKStackLayoutBuilder *)vertical {
-    self.axis = LOKAxisVertical;
-    return self;
+- (LOKStackLayoutBuilder * _Nonnull (^)(LOKAxis))withAxis {
+    return ^LOKStackLayoutBuilder *(LOKAxis axis){
+        self.axis = axis;
+        return self;
+    };
 }
 
 - (LOKStackLayoutBuilder * _Nonnull (^)(CGFloat))withSpacing {
