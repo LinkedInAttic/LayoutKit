@@ -21,23 +21,6 @@
 @property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^withOverlay)(NSArray< id<LOKLayout> > * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^withBackground)(NSArray< id<LOKLayout> > * _Nullable);
 
-@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder *center;
-@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder *fill;
-@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder *topCenter;
-@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder *topFill;
-@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder *topLeading;
-@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder *topTrailing;
-@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder *bottomCenter;
-@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder *bottomFill;
-@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder *bottomLeading;
-@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder *bottomTrailing;
-@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder *centerFill;
-@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder *centerLeading;
-@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder *centerTrailing;
-@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder *fillLeading;
-@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder *fillTrailing;
-@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder *fillCenter;
-
 @property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nonnull);
 @property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nonnull);
 @property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nonnull);

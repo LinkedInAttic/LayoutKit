@@ -25,23 +25,6 @@
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withNumberOfLines)(NSInteger);
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withLineHeight)(CGFloat);
 
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder *center;
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder *fill;
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder *topCenter;
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder *topFill;
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder *topLeading;
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder *topTrailing;
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder *bottomCenter;
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder *bottomFill;
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder *bottomLeading;
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder *bottomTrailing;
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder *centerFill;
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder *centerLeading;
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder *centerTrailing;
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder *fillLeading;
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder *fillTrailing;
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder *fillCenter;
-
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nonnull);
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nonnull);
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nonnull);

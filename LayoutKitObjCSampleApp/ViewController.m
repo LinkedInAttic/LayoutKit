@@ -123,7 +123,7 @@
     .horizontal
     .withSpacing(10)
     .withInsets(UIEdgeInsetsMake(20, 20, 20, 20))
-    .fill
+    .withAlignment(LOKAlignment.fill)
     .withViewClass(LabelBackgroundView.class)
     .withConfig(^(UIView * _Nonnull view) { })
     .layout;

@@ -25,23 +25,6 @@
 @property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withTextContainerInset)(UIEdgeInsets);
 @property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withLineFragmentPadding)(CGFloat);
 
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder *center;
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder *fill;
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder *topCenter;
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder *topFill;
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder *topLeading;
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder *topTrailing;
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder *bottomCenter;
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder *bottomFill;
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder *bottomLeading;
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder *bottomTrailing;
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder *centerFill;
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder *centerLeading;
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder *centerTrailing;
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder *fillLeading;
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder *fillTrailing;
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder *fillCenter;
-
 @property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nonnull);
 @property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nonnull);
 @property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nonnull);
