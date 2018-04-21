@@ -30,4 +30,53 @@
                                            configure:self.configure];
 }
 
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(NSArray< id<LOKLayout> > * _Nullable))withOverlay {
+    return ^LOKOverlayLayoutBuilder *(NSArray< id<LOKLayout> > * _Nullable overlay){
+        self.overlay = overlay;
+        return self;
+    };
+}
+
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(NSArray< id<LOKLayout> > * _Nullable))withBackground {
+    return ^LOKOverlayLayoutBuilder *(NSArray< id<LOKLayout> > * _Nullable background){
+        self.background = background;
+        return self;
+    };
+}
+
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))withAlignment {
+    return ^LOKOverlayLayoutBuilder *(LOKAlignment * alignment){
+        self.alignment = alignment;
+        return self;
+    };
+}
+
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))withFlexibility {
+    return ^LOKOverlayLayoutBuilder *(LOKFlexibility * flexibility){
+        self.flexibility = flexibility;
+        return self;
+    };
+}
+
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))withViewReuseId {
+    return ^LOKOverlayLayoutBuilder *(NSString * viewReuseId){
+        self.viewReuseId = viewReuseId;
+        return self;
+    };
+}
+
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(Class _Nonnull))withViewClass {
+    return ^LOKOverlayLayoutBuilder *(Class viewClass){
+        self.viewClass = viewClass;
+        return self;
+    };
+}
+
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(View *_Nonnull)))withConfig {
+    return ^LOKOverlayLayoutBuilder *(void(^ _Nonnull config)(View *_Nonnull)){
+        self.configure = config;
+        return self;
+    };
+}
+
 @end

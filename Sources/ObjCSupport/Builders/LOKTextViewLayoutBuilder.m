@@ -49,4 +49,60 @@
     }
 }
 
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(UIFont * _Nullable))withFont {
+    return ^LOKTextViewLayoutBuilder *(UIFont * _Nullable font){
+        self.font = font;
+        return self;
+    };
+}
+
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(UIEdgeInsets))withTextContainerInset {
+    return ^LOKTextViewLayoutBuilder *(UIEdgeInsets textContainerInset){
+        self.textContainerInset = textContainerInset;
+        return self;
+    };
+}
+
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(CGFloat))withLineFragmentPadding {
+    return ^LOKTextViewLayoutBuilder *(CGFloat lineFragmentPadding){
+        self.lineFragmentPadding = lineFragmentPadding;
+        return self;
+    };
+}
+
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))withAlignment {
+    return ^LOKTextViewLayoutBuilder *(LOKAlignment * alignment){
+        self.alignment = alignment;
+        return self;
+    };
+}
+
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))withFlexibility {
+    return ^LOKTextViewLayoutBuilder *(LOKFlexibility * flexibility){
+        self.flexibility = flexibility;
+        return self;
+    };
+}
+
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))withViewReuseId {
+    return ^LOKTextViewLayoutBuilder *(NSString * viewReuseId){
+        self.viewReuseId = viewReuseId;
+        return self;
+    };
+}
+
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(Class _Nonnull))withViewClass {
+    return ^LOKTextViewLayoutBuilder *(Class viewClass){
+        self.viewClass = viewClass;
+        return self;
+    };
+}
+
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(View *_Nonnull)))withConfig {
+    return ^LOKTextViewLayoutBuilder *(void(^ _Nonnull config)(View *_Nonnull)){
+        self.configure = config;
+        return self;
+    };
+}
+
 @end

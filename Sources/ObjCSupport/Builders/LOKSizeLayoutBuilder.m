@@ -55,4 +55,81 @@
                                          configure:self.configure];
 }
 
+- (LOKSizeLayoutBuilder * _Nonnull (^)(CGFloat))withWidth {
+    return ^LOKSizeLayoutBuilder *(CGFloat width){
+        self.width = width;
+        return self;
+    };
+}
+
+- (LOKSizeLayoutBuilder * _Nonnull (^)(CGFloat))withHeight {
+    return ^LOKSizeLayoutBuilder *(CGFloat height){
+        self.height = height;
+        return self;
+    };
+}
+
+- (LOKSizeLayoutBuilder * _Nonnull (^)(CGFloat))withMinWidth {
+    return ^LOKSizeLayoutBuilder *(CGFloat minWidth){
+        self.minWidth = minWidth;
+        return self;
+    };
+}
+
+- (LOKSizeLayoutBuilder * _Nonnull (^)(CGFloat))withMinHeight {
+    return ^LOKSizeLayoutBuilder *(CGFloat minHeight){
+        self.minHeight = minHeight;
+        return self;
+    };
+}
+
+- (LOKSizeLayoutBuilder * _Nonnull (^)(CGFloat))withMaxWidth {
+    return ^LOKSizeLayoutBuilder *(CGFloat maxWidth){
+        self.maxWidth = maxWidth;
+        return self;
+    };
+}
+
+- (LOKSizeLayoutBuilder * _Nonnull (^)(CGFloat))withMaxHeight {
+    return ^LOKSizeLayoutBuilder *(CGFloat maxHeight){
+        self.maxHeight = maxHeight;
+        return self;
+    };
+}
+
+- (LOKSizeLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))withAlignment {
+    return ^LOKSizeLayoutBuilder *(LOKAlignment * alignment){
+        self.alignment = alignment;
+        return self;
+    };
+}
+
+- (LOKSizeLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))withFlexibility {
+    return ^LOKSizeLayoutBuilder *(LOKFlexibility * flexibility){
+        self.flexibility = flexibility;
+        return self;
+    };
+}
+
+- (LOKSizeLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))withViewReuseId {
+    return ^LOKSizeLayoutBuilder *(NSString * viewReuseId){
+        self.viewReuseId = viewReuseId;
+        return self;
+    };
+}
+
+- (LOKSizeLayoutBuilder * _Nonnull (^)(Class _Nonnull))withViewClass {
+    return ^LOKSizeLayoutBuilder *(Class viewClass){
+        self.viewClass = viewClass;
+        return self;
+    };
+}
+
+- (LOKSizeLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(View *_Nonnull)))withConfig {
+    return ^LOKSizeLayoutBuilder *(void(^ _Nonnull config)(View *_Nonnull)){
+        self.configure = config;
+        return self;
+    };
+}
+
 @end

@@ -21,6 +21,17 @@
 @property (nonatomic) UIEdgeInsets textContainerInset;
 @property (nonatomic) CGFloat lineFragmentPadding;
 
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withFont)(UIFont * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withTextContainerInset)(UIEdgeInsets);
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withLineFragmentPadding)(CGFloat);
+
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withViewClass)(Class _Nonnull);
+
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(View *_Nonnull));
+
 - (nonnull LOKTextViewLayout *)build;
 
 @end

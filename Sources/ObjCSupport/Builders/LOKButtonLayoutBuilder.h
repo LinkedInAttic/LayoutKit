@@ -30,6 +30,19 @@ typedef NS_ENUM(NSInteger, LOKButtonLayoutType) {
 @property (nonatomic) CGSize imageSize;
 @property (nonatomic, nullable) NSValue *contentEdgeInsets;
 
+@property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^withType)(LOKButtonLayoutType);
+@property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^withFont)(UIFont * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^withImage)(UIImage * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^withImageSize)(CGSize);
+@property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^withContentEdgeInsets)(NSValue * _Nullable);
+
+@property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^withViewClass)(Class _Nonnull);
+
+@property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(View *_Nonnull));
+
 - (nonnull LOKButtonLayout *)build;
 
 @end

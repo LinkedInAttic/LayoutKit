@@ -7,11 +7,23 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 #import "LOKBaseLayoutBuilder.h"
+#import "LOKInsetLayoutBuilder.h"
 
 @implementation LOKBaseLayoutBuilder
 
 - (id<LOKLayout>)build {
+    NSAssert(NO, @"This method is expected to be overridden by a superclass.");
     return nil;
+}
+
+- (id<LOKLayout>)layout {
+    return [self build];
+}
+
+- (LOKInsetLayoutBuilder * _Nonnull (^)(EdgeInsets))withInsets {
+    return ^LOKInsetLayoutBuilder *(EdgeInsets insets){
+        return [LOKInsetLayoutBuilder withInsets:insets around:[self build]];
+    };
 }
 
 @end

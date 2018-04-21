@@ -22,6 +22,21 @@
 @property (nonatomic) CGFloat width;
 @property (nonatomic) CGFloat height;
 
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withWidth)(CGFloat);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withHeight)(CGFloat);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withMinWidth)(CGFloat);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withMinHeight)(CGFloat);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withMaxWidth)(CGFloat);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withMaxHeight)(CGFloat);
+
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withViewClass)(Class _Nonnull);
+
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(View *_Nonnull));
+
+
 - (nonnull LOKSizeLayout *)build;
 
 @end

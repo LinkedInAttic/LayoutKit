@@ -31,4 +31,60 @@
                                       configure:self.configure];
 }
 
+- (LOKStackLayoutBuilder * _Nonnull (^)(LOKAxis))withAxis {
+    return ^LOKStackLayoutBuilder *(LOKAxis axis){
+        self.axis = axis;
+        return self;
+    };
+}
+
+- (LOKStackLayoutBuilder * _Nonnull (^)(CGFloat))withSpacing {
+    return ^LOKStackLayoutBuilder *(CGFloat spacing){
+        self.spacing = spacing;
+        return self;
+    };
+}
+
+- (LOKStackLayoutBuilder * _Nonnull (^)(LOKStackLayoutDistribution))withDistribution {
+    return ^LOKStackLayoutBuilder *(LOKStackLayoutDistribution distribution){
+        self.distribution = distribution;
+        return self;
+    };
+}
+
+- (LOKStackLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))withAlignment {
+    return ^LOKStackLayoutBuilder *(LOKAlignment * alignment){
+        self.alignment = alignment;
+        return self;
+    };
+}
+
+- (LOKStackLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))withFlexibility {
+    return ^LOKStackLayoutBuilder *(LOKFlexibility * flexibility){
+        self.flexibility = flexibility;
+        return self;
+    };
+}
+
+- (LOKStackLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))withViewReuseId {
+    return ^LOKStackLayoutBuilder *(NSString * viewReuseId){
+        self.viewReuseId = viewReuseId;
+        return self;
+    };
+}
+
+- (LOKStackLayoutBuilder * _Nonnull (^)(Class _Nonnull))withViewClass {
+    return ^LOKStackLayoutBuilder *(Class viewClass){
+        self.viewClass = viewClass;
+        return self;
+    };
+}
+
+- (LOKStackLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(View *_Nonnull)))withConfig {
+    return ^LOKStackLayoutBuilder *(void(^ _Nonnull config)(View *_Nonnull)){
+        self.configure = config;
+        return self;
+    };
+}
+
 @end

@@ -14,10 +14,8 @@
 
 + (nonnull instancetype)withInsets:(EdgeInsets)insets around:(nonnull id<LOKLayout>)sublayout {
     LOKInsetLayoutBuilder *builder = [[self alloc] init];
-    if (builder) {
-        builder.insets = insets;
-        builder.sublayout = sublayout;
-    }
+    builder.insets = insets;
+    builder.sublayout = sublayout;
     return builder;
 }
 
@@ -28,6 +26,41 @@
                                         viewClass:self.viewClass
                                         sublayout:self.sublayout
                                         configure:self.configure];
+}
+
+- (LOKInsetLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))withAlignment {
+    return ^LOKInsetLayoutBuilder *(LOKAlignment * alignment){
+        self.alignment = alignment;
+        return self;
+    };
+}
+
+- (LOKInsetLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))withFlexibility {
+    return ^LOKInsetLayoutBuilder *(LOKFlexibility * flexibility){
+        self.flexibility = flexibility;
+        return self;
+    };
+}
+
+- (LOKInsetLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))withViewReuseId {
+    return ^LOKInsetLayoutBuilder *(NSString * viewReuseId){
+        self.viewReuseId = viewReuseId;
+        return self;
+    };
+}
+
+- (LOKInsetLayoutBuilder * _Nonnull (^)(Class _Nonnull))withViewClass {
+    return ^LOKInsetLayoutBuilder *(Class viewClass){
+        self.viewClass = viewClass;
+        return self;
+    };
+}
+
+- (LOKInsetLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(View *_Nonnull)))withConfig {
+    return ^LOKInsetLayoutBuilder *(void(^ _Nonnull config)(View *_Nonnull)){
+        self.configure = config;
+        return self;
+    };
 }
 
 @end

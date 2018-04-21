@@ -45,4 +45,3 @@ class WrappedLayout: LOKLayout {
         self.layout = layout
     }
 }
-

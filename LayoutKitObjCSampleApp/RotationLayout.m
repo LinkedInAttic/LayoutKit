@@ -7,6 +7,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 #import <Foundation/Foundation.h>
+#import <LayoutKitObjC/LayoutKitObjC.h>
 
 #import "RotationLayout.h"
 

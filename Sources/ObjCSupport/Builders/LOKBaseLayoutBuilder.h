@@ -23,6 +23,7 @@ typedef NSView View;
 @class LOKAlignment;
 @class LOKFlexibility;
 @protocol LOKLayout;
+@class LOKInsetLayoutBuilder;
 
 @interface LOKBaseLayoutBuilder : NSObject
 
@@ -33,5 +34,9 @@ typedef NSView View;
 @property (nonatomic, nullable) void (^ configure)(View * _Nonnull);
 
 - (nonnull id<LOKLayout>)build;
+
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withInsets)(EdgeInsets);
+
+@property (nonatomic, nonnull) id<LOKLayout> layout;
 
 @end

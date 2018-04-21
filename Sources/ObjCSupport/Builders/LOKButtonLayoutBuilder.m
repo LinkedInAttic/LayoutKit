@@ -32,4 +32,74 @@
                                           config:self.configure];
 }
 
+- (LOKButtonLayoutBuilder * _Nonnull (^)(LOKButtonLayoutType))withType {
+    return ^LOKButtonLayoutBuilder *(LOKButtonLayoutType type){
+        self.type = type;
+        return self;
+    };
+}
+
+- (LOKButtonLayoutBuilder * _Nonnull (^)(UIFont * _Nullable))withFont {
+    return ^LOKButtonLayoutBuilder *(UIFont * font){
+        self.font = font;
+        return self;
+    };
+}
+
+- (LOKButtonLayoutBuilder * _Nonnull (^)(UIImage * _Nullable))withImage {
+    return ^LOKButtonLayoutBuilder *(UIImage * image){
+        self.image = image;
+        return self;
+    };
+}
+
+- (LOKButtonLayoutBuilder * _Nonnull (^)(CGSize))withImageSize {
+    return ^LOKButtonLayoutBuilder *(CGSize imageSize){
+        self.imageSize = imageSize;
+        return self;
+    };
+}
+
+- (LOKButtonLayoutBuilder * _Nonnull (^)(NSValue * _Nullable))withContentEdgeInsets {
+    return ^LOKButtonLayoutBuilder *(NSValue * _Nullable contentEdgeInsets){
+        self.contentEdgeInsets = contentEdgeInsets;
+        return self;
+    };
+}
+
+- (LOKButtonLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))withAlignment {
+    return ^LOKButtonLayoutBuilder *(LOKAlignment * alignment){
+        self.alignment = alignment;
+        return self;
+    };
+}
+
+- (LOKButtonLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))withFlexibility {
+    return ^LOKButtonLayoutBuilder *(LOKFlexibility * flexibility){
+        self.flexibility = flexibility;
+        return self;
+    };
+}
+
+- (LOKButtonLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))withViewReuseId {
+    return ^LOKButtonLayoutBuilder *(NSString * viewReuseId){
+        self.viewReuseId = viewReuseId;
+        return self;
+    };
+}
+
+- (LOKButtonLayoutBuilder * _Nonnull (^)(Class _Nonnull))withViewClass {
+    return ^LOKButtonLayoutBuilder *(Class viewClass){
+        self.viewClass = viewClass;
+        return self;
+    };
+}
+
+- (LOKButtonLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(View *_Nonnull)))withConfig {
+    return ^LOKButtonLayoutBuilder *(void(^ _Nonnull config)(View *_Nonnull)){
+        self.configure = config;
+        return self;
+    };
+}
+
 @end

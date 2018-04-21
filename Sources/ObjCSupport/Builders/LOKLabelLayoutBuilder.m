@@ -49,4 +49,60 @@
     }
 }
 
+- (LOKLabelLayoutBuilder * _Nonnull (^)(UIFont * _Nullable))withFont {
+    return ^LOKLabelLayoutBuilder *(UIFont * font){
+        self.font = font;
+        return self;
+    };
+}
+
+- (LOKLabelLayoutBuilder * _Nonnull (^)(NSInteger))withNumberOfLines {
+    return ^LOKLabelLayoutBuilder *(NSInteger numberOfLines){
+        self.numberOfLines = numberOfLines;
+        return self;
+    };
+}
+
+- (LOKLabelLayoutBuilder * _Nonnull (^)(CGFloat))withLineHeight {
+    return ^LOKLabelLayoutBuilder *(CGFloat lineHeight){
+        self.lineHeight = lineHeight;
+        return self;
+    };
+}
+
+- (LOKLabelLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))withAlignment {
+    return ^LOKLabelLayoutBuilder *(LOKAlignment * alignment){
+        self.alignment = alignment;
+        return self;
+    };
+}
+
+- (LOKLabelLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))withFlexibility {
+    return ^LOKLabelLayoutBuilder *(LOKFlexibility * flexibility){
+        self.flexibility = flexibility;
+        return self;
+    };
+}
+
+- (LOKLabelLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))withViewReuseId {
+    return ^LOKLabelLayoutBuilder *(NSString * viewReuseId){
+        self.viewReuseId = viewReuseId;
+        return self;
+    };
+}
+
+- (LOKLabelLayoutBuilder * _Nonnull (^)(Class _Nonnull))withViewClass {
+    return ^LOKLabelLayoutBuilder *(Class viewClass){
+        self.viewClass = viewClass;
+        return self;
+    };
+}
+
+- (LOKLabelLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(View *_Nonnull)))withConfig {
+    return ^LOKLabelLayoutBuilder *(void(^ _Nonnull config)(View *_Nonnull)){
+        self.configure = config;
+        return self;
+    };
+}
+
 @end
