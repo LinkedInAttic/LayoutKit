@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension CGFloat {
+public extension CGFloat {
 
     /**
      Returns the current float rounded up to the nearest fraction of a pixel
