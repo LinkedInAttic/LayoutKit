@@ -98,7 +98,7 @@
     };
 }
 
-- (LOKTextViewLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(View *_Nonnull)))withConfig {
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(UITextView *_Nonnull)))withConfig {
     return ^LOKTextViewLayoutBuilder *(void(^ _Nonnull config)(View *_Nonnull)){
         self.configure = config;
         return self;
