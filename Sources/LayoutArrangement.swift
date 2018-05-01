@@ -173,7 +173,7 @@ extension View {
     }
 }
 
-fileprivate extension CGRect {
+public extension CGRect {
     
     /**
      Returns an integral version of the rect dependant on the screen density scale
