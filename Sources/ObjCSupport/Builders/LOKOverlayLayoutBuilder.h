@@ -17,6 +17,7 @@
 @property (nonatomic, nonnull) id<LOKLayout> primary;
 @property (nonatomic, nonnull) NSArray< id<LOKLayout> > *overlay;
 @property (nonatomic, nonnull) NSArray< id<LOKLayout> > *background;
+@property (nonatomic, nullable) void (^ configure)(View * _Nonnull);
 
 @property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^withOverlay)(NSArray< id<LOKLayout> > * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^withBackground)(NSArray< id<LOKLayout> > * _Nullable);

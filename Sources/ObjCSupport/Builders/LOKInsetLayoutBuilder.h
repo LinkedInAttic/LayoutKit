@@ -16,6 +16,7 @@
 
 @property (nonatomic) EdgeInsets insets;
 @property (nonatomic, nonnull) id<LOKLayout> sublayout;
+@property (nonatomic, nullable) void (^ configure)(View * _Nonnull);
 
 @property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nonnull);
 @property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nonnull);

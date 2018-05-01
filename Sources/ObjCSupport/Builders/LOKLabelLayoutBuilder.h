@@ -20,6 +20,7 @@
 @property (nonatomic, nullable) UIFont *font;
 @property (nonatomic) NSInteger numberOfLines;
 @property (nonatomic) CGFloat lineHeight;
+@property (nonatomic, nullable) void (^ configure)(View * _Nonnull);
 
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withFont)(UIFont * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withNumberOfLines)(NSInteger);
