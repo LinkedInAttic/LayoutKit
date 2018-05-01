@@ -99,7 +99,7 @@
 }
 
 - (LOKLabelLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(UILabel *_Nonnull)))withConfig {
-    return ^LOKLabelLayoutBuilder *(void(^ _Nonnull config)(View *_Nonnull)){
+    return ^LOKLabelLayoutBuilder *(void(^ _Nonnull config)(UILabel *_Nonnull)){
         self.configure = config;
         return self;
     };
