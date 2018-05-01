@@ -31,7 +31,6 @@ typedef NSView View;
 @property (nonatomic, nullable) LOKFlexibility *flexibility;
 @property (nonatomic, nullable) NSString *viewReuseId;
 @property (nonatomic, nullable) Class viewClass;
-@property (nonatomic, nullable) void (^ configure)(View * _Nonnull);
 
 - (nonnull id<LOKLayout>)build;
 

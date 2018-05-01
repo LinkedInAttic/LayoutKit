@@ -107,14 +107,15 @@
     __auto_type labelLayoutA =
     [LOKLabelLayoutBuilder withString:@"Hello"]
     .withViewClass([MyLabelView class])
-    .withConfig(^(UIView * _Nonnull label) {
+    .withConfig(^(UILabel * _Nonnull label) {
         label.backgroundColor = UIColor.whiteColor;
     })
     .layout;
 
     __auto_type labelLayoutB = [LOKLabelLayoutBuilder withString:@"world!"]
     .withViewClass([MyLabelView class])
-    .withConfig(^(UIView * _Nonnull label) {
+    .withConfig(^(UILabel * _Nonnull label) {
+        label.textColor = UIColor.blueColor;
         label.backgroundColor = UIColor.whiteColor;
     })
     .layout;

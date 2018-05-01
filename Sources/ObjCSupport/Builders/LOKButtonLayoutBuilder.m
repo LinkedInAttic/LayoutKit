@@ -95,8 +95,8 @@
     };
 }
 
-- (LOKButtonLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(View *_Nonnull)))withConfig {
-    return ^LOKButtonLayoutBuilder *(void(^ _Nonnull config)(View *_Nonnull)){
+- (LOKButtonLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(UIButton *_Nonnull)))withConfig {
+    return ^LOKButtonLayoutBuilder *(void(^ _Nonnull config)(UIButton *_Nonnull)){
         self.configure = config;
         return self;
     };

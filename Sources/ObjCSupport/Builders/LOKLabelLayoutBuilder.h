@@ -20,6 +20,7 @@
 @property (nonatomic, nullable) UIFont *font;
 @property (nonatomic) NSInteger numberOfLines;
 @property (nonatomic) CGFloat lineHeight;
+@property (nonatomic, nullable) void (^ configure)(UILabel * _Nonnull);
 
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withFont)(UIFont * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withNumberOfLines)(NSInteger);
@@ -30,7 +31,7 @@
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nonnull);
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withViewClass)(Class _Nonnull);
 
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(View *_Nonnull));
+@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(UILabel *_Nonnull));
 
 - (nonnull LOKLabelLayout *)build;
 

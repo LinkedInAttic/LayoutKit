@@ -21,6 +21,7 @@
 @property (nonatomic) CGFloat maxHeight;
 @property (nonatomic) CGFloat width;
 @property (nonatomic) CGFloat height;
+@property (nonatomic, nullable) void (^ configure)(View * _Nonnull);
 
 @property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withWidth)(CGFloat);
 @property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withHeight)(CGFloat);

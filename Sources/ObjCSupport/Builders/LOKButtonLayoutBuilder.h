@@ -29,6 +29,7 @@ typedef NS_ENUM(NSInteger, LOKButtonLayoutType) {
 @property (nonatomic, nullable) UIImage *image;
 @property (nonatomic) CGSize imageSize;
 @property (nonatomic, nullable) NSValue *contentEdgeInsets;
+@property (nonatomic, nullable) void (^ configure)(UIButton * _Nonnull);
 
 @property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^withType)(LOKButtonLayoutType);
 @property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^withFont)(UIFont * _Nullable);
@@ -41,7 +42,7 @@ typedef NS_ENUM(NSInteger, LOKButtonLayoutType) {
 @property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nonnull);
 @property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^withViewClass)(Class _Nonnull);
 
-@property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(View *_Nonnull));
+@property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(UIButton *_Nonnull));
 
 - (nonnull LOKButtonLayout *)build;
 

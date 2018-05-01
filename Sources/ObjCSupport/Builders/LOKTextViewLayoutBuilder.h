@@ -20,6 +20,8 @@
 @property (nonatomic, nullable) UIFont *font;
 @property (nonatomic) UIEdgeInsets textContainerInset;
 @property (nonatomic) CGFloat lineFragmentPadding;
+@property (nonatomic, nullable) void (^ configure)(UITextView * _Nonnull);
+
 
 @property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withFont)(UIFont * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withTextContainerInset)(UIEdgeInsets);
@@ -30,7 +32,7 @@
 @property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nonnull);
 @property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withViewClass)(Class _Nonnull);
 
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(View *_Nonnull));
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(UITextView *_Nonnull));
 
 - (nonnull LOKTextViewLayout *)build;
 
