@@ -30,10 +30,10 @@
 @property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withMaxWidth)(CGFloat);
 @property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withMaxHeight)(CGFloat);
 
-@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nonnull);
-@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nonnull);
-@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nonnull);
-@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withViewClass)(Class _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withViewClass)(Class _Nullable);
 
 @property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(View *_Nonnull));
 
