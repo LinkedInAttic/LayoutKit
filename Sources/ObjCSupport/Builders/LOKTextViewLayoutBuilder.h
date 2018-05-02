@@ -27,10 +27,10 @@
 @property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withTextContainerInset)(UIEdgeInsets);
 @property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withLineFragmentPadding)(CGFloat);
 
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nonnull);
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nonnull);
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nonnull);
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withViewClass)(Class _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withViewClass)(Class _Nullable);
 
 @property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(UITextView *_Nonnull));
 

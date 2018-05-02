@@ -39,10 +39,10 @@ typedef NS_ENUM(NSInteger, LOKAxis) {
 @property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withSpacing)(CGFloat);
 @property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withDistribution)(LOKStackLayoutDistribution);
 
-@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nonnull);
-@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nonnull);
-@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nonnull);
-@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withViewClass)(Class _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withViewClass)(Class _Nullable);
 
 @property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(View *_Nonnull));
 

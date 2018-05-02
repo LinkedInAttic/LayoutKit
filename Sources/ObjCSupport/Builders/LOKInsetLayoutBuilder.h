@@ -18,10 +18,10 @@
 @property (nonatomic, nonnull) id<LOKLayout> sublayout;
 @property (nonatomic, nullable) void (^ configure)(View * _Nonnull);
 
-@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nonnull);
-@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nonnull);
-@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nonnull);
-@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withViewClass)(Class _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withViewClass)(Class _Nullable);
 
 @property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(View *_Nonnull));
 
