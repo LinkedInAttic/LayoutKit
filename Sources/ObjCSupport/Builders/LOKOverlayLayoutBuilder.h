@@ -27,7 +27,7 @@
 @property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^withViewClass)(Class _Nullable);
 
-@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(View *_Nonnull));
+@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nullable)(View *_Nonnull));
 
 - (nonnull LOKOverlayLayout *)build;
 

@@ -56,8 +56,8 @@
     };
 }
 
-- (LOKInsetLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(View *_Nonnull)))withConfig {
-    return ^LOKInsetLayoutBuilder *(void(^ _Nonnull config)(View *_Nonnull)){
+- (LOKInsetLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(View *_Nonnull)))withConfig {
+    return ^LOKInsetLayoutBuilder *(void(^ _Nullable config)(View *_Nonnull)){
         self.configure = config;
         return self;
     };

@@ -23,7 +23,7 @@
 @property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withViewClass)(Class _Nullable);
 
-@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(View *_Nonnull));
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nullable)(View *_Nonnull));
 
 - (nonnull LOKInsetLayout *)build;
 

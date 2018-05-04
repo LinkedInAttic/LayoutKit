@@ -42,7 +42,7 @@ typedef NS_ENUM(NSInteger, LOKButtonLayoutType) {
 @property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^withViewClass)(Class _Nullable);
 
-@property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(UIButton *_Nonnull));
+@property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nullable)(UIButton *_Nonnull));
 
 - (nonnull LOKButtonLayout *)build;
 

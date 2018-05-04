@@ -98,8 +98,8 @@
     };
 }
 
-- (LOKTextViewLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(UITextView *_Nonnull)))withConfig {
-    return ^LOKTextViewLayoutBuilder *(void(^ _Nonnull config)(UITextView *_Nonnull)){
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(UITextView *_Nonnull)))withConfig {
+    return ^LOKTextViewLayoutBuilder *(void(^ _Nullable config)(UITextView *_Nonnull)){
         self.configure = config;
         return self;
     };

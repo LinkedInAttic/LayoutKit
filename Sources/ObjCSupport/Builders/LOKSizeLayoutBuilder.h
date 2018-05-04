@@ -35,7 +35,7 @@
 @property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withViewClass)(Class _Nullable);
 
-@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(View *_Nonnull));
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nullable)(View *_Nonnull));
 
 
 - (nonnull LOKSizeLayout *)build;

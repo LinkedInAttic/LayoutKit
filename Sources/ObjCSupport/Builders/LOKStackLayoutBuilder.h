@@ -44,7 +44,7 @@ typedef NS_ENUM(NSInteger, LOKAxis) {
 @property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withViewClass)(Class _Nullable);
 
-@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(View *_Nonnull));
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nullable)(View *_Nonnull));
 
 
 - (nonnull LOKStackLayout *)build;

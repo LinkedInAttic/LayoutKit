@@ -32,7 +32,7 @@
 @property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withViewClass)(Class _Nullable);
 
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nonnull)(UITextView *_Nonnull));
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nullable)(UITextView *_Nonnull));
 
 - (nonnull LOKTextViewLayout *)build;
 
