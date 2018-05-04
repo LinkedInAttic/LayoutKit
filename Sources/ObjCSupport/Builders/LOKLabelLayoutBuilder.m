@@ -98,8 +98,8 @@
     };
 }
 
-- (LOKLabelLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(UILabel *_Nonnull)))withConfig {
-    return ^LOKLabelLayoutBuilder *(void(^ _Nonnull config)(UILabel *_Nonnull)){
+- (LOKLabelLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(UILabel *_Nonnull)))withConfig {
+    return ^LOKLabelLayoutBuilder *(void(^ _Nullable config)(UILabel *_Nonnull)){
         self.configure = config;
         return self;
     };

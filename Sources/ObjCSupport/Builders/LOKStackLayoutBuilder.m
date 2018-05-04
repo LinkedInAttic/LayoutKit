@@ -80,8 +80,8 @@
     };
 }
 
-- (LOKStackLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(View *_Nonnull)))withConfig {
-    return ^LOKStackLayoutBuilder *(void(^ _Nonnull config)(View *_Nonnull)){
+- (LOKStackLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(View *_Nonnull)))withConfig {
+    return ^LOKStackLayoutBuilder *(void(^ _Nullable config)(View *_Nonnull)){
         self.configure = config;
         return self;
     };

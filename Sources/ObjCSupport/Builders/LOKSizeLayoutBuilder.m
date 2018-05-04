@@ -125,8 +125,8 @@
     };
 }
 
-- (LOKSizeLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(View *_Nonnull)))withConfig {
-    return ^LOKSizeLayoutBuilder *(void(^ _Nonnull config)(View *_Nonnull)){
+- (LOKSizeLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(View *_Nonnull)))withConfig {
+    return ^LOKSizeLayoutBuilder *(void(^ _Nullable config)(View *_Nonnull)){
         self.configure = config;
         return self;
     };

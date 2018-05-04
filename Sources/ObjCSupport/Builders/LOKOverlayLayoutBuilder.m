@@ -72,8 +72,8 @@
     };
 }
 
-- (LOKOverlayLayoutBuilder * _Nonnull (^)(void(^ _Nonnull)(View *_Nonnull)))withConfig {
-    return ^LOKOverlayLayoutBuilder *(void(^ _Nonnull config)(View *_Nonnull)){
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(View *_Nonnull)))withConfig {
+    return ^LOKOverlayLayoutBuilder *(void(^ _Nullable config)(View *_Nonnull)){
         self.configure = config;
         return self;
     };
