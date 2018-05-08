@@ -29,6 +29,7 @@ import CoreGraphics
     @objc public static let fillLeading = LOKAlignment(alignment: .fillLeading)
     @objc public static let fillTrailing = LOKAlignment(alignment: .fillTrailing)
     @objc public static let fillCenter = LOKAlignment(alignment: Alignment(vertical: .fill, horizontal: .center))
+    @objc public static let aspectFit = LOKAlignment(alignment: .aspectFit)
 
     @objc public func position(size: CGSize, in rect: CGRect) -> CGRect {
         return alignment.position(size: size, in: rect)
