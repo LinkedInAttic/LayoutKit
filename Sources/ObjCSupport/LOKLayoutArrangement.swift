@@ -31,9 +31,9 @@ import CoreGraphics
             height: height.isFinite ? height : nil))
     }
 
-    @objc public class func arrangeLayout(_ layout: LOKLayout, origin: CGPoint, width: CGFloat, height: CGFloat) -> LOKLayoutArrangement {
+    @objc public class func arrangeLayout(_ layout: LOKLayout, x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) -> LOKLayoutArrangement {
         return LOKLayoutArrangement(layoutArrangement: layout.unwrapped.arrangement(
-            origin: origin,
+            origin: CGPoint(x: x, y: y),
             width: width.isFinite ? width : nil,
             height: height.isFinite ? height : nil))
     }
