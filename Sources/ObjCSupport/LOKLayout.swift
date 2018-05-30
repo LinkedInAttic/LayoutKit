@@ -30,6 +30,9 @@ extension LOKLayout {
             LOKTextViewLayout.self
         ]
         if let object = self as? NSObject {
+            // Need to check to see if `self` is one of the LayoutKit provided layouts.
+            // If so, we want to cast it as `LOKBaseLayout` and return the wrapped layout
+            // object directly.
             if allLayoutClasses.contains(where: { object.isMember(of: $0) }) {
                 guard let layout = (self as? LOKBaseLayout)?.layout else {
                     assertionFailure("LayoutKit provided layout does not inherit from LOKBaseLayout")
@@ -38,6 +41,10 @@ extension LOKLayout {
                 return layout
             }
         }
+        // If `self` is not one of the LayoutKit provided layouts, we want to wrap it
+        // so that the methods of the class are called. We do this to make sure that if
+        // someone were to subclass one of the LayoutKit provided layouts, we would want
+        // to call their overriden methods instead of just the underlying layout object directly.
         return (self as? WrappedLayout)?.layout ?? ReverseWrappedLayout(layout: self)
     }
 }
