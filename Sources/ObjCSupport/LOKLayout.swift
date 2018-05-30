@@ -20,6 +20,24 @@ import CoreGraphics
 
 extension LOKLayout {
     var unwrapped: Layout {
-        return (self as? WrappedLayout)?.layout ?? (self as? LOKBaseLayout)?.layout ?? ReverseWrappedLayout(layout: self)
+        let allLayoutClasses = [
+            LOKButtonLayout.self,
+            LOKInsetLayout.self,
+            LOKLabelLayout.self,
+            LOKOverlayLayout.self,
+            LOKSizeLayout.self,
+            LOKStackLayout.self,
+            LOKTextViewLayout.self
+        ]
+        if let object = self as? NSObject {
+            if allLayoutClasses.contains(where: { object.isMember(of: $0) }) {
+                guard let layout = (self as? LOKBaseLayout)?.layout else {
+                    assertionFailure("LayoutKit provided layout does not inherit from LOKBaseLayout")
+                    return ReverseWrappedLayout(layout: self)
+                }
+                return layout
+            }
+        }
+        return (self as? WrappedLayout)?.layout ?? ReverseWrappedLayout(layout: self)
     }
 }
