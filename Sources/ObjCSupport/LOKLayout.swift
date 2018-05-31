@@ -29,16 +29,38 @@ extension LOKLayout {
          so that the methods of the class are called. We do this to make sure that if
          someone were to subclass one of the LayoutKit provided layouts, we would want
          to call their overriden methods instead of just the underlying layout object directly.
+
+         Certain platforms don't have certain layouts, so we make a different array for each platform
+         with only the layouts that it supports.
          */
-        let allLayoutClasses = [
-            LOKButtonLayout.self,
-            LOKInsetLayout.self,
-            LOKLabelLayout.self,
-            LOKOverlayLayout.self,
-            LOKSizeLayout.self,
-            LOKStackLayout.self,
-            LOKTextViewLayout.self
-        ]
+        let allLayoutClasses: [AnyClass]
+        #if os(OSX)
+            allLayoutClasses = [
+                LOKInsetLayout.self,
+                LOKOverlayLayout.self,
+                LOKSizeLayout.self,
+                LOKStackLayout.self
+            ]
+        #elseif os(tvOS)
+            allLayoutClasses = [
+                LOKInsetLayout.self,
+                LOKOverlayLayout.self,
+                LOKTextViewLayout.self,
+                LOKButtonLayout.self,
+                LOKSizeLayout.self,
+                LOKStackLayout.self
+            ]
+        #else
+            allLayoutClasses = [
+                LOKInsetLayout.self,
+                LOKOverlayLayout.self,
+                LOKTextViewLayout.self,
+                LOKButtonLayout.self,
+                LOKLabelLayout.self,
+                LOKSizeLayout.self,
+                LOKStackLayout.self
+            ]
+        #endif
         if let object = self as? NSObject {
             if allLayoutClasses.contains(where: { object.isMember(of: $0) }) {
                 // Executes if `self` is one of the LayoutKit provided classes; not if it's a subclass
