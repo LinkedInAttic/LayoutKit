@@ -10,56 +10,75 @@
 
 #import <LayoutKitObjC/LayoutKitObjC-Swift.h>
 
+@interface LOKInsetLayoutBuilder()
+
+@property (nonatomic, nullable) LOKAlignment *privateAlignment;
+@property (nonatomic, nullable) LOKFlexibility *privateFlexibility;
+@property (nonatomic, nullable) NSString *privateViewReuseId;
+@property (nonatomic, nullable) Class privateViewClass;
+
+@property (nonatomic) EdgeInsets privateInsets;
+@property (nonatomic, nonnull) id<LOKLayout> privateSublayout;
+@property (nonatomic, nullable) void (^ privateConfigure)(View * _Nonnull);
+
+@end
+
 @implementation LOKInsetLayoutBuilder
 
 + (nonnull instancetype)withInsets:(EdgeInsets)insets around:(nonnull id<LOKLayout>)sublayout {
     LOKInsetLayoutBuilder *builder = [[self alloc] init];
-    builder.insets = insets;
-    builder.sublayout = sublayout;
+    builder.privateInsets = insets;
+    builder.privateSublayout = sublayout;
     return builder;
 }
 
-- (nonnull LOKInsetLayout *)build {
-    return [[LOKInsetLayout alloc] initWithInsets:self.insets
-                                        alignment:self.alignment
-                                      viewReuseId:self.viewReuseId
-                                        viewClass:self.viewClass
-                                        sublayout:self.sublayout
-                                        configure:self.configure];
+- (nonnull LOKInsetLayout *)layout {
+    return [[LOKInsetLayout alloc] initWithInsets:self.privateInsets
+                                        alignment:self.privateAlignment
+                                      viewReuseId:self.privateViewReuseId
+                                        viewClass:self.privateViewClass
+                                        sublayout:self.privateSublayout
+                                        configure:self.privateConfigure];
 }
 
-- (LOKInsetLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))withAlignment {
+- (LOKInsetLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))alignment {
     return ^LOKInsetLayoutBuilder *(LOKAlignment * alignment){
-        self.alignment = alignment;
+        self.privateAlignment = alignment;
         return self;
     };
 }
 
-- (LOKInsetLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))withFlexibility {
+- (LOKInsetLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))flexibility {
     return ^LOKInsetLayoutBuilder *(LOKFlexibility * flexibility){
-        self.flexibility = flexibility;
+        self.privateFlexibility = flexibility;
         return self;
     };
 }
 
-- (LOKInsetLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))withViewReuseId {
+- (LOKInsetLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))viewReuseId {
     return ^LOKInsetLayoutBuilder *(NSString * viewReuseId){
-        self.viewReuseId = viewReuseId;
+        self.privateViewReuseId = viewReuseId;
         return self;
     };
 }
 
-- (LOKInsetLayoutBuilder * _Nonnull (^)(Class _Nonnull))withViewClass {
+- (LOKInsetLayoutBuilder * _Nonnull (^)(Class _Nonnull))viewClass {
     return ^LOKInsetLayoutBuilder *(Class viewClass){
-        self.viewClass = viewClass;
+        self.privateViewClass = viewClass;
         return self;
     };
 }
 
-- (LOKInsetLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(View *_Nonnull)))withConfig {
+- (LOKInsetLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(View *_Nonnull)))config {
     return ^LOKInsetLayoutBuilder *(void(^ _Nullable config)(View *_Nonnull)){
-        self.configure = config;
+        self.privateConfigure = config;
         return self;
+    };
+}
+
+- (LOKInsetLayoutBuilder * _Nonnull (^)(EdgeInsets))insets {
+    return ^LOKInsetLayoutBuilder *(EdgeInsets insets){
+        return [LOKInsetLayoutBuilder withInsets:insets around:self.layout];
     };
 }
 

@@ -6,34 +6,27 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-#import "LOKBaseLayoutBuilder.h"
+#import "LOKBuilderSharedHeader.h"
 
 @class LOKTextViewLayout;
 
-@interface LOKTextViewLayoutBuilder : LOKBaseLayoutBuilder
+@interface LOKTextViewLayoutBuilder: NSObject
 
 + (nonnull instancetype)withString:(nullable NSString *)string;
 + (nonnull instancetype)withAttributedString:(nullable NSAttributedString *)attributedString;
 
-@property (nonatomic, nullable) NSString *string;
-@property (nonatomic, nullable) NSAttributedString *attributedString;
-@property (nonatomic, nullable) UIFont *font;
-@property (nonatomic) UIEdgeInsets textContainerInset;
-@property (nonatomic) CGFloat lineFragmentPadding;
-@property (nonatomic, nullable) void (^ configure)(UITextView * _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^font)(UIFont * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^textContainerInset)(UIEdgeInsets);
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^lineFragmentPadding)(CGFloat);
 
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^alignment)(LOKAlignment * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^flexibility)(LOKFlexibility * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^viewReuseId)(NSString * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^viewClass)(Class _Nullable);
 
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withFont)(UIFont * _Nullable);
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withTextContainerInset)(UIEdgeInsets);
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withLineFragmentPadding)(CGFloat);
+@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^config)( void(^ _Nullable)(UITextView *_Nonnull));
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^insets)(EdgeInsets);
 
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nullable);
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nullable);
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nullable);
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withViewClass)(Class _Nullable);
-
-@property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nullable)(UITextView *_Nonnull));
-
-- (nonnull LOKTextViewLayout *)build;
+@property (nonatomic, nonnull, readonly) LOKTextViewLayout *layout;
 
 @end

@@ -6,7 +6,7 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-#import "LOKBaseLayoutBuilder.h"
+#import "LOKBuilderSharedHeader.h"
 
 typedef NS_ENUM(NSInteger, LOKStackLayoutDistribution) {
     LOKStackLayoutDistributionDefault,
@@ -25,28 +25,22 @@ typedef NS_ENUM(NSInteger, LOKAxis) {
 
 @class LOKStackLayout;
 
-@interface LOKStackLayoutBuilder : LOKBaseLayoutBuilder
+@interface LOKStackLayoutBuilder: NSObject
 
 + (nonnull instancetype)withSublayouts:(nonnull NSArray< id<LOKLayout> > *)sublayouts;
 
-@property (nonatomic, nonnull) NSArray< id<LOKLayout> > *sublayouts;
-@property (nonatomic) LOKAxis axis;
-@property (nonatomic) CGFloat spacing;
-@property (nonatomic) LOKStackLayoutDistribution distribution;
-@property (nonatomic, nullable) void (^ configure)(View * _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^axis)(LOKAxis);
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^spacing)(CGFloat);
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^distribution)(LOKStackLayoutDistribution);
 
-@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withAxis)(LOKAxis);
-@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withSpacing)(CGFloat);
-@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withDistribution)(LOKStackLayoutDistribution);
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^alignment)(LOKAlignment * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^flexibility)(LOKFlexibility * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^viewReuseId)(NSString * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^viewClass)(Class _Nullable);
 
-@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nullable);
-@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nullable);
-@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nullable);
-@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withViewClass)(Class _Nullable);
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^config)( void(^ _Nullable)(View *_Nonnull));
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^insets)(EdgeInsets);
 
-@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nullable)(View *_Nonnull));
-
-
-- (nonnull LOKStackLayout *)build;
+@property (nonatomic, nonnull, readonly) LOKStackLayout *layout;
 
 @end

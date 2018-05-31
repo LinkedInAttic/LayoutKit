@@ -6,25 +6,24 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-#import "LOKBaseLayoutBuilder.h"
+#import <Foundation/Foundation.h>
+
+#import "LOKBuilderSharedHeader.h"
 
 @class LOKInsetLayout;
 
-@interface LOKInsetLayoutBuilder : LOKBaseLayoutBuilder
+@interface LOKInsetLayoutBuilder: NSObject
 
 + (nonnull instancetype)withInsets:(EdgeInsets)insets around:(nonnull id<LOKLayout>)sublayout;
 
-@property (nonatomic) EdgeInsets insets;
-@property (nonatomic, nonnull) id<LOKLayout> sublayout;
-@property (nonatomic, nullable) void (^ configure)(View * _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^alignment)(LOKAlignment * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^flexibility)(LOKFlexibility * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^viewReuseId)(NSString * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^viewClass)(Class _Nullable);
 
-@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nullable);
-@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nullable);
-@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nullable);
-@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withViewClass)(Class _Nullable);
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^config)( void(^ _Nullable)(View *_Nonnull));
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^insets)(EdgeInsets);
 
-@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nullable)(View *_Nonnull));
-
-- (nonnull LOKInsetLayout *)build;
+@property (nonatomic, nonnull, readonly) LOKInsetLayout *layout;
 
 @end

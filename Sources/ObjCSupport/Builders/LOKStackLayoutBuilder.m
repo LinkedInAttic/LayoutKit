@@ -10,80 +10,101 @@
 
 #import <LayoutKitObjC/LayoutKitObjC-Swift.h>
 
+@interface LOKStackLayoutBuilder ()
+
+@property (nonatomic, nullable) LOKAlignment *privateAlignment;
+@property (nonatomic, nullable) LOKFlexibility *privateFlexibility;
+@property (nonatomic, nullable) NSString *privateViewReuseId;
+@property (nonatomic, nullable) Class privateViewClass;
+
+@property (nonatomic, nonnull) NSArray< id<LOKLayout> > *privateSublayouts;
+@property (nonatomic) LOKAxis privateAxis;
+@property (nonatomic) CGFloat privateSpacing;
+@property (nonatomic) LOKStackLayoutDistribution privateDistribution;
+@property (nonatomic, nullable) void (^ privateConfigure)(View * _Nonnull);
+
+@end
+
 @implementation LOKStackLayoutBuilder
 
 + (instancetype)withSublayouts:(NSArray<id<LOKLayout>> *)sublayouts {
     LOKStackLayoutBuilder *builder = [[self alloc] init];
-    builder.axis = LOKAxisVertical;
-    builder.sublayouts = sublayouts;
+    builder.privateAxis = LOKAxisVertical;
+    builder.privateSublayouts = sublayouts;
     return builder;
 }
 
-- (LOKStackLayout *)build {
-    return [[LOKStackLayout alloc] initWithAxis:self.axis
-                                        spacing:self.spacing
-                                   distribution:self.distribution
-                                      alignment:self.alignment
-                                    flexibility:self.flexibility
-                                      viewClass:self.viewClass
-                                    viewReuseId:self.viewReuseId
-                                     sublayouts:self.sublayouts
-                                      configure:self.configure];
+- (LOKStackLayout *)layout {
+    return [[LOKStackLayout alloc] initWithAxis:self.privateAxis
+                                        spacing:self.privateSpacing
+                                   distribution:self.privateDistribution
+                                      alignment:self.privateAlignment
+                                    flexibility:self.privateFlexibility
+                                      viewClass:self.privateViewClass
+                                    viewReuseId:self.privateViewReuseId
+                                     sublayouts:self.privateSublayouts
+                                      configure:self.privateConfigure];
 }
 
-- (LOKStackLayoutBuilder * _Nonnull (^)(LOKAxis))withAxis {
+- (LOKStackLayoutBuilder * _Nonnull (^)(LOKAxis))axis {
     return ^LOKStackLayoutBuilder *(LOKAxis axis){
-        self.axis = axis;
+        self.privateAxis = axis;
         return self;
     };
 }
 
-- (LOKStackLayoutBuilder * _Nonnull (^)(CGFloat))withSpacing {
+- (LOKStackLayoutBuilder * _Nonnull (^)(CGFloat))spacing {
     return ^LOKStackLayoutBuilder *(CGFloat spacing){
-        self.spacing = spacing;
+        self.privateSpacing = spacing;
         return self;
     };
 }
 
-- (LOKStackLayoutBuilder * _Nonnull (^)(LOKStackLayoutDistribution))withDistribution {
+- (LOKStackLayoutBuilder * _Nonnull (^)(LOKStackLayoutDistribution))distribution {
     return ^LOKStackLayoutBuilder *(LOKStackLayoutDistribution distribution){
-        self.distribution = distribution;
+        self.privateDistribution = distribution;
         return self;
     };
 }
 
-- (LOKStackLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))withAlignment {
+- (LOKStackLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))alignment {
     return ^LOKStackLayoutBuilder *(LOKAlignment * alignment){
-        self.alignment = alignment;
+        self.privateAlignment = alignment;
         return self;
     };
 }
 
-- (LOKStackLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))withFlexibility {
+- (LOKStackLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))flexibility {
     return ^LOKStackLayoutBuilder *(LOKFlexibility * flexibility){
-        self.flexibility = flexibility;
+        self.privateFlexibility = flexibility;
         return self;
     };
 }
 
-- (LOKStackLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))withViewReuseId {
+- (LOKStackLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))viewReuseId {
     return ^LOKStackLayoutBuilder *(NSString * viewReuseId){
-        self.viewReuseId = viewReuseId;
+        self.privateViewReuseId = viewReuseId;
         return self;
     };
 }
 
-- (LOKStackLayoutBuilder * _Nonnull (^)(Class _Nonnull))withViewClass {
+- (LOKStackLayoutBuilder * _Nonnull (^)(Class _Nonnull))viewClass {
     return ^LOKStackLayoutBuilder *(Class viewClass){
-        self.viewClass = viewClass;
+        self.privateViewClass = viewClass;
         return self;
     };
 }
 
-- (LOKStackLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(View *_Nonnull)))withConfig {
+- (LOKStackLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(View *_Nonnull)))config {
     return ^LOKStackLayoutBuilder *(void(^ _Nullable config)(View *_Nonnull)){
-        self.configure = config;
+        self.privateConfigure = config;
         return self;
+    };
+}
+
+- (LOKInsetLayoutBuilder * _Nonnull (^)(EdgeInsets))insets {
+    return ^LOKInsetLayoutBuilder *(EdgeInsets insets){
+        return [LOKInsetLayoutBuilder withInsets:insets around:self.layout];
     };
 }
 

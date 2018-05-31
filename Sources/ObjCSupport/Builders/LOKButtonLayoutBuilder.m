@@ -10,95 +10,118 @@
 
 #import <LayoutKitObjC/LayoutKitObjC-Swift.h>
 
+@interface LOKButtonLayoutBuilder ()
+
+@property (nonatomic, nullable) LOKAlignment *privateAlignment;
+@property (nonatomic, nullable) LOKFlexibility *privateFlexibility;
+@property (nonatomic, nullable) NSString *privateViewReuseId;
+@property (nonatomic, nullable) Class privateViewClass;
+
+@property (nonatomic) LOKButtonLayoutType privateType;
+@property (nonatomic, nullable) NSString *privateTitle;
+@property (nonatomic, nullable) UIFont *privateFont;
+@property (nonatomic, nullable) UIImage *privateImage;
+@property (nonatomic) CGSize privateImageSize;
+@property (nonatomic, nullable) NSValue *privateContentEdgeInsets;
+@property (nonatomic, nullable) void (^ privateConfigure)(UIButton * _Nonnull);
+
+@end
+
 @implementation LOKButtonLayoutBuilder
 
 + (instancetype)withTitle:(NSString *)title {
     LOKButtonLayoutBuilder *builder = [[self alloc] init];
-    builder.title = title;
+    builder.privateTitle = title;
     return builder;
 }
 
-- (LOKButtonLayout *)build {
-    return [[LOKButtonLayout alloc] initWithType:self.type
-                                           title:self.title
-                                           image:self.image
-                                       imageSize:self.imageSize
-                                            font:self.font
-                               contentEdgeInsets:self.contentEdgeInsets
-                                       alignment:self.alignment
-                                     flexibility:self.flexibility
-                                     viewReuseId:self.viewReuseId
-                                       viewClass:self.viewClass
-                                          config:self.configure];
+- (LOKButtonLayout *)layout {
+    return [[LOKButtonLayout alloc] initWithType:self.privateType
+                                           title:self.privateTitle
+                                           image:self.privateImage
+                                       imageSize:self.privateImageSize
+                                            font:self.privateFont
+                               contentEdgeInsets:self.privateContentEdgeInsets
+                                       alignment:self.privateAlignment
+                                     flexibility:self.privateFlexibility
+                                     viewReuseId:self.privateViewReuseId
+                                       viewClass:self.privateViewClass
+                                          config:self.privateConfigure];
 }
 
-- (LOKButtonLayoutBuilder * _Nonnull (^)(LOKButtonLayoutType))withType {
+- (LOKButtonLayoutBuilder * _Nonnull (^)(LOKButtonLayoutType))type {
     return ^LOKButtonLayoutBuilder *(LOKButtonLayoutType type){
-        self.type = type;
+        self.privateType = type;
         return self;
     };
 }
 
-- (LOKButtonLayoutBuilder * _Nonnull (^)(UIFont * _Nullable))withFont {
+- (LOKButtonLayoutBuilder * _Nonnull (^)(UIFont * _Nullable))font {
     return ^LOKButtonLayoutBuilder *(UIFont * font){
-        self.font = font;
+        self.privateFont = font;
         return self;
     };
 }
 
-- (LOKButtonLayoutBuilder * _Nonnull (^)(UIImage * _Nullable))withImage {
+- (LOKButtonLayoutBuilder * _Nonnull (^)(UIImage * _Nullable))image {
     return ^LOKButtonLayoutBuilder *(UIImage * image){
-        self.image = image;
+        self.privateImage = image;
         return self;
     };
 }
 
-- (LOKButtonLayoutBuilder * _Nonnull (^)(CGSize))withImageSize {
+- (LOKButtonLayoutBuilder * _Nonnull (^)(CGSize))imageSize {
     return ^LOKButtonLayoutBuilder *(CGSize imageSize){
-        self.imageSize = imageSize;
+        self.privateImageSize = imageSize;
         return self;
     };
 }
 
-- (LOKButtonLayoutBuilder * _Nonnull (^)(NSValue * _Nullable))withContentEdgeInsets {
+- (LOKButtonLayoutBuilder * _Nonnull (^)(NSValue * _Nullable))contentEdgeInsets {
     return ^LOKButtonLayoutBuilder *(NSValue * _Nullable contentEdgeInsets){
-        self.contentEdgeInsets = contentEdgeInsets;
+        self.privateContentEdgeInsets = contentEdgeInsets;
         return self;
     };
 }
 
-- (LOKButtonLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))withAlignment {
+- (LOKButtonLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))alignment {
     return ^LOKButtonLayoutBuilder *(LOKAlignment * alignment){
-        self.alignment = alignment;
+        self.privateAlignment = alignment;
         return self;
     };
 }
 
-- (LOKButtonLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))withFlexibility {
+- (LOKButtonLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))flexibility {
     return ^LOKButtonLayoutBuilder *(LOKFlexibility * flexibility){
-        self.flexibility = flexibility;
+        self.privateFlexibility = flexibility;
         return self;
     };
 }
 
-- (LOKButtonLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))withViewReuseId {
+- (LOKButtonLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))viewReuseId {
     return ^LOKButtonLayoutBuilder *(NSString * viewReuseId){
-        self.viewReuseId = viewReuseId;
+        self.privateViewReuseId = viewReuseId;
         return self;
     };
 }
 
-- (LOKButtonLayoutBuilder * _Nonnull (^)(Class _Nonnull))withViewClass {
+- (LOKButtonLayoutBuilder * _Nonnull (^)(Class _Nonnull))viewClass {
     return ^LOKButtonLayoutBuilder *(Class viewClass){
-        self.viewClass = viewClass;
+        self.privateViewClass = viewClass;
         return self;
     };
 }
 
-- (LOKButtonLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(UIButton *_Nonnull)))withConfig {
+- (LOKButtonLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(UIButton *_Nonnull)))config {
     return ^LOKButtonLayoutBuilder *(void(^ _Nullable config)(UIButton *_Nonnull)){
-        self.configure = config;
+        self.privateConfigure = config;
         return self;
+    };
+}
+
+- (LOKInsetLayoutBuilder * _Nonnull (^)(EdgeInsets))insets {
+    return ^LOKInsetLayoutBuilder *(EdgeInsets insets){
+        return [LOKInsetLayoutBuilder withInsets:insets around:self.layout];
     };
 }
 

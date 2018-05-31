@@ -10,98 +10,120 @@
 
 #import <LayoutKitObjC/LayoutKitObjC-Swift.h>
 
+@interface LOKLabelLayoutBuilder ()
+
+@property (nonatomic, nullable) LOKAlignment *privateAlignment;
+@property (nonatomic, nullable) LOKFlexibility *privateFlexibility;
+@property (nonatomic, nullable) NSString *privateViewReuseId;
+@property (nonatomic, nullable) Class privateViewClass;
+
+@property (nonatomic, nullable) NSString *privateString;
+@property (nonatomic, nullable) NSAttributedString *privateAttributedString;
+@property (nonatomic, nullable) UIFont *privateFont;
+@property (nonatomic) NSInteger privateNumberOfLines;
+@property (nonatomic) CGFloat privateLineHeight;
+@property (nonatomic, nullable) void (^ privateConfigure)(UILabel * _Nonnull);
+
+@end
+
 @implementation LOKLabelLayoutBuilder
 
 + (nonnull instancetype)withString:(nullable NSString *)string {
     LOKLabelLayoutBuilder *builder = [[self alloc] init];
-    builder.string = string;
+    builder.privateString = string;
     return builder;
 }
 
 + (nonnull instancetype)withAttributedString:(nullable NSAttributedString *)attributedString {
     LOKLabelLayoutBuilder *builder = [[self alloc] init];
-    builder.attributedString = attributedString;
+    builder.privateAttributedString = attributedString;
     return builder;
 }
 
-- (nonnull LOKLabelLayout *)build {
-    NSAssert(!self.attributedString || !self.string, @"LOKLabelLayoutBuilder should not have both a string and an attributedString.");
-    if (self.attributedString) {
-        return [[LOKLabelLayout alloc] initWithAttributedString:self.attributedString
-                                                           font:self.font
-                                                     lineHeight:self.lineHeight
-                                                  numberOfLines:self.numberOfLines
-                                                      alignment:self.alignment
-                                                    flexibility:self.flexibility
-                                                    viewReuseId:self.viewReuseId
-                                                      viewClass:self.viewClass
-                                                      configure:self.configure];
+- (nonnull LOKLabelLayout *)layout {
+    NSAssert(!self.privateAttributedString || !self.privateString, @"LOKLabelLayoutBuilder should not have both a string and an attributedString.");
+    if (self.privateAttributedString) {
+        return [[LOKLabelLayout alloc] initWithAttributedString:self.privateAttributedString
+                                                           font:self.privateFont
+                                                     lineHeight:self.privateLineHeight
+                                                  numberOfLines:self.privateNumberOfLines
+                                                      alignment:self.privateAlignment
+                                                    flexibility:self.privateFlexibility
+                                                    viewReuseId:self.privateViewReuseId
+                                                      viewClass:self.privateViewClass
+                                                      configure:self.privateConfigure];
     } else {
-        return [[LOKLabelLayout alloc] initWithString:self.string
-                                                 font:self.font
-                                           lineHeight:self.lineHeight
-                                        numberOfLines:self.numberOfLines
-                                            alignment:self.alignment
-                                          flexibility:self.flexibility
-                                          viewReuseId:self.viewReuseId
-                                            viewClass:self.viewClass
-                                            configure:self.configure];
+        return [[LOKLabelLayout alloc] initWithString:self.privateString
+                                                 font:self.privateFont
+                                           lineHeight:self.privateLineHeight
+                                        numberOfLines:self.privateNumberOfLines
+                                            alignment:self.privateAlignment
+                                          flexibility:self.privateFlexibility
+                                          viewReuseId:self.privateViewReuseId
+                                            viewClass:self.privateViewClass
+                                            configure:self.privateConfigure];
     }
 }
 
-- (LOKLabelLayoutBuilder * _Nonnull (^)(UIFont * _Nullable))withFont {
+- (LOKLabelLayoutBuilder * _Nonnull (^)(UIFont * _Nullable))font {
     return ^LOKLabelLayoutBuilder *(UIFont * font){
-        self.font = font;
+        self.privateFont = font;
         return self;
     };
 }
 
-- (LOKLabelLayoutBuilder * _Nonnull (^)(NSInteger))withNumberOfLines {
+- (LOKLabelLayoutBuilder * _Nonnull (^)(NSInteger))numberOfLines {
     return ^LOKLabelLayoutBuilder *(NSInteger numberOfLines){
-        self.numberOfLines = numberOfLines;
+        self.privateNumberOfLines = numberOfLines;
         return self;
     };
 }
 
-- (LOKLabelLayoutBuilder * _Nonnull (^)(CGFloat))withLineHeight {
+- (LOKLabelLayoutBuilder * _Nonnull (^)(CGFloat))lineHeight {
     return ^LOKLabelLayoutBuilder *(CGFloat lineHeight){
-        self.lineHeight = lineHeight;
+        self.privateLineHeight = lineHeight;
         return self;
     };
 }
 
-- (LOKLabelLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))withAlignment {
+- (LOKLabelLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))alignment {
     return ^LOKLabelLayoutBuilder *(LOKAlignment * alignment){
-        self.alignment = alignment;
+        self.privateAlignment = alignment;
         return self;
     };
 }
 
-- (LOKLabelLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))withFlexibility {
+- (LOKLabelLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))flexibility {
     return ^LOKLabelLayoutBuilder *(LOKFlexibility * flexibility){
-        self.flexibility = flexibility;
+        self.privateFlexibility = flexibility;
         return self;
     };
 }
 
-- (LOKLabelLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))withViewReuseId {
+- (LOKLabelLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))viewReuseId {
     return ^LOKLabelLayoutBuilder *(NSString * viewReuseId){
-        self.viewReuseId = viewReuseId;
+        self.privateViewReuseId = viewReuseId;
         return self;
     };
 }
 
-- (LOKLabelLayoutBuilder * _Nonnull (^)(Class _Nonnull))withViewClass {
+- (LOKLabelLayoutBuilder * _Nonnull (^)(Class _Nonnull))viewClass {
     return ^LOKLabelLayoutBuilder *(Class viewClass){
-        self.viewClass = viewClass;
+        self.privateViewClass = viewClass;
         return self;
     };
 }
 
-- (LOKLabelLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(UILabel *_Nonnull)))withConfig {
+- (LOKLabelLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(UILabel *_Nonnull)))config {
     return ^LOKLabelLayoutBuilder *(void(^ _Nullable config)(UILabel *_Nonnull)){
-        self.configure = config;
+        self.privateConfigure = config;
         return self;
+    };
+}
+
+- (LOKInsetLayoutBuilder * _Nonnull (^)(EdgeInsets))insets {
+    return ^LOKInsetLayoutBuilder *(EdgeInsets insets){
+        return [LOKInsetLayoutBuilder withInsets:insets around:self.layout];
     };
 }
 
