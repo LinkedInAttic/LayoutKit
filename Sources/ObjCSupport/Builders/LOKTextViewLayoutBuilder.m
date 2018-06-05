@@ -121,8 +121,8 @@
     };
 }
 
-- (LOKInsetLayoutBuilder * _Nonnull (^)(EdgeInsets))insets {
-    return ^LOKInsetLayoutBuilder *(EdgeInsets insets){
+- (LOKInsetLayoutBuilder * _Nonnull (^)(LOKEdgeInsets))insets {
+    return ^LOKInsetLayoutBuilder *(LOKEdgeInsets insets){
         return [LOKInsetLayoutBuilder withInsets:insets around:self.layout];
     };
 }

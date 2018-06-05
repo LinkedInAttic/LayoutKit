@@ -202,7 +202,7 @@
 		0BDDF95B1E25ACCE008B0A6F /* ReloadableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */; };
 		0BDDF95C1E25ACCE008B0A6F /* ReloadableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */; };
 		37BEBEF5207C25BF002BD761 /* LOKAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BEBEF3207C23B6002BD761 /* LOKAnimation.swift */; };
-		37D9D58420BF82FD001A5CDD /* LOKBuilderSharedHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 37D9D58320BF8270001A5CDD /* LOKBuilderSharedHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37D9D58420BF82FD001A5CDD /* LOKLayoutBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 37D9D58320BF8270001A5CDD /* LOKLayoutBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4468A31D1E46460B00341D07 /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4468A31C1E46460B00341D07 /* NSAttributedStringExtension.swift */; };
 		4468A31E1E464A3900341D07 /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4468A31C1E46460B00341D07 /* NSAttributedStringExtension.swift */; };
 		448CEC0F1E4E0CB500F8AD9E /* TextViewDefaultFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448CEC0E1E4E0CB500F8AD9E /* TextViewDefaultFont.swift */; };
@@ -474,7 +474,7 @@
 		0BD5F82B1DB43F9B00108688 /* ButtonLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonLayoutTests.swift; sourceTree = "<group>"; };
 		0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewTests.swift; sourceTree = "<group>"; };
 		37BEBEF3207C23B6002BD761 /* LOKAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKAnimation.swift; sourceTree = "<group>"; };
-		37D9D58320BF8270001A5CDD /* LOKBuilderSharedHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LOKBuilderSharedHeader.h; sourceTree = "<group>"; };
+		37D9D58320BF8270001A5CDD /* LOKLayoutBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LOKLayoutBuilder.h; sourceTree = "<group>"; };
 		4468A31C1E46460B00341D07 /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
 		448CEC0E1E4E0CB500F8AD9E /* TextViewDefaultFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewDefaultFont.swift; sourceTree = "<group>"; };
 		44F968141E425F5D00392763 /* TextViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewLayout.swift; sourceTree = "<group>"; };
@@ -853,7 +853,7 @@
 				7E73710120520CA8007C19FF /* LOKStackLayoutBuilder.m */,
 				7E73710420520F5F007C19FF /* LOKTextViewLayoutBuilder.h */,
 				7E73710520520F5F007C19FF /* LOKTextViewLayoutBuilder.m */,
-				37D9D58320BF8270001A5CDD /* LOKBuilderSharedHeader.h */,
+				37D9D58320BF8270001A5CDD /* LOKLayoutBuilder.h */,
 			);
 			path = Builders;
 			sourceTree = "<group>";
@@ -951,7 +951,7 @@
 			files = (
 				7EECD0552053916C003DC4B1 /* LOKButtonLayoutBuilder.h in Headers */,
 				7EECD0562053916C003DC4B1 /* LOKOverlayLayoutBuilder.h in Headers */,
-				37D9D58420BF82FD001A5CDD /* LOKBuilderSharedHeader.h in Headers */,
+				37D9D58420BF82FD001A5CDD /* LOKLayoutBuilder.h in Headers */,
 				7EECD0572053916C003DC4B1 /* LOKSizeLayoutBuilder.h in Headers */,
 				7EECD0582053916C003DC4B1 /* LOKInsetLayoutBuilder.h in Headers */,
 				7EECD05A2053916C003DC4B1 /* LOKStackLayoutBuilder.h in Headers */,

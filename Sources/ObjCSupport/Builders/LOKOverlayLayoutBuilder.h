@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-#import "LOKBuilderSharedHeader.h"
+#import "LOKLayoutBuilder.h"
 
 @class LOKOverlayLayout;
 
-@interface LOKOverlayLayoutBuilder: NSObject
+@interface LOKOverlayLayoutBuilder: NSObject<LOKLayoutBuilder>
 
 + (nonnull instancetype)withPrimaryLayout:(nonnull id<LOKLayout>)primaryLayout;
 
@@ -24,8 +24,8 @@
 @property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^viewReuseId)(NSString * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^viewClass)(Class _Nullable);
 
-@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^config)( void(^ _Nullable)(View *_Nonnull));
-@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^insets)(EdgeInsets);
+@property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^config)( void(^ _Nullable)(LOKView *_Nonnull));
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^insets)(LOKEdgeInsets);
 
 @property (nonatomic, nonnull, readonly) LOKOverlayLayout *layout;
 

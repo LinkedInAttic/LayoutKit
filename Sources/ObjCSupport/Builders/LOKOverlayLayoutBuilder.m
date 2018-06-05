@@ -20,7 +20,7 @@
 @property (nonatomic, nonnull) id<LOKLayout> privatePrimary;
 @property (nonatomic, nonnull) NSArray< id<LOKLayout> > *privateOverlay;
 @property (nonatomic, nonnull) NSArray< id<LOKLayout> > *privateBackground;
-@property (nonatomic, nullable) void (^ privateConfigure)(View * _Nonnull);
+@property (nonatomic, nullable) void (^ privateConfigure)(LOKView * _Nonnull);
 
 @end
 
@@ -86,15 +86,15 @@
     };
 }
 
-- (LOKOverlayLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(View *_Nonnull)))config {
-    return ^LOKOverlayLayoutBuilder *(void(^ _Nullable config)(View *_Nonnull)){
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(LOKView *_Nonnull)))config {
+    return ^LOKOverlayLayoutBuilder *(void(^ _Nullable config)(LOKView *_Nonnull)){
         self.privateConfigure = config;
         return self;
     };
 }
 
-- (LOKInsetLayoutBuilder * _Nonnull (^)(EdgeInsets))insets {
-    return ^LOKInsetLayoutBuilder *(EdgeInsets insets){
+- (LOKInsetLayoutBuilder * _Nonnull (^)(LOKEdgeInsets))insets {
+    return ^LOKInsetLayoutBuilder *(LOKEdgeInsets insets){
         return [LOKInsetLayoutBuilder withInsets:insets around:self.layout];
     };
 }

@@ -6,7 +6,7 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-#import "LOKBuilderSharedHeader.h"
+#import "LOKLayoutBuilder.h"
 
 @class LOKButtonLayout;
 
@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, LOKButtonLayoutType) {
     LOKButtonLayoutTypeContactAdd
 };
 
-@interface LOKButtonLayoutBuilder: NSObject
+@interface LOKButtonLayoutBuilder: NSObject<LOKLayoutBuilder>
 
 + (nonnull instancetype)withTitle:(nullable NSString *)title;
 
@@ -35,7 +35,7 @@ typedef NS_ENUM(NSInteger, LOKButtonLayoutType) {
 @property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^viewClass)(Class _Nullable);
 
 @property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^config)( void(^ _Nullable)(UIButton *_Nonnull));
-@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^insets)(EdgeInsets);
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^insets)(LOKEdgeInsets);
 
 @property (nonatomic, nonnull, readonly) LOKButtonLayout *layout;
 

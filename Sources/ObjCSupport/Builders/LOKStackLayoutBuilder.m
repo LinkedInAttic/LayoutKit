@@ -21,7 +21,7 @@
 @property (nonatomic) LOKAxis privateAxis;
 @property (nonatomic) CGFloat privateSpacing;
 @property (nonatomic) LOKStackLayoutDistribution privateDistribution;
-@property (nonatomic, nullable) void (^ privateConfigure)(View * _Nonnull);
+@property (nonatomic, nullable) void (^ privateConfigure)(LOKView * _Nonnull);
 
 @end
 
@@ -95,15 +95,15 @@
     };
 }
 
-- (LOKStackLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(View *_Nonnull)))config {
-    return ^LOKStackLayoutBuilder *(void(^ _Nullable config)(View *_Nonnull)){
+- (LOKStackLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(LOKView *_Nonnull)))config {
+    return ^LOKStackLayoutBuilder *(void(^ _Nullable config)(LOKView *_Nonnull)){
         self.privateConfigure = config;
         return self;
     };
 }
 
-- (LOKInsetLayoutBuilder * _Nonnull (^)(EdgeInsets))insets {
-    return ^LOKInsetLayoutBuilder *(EdgeInsets insets){
+- (LOKInsetLayoutBuilder * _Nonnull (^)(LOKEdgeInsets))insets {
+    return ^LOKInsetLayoutBuilder *(LOKEdgeInsets insets){
         return [LOKInsetLayoutBuilder withInsets:insets around:self.layout];
     };
 }

@@ -17,15 +17,15 @@
 @property (nonatomic, nullable) NSString *privateViewReuseId;
 @property (nonatomic, nullable) Class privateViewClass;
 
-@property (nonatomic) EdgeInsets privateInsets;
+@property (nonatomic) LOKEdgeInsets privateInsets;
 @property (nonatomic, nonnull) id<LOKLayout> privateSublayout;
-@property (nonatomic, nullable) void (^ privateConfigure)(View * _Nonnull);
+@property (nonatomic, nullable) void (^ privateConfigure)(LOKView * _Nonnull);
 
 @end
 
 @implementation LOKInsetLayoutBuilder
 
-+ (nonnull instancetype)withInsets:(EdgeInsets)insets around:(nonnull id<LOKLayout>)sublayout {
++ (nonnull instancetype)withInsets:(LOKEdgeInsets)insets around:(nonnull id<LOKLayout>)sublayout {
     LOKInsetLayoutBuilder *builder = [[self alloc] init];
     builder.privateInsets = insets;
     builder.privateSublayout = sublayout;
@@ -69,15 +69,15 @@
     };
 }
 
-- (LOKInsetLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(View *_Nonnull)))config {
-    return ^LOKInsetLayoutBuilder *(void(^ _Nullable config)(View *_Nonnull)){
+- (LOKInsetLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(LOKView *_Nonnull)))config {
+    return ^LOKInsetLayoutBuilder *(void(^ _Nullable config)(LOKView *_Nonnull)){
         self.privateConfigure = config;
         return self;
     };
 }
 
-- (LOKInsetLayoutBuilder * _Nonnull (^)(EdgeInsets))insets {
-    return ^LOKInsetLayoutBuilder *(EdgeInsets insets){
+- (LOKInsetLayoutBuilder * _Nonnull (^)(LOKEdgeInsets))insets {
+    return ^LOKInsetLayoutBuilder *(LOKEdgeInsets insets){
         return [LOKInsetLayoutBuilder withInsets:insets around:self.layout];
     };
 }

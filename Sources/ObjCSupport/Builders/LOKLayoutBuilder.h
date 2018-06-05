@@ -11,16 +11,27 @@
 #if __has_include(<UIKit/UIKit.h>)
 // Importing the UI framework header. We could have just forward-declared `@class UIView` but `UIEdgeInsets` is a struct and cannot be forward-declared.
 #import <UIKit/UIKit.h>
-typedef UIEdgeInsets EdgeInsets;
-typedef UIView View;
+typedef UIEdgeInsets LOKEdgeInsets;
+typedef UIView LOKView;
 #else
 #import <AppKit/AppKit.h>
-typedef NSEdgeInsets EdgeInsets;
-typedef NSView View;
+typedef NSEdgeInsets LOKEdgeInsets;
+typedef NSView LOKView;
 #endif
 
 // Forward-declaring
 @class LOKAlignment;
 @class LOKFlexibility;
-@protocol LOKLayout;
 @class LOKInsetLayoutBuilder;
+@protocol LOKLayout;
+
+@protocol LOKLayoutBuilder
+
+- (id<LOKLayoutBuilder> _Nonnull (^)(LOKAlignment * _Nonnull))alignment;
+- (id<LOKLayoutBuilder> _Nonnull (^)(LOKFlexibility * _Nonnull))flexibility;
+- (id<LOKLayoutBuilder> _Nonnull (^)(NSString * _Nonnull))viewReuseId;
+- (id<LOKLayoutBuilder> _Nonnull (^)(Class _Nonnull))viewClass;
+- (id<LOKLayoutBuilder> _Nonnull (^)(void(^ _Nullable)(LOKView *_Nonnull)))config;
+- (nonnull id<LOKLayout>)layout;
+
+@end

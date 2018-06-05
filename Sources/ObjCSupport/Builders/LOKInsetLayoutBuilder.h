@@ -8,21 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-#import "LOKBuilderSharedHeader.h"
+#import "LOKLayoutBuilder.h"
 
 @class LOKInsetLayout;
 
-@interface LOKInsetLayoutBuilder: NSObject
+@interface LOKInsetLayoutBuilder: NSObject<LOKLayoutBuilder>
 
-+ (nonnull instancetype)withInsets:(EdgeInsets)insets around:(nonnull id<LOKLayout>)sublayout;
++ (nonnull instancetype)withInsets:(LOKEdgeInsets)insets around:(nonnull id<LOKLayout>)sublayout;
 
 @property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^alignment)(LOKAlignment * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^flexibility)(LOKFlexibility * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^viewReuseId)(NSString * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^viewClass)(Class _Nullable);
 
-@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^config)( void(^ _Nullable)(View *_Nonnull));
-@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^insets)(EdgeInsets);
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^config)( void(^ _Nullable)(LOKView *_Nonnull));
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^insets)(LOKEdgeInsets);
 
 @property (nonatomic, nonnull, readonly) LOKInsetLayout *layout;
 

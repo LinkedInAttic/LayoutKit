@@ -6,11 +6,11 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-#import "LOKBuilderSharedHeader.h"
+#import "LOKLayoutBuilder.h"
 
 @class LOKTextViewLayout;
 
-@interface LOKTextViewLayoutBuilder: NSObject
+@interface LOKTextViewLayoutBuilder: NSObject<LOKLayoutBuilder>
 
 + (nonnull instancetype)withString:(nullable NSString *)string;
 + (nonnull instancetype)withAttributedString:(nullable NSAttributedString *)attributedString;
@@ -25,7 +25,7 @@
 @property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^viewClass)(Class _Nullable);
 
 @property (nonatomic, nonnull, readonly) LOKTextViewLayoutBuilder * _Nonnull(^config)( void(^ _Nullable)(UITextView *_Nonnull));
-@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^insets)(EdgeInsets);
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^insets)(LOKEdgeInsets);
 
 @property (nonatomic, nonnull, readonly) LOKTextViewLayout *layout;
 

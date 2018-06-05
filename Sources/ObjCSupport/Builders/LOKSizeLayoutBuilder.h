@@ -6,11 +6,11 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-#import "LOKBuilderSharedHeader.h"
+#import "LOKLayoutBuilder.h"
 
 @class LOKSizeLayout;
 
-@interface LOKSizeLayoutBuilder: NSObject
+@interface LOKSizeLayoutBuilder: NSObject<LOKLayoutBuilder>
 
 + (nonnull instancetype)withSublayout:(nullable id<LOKLayout>)sublayout;
 
@@ -26,8 +26,8 @@
 @property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^viewReuseId)(NSString * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^viewClass)(Class _Nullable);
 
-@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^config)( void(^ _Nullable)(View *_Nonnull));
-@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^insets)(EdgeInsets);
+@property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^config)( void(^ _Nullable)(LOKView *_Nonnull));
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^insets)(LOKEdgeInsets);
 
 @property (nonatomic, nonnull, readonly) LOKSizeLayout *layout;
 

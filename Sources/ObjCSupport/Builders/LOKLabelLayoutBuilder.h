@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-#import "LOKBuilderSharedHeader.h"
+#import "LOKLayoutBuilder.h"
 
 @class LOKLabelLayout;
 
-@interface LOKLabelLayoutBuilder: NSObject
+@interface LOKLabelLayoutBuilder: NSObject<LOKLayoutBuilder>
 
 + (nonnull instancetype)withString:(nullable NSString *)string;
 + (nonnull instancetype)withAttributedString:(nullable NSAttributedString *)attributedString;
@@ -27,7 +27,7 @@
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^viewClass)(Class _Nullable);
 
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^config)( void(^ _Nullable)(UILabel *_Nonnull));
-@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^insets)(EdgeInsets);
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^insets)(LOKEdgeInsets);
 
 @property (nonatomic, nonnull, readonly) LOKLabelLayout *layout;
 

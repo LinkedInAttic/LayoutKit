@@ -6,7 +6,7 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-#import "LOKBuilderSharedHeader.h"
+#import "LOKLayoutBuilder.h"
 
 typedef NS_ENUM(NSInteger, LOKStackLayoutDistribution) {
     LOKStackLayoutDistributionDefault,
@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, LOKAxis) {
 
 @class LOKStackLayout;
 
-@interface LOKStackLayoutBuilder: NSObject
+@interface LOKStackLayoutBuilder: NSObject<LOKLayoutBuilder>
 
 + (nonnull instancetype)withSublayouts:(nonnull NSArray< id<LOKLayout> > *)sublayouts;
 
@@ -38,8 +38,8 @@ typedef NS_ENUM(NSInteger, LOKAxis) {
 @property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^viewReuseId)(NSString * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^viewClass)(Class _Nullable);
 
-@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^config)( void(^ _Nullable)(View *_Nonnull));
-@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^insets)(EdgeInsets);
+@property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^config)( void(^ _Nullable)(LOKView *_Nonnull));
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^insets)(LOKEdgeInsets);
 
 @property (nonatomic, nonnull, readonly) LOKStackLayout *layout;
 
