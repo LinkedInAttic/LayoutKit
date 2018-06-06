@@ -10,72 +10,92 @@
 
 #import <LayoutKitObjC/LayoutKitObjC-Swift.h>
 
+@interface LOKOverlayLayoutBuilder ()
+
+@property (nonatomic, nullable) LOKAlignment *privateAlignment;
+@property (nonatomic, nullable) LOKFlexibility *privateFlexibility;
+@property (nonatomic, nullable) NSString *privateViewReuseId;
+@property (nonatomic, nullable) Class privateViewClass;
+
+@property (nonatomic, nonnull) id<LOKLayout> privatePrimary;
+@property (nonatomic, nonnull) NSArray< id<LOKLayout> > *privateOverlay;
+@property (nonatomic, nonnull) NSArray< id<LOKLayout> > *privateBackground;
+@property (nonatomic, nullable) void (^ privateConfigure)(LOKView * _Nonnull);
+
+@end
+
 @implementation LOKOverlayLayoutBuilder
 
 + (instancetype)withPrimaryLayout:(id<LOKLayout>)primaryLayout {
     LOKOverlayLayoutBuilder *builder = [[self alloc] init];
-    builder.primary = primaryLayout;
-    builder.background = @[];
-    builder.overlay = @[];
+    builder.privatePrimary = primaryLayout;
+    builder.privateBackground = @[];
+    builder.privateOverlay = @[];
     return builder;
 }
 
-- (LOKOverlayLayout *)build {
-    return [[LOKOverlayLayout alloc] initWithPrimary:self.primary
-                                          background:self.background
-                                             overlay:self.overlay
-                                           alignment:self.alignment
-                                         viewReuseId:self.viewReuseId
-                                           viewClass:self.viewClass
-                                           configure:self.configure];
+- (LOKOverlayLayout *)layout {
+    return [[LOKOverlayLayout alloc] initWithPrimary:self.privatePrimary
+                                          background:self.privateBackground
+                                             overlay:self.privateOverlay
+                                           alignment:self.privateAlignment
+                                         viewReuseId:self.privateViewReuseId
+                                           viewClass:self.privateViewClass
+                                           configure:self.privateConfigure];
 }
 
-- (LOKOverlayLayoutBuilder * _Nonnull (^)(NSArray< id<LOKLayout> > * _Nullable))withOverlay {
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(NSArray< id<LOKLayout> > * _Nullable))overlay {
     return ^LOKOverlayLayoutBuilder *(NSArray< id<LOKLayout> > * _Nullable overlay){
-        self.overlay = overlay;
+        self.privateOverlay = overlay;
         return self;
     };
 }
 
-- (LOKOverlayLayoutBuilder * _Nonnull (^)(NSArray< id<LOKLayout> > * _Nullable))withBackground {
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(NSArray< id<LOKLayout> > * _Nullable))background {
     return ^LOKOverlayLayoutBuilder *(NSArray< id<LOKLayout> > * _Nullable background){
-        self.background = background;
+        self.privateBackground = background;
         return self;
     };
 }
 
-- (LOKOverlayLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))withAlignment {
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))alignment {
     return ^LOKOverlayLayoutBuilder *(LOKAlignment * alignment){
-        self.alignment = alignment;
+        self.privateAlignment = alignment;
         return self;
     };
 }
 
-- (LOKOverlayLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))withFlexibility {
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))flexibility {
     return ^LOKOverlayLayoutBuilder *(LOKFlexibility * flexibility){
-        self.flexibility = flexibility;
+        self.privateFlexibility = flexibility;
         return self;
     };
 }
 
-- (LOKOverlayLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))withViewReuseId {
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))viewReuseId {
     return ^LOKOverlayLayoutBuilder *(NSString * viewReuseId){
-        self.viewReuseId = viewReuseId;
+        self.privateViewReuseId = viewReuseId;
         return self;
     };
 }
 
-- (LOKOverlayLayoutBuilder * _Nonnull (^)(Class _Nonnull))withViewClass {
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(Class _Nonnull))viewClass {
     return ^LOKOverlayLayoutBuilder *(Class viewClass){
-        self.viewClass = viewClass;
+        self.privateViewClass = viewClass;
         return self;
     };
 }
 
-- (LOKOverlayLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(View *_Nonnull)))withConfig {
-    return ^LOKOverlayLayoutBuilder *(void(^ _Nullable config)(View *_Nonnull)){
-        self.configure = config;
+- (LOKOverlayLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(LOKView *_Nonnull)))config {
+    return ^LOKOverlayLayoutBuilder *(void(^ _Nullable config)(LOKView *_Nonnull)){
+        self.privateConfigure = config;
         return self;
+    };
+}
+
+- (LOKInsetLayoutBuilder * _Nonnull (^)(LOKEdgeInsets))insets {
+    return ^LOKInsetLayoutBuilder *(LOKEdgeInsets insets){
+        return [LOKInsetLayoutBuilder withInsets:insets around:self.layout];
     };
 }
 

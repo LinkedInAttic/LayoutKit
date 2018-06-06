@@ -202,6 +202,7 @@
 		0BDDF95B1E25ACCE008B0A6F /* ReloadableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */; };
 		0BDDF95C1E25ACCE008B0A6F /* ReloadableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */; };
 		37BEBEF5207C25BF002BD761 /* LOKAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BEBEF3207C23B6002BD761 /* LOKAnimation.swift */; };
+		37D9D58420BF82FD001A5CDD /* LOKLayoutBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 37D9D58320BF8270001A5CDD /* LOKLayoutBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4468A31D1E46460B00341D07 /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4468A31C1E46460B00341D07 /* NSAttributedStringExtension.swift */; };
 		4468A31E1E464A3900341D07 /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4468A31C1E46460B00341D07 /* NSAttributedStringExtension.swift */; };
 		448CEC0F1E4E0CB500F8AD9E /* TextViewDefaultFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448CEC0E1E4E0CB500F8AD9E /* TextViewDefaultFont.swift */; };
@@ -288,13 +289,11 @@
 		7EECD04D2053916C003DC4B1 /* ReloadableViewUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB75F41D8724800065E02A /* ReloadableViewUpdateManager.swift */; };
 		7EECD04E2053916C003DC4B1 /* TextViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F968141E425F5D00392763 /* TextViewLayout.swift */; };
 		7EECD04F2053916C003DC4B1 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD42BDB1DB5EAAD00E04AA3 /* Text.swift */; };
-		7EECD0502053916C003DC4B1 /* LOKBaseLayoutBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7370F12051E3E6007C19FF /* LOKBaseLayoutBuilder.m */; };
 		7EECD0512053916C003DC4B1 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB75F51D8724800065E02A /* StackView.swift */; };
 		7EECD0552053916C003DC4B1 /* LOKButtonLayoutBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E7370F42051ED84007C19FF /* LOKButtonLayoutBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EECD0562053916C003DC4B1 /* LOKOverlayLayoutBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E7370F82051F415007C19FF /* LOKOverlayLayoutBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EECD0572053916C003DC4B1 /* LOKSizeLayoutBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E7370FC2051F86D007C19FF /* LOKSizeLayoutBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EECD0582053916C003DC4B1 /* LOKInsetLayoutBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E7370E82051A494007C19FF /* LOKInsetLayoutBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7EECD0592053916C003DC4B1 /* LOKBaseLayoutBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E7370F02051E3E6007C19FF /* LOKBaseLayoutBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EECD05A2053916C003DC4B1 /* LOKStackLayoutBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E73710020520CA8007C19FF /* LOKStackLayoutBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EECD05B2053916C003DC4B1 /* LOKLabelLayoutBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E7370EC2051E08F007C19FF /* LOKLabelLayoutBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EECD05C2053916C003DC4B1 /* LOKTextViewLayoutBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E73710420520F5F007C19FF /* LOKTextViewLayoutBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -475,6 +474,7 @@
 		0BD5F82B1DB43F9B00108688 /* ButtonLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonLayoutTests.swift; sourceTree = "<group>"; };
 		0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewTests.swift; sourceTree = "<group>"; };
 		37BEBEF3207C23B6002BD761 /* LOKAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKAnimation.swift; sourceTree = "<group>"; };
+		37D9D58320BF8270001A5CDD /* LOKLayoutBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LOKLayoutBuilder.h; sourceTree = "<group>"; };
 		4468A31C1E46460B00341D07 /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
 		448CEC0E1E4E0CB500F8AD9E /* TextViewDefaultFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewDefaultFont.swift; sourceTree = "<group>"; };
 		44F968141E425F5D00392763 /* TextViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewLayout.swift; sourceTree = "<group>"; };
@@ -493,8 +493,6 @@
 		7E7370E92051A494007C19FF /* LOKInsetLayoutBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LOKInsetLayoutBuilder.m; sourceTree = "<group>"; };
 		7E7370EC2051E08F007C19FF /* LOKLabelLayoutBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LOKLabelLayoutBuilder.h; sourceTree = "<group>"; };
 		7E7370ED2051E08F007C19FF /* LOKLabelLayoutBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LOKLabelLayoutBuilder.m; sourceTree = "<group>"; };
-		7E7370F02051E3E6007C19FF /* LOKBaseLayoutBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LOKBaseLayoutBuilder.h; sourceTree = "<group>"; };
-		7E7370F12051E3E6007C19FF /* LOKBaseLayoutBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LOKBaseLayoutBuilder.m; sourceTree = "<group>"; };
 		7E7370F42051ED84007C19FF /* LOKButtonLayoutBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LOKButtonLayoutBuilder.h; sourceTree = "<group>"; };
 		7E7370F52051ED84007C19FF /* LOKButtonLayoutBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LOKButtonLayoutBuilder.m; sourceTree = "<group>"; };
 		7E7370F82051F415007C19FF /* LOKOverlayLayoutBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LOKOverlayLayoutBuilder.h; sourceTree = "<group>"; };
@@ -841,8 +839,6 @@
 		7E7370E72051A3FA007C19FF /* Builders */ = {
 			isa = PBXGroup;
 			children = (
-				7E7370F02051E3E6007C19FF /* LOKBaseLayoutBuilder.h */,
-				7E7370F12051E3E6007C19FF /* LOKBaseLayoutBuilder.m */,
 				7E7370F42051ED84007C19FF /* LOKButtonLayoutBuilder.h */,
 				7E7370F52051ED84007C19FF /* LOKButtonLayoutBuilder.m */,
 				7E7370E82051A494007C19FF /* LOKInsetLayoutBuilder.h */,
@@ -857,6 +853,7 @@
 				7E73710120520CA8007C19FF /* LOKStackLayoutBuilder.m */,
 				7E73710420520F5F007C19FF /* LOKTextViewLayoutBuilder.h */,
 				7E73710520520F5F007C19FF /* LOKTextViewLayoutBuilder.m */,
+				37D9D58320BF8270001A5CDD /* LOKLayoutBuilder.h */,
 			);
 			path = Builders;
 			sourceTree = "<group>";
@@ -954,9 +951,9 @@
 			files = (
 				7EECD0552053916C003DC4B1 /* LOKButtonLayoutBuilder.h in Headers */,
 				7EECD0562053916C003DC4B1 /* LOKOverlayLayoutBuilder.h in Headers */,
+				37D9D58420BF82FD001A5CDD /* LOKLayoutBuilder.h in Headers */,
 				7EECD0572053916C003DC4B1 /* LOKSizeLayoutBuilder.h in Headers */,
 				7EECD0582053916C003DC4B1 /* LOKInsetLayoutBuilder.h in Headers */,
-				7EECD0592053916C003DC4B1 /* LOKBaseLayoutBuilder.h in Headers */,
 				7EECD05A2053916C003DC4B1 /* LOKStackLayoutBuilder.h in Headers */,
 				7EECD05B2053916C003DC4B1 /* LOKLabelLayoutBuilder.h in Headers */,
 				7EC02CDC20570945000CEE24 /* LayoutKitObjC.h in Headers */,
@@ -1638,7 +1635,6 @@
 				7EECD04D2053916C003DC4B1 /* ReloadableViewUpdateManager.swift in Sources */,
 				7EECD04E2053916C003DC4B1 /* TextViewLayout.swift in Sources */,
 				7EECD04F2053916C003DC4B1 /* Text.swift in Sources */,
-				7EECD0502053916C003DC4B1 /* LOKBaseLayoutBuilder.m in Sources */,
 				7EECD0512053916C003DC4B1 /* StackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

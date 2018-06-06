@@ -6,33 +6,29 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-#import "LOKBaseLayoutBuilder.h"
+#import <Foundation/Foundation.h>
+
+#import "LOKLayoutBuilder.h"
 
 @class LOKLabelLayout;
 
-@interface LOKLabelLayoutBuilder : LOKBaseLayoutBuilder
+@interface LOKLabelLayoutBuilder: NSObject<LOKLayoutBuilder>
 
 + (nonnull instancetype)withString:(nullable NSString *)string;
 + (nonnull instancetype)withAttributedString:(nullable NSAttributedString *)attributedString;
 
-@property (nonatomic, nullable) NSString *string;
-@property (nonatomic, nullable) NSAttributedString *attributedString;
-@property (nonatomic, nullable) UIFont *font;
-@property (nonatomic) NSInteger numberOfLines;
-@property (nonatomic) CGFloat lineHeight;
-@property (nonatomic, nullable) void (^ configure)(UILabel * _Nonnull);
+@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^font)(UIFont * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^numberOfLines)(NSInteger);
+@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^lineHeight)(CGFloat);
 
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withFont)(UIFont * _Nullable);
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withNumberOfLines)(NSInteger);
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withLineHeight)(CGFloat);
+@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^alignment)(LOKAlignment * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^flexibility)(LOKFlexibility * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^viewReuseId)(NSString * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^viewClass)(Class _Nullable);
 
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nullable);
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nullable);
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withViewReuseId)(NSString * _Nullable);
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withViewClass)(Class _Nullable);
+@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^config)( void(^ _Nullable)(UILabel *_Nonnull));
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^insets)(LOKEdgeInsets);
 
-@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withConfig)( void(^ _Nullable)(UILabel *_Nonnull));
-
-- (nonnull LOKLabelLayout *)build;
+@property (nonatomic, nonnull, readonly) LOKLabelLayout *layout;
 
 @end

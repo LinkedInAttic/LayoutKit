@@ -68,7 +68,7 @@
     collectionView.delegate = self.adapter;
     collectionView.dataSource = self.adapter;
 
-    __auto_type cellLayout = [LOKSizeLayoutBuilder withSublayout:self.helloWorldLayout].withWidth(self.view.bounds.size.width).layout;
+    __auto_type cellLayout = [LOKSizeLayoutBuilder withSublayout:self.helloWorldLayout].width(self.view.bounds.size.width).layout;
 
     NSArray *items = @[
                        cellLayout, cellLayout, cellLayout, cellLayout,
@@ -106,27 +106,27 @@
 + (id<LOKLayout>)makeHelloLayout {
     __auto_type labelLayoutA =
     [LOKLabelLayoutBuilder withString:@"Hello"]
-    .withViewClass([MyLabelView class])
-    .withConfig(^(UILabel * _Nonnull label) {
+    .viewClass([MyLabelView class])
+    .config(^(UILabel * _Nonnull label) {
         label.backgroundColor = UIColor.whiteColor;
     })
     .layout;
 
     __auto_type labelLayoutB = [LOKLabelLayoutBuilder withString:@"world!"]
-    .withViewClass([MyLabelView class])
-    .withConfig(^(UILabel * _Nonnull label) {
+    .viewClass([MyLabelView class])
+    .config(^(UILabel * _Nonnull label) {
         label.textColor = UIColor.blueColor;
         label.backgroundColor = UIColor.whiteColor;
     })
     .layout;
 
     __auto_type layout = [LOKStackLayoutBuilder withSublayouts:@[labelLayoutA, labelLayoutB]]
-    .withAxis(LOKAxisHorizontal)
-    .withSpacing(10)
-    .withInsets(UIEdgeInsetsMake(20, 20, 20, 20))
-    .withAlignment(LOKAlignment.fill)
-    .withViewClass(LabelBackgroundView.class)
-    .withConfig(^(UIView * _Nonnull view) { })
+    .axis(LOKAxisHorizontal)
+    .spacing(10)
+    .insets(UIEdgeInsetsMake(20, 20, 20, 20))
+    .alignment(LOKAlignment.fill)
+    .viewClass(LabelBackgroundView.class)
+    .config(^(UIView * _Nonnull view) { })
     .layout;
 
     return [[RotationLayout alloc] initWithSublayout:layout

@@ -10,98 +10,120 @@
 
 #import <LayoutKitObjC/LayoutKitObjC-Swift.h>
 
+@interface LOKTextViewLayoutBuilder ()
+
+@property (nonatomic, nullable) LOKAlignment *privateAlignment;
+@property (nonatomic, nullable) LOKFlexibility *privateFlexibility;
+@property (nonatomic, nullable) NSString *privateViewReuseId;
+@property (nonatomic, nullable) Class privateViewClass;
+
+@property (nonatomic, nullable) NSString *privateString;
+@property (nonatomic, nullable) NSAttributedString *privateAttributedString;
+@property (nonatomic, nullable) UIFont *privateFont;
+@property (nonatomic) UIEdgeInsets privateTextContainerInset;
+@property (nonatomic) CGFloat privateLineFragmentPadding;
+@property (nonatomic, nullable) void (^ privateConfigure)(UITextView * _Nonnull);
+
+@end
+
 @implementation LOKTextViewLayoutBuilder
 
 + (nonnull instancetype)withString:(nullable NSString *)string {
     LOKTextViewLayoutBuilder *builder = [[self alloc] init];
-    builder.string = string;
+    builder.privateString = string;
     return builder;
 }
 
 + (nonnull instancetype)withAttributedString:(nullable NSAttributedString *)attributedString {
     LOKTextViewLayoutBuilder *builder = [[self alloc] init];
-    builder.attributedString = attributedString;
+    builder.privateAttributedString = attributedString;
     return builder;
 }
 
-- (nonnull LOKTextViewLayout *)build {
-    NSAssert(!self.attributedString || !self.string, @"LOKTextViewLayoutBuilder should not have both a string and an attributedString.");
-    if (self.attributedString) {
-        return [[LOKTextViewLayout alloc] initWithAttributedText:self.attributedString
-                                                            font:self.font
-                                             lineFragmentPadding:self.lineFragmentPadding
-                                              textContainerInset:self.textContainerInset
-                                                 layoutAlignment:self.alignment
-                                                     flexibility:self.flexibility
-                                                     viewReuseId:self.viewReuseId
-                                                       viewClass:self.viewClass
-                                                       configure:self.configure];
+- (nonnull LOKTextViewLayout *)layout {
+    NSAssert(!self.privateAttributedString || !self.privateString, @"LOKTextViewLayoutBuilder should not have both a string and an attributedString.");
+    if (self.privateAttributedString) {
+        return [[LOKTextViewLayout alloc] initWithAttributedText:self.privateAttributedString
+                                                            font:self.privateFont
+                                             lineFragmentPadding:self.privateLineFragmentPadding
+                                              textContainerInset:self.privateTextContainerInset
+                                                 layoutAlignment:self.privateAlignment
+                                                     flexibility:self.privateFlexibility
+                                                     viewReuseId:self.privateViewReuseId
+                                                       viewClass:self.privateViewClass
+                                                       configure:self.privateConfigure];
     } else {
-        return [[LOKTextViewLayout alloc] initWithText:self.string
-                                                  font:self.font
-                                   lineFragmentPadding:self.lineFragmentPadding
-                                    textContainerInset:self.textContainerInset
-                                       layoutAlignment:self.alignment
-                                           flexibility:self.flexibility
-                                           viewReuseId:self.viewReuseId
-                                             viewClass:self.viewClass
-                                             configure:self.configure];
+        return [[LOKTextViewLayout alloc] initWithText:self.privateString
+                                                  font:self.privateFont
+                                   lineFragmentPadding:self.privateLineFragmentPadding
+                                    textContainerInset:self.privateTextContainerInset
+                                       layoutAlignment:self.privateAlignment
+                                           flexibility:self.privateFlexibility
+                                           viewReuseId:self.privateViewReuseId
+                                             viewClass:self.privateViewClass
+                                             configure:self.privateConfigure];
     }
 }
 
-- (LOKTextViewLayoutBuilder * _Nonnull (^)(UIFont * _Nullable))withFont {
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(UIFont * _Nullable))font {
     return ^LOKTextViewLayoutBuilder *(UIFont * _Nullable font){
-        self.font = font;
+        self.privateFont = font;
         return self;
     };
 }
 
-- (LOKTextViewLayoutBuilder * _Nonnull (^)(UIEdgeInsets))withTextContainerInset {
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(UIEdgeInsets))textContainerInset {
     return ^LOKTextViewLayoutBuilder *(UIEdgeInsets textContainerInset){
-        self.textContainerInset = textContainerInset;
+        self.privateTextContainerInset = textContainerInset;
         return self;
     };
 }
 
-- (LOKTextViewLayoutBuilder * _Nonnull (^)(CGFloat))withLineFragmentPadding {
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(CGFloat))lineFragmentPadding {
     return ^LOKTextViewLayoutBuilder *(CGFloat lineFragmentPadding){
-        self.lineFragmentPadding = lineFragmentPadding;
+        self.privateLineFragmentPadding = lineFragmentPadding;
         return self;
     };
 }
 
-- (LOKTextViewLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))withAlignment {
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))alignment {
     return ^LOKTextViewLayoutBuilder *(LOKAlignment * alignment){
-        self.alignment = alignment;
+        self.privateAlignment = alignment;
         return self;
     };
 }
 
-- (LOKTextViewLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))withFlexibility {
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))flexibility {
     return ^LOKTextViewLayoutBuilder *(LOKFlexibility * flexibility){
-        self.flexibility = flexibility;
+        self.privateFlexibility = flexibility;
         return self;
     };
 }
 
-- (LOKTextViewLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))withViewReuseId {
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(NSString * _Nonnull))viewReuseId {
     return ^LOKTextViewLayoutBuilder *(NSString * viewReuseId){
-        self.viewReuseId = viewReuseId;
+        self.privateViewReuseId = viewReuseId;
         return self;
     };
 }
 
-- (LOKTextViewLayoutBuilder * _Nonnull (^)(Class _Nonnull))withViewClass {
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(Class _Nonnull))viewClass {
     return ^LOKTextViewLayoutBuilder *(Class viewClass){
-        self.viewClass = viewClass;
+        self.privateViewClass = viewClass;
         return self;
     };
 }
 
-- (LOKTextViewLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(UITextView *_Nonnull)))withConfig {
+- (LOKTextViewLayoutBuilder * _Nonnull (^)(void(^ _Nullable)(UITextView *_Nonnull)))config {
     return ^LOKTextViewLayoutBuilder *(void(^ _Nullable config)(UITextView *_Nonnull)){
-        self.configure = config;
+        self.privateConfigure = config;
         return self;
+    };
+}
+
+- (LOKInsetLayoutBuilder * _Nonnull (^)(LOKEdgeInsets))insets {
+    return ^LOKInsetLayoutBuilder *(LOKEdgeInsets insets){
+        return [LOKInsetLayoutBuilder withInsets:insets around:self.layout];
     };
 }
 
