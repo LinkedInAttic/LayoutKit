@@ -25,13 +25,30 @@ typedef NSView LOKView;
 @class LOKInsetLayoutBuilder;
 @protocol LOKLayout;
 
+/**
+ This protocol's only purpose is to serve as a gentle reminder when implementing the builder
+ to provide support for these common builder properties. This protocol probably shouldn't be
+ used as a property, parameter, or return type.
+
+ The protocol defines one method (@c layout) instead of a property because of issues
+ in the ObjC/Swift interop. However, when you implement the protocol conformance in your
+ builder you should use properties for everything.
+
+ The types being returned (@c id<LOKLayoutBuilder> and @c id<LOKLayout>) should be changed
+ to the concrete type in your actual builder. It will still satisfy the protocol requirements
+ but will allow the user of your builder to call the other builder-specific properties.
+ */
 @protocol LOKLayoutBuilder
 
-- (id<LOKLayoutBuilder> _Nonnull (^)(LOKAlignment * _Nonnull))alignment;
-- (id<LOKLayoutBuilder> _Nonnull (^)(LOKFlexibility * _Nonnull))flexibility;
-- (id<LOKLayoutBuilder> _Nonnull (^)(NSString * _Nonnull))viewReuseId;
-- (id<LOKLayoutBuilder> _Nonnull (^)(Class _Nonnull))viewClass;
-- (id<LOKLayoutBuilder> _Nonnull (^)(void(^ _Nullable)(LOKView *_Nonnull)))config;
+@property (nonatomic, nonnull, readonly) id<LOKLayoutBuilder> _Nonnull(^alignment)(LOKAlignment * _Nullable);
+@property (nonatomic, nonnull, readonly) id<LOKLayoutBuilder> _Nonnull(^flexibility)(LOKFlexibility * _Nullable);
+@property (nonatomic, nonnull, readonly) id<LOKLayoutBuilder> _Nonnull(^viewReuseId)(NSString * _Nullable);
+@property (nonatomic, nonnull, readonly) id<LOKLayoutBuilder> _Nonnull(^viewClass)(Class _Nullable);
+
+@property (nonatomic, nonnull, readonly) id<LOKLayoutBuilder> _Nonnull(^config)( void(^ _Nullable)(LOKView *_Nonnull));
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^insets)(LOKEdgeInsets);
+// This needs to be a function, because if it is a property it produces warnings, because
+// of shortcomings in the ObjC/Swift interop. When implemented, it should still be a property.
 - (nonnull id<LOKLayout>)layout;
 
 @end
