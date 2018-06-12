@@ -12,6 +12,7 @@
 
 @interface LOKSizeLayoutBuilder: NSObject<LOKLayoutBuilder>
 
+- (nonnull instancetype)initWithSublayout:(nullable id<LOKLayout>)sublayout;
 + (nonnull instancetype)withSublayout:(nullable id<LOKLayout>)sublayout;
 
 @property (nonatomic, nonnull, readonly) LOKSizeLayoutBuilder * _Nonnull(^width)(CGFloat);

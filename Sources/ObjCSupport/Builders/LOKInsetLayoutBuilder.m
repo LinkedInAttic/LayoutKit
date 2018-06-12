@@ -25,11 +25,15 @@
 
 @implementation LOKInsetLayoutBuilder
 
+- (instancetype)initWithInsets:(LOKEdgeInsets)insets around:(id<LOKLayout>)sublayout {
+    self = [super init];
+    _privateInsets = insets;
+    _privateSublayout = sublayout;
+    return self;
+}
+
 + (nonnull instancetype)withInsets:(LOKEdgeInsets)insets around:(nonnull id<LOKLayout>)sublayout {
-    LOKInsetLayoutBuilder *builder = [[self alloc] init];
-    builder.privateInsets = insets;
-    builder.privateSublayout = sublayout;
-    return builder;
+    return [[self alloc] initWithInsets:insets around:sublayout];
 }
 
 - (nonnull LOKInsetLayout *)layout {

@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, LOKButtonLayoutType) {
 
 @interface LOKButtonLayoutBuilder: NSObject<LOKLayoutBuilder>
 
+- (nonnull instancetype)initWithTitle:(nullable NSString *)title;
 + (nonnull instancetype)withTitle:(nullable NSString *)title;
 
 @property (nonatomic, nonnull, readonly) LOKButtonLayoutBuilder * _Nonnull(^type)(LOKButtonLayoutType);

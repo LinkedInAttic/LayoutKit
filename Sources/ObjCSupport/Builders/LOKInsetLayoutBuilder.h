@@ -14,6 +14,7 @@
 
 @interface LOKInsetLayoutBuilder: NSObject<LOKLayoutBuilder>
 
+- (nonnull instancetype)initWithInsets:(LOKEdgeInsets)insets around:(nonnull id<LOKLayout>)sublayout;
 + (nonnull instancetype)withInsets:(LOKEdgeInsets)insets around:(nonnull id<LOKLayout>)sublayout;
 
 @property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^alignment)(LOKAlignment * _Nullable);

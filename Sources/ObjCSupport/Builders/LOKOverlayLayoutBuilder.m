@@ -26,12 +26,16 @@
 
 @implementation LOKOverlayLayoutBuilder
 
+- (instancetype)initWithPrimaryLayout:(id<LOKLayout>)primaryLayout {
+    self = [super init];
+    _privatePrimary = primaryLayout;
+    _privateBackground = @[];
+    _privateOverlay = @[];
+    return self;
+}
+
 + (instancetype)withPrimaryLayout:(id<LOKLayout>)primaryLayout {
-    LOKOverlayLayoutBuilder *builder = [[self alloc] init];
-    builder.privatePrimary = primaryLayout;
-    builder.privateBackground = @[];
-    builder.privateOverlay = @[];
-    return builder;
+    return [[self alloc] initWithPrimaryLayout:primaryLayout];
 }
 
 - (LOKOverlayLayout *)layout {

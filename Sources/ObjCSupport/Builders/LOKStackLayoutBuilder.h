@@ -27,6 +27,7 @@ typedef NS_ENUM(NSInteger, LOKAxis) {
 
 @interface LOKStackLayoutBuilder: NSObject<LOKLayoutBuilder>
 
+- (nonnull instancetype)initWithSublayouts:(nonnull NSArray< id<LOKLayout> > *)sublayouts;
 + (nonnull instancetype)withSublayouts:(nonnull NSArray< id<LOKLayout> > *)sublayouts;
 
 @property (nonatomic, nonnull, readonly) LOKStackLayoutBuilder * _Nonnull(^axis)(LOKAxis);
