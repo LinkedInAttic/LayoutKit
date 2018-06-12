@@ -12,6 +12,9 @@
 
 @interface LOKTextViewLayoutBuilder: NSObject<LOKLayoutBuilder>
 
+- (nonnull instancetype)initWithString:(nullable NSString *)string;
+- (nonnull instancetype)initWithAttributedString:(nullable NSAttributedString *)attributedString;
+
 + (nonnull instancetype)withString:(nullable NSString *)string;
 + (nonnull instancetype)withAttributedString:(nullable NSAttributedString *)attributedString;
 

@@ -30,14 +30,18 @@
 
 @implementation LOKSizeLayoutBuilder
 
+- (instancetype)initWithSublayout:(id<LOKLayout>)sublayout {
+    self = [super init];
+    _privateSublayout = sublayout;
+    _privateMinWidth = 0;
+    _privateMinHeight = 0;
+    _privateMaxWidth = INFINITY;
+    _privateMaxHeight = INFINITY;
+    return self;
+}
+
 + (instancetype)withSublayout:(id<LOKLayout>)sublayout {
-    LOKSizeLayoutBuilder *builder = [[self alloc] init];
-    builder.privateSublayout = sublayout;
-    builder.privateMinWidth = 0;
-    builder.privateMinHeight = 0;
-    builder.privateMaxWidth = INFINITY;
-    builder.privateMaxHeight = INFINITY;
-    return builder;
+    return [[self alloc] initWithSublayout:sublayout];
 }
 
 - (CGFloat)privateWidth {

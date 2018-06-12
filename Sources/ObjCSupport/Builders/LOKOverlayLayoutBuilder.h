@@ -14,6 +14,7 @@
 
 @interface LOKOverlayLayoutBuilder: NSObject<LOKLayoutBuilder>
 
+- (nonnull instancetype)initWithPrimaryLayout:(nonnull id<LOKLayout>)primaryLayout;
 + (nonnull instancetype)withPrimaryLayout:(nonnull id<LOKLayout>)primaryLayout;
 
 @property (nonatomic, nonnull, readonly) LOKOverlayLayoutBuilder * _Nonnull(^overlay)(NSArray< id<LOKLayout> > * _Nullable);

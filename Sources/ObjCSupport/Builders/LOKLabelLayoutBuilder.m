@@ -28,16 +28,24 @@
 
 @implementation LOKLabelLayoutBuilder
 
+- (instancetype)initWithString:(NSString *)string {
+    self = [super init];
+    _privateString = string;
+    return self;
+}
+
+- (instancetype)initWithAttributedString:(NSAttributedString *)attributedString {
+    self = [super init];
+    _privateAttributedString = attributedString;
+    return self;
+}
+
 + (nonnull instancetype)withString:(nullable NSString *)string {
-    LOKLabelLayoutBuilder *builder = [[self alloc] init];
-    builder.privateString = string;
-    return builder;
+    return [[self alloc] initWithString:string];
 }
 
 + (nonnull instancetype)withAttributedString:(nullable NSAttributedString *)attributedString {
-    LOKLabelLayoutBuilder *builder = [[self alloc] init];
-    builder.privateAttributedString = attributedString;
-    return builder;
+    return [[self alloc] initWithAttributedString:attributedString];
 }
 
 - (nonnull LOKLabelLayout *)layout {

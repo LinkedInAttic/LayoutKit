@@ -29,10 +29,14 @@
 
 @implementation LOKButtonLayoutBuilder
 
+- (instancetype)initWithTitle:(NSString *)title {
+    self = [super init];
+    _privateTitle = title;
+    return self;
+}
+
 + (instancetype)withTitle:(NSString *)title {
-    LOKButtonLayoutBuilder *builder = [[self alloc] init];
-    builder.privateTitle = title;
-    return builder;
+    return [[self alloc] initWithTitle:title];
 }
 
 - (LOKButtonLayout *)layout {

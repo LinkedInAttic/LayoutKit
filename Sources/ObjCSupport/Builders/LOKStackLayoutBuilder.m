@@ -27,11 +27,15 @@
 
 @implementation LOKStackLayoutBuilder
 
+- (instancetype)initWithSublayouts:(NSArray<id<LOKLayout>> *)sublayouts {
+    self = [super init];
+    _privateAxis = LOKAxisVertical;
+    _privateSublayouts = sublayouts;
+    return self;
+}
+
 + (instancetype)withSublayouts:(NSArray<id<LOKLayout>> *)sublayouts {
-    LOKStackLayoutBuilder *builder = [[self alloc] init];
-    builder.privateAxis = LOKAxisVertical;
-    builder.privateSublayouts = sublayouts;
-    return builder;
+    return [[self alloc] initWithSublayouts:sublayouts];
 }
 
 - (LOKStackLayout *)layout {
