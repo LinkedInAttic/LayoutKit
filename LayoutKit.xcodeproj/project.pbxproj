@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B193BB81D887BCF00FCA22D /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB61D887BCF00FCA22D /* CollectionExtension.swift */; };
-		0B193BB91D887BCF00FCA22D /* IndexSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB71D887BCF00FCA22D /* IndexSetExtension.swift */; };
-		0B193BBA1D888B6300FCA22D /* IndexSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB71D887BCF00FCA22D /* IndexSetExtension.swift */; };
-		0B193BBB1D888B6400FCA22D /* IndexSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB71D887BCF00FCA22D /* IndexSetExtension.swift */; };
-		0B193BBC1D888B6D00FCA22D /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB61D887BCF00FCA22D /* CollectionExtension.swift */; };
-		0B193BBD1D888B6D00FCA22D /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB61D887BCF00FCA22D /* CollectionExtension.swift */; };
 		0B2D09231D872F75007E487C /* AlignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76531D8725310065E02A /* AlignmentTests.swift */; };
 		0B2D09251D872F75007E487C /* CollectionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76551D8725310065E02A /* CollectionViewTests.swift */; };
 		0B2D09261D872F75007E487C /* DensityAssertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB76561D8725310065E02A /* DensityAssertions.swift */; };
@@ -233,7 +227,6 @@
 		7EECD0152053916C003DC4B1 /* ReverseWrappedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83B9201E55690001E279 /* ReverseWrappedLayout.swift */; };
 		7EECD0162053916C003DC4B1 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB75D51D8724800065E02A /* Animation.swift */; };
 		7EECD0172053916C003DC4B1 /* AxisSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB75E91D8724800065E02A /* AxisSize.swift */; };
-		7EECD0182053916C003DC4B1 /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB61D887BCF00FCA22D /* CollectionExtension.swift */; };
 		7EECD0192053916C003DC4B1 /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4468A31C1E46460B00341D07 /* NSAttributedStringExtension.swift */; };
 		7EECD01A2053916C003DC4B1 /* LayoutAdapterCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB75EE1D8724800065E02A /* LayoutAdapterCollectionView.swift */; };
 		7EECD01B2053916C003DC4B1 /* ButtonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD5F8281DB43B4500108688 /* ButtonLayout.swift */; };
@@ -271,7 +264,6 @@
 		7EECD03B2053916C003DC4B1 /* LOKLabelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83C5201E60BA0001E279 /* LOKLabelLayout.swift */; };
 		7EECD03C2053916C003DC4B1 /* LOKStackLayoutBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E73710120520CA8007C19FF /* LOKStackLayoutBuilder.m */; };
 		7EECD03D2053916C003DC4B1 /* LOKOverlayLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E233E64203129680012DD1E /* LOKOverlayLayout.swift */; };
-		7EECD03E2053916C003DC4B1 /* IndexSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB71D887BCF00FCA22D /* IndexSetExtension.swift */; };
 		7EECD03F2053916C003DC4B1 /* CFAbsoluteTimeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB75DB1D8724800065E02A /* CFAbsoluteTimeExtension.swift */; };
 		7EECD0402053916C003DC4B1 /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B765F2B1DC0514F000BF1FD /* CGFloatExtension.swift */; };
 		7EECD0412053916C003DC4B1 /* LOKTextViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E233E66203130110012DD1E /* LOKTextViewLayout.swift */; };
@@ -300,6 +292,12 @@
 		7EECD0632053942F003DC4B1 /* LayoutKitObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EECD0612053916C003DC4B1 /* LayoutKitObjC.framework */; };
 		AD2C36441EA5AFB500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2C36421EA5AF9500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift */; };
 		ADE5FCC11EA5B5F3006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE5FCBF1EA5B5C8006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift */; };
+		CDD4F71020EC727800DB358C /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB61D887BCF00FCA22D /* CollectionExtension.swift */; };
+		CDD4F71120EC727900DB358C /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB61D887BCF00FCA22D /* CollectionExtension.swift */; };
+		CDD4F71220EC727900DB358C /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB61D887BCF00FCA22D /* CollectionExtension.swift */; };
+		CDD4F71320EC728200DB358C /* IndexSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB71D887BCF00FCA22D /* IndexSetExtension.swift */; };
+		CDD4F71420EC728300DB358C /* IndexSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB71D887BCF00FCA22D /* IndexSetExtension.swift */; };
+		CDD4F71520EC728300DB358C /* IndexSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB71D887BCF00FCA22D /* IndexSetExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1344,7 +1342,6 @@
 				0BCB76071D8724800065E02A /* AxisPoint.swift in Sources */,
 				0BCB75F71D8724800065E02A /* Animation.swift in Sources */,
 				0BCB76081D8724800065E02A /* AxisSize.swift in Sources */,
-				0B193BB81D887BCF00FCA22D /* CollectionExtension.swift in Sources */,
 				4468A31D1E46460B00341D07 /* NSAttributedStringExtension.swift in Sources */,
 				0BCB760C1D8724800065E02A /* LayoutAdapterCollectionView.swift in Sources */,
 				0BD5F8291DB43B4500108688 /* ButtonLayout.swift in Sources */,
@@ -1366,7 +1363,6 @@
 				0BCB75FF1D8724800065E02A /* LayoutArrangement.swift in Sources */,
 				0BCB760F1D8724800065E02A /* ReloadableViewLayoutAdapter+UICollectionView.swift in Sources */,
 				0BCB75F61D8724800065E02A /* Alignment.swift in Sources */,
-				0B193BB91D887BCF00FCA22D /* IndexSetExtension.swift in Sources */,
 				0BCB75FC1D8724800065E02A /* CFAbsoluteTimeExtension.swift in Sources */,
 				0B765F2C1DC0514F000BF1FD /* CGFloatExtension.swift in Sources */,
 				0BCB76041D8724800065E02A /* SizeLayout.swift in Sources */,
@@ -1385,9 +1381,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADE5FCC11EA5B5F3006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift in Sources */,
+				CDD4F71020EC727800DB358C /* CollectionExtension.swift in Sources */,
 				AD2C36441EA5AFB500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift in Sources */,
 				0B765F301DC135B8000BF1FD /* CGFloatExtensionTests.swift in Sources */,
 				0B2D092C1D872F75007E487C /* ReloadableViewLayoutAdapterCollectionViewTests.swift in Sources */,
+				CDD4F71320EC728200DB358C /* IndexSetExtension.swift in Sources */,
 				0B2D092E1D872F75007E487C /* ReloadableViewLayoutAdapterTestCase.swift in Sources */,
 				0B2D092D1D872F75007E487C /* ReloadableViewLayoutAdapterTableViewTests.swift in Sources */,
 				0B2D09321D872F75007E487C /* StackLayoutSpacingTests.swift in Sources */,
@@ -1426,7 +1424,6 @@
 				0BCB76421D8724CF0065E02A /* AxisSize.swift in Sources */,
 				4468A31E1E464A3900341D07 /* NSAttributedStringExtension.swift in Sources */,
 				0BCB76301D8724C70065E02A /* LayoutMeasurement.swift in Sources */,
-				0B193BBA1D888B6300FCA22D /* IndexSetExtension.swift in Sources */,
 				0BCB76371D8724CA0065E02A /* InsetLayout.swift in Sources */,
 				0BCB76401D8724CF0065E02A /* AxisFlexibility.swift in Sources */,
 				0BCB762C1D8724C70065E02A /* CGSizeExtension.swift in Sources */,
@@ -1443,7 +1440,6 @@
 				0BCB764F1D8724E70065E02A /* ReloadableViewLayoutAdapter+UITableView.swift in Sources */,
 				0BCB76431D8724CF0065E02A /* UIKitSupport.swift in Sources */,
 				0BCB762D1D8724C70065E02A /* Layout.swift in Sources */,
-				0B193BBC1D888B6D00FCA22D /* CollectionExtension.swift in Sources */,
 				0BCB762E1D8724C70065E02A /* LayoutArrangement.swift in Sources */,
 				0BCB76141D8724C00065E02A /* Alignment.swift in Sources */,
 				0BCB76501D8724E70065E02A /* ReloadableViewLayoutAdapter.swift in Sources */,
@@ -1468,6 +1464,7 @@
 				0B2D09441D872F75007E487C /* ReloadableViewLayoutAdapterTestCase.swift in Sources */,
 				0B2D09431D872F75007E487C /* ReloadableViewLayoutAdapterTableViewTests.swift in Sources */,
 				0B2D09481D872F75007E487C /* StackLayoutSpacingTests.swift in Sources */,
+				CDD4F71120EC727900DB358C /* CollectionExtension.swift in Sources */,
 				75D94A3C1EA045F100A5FD01 /* OverlayLayoutTests.swift in Sources */,
 				44F968191E4263DC00392763 /* TextViewLayoutTests.swift in Sources */,
 				0B2D094E1D872F75007E487C /* ViewRecyclerTests.swift in Sources */,
@@ -1475,6 +1472,7 @@
 				0B2D093E1D872F75007E487C /* LabelLayoutTests.swift in Sources */,
 				0B2D09391D872F75007E487C /* AlignmentTests.swift in Sources */,
 				0B2D093C1D872F75007E487C /* DensityAssertions.swift in Sources */,
+				CDD4F71420EC728300DB358C /* IndexSetExtension.swift in Sources */,
 				0BB380DC1DB73EFF00E2614F /* TextExtension.swift in Sources */,
 				0B8C078C1DC3E88A001CD5EE /* ButtonLayoutTests.swift in Sources */,
 				0BDDF95C1E25ACCE008B0A6F /* ReloadableViewTests.swift in Sources */,
@@ -1502,8 +1500,6 @@
 				0BCB76471D8724D00065E02A /* AxisSize.swift in Sources */,
 				0BCB76351D8724C70065E02A /* LayoutMeasurement.swift in Sources */,
 				0BCB763C1D8724CB0065E02A /* InsetLayout.swift in Sources */,
-				0B193BBB1D888B6400FCA22D /* IndexSetExtension.swift in Sources */,
-				0B193BBD1D888B6D00FCA22D /* CollectionExtension.swift in Sources */,
 				0BCB76451D8724D00065E02A /* AxisFlexibility.swift in Sources */,
 				0BCB76321D8724C70065E02A /* CGSizeExtension.swift in Sources */,
 				0BCB763B1D8724CB0065E02A /* BaseLayout.swift in Sources */,
@@ -1529,6 +1525,7 @@
 				0B2D094F1D872F76007E487C /* AlignmentTests.swift in Sources */,
 				0B2D09521D872F76007E487C /* DensityAssertions.swift in Sources */,
 				0B2D09531D872F76007E487C /* InsetLayoutTests.swift in Sources */,
+				CDD4F71220EC727900DB358C /* CollectionExtension.swift in Sources */,
 				0BA02E481D874BBB00F1E8D3 /* LayoutArrangementTests.swift in Sources */,
 				75D94A3D1EA045F100A5FD01 /* OverlayLayoutTests.swift in Sources */,
 				0B2D095B1D872F76007E487C /* SizeLayoutTests.swift in Sources */,
@@ -1536,6 +1533,7 @@
 				0B2D095D1D872F76007E487C /* StackLayoutFlexibilityTests.swift in Sources */,
 				0B2D095C1D872F76007E487C /* StackLayoutDistributionTests.swift in Sources */,
 				0B2D095F1D872F76007E487C /* StackLayoutTests.swift in Sources */,
+				CDD4F71520EC728300DB358C /* IndexSetExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1579,7 +1577,6 @@
 				7EECD0152053916C003DC4B1 /* ReverseWrappedLayout.swift in Sources */,
 				7EECD0162053916C003DC4B1 /* Animation.swift in Sources */,
 				7EECD0172053916C003DC4B1 /* AxisSize.swift in Sources */,
-				7EECD0182053916C003DC4B1 /* CollectionExtension.swift in Sources */,
 				7EECD0192053916C003DC4B1 /* NSAttributedStringExtension.swift in Sources */,
 				7EECD01A2053916C003DC4B1 /* LayoutAdapterCollectionView.swift in Sources */,
 				7EECD01B2053916C003DC4B1 /* ButtonLayout.swift in Sources */,
@@ -1617,7 +1614,6 @@
 				7EECD03B2053916C003DC4B1 /* LOKLabelLayout.swift in Sources */,
 				7EECD03C2053916C003DC4B1 /* LOKStackLayoutBuilder.m in Sources */,
 				7EECD03D2053916C003DC4B1 /* LOKOverlayLayout.swift in Sources */,
-				7EECD03E2053916C003DC4B1 /* IndexSetExtension.swift in Sources */,
 				7EECD03F2053916C003DC4B1 /* CFAbsoluteTimeExtension.swift in Sources */,
 				7EECD0402053916C003DC4B1 /* CGFloatExtension.swift in Sources */,
 				7EECD0412053916C003DC4B1 /* LOKTextViewLayout.swift in Sources */,
