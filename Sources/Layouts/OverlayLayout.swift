@@ -9,57 +9,91 @@
 import CoreGraphics
 
 /**
- A layout that overlays others. Allows adding other layouts behind or above a primary layout.
+ A layout that overlays others. Allows adding other layouts behind or above one or more primary layouts.
  The size of the primary, background, and overlay layouts will be determined based on the size
- computed from the primary layout.
+ computed from the primary layouts.
  */
 open class OverlayLayout<V: View>: BaseLayout<V> {
 
     /**
-     The primary layout that the `OverlayLayout` will use for sizing and flexibility.
+     The primary layouts that the `OverlayLayout` will use for sizing and flexibility.
      */
-    open let primary: Layout
+    open let primary: [Layout]
 
     /**
-     The layouts to put behind the primary layout. They will be at most as large as the primary
-     layout.
+     The layouts to put behind the primary layouts. They will be at most as large as the primary
+     layouts.
      */
     open let background: [Layout]
 
     /**
-     The layouts to put in front of the primary layout. They will be at most as large as the primary
-     layout.
+     The layouts to put in front of the primary layouts. They will be at most as large as the primary
+     layouts.
      */
     open let overlay: [Layout]
 
     /**
      Creates an `OverlayLayout` with the given primary, background, and overlay layouts. Alignment
      can be specified but defaults to `.fill`. Flexibility will always be the flexibility of the
-     primary layout.
+     first primary layout.
      */
-    public init(primary: Layout,
+    public init(primaries: [Layout],
                 background: [Layout] = [],
                 overlay: [Layout] = [],
                 alignment: Alignment = .fill,
                 viewReuseId: String? = nil,
                 config: ((V) -> Void)? = nil) {
-        self.primary = primary
+        self.primary = primaries
         self.background = background
         self.overlay = overlay
-        super.init(alignment: alignment, flexibility: primary.flexibility, viewReuseId: viewReuseId, config: config)
+        super.init(alignment: alignment, flexibility: primaries.first?.flexibility ?? .flexible, viewReuseId: viewReuseId, config: config)
     }
 
-    init(primary: Layout,
+    /**
+     Creates an `OverlayLayout` with the given primary, background, and overlay layouts. Alignment
+     can be specified but defaults to `.fill`. Flexibility will always be the flexibility of the
+     primary layout.
+     */
+    convenience public init(primary: Layout,
+                            background: [Layout] = [],
+                            overlay: [Layout] = [],
+                            alignment: Alignment = .fill,
+                            viewReuseId: String? = nil,
+                            config: ((V) -> Void)? = nil) {
+        self.init(primaries: [primary], background: background, overlay: overlay, alignment: alignment, viewReuseId: viewReuseId, config: config)
+    }
+
+    init(primaries: [Layout],
          background: [Layout] = [],
          overlay: [Layout] = [],
          alignment: Alignment = .fill,
          viewReuseId: String? = nil,
          viewClass: V.Type? = nil,
          config: ((V) -> Void)? = nil) {
-        self.primary = primary
+        self.primary = primaries
         self.background = background
         self.overlay = overlay
-        super.init(alignment: alignment, flexibility: primary.flexibility, viewReuseId: viewReuseId, viewClass: viewClass ?? V.self, config: config)
+        super.init(alignment: alignment,
+                   flexibility: primaries.first?.flexibility ?? .flexible,
+                   viewReuseId: viewReuseId,
+                   viewClass: viewClass ?? V.self,
+                   config: config)
+    }
+
+    convenience init(primary: Layout,
+                     background: [Layout] = [],
+                     overlay: [Layout] = [],
+                     alignment: Alignment = .fill,
+                     viewReuseId: String? = nil,
+                     viewClass: V.Type? = nil,
+                     config: ((V) -> Void)? = nil) {
+        self.init(primaries: [primary],
+                  background: background,
+                  overlay: overlay,
+                  alignment: alignment,
+                  viewReuseId: viewReuseId,
+                  viewClass: viewClass,
+                  config: config)
     }
 }
 
@@ -71,13 +105,16 @@ extension OverlayLayout: ConfigurableLayout {
      Measure all layouts and return the layout measurement with the size of the primary layout.
      */
     open func measurement(within maxSize: CGSize) -> LayoutMeasurement {
-        let measuredSublayout = primary.measurement(within: maxSize)
+        let measuredPrimaryLayouts = primary.map { $0.measurement(within: maxSize)}
+        let maxWidth = measuredPrimaryLayouts.map { $0.size.width }.max() ?? 0
+        let maxHeight = measuredPrimaryLayouts.map { $0.size.height }.max() ?? 0
+        let maxPrimarySize = CGSize(width: maxWidth, height: maxHeight)
 
         // Measure the background and overlay layouts
-        let measuredBackgroundLayouts = background.map { $0.measurement(within: measuredSublayout.maxSize) }
-        let measuredOverlayLayouts = overlay.map { $0.measurement(within: measuredSublayout.maxSize) }
-        let measuredSublayouts = Array([measuredBackgroundLayouts, [measuredSublayout], measuredOverlayLayouts].joined())
-        return LayoutMeasurement(layout: self, size: measuredSublayout.size, maxSize: maxSize, sublayouts: measuredSublayouts)
+        let measuredBackgroundLayouts = background.map { $0.measurement(within: maxSize) }
+        let measuredOverlayLayouts = overlay.map { $0.measurement(within: maxSize) }
+        let measuredSublayouts = Array([measuredBackgroundLayouts, measuredPrimaryLayouts, measuredOverlayLayouts].joined())
+        return LayoutMeasurement(layout: self, size: maxPrimarySize, maxSize: maxSize, sublayouts: measuredSublayouts)
     }
 
     /**
@@ -86,24 +123,10 @@ extension OverlayLayout: ConfigurableLayout {
      the measurement's size.
      */
     open func arrangement(within rect: CGRect, measurement: LayoutMeasurement) -> LayoutArrangement {
-        let frame = alignment.position(size: measurement.size, in: rect)
-
-        // Get measurement sublayouts
-        let measuredBackgroundLayouts = measurement.sublayouts.prefix(background.count)
-        let measuredOverlayLayouts = measurement.sublayouts.suffix(overlay.count)
-
-        // Make sure we have at least enough sublayouts to get the primary layout
-        guard measurement.sublayouts.count >= background.count else {
-            return LayoutArrangement(layout: self, frame: frame, sublayouts: [])
-        }
-        let primaryLayoutMeasurement = measurement.sublayouts[background.count]
-
         // We arrange the background and overlay layouts based on the rect of the sublayout
+        let frame = alignment.position(size: measurement.size, in: rect)
         let sublayoutRect = CGRect(origin: CGPoint.zero, size: frame.size)
-        let primaryArrangement = primaryLayoutMeasurement.arrangement(within: sublayoutRect)
-        let backgroundArrangements = measuredBackgroundLayouts.map { $0.arrangement(within: sublayoutRect) }
-        let overlayArrangements = measuredOverlayLayouts.map { $0.arrangement(within: sublayoutRect) }
-        let sublayoutArrangements = [backgroundArrangements, [primaryArrangement], overlayArrangements].joined()
+        let sublayoutArrangements = measurement.sublayouts.map { $0.arrangement(within: sublayoutRect) }
 
         return LayoutArrangement(layout: self, frame: frame, sublayouts: Array(sublayoutArrangements))
     }

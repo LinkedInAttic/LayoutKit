@@ -25,4 +25,21 @@ import Foundation
             viewClass: viewClass,
             config: configure))
     }
+
+    @objc public init(primaries: [LOKLayout],
+                      background: [LOKLayout]? = nil,
+                      overlay: [LOKLayout]? = nil,
+                      alignment: LOKAlignment? = nil,
+                      viewReuseId: String? = nil,
+                      viewClass: View.Type? = nil,
+                      configure: ((View) -> Void)? = nil) {
+        super.init(layout: OverlayLayout(
+            primaries: primaries.map { $0.unwrapped },
+            background: background?.map { $0.unwrapped } ?? [],
+            overlay: overlay?.map { $0.unwrapped } ?? [],
+            alignment: alignment?.alignment ?? .fill,
+            viewReuseId: viewReuseId,
+            viewClass: viewClass,
+            config: configure))
+    }
 }
