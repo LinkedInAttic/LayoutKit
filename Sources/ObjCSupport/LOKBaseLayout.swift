@@ -23,7 +23,7 @@ open class LOKBaseLayout: NSObject, LOKLayout {
         return LOKLayoutArrangement(layoutArrangement: layout.arrangement(within: rect, measurement: measurement.measurement))
     }
 
-    public var needsView: Bool {
+    open var needsView: Bool {
         return layout.needsView
     }
 
@@ -31,7 +31,7 @@ open class LOKBaseLayout: NSObject, LOKLayout {
         return layout.makeView()
     }
 
-    public func configure(baseTypeView: View) {
+    open func configure(baseTypeView: View) {
         layout.configure(baseTypeView: baseTypeView)
     }
 
