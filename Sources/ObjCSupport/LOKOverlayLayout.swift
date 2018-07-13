@@ -9,23 +9,6 @@
 import Foundation
 
 @objc open class LOKOverlayLayout: LOKBaseLayout {
-    @objc public init(primary: LOKLayout,
-                      background: [LOKLayout]? = nil,
-                      overlay: [LOKLayout]? = nil,
-                      alignment: LOKAlignment? = nil,
-                      viewReuseId: String? = nil,
-                      viewClass: View.Type? = nil,
-                      configure: ((View) -> Void)? = nil) {
-        super.init(layout: OverlayLayout(
-            primaryLayouts: [primary.unwrapped],
-            backgroundLayouts: background?.map { $0.unwrapped } ?? [],
-            overlayLayouts: overlay?.map { $0.unwrapped } ?? [],
-            alignment: alignment?.alignment ?? .fill,
-            viewReuseId: viewReuseId,
-            viewClass: viewClass,
-            config: configure))
-    }
-
     @objc public init(primaryLayouts: [LOKLayout],
                       backgroundLayouts: [LOKLayout]? = nil,
                       overlayLayouts: [LOKLayout]? = nil,
