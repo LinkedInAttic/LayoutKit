@@ -17,26 +17,26 @@ import Foundation
                       viewClass: View.Type? = nil,
                       configure: ((View) -> Void)? = nil) {
         super.init(layout: OverlayLayout(
-            primary: primary.unwrapped,
-            background: background?.map { $0.unwrapped } ?? [],
-            overlay: overlay?.map { $0.unwrapped } ?? [],
+            primaryLayouts: [primary.unwrapped],
+            backgroundLayouts: background?.map { $0.unwrapped } ?? [],
+            overlayLayouts: overlay?.map { $0.unwrapped } ?? [],
             alignment: alignment?.alignment ?? .fill,
             viewReuseId: viewReuseId,
             viewClass: viewClass,
             config: configure))
     }
 
-    @objc public init(primaries: [LOKLayout],
-                      background: [LOKLayout]? = nil,
-                      overlay: [LOKLayout]? = nil,
+    @objc public init(primaryLayouts: [LOKLayout],
+                      backgroundLayouts: [LOKLayout]? = nil,
+                      overlayLayouts: [LOKLayout]? = nil,
                       alignment: LOKAlignment? = nil,
                       viewReuseId: String? = nil,
                       viewClass: View.Type? = nil,
                       configure: ((View) -> Void)? = nil) {
         super.init(layout: OverlayLayout(
-            primaries: primaries.map { $0.unwrapped },
-            background: background?.map { $0.unwrapped } ?? [],
-            overlay: overlay?.map { $0.unwrapped } ?? [],
+            primaryLayouts: primaryLayouts.map { $0.unwrapped },
+            backgroundLayouts: backgroundLayouts?.map { $0.unwrapped } ?? [],
+            overlayLayouts: overlayLayouts?.map { $0.unwrapped } ?? [],
             alignment: alignment?.alignment ?? .fill,
             viewReuseId: viewReuseId,
             viewClass: viewClass,

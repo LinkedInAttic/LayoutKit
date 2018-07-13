@@ -11,12 +11,16 @@ import CoreGraphics
 /**
  A layout that overlays others. Allows adding other layouts behind or above one or more primary layouts.
  The size of the primary, background, and overlay layouts will be determined based on the size
- computed from the primary layouts.
+ computed from the primary layouts, which takes the maximum width and height of all primary layouts.
+ The primary layouts will be stacked on top of each other in the same order as they are in the passed
+ in array, with the first primary layout in the array being at the bottom. Background layouts and overlay
+ layouts are stacked in the same fashion. Primary layouts are behind all overlay layouts and above all
+ background layouts.
  */
 open class OverlayLayout<V: View>: BaseLayout<V> {
 
     /**
-     The primary layouts that the `OverlayLayout` will use for sizing and flexibility.
+     The primary layouts that the `OverlayLayout` will use for sizing.
      */
     open let primary: [Layout]
 
@@ -34,66 +38,36 @@ open class OverlayLayout<V: View>: BaseLayout<V> {
 
     /**
      Creates an `OverlayLayout` with the given primary, background, and overlay layouts. Alignment
-     can be specified but defaults to `.fill`. Flexibility will always be the flexibility of the
-     first primary layout.
+     can be specified but defaults to `.fill`. Flexibility will default to .flexible.
      */
-    public init(primaries: [Layout],
-                background: [Layout] = [],
-                overlay: [Layout] = [],
+    public init(primaryLayouts: [Layout],
+                backgroundLayouts: [Layout] = [],
+                overlayLayouts: [Layout] = [],
                 alignment: Alignment = .fill,
                 viewReuseId: String? = nil,
-                config: ((V) -> Void)? = nil) {
-        self.primary = primaries
-        self.background = background
-        self.overlay = overlay
-        super.init(alignment: alignment, flexibility: primaries.first?.flexibility ?? .flexible, viewReuseId: viewReuseId, config: config)
+                config: ((V) -> Void)? = nil,
+                flexibility: Flexibility = .flexible) {
+        self.primary = primaryLayouts
+        self.background = backgroundLayouts
+        self.overlay = overlayLayouts
+        super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, config: config)
     }
 
-    /**
-     Creates an `OverlayLayout` with the given primary, background, and overlay layouts. Alignment
-     can be specified but defaults to `.fill`. Flexibility will always be the flexibility of the
-     primary layout.
-     */
-    convenience public init(primary: Layout,
-                            background: [Layout] = [],
-                            overlay: [Layout] = [],
-                            alignment: Alignment = .fill,
-                            viewReuseId: String? = nil,
-                            config: ((V) -> Void)? = nil) {
-        self.init(primaries: [primary], background: background, overlay: overlay, alignment: alignment, viewReuseId: viewReuseId, config: config)
-    }
-
-    init(primaries: [Layout],
-         background: [Layout] = [],
-         overlay: [Layout] = [],
+    init(primaryLayouts: [Layout],
+         backgroundLayouts: [Layout] = [],
+         overlayLayouts: [Layout] = [],
          alignment: Alignment = .fill,
          viewReuseId: String? = nil,
          viewClass: V.Type? = nil,
          config: ((V) -> Void)? = nil) {
-        self.primary = primaries
-        self.background = background
-        self.overlay = overlay
+        self.primary = primaryLayouts
+        self.background = backgroundLayouts
+        self.overlay = overlayLayouts
         super.init(alignment: alignment,
-                   flexibility: primaries.first?.flexibility ?? .flexible,
+                   flexibility: primaryLayouts.first?.flexibility ?? .flexible,
                    viewReuseId: viewReuseId,
                    viewClass: viewClass ?? V.self,
                    config: config)
-    }
-
-    convenience init(primary: Layout,
-                     background: [Layout] = [],
-                     overlay: [Layout] = [],
-                     alignment: Alignment = .fill,
-                     viewReuseId: String? = nil,
-                     viewClass: V.Type? = nil,
-                     config: ((V) -> Void)? = nil) {
-        self.init(primaries: [primary],
-                  background: background,
-                  overlay: overlay,
-                  alignment: alignment,
-                  viewReuseId: viewReuseId,
-                  viewClass: viewClass,
-                  config: config)
     }
 }
 

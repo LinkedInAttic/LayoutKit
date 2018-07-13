@@ -34,26 +34,18 @@
     return self;
 }
 
-- (instancetype)initWithPrimaryLayout:(id<LOKLayout>)primaryLayout {
-    return [self initWithPrimaryLayouts:@[primaryLayout]];
-}
-
 + (instancetype)withPrimaryLayouts:(NSArray< id<LOKLayout> > *)primaryLayouts {
     return [[self alloc] initWithPrimaryLayouts:primaryLayouts];
 }
 
-+ (instancetype)withPrimaryLayout:(id<LOKLayout>)primaryLayout {
-    return [[self alloc] initWithPrimaryLayout:primaryLayout];
-}
-
 - (LOKOverlayLayout *)layout {
-    return [[LOKOverlayLayout alloc] initWithPrimaries:self.privatePrimary
-                                            background:self.privateBackground
-                                               overlay:self.privateOverlay
-                                             alignment:self.privateAlignment
-                                           viewReuseId:self.privateViewReuseId
-                                             viewClass:self.privateViewClass
-                                             configure:self.privateConfigure];
+    return [[LOKOverlayLayout alloc] initWithPrimaryLayouts:self.privatePrimary
+                                          backgroundLayouts:self.privateBackground
+                                             overlayLayouts:self.privateOverlay
+                                                  alignment:self.privateAlignment
+                                                viewReuseId:self.privateViewReuseId
+                                                  viewClass:self.privateViewClass
+                                                  configure:self.privateConfigure];
 }
 
 - (LOKOverlayLayoutBuilder * _Nonnull (^)(NSArray< id<LOKLayout> > * _Nullable))overlay {
