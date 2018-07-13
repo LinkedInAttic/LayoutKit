@@ -38,8 +38,14 @@ import CoreGraphics
             height: height.isFinite ? height : nil))
     }
 
-    @objc public func makeViews(in view: View?) {
-        layoutArrangement.makeViews(in: view)
+    @discardableResult
+    @objc public func makeViews(in view: View?) -> View {
+        return layoutArrangement.makeViews(in: view)
+    }
+
+    @discardableResult
+    @objc public func makeViews(in view: View?, direction: UserInterfaceLayoutDirection) -> View {
+        return layoutArrangement.makeViews(in: view, direction: direction)
     }
 
     @objc public func makeViews() -> View {
