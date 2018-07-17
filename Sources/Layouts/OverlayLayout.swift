@@ -44,9 +44,9 @@ open class OverlayLayout<V: View>: BaseLayout<V> {
                 backgroundLayouts: [Layout] = [],
                 overlayLayouts: [Layout] = [],
                 alignment: Alignment = .fill,
+                flexibility: Flexibility = .flexible,
                 viewReuseId: String? = nil,
-                config: ((V) -> Void)? = nil,
-                flexibility: Flexibility = .flexible) {
+                config: ((V) -> Void)? = nil) {
         self.primary = primaryLayouts
         self.background = backgroundLayouts
         self.overlay = overlayLayouts
@@ -57,6 +57,7 @@ open class OverlayLayout<V: View>: BaseLayout<V> {
          backgroundLayouts: [Layout] = [],
          overlayLayouts: [Layout] = [],
          alignment: Alignment = .fill,
+         flexibility: Flexibility = .flexible,
          viewReuseId: String? = nil,
          viewClass: V.Type? = nil,
          config: ((V) -> Void)? = nil) {
@@ -64,7 +65,7 @@ open class OverlayLayout<V: View>: BaseLayout<V> {
         self.background = backgroundLayouts
         self.overlay = overlayLayouts
         super.init(alignment: alignment,
-                   flexibility: primaryLayouts.first?.flexibility ?? .flexible,
+                   flexibility: flexibility,
                    viewReuseId: viewReuseId,
                    viewClass: viewClass ?? V.self,
                    config: config)

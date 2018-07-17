@@ -190,34 +190,66 @@ class OverlayLayoutTests: XCTestCase {
     }
 
     /**
-     Tests primary layouts smaller than overlay.
-     Sublayouts should have same measurements.
+     Tests primary layouts smaller than overlay while available size is between primary layouts and overlay layouts.
      */
-    func testPrimaryLayoutsSmallerThanOverlay() {
+    func testPrimaryLayoutsSmallerThanOverlayAndAvailableSizeInBetween() {
         let primaryLayout0 = SizeLayout<View>(width: 2, height: 2)
         let primaryLayout1 = SizeLayout<View>(width: 3, height: 4)
-        let sublayout = SizeLayout<View>(width: 10, height: 10)
+        let overlayLayout0 = SizeLayout<View>(width: 10, height: 10)
 
-        let overlay = OverlayLayout(primaryLayouts: [primaryLayout0, primaryLayout1], overlayLayouts: [sublayout])
-        let arrangement = overlay.arrangement(width: 3.0, height: 4.0)
+        let overlay = OverlayLayout(primaryLayouts: [primaryLayout0, primaryLayout1], overlayLayouts: [overlayLayout0])
+        let arrangement = overlay.arrangement(width: 5.0, height: 6.0)
 
         // center alignment
-        let expectedSmallFrame = CGRect(x: 0.5, y: 1, width: 2.0, height: 2.0)
-        let expectedFrame = CGRect(x: 0, y: 0, width: 3.0, height: 4.0)
+        let expectedSmallPrimaryFrame = CGRect(x: 1.5, y: 2.0, width: 2.0, height: 2.0)
+        let expectedBigPrimaryFrame = CGRect(x: 1.0, y: 1.0, width: 3.0, height: 4.0)
+        let expectedOverlayFrame = CGRect(x: 0.0, y: 0.0, width: 5.0, height: 6.0)
         AssertEqualDensity(arrangement.sublayouts[0].frame, [
-            1.0: expectedSmallFrame,
-            2.0: expectedSmallFrame,
-            3.0: expectedSmallFrame
+            1.0: expectedSmallPrimaryFrame,
+            2.0: expectedSmallPrimaryFrame,
+            3.0: expectedSmallPrimaryFrame
             ])
         AssertEqualDensity(arrangement.sublayouts[1].frame, [
-            1.0: expectedFrame,
-            2.0: expectedFrame,
-            3.0: expectedFrame
+            1.0: expectedBigPrimaryFrame,
+            2.0: expectedBigPrimaryFrame,
+            3.0: expectedBigPrimaryFrame
             ])
         AssertEqualDensity(arrangement.sublayouts[2].frame, [
-            1.0: expectedFrame,
-            2.0: expectedFrame,
-            3.0: expectedFrame
+            1.0: expectedOverlayFrame,
+            2.0: expectedOverlayFrame,
+            3.0: expectedOverlayFrame
+            ])
+    }
+
+    /**
+     Tests primary layouts smaller than overlay while available size is smaller than primary layouts.
+     */
+    func testPrimaryLayoutsSmallerThanOverlayAndAvailableSizeIsEvenSmaller() {
+        let primaryLayout0 = SizeLayout<View>(width: 2, height: 2)
+        let primaryLayout1 = SizeLayout<View>(width: 7, height: 8)
+        let overlayLayout0 = SizeLayout<View>(width: 10, height: 10)
+
+        let overlay = OverlayLayout(primaryLayouts: [primaryLayout0, primaryLayout1], overlayLayouts: [overlayLayout0])
+        let arrangement = overlay.arrangement(width: 5.0, height: 6.0)
+
+        // center alignment
+        let expectedSmallPrimaryFrame = CGRect(x: 1.5, y: 2.0, width: 2.0, height: 2.0)
+        let expectedBigPrimaryFrame = CGRect(x: 0.0, y: 0.0, width: 5.0, height: 6.0)
+        let expectedOverlayFrame = CGRect(x: 0.0, y: 0.0, width: 5.0, height: 6.0)
+        AssertEqualDensity(arrangement.sublayouts[0].frame, [
+            1.0: expectedSmallPrimaryFrame,
+            2.0: expectedSmallPrimaryFrame,
+            3.0: expectedSmallPrimaryFrame
+            ])
+        AssertEqualDensity(arrangement.sublayouts[1].frame, [
+            1.0: expectedBigPrimaryFrame,
+            2.0: expectedBigPrimaryFrame,
+            3.0: expectedBigPrimaryFrame
+            ])
+        AssertEqualDensity(arrangement.sublayouts[2].frame, [
+            1.0: expectedOverlayFrame,
+            2.0: expectedOverlayFrame,
+            3.0: expectedOverlayFrame
             ])
     }
 
