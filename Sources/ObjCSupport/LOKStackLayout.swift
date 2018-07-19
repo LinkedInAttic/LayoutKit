@@ -41,6 +41,14 @@ extension LOKStackLayoutDistribution {
 }
 
 @objc open class LOKStackLayout: LOKBaseLayout {
+    @objc public let axis: LOKAxis
+    @objc public let spacing: CGFloat
+    @objc public let distribution: LOKStackLayoutDistribution
+    @objc public let alignment: LOKAlignment
+    @objc public let viewClass: View.Type
+    @objc public let sublayouts: [LOKLayout]
+    @objc public let configure: ((View) -> Void)?
+
     @objc public init(axis: LOKAxis = .vertical,
                       spacing: CGFloat = 0,
                       distribution: LOKStackLayoutDistribution = .`default`,
@@ -50,15 +58,22 @@ extension LOKStackLayoutDistribution {
                       viewReuseId: String? = nil,
                       sublayouts: [LOKLayout]?,
                       configure: ((View) -> Void)? = nil) {
+        self.axis = axis
+        self.spacing = spacing
+        self.distribution = distribution.distribution != nil ? distribution : .fillFlexing
+        self.sublayouts = sublayouts ?? []
+        self.alignment = alignment ?? .fill
+        self.viewClass = viewClass ?? View.self
+        self.configure = configure
         super.init(layout: StackLayout(
-            axis: axis.axis,
-            spacing: spacing,
-            distribution: distribution.distribution ?? .fillFlexing,
-            alignment: alignment?.alignment ?? .fill,
+            axis: self.axis.axis,
+            spacing: self.spacing,
+            distribution: self.distribution.distribution ?? .fillFlexing,
+            alignment: self.alignment.alignment,
             flexibility: flexibility?.flexibility,
             viewReuseId: viewReuseId,
-            viewClass: viewClass,
-            sublayouts: sublayouts?.map { $0.unwrapped } ?? [],
-            config: configure))
+            viewClass: self.viewClass,
+            sublayouts: self.sublayouts.map { $0.unwrapped },
+            config: self.configure))
     }
 }

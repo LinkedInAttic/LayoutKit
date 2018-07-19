@@ -9,6 +9,15 @@
 import UIKit
 
 @objc open class LOKLabelLayout: LOKBaseLayout {
+    @objc public let attributedString: NSAttributedString?
+    @objc public let string: String?
+    @objc public let lineHeight: CGFloat
+    @objc public let font: UIFont
+    @objc public let numberOfLines: Int
+    @objc public let alignment: LOKAlignment
+    @objc public let viewClass: UILabel.Type
+    @objc public let configure: ((UILabel) -> Void)?
+
     @objc public init(attributedString: NSAttributedString,
                       font: UIFont?,
                       lineHeight: CGFloat,
@@ -18,16 +27,25 @@ import UIKit
                       viewReuseId: String?,
                       viewClass: UILabel.Type?,
                       configure: ((UILabel) -> Void)?) {
+        self.attributedString = attributedString
+        self.font = font ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
+        self.lineHeight = lineHeight
+        self.numberOfLines = numberOfLines
+        self.alignment = alignment ?? .topLeading
+        self.viewClass = viewClass ?? UILabel.self
+        self.configure = configure
+        string = nil
         let layout = LabelLayout<UILabel>(
             attributedString: attributedString,
-            font: font ?? UIFont.systemFont(ofSize: UIFont.systemFontSize),
+            font: self.font,
             lineHeight: lineHeight > 0 && lineHeight.isFinite ? lineHeight : Optional<CGFloat>.none,
-            numberOfLines: numberOfLines,
-            alignment: alignment?.alignment ?? .topLeading,
+            numberOfLines: self.numberOfLines,
+            alignment: self.alignment.alignment,
             flexibility: flexibility?.flexibility ?? .flexible,
             viewReuseId: viewReuseId,
-            viewClass: viewClass ?? UILabel.self,
-            config: configure)
+            viewClass: self.viewClass,
+            config: self.configure)
+
         super.init(layout: layout)
     }
 
@@ -40,16 +58,24 @@ import UIKit
                       viewReuseId: String?,
                       viewClass: UILabel.Type?,
                       configure: ((UILabel) -> Void)?) {
+        self.string = string
+        self.font = font ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
+        self.lineHeight = lineHeight
+        self.numberOfLines = numberOfLines
+        self.alignment = alignment ?? .topLeading
+        self.viewClass = viewClass ?? UILabel.self
+        self.configure = configure
+        attributedString = nil
         let layout = LabelLayout<UILabel>(
             string: string,
-            font: font ?? UIFont.systemFont(ofSize: UIFont.systemFontSize),
+            font: self.font,
             lineHeight: lineHeight > 0 && lineHeight.isFinite ? lineHeight : Optional<CGFloat>.none,
-            numberOfLines: numberOfLines,
-            alignment: alignment?.alignment ?? .topLeading,
+            numberOfLines: self.numberOfLines,
+            alignment: self.alignment.alignment,
             flexibility: flexibility?.flexibility ?? .flexible,
             viewReuseId: viewReuseId,
-            viewClass: viewClass ?? UILabel.self,
-            config: configure)
+            viewClass: self.viewClass,
+            config: self.configure)
         super.init(layout: layout)
     }
 }

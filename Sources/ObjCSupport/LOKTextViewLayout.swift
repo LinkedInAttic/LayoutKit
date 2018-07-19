@@ -9,6 +9,15 @@
 import UIKit
 
 @objc open class LOKTextViewLayout: LOKBaseLayout {
+    @objc public let attributedText: NSAttributedString?
+    @objc public let text: String?
+    @objc public let font: UIFont?
+    @objc public let lineFragmentPadding: CGFloat
+    @objc public let textContainerInset: UIEdgeInsets
+    @objc public let layoutAlignment: LOKAlignment
+    @objc public let viewClass: UITextView.Type
+    @objc public let configure: ((UITextView) -> Void)?
+
     @objc public init(text: String? = nil,
                       font: UIFont? = nil,
                       lineFragmentPadding: CGFloat = 0,
@@ -18,16 +27,24 @@ import UIKit
                       viewReuseId: String? = nil,
                       viewClass: UITextView.Type? = nil,
                       configure: ((UITextView) -> Void)? = nil) {
+        self.text = text ?? ""
+        self.attributedText = nil
+        self.font = font
+        self.lineFragmentPadding = lineFragmentPadding
+        self.textContainerInset = textContainerInset
+        self.layoutAlignment = layoutAlignment ?? LOKAlignment(alignment: TextViewLayoutDefaults.defaultAlignment)
+        self.viewClass = viewClass ?? UITextView.self
+        self.configure = configure
         super.init(layout: TextViewLayout(
-            text: text ?? "",
-            font: font,
-            lineFragmentPadding: lineFragmentPadding,
-            textContainerInset: textContainerInset,
-            layoutAlignment: layoutAlignment?.alignment ?? TextViewLayoutDefaults.defaultAlignment,
+            text: self.text ?? "",
+            font: self.font,
+            lineFragmentPadding: self.lineFragmentPadding,
+            textContainerInset: self.textContainerInset,
+            layoutAlignment: self.layoutAlignment.alignment,
             flexibility: flexibility?.flexibility ?? TextViewLayoutDefaults.defaultFlexibility,
             viewReuseId: viewReuseId,
-            viewClass: viewClass,
-            config: configure))
+            viewClass: self.viewClass,
+            config: self.configure))
     }
 
     @objc public init(attributedText: NSAttributedString? = nil,
@@ -39,15 +56,23 @@ import UIKit
                       viewReuseId: String? = nil,
                       viewClass: UITextView.Type? = nil,
                       configure: ((UITextView) -> Void)? = nil) {
+        self.text = nil
+        self.attributedText = attributedText ?? NSAttributedString()
+        self.font = font
+        self.lineFragmentPadding = lineFragmentPadding
+        self.textContainerInset = textContainerInset
+        self.layoutAlignment = layoutAlignment ?? LOKAlignment(alignment: TextViewLayoutDefaults.defaultAlignment)
+        self.viewClass = viewClass ?? UITextView.self
+        self.configure = configure
         super.init(layout: TextViewLayout(
-            attributedText: attributedText ?? NSAttributedString(),
-            font: font,
-            lineFragmentPadding: lineFragmentPadding,
-            textContainerInset: textContainerInset,
-            layoutAlignment: layoutAlignment?.alignment ?? TextViewLayoutDefaults.defaultAlignment,
+            attributedText: self.attributedText ?? NSAttributedString(),
+            font: self.font,
+            lineFragmentPadding: self.lineFragmentPadding,
+            textContainerInset: self.textContainerInset,
+            layoutAlignment: self.layoutAlignment.alignment,
             flexibility: flexibility?.flexibility ?? TextViewLayoutDefaults.defaultFlexibility,
             viewReuseId: viewReuseId,
-            viewClass: viewClass,
-            config: configure))
+            viewClass: self.viewClass,
+            config: self.configure))
     }
 }

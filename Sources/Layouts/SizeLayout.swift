@@ -215,7 +215,7 @@ open class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
 
     // MARK: - Initialization helpers
 
-    private static func defaultAlignment(maxWidth: CGFloat?, maxHeight: CGFloat?) -> Alignment {
+    static func defaultAlignment(maxWidth: CGFloat?, maxHeight: CGFloat?) -> Alignment {
         return Alignment(vertical: maxHeight == nil ? .fill : .center,
                          horizontal: maxWidth == nil ? .fill : .center)
     }
