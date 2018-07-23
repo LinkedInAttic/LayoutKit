@@ -21,9 +21,9 @@ import CoreGraphics
                       configure: ((View) -> Void)? = nil) {
         let layout = SizeLayout(
             minWidth: minWidth,
-            maxWidth: maxWidth,
+            maxWidth: maxWidth.isFinite ? maxWidth : nil,
             minHeight: minHeight,
-            maxHeight: maxHeight,
+            maxHeight: maxHeight.isFinite ? maxHeight : nil,
             alignment: alignment?.alignment,
             flexibility: flexibility?.flexibility,
             viewReuseId: viewReuseId,
