@@ -55,7 +55,7 @@ class NestedCollectionViewController: UIViewController {
     }
 
     // Static to avoid capturing a reference to self
-    private static func sectionLayout(sectionIndex: Int, count: Int) -> [Section<LazyMapRandomAccessCollection<CountableRange<Int>, Layout>>] {
+    private static func sectionLayout(sectionIndex: Int, count: Int) -> [Section<LazyMapCollection<CountableRange<Int>, Layout>>] {
         let items = (0..<count).lazy.map { rowIndex -> Layout in
             let text = "\(sectionIndex)-\(rowIndex) " + String(repeating: "long word ", count: rowIndex)
             let urlText = text.replacingOccurrences(of: " ", with: "+")
