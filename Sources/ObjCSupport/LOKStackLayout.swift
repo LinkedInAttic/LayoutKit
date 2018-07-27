@@ -54,7 +54,7 @@ extension LOKStackLayoutDistribution {
             axis: axis.axis,
             spacing: spacing,
             distribution: distribution.distribution ?? .fillFlexing,
-            alignment: alignment?.alignment ?? .topFill,
+            alignment: alignment?.alignment ?? .fill,
             flexibility: flexibility?.flexibility,
             viewReuseId: viewReuseId,
             viewClass: viewClass,
