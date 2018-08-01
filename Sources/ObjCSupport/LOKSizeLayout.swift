@@ -9,6 +9,15 @@
 import CoreGraphics
 
 @objc open class LOKSizeLayout: LOKBaseLayout {
+    @objc public let minWidth: CGFloat
+    @objc public let maxWidth: CGFloat
+    @objc public let minHeight: CGFloat
+    @objc public let maxHeight: CGFloat
+    @objc public let alignment: LOKAlignment
+    @objc public let viewClass: View.Type
+    @objc public let sublayout: LOKLayout?
+    @objc public let configure: ((View) -> Void)?
+
     @objc public init(minWidth: CGFloat,
                       maxWidth: CGFloat,
                       minHeight: CGFloat,
@@ -19,17 +28,26 @@ import CoreGraphics
                       viewClass: View.Type?,
                       sublayout: LOKLayout?,
                       configure: ((View) -> Void)? = nil) {
+        self.minWidth = minWidth
+        self.minHeight = minHeight
+        self.maxWidth = maxWidth
+        self.maxHeight = maxHeight
+        self.alignment = alignment ?? LOKAlignment(alignment: SizeLayout.defaultAlignment(maxWidth: maxWidth.isFinite ? maxWidth : nil,
+                                                                                          maxHeight: maxHeight.isFinite ? maxHeight : nil))
+        self.viewClass = viewClass ?? View.self
+        self.sublayout = sublayout
+        self.configure = configure
         let layout = SizeLayout(
-            minWidth: minWidth,
-            maxWidth: maxWidth.isFinite ? maxWidth : nil,
-            minHeight: minHeight,
-            maxHeight: maxHeight.isFinite ? maxHeight : nil,
-            alignment: alignment?.alignment,
+            minWidth: self.minWidth,
+            maxWidth: self.maxWidth.isFinite ? self.maxWidth : nil,
+            minHeight: self.minHeight,
+            maxHeight: self.maxHeight.isFinite ? self.maxHeight : nil,
+            alignment: self.alignment.alignment,
             flexibility: flexibility?.flexibility,
             viewReuseId: viewReuseId,
-            viewClass: viewClass,
-            sublayout: sublayout?.unwrapped,
-            config: configure)
+            viewClass: self.viewClass,
+            sublayout: self.sublayout?.unwrapped,
+            config: self.configure)
         super.init(layout: layout)
     }
 }
