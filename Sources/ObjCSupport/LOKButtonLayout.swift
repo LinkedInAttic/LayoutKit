@@ -11,12 +11,13 @@ import UIKit
 @objc open class LOKButtonLayout: LOKBaseLayout {
     @objc public let type: LOKButtonLayoutType
     @objc public let title: String
+    @objc public let image: UIImage?
+    @objc public let imageSize: CGSize
     @objc public let font: UIFont?
+    @objc public let contentEdgeInsets: NSValue?
     @objc public let alignment: LOKAlignment
     @objc public let viewClass: UIButton.Type
     @objc public let config: ((UIButton) -> Void)?
-    public let buttonLayoutImage: ButtonLayoutImage
-    public let contentEdgeInsets: UIEdgeInsets?
 
     @objc public init(type: LOKButtonLayoutType,
                       title: String?,
@@ -49,18 +50,19 @@ import UIKit
         }
         self.type = type
         self.title =  title ?? ""
-        self.buttonLayoutImage = buttonLayoutImage
+        self.image = image
+        self.imageSize = imageSize
         self.font = font
-        self.contentEdgeInsets = insets
+        self.contentEdgeInsets = contentEdgeInsets
         self.alignment = alignment ?? LOKAlignment(alignment: ButtonLayoutDefaults.defaultAlignment)
         self.viewClass = viewClass ?? UIButton.self
         self.config = config
         let layout = ButtonLayout(
             type: self.type.unwrapped,
             title: self.title,
-            image: self.buttonLayoutImage,
+            image: buttonLayoutImage,
             font: self.font,
-            contentEdgeInsets: self.contentEdgeInsets,
+            contentEdgeInsets: insets,
             alignment: self.alignment.alignment,
             flexibility: flexibility?.flexibility ?? ButtonLayoutDefaults.defaultFlexibility,
             viewReuseId: viewReuseId,
