@@ -15,7 +15,7 @@ import CoreGraphics
 
     init(layoutArrangement: LayoutArrangement) {
         self.layoutArrangement = layoutArrangement
-        self.layout = WrappedLayout(layout: layoutArrangement.layout)
+        self.layout = WrappedLayout.wrap(layout: layoutArrangement.layout)
         self.sublayouts = layoutArrangement.sublayouts.map { LOKLayoutArrangement(layoutArrangement: $0) }
     }
 

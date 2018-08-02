@@ -14,7 +14,8 @@ class ReverseWrappedLayout: Layout {
     }
 
     func measurement(within maxSize: CGSize) -> LayoutMeasurement {
-        return layout.measurement(within: maxSize).measurement
+        let measurement: LOKLayoutMeasurement = layout.measurement(within: maxSize)
+        return LayoutMeasurement(layout: self, size: measurement.size, maxSize: measurement.maxSize, sublayouts: measurement.sublayouts.map { $0.measurement })
     }
 
     var needsView: Bool {
@@ -37,7 +38,7 @@ class ReverseWrappedLayout: Layout {
         return layout.viewReuseId
     }
 
-    private let layout: LOKLayout
+    let layout: LOKLayout
     init(layout: LOKLayout) {
         self.layout = layout
     }
