@@ -28,8 +28,8 @@ class WrappedLayout: LOKLayout {
         return layout.makeView()
     }
 
-    func configure(baseTypeView: View) {
-        layout.configure(baseTypeView: baseTypeView)
+    func configureView(_ view: View) {
+        layout.configure(baseTypeView: view)
     }
 
     var flexibility: LOKFlexibility {
