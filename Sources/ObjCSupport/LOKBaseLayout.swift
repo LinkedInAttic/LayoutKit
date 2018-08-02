@@ -41,8 +41,8 @@ open class LOKBaseLayout: NSObject, LOKLayout {
         return layout.makeView()
     }
 
-    open func configure(baseTypeView: View) {
-        layout.configure(baseTypeView: baseTypeView)
+    open func configureView(_ view: View) {
+        layout.configure(baseTypeView: view)
     }
 
     public var flexibility: LOKFlexibility {
