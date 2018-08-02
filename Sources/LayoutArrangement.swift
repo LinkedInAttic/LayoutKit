@@ -72,7 +72,7 @@ public struct LayoutArrangement {
     @discardableResult
     private func makeViews(in view: View? = nil, direction: UserInterfaceLayoutDirection, prepareAnimation: Bool) -> View {
         let recycler = ViewRecycler(rootView: view)
-        let views = makeSubviews(from: recycler, prepareAnimation: prepareAnimation, rootView: view)
+        let views = makeSubviews(from: recycler, prepareAnimation: prepareAnimation)
         let rootView: View
 
         if let view = view {
@@ -114,9 +114,9 @@ public struct LayoutArrangement {
     }
 
     /// Returns the views for the layout and all of its sublayouts.
-    private func makeSubviews(from recycler: ViewRecycler, prepareAnimation: Bool, rootView: View?) -> [View] {
+    private func makeSubviews(from recycler: ViewRecycler, prepareAnimation: Bool) -> [View] {
         let subviews = sublayouts.flatMap({ (sublayout: LayoutArrangement) -> [View] in
-            return sublayout.makeSubviews(from: recycler, prepareAnimation: prepareAnimation, rootView: rootView)
+            return sublayout.makeSubviews(from: recycler, prepareAnimation: prepareAnimation)
         })
         // If we are preparing an animation, then we don't want to update frames or configure views.
         if layout.needsView, let view = recycler.makeOrRecycleView(havingViewReuseId: layout.viewReuseId, viewProvider: layout.makeView) {

@@ -26,7 +26,7 @@ class ViewRecycler {
     init(rootView: View?) {
         self.rootView = rootView
         rootView?.walkSubviews { (view) in
-            if let viewReuseId = view.viewReuseId {
+            if let viewReuseId = view.viewReuseId, view.layoutKitRootView == rootView {
                 self.viewsById[viewReuseId] = view
             } else {
                 self.unidentifiedViews.insert(view)
@@ -95,12 +95,16 @@ extension View {
         }
     }
 
-    /// We must keep track of the root view associated with the views we manage so that we only purge from its hierarchy.
+    /// All views managed by LayoutKit keep a weak reference to their LayoutKit root node view. This is to ensure
+    /// that when we purge views from a node, we only purge views that belong to that node - rather than purging
+    /// potentially any view in the subview hierarchy which could belong to a different LayoutKit root node.
     var layoutKitRootView: View? {
         get {
             return objc_getAssociatedObject(self, &layoutKitRootViewKey) as? View
         }
         set {
+            // OBJC_ASSOCIATION_ASSIGN creates a weak reference which avoids a retain cycle since we'll
+            // have a view being referenced by another view which is somewhere in its subview hierarchy.
             objc_setAssociatedObject(self, &layoutKitRootViewKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
         }
     }
