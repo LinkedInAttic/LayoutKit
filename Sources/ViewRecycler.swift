@@ -20,9 +20,11 @@ class ViewRecycler {
 
     private var viewsById = [String: View]()
     private var unidentifiedViews = Set<View>()
+    private let rootView: View?
 
     /// Retains all subviews of rootView for recycling.
     init(rootView: View?) {
+        self.rootView = rootView
         rootView?.walkSubviews { (view) in
             if let viewReuseId = view.viewReuseId {
                 self.viewsById[viewReuseId] = view
@@ -44,7 +46,7 @@ class ViewRecycler {
         }
 
         let providedView = viewProvider()
-        providedView.isLayoutKitView = true
+        providedView.layoutKitRootView = rootView
 
         // Remove the provided view from the list of cached views.
         if let viewReuseId = providedView.viewReuseId, let oldView = viewsById[viewReuseId], oldView == providedView {
@@ -63,7 +65,7 @@ class ViewRecycler {
         }
         viewsById.removeAll()
 
-        for view in unidentifiedViews where view.isLayoutKitView {
+        for view in unidentifiedViews where view.layoutKitRootView == rootView {
             view.removeFromSuperview()
         }
         unidentifiedViews.removeAll()
@@ -71,7 +73,7 @@ class ViewRecycler {
 }
 
 private var viewReuseIdKey: UInt8 = 0
-private var isLayoutKitViewKey: UInt8 = 0
+private var layoutKitRootViewKey: UInt8 = 0
 
 extension View {
 
@@ -93,13 +95,13 @@ extension View {
         }
     }
 
-    /// Indicates the view is managed by LayoutKit that can be safely removed.
-    var isLayoutKitView: Bool {
+    /// We must keep track of the root view associated with the views we manage so that we only purge from its hierarchy.
+    var layoutKitRootView: View? {
         get {
-            return (objc_getAssociatedObject(self, &isLayoutKitViewKey) as? NSNumber)?.boolValue ?? false
+            return objc_getAssociatedObject(self, &layoutKitRootViewKey) as? View
         }
         set {
-            objc_setAssociatedObject(self, &isLayoutKitViewKey, NSNumber(value: newValue), .OBJC_ASSOCIATION_RETAIN)
+            objc_setAssociatedObject(self, &layoutKitRootViewKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
         }
     }
 }

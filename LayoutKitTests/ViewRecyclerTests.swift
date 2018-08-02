@@ -14,7 +14,7 @@ class ViewRecyclerTests: XCTestCase {
     func testNilIdNotRecycledAndNotRemoved() {
         let root = View()
         let zero = View()
-        zero.isLayoutKitView = false    // default
+        zero.layoutKitRootView = nil    // default
         root.addSubview(zero)
 
         let recycler = ViewRecycler(rootView: root)
@@ -25,13 +25,13 @@ class ViewRecyclerTests: XCTestCase {
         XCTAssertEqual(v, expectedView)
 
         recycler.purgeViews()
-        XCTAssertNotNil(zero.superview, "`zero` should not be removed because `isLayoutKitView` is false")
+        XCTAssertNotNil(zero.superview, "`zero` should not be removed because `layoutKitRootView` is nil")
     }
 
     func testNilIdNotRecycledAndRemoved() {
         let root = View()
         let zero = View()
-        zero.isLayoutKitView = true // requires this flag to be removed by `ViewRecycler`
+        zero.layoutKitRootView = root
         root.addSubview(zero)
 
         let recycler = ViewRecycler(rootView: root)
@@ -42,7 +42,7 @@ class ViewRecyclerTests: XCTestCase {
         XCTAssertEqual(v, expectedView)
 
         recycler.purgeViews()
-        XCTAssertNil(zero.superview, "`zero` should be removed because `isLayoutKitView` is true")
+        XCTAssertNil(zero.superview, "`zero` should be removed because `layoutKitRootView` is set")
     }
 
     func testNonNilIdRecycled() {
@@ -89,6 +89,30 @@ class ViewRecyclerTests: XCTestCase {
 
         recycler.purgeViews()
         XCTAssertNotNil(one.superview)
+    }
+
+    func testDoesntPurgeOtherNodesSubviews() {
+        let rootOne = View(viewReuseId: "1")
+        let middleView = View()
+        let rootTwo = View(viewReuseId: "2")
+        let someSubview = View()
+
+        rootOne.addSubview(middleView)
+        middleView.addSubview(rootTwo)
+        rootTwo.addSubview(someSubview)
+
+        let recycler = ViewRecycler(rootView: rootOne)
+        _ = recycler.makeOrRecycleView(havingViewReuseId: "3") {
+            return middleView
+        }
+
+        let recycler2 = ViewRecycler(rootView: rootTwo)
+        _ = recycler2.makeOrRecycleView(havingViewReuseId: "4") {
+            return someSubview
+        }
+
+        recycler.purgeViews()
+        XCTAssertEqual(someSubview.superview, rootTwo)
     }
 
     /// Test for safe subview-purge in composite view e.g. UIButton.
