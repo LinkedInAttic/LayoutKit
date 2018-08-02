@@ -117,7 +117,7 @@ extension StackLayout: ConfigurableLayout {
             }
         }
 
-        let nonNilMeasuredSublayouts = sublayoutMeasurements.flatMap { $0 }
+        let nonNilMeasuredSublayouts = sublayoutMeasurements.compactMap { $0 }
 
         if distribution == .fillEqualSize && !nonNilMeasuredSublayouts.isEmpty {
             let maxAxisLength = nonNilMeasuredSublayouts.map({ AxisSize(axis: axis, size: $0.size).axisLength }).max() ?? 0

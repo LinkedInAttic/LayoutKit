@@ -18,12 +18,12 @@ protocol ReloadableViewUpdateManagerDelegate: class {
 protocol ReloadableViewUpdateManager {
 
     /// The delegate that this manager performs updates on.
-    weak var delegate: ReloadableViewUpdateManagerDelegate? { get }
+    var delegate: ReloadableViewUpdateManagerDelegate? { get }
 
     /// The operation that this update manager is associated with.
     /// The update manager will stop updating the delegate
     /// if the operation is cancelled or dellocated.
-    weak var operation: Operation? { get }
+    var operation: Operation? { get }
 
     /// Applies a partial arrangement to the delegate's reloadable view and data source.
     func apply(partialArrangement arrangement: [Section<[LayoutArrangement]>], insertedIndexPaths: [IndexPath])
