@@ -8,14 +8,75 @@
 
 import CoreGraphics
 
+/**
+ A layout that has size constraints.
+
+ ## Default behavior
+
+ Alignment along a dimension defaults to `.fill` if there is no maximum constraint along that dimension and `.center` otherwise.
+
+ ## Constraint precedence
+
+ Constraints are enforced with the following precedence:
+ 1. The `maxSize` paremeter of measurement.
+ 2. The SizeLayout's `maxSize`
+ 3. The SizeLayout's `minSize`
+
+ In other words, if it is impossible to satisfy all constraints simultaneously then
+ constraints are broken starting with minSize.
+
+ ## Use cases
+
+ Some common use cases:
+
+ ```
+ // A label with maximum width.
+ LOKSizeLayout<UIView>(maxWidth: 100, sublayout: LOKLabelLayout(text: "Spills onto two lines"))
+
+ // A label with minimum width.
+ LOKSizeLayout<UIView>(minWidth: 100, sublayout: LOKLabelLayout(text: "Hello", alignment: .fill))
+ ```
+ */
 @objc open class LOKSizeLayout: LOKBaseLayout {
+
+    /**
+     Minimum width for size layout.
+     */
     @objc public let minWidth: CGFloat
+
+    /**
+     Maximum width for size layout.
+     */
     @objc public let maxWidth: CGFloat
+
+    /**
+     Minimum height for size layout.
+     */
     @objc public let minHeight: CGFloat
+
+    /**
+     Maximum height for size layout.
+     */
     @objc public let maxHeight: CGFloat
+
+    /**
+     Alignment height for size layout.
+     */
     @objc public let alignment: LOKAlignment
+
+    /**
+     Class object for the view class to be created.
+     */
     @objc public let viewClass: View.Type
+
+    /**
+     Sublayout for which size layout is being created.
+     */
     @objc public let sublayout: LOKLayout?
+
+    /**
+     Layoutkit configuration block called with created `LOKView`.
+     */
     @objc public let configure: ((View) -> Void)?
 
     @objc public init(minWidth: CGFloat,

@@ -8,6 +8,10 @@
 
 import Foundation
 
+/**
+ Maps to `UIButtonType`.
+ This prevents LayoutKit from breaking if a new `UIButtonType` is added.
+ */
 extension LOKButtonLayoutType {
     var unwrapped: ButtonLayoutType {
         switch self {

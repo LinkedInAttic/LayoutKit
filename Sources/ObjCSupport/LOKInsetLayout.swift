@@ -8,11 +8,34 @@
 
 import CoreGraphics
 
+/**
+ A layout that insets another layout.
+ */
 @objc open class LOKInsetLayout: LOKBaseLayout {
+
+    /**
+     `EdgeInsets` for layout.
+     */
     @objc public let insets: EdgeInsets
+
+    /**
+     Specifies how a layout positions itself inside of its parent view.
+     */
     @objc public let alignment: LOKAlignment
+
+    /**
+     Class object for the view class to be created.
+     */
     @objc public let viewClass: View.Type
+
+    /**
+     Sublayout for `LOKInsetLayout`.
+     */
     @objc public let sublayout: LOKLayout
+
+    /**
+     LayoutKit configuration block called with created View.
+     */
     @objc public let configure: ((View) -> Void)?
 
     @objc public init(insets: EdgeInsets,
