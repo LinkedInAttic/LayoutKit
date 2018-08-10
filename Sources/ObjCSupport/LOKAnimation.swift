@@ -6,6 +6,9 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
+/**
+ An animation for a layout.
+ */
 @objc open class LOKAnimation: NSObject {
     private let animation: Animation
 
@@ -13,6 +16,10 @@
         self.animation = animation
     }
 
+    /**
+     Apply the final state of the animation.
+     Call this inside a UIKit animation block.
+     */
     @objc public func apply() {
         animation.apply()
     }

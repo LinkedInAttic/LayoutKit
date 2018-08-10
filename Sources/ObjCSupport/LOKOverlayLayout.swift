@@ -8,12 +8,44 @@
 
 import Foundation
 
+/**
+ A layout that overlays others. Allows adding other layouts behind or above a primary layout.
+ The size of the primary, background, and overlay layouts will be determined based on the size
+ computed from the primary layout.
+ */
 @objc open class LOKOverlayLayout: LOKBaseLayout {
+
+    /**
+     The primary layouts that the `LOKOverlayLayout` will use for sizing and flexibility.
+     */
     @objc public let primaryLayouts: [LOKLayout]
+
+    /**
+     The layouts to put behind the primary layouts. They will be at most as large as the primary
+     layouts.
+     */
     @objc public let backgroundLayouts: [LOKLayout]
+
+    /**
+     The layouts to put in front of the primary layout. They will be at most as large as the primary
+     layouts.
+     */
     @objc public let overlayLayouts: [LOKLayout]
+
+    /**
+     Specifies how this layout is positioned inside its parent layout.
+     */
     @objc public let alignment: LOKAlignment
+
+
+    /**
+     Class object for the view class to be created.
+     */
     @objc public let viewClass: View.Type
+
+    /**
+     LayoutKit configuration block called with created View.
+     */
     @objc public let configure: ((View) -> Void)?
 
     @objc public init(primaryLayouts: [LOKLayout],

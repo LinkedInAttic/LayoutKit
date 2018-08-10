@@ -8,6 +8,11 @@
 
 import UIKit
 
+/**
+ Manages background layout for reloadable views, including `UICollectionView` and `UITableView`.
+
+ Set it as a `UICollectionView` or `UITableView`s dataSource and delegate.
+ */
 @objc open class LOKReloadableViewLayoutAdapter: NSObject {
     @objc public var log: ((String) -> Void)? {
         get {
@@ -28,6 +33,21 @@ import UIKit
         adapter = ReloadableViewLayoutAdapter(reloadableView: tableView)
     }
 
+    /**
+     Reloads the view with the new layout.
+
+     If synchronous is `false` and the view doesn't already have data loaded and no batch updates are provided,
+     then it will incrementally insert cells into the reloadable view as layouts are computed
+     to increase user perceived performance for large collections. Pass an empty `BatchUpdates` object
+     if you wish to disable this optimization for an asynchronous reload of an empty collection.
+
+     - parameter synchronous: If true, `reload` will not return until the operation is complete.
+     - parameter width: The width of the layout's arrangement. `Nil` means no constraint. Default is `infinity`.
+     - parameter height: The height of the layout's arrangement. `Nil` means no constraint. Default is `infinity`.
+     - parameter batchUpdates: The updates to apply to the reloadable view after the layout is computed. If `nil`, then all data will be reloaded. Default is `nil`.
+     - parameter layoutProvider: A closure that produces the layout. It is called on a background thread so it must be threadsafe.
+     - parameter completion: A closure that is called on the main thread when the operation is complete.
+     */
     @objc open func reload(synchronous: Bool,
                            width: CGFloat = CGFloat.infinity,
                            height: CGFloat = CGFloat.infinity,
@@ -43,6 +63,13 @@ import UIKit
             completion: completion)
     }
 
+    /**
+     Reloads the view with a precomputed layout.
+     It must be called on the main thread.
+
+     This is useful if you want to precompute the layout for this collection view as part of another layout.
+     One example is nested collection/table views (see `NestedCollectionViewController.swift` in the sample app).
+     */
     @objc open func reload(arrangements: [LOKLayoutArrangementSection]) {
         adapter.reload(arrangement: arrangements.map { $0.unwrapped })
     }

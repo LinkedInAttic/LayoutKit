@@ -8,15 +8,63 @@
 
 import UIKit
 
+/**
+ Layout for a `UIButton`.
+
+ Since UIKit does not provide threadsafe methods to determine the size of a button given its content
+ it's implememtation hard-codes the current observed style of `UIButton`.
+ If the style of `UIButton` changes in the future, then the current implementation will need to be updated to reflect the new style.
+
+ If future-proofing is a concern for your application, then you should not use `LOKButtonLayout` and instead implement your own
+ custom layout that uses you own custom button view (e.g. by subclassing `UIControl`).
+
+ Similary, if you have your own custom button view, you will need to create your own custom layout for it.
+ */
 @objc open class LOKButtonLayout: LOKBaseLayout {
+
+    /**
+     Button type for button layout.
+     */
     @objc public let type: LOKButtonLayoutType
+
+    /**
+     Title for button layout.
+     */
     @objc public let title: String
+
+    /**
+     Button image for button layout.
+     */
     @objc public let image: UIImage?
+
+    /**
+     Size for button image.
+     */
     @objc public let imageSize: CGSize
+
+    /**
+     Font for button layout.
+     */
     @objc public let font: UIFont?
+
+    /**
+     Edge inset for button layout.
+     */
     @objc public let contentEdgeInsets: NSValue?
+
+    /**
+     Specifies how this layout is positioned inside its parent layout.
+     */
     @objc public let alignment: LOKAlignment
+
+    /**
+     Class object for the created view. Should be a subclass of `UIButton`.
+     */
     @objc public let viewClass: UIButton.Type
+
+    /**
+     Layoutkit configuration block called with created `UIButton`
+     */
     @objc public let config: ((UIButton) -> Void)?
 
     @objc public init(type: LOKButtonLayoutType,

@@ -8,14 +8,49 @@
 
 import UIKit
 
+/**
+ Layout for a `UILabel`.
+ */
 @objc open class LOKLabelLayout: LOKBaseLayout {
+
+    /**
+     Attributed string to display as the label.
+     */
     @objc public let attributedString: NSAttributedString?
+
+    /**
+     String to display as the label.
+     */
     @objc public let string: String?
+
+    /**
+     Line height for label.
+     */
     @objc public let lineHeight: CGFloat
+
+    /**
+     Font for label.
+     */
     @objc public let font: UIFont
+
+    /**
+     Number of lines the label can have.
+     */
     @objc public let numberOfLines: Int
+
+    /**
+     Specifies how this layout is positioned inside its parent layout
+     */
     @objc public let alignment: LOKAlignment
+
+    /**
+     Class object for the created view. Should be a subclass of `UILabel`.
+     */
     @objc public let viewClass: UILabel.Type
+
+    /**
+     Layoutkit configuration block called with created `UIButton`.
+     */
     @objc public let configure: ((UILabel) -> Void)?
 
     @objc public init(attributedString: NSAttributedString,

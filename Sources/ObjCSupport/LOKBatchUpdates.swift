@@ -8,6 +8,12 @@
 
 import Foundation
 
+/**
+ A set of updates to apply to a `ReloadableView`.
+
+ Inherits from `NSObject` in order to be exposable to Objective-C.
+ Objective-C exposability is needed in order to override methods from extensions that use `BatchUpdates` as parameter.
+ */
 @objc open class LOKBatchUpdates: NSObject {
     @objc public var insertItems = [IndexPath]()
     @objc public var deleteItems = [IndexPath]()
@@ -37,6 +43,9 @@ import Foundation
     }
 }
 
+/**
+ Instruction to move an item from one index path to another.
+ */
 @objc open class LOKBatchUpdateItemMove: NSObject {
     @objc public let from: IndexPath
     @objc public let to: IndexPath
@@ -51,6 +60,9 @@ import Foundation
     }
 }
 
+/**
+ Instruction to move a section from one index to another.
+ */
 @objc open class LOKBatchUpdateSectionMove: NSObject {
     @objc public let from: Int
     @objc public let to: Int
