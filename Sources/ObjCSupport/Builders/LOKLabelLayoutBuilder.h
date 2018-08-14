@@ -22,6 +22,7 @@
 
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^font)(UIFont * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^numberOfLines)(NSInteger);
+@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^lineBreakMode)(NSLineBreakMode);
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^lineHeight)(CGFloat);
 
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^alignment)(LOKAlignment * _Nullable);
