@@ -8,10 +8,10 @@ rootView.backgroundColor = .white
 let textString = "Hello World\nHello World\nHello World\nHello World\nHello World\n"
 let attributedString1 = NSMutableAttributedString(
     string: textString,
-    attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15)])
+    attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15)])
 let attributedString2 = NSMutableAttributedString(
     string: textString,
-    attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12)])
+    attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12)])
 attributedString1.append(attributedString2)
 let attributedText = Text.attributed(attributedString1)
 
