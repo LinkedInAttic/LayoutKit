@@ -17,7 +17,7 @@
 @property (nonatomic, nullable) NSString *privateViewReuseId;
 @property (nonatomic, nullable) Class privateViewClass;
 
-@property (nonatomic, nonnull) id<LOKLayout> privatePrimary;
+@property (nonatomic, nonnull) NSArray< id<LOKLayout> > *privatePrimary;
 @property (nonatomic, nonnull) NSArray< id<LOKLayout> > *privateOverlay;
 @property (nonatomic, nonnull) NSArray< id<LOKLayout> > *privateBackground;
 @property (nonatomic, nullable) void (^ privateConfigure)(LOKView * _Nonnull);
@@ -26,26 +26,26 @@
 
 @implementation LOKOverlayLayoutBuilder
 
-- (instancetype)initWithPrimaryLayout:(id<LOKLayout>)primaryLayout {
+- (instancetype)initWithPrimaryLayouts:(NSArray< id<LOKLayout> > *)primaryLayouts {
     self = [super init];
-    _privatePrimary = primaryLayout;
+    _privatePrimary = primaryLayouts;
     _privateBackground = @[];
     _privateOverlay = @[];
     return self;
 }
 
-+ (instancetype)withPrimaryLayout:(id<LOKLayout>)primaryLayout {
-    return [[self alloc] initWithPrimaryLayout:primaryLayout];
++ (instancetype)withPrimaryLayouts:(NSArray< id<LOKLayout> > *)primaryLayouts {
+    return [[self alloc] initWithPrimaryLayouts:primaryLayouts];
 }
 
 - (LOKOverlayLayout *)layout {
-    return [[LOKOverlayLayout alloc] initWithPrimary:self.privatePrimary
-                                          background:self.privateBackground
-                                             overlay:self.privateOverlay
-                                           alignment:self.privateAlignment
-                                         viewReuseId:self.privateViewReuseId
-                                           viewClass:self.privateViewClass
-                                           configure:self.privateConfigure];
+    return [[LOKOverlayLayout alloc] initWithPrimaryLayouts:self.privatePrimary
+                                          backgroundLayouts:self.privateBackground
+                                             overlayLayouts:self.privateOverlay
+                                                  alignment:self.privateAlignment
+                                                viewReuseId:self.privateViewReuseId
+                                                  viewClass:self.privateViewClass
+                                                  configure:self.privateConfigure];
 }
 
 - (LOKOverlayLayoutBuilder * _Nonnull (^)(NSArray< id<LOKLayout> > * _Nullable))overlay {

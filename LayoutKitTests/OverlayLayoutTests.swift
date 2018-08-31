@@ -62,7 +62,7 @@ class OverlayLayoutTests: XCTestCase {
      */
     func testSimplePrimaryLayout() {
         let primaryLayout = SizeLayout<View>(width: 2, height: 2)
-        let overlay = OverlayLayout(primary: primaryLayout)
+        let overlay = OverlayLayout(primaryLayouts: [primaryLayout])
         let arrangement = overlay.arrangement()
 
         let expectedFrame = CGRect(x: 0, y: 0, width: 2.0, height: 2.0)
@@ -70,7 +70,59 @@ class OverlayLayoutTests: XCTestCase {
             1.0: expectedFrame,
             2.0: expectedFrame,
             3.0: expectedFrame
-        ])
+            ])
+    }
+
+    /**
+     Tests an overlay layout with just two simple primary layouts.
+     */
+    func testTwoSimplePrimaryLayouts() {
+        let primaryLayout0 = SizeLayout<View>(width: 100, height: 30)
+        let primaryLayout1 = SizeLayout<View>(width: 40, height: 200)
+        let overlay = OverlayLayout(primaryLayouts: [primaryLayout0, primaryLayout1])
+        let arrangement = overlay.arrangement()
+
+        let expectedFrame = CGRect(x: 0, y: 0, width: 100.0, height: 200.0)
+        AssertEqualDensity(arrangement.frame, [
+            1.0: expectedFrame,
+            2.0: expectedFrame,
+            3.0: expectedFrame
+            ])
+    }
+
+    /**
+     Tests an overlay layout with two primary layouts where one is bigger than the other in terms of both width and height.
+     */
+    func testSmallerBiggerPrimaryLayouts() {
+        let primaryLayout0 = SizeLayout<View>(width: 40, height: 30)
+        let primaryLayout1 = SizeLayout<View>(width: 100, height: 200)
+        let overlay = OverlayLayout(primaryLayouts: [primaryLayout0, primaryLayout1])
+        let arrangement = overlay.arrangement()
+
+        let expectedFrame = CGRect(x: 0, y: 0, width: 100.0, height: 200.0)
+        AssertEqualDensity(arrangement.frame, [
+            1.0: expectedFrame,
+            2.0: expectedFrame,
+            3.0: expectedFrame
+            ])
+    }
+
+    /**
+     Tests an overlay layout with just three simple primary layouts.
+     */
+    func testThreeSimplePrimaryLayouts() {
+        let primaryLayout0 = SizeLayout<View>(width: 100, height: 30)
+        let primaryLayout1 = SizeLayout<View>(width: 40, height: 200)
+        let primaryLayout2 = SizeLayout<View>(width: 120, height: 150)
+        let overlay = OverlayLayout(primaryLayouts: [primaryLayout0, primaryLayout1, primaryLayout2])
+        let arrangement = overlay.arrangement()
+
+        let expectedFrame = CGRect(x: 0, y: 0, width: 120.0, height: 200.0)
+        AssertEqualDensity(arrangement.frame, [
+            1.0: expectedFrame,
+            2.0: expectedFrame,
+            3.0: expectedFrame
+            ])
     }
 
     /**
@@ -81,7 +133,7 @@ class OverlayLayoutTests: XCTestCase {
         let primaryLayout = SizeLayout<View>(minWidth: 1)
         let sublayout = SizeLayout<View>(minWidth: 2, alignment: .fillLeading)
 
-        let overlay = OverlayLayout(primary: primaryLayout, overlay: [sublayout])
+        let overlay = OverlayLayout(primaryLayouts: [primaryLayout], overlayLayouts: [sublayout])
         let arrangement = overlay.arrangement(width: 2.0, height: 2.0)
 
         let expectedFrame = CGRect(x: 0, y: 0, width: 2.0, height: 2.0)
@@ -90,7 +142,29 @@ class OverlayLayoutTests: XCTestCase {
                 1.0: expectedFrame,
                 2.0: expectedFrame,
                 3.0: expectedFrame
-            ])
+                ])
+        }
+    }
+
+    /**
+     Tests flexible size of primary layouts. Primary layouts are measured with size 20x20.
+     Sublayouts should have same measurements.
+     */
+    func testOverlaySublayoutsSizeWithTwoPrimaryLayouts() {
+        let primaryLayout0 = SizeLayout<View>(minWidth: 5)
+        let primaryLayout1 = SizeLayout<View>(minWidth: 30)
+        let sublayout = SizeLayout<View>(minWidth: 20, alignment: .fillLeading)
+
+        let overlay = OverlayLayout(primaryLayouts: [primaryLayout0, primaryLayout1], overlayLayouts: [sublayout])
+        let arrangement = overlay.arrangement(width: 20.0, height: 20.0)
+
+        let expectedFrame = CGRect(x: 0, y: 0, width: 20.0, height: 20.0)
+        arrangement.sublayouts.forEach {
+            AssertEqualDensity($0.frame, [
+                1.0: expectedFrame,
+                2.0: expectedFrame,
+                3.0: expectedFrame
+                ])
         }
     }
 
@@ -102,7 +176,7 @@ class OverlayLayoutTests: XCTestCase {
         let primaryLayout = SizeLayout<View>(minWidth: 2, minHeight: 2)
         let sublayout = SizeLayout<View>(minWidth: 10, minHeight: 10)
 
-        let overlay = OverlayLayout(primary: primaryLayout, overlay: [sublayout])
+        let overlay = OverlayLayout(primaryLayouts: [primaryLayout], overlayLayouts: [sublayout])
         let arrangement = overlay.arrangement(width: 2.0, height: 2.0)
 
         let expectedFrame = CGRect(x: 0, y: 0, width: 2.0, height: 2.0)
@@ -111,8 +185,72 @@ class OverlayLayoutTests: XCTestCase {
                 1.0: expectedFrame,
                 2.0: expectedFrame,
                 3.0: expectedFrame
-            ])
+                ])
         }
+    }
+
+    /**
+     Tests primary layouts smaller than overlay while available size is between primary layouts and overlay layouts.
+     */
+    func testPrimaryLayoutsSmallerThanOverlayAndAvailableSizeInBetween() {
+        let primaryLayout0 = SizeLayout<View>(width: 2, height: 2)
+        let primaryLayout1 = SizeLayout<View>(width: 3, height: 4)
+        let overlayLayout0 = SizeLayout<View>(width: 10, height: 10)
+
+        let overlay = OverlayLayout(primaryLayouts: [primaryLayout0, primaryLayout1], overlayLayouts: [overlayLayout0])
+        let arrangement = overlay.arrangement(width: 5.0, height: 6.0)
+
+        // center alignment
+        let expectedSmallPrimaryFrame = CGRect(x: 1.5, y: 2.0, width: 2.0, height: 2.0)
+        let expectedBigPrimaryFrame = CGRect(x: 1.0, y: 1.0, width: 3.0, height: 4.0)
+        let expectedOverlayFrame = CGRect(x: 0.0, y: 0.0, width: 5.0, height: 6.0)
+        AssertEqualDensity(arrangement.sublayouts[0].frame, [
+            1.0: expectedSmallPrimaryFrame,
+            2.0: expectedSmallPrimaryFrame,
+            3.0: expectedSmallPrimaryFrame
+            ])
+        AssertEqualDensity(arrangement.sublayouts[1].frame, [
+            1.0: expectedBigPrimaryFrame,
+            2.0: expectedBigPrimaryFrame,
+            3.0: expectedBigPrimaryFrame
+            ])
+        AssertEqualDensity(arrangement.sublayouts[2].frame, [
+            1.0: expectedOverlayFrame,
+            2.0: expectedOverlayFrame,
+            3.0: expectedOverlayFrame
+            ])
+    }
+
+    /**
+     Tests primary layouts smaller than overlay while available size is smaller than primary layouts.
+     */
+    func testPrimaryLayoutsSmallerThanOverlayAndAvailableSizeIsEvenSmaller() {
+        let primaryLayout0 = SizeLayout<View>(width: 2, height: 2)
+        let primaryLayout1 = SizeLayout<View>(width: 7, height: 8)
+        let overlayLayout0 = SizeLayout<View>(width: 10, height: 10)
+
+        let overlay = OverlayLayout(primaryLayouts: [primaryLayout0, primaryLayout1], overlayLayouts: [overlayLayout0])
+        let arrangement = overlay.arrangement(width: 5.0, height: 6.0)
+
+        // center alignment
+        let expectedSmallPrimaryFrame = CGRect(x: 1.5, y: 2.0, width: 2.0, height: 2.0)
+        let expectedBigPrimaryFrame = CGRect(x: 0.0, y: 0.0, width: 5.0, height: 6.0)
+        let expectedOverlayFrame = CGRect(x: 0.0, y: 0.0, width: 5.0, height: 6.0)
+        AssertEqualDensity(arrangement.sublayouts[0].frame, [
+            1.0: expectedSmallPrimaryFrame,
+            2.0: expectedSmallPrimaryFrame,
+            3.0: expectedSmallPrimaryFrame
+            ])
+        AssertEqualDensity(arrangement.sublayouts[1].frame, [
+            1.0: expectedBigPrimaryFrame,
+            2.0: expectedBigPrimaryFrame,
+            3.0: expectedBigPrimaryFrame
+            ])
+        AssertEqualDensity(arrangement.sublayouts[2].frame, [
+            1.0: expectedOverlayFrame,
+            2.0: expectedOverlayFrame,
+            3.0: expectedOverlayFrame
+            ])
     }
 
     /**
@@ -126,9 +264,9 @@ class OverlayLayoutTests: XCTestCase {
                 let sublayout = SizeLayout<View>(width: size, height: size)
                 let primaryLayout = SizeLayout<View>(width: 2, height: 2)
                 let overlay = OverlayLayout(
-                    primary: primaryLayout,
-                    background: [Layout](repeating: sublayout, count: backgroundCount),
-                    overlay: [Layout](repeating: sublayout, count: overlayCount))
+                    primaryLayouts: [primaryLayout],
+                    backgroundLayouts: [Layout](repeating: sublayout, count: backgroundCount),
+                    overlayLayouts: [Layout](repeating: sublayout, count: overlayCount))
                 let arrangement = overlay.arrangement()
 
                 // Makes sure the view is always 2x2
@@ -137,7 +275,7 @@ class OverlayLayoutTests: XCTestCase {
                     1.0: expectedFrame,
                     2.0: expectedFrame,
                     3.0: expectedFrame
-                ])
+                    ])
             }
         }
     }
@@ -216,7 +354,7 @@ class OverlayLayoutTests: XCTestCase {
                     width: Measurement.primaryWidth,
                     height: Measurement.primaryHeight,
                     alignment: primaryAlignment)
-                let overlay = OverlayLayout(primary: primary, background: [huge], overlay: [huge])
+                let overlay = OverlayLayout(primaryLayouts: [primary], backgroundLayouts: [huge], overlayLayouts: [huge])
                 let expectedFrame = CGRect(
                     origin: .zero,
                     size: CGSize(width: Measurement.primaryWidth, height: Measurement.primaryHeight))
@@ -265,9 +403,9 @@ class OverlayLayoutTests: XCTestCase {
                     configCount += 1
                 })
                 let overlay = OverlayLayout(
-                    primary: layout,
-                    background: [Layout](repeating: layout, count: backgroundCount),
-                    overlay: [Layout](repeating: layout, count: overlayCount),
+                    primaryLayouts: [layout],
+                    backgroundLayouts: [Layout](repeating: layout, count: backgroundCount),
+                    overlayLayouts: [Layout](repeating: layout, count: overlayCount),
                     config: { _ in
                         configCount += 1
                 })
@@ -301,9 +439,9 @@ class OverlayLayoutTests: XCTestCase {
             alignment: .topLeading,
             config: { _ in })
         let layout = OverlayLayout(
-            primary: primary,
-            background: [background, background, background],
-            overlay: [overlay, overlay])
+            primaryLayouts: [primary],
+            backgroundLayouts: [background, background, background],
+            overlayLayouts: [overlay, overlay])
 
         let backgroundFrame = CGRect(x: 0, y: 0, width: Measurement.backgroundWidth, height: Measurement.backgroundHeight)
         let primaryFrame = CGRect(x: 0, y: 0, width: Measurement.primaryWidth, height: Measurement.primaryHeight)
@@ -390,9 +528,9 @@ class OverlayLayoutTests: XCTestCase {
             width: Measurement.primaryWidth,
             height: Measurement.primaryHeight)
         return OverlayLayout(
-            primary: baseLayout,
-            background: backgroundLayouts,
-            overlay: overlayLayouts,
+            primaryLayouts: [baseLayout],
+            backgroundLayouts: backgroundLayouts,
+            overlayLayouts: overlayLayouts,
             alignment: primaryAlignment)
     }
 }

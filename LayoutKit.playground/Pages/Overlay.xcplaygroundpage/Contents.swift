@@ -54,9 +54,9 @@ let purpleBoxLayout = SizeLayout(
 
 // Compose the layouts into an overlay layout
 let overlayLayout = OverlayLayout(
-    primary: baseLayout,
-    background: [purpleBoxLayout, brownBoxLayout],
-    overlay: [redBoxLayout, greenBoxLayout],
+    primaryLayouts: [baseLayout],
+    backgroundLayouts: [purpleBoxLayout, brownBoxLayout],
+    overlayLayouts: [redBoxLayout, greenBoxLayout],
     alignment: .fillLeading,
     config: { overlayView in
         overlayView.backgroundColor = .black
