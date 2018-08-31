@@ -22,6 +22,7 @@ import Foundation
     @objc public static let high = LOKFlexibility(flexibility: .high)
     @objc public static let low = LOKFlexibility(flexibility: .low)
 
+    @objc public static let horizontallyHighlyFlexible = LOKFlexibility(flexibility: Flexibility(horizontal: Flexibility.highFlex, vertical: Flexibility.inflexibleFlex))
     @objc public static let horizontallyFlexible = LOKFlexibility(flexibility: Flexibility(horizontal: Flexibility.defaultFlex, vertical: Flexibility.inflexibleFlex))
     @objc public static let verticallyFlexible = LOKFlexibility(flexibility: Flexibility(horizontal: Flexibility.inflexibleFlex, vertical: Flexibility.defaultFlex))
 }

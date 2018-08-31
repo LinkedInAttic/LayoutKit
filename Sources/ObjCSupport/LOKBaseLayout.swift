@@ -20,10 +20,20 @@ open class LOKBaseLayout: NSObject, LOKLayout {
     }
 
     public func arrangement(within rect: CGRect, measurement: LOKLayoutMeasurement) -> LOKLayoutArrangement {
-        return LOKLayoutArrangement(layoutArrangement: layout.arrangement(within: rect, measurement: measurement.measurement))
+        let arrangement = layout.arrangement(within: rect, measurement: measurement.measurement)
+
+        // The arrangement produced above has its layout property referencing a Swift layout object, such as SizeLayout, StackLayout, etc.
+        // The current self object is wrapping that Swift layout object. This is fine in the common case where this object is just a LOKSizeLayout
+        // or LOKStackLayout or similar which are just thin wrappers around the Swift object. It's possible thought that this current object is a class
+        // that's derived from LOKSizeLayout/LOKStackLayout/etc with additional behavior, so we can't just assume that the Swift object is equivalent,
+        // and should use the LOKLayout.unwrapped helper property to produce a Swift-friendly `Layout` version of this object, which works correctly
+        // in both the common and derived classes.
+        let arrangementWithUpdatedLayout = LayoutArrangement(layout: unwrapped, frame: arrangement.frame, sublayouts: arrangement.sublayouts)
+
+        return LOKLayoutArrangement(layoutArrangement: arrangementWithUpdatedLayout)
     }
 
-    public var needsView: Bool {
+    open var needsView: Bool {
         return layout.needsView
     }
 
@@ -31,8 +41,8 @@ open class LOKBaseLayout: NSObject, LOKLayout {
         return layout.makeView()
     }
 
-    public func configure(baseTypeView: View) {
-        layout.configure(baseTypeView: baseTypeView)
+    open func configureView(_ view: View) {
+        layout.configure(baseTypeView: view)
     }
 
     public var flexibility: LOKFlexibility {

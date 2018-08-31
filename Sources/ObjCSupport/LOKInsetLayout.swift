@@ -9,19 +9,30 @@
 import CoreGraphics
 
 @objc open class LOKInsetLayout: LOKBaseLayout {
+    @objc public let insets: EdgeInsets
+    @objc public let alignment: LOKAlignment
+    @objc public let viewClass: View.Type
+    @objc public let sublayout: LOKLayout
+    @objc public let configure: ((View) -> Void)?
+
     @objc public init(insets: EdgeInsets,
                       alignment: LOKAlignment? = nil,
                       viewReuseId: String? = nil,
                       viewClass: View.Type? = nil,
                       sublayout: LOKLayout,
                       configure: ((View) -> Void)? = nil) {
+        self.insets = insets
+        self.sublayout = sublayout
+        self.alignment = alignment ?? .fill
+        self.viewClass = viewClass ?? View.self
+        self.configure = configure
         let layout = InsetLayout(
-            insets: insets,
-            alignment: alignment?.alignment ?? .fill,
+            insets: self.insets,
+            alignment: self.alignment.alignment,
             viewReuseId: viewReuseId,
-            sublayout: sublayout.unwrapped,
-            viewClass: viewClass ?? View.self,
-            config: configure)
+            sublayout: self.sublayout.unwrapped,
+            viewClass: self.viewClass,
+            config: self.configure)
         super.init(layout: layout)
     }
 

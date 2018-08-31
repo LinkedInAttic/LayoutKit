@@ -134,7 +134,7 @@ private class TestCollectionView: LayoutAdapterCollectionView, TestableReloadabl
                 return label.text
             }
 
-            let supplementaryViewTexts = visibleSupplementaryViews(ofKind: kind).flatMap(labelText)
+            let supplementaryViewTexts = visibleSupplementaryViews(ofKind: kind).compactMap(labelText)
             if let text = text {
                 XCTAssertTrue(supplementaryViewTexts.contains(text), file: file, line: line)
             }

@@ -50,6 +50,10 @@
     return [[RotationView alloc] init];
 }
 
+- (void)configureView:(UIView *)view {
+    
+}
+
 - (nonnull LOKLayoutMeasurement *)measurementWithin:(CGSize)maxSize {
     LOKLayoutMeasurement *sublayoutMeasurement = [self.sublayout measurementWithin:maxSize];
     CGSize rotatedSize = CGSizeMake(sublayoutMeasurement.size.height, sublayoutMeasurement.size.width);

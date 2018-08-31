@@ -28,8 +28,8 @@ class WrappedLayout: LOKLayout {
         return layout.makeView()
     }
 
-    func configure(baseTypeView: View) {
-        layout.configure(baseTypeView: baseTypeView)
+    func configureView(_ view: View) {
+        layout.configure(baseTypeView: view)
     }
 
     var flexibility: LOKFlexibility {
@@ -41,7 +41,15 @@ class WrappedLayout: LOKLayout {
     }
 
     let layout: Layout
-    init(layout: Layout) {
+    private init(layout: Layout) {
         self.layout = layout
+    }
+
+    static func wrap(layout: Layout) -> LOKLayout {
+        if let reverseWrappedLayout = layout as? ReverseWrappedLayout {
+            return reverseWrappedLayout.layout
+        } else {
+            return WrappedLayout(layout: layout)
+        }
     }
 }

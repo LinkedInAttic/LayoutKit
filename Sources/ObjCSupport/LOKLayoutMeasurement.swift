@@ -38,7 +38,7 @@ import CoreGraphics
     }
 
     init(layoutMeasurement: LayoutMeasurement) {
-        wrappedLayout = WrappedLayout(layout: layoutMeasurement.layout)
+        wrappedLayout = WrappedLayout.wrap(layout: layoutMeasurement.layout)
         measurement = layoutMeasurement
     }
 
