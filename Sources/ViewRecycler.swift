@@ -20,11 +20,13 @@ class ViewRecycler {
 
     private var viewsById = [String: View]()
     private var unidentifiedViews = Set<View>()
+    private let rootView: View?
 
     /// Retains all subviews of rootView for recycling.
     init(rootView: View?) {
+        self.rootView = rootView
         rootView?.walkSubviews { (view) in
-            if let viewReuseId = view.viewReuseId {
+            if let viewReuseId = view.viewReuseId, view.layoutKitRootView == rootView {
                 self.viewsById[viewReuseId] = view
             } else {
                 self.unidentifiedViews.insert(view)
@@ -44,7 +46,7 @@ class ViewRecycler {
         }
 
         let providedView = viewProvider()
-        providedView.isLayoutKitView = true
+        providedView.layoutKitRootView = rootView
 
         // Remove the provided view from the list of cached views.
         if let viewReuseId = providedView.viewReuseId, let oldView = viewsById[viewReuseId], oldView == providedView {
@@ -63,7 +65,7 @@ class ViewRecycler {
         }
         viewsById.removeAll()
 
-        for view in unidentifiedViews where view.isLayoutKitView {
+        for view in unidentifiedViews where view.layoutKitRootView == rootView {
             view.removeFromSuperview()
         }
         unidentifiedViews.removeAll()
@@ -71,7 +73,7 @@ class ViewRecycler {
 }
 
 private var viewReuseIdKey: UInt8 = 0
-private var isLayoutKitViewKey: UInt8 = 0
+private var layoutKitRootViewKey: UInt8 = 0
 
 extension View {
 
@@ -93,13 +95,17 @@ extension View {
         }
     }
 
-    /// Indicates the view is managed by LayoutKit that can be safely removed.
-    var isLayoutKitView: Bool {
+    /// All views managed by LayoutKit keep a weak reference to their LayoutKit root node view. This is to ensure
+    /// that when we purge views from a node, we only purge views that belong to that node - rather than purging
+    /// potentially any view in the subview hierarchy which could belong to a different LayoutKit root node.
+    var layoutKitRootView: View? {
         get {
-            return (objc_getAssociatedObject(self, &isLayoutKitViewKey) as? NSNumber)?.boolValue ?? false
+            return objc_getAssociatedObject(self, &layoutKitRootViewKey) as? View
         }
         set {
-            objc_setAssociatedObject(self, &isLayoutKitViewKey, NSNumber(value: newValue), .OBJC_ASSOCIATION_RETAIN)
+            // OBJC_ASSOCIATION_ASSIGN creates a weak reference which avoids a retain cycle since we'll
+            // have a view being referenced by another view which is somewhere in its subview hierarchy.
+            objc_setAssociatedObject(self, &layoutKitRootViewKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
         }
     }
 }
