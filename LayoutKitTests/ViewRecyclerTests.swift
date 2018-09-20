@@ -91,6 +91,20 @@ class ViewRecyclerTests: XCTestCase {
         XCTAssertNotNil(one.superview)
     }
 
+    func testReusedViewTransformReset() {
+        let root = View()
+        let one = View(viewReuseId: "1")
+        one.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
+        root.addSubview(one)
+
+        let recycler = ViewRecycler(rootView: root)
+        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: "1", viewProvider: {
+            XCTFail("view should have been recycled")
+            return View()
+        })
+        XCTAssertTrue(v?.transform == CGAffineTransform.identity)
+    }
+
     /// Test for safe subview-purge in composite view e.g. UIButton.
     /// - SeeAlso: https://github.com/linkedin/LayoutKit/pull/85
     #if os(iOS) || os(tvOS)

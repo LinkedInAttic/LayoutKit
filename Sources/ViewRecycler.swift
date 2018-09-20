@@ -8,6 +8,7 @@
 
 import ObjectiveC
 import Foundation
+import UIKit
 
 /**
  Provides APIs to recycle views by id.
@@ -40,6 +41,21 @@ class ViewRecycler {
         // If we have a recyclable view that matches type and id, then reuse it.
         if let viewReuseId = viewReuseId, let view = viewsById[viewReuseId] {
             viewsById[viewReuseId] = nil
+            // Reset affine transformation. Without this there will be an issue when transform is set on a reused view that already
+            // has a non-identity transform. The issue goes like this.
+            // 1. View has a non-identity transform.
+            // 2. View gets retrieved from the viewsById map.
+            // 3. View's frame gets set under the assumption that its transform is identity.
+            // 4. View's transform gets set to a value.
+            // 5. View's frame gets changed automatically when its transform gets set. As a result, view's frame will not match its transform.
+            // Example:
+            // 1. View has a scale transform of (0.001, 0.001).
+            // 2. View gets reused so its transform is still (0.001, 0.001).
+            // 3. View's frame gets set to (0, 0, 100, 100) which is its original size.
+            // 4. View's transform gets set to identity in a config block.
+            // 5. One would expect view's frame to be (0, 0, 100, 100) since its transform is now identity. But actually its frame will be
+            //    (-49950, -49950, 100000, 100000) because its scale has just gone up 1000-fold, i.e. from 0.001 to 1.
+            view.transform = CGAffineTransform.identity
             return view
         }
 
