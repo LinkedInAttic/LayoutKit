@@ -23,6 +23,8 @@ class ViewRecycler {
 
     private var viewsById = [String: View]()
     private var unidentifiedViews = Set<View>()
+    private let defaultLayerAnchorPoint = CGPoint(x: 0.5, y: 0.5)
+    private let defaultTransform = CGAffineTransform.identity
 
     /// Retains all subviews of rootView for recycling.
     init(rootView: View?) {
@@ -60,8 +62,13 @@ class ViewRecycler {
             // 4. View's transform gets set to identity in a config block.
             // 5. One would expect view's frame to be (0, 0, 100, 100) since its transform is now identity. But actually its frame will be
             //    (-49950, -49950, 100000, 100000) because its scale has just gone up 1000-fold, i.e. from 0.001 to 1.
-            view.transform = CGAffineTransform.identity
-            view.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            if view.layer.anchorPoint != defaultLayerAnchorPoint {
+                view.layer.anchorPoint = defaultLayerAnchorPoint
+            }
+
+            if view.transform != defaultTransform {
+                view.transform = defaultTransform
+            }
             #endif
 
             return view
