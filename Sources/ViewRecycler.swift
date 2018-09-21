@@ -45,8 +45,9 @@ class ViewRecycler {
             viewsById[viewReuseId] = nil
 
             #if os(iOS) || os(tvOS)
-            // Reset affine transformation. Without this there will be an issue when transform is set on a reused view that already
-            // has a non-identity transform. The issue goes like this.
+            // Reset affine transformation and layer anchor point to their default values.
+            // Without this there will be an issue when their current value is not the default.
+            // Take affine transformation for example, the issue goes like this.
             // 1. View has a non-identity transform.
             // 2. View gets retrieved from the viewsById map.
             // 3. View's frame gets set under the assumption that its transform is identity.
@@ -60,6 +61,7 @@ class ViewRecycler {
             // 5. One would expect view's frame to be (0, 0, 100, 100) since its transform is now identity. But actually its frame will be
             //    (-49950, -49950, 100000, 100000) because its scale has just gone up 1000-fold, i.e. from 0.001 to 1.
             view.transform = CGAffineTransform.identity
+            view.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             #endif
 
             return view
