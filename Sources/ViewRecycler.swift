@@ -23,8 +23,10 @@ class ViewRecycler {
 
     private var viewsById = [String: View]()
     private var unidentifiedViews = Set<View>()
+    #if os(iOS) || os(tvOS)
     private let defaultLayerAnchorPoint = CGPoint(x: 0.5, y: 0.5)
     private let defaultTransform = CGAffineTransform.identity
+    #endif
 
     /// Retains all subviews of rootView for recycling.
     init(rootView: View?) {
