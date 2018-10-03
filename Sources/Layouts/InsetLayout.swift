@@ -14,8 +14,8 @@ import Foundation
  */
 open class InsetLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
     
-    open let insets: EdgeInsets
-    open let sublayout: Layout
+    public let insets: EdgeInsets
+    public let sublayout: Layout
 
     public init(insets: EdgeInsets,
                 alignment: Alignment = Alignment.fill,

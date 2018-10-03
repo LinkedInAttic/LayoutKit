@@ -47,11 +47,11 @@ import CoreGraphics
  */
 open class SizeLayout<V: View>: BaseLayout<V>, ConfigurableLayout {
 
-    open let minWidth: CGFloat?
-    open let maxWidth: CGFloat?
-    open let minHeight: CGFloat?
-    open let maxHeight: CGFloat?
-    open let sublayout: Layout?
+    public let minWidth: CGFloat?
+    public let maxWidth: CGFloat?
+    public let minHeight: CGFloat?
+    public let maxHeight: CGFloat?
+    public let sublayout: Layout?
 
     // MARK: - Designated initializers
 

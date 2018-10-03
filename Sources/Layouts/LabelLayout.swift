@@ -13,10 +13,10 @@ import UIKit
  */
 open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
 
-    open let text: Text
-    open let font: UIFont
-    open let numberOfLines: Int
-    open let lineHeight: CGFloat
+    public let text: Text
+    public let font: UIFont
+    public let numberOfLines: Int
+    public let lineHeight: CGFloat
 
     public init(text: Text,
                 font: UIFont = LabelLayoutDefaults.defaultFont,

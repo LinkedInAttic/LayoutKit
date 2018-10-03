@@ -19,19 +19,19 @@ import CoreGraphics
 open class StackLayout<V: View>: BaseLayout<V> {
 
     /// The axis along which sublayouts are stacked.
-    open let axis: Axis
+    public let axis: Axis
 
     /**
      The distance in points between adjacent edges of sublayouts along the axis.
      For Distribution.EqualSpacing, this is a minimum spacing. For all other distributions it is an exact spacing.
      */
-    open let spacing: CGFloat
+    public let spacing: CGFloat
 
     /// The distribution of space along the stack's axis.
-    open let distribution: StackLayoutDistribution
+    public let distribution: StackLayoutDistribution
     
     /// The stacked layouts.
-    open let sublayouts: [Layout]
+    public let sublayouts: [Layout]
 
     public init(axis: Axis,
                 spacing: CGFloat = 0,

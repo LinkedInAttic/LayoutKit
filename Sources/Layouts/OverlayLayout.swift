@@ -22,19 +22,19 @@ open class OverlayLayout<V: View>: BaseLayout<V> {
     /**
      The primary layouts that the `OverlayLayout` will use for sizing.
      */
-    open let primary: [Layout]
+    public let primary: [Layout]
 
     /**
      The layouts to put behind the primary layouts. They will be at most as large as the primary
      layouts.
      */
-    open let background: [Layout]
+    public let background: [Layout]
 
     /**
      The layouts to put in front of the primary layouts. They will be at most as large as the primary
      layouts.
      */
-    open let overlay: [Layout]
+    public let overlay: [Layout]
 
     /**
      Creates an `OverlayLayout` with the given primary, background, and overlay layouts. Alignment
