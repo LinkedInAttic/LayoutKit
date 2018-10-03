@@ -26,25 +26,25 @@ import UIKit
 open class StackView: UIView {
 
     /// The axis along which arranged views are stacked.
-    open let axis: Axis
+    public let axis: Axis
 
     /**
      The distance in points between adjacent edges of sublayouts along the axis.
      For Distribution.EqualSpacing, this is a minimum spacing. For all other distributions it is an exact spacing.
      */
-    open let spacing: CGFloat
+    public let spacing: CGFloat
 
     /// The distribution of space along the stack's axis.
-    open let distribution: StackLayoutDistribution
+    public let distribution: StackLayoutDistribution
 
     /// The distance that the arranged views are inset from the stack view. Defaults to 0.
-    open let contentInsets: UIEdgeInsets
+    public let contentInsets: UIEdgeInsets
 
     /// The stack's alignment inside its parent.
-    open let alignment: Alignment
+    public let alignment: Alignment
 
     /// The stack's flexibility.
-    open let flexibility: Flexibility?
+    public let flexibility: Flexibility?
 
     private var arrangedSubviews: [UIView] = []
 

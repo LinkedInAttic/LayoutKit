@@ -15,10 +15,10 @@ open class TextViewLayout<TextView: UITextView>: BaseLayout<TextView>, Configura
 
     // MARK: - instance variables
 
-    open let text: Text
-    open let font: UIFont?
-    open let textContainerInset: UIEdgeInsets
-    open let lineFragmentPadding: CGFloat
+    public let text: Text
+    public let font: UIFont?
+    public let textContainerInset: UIEdgeInsets
+    public let lineFragmentPadding: CGFloat
 
     private let isTextEmpty: Bool
 

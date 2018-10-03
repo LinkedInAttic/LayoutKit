@@ -16,7 +16,7 @@ open class CircleImagePileLayout: StackLayout<CircleImagePileView> {
         case leadingOnTop, trailingOnTop
     }
 
-    open let mode: Mode
+    public let mode: Mode
 
     public init(imageNames: [String], mode: Mode = .trailingOnTop, alignment: Alignment = .topLeading, viewReuseId: String? = nil) {
         self.mode = mode
