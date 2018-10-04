@@ -91,9 +91,35 @@ class ViewRecyclerTests: XCTestCase {
         XCTAssertNotNil(one.superview)
     }
 
+    #if os(iOS) || os(tvOS)
+    /// Test that a reused view's frame shouldn't change if its transform and layer anchor point
+    /// get set to the default values.
+    /// - SeeAlso: https://github.com/linkedin/LayoutKit/pull/231
+    func testReusedViewFrame() {
+        let root = View()
+        let one = View(viewReuseId: "1")
+        one.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
+        one.layer.anchorPoint = CGPoint(x: 0, y: 0)
+        let frame = CGRect(x: 0, y: 0, width: 200, height: 100)
+        one.frame = frame
+        root.addSubview(one)
+
+        let recycler = ViewRecycler(rootView: root)
+        let v: View? = recycler.makeOrRecycleView(havingViewReuseId: "1", viewProvider: {
+            XCTFail("view should have been recycled")
+            return View()
+        })
+        XCTAssertTrue(v?.transform == CGAffineTransform.identity)
+        XCTAssertTrue(v?.layer.anchorPoint == CGPoint(x: 0.5, y: 0.5))
+
+        one.frame = frame
+        one.transform = CGAffineTransform.identity
+        one.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        XCTAssertTrue(one.frame == frame)
+    }
+
     /// Test for safe subview-purge in composite view e.g. UIButton.
     /// - SeeAlso: https://github.com/linkedin/LayoutKit/pull/85
-    #if os(iOS) || os(tvOS)
     func testRecycledCompositeView() {
         let root = View()
         let button = UIButton(viewReuseId: "1")
