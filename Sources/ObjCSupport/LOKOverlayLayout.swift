@@ -20,6 +20,7 @@ import Foundation
                       backgroundLayouts: [LOKLayout]? = nil,
                       overlayLayouts: [LOKLayout]? = nil,
                       alignment: LOKAlignment? = nil,
+                      flexibility: LOKFlexibility? = nil,
                       viewReuseId: String? = nil,
                       viewClass: View.Type? = nil,
                       configure: ((View) -> Void)? = nil) {
@@ -34,6 +35,7 @@ import Foundation
             backgroundLayouts: backgroundLayouts?.map { $0.unwrapped } ?? [],
             overlayLayouts: overlayLayouts?.map { $0.unwrapped } ?? [],
             alignment: self.alignment.alignment,
+            flexibility: flexibility?.flexibility ?? .flexible,
             viewReuseId: viewReuseId,
             viewClass: self.viewClass,
             config: self.configure))
