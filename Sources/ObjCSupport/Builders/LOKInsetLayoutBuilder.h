@@ -18,6 +18,7 @@
 + (nonnull instancetype)withInsets:(LOKEdgeInsets)insets around:(nonnull id<LOKLayout>)sublayout;
 
 @property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^alignment)(LOKAlignment * _Nullable);
+@property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^flexibility)(LOKFlexibility * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^viewReuseId)(NSString * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKInsetLayoutBuilder * _Nonnull(^viewClass)(Class _Nullable);
 
