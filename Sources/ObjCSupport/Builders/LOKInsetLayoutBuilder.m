@@ -13,7 +13,6 @@
 @interface LOKInsetLayoutBuilder()
 
 @property (nonatomic, nullable) LOKAlignment *privateAlignment;
-@property (nonatomic, nullable) LOKFlexibility *privateFlexibility;
 @property (nonatomic, nullable) NSString *privateViewReuseId;
 @property (nonatomic, nullable) Class privateViewClass;
 
@@ -49,13 +48,6 @@
 - (LOKInsetLayoutBuilder * _Nonnull (^)(LOKAlignment * _Nonnull))alignment {
     return ^LOKInsetLayoutBuilder *(LOKAlignment * alignment){
         self.privateAlignment = alignment;
-        return self;
-    };
-}
-
-- (LOKInsetLayoutBuilder * _Nonnull (^)(LOKFlexibility * _Nonnull))flexibility {
-    return ^LOKInsetLayoutBuilder *(LOKFlexibility * flexibility){
-        self.privateFlexibility = flexibility;
         return self;
     };
 }
