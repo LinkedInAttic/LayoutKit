@@ -11,7 +11,7 @@ import CoreGraphics
 @objc open class LOKInsetLayout: LOKBaseLayout {
     @objc public let insets: EdgeInsets
     @objc public let alignment: LOKAlignment
-    @objc public let flexibility: LOKFlexibility?
+    @objc public let flexibility: LOKFlexibility
     @objc public let viewClass: View.Type
     @objc public let sublayout: LOKLayout
     @objc public let configure: ((View) -> Void)?
@@ -26,7 +26,7 @@ import CoreGraphics
         self.insets = insets
         self.sublayout = sublayout
         self.alignment = alignment ?? .fill
-        self.flexibility = flexibility
+        self.flexibility = flexibility ?? sublayout.flexibility
         self.viewClass = viewClass ?? View.self
         self.configure = configure
         let layout = InsetLayout(
