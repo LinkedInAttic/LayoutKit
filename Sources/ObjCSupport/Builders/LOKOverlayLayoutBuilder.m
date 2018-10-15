@@ -43,6 +43,7 @@
                                           backgroundLayouts:self.privateBackground
                                              overlayLayouts:self.privateOverlay
                                                   alignment:self.privateAlignment
+                                                flexibility:self.privateFlexibility
                                                 viewReuseId:self.privateViewReuseId
                                                   viewClass:self.privateViewClass
                                                   configure:self.privateConfigure];
