@@ -17,6 +17,7 @@ import CoreGraphics
 
     @objc public init(insets: EdgeInsets,
                       alignment: LOKAlignment? = nil,
+                      flexibility: LOKFlexibility? = nil,
                       viewReuseId: String? = nil,
                       viewClass: View.Type? = nil,
                       sublayout: LOKLayout,
@@ -29,6 +30,7 @@ import CoreGraphics
         let layout = InsetLayout(
             insets: self.insets,
             alignment: self.alignment.alignment,
+            flexibility: flexibility?.flexibility,
             viewReuseId: viewReuseId,
             sublayout: self.sublayout.unwrapped,
             viewClass: self.viewClass,

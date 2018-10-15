@@ -39,6 +39,7 @@
 - (nonnull LOKInsetLayout *)layout {
     return [[LOKInsetLayout alloc] initWithInsets:self.privateInsets
                                         alignment:self.privateAlignment
+                                      flexibility:self.privateFlexibility
                                       viewReuseId:self.privateViewReuseId
                                         viewClass:self.privateViewClass
                                         sublayout:self.privateSublayout
