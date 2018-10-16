@@ -35,7 +35,7 @@ import Foundation
             backgroundLayouts: backgroundLayouts?.map { $0.unwrapped } ?? [],
             overlayLayouts: overlayLayouts?.map { $0.unwrapped } ?? [],
             alignment: self.alignment.alignment,
-            flexibility: flexibility?.flexibility ?? .flexible,
+            flexibility: flexibility?.flexibility ?? primaryLayouts.first?.flexibility.flexibility ?? .flexible,
             viewReuseId: viewReuseId,
             viewClass: self.viewClass,
             config: self.configure))
