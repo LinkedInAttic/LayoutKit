@@ -212,7 +212,15 @@
 		75D94A3C1EA045F100A5FD01 /* OverlayLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A3A1EA045F100A5FD01 /* OverlayLayoutTests.swift */; };
 		75D94A3D1EA045F100A5FD01 /* OverlayLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A3A1EA045F100A5FD01 /* OverlayLayoutTests.swift */; };
 		75D94A401EA05D5A00A5FD01 /* OverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D94A3F1EA05D5A00A5FD01 /* OverlayViewController.swift */; };
-		7E7B83E320281AF30001E279 /* RotationLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B83E220281AF30001E279 /* RotationLayout.m */; };
+		7E385BC42172910A00E49669 /* ComponentHost.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E385BC32172910A00E49669 /* ComponentHost.m */; };
+		7E385BC72172916100E49669 /* Component.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E385BC62172916100E49669 /* Component.m */; };
+		7E385BCD2173275A00E49669 /* ExpandableTextComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E385BCC2173275A00E49669 /* ExpandableTextComponent.m */; };
+		7E385BD021732A3000E49669 /* BlockTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E385BCF21732A3000E49669 /* BlockTapGestureRecognizer.m */; };
+		7E385BD421732E8600E49669 /* ScreenComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E385BD321732E8600E49669 /* ScreenComponent.m */; };
+		7E385BD72175909500E49669 /* GrowingTextViewComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E385BD62175909500E49669 /* GrowingTextViewComponent.m */; };
+		7E385BDA2175940F00E49669 /* EditableTextViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E385BD92175940F00E49669 /* EditableTextViewLayout.m */; };
+		7E385BDD2176871B00E49669 /* KeyboardSafeAreaListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E385BDC2176871B00E49669 /* KeyboardSafeAreaListener.m */; };
+		7EBE1AB92179DC0800A49A98 /* CompoundComponentState.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE1AB82179DC0800A49A98 /* CompoundComponentState.m */; };
 		7EC02CDC20570945000CEE24 /* LayoutKitObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EC02CDA2057092B000CEE24 /* LayoutKitObjC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EEA2ABA201D18F20077A088 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEA2AB9201D18F20077A088 /* AppDelegate.m */; };
 		7EEA2ABD201D18F20077A088 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EEA2ABC201D18F20077A088 /* ViewController.m */; };
@@ -487,6 +495,23 @@
 		7E233E62202E5F870012DD1E /* LOKButtonLayoutType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKButtonLayoutType.swift; sourceTree = "<group>"; };
 		7E233E64203129680012DD1E /* LOKOverlayLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKOverlayLayout.swift; sourceTree = "<group>"; };
 		7E233E66203130110012DD1E /* LOKTextViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKTextViewLayout.swift; sourceTree = "<group>"; };
+		7E385BC22172910A00E49669 /* ComponentHost.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComponentHost.h; sourceTree = "<group>"; };
+		7E385BC32172910A00E49669 /* ComponentHost.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComponentHost.m; sourceTree = "<group>"; };
+		7E385BC52172916100E49669 /* Component.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Component.h; sourceTree = "<group>"; };
+		7E385BC62172916100E49669 /* Component.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Component.m; sourceTree = "<group>"; };
+		7E385BCB2173275A00E49669 /* ExpandableTextComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpandableTextComponent.h; sourceTree = "<group>"; };
+		7E385BCC2173275A00E49669 /* ExpandableTextComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpandableTextComponent.m; sourceTree = "<group>"; };
+		7E385BCE21732A3000E49669 /* BlockTapGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockTapGestureRecognizer.h; sourceTree = "<group>"; };
+		7E385BCF21732A3000E49669 /* BlockTapGestureRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockTapGestureRecognizer.m; sourceTree = "<group>"; };
+		7E385BD221732E8600E49669 /* ScreenComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScreenComponent.h; sourceTree = "<group>"; };
+		7E385BD321732E8600E49669 /* ScreenComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScreenComponent.m; sourceTree = "<group>"; };
+		7E385BD52175909500E49669 /* GrowingTextViewComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GrowingTextViewComponent.h; sourceTree = "<group>"; };
+		7E385BD62175909500E49669 /* GrowingTextViewComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GrowingTextViewComponent.m; sourceTree = "<group>"; };
+		7E385BD82175940F00E49669 /* EditableTextViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditableTextViewLayout.h; sourceTree = "<group>"; };
+		7E385BD92175940F00E49669 /* EditableTextViewLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditableTextViewLayout.m; sourceTree = "<group>"; };
+		7E385BDB2176871B00E49669 /* KeyboardSafeAreaListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyboardSafeAreaListener.h; sourceTree = "<group>"; };
+		7E385BDC2176871B00E49669 /* KeyboardSafeAreaListener.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyboardSafeAreaListener.m; sourceTree = "<group>"; };
+		7E385BF82179126B00E49669 /* ComponentOwner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComponentOwner.h; sourceTree = "<group>"; };
 		7E7370E82051A494007C19FF /* LOKInsetLayoutBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LOKInsetLayoutBuilder.h; sourceTree = "<group>"; };
 		7E7370E92051A494007C19FF /* LOKInsetLayoutBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LOKInsetLayoutBuilder.m; sourceTree = "<group>"; };
 		7E7370EC2051E08F007C19FF /* LOKLabelLayoutBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LOKLabelLayoutBuilder.h; sourceTree = "<group>"; };
@@ -514,8 +539,8 @@
 		7E7B83DC2020F7830001E279 /* LOKSizeLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKSizeLayout.swift; sourceTree = "<group>"; };
 		7E7B83DE202101340001E279 /* LOKStackLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKStackLayout.swift; sourceTree = "<group>"; };
 		7E7B83E020279CD10001E279 /* LOKReloadableViewLayoutAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKReloadableViewLayoutAdapter.swift; sourceTree = "<group>"; };
-		7E7B83E220281AF30001E279 /* RotationLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RotationLayout.m; sourceTree = "<group>"; };
-		7E7B83E420281B1F0001E279 /* RotationLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RotationLayout.h; sourceTree = "<group>"; };
+		7EBE1AB72179DC0800A49A98 /* CompoundComponentState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompoundComponentState.h; sourceTree = "<group>"; };
+		7EBE1AB82179DC0800A49A98 /* CompoundComponentState.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompoundComponentState.m; sourceTree = "<group>"; };
 		7EC02CDA2057092B000CEE24 /* LayoutKitObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutKitObjC.h; sourceTree = "<group>"; };
 		7EEA2AB6201D18F20077A088 /* LayoutKitObjCSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LayoutKitObjCSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EEA2AB8201D18F20077A088 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -884,19 +909,68 @@
 			path = ObjCSupport;
 			sourceTree = "<group>";
 		};
+		7EBE1ABA218116FD00A49A98 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				7E385BCE21732A3000E49669 /* BlockTapGestureRecognizer.h */,
+				7E385BCF21732A3000E49669 /* BlockTapGestureRecognizer.m */,
+				7E385BDB2176871B00E49669 /* KeyboardSafeAreaListener.h */,
+				7E385BDC2176871B00E49669 /* KeyboardSafeAreaListener.m */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		7EBE1ABB2181174700A49A98 /* Stateful Layout Support */ = {
+			isa = PBXGroup;
+			children = (
+				7E385BC52172916100E49669 /* Component.h */,
+				7E385BC62172916100E49669 /* Component.m */,
+				7E385BC22172910A00E49669 /* ComponentHost.h */,
+				7E385BC32172910A00E49669 /* ComponentHost.m */,
+				7E385BF82179126B00E49669 /* ComponentOwner.h */,
+				7EBE1AB72179DC0800A49A98 /* CompoundComponentState.h */,
+				7EBE1AB82179DC0800A49A98 /* CompoundComponentState.m */,
+			);
+			path = "Stateful Layout Support";
+			sourceTree = "<group>";
+		};
+		7EBE1ABC2181183C00A49A98 /* Sample Components */ = {
+			isa = PBXGroup;
+			children = (
+				7E385BD82175940F00E49669 /* EditableTextViewLayout.h */,
+				7E385BD92175940F00E49669 /* EditableTextViewLayout.m */,
+				7E385BCB2173275A00E49669 /* ExpandableTextComponent.h */,
+				7E385BCC2173275A00E49669 /* ExpandableTextComponent.m */,
+				7E385BD52175909500E49669 /* GrowingTextViewComponent.h */,
+				7E385BD62175909500E49669 /* GrowingTextViewComponent.m */,
+			);
+			path = "Sample Components";
+			sourceTree = "<group>";
+		};
+		7EBE1ABD2181195000A49A98 /* Sample Screen */ = {
+			isa = PBXGroup;
+			children = (
+				7E385BD221732E8600E49669 /* ScreenComponent.h */,
+				7E385BD321732E8600E49669 /* ScreenComponent.m */,
+				7EEA2ABB201D18F20077A088 /* ViewController.h */,
+				7EEA2ABC201D18F20077A088 /* ViewController.m */,
+			);
+			path = "Sample Screen";
+			sourceTree = "<group>";
+		};
 		7EEA2AB7201D18F20077A088 /* LayoutKitObjCSampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				7EBE1ABD2181195000A49A98 /* Sample Screen */,
+				7EBE1ABC2181183C00A49A98 /* Sample Components */,
+				7EBE1ABB2181174700A49A98 /* Stateful Layout Support */,
+				7EBE1ABA218116FD00A49A98 /* Helpers */,
 				7EEA2AB8201D18F20077A088 /* AppDelegate.h */,
 				7EEA2AB9201D18F20077A088 /* AppDelegate.m */,
-				7EEA2ABB201D18F20077A088 /* ViewController.h */,
-				7EEA2ABC201D18F20077A088 /* ViewController.m */,
-				7E7B83E220281AF30001E279 /* RotationLayout.m */,
-				7E7B83E420281B1F0001E279 /* RotationLayout.h */,
 				7EEA2AC1201D18F20077A088 /* Assets.xcassets */,
 				7EEA2AC6201D18F20077A088 /* Info.plist */,
-				7EEA2AC7201D18F20077A088 /* main.m */,
 				7EEA2ACC201D1FE90077A088 /* Launch Screen.storyboard */,
+				7EEA2AC7201D18F20077A088 /* main.m */,
 			);
 			path = LayoutKitObjCSampleApp;
 			sourceTree = "<group>";
@@ -1557,10 +1631,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EBE1AB92179DC0800A49A98 /* CompoundComponentState.m in Sources */,
+				7E385BDD2176871B00E49669 /* KeyboardSafeAreaListener.m in Sources */,
 				7EEA2ABD201D18F20077A088 /* ViewController.m in Sources */,
-				7E7B83E320281AF30001E279 /* RotationLayout.m in Sources */,
+				7E385BCD2173275A00E49669 /* ExpandableTextComponent.m in Sources */,
+				7E385BC42172910A00E49669 /* ComponentHost.m in Sources */,
+				7E385BC72172916100E49669 /* Component.m in Sources */,
+				7E385BD021732A3000E49669 /* BlockTapGestureRecognizer.m in Sources */,
 				7EEA2AC8201D18F20077A088 /* main.m in Sources */,
 				7EEA2ABA201D18F20077A088 /* AppDelegate.m in Sources */,
+				7E385BD421732E8600E49669 /* ScreenComponent.m in Sources */,
+				7E385BDA2175940F00E49669 /* EditableTextViewLayout.m in Sources */,
+				7E385BD72175909500E49669 /* GrowingTextViewComponent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
