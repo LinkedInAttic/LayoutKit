@@ -91,6 +91,30 @@ class ViewRecyclerTests: XCTestCase {
         XCTAssertNotNil(one.superview)
     }
 
+    func testRecycledViewWithoutPurgingIndirectSubviews() {
+        let root = View()
+        let headerView = View()
+        headerView.isLayoutKitView = true
+        root.addSubview(headerView)
+        let titleView = View(viewReuseId: "1")
+        root.addSubview(titleView)
+        let collectionView = View()
+        let cellView = View()
+        cellView.isLayoutKitView = true
+        root.addSubview(collectionView)
+        collectionView.addSubview(cellView)
+
+        let recycler = ViewRecycler(rootView: root)
+        let _ = recycler.makeOrRecycleView(havingViewReuseId: nil, viewProvider: {
+            return View()
+        })
+
+        recycler.purgeViews()
+        XCTAssertNil(headerView.superview)
+        XCTAssertNil(titleView.superview)
+        XCTAssertNotNil(cellView.superview)
+    }
+
     #if os(iOS) || os(tvOS)
     /// Test that a reused view's frame shouldn't change if its transform and layer anchor point
     /// get set to the default values.

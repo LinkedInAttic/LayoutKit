@@ -28,14 +28,18 @@ class ViewRecycler {
     private let defaultTransform = CGAffineTransform.identity
     #endif
 
-    /// Retains all subviews of rootView for recycling.
+    /// Retains all LayoutKit subviews of rootView for recycling.
     init(rootView: View?) {
-        rootView?.walkSubviews { (view) in
+        let visitor: (View) -> Void = { view in
             if let viewReuseId = view.viewReuseId {
                 self.viewsById[viewReuseId] = view
             } else {
                 self.unidentifiedViews.insert(view)
             }
+        }
+        rootView?.subviews.filter({$0.isLayoutKitView || $0.viewReuseId != nil}).forEach { (view) in
+            visitor(view)
+            view.walkSubviews(visitor: visitor)
         }
     }
 
