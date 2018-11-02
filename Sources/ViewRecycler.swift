@@ -28,7 +28,7 @@ class ViewRecycler {
     private let defaultTransform = CGAffineTransform.identity
     #endif
 
-    /// Retains all subviews of rootView for recycling.
+    /// Retains all LayoutKit subviews of rootView for recycling.
     init(rootView: View?) {
         rootView?.walkSubviews { (view) in
             if let viewReuseId = view.viewReuseId {
@@ -108,9 +108,14 @@ private var isLayoutKitViewKey: UInt8 = 0
 
 extension View {
 
-    /// Calls visitor for each transitive subview.
+    /// Calls visitor for each transitive LayoutKit subview.
     func walkSubviews(visitor: (View) -> Void) {
-        for subview in subviews {
+        /*
+         Fix a recycling bug that purges indirect subviews by only walking subviews that are created by LayoutKit.
+         If a subview isn't a LayoutKit subview, then there is no need to walk subviews of it,
+         as they must not be created by this layout.
+         */
+        for subview in subviews where subview.isLayoutKitView {
             visitor(subview)
             subview.walkSubviews(visitor: visitor)
         }
