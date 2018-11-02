@@ -30,16 +30,12 @@ class ViewRecycler {
 
     /// Retains all LayoutKit subviews of rootView for recycling.
     init(rootView: View?) {
-        let visitor: (View) -> Void = { view in
+        rootView?.walkSubviews { (view) in
             if let viewReuseId = view.viewReuseId {
                 self.viewsById[viewReuseId] = view
             } else {
                 self.unidentifiedViews.insert(view)
             }
-        }
-        rootView?.subviews.filter({$0.isLayoutKitView || $0.viewReuseId != nil}).forEach { (view) in
-            visitor(view)
-            view.walkSubviews(visitor: visitor)
         }
     }
 
@@ -112,9 +108,14 @@ private var isLayoutKitViewKey: UInt8 = 0
 
 extension View {
 
-    /// Calls visitor for each transitive subview.
+    /// Calls visitor for each transitive LayoutKit subview.
     func walkSubviews(visitor: (View) -> Void) {
-        for subview in subviews {
+        /*
+         Fix a recycling bug that purges indirect subviews by only walking subviews that are created by LayoutKit.
+         If a subview isn't a LayoutKit subview, then there is no need to walk subviews of it,
+         as they must not be created by this layout.
+         */
+        for subview in subviews where subview.isLayoutKitView {
             visitor(subview)
             subview.walkSubviews(visitor: visitor)
         }

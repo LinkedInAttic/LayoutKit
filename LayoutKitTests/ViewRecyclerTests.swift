@@ -172,5 +172,7 @@ extension View {
     convenience init(viewReuseId: String) {
         self.init(frame: .zero)
         self.viewReuseId = viewReuseId
+        // All views created in the ViewRecycler should be marked as LayoutKitView.
+        self.isLayoutKitView = true
     }
 }
