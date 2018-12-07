@@ -290,6 +290,9 @@
 		7EECD05B2053916C003DC4B1 /* LOKLabelLayoutBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E7370EC2051E08F007C19FF /* LOKLabelLayoutBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EECD05C2053916C003DC4B1 /* LOKTextViewLayoutBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E73710420520F5F007C19FF /* LOKTextViewLayoutBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EECD0632053942F003DC4B1 /* LayoutKitObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EECD0612053916C003DC4B1 /* LayoutKitObjC.framework */; };
+		A189721221B8BB8400DDA616 /* EmbeddedLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A189721021B8BB3B00DDA616 /* EmbeddedLayoutTests.swift */; };
+		A189721321B8BB8500DDA616 /* EmbeddedLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A189721021B8BB3B00DDA616 /* EmbeddedLayoutTests.swift */; };
+		A189721521B8CDA000DDA616 /* EmbeddedLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A189721021B8BB3B00DDA616 /* EmbeddedLayoutTests.swift */; };
 		AD2C36441EA5AFB500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2C36421EA5AF9500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift */; };
 		ADE5FCC11EA5B5F3006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE5FCBF1EA5B5C8006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift */; };
 		CDD4F71020EC727800DB358C /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B193BB61D887BCF00FCA22D /* CollectionExtension.swift */; };
@@ -528,6 +531,7 @@
 		7EEA2ACC201D1FE90077A088 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		7EECD0612053916C003DC4B1 /* LayoutKitObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LayoutKitObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EECD0622053916C003DC4B1 /* LayoutKit-iOS copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "LayoutKit-iOS copy-Info.plist"; path = "/Users/staguer/ws/lk0/LayoutKit-iOS copy-Info.plist"; sourceTree = "<absolute>"; };
+		A189721021B8BB3B00DDA616 /* EmbeddedLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedLayoutTests.swift; sourceTree = "<group>"; };
 		AD2C36421EA5AF9500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift; sourceTree = "<group>"; };
 		ADE5FCBF1EA5B5C8006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewLayoutAdapterTableViewOverrideTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -750,6 +754,7 @@
 				44F968161E42639500392763 /* TextViewLayoutTests.swift */,
 				0BCB76671D8725310065E02A /* UIFontExtension.swift */,
 				0BCB76681D8725310065E02A /* ViewRecyclerTests.swift */,
+				A189721021B8BB3B00DDA616 /* EmbeddedLayoutTests.swift */,
 			);
 			path = LayoutKitTests;
 			sourceTree = "<group>";
@@ -1387,6 +1392,7 @@
 				0B2D092C1D872F75007E487C /* ReloadableViewLayoutAdapterCollectionViewTests.swift in Sources */,
 				CDD4F71320EC728200DB358C /* IndexSetExtension.swift in Sources */,
 				0B2D092E1D872F75007E487C /* ReloadableViewLayoutAdapterTestCase.swift in Sources */,
+				A189721321B8BB8500DDA616 /* EmbeddedLayoutTests.swift in Sources */,
 				0B2D092D1D872F75007E487C /* ReloadableViewLayoutAdapterTableViewTests.swift in Sources */,
 				0B2D09321D872F75007E487C /* StackLayoutSpacingTests.swift in Sources */,
 				75D94A3B1EA045F100A5FD01 /* OverlayLayoutTests.swift in Sources */,
@@ -1474,6 +1480,7 @@
 				0B2D093C1D872F75007E487C /* DensityAssertions.swift in Sources */,
 				CDD4F71420EC728300DB358C /* IndexSetExtension.swift in Sources */,
 				0BB380DC1DB73EFF00E2614F /* TextExtension.swift in Sources */,
+				A189721221B8BB8400DDA616 /* EmbeddedLayoutTests.swift in Sources */,
 				0B8C078C1DC3E88A001CD5EE /* ButtonLayoutTests.swift in Sources */,
 				0BDDF95C1E25ACCE008B0A6F /* ReloadableViewTests.swift in Sources */,
 				0B2D093D1D872F75007E487C /* InsetLayoutTests.swift in Sources */,
@@ -1527,6 +1534,7 @@
 				0B2D09531D872F76007E487C /* InsetLayoutTests.swift in Sources */,
 				CDD4F71220EC727900DB358C /* CollectionExtension.swift in Sources */,
 				0BA02E481D874BBB00F1E8D3 /* LayoutArrangementTests.swift in Sources */,
+				A189721521B8CDA000DDA616 /* EmbeddedLayoutTests.swift in Sources */,
 				75D94A3D1EA045F100A5FD01 /* OverlayLayoutTests.swift in Sources */,
 				0B2D095B1D872F76007E487C /* SizeLayoutTests.swift in Sources */,
 				0B2D09621D872F76007E487C /* TestStack.swift in Sources */,

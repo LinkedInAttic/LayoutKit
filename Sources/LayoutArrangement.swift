@@ -73,6 +73,7 @@ public struct LayoutArrangement {
     private func makeViews(in view: View? = nil, direction: UserInterfaceLayoutDirection, prepareAnimation: Bool) -> View {
         let recycler = ViewRecycler(rootView: view)
         let views = makeSubviews(from: recycler, prepareAnimation: prepareAnimation)
+        recycler.markViewsAsRoot(views)
         let rootView: View
 
         if let view = view {
