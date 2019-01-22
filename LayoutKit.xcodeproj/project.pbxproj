@@ -730,16 +730,17 @@
 				0B193BB61D887BCF00FCA22D /* CollectionExtension.swift */,
 				0BCB76551D8725310065E02A /* CollectionViewTests.swift */,
 				0BCB76561D8725310065E02A /* DensityAssertions.swift */,
+				A189721021B8BB3B00DDA616 /* EmbeddedLayoutTests.swift */,
 				0B193BB71D887BCF00FCA22D /* IndexSetExtension.swift */,
 				0BCB756F1D8720110065E02A /* Info.plist */,
 				0BCB76571D8725310065E02A /* InsetLayoutTests.swift */,
 				0BCB76581D8725310065E02A /* LabelLayoutTests.swift */,
 				0BCB76591D8725310065E02A /* LayoutArrangementTests.swift */,
 				75D94A3A1EA045F100A5FD01 /* OverlayLayoutTests.swift */,
-				0BCB765C1D8725310065E02A /* ReloadableViewLayoutAdapterCollectionViewTests.swift */,
 				AD2C36421EA5AF9500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift */,
-				0BCB765D1D8725310065E02A /* ReloadableViewLayoutAdapterTableViewTests.swift */,
+				0BCB765C1D8725310065E02A /* ReloadableViewLayoutAdapterCollectionViewTests.swift */,
 				ADE5FCBF1EA5B5C8006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift */,
+				0BCB765D1D8725310065E02A /* ReloadableViewLayoutAdapterTableViewTests.swift */,
 				0BCB765E1D8725310065E02A /* ReloadableViewLayoutAdapterTestCase.swift */,
 				0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */,
 				0BCB765F1D8725310065E02A /* SizeLayoutTests.swift */,
@@ -754,7 +755,6 @@
 				44F968161E42639500392763 /* TextViewLayoutTests.swift */,
 				0BCB76671D8725310065E02A /* UIFontExtension.swift */,
 				0BCB76681D8725310065E02A /* ViewRecyclerTests.swift */,
-				A189721021B8BB3B00DDA616 /* EmbeddedLayoutTests.swift */,
 			);
 			path = LayoutKitTests;
 			sourceTree = "<group>";
