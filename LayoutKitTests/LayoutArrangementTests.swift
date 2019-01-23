@@ -31,12 +31,12 @@ class LayoutArrangementTests: XCTestCase {
     }
 
     func testMakeViewsDifferentCalls() {
-        var createdView: UIView?
+        var createdView: View?
         let sublayout0 = SizeLayout<View>(width: 50, height: 50, viewReuseId: "someID" ) { view in createdView = view }
         let sublayout1 = SizeLayout<View>(width: 50, height: 50, viewReuseId: "otherID" ) { _ in  }
         let stackLayout = StackLayout(axis: .vertical, sublayouts: [sublayout0, sublayout1])
         let arrangement = stackLayout.arrangement()
-        let hostView = UIView()
+        let hostView = View()
         hostView.addSubview(arrangement.makeViews())
         let firstView = createdView
         arrangement.makeViews(in: hostView)
