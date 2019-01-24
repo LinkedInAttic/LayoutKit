@@ -18,6 +18,7 @@ import UIKit
  Initialize ViewRecycler with a root view whose subviews are eligible for recycling.
  Call `makeView(layoutId:)` to recycle or create a view of the desired type and id.
  Call `purgeViews()` to remove all unrecycled views from the view hierarchy.
+ Call `markViewsAsRoot(views:)` to mark the top level views of generated view hierarchy
  */
 class ViewRecycler {
 
@@ -30,7 +31,17 @@ class ViewRecycler {
 
     /// Retains all subviews of rootView for recycling.
     init(rootView: View?) {
-        rootView?.walkSubviews { (view) in
+        guard let rootView = rootView else {
+            return
+        }
+
+        // Mark all direct subviews from rootView as managed.
+        // We are recreating the layout they were previously roots of.
+        for view in rootView.subviews where view.type == .root {
+            view.type = .managed
+        }
+
+        rootView.walkNonRootSubviews { (view) in
             if let viewReuseId = view.viewReuseId {
                 self.viewsById[viewReuseId] = view
             } else {
@@ -77,7 +88,7 @@ class ViewRecycler {
         }
 
         let providedView = viewProvider()
-        providedView.isLayoutKitView = true
+        providedView.type = .managed
 
         // Remove the provided view from the list of cached views.
         if let viewReuseId = providedView.viewReuseId, let oldView = viewsById[viewReuseId], oldView == providedView {
@@ -96,23 +107,37 @@ class ViewRecycler {
         }
         viewsById.removeAll()
 
-        for view in unidentifiedViews where view.isLayoutKitView {
+        for view in unidentifiedViews where view.type == .managed {
             view.removeFromSuperview()
         }
         unidentifiedViews.removeAll()
     }
+
+    func markViewsAsRoot(_ views: [View]) {
+        views.forEach { $0.type = .root }
+    }
 }
 
 private var viewReuseIdKey: UInt8 = 0
-private var isLayoutKitViewKey: UInt8 = 0
+private var typeKey: UInt8 = 0
 
 extension View {
 
+    enum ViewType: UInt8 {
+        // Indicates the view was not created by LayoutKit and should not be modified.
+        case unmanaged
+        // Indicates the view is managed by LayoutKit that can be safely removed.
+        case managed
+        // Indicates the view is managed by LayoutKit and is a root of a view hierarchy instantiated (or updated) by `makeViews`.
+        // Used to separate such nested hierarchies so that updating the outer hierarchy doesn't disturb any nested hierarchies.
+        case root
+    }
+
     /// Calls visitor for each transitive subview.
-    func walkSubviews(visitor: (View) -> Void) {
-        for subview in subviews {
+    func walkNonRootSubviews(visitor: (View) -> Void) {
+        for subview in subviews where subview.type != .root {
             visitor(subview)
-            subview.walkSubviews(visitor: visitor)
+            subview.walkNonRootSubviews(visitor: visitor)
         }
     }
 
@@ -122,17 +147,17 @@ extension View {
             return objc_getAssociatedObject(self, &viewReuseIdKey) as? String
         }
         set {
-            objc_setAssociatedObject(self, &viewReuseIdKey, newValue, .OBJC_ASSOCIATION_RETAIN)
+            objc_setAssociatedObject(self, &viewReuseIdKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC)
         }
     }
 
-    /// Indicates the view is managed by LayoutKit that can be safely removed.
-    var isLayoutKitView: Bool {
+    var type: ViewType {
         get {
-            return (objc_getAssociatedObject(self, &isLayoutKitViewKey) as? NSNumber)?.boolValue ?? false
+            return objc_getAssociatedObject(self, &typeKey) as? ViewType ?? .unmanaged
         }
         set {
-            objc_setAssociatedObject(self, &isLayoutKitViewKey, NSNumber(value: newValue), .OBJC_ASSOCIATION_RETAIN)
+            let type: ViewType? = (newValue == .unmanaged) ? nil : newValue
+            objc_setAssociatedObject(self, &typeKey, type, .OBJC_ASSOCIATION_COPY_NONATOMIC)
         }
     }
 }

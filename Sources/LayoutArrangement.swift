@@ -80,9 +80,14 @@ public struct LayoutArrangement {
                 view.addSubview(subview, maintainCoordinates: prepareAnimation)
             }
             rootView = view
+            // In this case, the `rootView` is the view that was passed in. It is not created for this layout arrangement
+            // but merely hosts it. Therefore, the subview(s) that are being added to it are the root-most views from
+            // the LayoutKit view recycling perspective.
+            recycler.markViewsAsRoot(views)
         } else if let view = views.first, views.count == 1 {
             // We have a single view so it is our root view.
             rootView = view
+            recycler.markViewsAsRoot(views)
         } else {
             // We have multiple views so create a root view.
             rootView = View(frame: frame)
@@ -93,6 +98,9 @@ public struct LayoutArrangement {
                 }
                 rootView.addSubview(subview)
             }
+            // The generated root view that's being returned is the root-most one that is created by LayoutKit,
+            // so it is the one that should be marked as the root by the recycler.
+            recycler.markViewsAsRoot([rootView])
         }
         recycler.purgeViews()
 

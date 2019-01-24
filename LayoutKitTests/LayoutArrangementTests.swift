@@ -30,6 +30,20 @@ class LayoutArrangementTests: XCTestCase {
         XCTAssertEqual(view.subviews[1].frame, CGRect(x: 80, y: 10, width: 50, height: 50))
     }
 
+    func testMakeViewsDifferentCalls() {
+        var createdView: View?
+        let sublayout0 = SizeLayout<View>(width: 50, height: 50, viewReuseId: "someID" ) { view in createdView = view }
+        let sublayout1 = SizeLayout<View>(width: 50, height: 50, viewReuseId: "otherID" ) { _ in  }
+        let stackLayout = StackLayout(axis: .vertical, sublayouts: [sublayout0, sublayout1])
+        let arrangement = stackLayout.arrangement()
+        let hostView = View()
+        hostView.addSubview(arrangement.makeViews())
+        let firstView = createdView
+        arrangement.makeViews(in: hostView)
+        let secondView = createdView
+        XCTAssertTrue(firstView == secondView)
+    }
+
     func testSubviewOrderIsStable() {
         // Forces the SizeLayout to produce a view.
         let forceViewConfig: (View) -> Void = { _ in }
