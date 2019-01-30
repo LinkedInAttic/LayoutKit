@@ -60,8 +60,8 @@ extension UICollectionView: ReloadableView {
     @objc
     open func registerViews(withReuseIdentifier reuseIdentifier: String) {
         register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: reuseIdentifier)
-        register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: reuseIdentifier)
+        register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: reuseIdentifier)
+        register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: reuseIdentifier)
     }
 
     @objc
