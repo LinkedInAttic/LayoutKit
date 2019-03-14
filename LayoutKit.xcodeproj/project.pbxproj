@@ -474,6 +474,7 @@
 		0BD5F8281DB43B4500108688 /* ButtonLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonLayout.swift; sourceTree = "<group>"; };
 		0BD5F82B1DB43F9B00108688 /* ButtonLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonLayoutTests.swift; sourceTree = "<group>"; };
 		0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewTests.swift; sourceTree = "<group>"; };
+		142C451D223A7D83002360F5 /* LayoutKit.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = LayoutKit.podspec; sourceTree = "<group>"; };
 		37BEBEF3207C23B6002BD761 /* LOKAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKAnimation.swift; sourceTree = "<group>"; };
 		37D9D58320BF8270001A5CDD /* LOKLayoutBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LOKLayoutBuilder.h; sourceTree = "<group>"; };
 		4468A31C1E46460B00341D07 /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
@@ -530,7 +531,6 @@
 		7EEA2AC7201D18F20077A088 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7EEA2ACC201D1FE90077A088 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		7EECD0612053916C003DC4B1 /* LayoutKitObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LayoutKitObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7EECD0622053916C003DC4B1 /* LayoutKit-iOS copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "LayoutKit-iOS copy-Info.plist"; path = "/Users/staguer/ws/lk0/LayoutKit-iOS copy-Info.plist"; sourceTree = "<absolute>"; };
 		A189721021B8BB3B00DDA616 /* EmbeddedLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedLayoutTests.swift; sourceTree = "<group>"; };
 		AD2C36421EA5AF9500550A03 /* ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewLayoutAdapterCollectionViewOverrideTests.swift; sourceTree = "<group>"; };
 		ADE5FCBF1EA5B5C8006A3DC2 /* ReloadableViewLayoutAdapterTableViewOverrideTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewLayoutAdapterTableViewOverrideTests.swift; sourceTree = "<group>"; };
@@ -664,6 +664,7 @@
 		0BCB75531D871FC40065E02A = {
 			isa = PBXGroup;
 			children = (
+				142C451D223A7D83002360F5 /* LayoutKit.podspec */,
 				0B7B269E1D919A9200CD1956 /* LayoutKit.playground */,
 				0BCB75611D8720110065E02A /* LayoutKit */,
 				0BCB756C1D8720110065E02A /* LayoutKitTests */,
@@ -672,7 +673,6 @@
 				7EEA2AB7201D18F20077A088 /* LayoutKitObjCSampleApp */,
 				0BCB75601D8720110065E02A /* Products */,
 				7EEA2ACE201D24530077A088 /* Frameworks */,
-				7EECD0622053916C003DC4B1 /* LayoutKit-iOS copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
