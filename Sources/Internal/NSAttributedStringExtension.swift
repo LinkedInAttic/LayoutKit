@@ -12,7 +12,7 @@ extension NSAttributedString {
 
     /// Returns a new NSAttributedString with a given font and the same attributes.
     func with(font: UIFont) -> NSAttributedString {
-        let fontAttribute = [NSAttributedStringKey.font: font]
+        let fontAttribute = [NSAttributedString.Key.font: font]
         let attributedTextWithFont = NSMutableAttributedString(string: string, attributes: fontAttribute)
         let fullRange = NSMakeRange(0, (string as NSString).length)
         attributedTextWithFont.beginEditing()
