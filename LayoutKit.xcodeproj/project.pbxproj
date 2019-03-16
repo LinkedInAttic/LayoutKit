@@ -474,7 +474,6 @@
 		0BD5F8281DB43B4500108688 /* ButtonLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonLayout.swift; sourceTree = "<group>"; };
 		0BD5F82B1DB43F9B00108688 /* ButtonLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonLayoutTests.swift; sourceTree = "<group>"; };
 		0BDDF95A1E25ACCE008B0A6F /* ReloadableViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadableViewTests.swift; sourceTree = "<group>"; };
-		142C451D223A7D83002360F5 /* LayoutKit.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = LayoutKit.podspec; sourceTree = "<group>"; };
 		37BEBEF3207C23B6002BD761 /* LOKAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOKAnimation.swift; sourceTree = "<group>"; };
 		37D9D58320BF8270001A5CDD /* LOKLayoutBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LOKLayoutBuilder.h; sourceTree = "<group>"; };
 		4468A31C1E46460B00341D07 /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
@@ -664,7 +663,6 @@
 		0BCB75531D871FC40065E02A = {
 			isa = PBXGroup;
 			children = (
-				142C451D223A7D83002360F5 /* LayoutKit.podspec */,
 				0B7B269E1D919A9200CD1956 /* LayoutKit.playground */,
 				0BCB75611D8720110065E02A /* LayoutKit */,
 				0BCB756C1D8720110065E02A /* LayoutKitTests */,

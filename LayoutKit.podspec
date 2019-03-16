@@ -5,7 +5,7 @@ Pod::Spec.new do |spec|
   spec.homepage          = 'http://layoutkit.org'
   spec.authors           = 'LinkedIn'
   spec.summary           = 'LayoutKit is a fast view layout library for iOS, macOS, and tvOS.'
-  spec.source            = { :git => 'https://github.com/hooliooo/LayoutKit.git', :tag => spec.version }
+  spec.source            = { :git => 'https://github.com/linkedin/LayoutKit.git', :tag => spec.version }
   spec.source_files      = 'Sources/**/*.swift'
   spec.documentation_url = 'http://layoutkit.org'
 
