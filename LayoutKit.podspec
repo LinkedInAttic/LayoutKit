@@ -41,4 +41,6 @@ Pod::Spec.new do |spec|
     'Sources/ObjCSupport/Internal/**'
   ]
 
+  spec.swift_version = '5.0'
+
 end
