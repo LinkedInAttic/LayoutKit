@@ -62,6 +62,18 @@ extension LOKReloadableViewLayoutAdapter: UITableViewDelegate {
         return adapter.tableView(tableView, heightForFooterInSection: section)
     }
 
+    @objc open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return adapter.tableView(tableView, estimatedHeightForRowAt: indexPath)
+    }
+
+    @objc open func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return adapter.tableView(tableView, estimatedHeightForHeaderInSection: section)
+    }
+
+    @objc open func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+        return adapter.tableView(tableView, estimatedHeightForFooterInSection: section)
+    }
+
     @objc open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return adapter.tableView(tableView, viewForHeaderInSection: section)
     }

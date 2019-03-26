@@ -28,6 +28,21 @@ extension ReloadableViewLayoutAdapter: UITableViewDelegate {
     }
 
     /// - Warning: Subclasses that override this method must call super
+    open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return currentArrangement[indexPath.section].items[indexPath.item].frame.height
+    }
+
+    /// - Warning: Subclasses that override this method must call super
+    open func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return currentArrangement[section].header?.frame.height ?? 0
+    }
+
+    /// - Warning: Subclasses that override this method must call super
+    open func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+        return currentArrangement[section].footer?.frame.height ?? 0
+    }
+
+    /// - Warning: Subclasses that override this method must call super
     open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return renderLayout(currentArrangement[section].header, tableView: tableView)
     }
