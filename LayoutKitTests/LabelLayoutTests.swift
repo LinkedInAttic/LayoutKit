@@ -52,7 +52,7 @@ class LabelLayoutTests: XCTestCase {
     }
 
     func testAttributedLabel() {
-        let attributedText = NSAttributedString(string: "Hi", attributes: [NSAttributedStringKey.font: UIFont.helvetica(size: 42)])
+        let attributedText = NSAttributedString(string: "Hi", attributes: [NSAttributedString.Key.font: UIFont.helvetica(size: 42)])
         let font = UIFont.helvetica(size: 99)
 
         let arrangement = LabelLayout(attributedText: attributedText, font: font).arrangement()
@@ -122,7 +122,7 @@ class LabelLayoutTests: XCTestCase {
     func testAttributedTextCustomFont() {
         #if !os(tvOS) // tvOS doesn't currently support custom fonts
         let font = UIFont(name: "Papyrus", size: 20)!
-        let attributes = [NSAttributedStringKey.font: font]
+        let attributes = [NSAttributedString.Key.font: font]
         let text = NSAttributedString(string: "Hello! 😄😄😄", attributes: attributes)
 
         let arrangement = LabelLayout(attributedText: text).arrangement()
@@ -136,7 +136,7 @@ class LabelLayoutTests: XCTestCase {
         #if !os(tvOS) // tvOS doesn't currently support custom fonts
         let font = UIFont(name: "Papyrus", size: 20)!
         let text = NSMutableAttributedString(string: "Hello world! 😄😄😄")
-        text.addAttribute(NSAttributedStringKey.font, value: font, range: NSMakeRange(6, 6))
+        text.addAttribute(NSAttributedString.Key.font, value: font, range: NSMakeRange(6, 6))
 
         let arrangement = LabelLayout(attributedText: text).arrangement()
         let label = UILabel(attributedText: text)

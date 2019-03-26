@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name              = 'LayoutKit'
-  spec.version           = '10.1.0'
+  spec.version           = '10.1.1'
   spec.license           = { :type => 'Apache License, Version 2.0' }
   spec.homepage          = 'http://layoutkit.org'
   spec.authors           = 'LinkedIn'
@@ -41,5 +41,6 @@ Pod::Spec.new do |spec|
     'Sources/ObjCSupport/Internal/**'
   ]
 
-end
+  spec.swift_version = '5.0'
 
+end

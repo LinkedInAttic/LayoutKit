@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name              = 'LayoutKitObjC'
-  spec.version           = '10.1.0'
+  spec.version           = '10.1.1'
   spec.license           = { :type => 'Apache License, Version 2.0' }
   spec.homepage          = 'http://layoutkit.org'
   spec.authors           = 'LinkedIn'
@@ -45,8 +45,7 @@ Pod::Spec.new do |spec|
 
     # Excluded due to "'systemFontSize' is unavailable"
     'Sources/ObjCSupport/Builders/LOKLabelLayoutBuilder.*',
-    'Sources/ObjCSupport/LOKLabelLayout.swift' 
+    'Sources/ObjCSupport/LOKLabelLayout.swift'
   ]
 
 end
-
