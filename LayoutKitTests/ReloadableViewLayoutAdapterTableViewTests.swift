@@ -68,17 +68,17 @@ private class TestTableView: LayoutAdapterTableView, TestableReloadableView {
         reloadDataCount += 1
     }
 
-    fileprivate override func insertRows(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation) {
+    fileprivate override func insertRows(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation) {
         super.insertRows(at: indexPaths, with: animation)
         batchUpdates.insertItems.append(contentsOf: indexPaths)
     }
 
-    fileprivate override func deleteRows(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation) {
+    fileprivate override func deleteRows(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation) {
         super.deleteRows(at: indexPaths, with: animation)
         batchUpdates.deleteItems.append(contentsOf: indexPaths)
     }
 
-    fileprivate override func reloadRows(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation) {
+    fileprivate override func reloadRows(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation) {
         super.reloadRows(at: indexPaths, with: animation)
         batchUpdates.reloadItems.append(contentsOf: indexPaths)
     }
@@ -88,17 +88,17 @@ private class TestTableView: LayoutAdapterTableView, TestableReloadableView {
         batchUpdates.moveItems.append(ItemMove(from: indexPath, to: newIndexPath))
     }
 
-    fileprivate override func insertSections(_ sections: IndexSet, with animation: UITableViewRowAnimation) {
+    fileprivate override func insertSections(_ sections: IndexSet, with animation: UITableView.RowAnimation) {
         super.insertSections(sections, with: animation)
         batchUpdates.insertSections.formUnion(sections)
     }
 
-    fileprivate override func reloadSections(_ sections: IndexSet, with animation: UITableViewRowAnimation) {
+    fileprivate override func reloadSections(_ sections: IndexSet, with animation: UITableView.RowAnimation) {
         super.reloadSections(sections, with: animation)
         batchUpdates.reloadSections.formUnion(sections)
     }
 
-    fileprivate override func deleteSections(_ sections: IndexSet, with animation: UITableViewRowAnimation) {
+    fileprivate override func deleteSections(_ sections: IndexSet, with animation: UITableView.RowAnimation) {
         super.deleteSections(sections, with: animation)
         batchUpdates.deleteSections.formUnion(sections)
     }

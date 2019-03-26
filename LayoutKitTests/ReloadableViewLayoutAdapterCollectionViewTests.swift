@@ -110,11 +110,11 @@ private class TestCollectionView: LayoutAdapterCollectionView, TestableReloadabl
     }
 
     fileprivate func verifyHeader(_ section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {
-        verifySupplementaryView(UICollectionElementKindSectionHeader, section: section, text: text, frame: frame, file: file, line: line)
+        verifySupplementaryView(UICollectionView.elementKindSectionHeader, section: section, text: text, frame: frame, file: file, line: line)
     }
 
     fileprivate func verifyFooter(_ section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {
-        verifySupplementaryView(UICollectionElementKindSectionFooter, section: section, text: text, frame: frame, file: file, line: line)
+        verifySupplementaryView(UICollectionView.elementKindSectionFooter, section: section, text: text, frame: frame, file: file, line: line)
     }
 
     private func verifySupplementaryView(_ kind: String, section: Int, text: String?, frame: CGRect?, file: StaticString, line: UInt) {

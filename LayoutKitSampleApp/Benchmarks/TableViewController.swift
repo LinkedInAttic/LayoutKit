@@ -28,7 +28,7 @@ class TableViewController<ContentViewType: UIView>: UITableViewController where 
 
     init(data: [CellType.DataType]) {
         self.data = data
-        super.init(style: UITableViewStyle.grouped)
+        super.init(style: UITableView.Style.grouped)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -52,7 +52,7 @@ class TableViewController<ContentViewType: UIView>: UITableViewController where 
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 }
 
