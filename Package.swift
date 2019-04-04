@@ -10,8 +10,7 @@ let package = Package(
     targets: [
         .target(
             name: "LayoutKit",
-            path: "Sources",
-            exclude: ["Sources/ObjCSupport"]
+            path: "Sources/Internal"
         )
     ]
 )
