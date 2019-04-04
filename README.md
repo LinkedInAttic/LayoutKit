@@ -84,7 +84,7 @@ Then run `carthage update`.
 
 Add this to your Package.swift:
 ```swift
-.package(url: "https://github.com/AccioSupport/LayoutKit.git", .upToNextMajor(from: "")),
+.package(url: "https://github.com/AccioSupport/LayoutKit.git", .upToNextMajor(from: "10.1.0")),
 ```
 
 Next, add `LayoutKit` to your App targets dependencies like so:
