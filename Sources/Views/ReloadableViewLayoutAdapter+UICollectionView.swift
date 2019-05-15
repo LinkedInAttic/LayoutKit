@@ -55,9 +55,9 @@ extension ReloadableViewLayoutAdapter: UICollectionViewDataSource {
         let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseIdentifier, for: indexPath)
         let arrangement: LayoutArrangement?
         switch kind {
-        case UICollectionElementKindSectionHeader:
+        case UICollectionView.elementKindSectionHeader:
             arrangement = currentArrangement[indexPath.section].header
-        case UICollectionElementKindSectionFooter:
+        case UICollectionView.elementKindSectionFooter:
             arrangement = currentArrangement[indexPath.section].footer
         default:
             arrangement = nil

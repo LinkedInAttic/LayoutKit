@@ -42,7 +42,7 @@ public protocol ConfigurableLayout: Layout {
 
 // Implement `configure(baseViewType:)` from `Layout`.
 public extension ConfigurableLayout {
-    public func configure(baseTypeView: View) {
+    func configure(baseTypeView: View) {
         guard let view = baseTypeView as? ConfigurableView else {
             assertionFailure("Expected baseTypeView \(baseTypeView) to be of type \(ConfigurableView.self) but it was of type \(type(of: baseTypeView))")
             return

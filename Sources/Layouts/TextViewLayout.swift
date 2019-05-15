@@ -233,7 +233,7 @@ private extension Text {
         case .attributed(_):
             let text = Text.attributed(NSAttributedString(
                 string: spaceString,
-                attributes: [NSAttributedStringKey.font: font]))
+                attributes: [NSAttributedString.Key.font: font]))
             size = text.textSize(within: maxSize, font: font)
 
         case .unattributed(_):

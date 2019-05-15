@@ -292,7 +292,7 @@ public enum ButtonLayoutType {
     case infoDark
     case contactAdd
 
-    public var buttonType: UIButtonType {
+    public var buttonType: UIButton.ButtonType {
         switch (self) {
         case .custom:
             return .custom

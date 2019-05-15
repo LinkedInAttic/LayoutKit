@@ -39,6 +39,8 @@ extension UIView {
                     return .leftToRight
                 case .rightToLeft:
                     return .rightToLeft
+                @unknown default:
+                    return .leftToRight
                 }
             } else {
                 #if LAYOUTKIT_EXTENSION_DEFAULT_RIGHT_TO_LEFT
