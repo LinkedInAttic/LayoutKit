@@ -39,7 +39,7 @@ public enum Text {
             if text.isEmpty {
                 return .zero
             }
-            size = text.boundingRect(with: maxSize, options: options, attributes: [NSAttributedStringKey.font: font], context: nil).size
+            size = text.boundingRect(with: maxSize, options: options, attributes: [NSAttributedString.Key.font: font], context: nil).size
         }
         // boundingRect(with:options:attributes:) returns size to a precision of hundredths of a point,
         // but UILabel only returns sizes with a point precision of 1/screenDensity.

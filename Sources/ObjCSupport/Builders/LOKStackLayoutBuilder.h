@@ -8,7 +8,7 @@
 
 #import "LOKLayoutBuilder.h"
 
-typedef NS_ENUM(NSInteger, LOKStackLayoutDistribution) {
+typedef NS_CLOSED_ENUM(NSInteger, LOKStackLayoutDistribution) {
     LOKStackLayoutDistributionDefault,
     LOKStackLayoutDistributionLeading,
     LOKStackLayoutDistributionTrailing,
@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, LOKStackLayoutDistribution) {
     LOKStackLayoutDistributionFillFlexing
 };
 
-typedef NS_ENUM(NSInteger, LOKAxis) {
+typedef NS_CLOSED_ENUM(NSInteger, LOKAxis) {
     LOKAxisVertical,
     LOKAxisHorizontal
 };

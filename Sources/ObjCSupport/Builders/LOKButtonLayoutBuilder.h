@@ -10,7 +10,7 @@
 
 @class LOKButtonLayout;
 
-typedef NS_ENUM(NSInteger, LOKButtonLayoutType) {
+typedef NS_CLOSED_ENUM(NSInteger, LOKButtonLayoutType) {
     LOKButtonLayoutTypeCustom,
     LOKButtonLayoutTypeSystem,
     LOKButtonLayoutTypeDetailDisclosure,
