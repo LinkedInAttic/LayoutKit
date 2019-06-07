@@ -34,6 +34,11 @@ import UIKit
     @objc public let font: UIFont
 
     /**
+     Line break mode for label.
+     */
+    @objc public let lineBreakMode: NSLineBreakMode
+
+    /**
      Number of lines the label can have.
      */
     @objc public let numberOfLines: Int
@@ -55,6 +60,7 @@ import UIKit
 
     @objc public init(attributedString: NSAttributedString,
                       font: UIFont?,
+                      lineBreakMode: NSLineBreakMode,
                       lineHeight: CGFloat,
                       numberOfLines: Int,
                       alignment: LOKAlignment?,
@@ -64,6 +70,7 @@ import UIKit
                       configure: ((UILabel) -> Void)?) {
         self.attributedString = attributedString
         self.font = font ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
+        self.lineBreakMode = lineBreakMode
         self.lineHeight = lineHeight
         self.numberOfLines = numberOfLines
         self.alignment = alignment ?? .topLeading
@@ -75,6 +82,7 @@ import UIKit
             font: self.font,
             lineHeight: lineHeight > 0 && lineHeight.isFinite ? lineHeight : Optional<CGFloat>.none,
             numberOfLines: self.numberOfLines,
+            lineBreakMode: self.lineBreakMode,
             alignment: self.alignment.alignment,
             flexibility: flexibility?.flexibility ?? .flexible,
             viewReuseId: viewReuseId,
@@ -86,6 +94,7 @@ import UIKit
 
     @objc public init(string: String,
                       font: UIFont?,
+                      lineBreakMode: NSLineBreakMode,
                       lineHeight: CGFloat,
                       numberOfLines: Int,
                       alignment: LOKAlignment?,
@@ -95,6 +104,7 @@ import UIKit
                       configure: ((UILabel) -> Void)?) {
         self.string = string
         self.font = font ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
+        self.lineBreakMode = lineBreakMode
         self.lineHeight = lineHeight
         self.numberOfLines = numberOfLines
         self.alignment = alignment ?? .topLeading
@@ -106,6 +116,7 @@ import UIKit
             font: self.font,
             lineHeight: lineHeight > 0 && lineHeight.isFinite ? lineHeight : Optional<CGFloat>.none,
             numberOfLines: self.numberOfLines,
+            lineBreakMode: self.lineBreakMode,
             alignment: self.alignment.alignment,
             flexibility: flexibility?.flexibility ?? .flexible,
             viewReuseId: viewReuseId,

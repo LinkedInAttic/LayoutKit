@@ -21,6 +21,7 @@
 @property (nonatomic, nullable) NSAttributedString *privateAttributedString;
 @property (nonatomic, nullable) UIFont *privateFont;
 @property (nonatomic) NSInteger privateNumberOfLines;
+@property (nonatomic) NSLineBreakMode privateLineBreakMode;
 @property (nonatomic) CGFloat privateLineHeight;
 @property (nonatomic, nullable) void (^ privateConfigure)(UILabel * _Nonnull);
 
@@ -31,12 +32,14 @@
 - (instancetype)initWithString:(NSString *)string {
     self = [super init];
     _privateString = string;
+    _privateLineBreakMode = NSLineBreakByTruncatingTail;
     return self;
 }
 
 - (instancetype)initWithAttributedString:(NSAttributedString *)attributedString {
     self = [super init];
     _privateAttributedString = attributedString;
+    _privateLineBreakMode = NSLineBreakByTruncatingTail;
     return self;
 }
 
@@ -53,6 +56,7 @@
     if (self.privateAttributedString) {
         return [[LOKLabelLayout alloc] initWithAttributedString:self.privateAttributedString
                                                            font:self.privateFont
+                                                  lineBreakMode:self.privateLineBreakMode
                                                      lineHeight:self.privateLineHeight
                                                   numberOfLines:self.privateNumberOfLines
                                                       alignment:self.privateAlignment
@@ -63,6 +67,7 @@
     } else {
         return [[LOKLabelLayout alloc] initWithString:self.privateString
                                                  font:self.privateFont
+                                        lineBreakMode:self.privateLineBreakMode
                                            lineHeight:self.privateLineHeight
                                         numberOfLines:self.privateNumberOfLines
                                             alignment:self.privateAlignment
@@ -83,6 +88,13 @@
 - (LOKLabelLayoutBuilder * _Nonnull (^)(NSInteger))numberOfLines {
     return ^LOKLabelLayoutBuilder *(NSInteger numberOfLines){
         self.privateNumberOfLines = numberOfLines;
+        return self;
+    };
+}
+
+- (LOKLabelLayoutBuilder * _Nonnull (^)(NSLineBreakMode))lineBreakMode {
+    return ^LOKLabelLayoutBuilder *(NSLineBreakMode lineBreakMode){
+        self.privateLineBreakMode = lineBreakMode;
         return self;
     };
 }

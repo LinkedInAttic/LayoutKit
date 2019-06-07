@@ -12,16 +12,18 @@ extension NSAttributedString {
 
     /// Returns a new NSAttributedString with a given font and the same attributes.
     func with(font: UIFont) -> NSAttributedString {
-        let fontAttribute = [NSAttributedString.Key.font: font]
-        let attributedTextWithFont = NSMutableAttributedString(string: string, attributes: fontAttribute)
-        let fullRange = NSMakeRange(0, (string as NSString).length)
-        attributedTextWithFont.beginEditing()
-        self.enumerateAttributes(in: fullRange, options: .longestEffectiveRangeNotRequired, using: { (attributes, range, _) in
-            attributedTextWithFont.addAttributes(attributes, range: range)
-        })
-        attributedTextWithFont.endEditing()
-
-        return attributedTextWithFont
+        return with(additionalAttributes: [NSAttributedString.Key.font: font])
     }
 
+    /// Returns a new NSAttributedString with previous as well as additional attributes.
+    func with(additionalAttributes: [NSAttributedString.Key : Any]?) -> NSAttributedString {
+        let attributedTextWithAdditionalAttributes = NSMutableAttributedString(string: string, attributes: additionalAttributes)
+        let fullRange = NSMakeRange(0, (string as NSString).length)
+        attributedTextWithAdditionalAttributes.beginEditing()
+        self.enumerateAttributes(in: fullRange, options: .longestEffectiveRangeNotRequired, using: { (attributes, range, _) in
+            attributedTextWithAdditionalAttributes.addAttributes(attributes, range: range)
+        })
+        attributedTextWithAdditionalAttributes.endEditing()
+        return attributedTextWithAdditionalAttributes
+    }
 }

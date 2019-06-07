@@ -11,6 +11,14 @@ import LayoutKit
 
 class LabelLayoutTests: XCTestCase {
 
+    // For the defined `sampleText` and `labelLayoutMaxWidth` combination, `LabelLayout` requires 2 line of
+    // text for char-wrapping and 3 lines for word-wrapping/truncating-tail.
+    // So don't change this combination as the following tests are based on these values:
+    // - testSizeCalculationWithDifferentLineBreakMode
+    // - testAttributedTextSizeCalculationWithDifferentLineBreakMode
+    private static let sampleText = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean comm"
+    private static let labelLayoutMaxWidth = 305
+
     func testNeedsView() {
         let l = LabelLayout(text: "hi").arrangement().makeViews()
         XCTAssertNotNil(l as? UILabel)
@@ -200,10 +208,78 @@ class LabelLayoutTests: XCTestCase {
         let maxSize = CGSize(width: 17, height: .max)
         XCTAssertEqual(layout.measurement(within: maxSize).size, label.sizeThatFits(maxSize))
     }
+
+    func testSizeCalculationWithDifferentLineBreakMode() {
+        // Use different line break mode for `LabelLayout` and dummy label.
+        // So in this case, size calculation should not match with dummy label's size calculation.
+        let label = UILabel(text: LabelLayoutTests.sampleText, numberOfLines: 0, lineBreakMode: .byCharWrapping)
+        let layout = LabelLayout(text: LabelLayoutTests.sampleText)
+        let maxSize = CGSize(width: LabelLayoutTests.labelLayoutMaxWidth, height: .max)
+        XCTAssertNotEqual(layout.measurement(within: maxSize).size, label.sizeThatFits(maxSize))
+    }
+
+    func testAttributedTextSizeCalculationWithDifferentLineBreakMode() {
+        // Use different line break mode for `LabelLayout` and dummy label.
+        // So in this case, size calculation should not match with dummy label's size calculation.
+        let attributedText = NSAttributedString(string: LabelLayoutTests.sampleText)
+        let label = UILabel(attributedText: attributedText, numberOfLines: 0, lineBreakMode: .byCharWrapping)
+        let layout = LabelLayout(attributedText: attributedText)
+        let maxSize = CGSize(width: LabelLayoutTests.labelLayoutMaxWidth, height: .max)
+        XCTAssertNotEqual(layout.measurement(within: maxSize).size, label.sizeThatFits(maxSize))
+    }
+
+    func testTextSizeCalculationWithSameLineBreakMode() {
+        // Use same line break mode for `LabelLayout` and dummy label and then match LabelLayout's size with dummy label's size calculation.
+        let lineBreakingModes: [NSLineBreakMode] = [
+            .byWordWrapping,
+            .byCharWrapping,
+            .byClipping,
+            .byTruncatingHead,
+            .byTruncatingTail,
+            .byTruncatingMiddle
+        ]
+
+        lineBreakingModes.forEach { (lineBreakMode) in
+            verifyTextSizeCalculation(with: LabelLayoutTests.sampleText, lineBreakMode: lineBreakMode)
+        }
+    }
+
+    func testAttributedTextSizeCalculationWithSameLineBreakMode() {
+        // Use same line break mode for `LabelLayout` and dummy label and then match LabelLayout's size with dummy label's size calculation.
+        let lineBreakingModes: [NSLineBreakMode] = [
+            .byWordWrapping,
+            .byCharWrapping,
+            .byClipping,
+            .byTruncatingHead,
+            .byTruncatingTail,
+            .byTruncatingMiddle
+        ]
+
+        let attributedText = NSAttributedString(string: LabelLayoutTests.sampleText)
+        lineBreakingModes.forEach { (lineBreakMode) in
+            verifyAttributedTextSizeCalculation(with: attributedText, lineBreakMode: lineBreakMode)
+        }
+    }
+
+    // MARK: Private Helpers
+
+    private func verifyTextSizeCalculation(with text: String, lineBreakMode: NSLineBreakMode) {
+        let label = UILabel(text: text, numberOfLines: 0, lineBreakMode: lineBreakMode)
+        let layout = LabelLayout(text: text, lineBreakMode: lineBreakMode)
+        let maxSize = CGSize(width: LabelLayoutTests.labelLayoutMaxWidth, height: .max)
+        XCTAssertEqual(layout.measurement(within: maxSize).size, label.sizeThatFits(maxSize))
+    }
+
+    private func verifyAttributedTextSizeCalculation(with attributedText: NSAttributedString, lineBreakMode: NSLineBreakMode) {
+        let label = UILabel(attributedText: attributedText, numberOfLines: 0, lineBreakMode: lineBreakMode)
+        let layout = LabelLayout(attributedText: attributedText, lineBreakMode: lineBreakMode)
+        let maxSize = CGSize(width: LabelLayoutTests.labelLayoutMaxWidth, height: .max)
+        XCTAssertEqual(layout.measurement(within: maxSize).size, label.sizeThatFits(maxSize))
+    }
 }
 
 extension UILabel {
-    convenience init(text: String, font: UIFont? = nil, numberOfLines: Int? = nil) {
+    convenience init(text: String, font: UIFont? = nil, numberOfLines: Int? = nil, lineBreakMode: NSLineBreakMode? = nil) {
         self.init()
         self.text = text
         if let font = font {
@@ -212,9 +288,12 @@ extension UILabel {
         if let numberOfLines = numberOfLines {
             self.numberOfLines = numberOfLines
         }
+        if let lineBreakMode = lineBreakMode {
+            self.lineBreakMode = lineBreakMode
+        }
     }
 
-    convenience init(attributedText: NSAttributedString, font: UIFont? = nil, numberOfLines: Int? = nil) {
+    convenience init(attributedText: NSAttributedString, font: UIFont? = nil, numberOfLines: Int? = nil, lineBreakMode: NSLineBreakMode? = nil) {
         self.init()
         if let font = font {
             self.font = font
@@ -222,6 +301,10 @@ extension UILabel {
         if let numberOfLines = numberOfLines {
             self.numberOfLines = numberOfLines
         }
+        if let lineBreakMode = lineBreakMode {
+            self.lineBreakMode = lineBreakMode
+        }
+
         // Want to set attributed text AFTER font it set, otherwise the font seems to take precedence.
         self.attributedText = attributedText
     }

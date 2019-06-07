@@ -43,6 +43,11 @@
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^numberOfLines)(NSInteger);
 
 /**
+ @c LOKLabelLayoutBuilder block for setting line break mode of the label.
+ */
+@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^lineBreakMode)(NSLineBreakMode);
+
+/**
  @c LOKLabelLayoutBuilder block for setting line height of the label.
  */
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^lineHeight)(CGFloat);
