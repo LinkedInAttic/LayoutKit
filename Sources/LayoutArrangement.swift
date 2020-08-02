@@ -115,8 +115,12 @@ public struct LayoutArrangement {
 
     /// Flips the right and left edges of the view's subviews.
     private func flipSubviewsHorizontally(_ view: View) {
+        var width = view.bounds.width
+        if let scrollView = view as? UIScrollView {
+            width = scrollView.contentSize.width
+        }
         for subview in view.subviews {
-            subview.frame.origin.x = view.frame.width - subview.frame.maxX
+            subview.frame.origin.x = width - subview.frame.maxX
             flipSubviewsHorizontally(subview)
         }
     }
