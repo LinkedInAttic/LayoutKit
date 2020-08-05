@@ -7,7 +7,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import CoreGraphics
-
+import UIKit
 /**
  The frame of a layout and the frames of its sublayouts.
  */
