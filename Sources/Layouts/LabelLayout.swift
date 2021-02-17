@@ -165,7 +165,20 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
 
 public class LabelLayoutDefaults {
     public static let defaultNumberOfLines = 0
-    public static let defaultFont = UILabel().font ?? UIFont.systemFont(ofSize: 17)
+    private static var _defaultFont: UIFont?
+    public static var defaultFont: UIFont {
+        if Thread.isMainThread {
+            return UILabel().font ?? UIFont.systemFont(ofSize: 17)
+        }
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        DispatchQueue.main.async {
+            _defaultFont = UILabel().font ?? UIFont.systemFont(ofSize: 17)
+            dispatchGroup.leave()
+        }
+        dispatchGroup.wait()
+        return _defaultFont!
+    }
     public static let defaultAlignment = Alignment.topLeading
     public static let defaultLineBreakMode = NSLineBreakMode.byTruncatingTail
     public static let defaultFlexibility = Flexibility.flexible
