@@ -1,3 +1,7 @@
+# 🚨 UNMAINTAINED 🚨 
+
+This project is no longer used by LinkedIn and is currently unmaintained.
+
 # [![LayoutKit](https://cdn.rawgit.com/linkedin/LayoutKit/master/docs/img/layoutkit.svg)](http://layoutkit.org/)
 
 [![CocoaPods](https://img.shields.io/cocoapods/p/LayoutKit.svg?maxAge=3601)](#)
