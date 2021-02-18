@@ -169,7 +169,11 @@ open class ButtonLayout<Button: UIButton>: BaseLayout<Button>, ConfigurableLayou
                 #if os(tvOS)
                     return CGSize(width: 37, height: 46)
                 #else
-                    return CGSize(width: 22, height: 22)
+                    if #available(iOS 13.0, *) {
+                        return CGSize(width: 25, height: 24)
+                    } else {
+                        return CGSize(width: 22, height: 22)
+                    }
                 #endif
             }
         }
