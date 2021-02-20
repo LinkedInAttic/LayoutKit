@@ -7,7 +7,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 import CoreGraphics
-
+import UIKit
 /**
  The frame of a layout and the frames of its sublayouts.
  */
@@ -115,8 +115,12 @@ public struct LayoutArrangement {
 
     /// Flips the right and left edges of the view's subviews.
     private func flipSubviewsHorizontally(_ view: View) {
+        var width = view.bounds.width
+        if let scrollView = view as? UIScrollView {
+            width = scrollView.contentSize.width
+        }
         for subview in view.subviews {
-            subview.frame.origin.x = view.frame.width - subview.frame.maxX
+            subview.frame.origin.x = width - subview.frame.maxX
             flipSubviewsHorizontally(subview)
         }
     }

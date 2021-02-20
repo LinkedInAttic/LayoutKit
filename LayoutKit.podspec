@@ -9,6 +9,7 @@ Pod::Spec.new do |spec|
   spec.source_files      = 'Sources/**/*.swift'
   spec.documentation_url = 'http://layoutkit.org'
 
+  spec.swift_versions = ['5']
   spec.ios.deployment_target = '8.0'
   spec.ios.frameworks        = 'Foundation', 'CoreGraphics', 'UIKit'
   spec.ios.exclude_files     = [
