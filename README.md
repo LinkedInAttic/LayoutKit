@@ -64,7 +64,7 @@ We have found LayoutKit to be a useful tool, but you should be aware of what it 
 
 ## Installation
 
-LayoutKit can be installed with [CocoaPods](https://cocoapods.org/) or [Carthage](https://github.com/Carthage/Carthage).
+LayoutKit can be installed with [CocoaPods](https://cocoapods.org/), [Carthage](https://github.com/Carthage/Carthage) or [Accio](https://github.com/JamitLabs/Accio).
 
 ### CocoaPods
 
@@ -83,6 +83,25 @@ github "linkedin/LayoutKit"
 ```
 
 Then run `carthage update`.
+
+### Accio
+
+Add this to your Package.swift:
+```swift
+.package(url: "https://github.com/linkedin/LayoutKit.git", .upToNextMajor(from: "10.1.0")),
+```
+
+Next, add `LayoutKit` to your App targets dependencies like so:
+```swift
+.target(
+    name: "App",
+    dependencies: [
+        "LayoutKit",
+    ]
+),
+```
+
+Then run `accio update`.
 
 ## Documentation
 
