@@ -198,6 +198,54 @@ open class ReloadableViewLayoutAdapter: NSObject, ReloadableViewUpdateManagerDel
         currentArrangement = arrangement
         reloadableView?.reloadDataSynchronously()
     }
+
+    /**
+     Computes layouts without applying them on the view. Instead it returns a list of animations that
+     that can be can be used to smoothly resize e.g CollectionViewCells.
+
+     See Playground page CollectionView Animation in LayoutKit.playground for example
+     */
+    open func reload<T: Collection, U: Collection>(
+        items: [IndexPath],
+        width: CGFloat? = nil,
+        height: CGFloat? = nil,
+        layoutProvider: @escaping (Void) -> T,
+        completion: @escaping ([Animation]) -> Void) where U.Iterator.Element == Layout, T.Iterator.Element == Section<U> {
+
+        let start = CFAbsoluteTimeGetCurrent()
+        let operation = BlockOperation()
+
+        operation.addExecutionBlock { [weak self, weak operation] in
+            let arrangements: [Section<[LayoutArrangement]>] = layoutProvider().flatMap { sectionLayout in
+                if operation?.isCancelled ?? true {
+                    return nil
+                }
+
+                return sectionLayout.map { (layout: Layout) -> LayoutArrangement in
+                    return layout.arrangement(width: width, height: height)
+                }
+            }
+
+            let mainOperation = BlockOperation(block: {
+                let animations: [Animation] = items.flatMap({ indexPath in
+                    guard let contentView = self?.reloadableView?.contentView(forIndexPath: indexPath) else { return nil }
+                    let arrangement = arrangements[indexPath.section].items[indexPath.item]
+                    return arrangement.prepareAnimation(for: contentView)
+                })
+                self?.currentArrangement = arrangements
+
+                let end = CFAbsoluteTimeGetCurrent()
+                self?.logger?("user: \((end-start).ms)")
+                completion(animations)
+            })
+
+            if let operation = operation, !operation.isCancelled {
+                OperationQueue.main.addOperation(mainOperation)
+            }
+        }
+
+        backgroundLayoutQueue.addOperation(operation)
+    }
 }
 
 /// A section in a `ReloadableView`.

@@ -42,6 +42,9 @@ public protocol ReloadableView: class {
      of concurrent inserts/updates/deletes as UICollectionView documents in `performBatchUpdates`.
      */
     func perform(batchUpdates: BatchUpdates, completion: (() -> Void)?)
+
+    // Returns contentView for either a UICollectionViewCell or UITableViewCell
+    func contentView(forIndexPath indexPath: IndexPath) -> UIView?
 }
 
 // MARK: - UICollectionView
@@ -96,6 +99,10 @@ extension UICollectionView: ReloadableView {
             completion?()
         })
     }
+
+    open func contentView(forIndexPath indexPath: IndexPath) -> UIView? {
+        return self.cellForItem(at: indexPath)?.contentView
+    }
 }
 
 // MARK: - UITableView
@@ -149,5 +156,9 @@ extension UITableView: ReloadableView {
         endUpdates()
 
         completion?()
+    }
+
+    open func contentView(forIndexPath indexPath: IndexPath) -> UIView? {
+        return self.cellForRow(at: indexPath)?.contentView
     }
 }

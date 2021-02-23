@@ -12,5 +12,6 @@
         <page name='Counter'/>
         <page name='Test'/>
         <page name='TextView'/>
+        <page name='CollectionView Animation'/>
     </pages>
 </playground>
