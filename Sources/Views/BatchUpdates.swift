@@ -6,7 +6,7 @@
 // software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-import Foundation
+import UIKit
 
 
 /**
@@ -25,6 +25,8 @@ public class BatchUpdates: NSObject {
     public var deleteSections = IndexSet()
     public var reloadSections = IndexSet()
     public var moveSections = [SectionMove]()
+    
+    public var animationType: UITableViewRowAnimation = .automatic
 
     public override init() {
         super.init()
